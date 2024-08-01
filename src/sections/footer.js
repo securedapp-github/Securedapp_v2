@@ -24,7 +24,7 @@ const Footer = () => (
     <div>
         <div>
             <div>
-                <img src='' alt='logo'/>
+                <img src='/images/securedapp-logo.png' alt='logo'/>
             </div>
             <div>
                 <FontAwesomeIcon icon={faSun}/>

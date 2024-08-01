@@ -10,7 +10,7 @@ function ThemeSwitch() {
 const Navbar = () => (
   <nav>
     <div>
-        <logo><img src ="" alt='logo'/></logo>
+        <logo><img src ="/images/securedapp-logo.png" alt='logo'/></logo>
     </div>
     <div>
     <ul>

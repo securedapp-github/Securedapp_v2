@@ -9,35 +9,35 @@ const ServicesData = [
         name : "Plan, execute, and track projects of any size",
         desc : "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
         button: "",
-        image: "i"
+        image: "/images/service-1.png"
     },
     {
         id: 2,
         name : "Plan, execute, and track projects of any size 2",
         desc : "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
         button: "",
-        image: "i"
+        image: "/images/service-1.png"
     },
     {
         id: 3,
         name : "Plan, execute, and track projects of any size 3",
         desc : "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
         button: "",
-        image: "i"
+        image: "/images/service-1.png"
     },
     {
         id: 4,
         name : "Plan, execute, and track projects of any size 4",
         desc : "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
         button: "",
-        image: "i"
+        image: "/images/service-1.png"
     },
     {
         id: 5,
         name : "Plan, execute, and track projects of any size 5",
         desc : "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
         button: "",
-        image: "i"
+        image: "/images/service-1.png"
     }
 ]
 
