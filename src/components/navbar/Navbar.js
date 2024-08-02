@@ -14,6 +14,8 @@ const Navbar = () => {
     document.body.classList.toggle("dark");
   };
 
+  const [dropDown, setDropDown] = useState("");
+
   return (
     <nav className="py-6 px-10 font-nunito font-light text-base text-secondary dark:text-primary flex justify-between items-center">
       <div>
@@ -21,11 +23,47 @@ const Navbar = () => {
           <img src="/assets/images/securedapp_logo.svg" alt="logo" />
         </Link>
       </div>
-      <div className="bg-cardBackgroundLight dark:bg-cardBackgroundDark px-4 py-3 rounded-full border-2 border-cardBorderColorLight dark:border-cardBorderColorDark flex items-center space-x-6">
-        <NavbarItem to="/products">Products</NavbarItem>
-        <NavbarItem to="/services">Services</NavbarItem>
-        <NavbarItem to="/resources">Resources</NavbarItem>
-        <NavbarItem to="/pricing" showIcon={false}>
+      <div className="bg-cardBackgroundLight dark:bg-cardBackgroundDark px-4  rounded-full border-2 border-cardBorderColorLight dark:border-cardBorderColorDark flex items-center space-x-6">
+        <NavbarItem
+          to="/products"
+          dropDown={dropDown}
+          setDropDown={setDropDown}
+          items={[
+            { name: "Solidity Shield Scan", to: "" },
+            { name: "Secure Watch", to: "" },
+            { name: "Secure Audit", to: "" },
+          ]}
+          darkMode={darkMode}>
+          Products
+        </NavbarItem>
+        <NavbarItem
+          to="/services"
+          dropDown={dropDown}
+          setDropDown={setDropDown}
+          items={[
+            { name: "Solidity Shield Scan", to: "" },
+            { name: "Secure Watch", to: "" },
+            { name: "Secure Audit", to: "" },
+          ]}
+          darkMode={darkMode}>
+          Services
+        </NavbarItem>
+        <NavbarItem
+          to="/resources"
+          dropDown={dropDown}
+          setDropDown={setDropDown}
+          items={[
+            { name: "Blogs", to: "" },
+            { name: "Documentation", to: "" },
+          ]}
+          darkMode={darkMode}>
+          Resources
+        </NavbarItem>
+        <NavbarItem
+          to="/pricing"
+          dropDown={dropDown}
+          setDropDown={setDropDown}
+          darkMode={darkMode}>
           Pricing
         </NavbarItem>
       </div>
