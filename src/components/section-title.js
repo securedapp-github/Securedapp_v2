@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const SectionTitle = ({name, title, description}) => (
+const SectionTitle = ({ name, title, description }) => (
   <div>
     <p>{name}</p>
     <h3>{title}</h3>

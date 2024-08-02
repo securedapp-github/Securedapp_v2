@@ -1,31 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/navbar';
-import Hero from './sections/home-hero';
-import Why from './sections/why';
-import OurSolutions from './sections/solutions';
-import HowItWorks from './sections/how-it-works';
-import Services from './sections/services';
-import Testimonials from './sections/testimonials';
-import FAQs from './sections/FAQs';
-import CTA from './sections/CTA';
-import Footer from './sections/footer';
+import "./App.css";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/home/HomePage";
 
-function App({theme}) {
+function App() {
   return (
-    <div className="secure-dapp-container">
-        <Navbar/>
-        <Hero/>
-        <Why/>
-        <OurSolutions/>
-        <HowItWorks/>
-        <Services/>
-        <Testimonials/>
-        <FAQs/>
-        <CTA/>
-        <Footer/>
+    <div className="App bg-primary dark:bg-secondary">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
     </div>
-);
+  );
 }
 
 export default App;
