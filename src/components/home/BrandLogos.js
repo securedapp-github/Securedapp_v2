@@ -26,7 +26,7 @@ const brandLogos = [
 
 const BrandLogos = () => {
   return (
-    <div className="brand-logos px-3 grid grid-cols-5 gap-4 w-full">
+    <div className="brand-logos">
       {brandLogos.map((brandLogo, index) => (
         <div key={index} className="flex justify-center items-center">
           <img

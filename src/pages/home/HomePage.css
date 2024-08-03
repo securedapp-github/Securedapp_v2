@@ -37,3 +37,15 @@
   background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
     linear-gradient(#d2e6ff14 1px, transparent 1px);
 }
+
+.statistics {
+  @apply font-nunito text-secondary dark:text-primary py-6 px-4 lg:px-10 lg:py-8;
+
+  .statistics-card {
+    @apply p-4 bg-cardBackgroundLight dark:bg-cardBackgroundDark border rounded-xl border-cardBorderColorLight dark:border-cardBorderColorDark;
+
+    .statistics-card-subtitle {
+      @apply pt-2 text-xl font-light dark:text-[#E6E4E4];
+    }
+  }
+}

@@ -6,12 +6,14 @@ import Services from "./sections/services";
 import OurSolutions from "./sections/solutions";
 import Testimonials from "./sections/testimonials";
 import Why from "./sections/why";
-import "./HomePage.css"
+import "./HomePage.css";
+import Statitics from "./sections/Statistics";
 
 const Home = () => {
   return (
     <div id="home">
       <Hero />
+      <Statitics />
       <Why />
       <OurSolutions />
       <HowItWorks />
