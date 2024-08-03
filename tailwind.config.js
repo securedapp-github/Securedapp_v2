@@ -13,6 +13,7 @@ module.exports = {
         cardBackgroundLight: "#D2E6FF29",
         cardBorderColorDark: "#D2E6FF4D",
         cardBorderColorLight: "#A4CDFF4D",
+        sideBarColorLight: "#FFFFFF"
       },
       fontFamily: {
         nunito: ["Nunito Sans", "sans-serif"],

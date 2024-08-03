@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./Navbar.css";
 import NavbarLargeScreen from "./NavbarLargeScreen";
+import NavbarSmallScreen from "./NavbarSmallScreen";
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
   return isLargeScreen ? (
     <NavbarLargeScreen darkMode={darkMode} toggleTheme={toggleTheme} />
   ) : (
-    <div></div>
+    <NavbarSmallScreen darkMode={darkMode} toggleTheme={toggleTheme} />
   );
 };
 
