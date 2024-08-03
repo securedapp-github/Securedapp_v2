@@ -25,10 +25,14 @@ const Navbar = () => {
     };
   }, []);
 
-  return isLargeScreen ? (
-    <NavbarLargeScreen darkMode={darkMode} toggleTheme={toggleTheme} />
-  ) : (
-    <NavbarSmallScreen darkMode={darkMode} toggleTheme={toggleTheme} />
+  return (
+    <div className="absolute top-0 left-0 right-0">
+      {isLargeScreen ? (
+        <NavbarLargeScreen darkMode={darkMode} toggleTheme={toggleTheme} />
+      ) : (
+        <NavbarSmallScreen darkMode={darkMode} toggleTheme={toggleTheme} />
+      )}
+    </div>
   );
 };
 
