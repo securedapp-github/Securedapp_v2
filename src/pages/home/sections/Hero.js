@@ -1,5 +1,5 @@
 import React from "react";
-import BrandLogos from "../../../components/brand-logos";
+import BrandLogos from "../../../components/home/BrandLogos";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Button from "../../../components/common/Button";
@@ -52,20 +52,6 @@ const Hero = () => (
       })}
     </Swiper>
     <BrandLogos />
-    <div>
-      <div>
-        <p>100+</p>
-        <p>Projects Secured</p>
-      </div>
-      <div>
-        <p>2400+</p>
-        <p>Vulnerabilities detected</p>
-      </div>
-      <div>
-        <p>$600+</p>
-        <p>Digital assets protected</p>
-      </div>
-    </div>
   </div>
 );
 
