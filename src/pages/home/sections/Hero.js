@@ -25,7 +25,6 @@ const images = [
 
 const Hero = () => (
   <div className="hero">
-    <div className="backgroung-grid"></div>
     <p className="hero-title">Comprehensive Blockchain Security</p>
     <p className="hero-subtitle">
       97% of Blockchain hacks are preventable. Securing your blockchain journey

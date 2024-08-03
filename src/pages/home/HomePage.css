@@ -1,4 +1,8 @@
 .hero {
+  background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
+    linear-gradient(#0000000f 1px, transparent 1px);
+  background-size: 100px 100px;
+
   @apply h-screen text-center py-2 w-full font-nunito text-secondary dark:text-primary;
 
   .hero-title {
@@ -27,4 +31,9 @@
       @apply w-10 lg:w-16 border border-[#A4CDFF] dark:border-[#A4CDFF4D] bg-[#D2E6FF4D] dark:bg-[#A4CDFF66];
     }
   }
+}
+
+.dark .hero {
+  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
+    linear-gradient(#d2e6ff14 1px, transparent 1px);
 }
