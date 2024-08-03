@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import App from './App';
+import Blog from './pages/Blog';
+import AboutUs from './pages/AboutUs';
+import Product from './pages/Product';
+import Service from './pages/Service';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App theme={"dark"} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App theme={"dark"} />}/>
+        <Route path="/blog" element={<Blog />}/>
+        <Route path="/about" element={<AboutUs />}/>
+        <Route path="/product" element={<Product />}/>
+        <Route path="/service" element={<Service />}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
