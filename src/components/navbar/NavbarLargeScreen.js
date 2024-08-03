@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import NavbarItem from "./NavbarItem";
 import { navItems } from "./navItems";
 import { useState } from "react";
