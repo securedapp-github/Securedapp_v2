@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Button1 from "../../../components/button-1";
-import SectionTitle from "../../../components/section-title";
+import SectionTitle from "../../../components/common/SectionTitle";
 
 const ServicesData = [
   {

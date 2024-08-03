@@ -5,7 +5,7 @@ import HowItWorks from "./sections/how-it-works";
 import Services from "./sections/services";
 import OurSolutions from "./sections/solutions";
 import Testimonials from "./sections/testimonials";
-import Why from "./sections/why";
+import Features from "./sections/Features";
 import "./HomePage.css";
 import Statitics from "./sections/Statistics";
 
@@ -14,7 +14,7 @@ const Home = () => {
     <div id="home">
       <Hero />
       <Statitics />
-      <Why />
+      <Features />
       <OurSolutions />
       <HowItWorks />
       <Services />

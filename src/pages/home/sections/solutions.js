@@ -1,5 +1,5 @@
 import React from "react";
-import SectionTitle from "../../../components/section-title";
+import SectionTitle from "../../../components/common/SectionTitle";
 import Button1 from "../../../components/button-1";
 
 function Solution({ name, item1, item2, item3, image }) {

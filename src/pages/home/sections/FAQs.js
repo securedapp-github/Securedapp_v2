@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import SectionTitle from "../../../components/section-title";
+import SectionTitle from "../../../components/common/SectionTitle";
 
 const faqsData = [
   [

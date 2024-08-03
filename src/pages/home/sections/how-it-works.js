@@ -1,5 +1,5 @@
 import React from "react";
-import SectionTitle from "../../../components/section-title";
+import SectionTitle from "../../../components/common/SectionTitle";
 
 function How({ title, desc }) {
   return (

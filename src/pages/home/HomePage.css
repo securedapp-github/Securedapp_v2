@@ -49,3 +49,16 @@
     }
   }
 }
+
+.features {
+  background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
+    linear-gradient(#0000000f 1px, transparent 1px);
+  background-size: 100px 100px;
+
+  @apply h-full min-h-screen font-nunito;
+}
+
+.dark .features {
+  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
+    linear-gradient(#d2e6ff14 1px, transparent 1px);
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import SectionTitle from "../../../components/section-title";
+import SectionTitle from "../../../components/common/SectionTitle";
 
-function Why() {
-  const [Detail, setDetail] = useState(2);
+const Features = () => {
+  const [detail, setDetail] = useState(2);
 
   const whyData = [
     {
@@ -37,7 +37,7 @@ function Why() {
     return (
       <div>
         <details
-          open={Detail === id ? true : false}
+          open={detail === id ? true : false}
           onClick={() => setDetail(id)}>
           <summary>{whyData[id].title}</summary>
           <p>{whyData[id].desc}</p>
@@ -47,9 +47,9 @@ function Why() {
   }
 
   return (
-    <div>
+    <div className="features">
       <SectionTitle
-        name="Why ScureDapp"
+        name="Why ScureDApp"
         title="SecureDApp for Your Blockchain Security Needs"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />
@@ -85,6 +85,6 @@ function Why() {
       </div>
     </div>
   );
-}
+};
 
-export default Why;
+export default Features;
