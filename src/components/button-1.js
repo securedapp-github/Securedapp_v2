@@ -1,10 +1,16 @@
 // src/components/Sidebar.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Button1 = ({value}) => (
+function Button1({value, link}) {
+const Navigate = useNavigate()
+return(  
   <div>
-    <button>{value}</button>
+    <button onClick={() => {
+      Navigate({link})
+    }}>{value}</button>
   </div>
 );
+}
 
 export default Button1;

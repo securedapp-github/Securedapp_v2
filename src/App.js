@@ -10,6 +10,7 @@ import Testimonials from './sections/testimonials';
 import FAQs from './sections/FAQs';
 import CTA from './sections/CTA';
 import Footer from './sections/footer';
+import faqsData from "./sections/home-faqs-data"
 
 function App({theme}) {
   return (
@@ -21,7 +22,7 @@ function App({theme}) {
         <HowItWorks/>
         <Services/>
         <Testimonials/>
-        <FAQs/>
+        <FAQs faqsData={faqsData} />
         <CTA/>
         <Footer/>
     </div>
