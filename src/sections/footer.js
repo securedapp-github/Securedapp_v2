@@ -3,6 +3,7 @@ import Button1 from '../components/button-1';
 import BrandLogos from '../components/brand-logos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function Subscribe() {
 
@@ -27,10 +28,10 @@ const Footer = () => (
                 <img src='/images/securedapp-logo.png' alt='logo'/>
             </div>
             <div>
-                <FontAwesomeIcon icon={faSun}/>
-                <FontAwesomeIcon icon={faSun}/>
-                <FontAwesomeIcon icon={faSun}/>
-                <FontAwesomeIcon icon={faSun}/>
+                <Link to={"https://discord.com/invite/jQcd5WwhNy"}><i className='fa-brands fa-discord' /></Link>
+                <Link to={"https://x.com/secure_dapp"}><i className='fa-brands fa-square-x-twitter' /></Link>
+                <Link to={"https://www.linkedin.com/company/securedapp/"}><i className='fa-brands fa-linkedin' /></Link>
+                <Link to={"https://telegram.me/securedappcommunity"}><i className='fa-brands fa-telegram' /></Link>
             </div>
         </div>
         <div>

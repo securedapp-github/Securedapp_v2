@@ -13,7 +13,10 @@ function Faq({id}) {
 return (
     <div>
         <details open={Detail ===id ? true : false} onClick={() => setDetail(id)} >
-            <summary>{faqsData[Topic][id].q}</summary>
+            <summary>
+              <p>{faqsData[Topic][id].q}</p>
+              <i className={Detail === id ? "fa-solid fa-minus" : "fa-solid fa-plus"}/>
+            </summary>
             <p>{faqsData[Topic][id].a}</p>
           </details>
     </div>

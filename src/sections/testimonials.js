@@ -2,8 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import Button1 from '../components/button-1';
 import SectionTitle from '../components/section-title';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuoteLeft, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const reviews = [
     {
@@ -46,7 +44,7 @@ return(
                 <p>{reviews[id].name}</p>
                 <p>{reviews[id].designation}</p>
             </div>
-            <FontAwesomeIcon icon={faQuoteLeft} /> 
+            <i className='fa-solid fa-quote-left'/>
         </div>
     </div>
 )
@@ -70,8 +68,8 @@ return (
         <Testimonial id={3}/>
     </div>
     <div>
-        <button onClick={moveLeft}><FontAwesomeIcon icon={faArrowLeft} /> </button>
-        <button onClick={moveRight}><FontAwesomeIcon icon={faArrowRight} /> </button>
+        <button onClick={moveLeft}><i className='fa-regular fa-arrow-left' /> </button>
+        <button onClick={moveRight}><i className='fa-regular fa-arrow-right' /> </button>
     </div>
   </div>
 )

@@ -1,7 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun} from '@fortawesome/free-solid-svg-icons';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import Footer from "../sections/footer"
@@ -43,6 +41,8 @@ const blogDetails = {
 
 function BlogPost() {
 
+const Location = useLocation()
+
 const tagSet = new Set(blogDetails.tags);
 
 var relatedArticles = blogsData.filter((blog) => blog.tags.some(tag => tagSet.has(tag)))
@@ -58,6 +58,7 @@ return(
 
 return (
   <div>
+    <i className='fa-light fa-camera'></i>
     <Navbar/>
     <div>
         <div>
@@ -115,18 +116,11 @@ return (
             </div>
             <div>
                 <p>Share : </p>
-                <Link to={""}>
-                    <FontAwesomeIcon icon={faSun}/>
-                </Link>
-                <Link to={""}>
-                    <FontAwesomeIcon icon={faSun}/>
-                </Link>
-                <Link to={""}>
-                    <FontAwesomeIcon icon={faSun}/>
-                </Link>
-                <Link to={""}>
-                    <FontAwesomeIcon icon={faSun}/>
-                </Link>
+                <a target='_blank' href={``}><i className='fa-brands fa-discord' /></a>
+                <a target='_blank' href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blogDetails.title)}&url=${window.location.origin}${encodeURIComponent(Location.pathname)}`}><i className='fa-brands fa-square-x-twitter' /></a>
+                <a target='_blank' href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.origin}${Location.pathname}`}><i className='fa-brands fa-linkedin' /></a>
+                <a target='_blank' href={`https://t.me/share/url?url=${window.location.origin}${encodeURIComponent(Location.pathname)}&text=${encodeURIComponent(blogDetails.title)}`}><i className='fa-brands fa-telegram' /></a>
+                <i target='_blank' onClick={() => navigator.clipboard.writeText(window.location.origin + Location.pathname)} className='fa-regular fa-link' />
             </div>
         </div>
         <p>{blogDetails.Intro}</p>
