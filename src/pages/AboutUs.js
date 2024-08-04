@@ -19,10 +19,10 @@ return(
             <span>{details.designation}</span>
             <div>
                 <span><Link to={details.twitter}>
-                    <FontAwesomeIcon icon={faSun} />
+                    <i className='fa-brands fa-square-x-twitter'/>
                 </Link></span>
                 <span><Link to={details.linkedin}>
-                    <FontAwesomeIcon icon={faSun} />
+                    <i className='fa-brands fa-linkedin'/>
                 </Link></span>
             </div>
         </div>
@@ -53,16 +53,16 @@ return (
             <div>
                 <TitleDesc title="Our Company's Work Culture" desc="Like Steve Jobs quotes, “Design is not just what it looks like and feels like. Design is how it works”. We always try to make a great output by this culture:"/>
                 <div>
-                    <ul>
-                        <li>Fast Delivery</li>
-                        <li>Hungry for exploration</li>
-                        <li>Teamwork Always</li>
-                    </ul>
-                    <ul>
-                        <li>Communication is the key</li>
-                        <li>Weekly evaluations</li>
-                        <li>Up to date with the trend</li>
-                    </ul>
+                    <div>
+                        <p><i className='fa-solid fa-check'/>Fast Delivery</p>
+                        <p><i className='fa-solid fa-check'/>Hungry for exploration</p>
+                        <p><i className='fa-solid fa-check'/>Teamwork Always</p>
+                    </div>
+                    <div>
+                        <p><i className='fa-solid fa-check'/>Communication is the key</p>
+                        <p><i className='fa-solid fa-check'/>Weekly evaluations</p>
+                        <p><i className='fa-solid fa-check'/>Up to date with the trend</p>
+                    </div>
                 </div>
             </div>
             <div>

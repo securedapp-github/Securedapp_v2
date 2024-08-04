@@ -12,11 +12,11 @@ const ProductHero = ({name, title, image}) => (
         </div>
         <div>
             <div>
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
-            <FontAwesomeIcon icon={faStar} />
+                <i style={{color:"yellow"}} className='fa-solid fa-star'/>
+                <i style={{color:"yellow"}} className='fa-solid fa-star'/>
+                <i style={{color:"yellow"}} className='fa-solid fa-star'/>
+                <i style={{color:"yellow"}} className='fa-solid fa-star'/>
+                <i style={{color:"yellow"}} className='fa-solid fa-star'/>
             </div>
             <p>Trusted by 100+ companies</p>
             <button>Get started<FontAwesomeIcon icon={faArrowRight} /></button>

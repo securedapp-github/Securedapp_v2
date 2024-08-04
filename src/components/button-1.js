@@ -2,12 +2,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Button1({value, link}) {
+function Button1({value, link, isHome}) {
 const Navigate = useNavigate()
 return(  
   <div>
     <button onClick={() => {
-      Navigate({link})
+      if(isHome) {
+        // schedule demo pop-out
+      } else {
+        Navigate({link})
+      }
     }}>{value}</button>
   </div>
 );
