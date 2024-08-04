@@ -161,7 +161,7 @@
 }
 
 .how-it-works {
-  @apply px-8 lg:px-24 lg:pt-12;
+  @apply px-8 lg:px-24 lg:pt-6;
 
   .how-cards {
     @apply flex flex-col lg:flex-row lg:space-x-0 items-stretch justify-center;
@@ -176,6 +176,53 @@
       .how-card-desc {
         @apply font-light;
       }
+    }
+  }
+}
+
+.services {
+  @apply px-8 lg:px-24;
+
+  .services-navbar {
+    @apply w-full flex justify-center items-center text-center;
+
+    .services-navbar-item {
+      @apply cursor-pointer py-4 px-2 flex-1 border-b opacity-50 border-b-[#FFFFFF29] transition-all duration-300 ease-in-out;
+
+      &.selected-navbar {
+        @apply border-b-2 bg-[#91F6C533] border-[#12D576] opacity-100;
+      }
+
+      &.first-navbar {
+        @apply rounded-l-lg;
+      }
+
+      &.last-navbar {
+        @apply rounded-r-lg;
+      }
+    }
+  }
+
+  .services-content {
+    @apply py-20 px-12 flex justify-center items-center space-x-24;
+
+    .services-content-left {
+      @apply flex-1 py-12;
+
+      .services-content-left-title {
+        @apply pb-8 text-3xl font-bold;
+      }
+
+      .services-content-left-description {
+        @apply pb-8 font-light;
+      }
+
+      .services-content-left-button {
+      }
+    }
+
+    .services-content-right {
+      @apply flex-1;
     }
   }
 }
