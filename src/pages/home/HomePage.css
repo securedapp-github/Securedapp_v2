@@ -127,3 +127,35 @@
   background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
     linear-gradient(#d2e6ff14 1px, transparent 1px);
 }
+
+.solutions {
+  @apply px-4;
+
+  .solution-cards {
+    @apply w-full px-4 lg:px-24 flex flex-col space-y-8;
+
+    .solution-card {
+      @apply px-8 space-y-2 lg:space-x-4 lg:space-y-0 items-center justify-center bg-cardBackgroundLight dark:bg-[#FFFFFF0F] border rounded-2xl border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF];
+    }
+
+    .solution-card-image {
+      @apply w-full lg:w-1/2 lg:pt-10 flex flex-row justify-center items-center lg:items-end;
+    }
+
+    .solution-card-content {
+      @apply w-full lg:w-1/2 lg:pl-6 py-4 flex flex-col text-center lg:text-left space-y-2 lg:space-y-5 justify-center items-center lg:items-start;
+
+      .solution-card-title {
+        @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+      }
+
+      .solution-card-list {
+        @apply lg:list-disc lg:pl-6 font-light;
+
+        .solution-card-list-item {
+          @apply py-1 lg:py-2;
+        }
+      }
+    }
+  }
+}

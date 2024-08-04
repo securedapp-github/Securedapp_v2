@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
-const Logo = () => {
+const Logo = ({ isLeft = false }) => {
   return (
-    <Link to="/">
+    <Link
+      className={`flex ${isLeft ? "justify-start" : "justify-center"}`}
+      to="/">
       <img
         src="/assets/images/securedapp_logo.svg"
         alt="logo"

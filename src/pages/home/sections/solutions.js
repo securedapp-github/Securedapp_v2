@@ -1,64 +1,89 @@
 import React from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
-import Button1 from "../../../components/button-1";
+import Button from "../../../components/common/Button";
 
-function Solution({ name, item1, item2, item3, image }) {
+const solutions = [
+  {
+    title: "Solidity Shield",
+    items: [
+      "AI-powered smart contract vulnerability detection",
+      "Customizable security audits",
+      "Enhanced developer workflow",
+    ],
+    to: "",
+  },
+  {
+    title: "Secure Watch",
+    items: [
+      "Real-time threat detection for blockchain projects",
+      "Machine learning for anomaly identification",
+      "Customizable security measures",
+    ],
+    to: "",
+  },
+  {
+    title: "Secure Trace",
+    items: [
+      "SecureTrace empowers you to trace illicit activity across complex blockchain networks",
+      "Gain a comprehensive view of blockchain investigations with SecureTraces advanced analytics",
+      "SecureTrace always stays ahead in evolving threats",
+    ],
+    to: "",
+  },
+  {
+    title: "SecurePad",
+    items: [
+      "SecureTrace empowers you to trace illicit activity across complex blockchain networks",
+      "Gain a comprehensive view of blockchain investigations with SecureTraces advanced analytics",
+      "SecureTrace stays ahead of evolving blockchain threats.",
+    ],
+    to: "",
+  },
+];
+
+const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
   return (
-    <div>
-      <div>
-        <h3>{name}</h3>
-        <ul>
-          <li>{item1}</li>
-          <li>{item2}</li>
-          <li>{item3}</li>
+    <div
+      className={`solution-card lg:flex ${
+        isImageLeft ? "lg:flex-row-reverse" : "lg:flex-row"
+      } flex-col items-center`}>
+      <div className="solution-card-content">
+        <div className="solution-card-title">{title}</div>
+        <ul className="solution-card-list">
+          {items.map((item) => {
+            return <li className="solution-card-list-item">{item}</li>;
+          })}
         </ul>
-        <Button1 value={"Learn more"} />
+        <Button text={"Learn More"} filled={true} />
       </div>
-      <div>
+      <div className="solution-card-image">
         <img src={image} alt="solution#" />
       </div>
     </div>
   );
-}
+};
 
-const OurSolutions = () => (
-  <div>
+const Solutions = () => (
+  <div className="solutions">
     <SectionTitle
       name="Our Solutions"
       title="Explore Our Security Solutions"
       description="Briefly explain your core offerings (Solidity Shield, SecureWatch) using clear and concise language."
     />
-    <div>
-      <Solution
-        name="Solidity Shield"
-        item1="AI-powered smart contract vulnerability detection"
-        item2="Customizable security audits"
-        item3="Enhanced developer workflow"
-        image="/images/solution-1.png"
-      />
-      <Solution
-        name="Secure Watch"
-        item1="Real-time threat detection for blockchain projects"
-        item2="Machine learning for anomaly identification"
-        item3="Customizable security measures"
-        image="/images/solution-2.png"
-      />
-      <Solution
-        name="Secure Trace"
-        item1="SecureTrace empowers you to trace illicit activity across complex blockchain networks"
-        item2="Gain a comprehensive view of blockchain investigations with SecureTraces advanced analytics"
-        item3="SecureTrace always stays ahead in evolving threats"
-        image="/images/solution-3.png"
-      />
-      <Solution
-        name="SecurePad"
-        item1="SecureTrace empowers you to trace illicit activity across complex blockchain networks"
-        item2="Gain a comprehensive view of blockchain investigations with SecureTraces advanced analytics"
-        item3="SecureTrace stays ahead of evolving blockchain threats."
-        image="/images/solution-4.png"
-      />
+    <div className="solution-cards">
+      {solutions.map((solution, index) => {
+        return (
+          <Solution
+            title={solution.title}
+            items={solution.items}
+            to={solution.to}
+            image={`/assets/images/solution-${index}.svg`}
+            isImageLeft={index % 2}
+          />
+        );
+      })}
     </div>
   </div>
 );
 
-export default OurSolutions;
+export default Solutions;

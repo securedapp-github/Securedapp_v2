@@ -46,7 +46,7 @@ const NavbarSmallScreen = ({ darkMode, toggleTheme }) => {
         <div className="sidebar-background">
           <div className="sidebar">
             <div className="sidebar-header">
-              <Logo />
+              <Logo isLeft={true} />
               <div className="flex space-x-3 items-center">
                 <button onClick={toggleTheme}>
                   <FontAwesomeIcon

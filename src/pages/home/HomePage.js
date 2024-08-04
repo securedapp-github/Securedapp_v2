@@ -3,7 +3,7 @@ import FAQs from "./sections/FAQs";
 import Hero from "./sections/Hero";
 import HowItWorks from "./sections/how-it-works";
 import Services from "./sections/services";
-import OurSolutions from "./sections/solutions";
+import Solutions from "./sections/Solutions";
 import Testimonials from "./sections/testimonials";
 import Features from "./sections/Features";
 import "./HomePage.css";
@@ -15,7 +15,7 @@ const Home = () => {
       <Hero />
       <Statitics />
       <Features />
-      <OurSolutions />
+      <Solutions />
       <HowItWorks />
       <Services />
       <Testimonials />
