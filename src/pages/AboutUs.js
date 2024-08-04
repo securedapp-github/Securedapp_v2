@@ -45,7 +45,7 @@ return (
         <div>
             <div>
                 <img width="300px" src='/images/about-2.png'/>
-                <img width="300px" src='/images/about-3.png'/>
+                <img width="300px" src='/images/about-3.svg'/>
             </div>
             <TitleDesc title="Building the work ecosystem" desc="Connect your conversations with the tools and services that you use to get the job done. With over 1,500 apps and a robust API, the Slack platform team works with partners and developers globally to build apps and integrations that streamline your work, automate mundane tasks and bring context into your conversations in Ehya."/>
         </div>
@@ -66,7 +66,7 @@ return (
                 </div>
             </div>
             <div>
-                <img width="300px" src='/images/about-4.png'/>
+                <img width="300px" src='/images/about-4.svg'/>
             </div>
         </div>
         <div>
