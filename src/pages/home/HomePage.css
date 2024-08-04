@@ -53,9 +53,74 @@
 .features {
   background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
     linear-gradient(#0000000f 1px, transparent 1px);
-  background-size: 100px 100px;
+  background-size: 100px 100px, 100px 100px;
 
-  @apply h-full min-h-screen font-nunito;
+  @apply h-full min-h-screen font-nunito px-24 pb-12 flex flex-col items-center justify-center;
+
+  .feature-left {
+    @apply w-1/2 flex justify-end space-x-10;
+
+    .vertical-scroll {
+      @apply relative rounded-full bg-cardBackgroundLight dark:bg-cardBorderColorDark w-2 h-full;
+      transition: height 0.3s ease, background-color 0.3s ease;
+    }
+
+    .feature-card {
+      @apply rounded-xl p-4 w-full cursor-default bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
+
+      &.selected {
+        @apply border-[#A4CDFF];
+      }
+
+      .feature-card-icon {
+        @apply py-1 text-secondary dark:text-primary bg-[#FFFFFF0F] rounded-full;
+      }
+
+      .feature-card-title {
+        @apply py-1 text-xl;
+      }
+
+      .feature-card-desc {
+        @apply py-1 text-sm font-light;
+      }
+    }
+  }
+
+  .feature-right {
+    @apply w-1/2 font-outfit font-light rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col justify-center items-center;
+
+    .feature-right-card {
+      @apply w-3/4 py-4 px-6 rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-[#A4CDFF] dark:border-[#D2E6FF4D] flex flex-col justify-center items-center space-y-2;
+
+      .feature-right-card-row {
+        @apply w-full flex flex-row justify-between items-center;
+
+        &.second-row {
+          @apply font-medium text-3xl;
+        }
+
+        .feature-card-right-icon {
+          @apply font-light flex justify-center items-center w-8 h-8 rounded-full text-base border text-primary dark:text-secondary border-[#E2E8F0] bg-secondary dark:bg-primary;
+        }
+      }
+
+      .feature-right-card-last {
+        @apply w-full flex flex-row pt-16 space-x-1;
+
+        .last-bar {
+          @apply h-[14px] rounded;
+        }
+
+        .website-bar {
+          @apply w-[68.2%] bg-[#22C55E];
+        }
+
+        .ecommerce-bar {
+          @apply w-[32.8%] bg-[#4267B2];
+        }
+      }
+    }
+  }
 }
 
 .dark .features {

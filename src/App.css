@@ -1,0 +1,3 @@
+.App {
+    @apply font-nunito text-secondary dark:text-primary;
+}

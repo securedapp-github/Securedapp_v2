@@ -1,11 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 
 const Features = () => {
-  const [detail, setDetail] = useState(2);
+  const [detail, setDetail] = useState(0);
 
-  const whyData = [
+  const selectFeatureCard = (id) => {
+    setDetail(id);
+  };
+
+  const featureData = [
     {
       id: 0,
       title: "Ad-hoc reporting",
@@ -33,53 +39,56 @@ const Features = () => {
     },
   ];
 
-  function WhyBox({ id }) {
-    return (
-      <div>
-        <details
-          open={detail === id ? true : false}
-          onClick={() => setDetail(id)}>
-          <summary>{whyData[id].title}</summary>
-          <p>{whyData[id].desc}</p>
-        </details>
-      </div>
-    );
-  }
-
   return (
-    <div className="features">
+    <div className="features features-background">
       <SectionTitle
         name="Why ScureDApp"
         title="SecureDApp for Your Blockchain Security Needs"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />
-      <div>
-        <div>
-          <WhyBox id={0} />
-          <WhyBox id={1} />
-          <WhyBox id={2} />
-          <WhyBox id={3} />
-          <WhyBox id={4} />
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>
-            <div>
-              <p>Website</p>
-              <p>68.2%</p>
-            </div>
-            <div>
-              <p>Vs</p>
-            </div>
-            <div>
-              <p>E-Commerce</p>
-              <p>31.8%</p>
-            </div>
+      <div className="flex space-x-12">
+        <div className="feature-left">
+          <div className="vertical-scroll"></div>
+          <div className="flex flex-col space-y-4">
+            {featureData.map((feature) => {
+              const isSelected = detail === feature.id;
+              return (
+                <div
+                  className={`feature-card ${isSelected ? "selected" : ""}`}
+                  onClick={() => selectFeatureCard(feature["id"])}>
+                  {detail !== feature["id"] && (
+                    <div className="font-light">{feature["title"]}</div>
+                  )}
+                  {detail === feature["id"] && (
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faCrown}
+                        className="feature-card-icon"
+                      />
+                      <div className="feature-card-title">{`${feature["title"]}:`}</div>
+                      <div className="feature-card-desc">{feature["desc"]}</div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-          <div>
-            <div></div>
-            <div></div>
+        </div>
+        <div className="feature-right">
+          <div className="feature-right-card">
+            <div className="feature-right-card-row">
+              <div>Website</div>
+              <div>E - Commerce</div>
+            </div>
+            <div className="feature-right-card-row second-row">
+              <div>68.2%</div>
+              <div className="feature-card-right-icon">Vs</div>
+              <div>32.8%</div>
+            </div>
+            <div className="feature-right-card-last">
+              <div className="last-bar website-bar"></div>
+              <div className="last-bar ecommerce-bar"></div>
+            </div>
           </div>
         </div>
       </div>
