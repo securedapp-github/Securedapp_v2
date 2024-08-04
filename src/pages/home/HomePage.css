@@ -159,3 +159,23 @@
     }
   }
 }
+
+.how-it-works {
+  @apply px-8 lg:px-24 lg:pt-12;
+
+  .how-cards {
+    @apply flex flex-col lg:flex-row lg:space-x-0 items-stretch justify-center;
+
+    .how-card {
+      @apply py-10 px-12 flex-1 border-r-4 border-l-4 lg:border-r-0 border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:text-secondary text-[#001938B2] dark:text-[#FFFFFFB2] hover:dark:text-primary;
+
+      .how-card-title {
+        @apply text-2xl font-bold pb-3;
+      }
+
+      .how-card-desc {
+        @apply font-light;
+      }
+    }
+  }
+}
