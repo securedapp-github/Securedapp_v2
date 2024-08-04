@@ -46,10 +46,10 @@ const Features = () => {
         title="SecureDApp for Your Blockchain Security Needs"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />
-      <div className="flex space-x-12">
+      <div className="flex lg:flex-row flex-col justify-between items-center px-4 lg:px-0 lg:items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
         <div className="feature-left">
           <div className="vertical-scroll"></div>
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-4 ml-2">
             {featureData.map((feature) => {
               const isSelected = detail === feature.id;
               return (

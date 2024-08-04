@@ -3,7 +3,7 @@
     linear-gradient(#0000000f 1px, transparent 1px);
   background-size: 100px 100px;
 
-  @apply h-full min-h-screen text-center pt-28 lg:pt-28 w-full font-nunito text-secondary dark:text-primary;
+  @apply h-full text-center pt-28 lg:pt-28 w-full font-nunito text-secondary dark:text-primary;
 
   .hero-title {
     @apply text-4xl px-6 lg:text-5xl font-bold;
@@ -55,13 +55,13 @@
     linear-gradient(#0000000f 1px, transparent 1px);
   background-size: 100px 100px, 100px 100px;
 
-  @apply h-full min-h-screen font-nunito px-24 pb-12 flex flex-col items-center justify-center;
+  @apply h-full font-nunito px-2 md:px-6 lg:px-24 pb-12 flex flex-col items-center justify-center;
 
   .feature-left {
-    @apply w-1/2 flex justify-end space-x-10;
+    @apply lg:w-1/2 flex justify-center lg:justify-end space-x-0 lg:space-x-10;
 
     .vertical-scroll {
-      @apply relative rounded-full bg-cardBackgroundLight dark:bg-cardBorderColorDark w-2 h-full;
+      @apply relative rounded-full bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
       transition: height 0.3s ease, background-color 0.3s ease;
     }
 
@@ -87,16 +87,16 @@
   }
 
   .feature-right {
-    @apply w-1/2 font-outfit font-light rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col justify-center items-center;
+    @apply w-full mx-4 py-10 lg:w-1/2 font-outfit font-light rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col justify-center items-center;
 
     .feature-right-card {
-      @apply w-3/4 py-4 px-6 rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-[#A4CDFF] dark:border-[#D2E6FF4D] flex flex-col justify-center items-center space-y-2;
+      @apply w-3/4 py-4 px-4 lg:px-6 rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-[#A4CDFF] dark:border-[#D2E6FF4D] flex flex-col justify-center items-center space-y-2;
 
       .feature-right-card-row {
         @apply w-full flex flex-row justify-between items-center;
 
         &.second-row {
-          @apply font-medium text-3xl;
+          @apply font-medium text-2xl lg:text-3xl;
         }
 
         .feature-card-right-icon {
