@@ -9,7 +9,7 @@ import Features from "./sections/Features";
 import "./HomePage.css";
 import Statitics from "./sections/Statistics";
 
-const Home = () => {
+const Home = ({ isLargeScreen, setIsLargeScreen }) => {
   return (
     <div id="home">
       <Hero />
@@ -17,8 +17,14 @@ const Home = () => {
       <Features />
       <Solutions />
       <HowItWorks />
-      <Services />
-      <Testimonials />
+      <Services
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
+      <Testimonials
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
       <FAQs />
       <CTA />
     </div>

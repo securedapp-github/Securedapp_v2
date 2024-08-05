@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,9 @@ import {
   faArrowLeft,
   faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const reviews = [
   {
@@ -14,77 +17,141 @@ const reviews = [
     name: "Adlinda Paw",
     designation: "Engineering Head",
     testimonial:
-      "Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth",
+      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
   },
   {
     id: 1,
     name: "Adlinda Paw",
     designation: "Engineering Head 2",
     testimonial:
-      "Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth",
+      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
   },
   {
     id: 2,
     name: "Adlinda Paw",
     designation: "Engineering Head 3",
     testimonial:
-      "Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth",
+      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
   },
   {
     id: 3,
     name: "Adlinda Paw",
     designation: "Engineering Head 4",
     testimonial:
-      "Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth",
+      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
   },
 ];
 
-function Testimonials() {
-  const [active, setActive] = useState(1);
-  const style = {};
+const Testimonials = ({ isLargeScreen, setIsLargeScreen }) => {
+  const [active, setActiveSlide] = useState(2);
+  let sliderRef = useRef(null);
 
-  function Testimonial({ id }) {
+  function moveLeft() {
+    if (active === 0) return;
+    setActiveSlide((prev) => prev - 1);
+  }
+
+  function moveRight() {
+    if (active === reviews.length - 1) return;
+    setActiveSlide((prev) => prev + 1);
+  }
+
+  const Testimonial = ({ id, reviewer, designation, reviewText }) => {
     return (
-      <div style={style}>
-        <p>{reviews[id].testimonial}</p>
-        <div>
-          <div>
-            <p>{reviews[id].name}</p>
-            <p>{reviews[id].designation}</p>
+      <div className={`testimonial-card ${active === id && "selected-card"}`}>
+        <div className="testimonial-card-text">{reviewText}</div>
+        <div
+          className={`testimonial-card-content ${
+            active === id && "selected-card-content"
+          }`}>
+          <div className="">
+            <div
+              className={`testimonial-card-reviwer ${active === id && "pb-2"}`}>
+              {reviewer}
+            </div>
+            <div className="testimonial-card-designation">{designation}</div>
           </div>
-          <FontAwesomeIcon icon={faQuoteLeft} />
+          <div className="testimonial-card-quote">“</div>
         </div>
       </div>
     );
-  }
+  };
 
-  function moveLeft() {}
+  const slickSettings = {
+    centerMode: true,
+    arrows: false,
+    slidesToShow: 3,
+    infinite: true,
+    cssEase: "linear",
+    focusOnSelect: true,
+    slidesToScroll: 1,
+    speed: 500,
+    beforeChange: (current, next) => setActiveSlide(next),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          centerMode: true,
+          slidesToShow: 2,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          centerMode: false,
+          slidesToShow: 1,
+          arrows: false,
+        },
+      },
+    ],
+  };
 
-  function moveRight() {}
+  useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(active);
+    }
+  }, [active]);
 
   return (
-    <div>
+    <div className="testimonials">
       <SectionTitle
         name="What clients say"
         title="Client Experiences"
         description="Explore a wide range of topics, including innovative business  strategies, technological advancements, and best practices."
       />
-      <div>
-        <Testimonial id={0} />
-        <Testimonial id={1} />
-        <Testimonial id={2} />
-        <Testimonial id={3} />
+      <div className="testimonial-cards">
+        <Slider ref={sliderRef} className="w-full" {...slickSettings}>
+          {reviews.map((review) => {
+            return (
+              <Testimonial
+                id={review.id}
+                reviewText={review.testimonial}
+                reviewer={review.name}
+                designation={review.designation}
+              />
+            );
+          })}
+        </Slider>
       </div>
-      <div>
-        <button onClick={moveLeft}>
-          <FontAwesomeIcon icon={faArrowLeft} />{" "}
-        </button>
-        <button onClick={moveRight}>
-          <FontAwesomeIcon icon={faArrowRight} />{" "}
-        </button>
+      <div className="testimonial-arrows">
+        <div
+          onClick={moveLeft}
+          className={`testimonial-arrow ${
+            active === 0 && "testimonial-arrow-first"
+          }`}>
+          <FontAwesomeIcon size="" icon={faArrowLeft} />
+        </div>
+        <div
+          onClick={moveRight}
+          className={`testimonial-arrow ${
+            active === reviews.length - 1 && "testimonial-arrow-last"
+          }`}>
+          <FontAwesomeIcon size="" icon={faArrowRight} />
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Testimonials;
