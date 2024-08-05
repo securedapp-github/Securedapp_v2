@@ -312,3 +312,70 @@
     }
   }
 }
+
+.faq {
+  @apply lg:px-20;
+
+  .faq-navbar {
+    @apply px-32 w-full flex justify-center items-center text-center;
+
+    .faq-navbar-item {
+      @apply py-4 cursor-pointer flex-1 text-[#6D6D6D] font-light;
+
+      &.faq-navbar-item-selected {
+        @apply text-secondary dark:text-primary font-normal;
+      }
+    }
+  }
+
+  .faq-mobile-navbar {
+    @apply px-12 flex justify-center items-center space-x-3;
+
+    .slider {
+      @apply w-full;
+    }
+
+    .faq-mobile-navbar-item {
+      @apply py-4 text-center border-b opacity-50 border-b-[#FFFFFF29] transition-all duration-300 ease-in-out whitespace-nowrap;
+
+      &.selected-mobile-navbar {
+        @apply border-b-2 bg-[#91F6C533] border-[#12D576] opacity-100;
+      }
+    }
+
+    .faq-mobile-navbar-arrow-container {
+      .faq-mobile-navbar-arrow {
+        @apply text-secondary dark:text-primary;
+      }
+    }
+  }
+
+  .faq-items {
+    @apply px-8 lg:px-12 pt-6 flex flex-col justify-center items-center space-y-6;
+
+    .faq-item {
+      @apply cursor-pointer w-full p-6 flex flex-row justify-stretch items-center bg-cardBackgroundLight dark:bg-cardBackgroundDark border rounded-xl border-cardBorderColorLight;
+
+      &.selected {
+        @apply border-[#A4CDFF];
+      }
+
+      .faq-item-left {
+        @apply w-5/6 lg:w-3/4;
+
+        .faq-item-question {
+          @apply text-lg;
+        }
+
+        .faq-item-answer {
+          @apply font-light;
+        }
+      }
+
+      .faq-item-right {
+        @apply w-1/6 lg:w-1/4 text-4xl font-light text-right text-[#12D576];
+        line-height: 0;
+      }
+    }
+  }
+}

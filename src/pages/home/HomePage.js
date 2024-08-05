@@ -25,7 +25,7 @@ const Home = ({ isLargeScreen, setIsLargeScreen }) => {
         isLargeScreen={isLargeScreen}
         setIsLargeScreen={setIsLargeScreen}
       />
-      <FAQs />
+      <FAQs isLargeScreen={isLargeScreen} setIsLargeScreen={setIsLargeScreen} />
       <CTA />
     </div>
   );
