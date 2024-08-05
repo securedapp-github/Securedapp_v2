@@ -181,13 +181,13 @@
 }
 
 .services {
-  @apply px-8 lg:px-24;
+  @apply lg:px-24;
 
   .services-navbar {
-    @apply w-full flex justify-center items-center text-center;
+    @apply w-full flex justify-start lg:justify-center items-center text-center overflow-x-scroll lg:overflow-x-auto;
 
     .services-navbar-item {
-      @apply cursor-pointer py-4 px-2 flex-1 border-b opacity-50 border-b-[#FFFFFF29] transition-all duration-300 ease-in-out;
+      @apply cursor-pointer py-4 px-12 lg:px-2 flex-1 border-b opacity-50 border-b-[#FFFFFF29] transition-all duration-300 ease-in-out whitespace-nowrap;
 
       &.selected-navbar {
         @apply border-b-2 bg-[#91F6C533] border-[#12D576] opacity-100;
@@ -204,7 +204,7 @@
   }
 
   .services-content {
-    @apply py-20 px-12 flex justify-center items-center space-x-24;
+    @apply lg:pt-20 px-8 lg:px-12 flex flex-col lg:flex-row justify-center items-center lg:space-x-24;
 
     .services-content-left {
       @apply flex-1 py-12;
