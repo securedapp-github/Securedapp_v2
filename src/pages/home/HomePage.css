@@ -139,18 +139,18 @@
     }
 
     .solution-card-image {
-      @apply w-full lg:w-1/2 lg:pt-10 flex flex-row justify-center items-center lg:items-end;
+      @apply w-full lg:w-1/2 lg:pt-10 flex flex-row items-end;
     }
 
     .solution-card-content {
-      @apply w-full lg:w-1/2 lg:pl-6 py-4 flex flex-col text-center lg:text-left space-y-2 lg:space-y-5 justify-center items-center lg:items-start;
+      @apply w-full lg:w-1/2 lg:pl-6 py-4 flex flex-col space-y-2 lg:space-y-5 justify-center items-start;
 
       .solution-card-title {
         @apply text-2xl md:text-3xl lg:text-4xl font-bold;
       }
 
       .solution-card-list {
-        @apply lg:list-disc lg:pl-6 font-light;
+        @apply list-disc pl-6 font-light;
 
         .solution-card-list-item {
           @apply py-1 lg:py-2;
