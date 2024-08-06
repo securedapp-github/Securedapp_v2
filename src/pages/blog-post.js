@@ -32,10 +32,7 @@ const renderContent = (blogData) => {
     modifiedText = modifiedText.replace(/\/n\//g, "<br>");
 
     // Bold text wrapped in '**'
-    modifiedText = modifiedText.replace(
-      /\*\*(.*?)\*\*/g,
-      '<span style="font-size: 28px; font-weight: bold;">$1</span>'
-    );
+    modifiedText = modifiedText.replace(/\*\*(.*?)\*\*/g, "<h2>$1</h2>");
 
     modifiedText = modifiedText.split("\n\n");
     // Identify and store images
@@ -53,6 +50,28 @@ const renderContent = (blogData) => {
   return modifiedParagraphs;
 };
 
+const scrollToHeading = (headingText) => {
+  const elements = document.querySelectorAll("h2");
+  for (let element of elements) {
+    if (element.textContent === headingText) {
+      element.scrollIntoView({ behavior: "smooth" });
+      break;
+    }
+  }
+};
+
+const extractHeadings = (text) => {
+  const regex = /\[\*\*(.*?)\*\*\]/g;
+  const headingsArray = [];
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    headingsArray.push(match[1]);
+  }
+
+  return headingsArray;
+};
+
 function BlogPost({ Url }) {
   const [blogDetails, setBlogDetails] = useState({
     title: "",
@@ -65,7 +84,6 @@ function BlogPost({ Url }) {
     },
     Index: "",
     Summary: "",
-    Intro: "",
     Content: [],
   });
   const [blogsData, setBlogsData] = useState([]);
@@ -100,12 +118,11 @@ function BlogPost({ Url }) {
         name: "Lance Bogrol",
         image: "/images/why-choose-1.svg",
       },
-      Index: preview,
+      Index: extractHeadings(blog.content),
       Summary: preview,
-      Intro: preview,
       Content: renderContent(blog),
     });
-    console.log(blogDetails);
+    console.log(blogDetails.Index);
 
     const tagSet = new Set(blogDetails.tags);
     setRelated(
@@ -117,11 +134,26 @@ function BlogPost({ Url }) {
     getBlog();
   }, []);
 
-  function IndexSummary({ title, desc }) {
+  function IndexSummary({ title, desc, index }) {
     return (
       <div>
-        <h4>{title}</h4>
-        <p>{desc}</p>
+        {index ? (
+          <div>
+            <h4>{title}</h4>
+            <ul>
+              {index.map((h) => (
+                <Link>
+                  <li onClick={() => scrollToHeading(h)}>{h}</li>
+                </Link>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div>
+            <h4>{title}</h4>
+            <p>{desc}</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -141,7 +173,7 @@ function BlogPost({ Url }) {
       </div>
       <div>
         <div>
-          <IndexSummary title={"Index"} desc={blogDetails.Index} />
+          <IndexSummary title={"Index"} index={blogDetails.Index} />
         </div>
         <div>
           <IndexSummary title={"Quick Summary"} desc={blogDetails.Summary} />
