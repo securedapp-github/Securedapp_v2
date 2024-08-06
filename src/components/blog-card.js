@@ -1,27 +1,41 @@
-// src/components/Sidebar.js
-import React from 'react';
-import Button1 from './button-1';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import Button1 from "./button-1";
+import { useState } from "react";
 
-const BlogCard = ({details}) => (
-  <div>
+function BlogCard({ details }) {
+  var dateObj = new Date(details.modifiedon);
+
+  const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+  var dateObj = dateObj.toLocaleDateString("en-US", dateOptions);
+
+  var preview;
+  preview = details.content.replaceAll("[", " ");
+  preview = preview.replaceAll("]", " ");
+  preview = preview.replaceAll("/n", " ");
+  preview = preview.replaceAll("\n", " ");
+  preview = preview.replaceAll("/", " ");
+  preview = preview.replaceAll("*", " ");
+  preview = preview.slice(0, 300);
+  preview = preview + "...";
+
+  return (
     <div>
       <div>
-        <span>{details.date}</span>
-        <img src={details.image}></img>
-      </div>
-      <div>
         <div>
-        {details.tags.map(i =>(
-          <span>{i}</span>
-        ))}
+          <span>{dateObj}</span>
+          <img width={"150px"} src={details.image}></img>
         </div>
-        <h4>{details.title}</h4>
-        <p>{details.preview}</p>
-        <Button1 link={details.link} value="Read more"/>
+        <div>
+          <div>
+            <span>{details.tags}</span>
+          </div>
+          <h4>{details.heading}</h4>
+          <p>{preview}</p>
+          <Button1 link={details.link} value="Read more" />
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+}
 
 export default BlogCard;
