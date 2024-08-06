@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/HomePage";
 import { useEffect, useState } from "react";
+import Footer from "./components/footer/footer";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
@@ -36,6 +37,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
