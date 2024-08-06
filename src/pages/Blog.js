@@ -1,73 +1,100 @@
-import React from 'react';
-import BlogCard from '../components/blog-card';
-import { useState } from 'react';
-import SectionTitle from '../components/section-title';
-import Navbar from '../components/navbar';
-import {blogsData, tags} from "./blog-data"
-import Footer from "../sections/footer"
+import React from "react";
+import axios from "axios";
+import BlogCard from "../components/blog-card";
+import { useState, useEffect } from "react";
+import SectionTitle from "../components/section-title";
+import Navbar from "../components/navbar";
+import { blogsData, tags } from "./blog-data";
+import Footer from "../sections/footer";
 
 function Blog() {
+  const [blogs, setBlogs] = useState(blogsData);
 
-const [blogs, setBlogs] = useState(blogsData)
+  const [searchText, setSearchText] = useState("");
+  const [selectedTag, setSelectedTags] = useState("All");
 
-const [searchText, setSearchText] = useState('');
-const [selectedTag, setSelectedTags] = useState();
+  async function getBlogs() {
+    const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
+    const data = await response.json();
+    if (searchText.length > 0) {
+      setBlogs(
+        data.filter((a) =>
+          a.content.toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+    } else if (selectedTag !== "All") {
+      setBlogs(
+        data.filter((a) =>
+          a.tags.toLowerCase().includes(selectedTag.toLowerCase())
+        )
+      );
+    } else {
+      setBlogs(data.sort((a, b) => a.id - b.id));
+    }
+  }
 
-const handleSearchChange = (event) => {
-    setBlogs(blogsData.filter((a) => 
-        a.title.toLowerCase().includes(event.target.value.toLowerCase()) || a.preview.toLowerCase().includes(event.target.value.toLowerCase())
-    ))
-};
+  useEffect(() => {
+    getBlogs();
+  }, [searchText, selectedTag]);
 
-const handleTagClick = (tag) => {
-    setBlogs(blogsData.filter((a) => 
-        JSON.stringify(a.tags).toLowerCase().includes(tag.toLowerCase())
-    ))
-};
+  const handleSearchChange = (event) => {
+    setSearchText(event.target.value);
+    getBlogs();
+  };
 
-// Pagination state
-const [currentPage, setCurrentPage] = useState(1);
-const itemsPerPage = 6;
+  const handleTagClick = (tag) => {
+    setSelectedTags(tag);
+    getBlogs();
+  };
 
-// Calculate the index range for the current page
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = blogs.slice(indexOfFirstItem, indexOfLastItem);
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
-// Determine the total number of pages
-const totalPages = Math.ceil(blogs.length / itemsPerPage);
+  // Calculate the index range for the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = blogs.slice(indexOfFirstItem, indexOfLastItem);
 
-// Change page
-const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // Determine the total number of pages
+  const totalPages = Math.ceil(blogs.length / itemsPerPage);
 
-return (
-  <div>
-    <Navbar/>
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  return (
     <div>
-      <SectionTitle title="News & Articles" description="#1 Blog on theme marketing by Bodrum"/>
-    </div>
-    <div>
+      <Navbar />
+      <div>
+        <SectionTitle
+          title="News & Articles"
+          description="#1 Blog on theme marketing by Bodrum"
+        />
+      </div>
+      <div>
         <div>
           <input
-          type="text"
-          placeholder="Search blogs..."
-          onChange={handleSearchChange}
+            type="text"
+            placeholder="Search blogs..."
+            onChange={handleSearchChange}
           />
         </div>
         <div>
-            <p>Search via tags</p>
-            {tags.map(i => (
-                <button key={i} onClick={() => handleTagClick(i)}>{i}</button>
-            ))}
+          <p>Search via tags</p>
+          {tags.map((i) => (
+            <button key={i} onClick={() => handleTagClick(i)}>
+              {i}
+            </button>
+          ))}
         </div>
-    </div>
-    <div>
-        {currentItems.map(i => (
-            <BlogCard details={i}/>
+      </div>
+      <div>
+        {currentItems.map((i) => (
+          <BlogCard details={i} />
         ))}
-    </div>
-    <div>
-    {Array.from({ length: totalPages }, (_, i) => (
+      </div>
+      <div>
+        {Array.from({ length: totalPages }, (_, i) => (
           <button
             key={i + 1}
             onClick={() => paginate(i + 1)}
@@ -76,12 +103,12 @@ return (
             {i + 1}
           </button>
         ))}
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
-    <div>
-        <Footer/>
-    </div>
-  </div>
-);
+  );
 }
 
 export default Blog;

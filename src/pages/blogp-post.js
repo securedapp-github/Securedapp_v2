@@ -1,151 +1,282 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import Footer from "../sections/footer"
-import BlogCard from '../components/blog-card';
-import {blogsData, tags} from "./blog-data"
-import Button1 from '../components/button-1';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../components/navbar";
+import Footer from "../sections/footer";
+import BlogCard from "../components/blog-card";
+import { tags } from "./blog-data";
+import Button1 from "../components/button-1";
 
-const blogDetails = {
-    title: "Remote Work is the Future, but Should You Go Remote?",
-    preview :"Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam placerat tortor commodo lectus laoreet venenatis. Donec ultricies, metus vitae bibendum consequat, tortor neque euismod lectus",
-    tags: ["DAO", "DeFi"],
-    Date: "Jan 1, 2024",
-    Publisher : {
-        name :"Lance Bogrol",
-        image :"/images/why-choose-1.svg"
+const renderContent = (blogData) => {
+  const filteredBlog = blogData;
+
+  let paragraphs = filteredBlog.content.split("][");
+
+  const modifiedParagraphs = [];
+
+  paragraphs.forEach((paragraphText) => {
+    // Remove square brackets
+
+    let modifiedText = paragraphText.replace(/\[|\]/g, "");
+
+    // Replace links with anchor tags and add color attribute
+    modifiedText = modifiedText.replace(
+      /<([^|]+)\|([^>]+)>/g,
+      '<a target="_blank" href="$2" style="color: #07bc0c;">$1</a>'
+    );
+    modifiedText = modifiedText.replace(
+      /&lt;([^|]+)\|([^&]+)&gt;/g,
+      '<a target="_blank" href="$2" style="color: #07bc0c;">$1</a>'
+    );
+
+    // Replace '/n/' with line breaks
+    modifiedText = modifiedText.replace(/\/n\//g, "<br>");
+
+    // Bold text wrapped in '**'
+    modifiedText = modifiedText.replace(
+      /\*\*(.*?)\*\*/g,
+      '<span style="font-size: 28px; font-weight: bold;">$1</span>'
+    );
+
+    modifiedText = modifiedText.split("\n\n");
+    // Identify and store images
+    const imageRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+    let images = [];
+    let match;
+    while ((match = imageRegex.exec(modifiedText)) !== null) {
+      images.push({ src: match[0], alt: "Image" }); // Default alt text
+    }
+
+    // Store modified paragraph along with images
+    modifiedParagraphs.push({ modifiedText, images });
+  });
+
+  return modifiedParagraphs;
+};
+
+function BlogPost({ Url }) {
+  const [blogDetails, setBlogDetails] = useState({
+    title: "",
+    preview: "",
+    tags: "",
+    Date: "",
+    Publisher: {
+      name: "",
+      image: "",
     },
-    Index: `Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. \nOrci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. \nOrci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.`,
-    Summary: `Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. \nOrci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. \nOrci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.`,
-    Intro: "Quisque at odio semper, elementum leo sed, congue tellus. Proin nunc mauris, porttitor ut eleifend ut, consectetur ut dolor. In hac habitasse platea dictumst. Pellentesque ornare nulla ut quam blandit scelerisque.",
-    Content: `
-    <p>Quisque at odio semper, elementum leo sed, congue tellus. Proin nunc mauris, porttitor ut eleifend ut, consectetur ut dolor. In hac habitasse platea dictumst. Pellentesque ornare nulla ut quam blandit scelerisque. Suspendisse non orci id elit tempor rhoncus ac id nunc. Integer scelerisque at turpis sit amet faucibus. Etiam non euismod urna. Suspendisse vel ex justo. Vivamus posuere porttitor ante eu hendrerit.</p>
-    <img width="200px" src="/images/blog-post.png" alt="image"/>
-    <p>In lacinia sapien a libero accumsan facilisis. Donec vitae lorem massa. Aliquam tristique vehicula enim ut luctus. Vivamus gravida dignissim ligula, dictum laoreet elit malesuada ac. Praesent est justo, posuere a nisl porta, pharetra posuere lectus. Nulla velit odio, tincidunt vel metus a, viverra placerat ligula.</p>
-    <p>Donec id nisl et risus volutpat tempor a eget mauris. Nullam velit eros, porttitor et urna sit amet, ullamcorper vestibulum magna. Quisque consequat arcu eros, lobortis faucibus purus facilisis vitae. Nulla at nunc non purus vehicula elementum.</p>
-    <div class="blog-quote">
-        <p>“ Suspendisse sagittis id lacus eget vulputate. Ut nec arcu ut sem molestie tincidunt luctus eget tellus “</p>
-        <p>Parsely Montana</P>
-    </div>
-    <h4>Big heading for a new topic</h4>
-    <p>Morbi pellentesque finibus libero, in blandit lorem eleifend eget. Praesent egestas hendrerit augue a vestibulum. Nullam fringilla, eros malesuada eleifend placerat, lacus tellus egestas erat, nec varius sem lorem ut mauris. Morbi libero felis.</p>
-    <ul>
-        <li>Morbi pellentesque finibus libero, in blandit lorem eleifend eget. Praesent egestas hendrerit augue a vestibulum. Nullam fringilla, eros malesuada eleifend placerat, lacus tellus egestas erat, nec varius sem lorem ut mauris. Morbi libero felis.</li>
-        <li>Cras eget dolor accumsan, blandit risus vitae, faucibus erat. Aliquam scelerisque, diam ut feugiat scelerisque, diam felis venenatis purus, eget cursus enim turpis at sem. Fusce nec tristique dolor, sit amet tristique purus.</li>
-    </ul>
-    <img width="200px" src="/images/blog-post.png" alt="image"/>
-    <p>Quisque at odio semper, elementum leo sed, congue tellus. Proin nunc mauris, porttitor ut eleifend ut, consectetur ut dolor. In hac habitasse platea dictumst. Pellentesque ornare nulla ut quam blandit scelerisque. Suspendisse non orci id elit tempor rhoncus ac id nunc. Integer scelerisque at turpis sit amet faucibus. Etiam non euismod urna.</p>
-    `
-}
+    Index: "",
+    Summary: "",
+    Intro: "",
+    Content: [],
+  });
+  const [blogsData, setBlogsData] = useState([]);
+  const [relatedArticles, setRelated] = useState([]);
 
-function BlogPost() {
+  async function getBlog() {
+    const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
+    var data = await response.json();
+    setBlogsData(data);
+    var blog = data.find((data) => data.url === Url);
 
-const Location = useLocation()
+    var dateObj = new Date(blog.modifiedon);
+    const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+    var dateObj = dateObj.toLocaleDateString("en-US", dateOptions);
 
-const tagSet = new Set(blogDetails.tags);
+    var preview;
+    preview = blog.content.replaceAll("[", " ");
+    preview = preview.replaceAll("]", " ");
+    preview = preview.replaceAll("/n", " ");
+    preview = preview.replaceAll("\n", " ");
+    preview = preview.replaceAll("/", " ");
+    preview = preview.replaceAll("*", " ");
+    preview = preview.slice(0, 300);
+    preview = preview + "...";
 
-var relatedArticles = blogsData.filter((blog) => blog.tags.some(tag => tagSet.has(tag)))
+    setBlogDetails({
+      title: blog.heading,
+      preview: preview,
+      tags: blog.tags,
+      Date: dateObj,
+      Publisher: {
+        name: "Lance Bogrol",
+        image: "/images/why-choose-1.svg",
+      },
+      Index: preview,
+      Summary: preview,
+      Intro: preview,
+      Content: renderContent(blog),
+    });
+    console.log(blogDetails);
 
-function IndexSummary({title, desc}) {
-return(
-    <div>
+    const tagSet = new Set(blogDetails.tags);
+    setRelated(
+      blogsData.filter((blog) => blog.tags.includes((tag) => tagSet.has(tag)))
+    );
+  }
+
+  useEffect(() => {
+    getBlog();
+  }, []);
+
+  function IndexSummary({ title, desc }) {
+    return (
+      <div>
         <h4>{title}</h4>
         <p>{desc}</p>
-    </div>
-)
-}
+      </div>
+    );
+  }
 
-return (
-  <div>
-    <i className='fa-light fa-camera'></i>
-    <Navbar/>
+  return (
     <div>
+      <Navbar />
+      <div>
         <div>
-            <h4>Relevant Brands!</h4>
-            <Button1 value={"Solidity Shield"} link={""}/>
+          <h4>Relevant Brands!</h4>
+          <Button1 value={"Solidity Shield"} link={""} />
         </div>
         <div>
-            <h4>Relevant Brands!</h4>
-            <Button1 value={"Secure Watch"} link={""}/>
+          <h4>Relevant Brands!</h4>
+          <Button1 value={"Secure Watch"} link={""} />
         </div>
-    </div>
-    <div>
+      </div>
+      <div>
         <div>
-            <IndexSummary
-              title={"Index"} 
-              desc={blogDetails.Index.split('\n').map((line, index) => (
-                <React.Fragment key={index}>
-                    {line}
-                    <br />
-                </React.Fragment>
-              ))}
-            />
+          <IndexSummary title={"Index"} desc={blogDetails.Index} />
         </div>
         <div>
-            <IndexSummary 
-              title={"Quick Summary"} 
-              desc={blogDetails.Summary.split('\n').map((line, index) => (
-                <React.Fragment key={index}>
-                    {line}
-                    <br />
-                </React.Fragment>
-              ))}
-            />
+          <IndexSummary title={"Quick Summary"} desc={blogDetails.Summary} />
         </div>
-    </div>
-    <div>
-    <div>
+      </div>
+      <div>
         <div>
-            {blogDetails.tags.map(i => <span>{i+" "}</span>)}
+          <div>
+            <span>{blogDetails.tags}</span>
+          </div>
+          <h3>{blogDetails.title}</h3>
+          {/* <p>{blogDetails.preview}</p> */}
+          <hr />
         </div>
-        <h3>{blogDetails.title}</h3>
-        <p>{blogDetails.preview}</p>
-        <hr/>
-    </div>
-    <div>
         <div>
+          <div>
             <div>
-                <div>
-                    <img src={blogDetails.Publisher.image}/>
-                </div>
-                <div>
-                    <p>{blogDetails.Publisher.name}</p>
-                    <p>{blogDetails.Date}</p>
-                </div>
+              <div>
+                <img src={blogDetails.Publisher.image} />
+              </div>
+              <div>
+                <p>{blogDetails.Publisher.name}</p>
+                <p>{blogDetails.Date}</p>
+              </div>
             </div>
             <div>
-                <p>Share : </p>
-                <a target='_blank' href={``}><i className='fa-brands fa-discord' /></a>
-                <a target='_blank' href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blogDetails.title)}&url=${window.location.origin}${encodeURIComponent(Location.pathname)}`}><i className='fa-brands fa-square-x-twitter' /></a>
-                <a target='_blank' href={`https://www.linkedin.com/sharing/share-offsite/?url=${window.location.origin}${Location.pathname}`}><i className='fa-brands fa-linkedin' /></a>
-                <a target='_blank' href={`https://t.me/share/url?url=${window.location.origin}${encodeURIComponent(Location.pathname)}&text=${encodeURIComponent(blogDetails.title)}`}><i className='fa-brands fa-telegram' /></a>
-                <i target='_blank' onClick={() => navigator.clipboard.writeText(window.location.origin + Location.pathname)} className='fa-regular fa-link' />
+              <p>Share : </p>
+              <a target="_blank" href={``}>
+                <i className="fa-brands fa-discord" />
+              </a>
+              <a
+                target="_blank"
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                  blogDetails.title
+                )}&url=${window.location.origin}${encodeURIComponent(
+                  +"/" + Url
+                )}`}
+              >
+                <i className="fa-brands fa-square-x-twitter" />
+              </a>
+              <a
+                target="_blank"
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${
+                  window.location.origin
+                }${+"/" + Url}`}
+              >
+                <i className="fa-brands fa-linkedin" />
+              </a>
+              <a
+                target="_blank"
+                href={`https://t.me/share/url?url=${
+                  window.location.origin
+                }${encodeURIComponent(+"/" + Url)}&text=${encodeURIComponent(
+                  blogDetails.title
+                )}`}
+              >
+                <i className="fa-brands fa-telegram" />
+              </a>
+              <i
+                target="_blank"
+                onClick={() =>
+                  navigator.clipboard.writeText(
+                    window.location.origin + "/" + Url
+                  )
+                }
+                className="fa-regular fa-link"
+              />
             </div>
+          </div>
+          {/* <p>{blogDetails.Intro}</p> */}
+          <hr />
         </div>
-        <p>{blogDetails.Intro}</p>
-        <hr/>
-    </div>
-    <div dangerouslySetInnerHTML={{ __html: blogDetails.Content }}>
-        {/** Post Content */}
-    </div>
-    <hr/>
-    </div>
-    <div>
+        <div>
+          {/** Post Content */}
+          {blogDetails.Content.map((paragraph, index) => (
+            <div key={index}>
+              {paragraph.modifiedText.map((text, textIndex) => {
+                text = text.replace("{", "");
+                text = text.replace("}", "");
+
+                const imageRegex =
+                  /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+                const match = imageRegex.exec(text);
+                if (match) {
+                  // If image link found, render image
+                  const img = { alt: match[1], src: match[0] };
+                  return (
+                    <React.Fragment key={textIndex}>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: text.replace(imageRegex, ""),
+                        }}
+                      />
+                      <img
+                        style={{
+                          marginTop: 60,
+                          marginBottom: 60,
+                          paddingLeft: 38,
+                          paddingRight: 38,
+                          // width: '45vw',    // Set width to 20% of the viewport width
+                          height: "45vh", // Set height to 20% of the viewport height
+                        }}
+                        src={img.src}
+                        alt={img.alt}
+                      />
+                    </React.Fragment>
+                  );
+                } else {
+                  // If no image link found, render paragraph text
+                  return (
+                    <div
+                      key={textIndex}
+                      dangerouslySetInnerHTML={{ __html: text }}
+                    />
+                  );
+                }
+              })}
+            </div>
+          ))}
+        </div>
+        <hr />
+      </div>
+      <div>
         <h3>Related Posts</h3>
         <div>
-            {
-                relatedArticles.map(i => (
-                    <BlogCard details={i}/>
-                ))
-            }
+          {relatedArticles.map((i) => (
+            <BlogCard details={i} />
+          ))}
         </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
-    <div>
-        <Footer/>
-    </div>
- </div>
-)
+  );
 }
 
 export default BlogPost;
