@@ -9,7 +9,7 @@ import Product from "./pages/Product";
 import Service from "./pages/Service";
 import Blog from "./pages/Blog";
 import AboutUs from "./pages/AboutUs";
-import BlogPost from "./pages/blogp-post";
+import BlogPost from "./pages/blog-post";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
