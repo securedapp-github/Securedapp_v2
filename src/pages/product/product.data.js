@@ -1,3 +1,6 @@
+import { faEnvelope, faVoicemail } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export const faqsData = [
   [
     {
@@ -164,5 +167,50 @@ export const reviews = [
     designation: "Engineering Head 4",
     testimonial:
       '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
+  },
+];
+
+export const features = [
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
 ];

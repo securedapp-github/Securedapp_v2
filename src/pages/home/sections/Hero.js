@@ -1,5 +1,5 @@
 import React from "react";
-import BrandLogos from "../../../components/home/BrandLogos";
+import BrandLogos from "../../../components/common/BrandLogos";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Button from "../../../components/common/Button";

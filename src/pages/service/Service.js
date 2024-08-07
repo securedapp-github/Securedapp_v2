@@ -20,7 +20,7 @@ function Service({ isLargeScreen, setIsLargeScreen }) {
       <ProductServiceHero
         name="A SecureDapp product"
         title="Discover Endless Possibilities with Solidity Shield"
-        image={"/images/product-hero.png"}
+        image={"/assets/images/product-hero.png"}
       />
       <div>
         <SectionTitle name={"Features"} title={"Shield Features"} />
