@@ -1,44 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import SectionTitle from "../../../components/common/SectionTitle";
+import SectionTitle from "../../components/common/SectionTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./Testimonials.css";
 
-const reviews = [
-  {
-    id: 0,
-    name: "Adlinda Paw",
-    designation: "Engineering Head",
-    testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
-  },
-  {
-    id: 1,
-    name: "Adlinda Paw",
-    designation: "Engineering Head 2",
-    testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
-  },
-  {
-    id: 2,
-    name: "Adlinda Paw",
-    designation: "Engineering Head 3",
-    testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
-  },
-  {
-    id: 3,
-    name: "Adlinda Paw",
-    designation: "Engineering Head 4",
-    testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
-  },
-];
-
-const Testimonials = ({ isLargeScreen, setIsLargeScreen }) => {
+const Testimonials = ({ reviews }) => {
   const [active, setActiveSlide] = useState(2);
   let sliderRef = useRef(null);
 

@@ -6,28 +6,103 @@ import "./footer.css";
 import CustomHr from "../common/CustomHr";
 import Logo from "../common/Logo";
 import {
+  faDiscord,
   faFacebook,
   faInstagram,
   faLinkedin,
+  faTelegram,
+  faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 const navigationItems = [
   {
     title: "Product",
-    items: ["Solidity Shield Scan", "Secure Watch", "Secure Audit"],
+    items: [
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+      {
+        name: "Secure Watch",
+        to: "",
+      },
+      {
+        name: "Secure Audit",
+        to: "",
+      },
+    ],
   },
   {
     title: "Features",
-    items: ["Features", "Integration", "Pricing", "Changelog", "Roadmap"],
+    items: [
+      {
+        name: "Features",
+        to: "",
+      },
+      {
+        name: "Integration",
+        to: "",
+      },
+      {
+        name: "Pricing",
+        to: "",
+      },
+      {
+        name: "Changelog",
+        to: "",
+      },
+      {
+        name: "Roadmap",
+        to: "",
+      },
+    ],
   },
   {
     title: "Company",
-    items: ["About Us"],
+    items: [
+      {
+        name: "About Us",
+        to: "",
+      },
+    ],
   },
   {
     title: "Resources",
-    items: ["Blogs", "Documentation", "Contact"],
+    items: [
+      {
+        name: "Blogs",
+        to: "",
+      },
+      {
+        name: "Documentation",
+        to: "",
+      },
+      {
+        name: "Contact",
+        to: "",
+      },
+    ],
+  },
+];
+
+const socials = [
+  {
+    to: "https://discord.com/invite/jQcd5WwhNy",
+    icon: <FontAwesomeIcon size="xl" icon={faDiscord} />,
+  },
+  {
+    to: "https://x.com/secure_dapp",
+    icon: <FontAwesomeIcon size="xl" icon={faTwitter} />,
+  },
+  {
+    to: "https://www.linkedin.com/company/securedapp/",
+    icon: <FontAwesomeIcon size="xl" icon={faLinkedin} />,
+  },
+  {
+    to: "https://telegram.me/securedappcommunity",
+    icon: <FontAwesomeIcon size="xl" icon={faTelegram} />,
   },
 ];
 
@@ -56,10 +131,9 @@ const Footer = () => (
           <Logo isLeft={true} />
         </div>
         <div className="footer-socials">
-          <FontAwesomeIcon size="xl" icon={faInstagram} />
-          <FontAwesomeIcon size="xl" icon={faFacebook} />
-          <FontAwesomeIcon size="xl" icon={faLinkedin} />
-          <FontAwesomeIcon size="xl" icon={faYoutube} />
+          {socials.map((social) => {
+            return <Link to={social.to}>{social.icon}</Link>;
+          })}
         </div>
       </div>
       <div className="footer-about-right">
@@ -72,7 +146,9 @@ const Footer = () => (
               <div className="footer-navigation-item-items">
                 {navigationItem.items.map((item, index) => {
                   return (
-                    <div className="footer-navigation-item-item">{item}</div>
+                    <div className="footer-navigation-item-item">
+                      <Link to={item.to}> {item.name}</Link>
+                    </div>
                   );
                 })}
               </div>

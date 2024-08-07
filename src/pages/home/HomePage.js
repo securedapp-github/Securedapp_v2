@@ -1,13 +1,14 @@
 import CTA from "./sections/CTA";
-import FAQs from "./sections/FAQs";
+import FAQs from "../../components/common/FAQs";
 import Hero from "./sections/Hero";
 import HowItWorks from "./sections/HowItWorks";
 import Services from "./sections/Services";
 import Solutions from "./sections/Solutions";
-import Testimonials from "./sections/Testimonials";
+import Testimonials from "../../components/common/Testimonials";
 import Features from "./sections/Features";
 import "./HomePage.css";
 import Statitics from "./sections/Statistics";
+import { reviews, faqHeaders, faqsData } from "./home.data";
 
 const Home = ({ isLargeScreen, setIsLargeScreen }) => {
   return (
@@ -21,11 +22,13 @@ const Home = ({ isLargeScreen, setIsLargeScreen }) => {
         isLargeScreen={isLargeScreen}
         setIsLargeScreen={setIsLargeScreen}
       />
-      <Testimonials
+      <Testimonials reviews={reviews} />
+      <FAQs
+        faqHeaders={faqHeaders}
+        faqsData={faqsData}
         isLargeScreen={isLargeScreen}
         setIsLargeScreen={setIsLargeScreen}
       />
-      <FAQs isLargeScreen={isLargeScreen} setIsLargeScreen={setIsLargeScreen} />
       <CTA />
     </div>
   );
