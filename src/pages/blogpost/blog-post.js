@@ -120,7 +120,6 @@ function BlogPost({ Url }) {
       Summary: preview,
       Content: renderContent(blog),
     });
-    console.log(blogDetails.Index);
 
     const tagSet = new Set(blogDetails.tags);
     setRelated(

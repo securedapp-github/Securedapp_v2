@@ -12,7 +12,7 @@
         @apply mx-4 px-8 py-10 flex flex-col rounded-2xl opacity-[76%] items-stretch bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
   
         &.selected-card {
-          @apply pt-12 border-[##A4CDFF] opacity-100;
+          @apply pt-12 border-[#A4CDFF] opacity-100;
         }
   
         .testimonial-card-text {

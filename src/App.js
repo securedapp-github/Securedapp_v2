@@ -34,6 +34,7 @@ function App() {
         <Routes>
           <Route
             path="/"
+            index
             element={
               <Home
                 isLargeScreen={isLargeScreen}
@@ -42,20 +43,26 @@ function App() {
             }
           />
           <Route
-            isLargeScreen={isLargeScreen}
-            setIsLargeScreen={setIsLargeScreen}
-            path="/product"
-            element={<Product />}
+            path="product"
+            element={
+              <Product
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
           />
           <Route
-            isLargeScreen={isLargeScreen}
-            setIsLargeScreen={setIsLargeScreen}
-            path="/service"
-            element={<Service />}
+            path="service"
+            element={
+              <Service
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
           />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="blog" element={<Blog />} />
           <Route
-            path="/blog-post"
+            path="blog-post"
             element={
               <BlogPost
                 Url={
@@ -64,7 +71,7 @@ function App() {
               />
             }
           />
-          <Route path="/about" element={<AboutUs />} />
+          <Route path="about" element={<AboutUs />} />
         </Routes>
         <Footer />
       </Router>

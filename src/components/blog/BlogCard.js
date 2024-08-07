@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "../common/Button";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function BlogCard({ details }) {
+  const navigate = useNavigate();
   var dateObj = new Date(details.modifiedon);
 
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -32,7 +33,7 @@ function BlogCard({ details }) {
           </div>
           <h4>{details.heading}</h4>
           <p>{preview}</p>
-          <Button onClick={Navigate(details.url)} text="Read more" />
+          <Button onClick={navigate(details.url)} text="Read more" />
         </div>
       </div>
     </div>

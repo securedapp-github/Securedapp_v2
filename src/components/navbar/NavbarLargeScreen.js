@@ -5,11 +5,14 @@ import Button from "../common/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../common/Logo";
-import { Navigate } from "react-router-dom";
 
-const NavbarLargeScreen = ({ location, darkMode, toggleTheme }) => {
+const NavbarLargeScreen = ({
+  handleNavigation,
+  nextPath,
+  darkMode,
+  toggleTheme,
+}) => {
   const [dropDown, setDropDown] = useState("");
-  console.log(location);
 
   return (
     <nav className="lg:py-6 lg:px-10 py-4 px-8 font-nunito font-light text-base text-secondary dark:text-primary flex justify-between items-center">
@@ -38,10 +41,10 @@ const NavbarLargeScreen = ({ location, darkMode, toggleTheme }) => {
             size="lg"
           />
         </button>
-        {location ? (
-          <Button text={"Login"} onClick={Navigate(location)} />
+        {nextPath !== undefined && nextPath !== null ? (
+          <Button text={"Login"} onClick={handleNavigation} />
         ) : (
-          <Button text="Request Quote" onClick={{}}></Button>
+          <Button text="Request Quote" onClick={handleNavigation}></Button>
         )}
       </div>
     </nav>

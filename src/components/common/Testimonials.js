@@ -49,7 +49,6 @@ const Testimonials = ({ reviews }) => {
     slidesToShow: 3,
     infinite: true,
     cssEase: "linear",
-    focusOnSelect: true,
     slidesToScroll: 1,
     speed: 500,
     beforeChange: (current, next) => setActiveSlide(next),

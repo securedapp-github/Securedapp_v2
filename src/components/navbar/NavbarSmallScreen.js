@@ -8,12 +8,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../common/Logo";
 import { navItems } from "./navItems";
 import Button from "../common/Button";
 
-const NavbarSmallScreen = ({ location, darkMode, toggleTheme }) => {
+const NavbarSmallScreen = ({
+  handleNavigation,
+  nextPath,
+  darkMode,
+  toggleTheme,
+}) => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
   const [dropDown, setDropDown] = useState("");
 
@@ -58,7 +63,7 @@ const NavbarSmallScreen = ({ location, darkMode, toggleTheme }) => {
                 <FontAwesomeIcon
                   icon={faClose}
                   color={darkMode ? "white" : "black"}
-                  size="md"
+                  size="lg"
                   className="cursor-pointer"
                   onClick={closeSideBar}
                 />
@@ -104,10 +109,12 @@ const NavbarSmallScreen = ({ location, darkMode, toggleTheme }) => {
               })}
             </nav>
             <div className="w-full text-center py-3 px-2">
-              {location ? (
-                <Button text={"Login"} onClick={Navigate(location)} />
+              {nextPath ? (
+                <Button text={"Login"} onClick={handleNavigation} />
               ) : (
-                <Button text="Request Quote" onClick={{}}></Button>
+                <Button
+                  text="Request Quote"
+                  onClick={handleNavigation}></Button>
               )}
             </div>
           </div>

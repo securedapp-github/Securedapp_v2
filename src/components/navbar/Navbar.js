@@ -3,32 +3,31 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = ({ isLargeScreen, setIsLargeScreen }) => {
   const [darkMode, setDarkMode] = useState(false);
-  const currenLocation = useLocation();
-  const path = currenLocation.pathname;
-  let location = null;
+  const location = useLocation();
+  const navigate = useNavigate();
+  let nextPath;
 
-  const dataset = [
-    {
-      path: "/product",
-      to: "/hello", // TODO: Add Login Link
-    },
-    {
-      path: "/service",
-      to: "/hello", // TODO: Add Login Link
-    },
-  ];
+  const currentPath = location.pathname;
 
-  dataset.forEach((item) => {
-    if (item.path === path) {
-      console.log(item.path, path);
-      location = item.to;
-      console.log(location);
+  switch (currentPath) {
+    case "/product":
+    case "/service":
+      nextPath = "/login";
+      break;
+    default:
+      nextPath = null;
+  }
+
+  const handleNavigation = () => {
+    if (nextPath) navigate(nextPath);
+    else {
+      // TODO: Add Callback for Request Quote button
     }
-  });
+  };
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
@@ -39,13 +38,15 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen }) => {
     <div className="absolute top-0 left-0 right-0">
       {isLargeScreen ? (
         <NavbarLargeScreen
-          location={location}
+          handleNavigation={handleNavigation}
+          nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
         />
       ) : (
         <NavbarSmallScreen
-          location={location}
+          handleNavigation={handleNavigation}
+          nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
         />
