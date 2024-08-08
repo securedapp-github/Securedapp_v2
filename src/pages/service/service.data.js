@@ -1,3 +1,5 @@
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 export const faqsData = [
   [
     {
@@ -164,5 +166,157 @@ export const reviews = [
     designation: "Engineering Head 4",
     testimonial:
       '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
+  },
+];
+
+export const features = [
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+  {
+    icon: faEnvelope,
+    iconBackgroundColor: "#F4CAE8",
+    header: "Lorem Ipsum",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+  },
+];
+
+export const benefitsData = [
+  {
+    header: "Affordable Price",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+    image: "/assets/images/service-1-benefit-1.svg",
+    imageAlt: "",
+  },
+  {
+    header: "Affordable Price",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+    image: "/assets/images/service-1-benefit-1.svg",
+    imageAlt: "",
+  },
+  {
+    header: "Affordable Price",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+    image: "/assets/images/service-1-benefit-1.svg",
+    imageAlt: "",
+  },
+  {
+    header: "Affordable Price",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
+    image: "/assets/images/service-1-benefit-1.svg",
+    imageAlt: "",
+  },
+];
+
+export const whyChooseData = [
+  {
+    image: "/assets/images/service-1-why-choose-1.svg",
+    imageBackground: "#FFBD3E",
+    title: "Startup Thinking",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+  },
+  {
+    image: "/assets/images/service-1-why-choose-1.svg",
+    imageBackground: "#FFBD3E",
+    title: "Startup Thinking",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+  },
+  {
+    image: "/assets/images/service-1-why-choose-1.svg",
+    imageBackground: "#FFBD3E",
+    title: "Startup Thinking",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+  },
+  {
+    image: "/assets/images/service-1-why-choose-1.svg",
+    imageBackground: "#FFBD3E",
+    title: "Startup Thinking",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+  },
+  {
+    image: "/assets/images/service-1-why-choose-1.svg",
+    imageBackground: "#FFBD3E",
+    title: "Startup Thinking",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+  },
+  {
+    image: "/assets/images/service-1-why-choose-1.svg",
+    imageBackground: "#FFBD3E",
+    title: "Startup Thinking",
+    description:
+      "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
+  },
+];
+
+export const howItWorksData = [
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
 ];

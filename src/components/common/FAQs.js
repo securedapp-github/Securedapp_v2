@@ -115,21 +115,39 @@ const FAQs = ({
         </div>
       ) : (
         <div className="faq-mobile-navbar">
-          <PreviousArrow />
-          <Slider ref={sliderRef} className="w-full" {...slickSettings}>
-            {faqHeaders.map((header, index) => {
-              return (
-                <div
-                  onClick={() => setTopic(index)}
-                  className={`faq-mobile-navbar-item ${
-                    index === topic && "selected-mobile-navbar"
-                  }`}>
-                  {header}
-                </div>
-              );
-            })}
-          </Slider>
-          <NextArrow />
+          {faqHeaders.length > 0 ? (
+            <>
+              <PreviousArrow />
+              <Slider ref={sliderRef} className="w-full" {...slickSettings}>
+                {faqHeaders.map((header, index) => {
+                  return (
+                    <div
+                      onClick={() => setTopic(index)}
+                      className={`faq-mobile-navbar-item ${
+                        index === topic && "selected-mobile-navbar"
+                      }`}>
+                      {header}
+                    </div>
+                  );
+                })}
+              </Slider>
+              <NextArrow />
+            </>
+          ) : (
+            <>
+              {faqHeaders.map((header, index) => {
+                return (
+                  <div
+                    onClick={() => setTopic(index)}
+                    className={`faq-mobile-navbar-item ${
+                      index === topic && "selected-mobile-navbar"
+                    }`}>
+                    {header}
+                  </div>
+                );
+              })}
+            </>
+          )}
         </div>
       )}
       <div className="faq-items">
