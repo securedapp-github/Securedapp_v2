@@ -214,3 +214,48 @@ export const features = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
 ];
+
+export const howItWorksData = [
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    image: "/assets/images/product-1-how-it-works-1.svg",
+    imageAlt: "",
+    header: "Workflow builder",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+];

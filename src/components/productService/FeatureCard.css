@@ -13,11 +13,11 @@
     }
 
     .feature-card-content-description {
-      @apply font-light;
+      @apply font-light text-sm;
     }
   }
 }
 
 .features-section-cards {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 lg:gap-6;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6;
 }

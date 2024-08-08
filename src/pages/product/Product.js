@@ -13,8 +13,9 @@ import {
   FeatureCards,
   FeatureIcon,
 } from "../../components/productService/FeatureCard";
-import { features } from "./product.data";
+import { features, howItWorksData } from "./product.data";
 import ProductWhyCard from "../../components/productService/ProductWhyCard";
+import HowItWorksCard from "../../components/productService/HowItWorksCard";
 
 function Product({ isLargeScreen, setIsLargeScreen }) {
   return (
@@ -57,43 +58,23 @@ function Product({ isLargeScreen, setIsLargeScreen }) {
             "Streamline business processes and increase efficiency with workflow automation features."
           }
         />
-        <div>
-          <HowItWorksBox
-            title={"Workflow Builder"}
-            desc={
-              "Streamline business processes and increase efficiency with workflow automation features."
-            }
-            icon={<img src="/images/Group 5.svg" />}
-          />
-          <HowItWorksBox
-            title={"Workflow Builder"}
-            desc={
-              "Streamline business processes and increase efficiency with workflow automation features."
-            }
-            icon={<img src="/images/Group 5.svg" />}
-          />
-          <HowItWorksBox
-            title={"Workflow Builder"}
-            desc={
-              "Streamline business processes and increase efficiency with workflow automation features."
-            }
-            icon={<img src="/images/Group 5.svg" />}
-          />
-          <HowItWorksBox
-            title={"Workflow Builder"}
-            desc={
-              "Streamline business processes and increase efficiency with workflow automation features."
-            }
-            icon={<img src="/images/Group 5.svg" />}
-          />
-          <HowItWorksBox
-            title={"Workflow Builder"}
-            desc={
-              "Streamline business processes and increase efficiency with workflow automation features."
-            }
-            icon={<img src="/images/Group 5.svg" />}
-          />
-          <img width={"200px"} src="/images/how-it-works-prod.png" />
+        <div className="how-it-works-section">
+          {howItWorksData.map((data) => {
+            return (
+              <HowItWorksCard
+                image={data.image}
+                imageAlt={data.imageAlt}
+                title={data.header}
+                description={data.description}
+              />
+            );
+          })}
+          <div className="how-it-works-section-end-image">
+            <img
+              src="/assets/images/product-1-how-it-works-1-end.svg"
+              alt="product 1 how it works end"
+            />
+          </div>
         </div>
       </div>
       <Testimonials reviews={reviews} />
