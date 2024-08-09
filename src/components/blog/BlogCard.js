@@ -2,12 +2,14 @@ import React from "react";
 import Button from "../common/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./BlogCard.css";
+import BlogTag from "./BlogTag";
 
 function BlogCard({ details }) {
   const navigate = useNavigate();
   var dateObj = new Date(details.modifiedon);
 
-  const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+  const dateOptions = { month: "long", day: "numeric" };
   var dateObj = dateObj.toLocaleDateString("en-US", dateOptions);
 
   var preview;
@@ -17,23 +19,34 @@ function BlogCard({ details }) {
   preview = preview.replaceAll("\n", " ");
   preview = preview.replaceAll("/", " ");
   preview = preview.replaceAll("*", " ");
-  preview = preview.slice(0, 300);
+  preview = preview.slice(0, 250);
   preview = preview + "...";
 
   return (
-    <div>
-      <div>
-        <div>
-          <span>{dateObj}</span>
-          <img width={"150px"} src={details.image}></img>
+    <div className="blog-card">
+      <div className="blog-card-header">
+        <div className="blog-card-header-date">{dateObj}</div>
+        <div className="blog-card-header-image-container">
+          <img className="blog-card-header-image" src={details.image} alt="" />
         </div>
-        <div>
-          <div>
-            <span>{details.tags}</span>
-          </div>
-          <h4>{details.heading}</h4>
-          <p>{preview}</p>
-          <Button onClick={navigate(details.url)} text="Read more" />
+      </div>
+      <div className="blog-card-body">
+        <div className="blog-card-body-tags">
+          {details.tags.split(",").map((tag) => {
+            return <BlogTag tag={tag} onClick={() => {}} />;
+          })}
+        </div>
+        <div className="blog-card-body-header">{details.heading}</div>
+        <div className="blog-card-body-preview">{preview}</div>
+        <div className="blog-card-body-button">
+          <Button
+            onClick={() => {
+              navigate(details.url);
+            }}
+            text="Read more"
+            filled={true}
+            blogButton={true}
+          />
         </div>
       </div>
     </div>

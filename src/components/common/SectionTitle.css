@@ -1,5 +1,5 @@
 .section-title {
-  @apply font-nunito text-secondary dark:text-primary flex flex-col items-center text-center pt-24 pb-10 px-4;
+  @apply font-nunitoSans text-secondary dark:text-primary flex flex-col items-center text-center pt-24 pb-10 px-4;
 
   .section-title-icon-image {
     @apply w-12 lg:w-3/12;

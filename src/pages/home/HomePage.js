@@ -3,7 +3,7 @@ import FAQs from "../../components/common/FAQs";
 import Hero from "./sections/Hero";
 import HowItWorks from "./sections/HowItWorks";
 import Services from "./sections/Services";
-import Solutions from "./sections/Solutions";
+import Solutions from "./sections/solutions";
 import Testimonials from "../../components/common/Testimonials";
 import Features from "./sections/Features";
 import "./HomePage.css";

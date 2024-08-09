@@ -15,7 +15,7 @@ const NavbarLargeScreen = ({
   const [dropDown, setDropDown] = useState("");
 
   return (
-    <nav className="lg:py-6 lg:px-10 py-4 px-8 font-nunito font-light text-base text-secondary dark:text-primary flex justify-between items-center">
+    <nav className="lg:py-6 lg:px-10 py-4 px-8 font-nunitoSans font-light text-base text-secondary dark:text-primary flex justify-between items-center">
       <div>
         <Logo />
       </div>
