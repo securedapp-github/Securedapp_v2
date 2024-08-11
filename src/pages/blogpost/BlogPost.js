@@ -140,6 +140,10 @@ const BlogPost = () => {
       Summary: preview,
       Content: renderContent(blog),
     });
+
+    // to ensure that whenver the content changes
+    // page should scroll to top
+    window.scrollTo(0, 0);
   };
 
   const findRelated = () => {
@@ -160,7 +164,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     fetchBlogs();
-  }, []);
+  }, [url]);
 
   useEffect(() => {
     findRelated();

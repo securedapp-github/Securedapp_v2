@@ -170,10 +170,10 @@
     @apply flex flex-col lg:flex-row lg:space-x-0 items-stretch justify-center;
 
     .how-card {
-      @apply py-10 px-12 flex-1 border-l-4 border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:text-secondary text-[#001938B2] dark:text-[#FFFFFFB2] hover:dark:text-primary;
+      @apply py-10 pl-12 pr-16 flex-1 border-l-4 border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:text-secondary text-[#001938B2] dark:text-[#FFFFFFB2] hover:dark:text-primary;
 
       .how-card-title {
-        @apply text-2xl font-bold pb-3;
+        @apply text-2xl lg:text-3xl font-bold pb-3;
       }
 
       .how-card-desc {
@@ -335,7 +335,7 @@
   }
 
   .cta-section-buttons {
-    @apply w-full lg:w-2/3 px-2 sm:px-6 md:px-10 lg:px-24 flex space-x-3 lg:space-x-5 items-center justify-center;
+    @apply w-full lg:w-1/2 px-2 sm:px-6 md:px-10 lg:px-24 flex space-x-3 lg:space-x-5 items-center justify-center;
 
     .cta-section-button {
       @apply flex-1 whitespace-nowrap;

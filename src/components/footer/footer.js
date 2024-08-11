@@ -64,7 +64,7 @@ const navigationItems = [
     items: [
       {
         name: "About Us",
-        to: "",
+        to: "/about",
       },
     ],
   },

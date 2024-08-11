@@ -6,14 +6,14 @@
   }
 
   .product-card-content {
-    @apply flex-1 px-4 flex flex-col items-start justify-center space-y-6;
+    @apply flex-1 px-4 pb-4 lg:pb-0 flex flex-col items-start justify-center space-y-6;
 
     .product-card-content-header {
       @apply text-3xl lg:text-4xl font-bold;
     }
 
     .product-card-content-description {
-      @apply text-left;
+      @apply font-light text-left;
     }
   }
 }

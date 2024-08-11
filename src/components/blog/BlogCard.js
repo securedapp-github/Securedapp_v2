@@ -2,9 +2,10 @@ import React from "react";
 import Button from "../common/Button";
 import "./BlogCard.css";
 import BlogTag from "./BlogTag";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function BlogCard({ details }) {
+  const navigate = useNavigate();
   var dateObj = new Date(details.modifiedon);
 
   const dateOptions = { month: "long", day: "numeric" };
@@ -37,9 +38,14 @@ function BlogCard({ details }) {
         <div className="blog-card-body-header">{details.heading}</div>
         <div className="blog-card-body-preview">{preview}</div>
         <div className="blog-card-body-button">
-          <Link to={`/blog/${details.url}`}>
-            <Button text="Read more" filled={true} blogButton={true} />
-          </Link>
+          <Button
+            text="Read more"
+            filled={true}
+            blogButton={true}
+            onClick={() => {
+              navigate(`/blog/${details.url}`);
+            }}
+          />
         </div>
       </div>
     </div>
