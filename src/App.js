@@ -7,7 +7,7 @@ import Footer from "./components/footer/footer";
 import Product from "./pages/product/Product";
 import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
-import BlogPost from "./pages/blogpost/blog-post";
+import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
 
 function App() {
@@ -61,16 +61,7 @@ function App() {
             }
           />
           <Route path="blog" element={<Blog />} />
-          <Route
-            path="blog-post"
-            element={
-              <BlogPost
-                Url={
-                  "THE-FUTURE-OF-TOKEN-REGULATION:-NAVIGATING-PRIVACY-AND-DATA-PROTECTION"
-                }
-              />
-            }
-          />
+          <Route path="blog/:url" element={<BlogPost />} />
           <Route path="about" element={<AboutUs />} />
         </Routes>
         <Footer />

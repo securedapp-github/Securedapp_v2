@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BlogCard from "../../components/blog/BlogCard";
 import { tags } from "../blog/blog-data";
 import Button from "../../components/common/Button";
@@ -70,7 +70,8 @@ const extractHeadings = (text) => {
   return headingsArray;
 };
 
-function BlogPost({ Url }) {
+const BlogPost = () => {
+  const { url } = useParams();
   const [blogDetails, setBlogDetails] = useState({
     title: "",
     preview: "",
@@ -91,7 +92,7 @@ function BlogPost({ Url }) {
     const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
     var data = await response.json();
     setBlogsData(data);
-    var blog = data.find((data) => data.url === Url);
+    var blog = data.find((data) => data.url === url);
 
     var dateObj = new Date(blog.modifiedon);
     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -156,7 +157,7 @@ function BlogPost({ Url }) {
   }
 
   return (
-    <div>
+    <div className="">
       <div>
         <div>
           <h4>Relevant Brands!</h4>
@@ -205,7 +206,7 @@ function BlogPost({ Url }) {
                 href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                   blogDetails.title
                 )}&url=${window.location.origin}${encodeURIComponent(
-                  +"/" + Url
+                  +"/" + url
                 )}`}>
                 <i className="fa-brands fa-square-x-twitter" />
               </a>
@@ -213,14 +214,14 @@ function BlogPost({ Url }) {
                 target="_blank"
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${
                   window.location.origin
-                }${+"/" + Url}`}>
+                }${+"/" + url}`}>
                 <i className="fa-brands fa-linkedin" />
               </a>
               <a
                 target="_blank"
                 href={`https://t.me/share/url?url=${
                   window.location.origin
-                }${encodeURIComponent(+"/" + Url)}&text=${encodeURIComponent(
+                }${encodeURIComponent(+"/" + url)}&text=${encodeURIComponent(
                   blogDetails.title
                 )}`}>
                 <i className="fa-brands fa-telegram" />
@@ -229,7 +230,7 @@ function BlogPost({ Url }) {
                 target="_blank"
                 onClick={() =>
                   navigator.clipboard.writeText(
-                    window.location.origin + "/" + Url
+                    window.location.origin + "/" + url
                   )
                 }
                 className="fa-regular fa-link"
@@ -299,6 +300,6 @@ function BlogPost({ Url }) {
       </div>
     </div>
   );
-}
+};
 
 export default BlogPost;

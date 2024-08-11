@@ -43,7 +43,7 @@
         }
 
         .footer-navigation-item-items {
-          @apply flex flex-col space-y-1 lg:space-y-2;
+          @apply font-light flex flex-col space-y-1 lg:space-y-2;
         }
       }
     }

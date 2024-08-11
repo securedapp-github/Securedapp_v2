@@ -34,7 +34,7 @@ const NavbarItem = ({
       {items.length > 0 && dropDown === children && (
         <div className="nested-navbar">
           <div className="nested-navbar-header">{children}</div>
-          <CustomHr />
+          <hr className="border my-2 border-cardBorderColorLight dark:border-cardBorderColorDark"></hr>
           <div className="nested-navbar-items">
             {items.map((item) => {
               return (
