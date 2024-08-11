@@ -15,7 +15,8 @@ function Blog() {
 
   async function getBlogs() {
     const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
-    const data = await response.json();
+    let data = await response.json();
+    data = data.filter((item) => item.status === 1);
     setOriginalBlogs(data);
     setBlogs(data.sort((a, b) => a.id - b.id));
   }

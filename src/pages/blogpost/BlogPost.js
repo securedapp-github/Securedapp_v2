@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import BlogCard from "../../components/blog/BlogCard";
-import { tags } from "../blog/blog-data";
 import Button from "../../components/common/Button";
+import "./BlogPost.css";
+import BlogTag from "../../components/blog/BlogTag";
+import CustomHr from "../../components/common/CustomHr";
 
 const renderContent = (blogData) => {
   const filteredBlog = blogData;
@@ -30,7 +32,8 @@ const renderContent = (blogData) => {
     modifiedText = modifiedText.replace(/\/n\//g, "<br>");
 
     // Bold text wrapped in '**'
-    modifiedText = modifiedText.replace(/\*\*(.*?)\*\*/g, "<h2>$1</h2>");
+    modifiedText = modifiedText.replace(/\*\*(.*?)\*\*/g, `<h2>$1</h2>`);
+    modifiedText = modifiedText.replace(/\*(.*?)\*/g, "<h2>$1</h2>");
 
     modifiedText = modifiedText.split("\n\n");
     // Identify and store images
@@ -70,6 +73,10 @@ const extractHeadings = (text) => {
   return headingsArray;
 };
 
+const getTags = (tags) => {
+  return tags.split(",");
+};
+
 const BlogPost = () => {
   const { url } = useParams();
   const [blogDetails, setBlogDetails] = useState({
@@ -88,11 +95,23 @@ const BlogPost = () => {
   const [blogsData, setBlogsData] = useState([]);
   const [relatedArticles, setRelated] = useState([]);
 
-  async function getBlog() {
+  const fetchBlogs = async () => {
     const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
-    var data = await response.json();
-    setBlogsData(data);
-    var blog = data.find((data) => data.url === url);
+    let data = await response.json();
+    data = data.filter((item) => item.status === 1);
+    setBlogsData(data.filter((item) => item.status === 1));
+  };
+
+  const getBlog = () => {
+    if (blogsData.length === 0) {
+      return;
+    }
+
+    var blog = blogsData.find((data) => data.url === url && data.status === 1);
+
+    if (!blog) {
+      return;
+    }
 
     var dateObj = new Date(blog.modifiedon);
     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -115,30 +134,49 @@ const BlogPost = () => {
       Date: dateObj,
       Publisher: {
         name: "Lance Bogrol",
-        image: "/images/why-choose-1.svg",
+        image: "",
       },
       Index: extractHeadings(blog.content),
       Summary: preview,
       Content: renderContent(blog),
     });
+  };
 
-    const tagSet = new Set(blogDetails.tags);
-    setRelated(
-      blogsData.filter((blog) => blog.tags.includes((tag) => tagSet.has(tag)))
-    );
-  }
+  const findRelated = () => {
+    const tagSet = new Set(getTags(blogDetails.tags.toLowerCase()));
+    console.log("Current", blogDetails.title);
+
+    const related = blogsData.filter((blog) => {
+      const blogTags = getTags(blog.tags.toLowerCase());
+      console.log("Other", blog.heading);
+      return (
+        blog.heading !== blogDetails.title &&
+        blogTags.some((tag) => tagSet.has(tag))
+      );
+    });
+
+    setRelated(related);
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  useEffect(() => {
+    findRelated();
+  }, [blogDetails]);
 
   useEffect(() => {
     getBlog();
-  }, []);
+  }, [blogsData]);
 
-  function IndexSummary({ title, desc, index }) {
+  const IndexSummaryCard = ({ title, desc, index }) => {
     return (
-      <div>
+      <div className="index-summary-card">
         {index ? (
-          <div>
-            <h4>{title}</h4>
-            <ul>
+          <div className="card-details">
+            <div className="card-title">{title}</div>
+            <ul className="card-content">
               {index.map((h) => (
                 <Link>
                   <li onClick={() => scrollToHeading(h)}>{h}</li>
@@ -147,152 +185,167 @@ const BlogPost = () => {
             </ul>
           </div>
         ) : (
-          <div>
-            <h4>{title}</h4>
-            <p>{desc}</p>
+          <div className="card-details">
+            <div className="card-title">{title}</div>
+            <div className="card-content">{desc}</div>
           </div>
         )}
       </div>
     );
-  }
+  };
 
   return (
-    <div className="">
-      <div>
-        <div>
-          <h4>Relevant Brands!</h4>
-          <Button text={"Solidity Shield"} onClick={{}} />
+    <div className="blog-post">
+      <div className="blog-post-header">
+        <div className="blog-post-header-left">
+          <div className="blog-post-header-title">
+            <div className="blog-post-header-title-text">Relevant Brands!</div>
+          </div>
+          <Button text={"Solidity Shield"} onClick={{}} filled={true} />
         </div>
-        <div>
-          <h4>Relevant Brands!</h4>
-          <Button text={"Secure Watch"} onClick={{}} />
+        <div className="blog-post-header-right">
+          <div className="blog-post-header-title">
+            <div className="blog-post-header-title-text">Relevant Brands!</div>
+          </div>
+          <Button text={"Secure Watch"} onClick={{}} filled={true} />
         </div>
       </div>
-      <div>
-        <div>
-          <IndexSummary title={"Index"} index={blogDetails.Index} />
+      <div className="blog-post-content">
+        <div className="blog-post-index">
+          <IndexSummaryCard title={"Index"} index={blogDetails.Index} />
         </div>
-        <div>
-          <IndexSummary title={"Quick Summary"} desc={blogDetails.Summary} />
-        </div>
-      </div>
-      <div>
-        <div>
-          <div>
-            <span>{blogDetails.tags}</span>
-          </div>
-          <h3>{blogDetails.title}</h3>
-          {/* <p>{blogDetails.preview}</p> */}
-          <hr />
-        </div>
-        <div>
-          <div>
-            <div>
-              <div>
-                <img src={blogDetails.Publisher.image} />
-              </div>
-              <div>
-                <p>{blogDetails.Publisher.name}</p>
-                <p>{blogDetails.Date}</p>
-              </div>
-            </div>
-            <div>
-              <p>Share : </p>
-              <a target="_blank" href={``}>
-                <i className="fa-brands fa-discord" />
-              </a>
-              <a
-                target="_blank"
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                  blogDetails.title
-                )}&url=${window.location.origin}${encodeURIComponent(
-                  +"/" + url
-                )}`}>
-                <i className="fa-brands fa-square-x-twitter" />
-              </a>
-              <a
-                target="_blank"
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${
-                  window.location.origin
-                }${+"/" + url}`}>
-                <i className="fa-brands fa-linkedin" />
-              </a>
-              <a
-                target="_blank"
-                href={`https://t.me/share/url?url=${
-                  window.location.origin
-                }${encodeURIComponent(+"/" + url)}&text=${encodeURIComponent(
-                  blogDetails.title
-                )}`}>
-                <i className="fa-brands fa-telegram" />
-              </a>
-              <i
-                target="_blank"
-                onClick={() =>
-                  navigator.clipboard.writeText(
-                    window.location.origin + "/" + url
-                  )
-                }
-                className="fa-regular fa-link"
-              />
-            </div>
-          </div>
-          {/* <p>{blogDetails.Intro}</p> */}
-          <hr />
-        </div>
-        <div>
-          {/** Post Content */}
-          {blogDetails.Content.map((paragraph, index) => (
-            <div key={index}>
-              {paragraph.modifiedText.map((text, textIndex) => {
-                text = text.replace("{", "");
-                text = text.replace("}", "");
-
-                const imageRegex =
-                  /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
-                const match = imageRegex.exec(text);
-                if (match) {
-                  // If image link found, render image
-                  const img = { alt: match[1], src: match[0] };
-                  return (
-                    <React.Fragment key={textIndex}>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: text.replace(imageRegex, ""),
-                        }}
-                      />
-                      <img
-                        style={{
-                          marginTop: 60,
-                          marginBottom: 60,
-                          paddingLeft: 38,
-                          paddingRight: 38,
-                          // width: '45vw',    // Set width to 20% of the viewport width
-                          height: "45vh", // Set height to 20% of the viewport height
-                        }}
-                        src={img.src}
-                        alt={img.alt}
-                      />
-                    </React.Fragment>
-                  );
-                } else {
-                  // If no image link found, render paragraph text
-                  return (
-                    <div
-                      key={textIndex}
-                      dangerouslySetInnerHTML={{ __html: text }}
-                    />
-                  );
-                }
+        <div className="blog-post-body">
+          <div className="body-header">
+            <div className="body-header-tags">
+              {blogDetails.tags.split(",").map((tag) => {
+                return <BlogTag tag={tag} onClick={() => {}} />;
               })}
             </div>
-          ))}
+            <div className="body-header-title">{blogDetails.title}</div>
+            {/* <p>{blogDetails.preview}</p> */}
+          </div>
+          <div className="py-6">
+            <CustomHr />
+          </div>
+          <div className="publisher">
+            <div className="publisher-details">
+              <div className="publisher-profile">
+                <div className="publisher-image">
+                  {blogDetails.Publisher.image && (
+                    <img src={blogDetails.Publisher.image} />
+                  )}
+                </div>
+                <div>
+                  <div>{blogDetails.Publisher.name}</div>
+                  <div>{`Published on ${blogDetails.Date}`}</div>
+                </div>
+              </div>
+              <div className="publisher-socials">
+                <div>Share: </div>
+                <a target="_blank" href={``}>
+                  <i className="fa-brands fa-discord" />
+                </a>
+                <a
+                  target="_blank"
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                    blogDetails.title
+                  )}&url=${window.location.origin}${encodeURIComponent(
+                    +"/" + url
+                  )}`}>
+                  <i className="fa-brands fa-square-x-twitter" />
+                </a>
+                <a
+                  target="_blank"
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${
+                    window.location.origin
+                  }${+"/" + url}`}>
+                  <i className="fa-brands fa-linkedin" />
+                </a>
+                <a
+                  target="_blank"
+                  href={`https://t.me/share/url?url=${
+                    window.location.origin
+                  }${encodeURIComponent(+"/" + url)}&text=${encodeURIComponent(
+                    blogDetails.title
+                  )}`}>
+                  <i className="fa-brands fa-telegram" />
+                </a>
+                <i
+                  target="_blank"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      window.location.origin + "/" + url
+                    )
+                  }
+                  className="fa-regular fa-link"
+                />
+              </div>
+            </div>
+            <div>{blogDetails.Intro}</div>
+          </div>
+          <div className="py-6">
+            <CustomHr />
+          </div>
+          <div>
+            {/** Post Content */}
+            {blogDetails.Content.map((paragraph, index) => (
+              <div key={index}>
+                {paragraph.modifiedText.map((text, textIndex) => {
+                  text = text.replace("{", "");
+                  text = text.replace("}", "");
+
+                  const imageRegex =
+                    /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
+                  const match = imageRegex.exec(text);
+                  if (match) {
+                    // If image link found, render image
+                    const img = { alt: match[1], src: match[0] };
+                    return (
+                      <React.Fragment key={textIndex}>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: text.replace(imageRegex, ""),
+                          }}
+                        />
+                        <img
+                          style={{
+                            marginTop: 60,
+                            marginBottom: 60,
+                            paddingLeft: 38,
+                            paddingRight: 38,
+                          }}
+                          src={img.src}
+                          alt={img.alt}
+                        />
+                      </React.Fragment>
+                    );
+                  } else {
+                    // If no image link found, render paragraph text
+                    return (
+                      <div
+                        key={textIndex}
+                        dangerouslySetInnerHTML={{ __html: text }}
+                      />
+                    );
+                  }
+                })}
+              </div>
+            ))}
+          </div>
         </div>
-        <hr />
+        <div className="blog-post-summary">
+          <IndexSummaryCard
+            title={"Quick Summary"}
+            desc={blogDetails.Summary}
+          />
+        </div>
       </div>
-      <div>
-        <h3>Related Posts</h3>
-        <div>
+      <div className="py-6 px-4 lg:px-32">
+        <CustomHr />
+      </div>
+      <div className="related-blogs">
+        <div className="related-blogs-title">Related Posts</div>
+        <div className="related-blog-cards">
           {relatedArticles.map((i) => (
             <BlogCard details={i} />
           ))}

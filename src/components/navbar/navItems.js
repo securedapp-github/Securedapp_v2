@@ -18,9 +18,9 @@ export const navItems = [
     label: "Services",
   },
   {
-    to: "/resource",
+    to: "",
     items: [
-      { name: "Blogs", to: "" },
+      { name: "Blogs", to: "/blog" },
       { name: "Documentation", to: "" },
     ],
     label: "Resources",

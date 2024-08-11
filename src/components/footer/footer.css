@@ -18,7 +18,7 @@
   }
 
   .footer-about {
-    @apply flex flex-col space-y-10 lg:space-y-0 lg:flex-row items-center lg:items-stretch;
+    @apply flex flex-col-reverse lg:flex-row items-center lg:items-stretch;
 
     .footer-about-left {
       @apply flex-1 flex flex-col justify-between;
@@ -33,7 +33,7 @@
     }
 
     .footer-about-right {
-      @apply w-full flex-1 flex flex-col lg:flex-row lg:justify-center lg:space-x-10 whitespace-nowrap;
+      @apply pb-10 lg:pb-0 w-full flex-1 flex flex-col lg:flex-row lg:justify-center lg:space-x-10 whitespace-nowrap;
 
       .footer-navigation-item {
         @apply flex-1 pl-4 pb-4 lg:pb-0;
