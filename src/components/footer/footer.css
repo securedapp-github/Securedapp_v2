@@ -39,11 +39,11 @@
         @apply flex-1 pl-4 pb-4 lg:pb-0;
 
         .footer-navigation-item-title {
-          @apply font-bold pb-1 lg:pb-5;
+          @apply font-bold text-lg pb-1 lg:pb-5;
         }
 
         .footer-navigation-item-items {
-          @apply font-light flex flex-col space-y-1 lg:space-y-2;
+          @apply font-light text-sm flex flex-col space-y-1 lg:space-y-2;
         }
       }
     }

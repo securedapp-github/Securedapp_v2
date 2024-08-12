@@ -71,12 +71,12 @@ h2 {
             @apply font-light text-sm flex justify-start items-center gap-x-4;
 
             .publisher-image {
-              @apply w-24 h-24 rounded-full bg-[#EBE9EF];
+              @apply w-16 h-16 rounded-full bg-[#EBE9EF];
             }
           }
 
           .publisher-socials {
-            @apply flex gap-x-4 justify-center items-center;
+            @apply flex gap-x-4 lg:justify-center items-center;
           }
         }
       }
@@ -84,14 +84,18 @@ h2 {
   }
 
   .related-blogs {
-    @apply px-4 lg:px-24 py-12;
+    @apply px-4 lg:px-24 pt-12;
 
     .related-blogs-title {
-      @apply pb-12 lg:pb-12 text-3xl lg:text-4xl font-bold;
+      @apply text-3xl lg:text-4xl font-bold;
     }
 
     .related-blog-cards {
-      @apply grid grid-cols-1 lg:grid-cols-3 gap-6;
+      @apply pt-12 grid grid-cols-1 lg:grid-cols-3 gap-6;
+    }
+
+    .no-related-posts {
+      @apply pt-16 text-2xl flex justify-center items-center;
     }
   }
 }
