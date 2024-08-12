@@ -54,11 +54,11 @@ const NavbarSmallScreen = ({
               <Logo isLeft={true} />
               <div className="flex space-x-3 items-center">
                 <button onClick={toggleTheme}>
-                  <FontAwesomeIcon
-                    icon={darkMode ? faMoon : faSun}
-                    color={darkMode ? "white" : "black"}
-                    size="sm"
-                  />
+                  {darkMode ? (
+                    <i class="fa-regular fa-brightness"></i>
+                  ) : (
+                    <i class="fa-regular fa-moon"></i>
+                  )}
                 </button>
                 <FontAwesomeIcon
                   icon={faClose}
