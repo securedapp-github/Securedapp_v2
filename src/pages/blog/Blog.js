@@ -114,7 +114,8 @@ function Blog() {
             }`}
             key={i + 1}
             onClick={() => paginate(i + 1)}
-            disabled={currentPage === i + 1}>
+            disabled={currentPage === i + 1}
+          >
             {i + 1}
           </div>
         ))}
