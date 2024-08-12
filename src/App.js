@@ -7,7 +7,7 @@ import Footer from "./components/footer/footer";
 import Product from "./pages/product/Product";
 import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
-import BlogPost from "./pages/blogpost/blog-post";
+import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
         <Routes>
           <Route
             path="/"
+            index
             element={
               <Home
                 isLargeScreen={isLargeScreen}
@@ -42,29 +43,26 @@ function App() {
             }
           />
           <Route
-            isLargeScreen={isLargeScreen}
-            setIsLargeScreen={setIsLargeScreen}
-            path="/product"
-            element={<Product />}
-          />
-          <Route
-            isLargeScreen={isLargeScreen}
-            setIsLargeScreen={setIsLargeScreen}
-            path="/service"
-            element={<Service />}
-          />
-          <Route path="/blog" element={<Blog />} />
-          <Route
-            path="/blog-post"
+            path="product"
             element={
-              <BlogPost
-                Url={
-                  "THE-FUTURE-OF-TOKEN-REGULATION:-NAVIGATING-PRIVACY-AND-DATA-PROTECTION"
-                }
+              <Product
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
               />
             }
           />
-          <Route path="/about" element={<AboutUs />} />
+          <Route
+            path="service"
+            element={
+              <Service
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:url" element={<BlogPost />} />
+          <Route path="about" element={<AboutUs />} />
         </Routes>
         <Footer />
       </Router>

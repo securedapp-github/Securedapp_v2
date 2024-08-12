@@ -1,31 +1,34 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import BrandLogos from "../../components/home/BrandLogos";
+import BrandLogos from "./BrandLogos";
+import Button from "../common/Button";
+import "./ProductServiceHero.css";
+import GetStartedButton from "./GetStartedButton";
 
 const ProductServiceHero = ({ name, title, image }) => (
-  <div>
-    <div>
-      <div>
-        <p>{name}</p>
-        <h3>{title}</h3>
-      </div>
-      <div>
-        <div>
-          <i style={{ color: "yellow" }} className="fa-solid fa-star" />
-          <i style={{ color: "yellow" }} className="fa-solid fa-star" />
-          <i style={{ color: "yellow" }} className="fa-solid fa-star" />
-          <i style={{ color: "yellow" }} className="fa-solid fa-star" />
-          <i style={{ color: "yellow" }} className="fa-solid fa-star" />
+  <div className="product-service-hero">
+    <div className="hero-header">
+      <div className="hero-header-title">{name}</div>
+      <div className="hero-header-content">
+        <div className="hero-header-left">{title}</div>
+        <div className="hero-header-line"></div>
+        <div className="hero-header-right">
+          <div className="hero-header-right-stars">
+            {Array.from({ length: 5 }).map((_) => {
+              return <FontAwesomeIcon icon={faStar} />;
+            })}
+          </div>
+          <div>
+            Trusted by more than <b>100+</b> companies
+          </div>
+          <GetStartedButton filled={true} />
         </div>
-        <p>Trusted by 100+ companies</p>
-        <button>
-          Get started
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
       </div>
     </div>
-    <img width="300px" src={image}></img>
+    <div className="hero-image-container">
+      <img className="hero-image" src={image} alt="Product Service Hero" />
+    </div>
     <BrandLogos />
   </div>
 );

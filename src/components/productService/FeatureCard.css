@@ -1,0 +1,23 @@
+.feature-icon {
+  @apply w-12 h-12 rounded-full flex justify-center items-center dark:text-secondary;
+}
+
+.feature-card {
+  @apply p-6 bg-cardBackgroundLight dark:bg-cardBackgroundDark border-2 rounded-xl border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF];
+
+  .feature-card-content {
+    @apply pt-6 flex flex-col space-y-2;
+
+    .feature-card-content-header {
+      @apply text-lg font-bold;
+    }
+
+    .feature-card-content-description {
+      @apply font-light text-sm;
+    }
+  }
+}
+
+.features-section-cards {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6;
+}
