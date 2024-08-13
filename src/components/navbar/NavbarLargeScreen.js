@@ -35,11 +35,11 @@ const NavbarLargeScreen = ({
       </div>
       <div className="flex space-x-4 items-center">
         <button onClick={toggleTheme}>
-          <FontAwesomeIcon
-            icon={darkMode ? faMoon : faSun}
-            color={darkMode ? "white" : "black"}
-            size="lg"
-          />
+          {darkMode ? (
+            <i class="fa-regular fa-brightness fa-lg"></i>
+          ) : (
+            <i class="fa-regular fa-moon fa-lg"></i>
+          )}
         </button>
         {nextPath !== undefined && nextPath !== null ? (
           <Button text={"Login"} onClick={handleNavigation} />

@@ -352,11 +352,15 @@ const BlogPost = () => {
       </div>
       <div className="related-blogs">
         <div className="related-blogs-title">Related Posts</div>
-        <div className="related-blog-cards">
-          {relatedArticles.map((i) => (
-            <BlogCard details={i} />
-          ))}
-        </div>
+        {relatedArticles.length > 0 ? (
+          <div className="related-blog-cards">
+            {relatedArticles.map((i) => (
+              <BlogCard details={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="no-related-posts">No Related Posts</div>
+        )}
       </div>
     </div>
   );

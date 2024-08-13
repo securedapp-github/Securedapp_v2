@@ -73,7 +73,7 @@ const navigationItems = [
     items: [
       {
         name: "Blogs",
-        to: "",
+        to: "/blog",
       },
       {
         name: "Documentation",
@@ -160,9 +160,19 @@ const Footer = () => (
     <CustomHr />
     <div className="footer-legacy">
       <div className="footer-legacy-left">
-        <a>Privacy Policy </a>
+        <a
+          target="_blank"
+          href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
+          rel="noreferrer">
+          Privacy Policy{" "}
+        </a>
         <FontAwesomeIcon size="2xs" icon={faCircle} />
-        <a>Terms & Conditions</a>
+        <a
+          target="_blank"
+          href="https://securedapp.gitbook.io/securedapp-launchpad/terms-and-conditions"
+          rel="noreferrer">
+          Terms & Conditions
+        </a>
       </div>
       <div className="footer-legacy-right">
         <div>© 2024, Secure Dapp. All rights reserved</div>

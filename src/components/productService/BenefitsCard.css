@@ -4,12 +4,12 @@
 
 .benefits-card {
   @apply p-4 flex flex-col space-y-2;
+}
 
-  .benefits-card-header {
-    @apply font-bold text-lg;
-  }
+.benefits-card-header {
+  @apply font-bold text-lg;
+}
 
-  .benefits-card-description {
-    @apply font-light text-sm;
-  }
+.benefits-card-description {
+  @apply font-light text-sm;
 }

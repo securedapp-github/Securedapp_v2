@@ -1,4 +1,11 @@
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faMouse,
+  faPlaneDeparture,
+  faSliders,
+  faVideo,
+  faVoicemail,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const faqsData = [
   [
@@ -178,36 +185,36 @@ export const features = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faMouse,
+    iconBackgroundColor: "#B5E4CA",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faVideo,
+    iconBackgroundColor: "#FFBC99",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faSliders,
+    iconBackgroundColor: "#FFD88D",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faVoicemail,
+    iconBackgroundColor: "#CABDFF",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faPlaneDeparture,
+    iconBackgroundColor: "#B1E5FC",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
@@ -223,24 +230,24 @@ export const benefitsData = [
     imageAlt: "",
   },
   {
-    header: "Affordable Price",
+    header: "Professional Team",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
-    image: "/assets/images/service-1-benefit-1.svg",
+    image: "/assets/images/service-1-benefit-2.svg",
     imageAlt: "",
   },
   {
-    header: "Affordable Price",
+    header: "17+ Years Experience",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
-    image: "/assets/images/service-1-benefit-1.svg",
+    image: "/assets/images/service-1-benefit-3.svg",
     imageAlt: "",
   },
   {
-    header: "Affordable Price",
+    header: "Award Winning",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry",
-    image: "/assets/images/service-1-benefit-1.svg",
+    image: "/assets/images/service-1-benefit-4.svg",
     imageAlt: "",
   },
 ];
@@ -254,37 +261,37 @@ export const whyChooseData = [
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
   },
   {
-    image: "/assets/images/service-1-why-choose-1.svg",
-    imageBackground: "#FFBD3E",
-    title: "Startup Thinking",
+    image: "/assets/images/service-1-why-choose-2.svg",
+    imageBackground: "#FC7474",
+    title: "Partner Approach",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
   },
   {
-    image: "/assets/images/service-1-why-choose-1.svg",
-    imageBackground: "#FFBD3E",
-    title: "Startup Thinking",
+    image: "/assets/images/service-1-why-choose-3.svg",
+    imageBackground: "#926CFF",
+    title: "Product Mindset",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
   },
   {
-    image: "/assets/images/service-1-why-choose-1.svg",
-    imageBackground: "#FFBD3E",
-    title: "Startup Thinking",
+    image: "/assets/images/service-1-why-choose-4.svg",
+    imageBackground: "#67A4FF",
+    title: "Experience Design Thinking",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
   },
   {
-    image: "/assets/images/service-1-why-choose-1.svg",
-    imageBackground: "#FFBD3E",
-    title: "Startup Thinking",
+    image: "/assets/images/service-1-why-choose-5.svg",
+    imageBackground: "#FF794F",
+    title: "Hiring Philosophy",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
   },
   {
-    image: "/assets/images/service-1-why-choose-1.svg",
+    image: "/assets/images/service-1-why-choose-6.svg",
     imageBackground: "#FFBD3E",
-    title: "Startup Thinking",
+    title: "Certified Teams & Company",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form",
   },
@@ -299,23 +306,23 @@ export const howItWorksData = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-2.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Trigger Actions",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-3.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Task Routing",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-4.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Workflow Monitoring",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },

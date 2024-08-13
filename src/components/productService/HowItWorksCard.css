@@ -1,15 +1,15 @@
 .how-it-works-card {
   @apply p-4 flex flex-col space-y-5 justify-center items-center bg-cardBackgroundLight dark:bg-cardBackgroundDark border-2 rounded-xl border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF];
+}
 
-  .how-it-works-card-image {
-    @apply w-12;
-  }
+.how-it-works-card-image {
+  @apply w-12;
+}
 
-  .how-it-works-card-title {
-    @apply text-lg font-bold;
-  }
+.how-it-works-card-title {
+  @apply text-lg font-bold;
+}
 
-  .how-it-works-card-description {
-    @apply text-center text-sm font-light;
-  }
+.how-it-works-card-description {
+  @apply text-center text-sm font-light;
 }

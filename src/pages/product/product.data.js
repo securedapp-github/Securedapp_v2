@@ -1,4 +1,4 @@
-import { faEnvelope, faVoicemail } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faMouse, faPlaneDeparture, faSliders, faVideo, faVoicemail } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const faqsData = [
@@ -179,36 +179,36 @@ export const features = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faMouse,
+    iconBackgroundColor: "#B5E4CA",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faVideo,
+    iconBackgroundColor: "#FFBC99",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faSliders,
+    iconBackgroundColor: "#FFD88D",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faVoicemail,
+    iconBackgroundColor: "#CABDFF",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
   },
   {
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
+    icon: faPlaneDeparture,
+    iconBackgroundColor: "#B1E5FC",
     header: "Lorem Ipsum",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
@@ -224,37 +224,37 @@ export const howItWorksData = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-2.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Trigger Actions",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-3.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Task Routing",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-4.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Workflow Monitoring",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-5.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Conditional Logic",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "/assets/images/product-1-how-it-works-6.svg",
     imageAlt: "",
-    header: "Workflow builder",
+    header: "Integration third-party",
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
