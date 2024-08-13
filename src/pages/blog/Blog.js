@@ -69,7 +69,10 @@ function Blog() {
   const totalPages = Math.ceil(blogs.length / itemsPerPage);
 
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="blog">

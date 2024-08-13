@@ -4,38 +4,33 @@
   background-size: 100px 100px;
 
   @apply h-full px-4 pt-20 lg:pt-28 lg:px-24 flex flex-col justify-center items-start space-y-12;
+}
 
-  .hero-header {
-    .hero-header-title {
-      @apply text-tertiary py-4;
-    }
+.hero-header-title {
+  @apply text-tertiary py-4;
+}
 
-    .hero-header-content {
-      @apply flex flex-col lg:flex-row space-y-4 lg:space-x-4 lg:space-y-0 items-start;
+.hero-header-content {
+  @apply flex flex-col lg:flex-row space-y-4 lg:space-x-4 lg:space-y-0 items-start;
+}
+.hero-header-left {
+  @apply w-full lg:w-1/2 text-3xl lg:text-4xl font-bold;
+}
 
-      .hero-header-left {
-        @apply w-full lg:w-1/2 text-3xl lg:text-4xl font-bold;
-      }
+.hero-header-line {
+  @apply w-32 lg:h-3 border-b border-[#FF6A55];
+}
 
-      .hero-header-line {
-        @apply w-32 lg:h-3 border-b border-[#FF6A55];
-      }
+.hero-header-right {
+  @apply flex flex-col justify-center items-start space-y-2;
+}
+.hero-header-right-stars {
+  @apply flex space-x-2 text-[#FACC15];
+}
 
-      .hero-header-right {
-        @apply flex flex-col justify-center items-start space-y-2;
-
-        .hero-header-right-stars {
-          @apply flex space-x-2 text-[#FACC15];
-        }
-      }
-    }
-  }
-
-  .hero-image-container {
-    @apply w-full flex justify-center items-center;
-
-    .hero-image {
-      @apply lg:w-8/12;
-    }
-  }
+.hero-image-container {
+  @apply w-full flex justify-center items-center;
+}
+.hero-image {
+  @apply lg:w-8/12;
 }
