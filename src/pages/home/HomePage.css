@@ -59,15 +59,24 @@
 .feature-left {
   @apply lg:w-1/2 flex justify-center lg:justify-end space-x-0 lg:space-x-10;
 }
+
+.feature-cards-container {
+  @apply flex gap-x-6;
+}
+
 .vertical-scroll {
-  @apply relative rounded-full bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
-  transition: height 0.3s ease, background-color 0.3s ease;
+  @apply relative bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
+}
+
+.vertical-scroll-selected {
+  @apply bg-[#A4CDFF] rounded-full;
 }
 
 .feature-card {
-  @apply rounded-xl p-4 w-full cursor-default bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
+  @apply rounded-xl my-2 p-4 w-full cursor-default bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
 }
-.selected {
+
+.feature-card-selected {
   @apply border-[#A4CDFF];
 }
 
