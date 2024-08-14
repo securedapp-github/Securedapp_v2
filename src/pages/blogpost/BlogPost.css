@@ -112,3 +112,7 @@ h2 {
 .card-content {
   @apply pt-6 flex flex-col gap-y-2 font-light;
 }
+
+.card-read-more {
+  @apply cursor-pointer font-light text-sm pt-6 flex justify-end items-center;
+}

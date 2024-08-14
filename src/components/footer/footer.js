@@ -47,7 +47,7 @@ const navigationItems = [
       },
       {
         name: "Pricing",
-        to: "",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/pricing-policy",
       },
       {
         name: "Changelog",
@@ -77,11 +77,11 @@ const navigationItems = [
       },
       {
         name: "Documentation",
-        to: "",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad",
       },
       {
         name: "Contact",
-        to: "",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/contact-us",
       },
     ],
   },
@@ -147,7 +147,13 @@ const Footer = () => (
                 {navigationItem.items.map((item, index) => {
                   return (
                     <div className="footer-navigation-item-item">
-                      <Link to={item.to}> {item.name}</Link>
+                      {item.to.startsWith("/") ? (
+                        <Link to={item.to}>{item.name}</Link>
+                      ) : (
+                        <Link to={item.to} target="_blank">
+                          {item.name}
+                        </Link>
+                      )}
                     </div>
                   );
                 })}

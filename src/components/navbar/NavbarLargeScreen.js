@@ -42,9 +42,12 @@ const NavbarLargeScreen = ({
           )}
         </button>
         {nextPath !== undefined && nextPath !== null ? (
-          <Button text={"Login"} onClick={handleNavigation} />
+          <Button className="w-36" text={"Login"} onClick={handleNavigation} />
         ) : (
-          <Button text="Request Quote" onClick={handleNavigation}></Button>
+          <Button
+            className="w-36"
+            text="Request Quote"
+            onClick={handleNavigation}></Button>
         )}
       </div>
     </nav>

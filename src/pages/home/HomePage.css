@@ -211,7 +211,7 @@
   @apply lg:pt-20 px-10 lg:px-12 flex flex-col lg:flex-row justify-center items-center lg:space-x-24;
 }
 .services-content-left {
-  @apply flex-1 py-12;
+  @apply flex-1 py-12 text-center lg:text-start;
 }
 .services-content-left-title {
   @apply pb-8 text-3xl font-bold;
@@ -289,10 +289,14 @@
 }
 
 .cta-section {
-  @apply relative mt-12 px-10 lg:px-48 lg:mt-20 flex flex-col text-center space-y-6 lg:space-y-8 justify-center items-center;
+  @apply relative mt-12 px-10 lg:px-48 lg:mt-20 flex flex-col text-center space-y-6 lg:space-y-8 justify-center items-center overflow-hidden;
 }
 .cta-section-grid {
-  @apply w-screen flex justify-center items-center;
+  @apply relative w-screen flex justify-center items-center;
+}
+
+.cta-section-grid-patch {
+  @apply absolute w-3/4;
 }
 
 .cta-title {

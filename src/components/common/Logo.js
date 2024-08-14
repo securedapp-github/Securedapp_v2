@@ -8,9 +8,14 @@ const Logo = ({ isLeft = false, className = "" }) => {
       } ${className}`}
       to="/">
       <img
-        src="/assets/images/securedapp_logo.svg"
+        src="/assets/images/securedapp-logo-light.svg"
         alt="logo"
-        className="w-2/3 lg:w-3/4 h-auto"
+        className="w-[120px] lg:w-[150px] h-auto dark:hidden"
+      />
+      <img
+        src="/assets/images/securedapp-logo-dark.svg"
+        alt="logo"
+        className="w-[120px] lg:w-[150px] h-auto hidden dark:block"
       />
     </Link>
   );

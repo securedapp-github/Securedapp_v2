@@ -1,8 +1,17 @@
-.product-service-hero {
+.product-service-hero-container {
   background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
     linear-gradient(#0000000f 1px, transparent 1px);
   background-size: 100px 100px;
 
+  @apply flex flex-col justify-center items-start space-y-12;
+}
+
+.dark .product-service-hero-container {
+  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
+    linear-gradient(#d2e6ff14 1px, transparent 1px);
+}
+
+.product-service-hero {
   @apply h-full px-4 pt-20 lg:pt-28 lg:px-24 flex flex-col justify-center items-start space-y-12;
 }
 
@@ -11,7 +20,7 @@
 }
 
 .hero-header-content {
-  @apply flex flex-col lg:flex-row space-y-4 lg:space-x-4 lg:space-y-0 items-start;
+  @apply flex flex-col lg:flex-row space-y-6 lg:space-x-4 lg:space-y-0 items-start;
 }
 .hero-header-left {
   @apply w-full lg:w-1/2 text-3xl lg:text-4xl font-bold;
@@ -22,7 +31,7 @@
 }
 
 .hero-header-right {
-  @apply flex flex-col justify-center items-start space-y-2;
+  @apply flex flex-col justify-center items-start space-y-4 lg:space-y-2;
 }
 .hero-header-right-stars {
   @apply flex space-x-2 text-[#FACC15];
