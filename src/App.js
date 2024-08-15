@@ -10,7 +10,7 @@ import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import FlatContractForm from "./pages/product/solidityShield.product";
-import SolidityShield from "./pages/product/solidityShield.product";
+import SolidityShield from "./SolidityShield/product";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
