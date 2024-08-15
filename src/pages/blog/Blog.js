@@ -78,10 +78,6 @@ function Blog({ isLargeScreen, setIsLargeScreen }) {
 
   return (
     <div className="blog">
-      <Navbar
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
       <SectionTitle
         title="News & Articles"
         description="#1 Blog on theme marketing by Bodrum"

@@ -15,10 +15,6 @@ import { reviews, faqHeaders, faqsData } from "./home.data";
 const Home = ({ isLargeScreen, setIsLargeScreen }) => {
   return (
     <div id="home">
-      <Navbar
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
       <Hero />
       <Statitics />
       <Features />

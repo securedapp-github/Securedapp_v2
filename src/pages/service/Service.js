@@ -30,10 +30,6 @@ import WhyChooseCard from "../../components/productService/WhyChooseCard";
 function Service({ isLargeScreen, setIsLargeScreen }) {
   return (
     <div className="service">
-      <Navbar
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
       <ProductServiceHero
         name="A PRODUCT OF SECURE DAPP"
         title="Discover Endless Possibilities with Solidity Shield"

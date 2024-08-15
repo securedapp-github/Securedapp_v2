@@ -182,10 +182,6 @@ const BlogPost = ({ isLargeScreen, setIsLargeScreen }) => {
   const IndexSummaryCard = ({ title, desc, index }) => {
     return (
       <div className="index-summary-card">
-        <Navbar
-          isLargeScreen={isLargeScreen}
-          setIsLargeScreen={setIsLargeScreen}
-        />
         {index ? (
           <div className="card-details">
             <div className="card-title">{title}</div>

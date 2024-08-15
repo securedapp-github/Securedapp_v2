@@ -35,10 +35,6 @@ const TeamCard = ({ details }) => {
 const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
   return (
     <div className="about-us">
-      <Navbar
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
       <div className="about-us-hero-container">
         <div className="about-us-hero">
           <div className="about-us-hero-title">Our Story</div>

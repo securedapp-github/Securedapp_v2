@@ -22,10 +22,6 @@ import HowItWorksCard from "../../components/productService/HowItWorksCard";
 function Product({ isLargeScreen, setIsLargeScreen }) {
   return (
     <div className="product">
-      <Navbar
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
       <ProductServiceHero
         name="A PRODUCT OF SECURE DAPP"
         title="Discover Endless Possibilities with Solidity Shield"
