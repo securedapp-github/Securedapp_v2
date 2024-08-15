@@ -27,77 +27,72 @@ import HowItWorksCard from "../../components/productService/HowItWorksCard";
 import Benefits from "./sections/Benefits";
 import WhyChooseCard from "../../components/productService/WhyChooseCard";
 
-function Service({ isLargeScreen, setIsLargeScreen }) {
+function Service() {
   return (
-    <div className="service">
-      <Navbar
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
-      <ProductServiceHero
-        name="A PRODUCT OF SECURE DAPP"
-        title="Discover Endless Possibilities with Solidity Shield"
-        image={"/assets/images/product-hero.svg"}
-      />
-      <div className="features-section">
-        <SectionTitle name={"Features"} title={"Shield Features"} />
-        <FeatureCards featureData={features} />
-        <div className="features-section-button">
-          <Button text={"Learn more"} filled={true} />
-        </div>
-      </div>
-      <Benefits benefitsData={benefitsData} />
-      <div className="service-why-choose">
-        <SectionTitle
-          name={"Why choose"}
-          title={
-            "Why SecureDapp will Be a Great Fit For Your Software Development"
-          }
-          description={
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-          }
+    <div className="service-container">
+      <Navbar />
+      <div className="service">
+        <ProductServiceHero
+          name="A PRODUCT OF SECURE DAPP"
+          title="Discover Endless Possibilities with Solidity Shield"
+          image={"/assets/images/product-hero.svg"}
         />
-        <div className="service-why-choose-cards">
-          {whyChooseData.map((data) => {
-            return (
-              <WhyChooseCard
-                image={data.image}
-                imageBackground={data.imageBackground}
-                title={data.title}
-                description={data.description}
-              />
-            );
-          })}
+        <div className="features-section">
+          <SectionTitle name={"Features"} title={"Shield Features"} />
+          <FeatureCards featureData={features} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
         </div>
-      </div>
-      <div>
-        <SectionTitle
-          name={"How it works"}
-          title="How it works"
-          description={
-            "Streamline business processes and increase efficiency with workflow automation features."
-          }
-        />
-        <div className="how-it-works-section">
-          {howItWorksData.map((data) => {
-            return (
-              <HowItWorksCard
-                image={data.image}
-                imageAlt={data.imageAlt}
-                title={data.header}
-                description={data.description}
-              />
-            );
-          })}
+        <Benefits benefitsData={benefitsData} />
+        <div className="service-why-choose">
+          <SectionTitle
+            name={"Why choose"}
+            title={
+              "Why SecureDapp will Be a Great Fit For Your Software Development"
+            }
+            description={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+            }
+          />
+          <div className="service-why-choose-cards">
+            {whyChooseData.map((data) => {
+              return (
+                <WhyChooseCard
+                  image={data.image}
+                  imageBackground={data.imageBackground}
+                  title={data.title}
+                  description={data.description}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <Testimonials reviews={reviews} />
-      <div>
-        <FAQs
-          isLargeScreen={isLargeScreen}
-          setIsLargeScreen={setIsLargeScreen}
-          faqsData={faqsData}
-        />
+        <div>
+          <SectionTitle
+            name={"How it works"}
+            title="How it works"
+            description={
+              "Streamline business processes and increase efficiency with workflow automation features."
+            }
+          />
+          <div className="how-it-works-section">
+            {howItWorksData.map((data) => {
+              return (
+                <HowItWorksCard
+                  image={data.image}
+                  imageAlt={data.imageAlt}
+                  title={data.header}
+                  description={data.description}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <Testimonials reviews={reviews} />
+        <div>
+          <FAQs faqsData={faqsData} />
+        </div>
       </div>
       <Footer />
     </div>
