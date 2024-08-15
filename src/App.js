@@ -9,7 +9,6 @@ import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
-import FlatContractForm from "./pages/product/solidityShield.product";
 import SolidityShield from "./SolidityShield/product";
 
 function App() {
