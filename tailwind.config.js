@@ -22,5 +22,20 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".bg-grid": {
+          "background-image": `linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px)`,
+          "background-size": "100px 100px",
+        },
+        ".dark .bg-grid": {
+          "background-image": `linear-gradient(90deg, rgba(210, 230, 255, 0.039) 1px, transparent 1px),
+                                linear-gradient(rgba(210, 230, 255, 0.039) 1px, transparent 1px)`,
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };

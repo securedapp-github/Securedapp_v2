@@ -134,7 +134,7 @@ const RequestQuoteModal = ({
               <div>
                 I agree with the{" "}
                 <a
-                  className="text-[#A4CDFF]"
+                  className="text-[#A4CDFF] font-bold"
                   target="_blank"
                   href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
                   rel="noreferrer">

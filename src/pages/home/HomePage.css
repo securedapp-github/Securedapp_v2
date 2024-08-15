@@ -2,10 +2,6 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 .hero {
-  background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
-    linear-gradient(#0000000f 1px, transparent 1px);
-  background-size: 100px 100px;
-
   @apply h-full text-center pt-28 lg:pt-28 w-full font-nunitoSans text-secondary dark:text-primary;
 }
 .hero-title {
@@ -34,11 +30,6 @@
   @apply w-10 lg:w-16 border border-[#A4CDFF] dark:border-[#A4CDFF4D] bg-[#D2E6FF4D] dark:bg-[#A4CDFF66];
 }
 
-.dark .hero {
-  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
-    linear-gradient(#d2e6ff14 1px, transparent 1px);
-}
-
 .statistics {
   @apply font-nunitoSans text-secondary dark:text-primary py-6 px-4 lg:px-10 lg:py-8;
 }
@@ -50,10 +41,6 @@
 }
 
 .features {
-  background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
-    linear-gradient(#0000000f 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px;
-
   @apply h-full font-nunitoSans px-2 md:px-6 lg:px-24 pb-12 flex flex-col items-center justify-center;
 }
 .feature-left {
@@ -124,14 +111,10 @@
   @apply w-[32.8%] bg-[#4267B2];
 }
 
-.dark .features {
-  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
-    linear-gradient(#d2e6ff14 1px, transparent 1px);
-}
-
 .solutions {
   @apply px-4;
 }
+
 .solution-cards {
   @apply w-full px-4 lg:px-24 flex flex-col space-y-8;
 }

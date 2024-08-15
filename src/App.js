@@ -13,7 +13,7 @@ import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
-  const [isRequestModal, setRequestModel] = useState(true);
+  const [isRequestModal, setRequestModel] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
