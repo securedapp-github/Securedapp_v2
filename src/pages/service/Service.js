@@ -1,3 +1,5 @@
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import ProductServiceHero from "../../components/common/ProductServiceHero";
 import Testimonials from "../../components/common/Testimonials";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,6 +30,10 @@ import WhyChooseCard from "../../components/productService/WhyChooseCard";
 function Service({ isLargeScreen, setIsLargeScreen }) {
   return (
     <div className="service">
+      <Navbar
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
       <ProductServiceHero
         name="A PRODUCT OF SECURE DAPP"
         title="Discover Endless Possibilities with Solidity Shield"
@@ -93,6 +99,7 @@ function Service({ isLargeScreen, setIsLargeScreen }) {
           faqsData={faqsData}
         />
       </div>
+      <Footer />
     </div>
   );
 }

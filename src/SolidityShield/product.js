@@ -202,7 +202,7 @@ const fakeData = [
   },
 ];
 
-const SolidityShield = () => {
+const SolidityShield0 = () => {
   const [showverify, setshowverify] = useState(false); // for otp verify screen options
   const [modalOpen, setModalOpen] = useState(false);
   const [enterotp, setenterotp] = useState(0);
@@ -2644,4 +2644,4 @@ const SolidityShield = () => {
   );
 };
 
-export default SolidityShield;
+export default SolidityShield0;

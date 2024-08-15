@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import teamData, { companyCulture } from "./about-us-data";
 import "./AboutUs.css";
 import CustomHr from "../../components/common/CustomHr";
@@ -30,9 +32,13 @@ const TeamCard = ({ details }) => {
   );
 };
 
-const AboutUs = () => {
+const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
   return (
     <div className="about-us">
+      <Navbar
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
       <div className="about-us-hero-container">
         <div className="about-us-hero">
           <div className="about-us-hero-title">Our Story</div>
@@ -125,6 +131,7 @@ const AboutUs = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

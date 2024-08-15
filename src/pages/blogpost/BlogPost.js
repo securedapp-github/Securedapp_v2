@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import BlogCard from "../../components/blog/BlogCard";
 import Button from "../../components/common/Button";
@@ -77,7 +79,7 @@ const getTags = (tags) => {
   return tags.split(",");
 };
 
-const BlogPost = () => {
+const BlogPost = ({ isLargeScreen, setIsLargeScreen }) => {
   const { url } = useParams();
   const [blogDetails, setBlogDetails] = useState({
     title: "",
@@ -177,6 +179,10 @@ const BlogPost = () => {
   const IndexSummaryCard = ({ title, desc, index }) => {
     return (
       <div className="index-summary-card">
+        <Navbar
+          isLargeScreen={isLargeScreen}
+          setIsLargeScreen={setIsLargeScreen}
+        />
         {index ? (
           <div className="card-details">
             <div className="card-title">{title}</div>
@@ -362,6 +368,7 @@ const BlogPost = () => {
           <div className="no-related-posts">No Related Posts</div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

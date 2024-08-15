@@ -9,7 +9,7 @@ import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
-import SolidityShield from "./SolidityShield/product";
+import SolidityShield from "./SolidityShield/index";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
@@ -28,10 +28,6 @@ function App() {
   return (
     <div className="App bg-primary dark:bg-secondary">
       <Router>
-        <Navbar
-          isLargeScreen={isLargeScreen}
-          setIsLargeScreen={setIsLargeScreen}
-        />
         <Routes>
           <Route
             path="/"
@@ -61,12 +57,43 @@ function App() {
               />
             }
           />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/:url" element={<BlogPost />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="solidity-shield-scan" element={<SolidityShield />} />
+          <Route
+            path="blog"
+            element={
+              <Blog
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route
+            path="blog/:url"
+            element={
+              <BlogPost
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route
+            path="about"
+            element={
+              <AboutUs
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route
+            path="solidity-shield-scan"
+            element={
+              <SolidityShield
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
