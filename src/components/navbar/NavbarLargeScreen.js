@@ -2,8 +2,6 @@ import NavbarItem from "./NavbarItem";
 import { navItems } from "./navItems";
 import { useState } from "react";
 import Button from "../common/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../common/Logo";
 
 const NavbarLargeScreen = ({
@@ -11,6 +9,7 @@ const NavbarLargeScreen = ({
   nextPath,
   darkMode,
   toggleTheme,
+  openRequestModal,
 }) => {
   const [dropDown, setDropDown] = useState("");
 
@@ -47,7 +46,7 @@ const NavbarLargeScreen = ({
           <Button
             className="w-36"
             text="Request Quote"
-            onClick={handleNavigation}></Button>
+            onClick={openRequestModal}></Button>
         )}
       </div>
     </nav>
