@@ -1,7 +1,6 @@
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import CustomHr from "../common/CustomHr";
 
 const NavbarItem = ({
   to,
@@ -33,8 +32,8 @@ const NavbarItem = ({
       </Link>
       {items.length > 0 && dropDown === children && (
         <div className="nested-navbar">
-          <div className="nested-navbar-header">{children}</div>
-          <hr className="border my-2 border-cardBorderColorLight dark:border-cardBorderColorDark"></hr>
+          {/* <div className="nested-navbar-header">{children}</div> */}
+          {/* <hr className="border my-2 border-cardBorderColorLight dark:border-cardBorderColorDark"></hr> */}
           <div className="nested-navbar-items">
             {items.map((item) => {
               return (

@@ -48,27 +48,36 @@ const Features = () => {
       />
       <div className="flex lg:flex-row flex-col justify-between items-center px-4 lg:px-0 lg:items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
         <div className="feature-left">
-          <div className="vertical-scroll"></div>
-          <div className="flex flex-col space-y-4 ml-2">
+          <div className="features-container flex flex-col">
             {featureData.map((feature) => {
               const isSelected = detail === feature.id;
               return (
-                <div
-                  className={`feature-card ${isSelected ? "selected" : ""}`}
-                  onClick={() => selectFeatureCard(feature["id"])}>
-                  {detail !== feature["id"] && (
-                    <div className="font-light">{feature["title"]}</div>
-                  )}
-                  {detail === feature["id"] && (
-                    <div>
-                      <FontAwesomeIcon
-                        icon={faCrown}
-                        className="feature-card-icon"
-                      />
-                      <div className="feature-card-title">{`${feature["title"]}:`}</div>
-                      <div className="feature-card-desc">{feature["desc"]}</div>
-                    </div>
-                  )}
+                <div className="feature-cards-container">
+                  <div
+                    className={`vertical-scroll ${
+                      isSelected && "vertical-scroll-selected"
+                    }`}></div>
+                  <div
+                    className={`feature-card ${
+                      isSelected && "feature-card-selected"
+                    }`}
+                    onClick={() => selectFeatureCard(feature["id"])}>
+                    {detail !== feature["id"] && (
+                      <div className="font-light">{feature["title"]}</div>
+                    )}
+                    {detail === feature["id"] && (
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faCrown}
+                          className="feature-card-icon"
+                        />
+                        <div className="feature-card-title">{`${feature["title"]}:`}</div>
+                        <div className="feature-card-desc">
+                          {feature["desc"]}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })}

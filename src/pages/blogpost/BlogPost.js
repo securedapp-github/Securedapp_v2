@@ -95,7 +95,12 @@ const BlogPost = ({ isLargeScreen, setIsLargeScreen }) => {
     Content: [],
   });
   const [blogsData, setBlogsData] = useState([]);
+  const [shortIndexView, setShortIndexView] = useState(true);
   const [relatedArticles, setRelated] = useState([]);
+
+  const toggleIndexView = () => {
+    setShortIndexView(!shortIndexView);
+  };
 
   const fetchBlogs = async () => {
     const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
@@ -150,11 +155,9 @@ const BlogPost = ({ isLargeScreen, setIsLargeScreen }) => {
 
   const findRelated = () => {
     const tagSet = new Set(getTags(blogDetails.tags.toLowerCase()));
-    console.log("Current", blogDetails.title);
 
     const related = blogsData.filter((blog) => {
       const blogTags = getTags(blog.tags.toLowerCase());
-      console.log("Other", blog.heading);
       return (
         blog.heading !== blogDetails.title &&
         blogTags.some((tag) => tagSet.has(tag))
@@ -187,12 +190,15 @@ const BlogPost = ({ isLargeScreen, setIsLargeScreen }) => {
           <div className="card-details">
             <div className="card-title">{title}</div>
             <ul className="card-content">
-              {index.map((h) => (
+              {index.slice(0, shortIndexView ? 5 : index.length).map((h) => (
                 <Link>
                   <li onClick={() => scrollToHeading(h)}>{h}</li>
                 </Link>
               ))}
             </ul>
+            <div onClick={toggleIndexView} className="card-read-more">
+              {shortIndexView ? "Read More" : "Read Less"}
+            </div>
           </div>
         ) : (
           <div className="card-details">

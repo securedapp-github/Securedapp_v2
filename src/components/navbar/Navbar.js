@@ -5,8 +5,9 @@ import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Navbar = ({ isLargeScreen, setIsLargeScreen }) => {
+const Navbar = ({ isLargeScreen, setIsLargeScreen, openRequestModal }) => {
   const [darkMode, setDarkMode] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   let nextPath;
@@ -54,6 +55,7 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen }) => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
+          openRequestModal={openRequestModal}
         />
       ) : (
         <NavbarSmallScreen
@@ -61,6 +63,7 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen }) => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
+          openRequestModal={openRequestModal}
         />
       )}
     </div>

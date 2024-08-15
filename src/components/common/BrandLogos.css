@@ -1,4 +1,10 @@
 .brand-logos {
   background-color: #ffffff05;
-  @apply px-3 py-2 grid grid-cols-5 gap-4 w-full;
+  @apply w-full;
+}
+
+.brand-logos {
+  .slick-track {
+    @apply flex items-center justify-center gap-x-2 !important;
+  }
 }

@@ -2,10 +2,6 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 .hero {
-  background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
-    linear-gradient(#0000000f 1px, transparent 1px);
-  background-size: 100px 100px;
-
   @apply h-full text-center pt-28 lg:pt-28 w-full font-nunitoSans text-secondary dark:text-primary;
 }
 .hero-title {
@@ -34,11 +30,6 @@
   @apply w-10 lg:w-16 border border-[#A4CDFF] dark:border-[#A4CDFF4D] bg-[#D2E6FF4D] dark:bg-[#A4CDFF66];
 }
 
-.dark .hero {
-  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
-    linear-gradient(#d2e6ff14 1px, transparent 1px);
-}
-
 .statistics {
   @apply font-nunitoSans text-secondary dark:text-primary py-6 px-4 lg:px-10 lg:py-8;
 }
@@ -50,24 +41,29 @@
 }
 
 .features {
-  background-image: linear-gradient(90deg, #0000000f 1px, transparent 1px),
-    linear-gradient(#0000000f 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px;
-
   @apply h-full font-nunitoSans px-2 md:px-6 lg:px-24 pb-12 flex flex-col items-center justify-center;
 }
 .feature-left {
   @apply lg:w-1/2 flex justify-center lg:justify-end space-x-0 lg:space-x-10;
 }
+
+.feature-cards-container {
+  @apply flex gap-x-6;
+}
+
 .vertical-scroll {
-  @apply relative rounded-full bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
-  transition: height 0.3s ease, background-color 0.3s ease;
+  @apply relative bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
+}
+
+.vertical-scroll-selected {
+  @apply bg-[#A4CDFF] rounded-full;
 }
 
 .feature-card {
-  @apply rounded-xl p-4 w-full cursor-default bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
+  @apply rounded-xl my-2 p-4 w-full cursor-default bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
 }
-.selected {
+
+.feature-card-selected {
   @apply border-[#A4CDFF];
 }
 
@@ -115,14 +111,10 @@
   @apply w-[32.8%] bg-[#4267B2];
 }
 
-.dark .features {
-  background-image: linear-gradient(90deg, #d2e6ff14 1px, transparent 1px),
-    linear-gradient(#d2e6ff14 1px, transparent 1px);
-}
-
 .solutions {
   @apply px-4;
 }
+
 .solution-cards {
   @apply w-full px-4 lg:px-24 flex flex-col space-y-8;
 }
@@ -211,7 +203,7 @@
   @apply lg:pt-20 px-10 lg:px-12 flex flex-col lg:flex-row justify-center items-center lg:space-x-24;
 }
 .services-content-left {
-  @apply flex-1 py-12;
+  @apply flex-1 py-12 text-center lg:text-start;
 }
 .services-content-left-title {
   @apply pb-8 text-3xl font-bold;
@@ -289,10 +281,14 @@
 }
 
 .cta-section {
-  @apply relative mt-12 px-10 lg:px-48 lg:mt-20 flex flex-col text-center space-y-6 lg:space-y-8 justify-center items-center;
+  @apply relative mt-12 px-10 lg:px-48 lg:mt-20 flex flex-col text-center space-y-6 lg:space-y-8 justify-center items-center overflow-hidden;
 }
 .cta-section-grid {
-  @apply w-screen flex justify-center items-center;
+  @apply relative w-screen flex justify-center items-center;
+}
+
+.cta-section-grid-patch {
+  @apply absolute w-3/4;
 }
 
 .cta-title {

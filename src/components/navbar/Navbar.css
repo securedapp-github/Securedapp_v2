@@ -23,7 +23,7 @@
 }
 
 .navbar-small-screen {
-  @apply py-3 px-2 z-50 font-nunitoSans shadow-md rounded-b-xl text-secondary dark:text-primary bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+  @apply py-3 px-2 z-40 font-nunitoSans shadow-md rounded-b-xl text-secondary dark:text-primary bg-cardBackgroundLight dark:bg-cardBackgroundDark;
 }
 
 .sidebar-background {

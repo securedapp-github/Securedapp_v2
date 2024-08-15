@@ -22,7 +22,11 @@ function BlogCard({ details }) {
   preview = preview + "...";
 
   return (
-    <div className="blog-card">
+    <div
+      className="blog-card"
+      onClick={() => {
+        navigate(`/blog/${details.url}`);
+      }}>
       <div className="blog-card-header">
         <div className="blog-card-header-date">{dateObj}</div>
         <div className="blog-card-header-image-container">

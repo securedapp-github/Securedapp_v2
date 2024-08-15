@@ -9,10 +9,12 @@ import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
+import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 import SolidityShield from "./SolidityShield/index";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+  const [isRequestModal, setRequestModel] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,6 +30,25 @@ function App() {
   return (
     <div className="App bg-primary dark:bg-secondary">
       <Router>
+        <Navbar
+          isLargeScreen={isLargeScreen}
+          setIsLargeScreen={setIsLargeScreen}
+          openRequestModal={() => {
+            setRequestModel(true);
+          }}
+        />
+        {isRequestModal && (
+          <RequestQuoteModal
+            isRequestQuoteModal={isRequestModal}
+            openRequestQuoteModal={() => {
+              setRequestModel(true);
+            }}
+            closeRequestQuoteModal={() => {
+              setRequestModel(false);
+              console.log(isRequestModal);
+            }}
+          />
+        )}
         <Routes>
           <Route
             path="/"
