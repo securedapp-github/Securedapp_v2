@@ -1,0 +1,62 @@
+.navbar-item-primary {
+  @apply py-3 flex space-x-2 items-center;
+}
+
+.nested-navbar {
+  @apply z-10 py-3 bg-primary dark:bg-secondary border border-cardBorderColorLight dark:border-cardBorderColorDark rounded absolute;
+}
+
+.nested-navbar-header {
+  @apply px-4 text-lg font-bold;
+}
+
+.nested-navbar-items {
+  @apply flex flex-col space-y-2;
+}
+
+.nested-navbar-item {
+  @apply px-4 py-2;
+}
+
+.nested-navbar-item:hover {
+  @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
+}
+
+.navbar-small-screen {
+  @apply py-3 px-2 z-40 font-nunitoSans shadow-md rounded-b-xl text-secondary dark:text-primary bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.sidebar-background {
+  @apply fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-30 flex justify-start items-center z-40;
+}
+.sidebar {
+  @apply w-2/3 sm:w-2/4 md:w-1/4 h-full border border-cardBorderColorLight dark:border-cardBorderColorDark rounded-md shadow-lg bg-primary dark:bg-secondary;
+}
+.sidebar-header {
+  @apply flex px-4 pt-4 pb-2 items-center justify-between;
+}
+
+.sidebar-items {
+  @apply flex flex-col space-y-0;
+}
+.sidebar-item {
+  @apply flex space-x-1 items-center cursor-pointer;
+}
+.sidebar-item-label {
+  @apply ml-4 my-2 text-lg font-bold;
+}
+
+.sidebar-item:hover {
+  @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
+}
+
+.nested-sidebar-items {
+  @apply flex flex-col space-y-0;
+}
+.nested-sidebar-item {
+  @apply cursor-pointer pl-6 py-1;
+}
+
+.nested-sidebar-item:hover {
+  @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
+}

@@ -1,0 +1,10 @@
+.brand-logos {
+  background-color: #ffffff05;
+  @apply w-full;
+}
+
+.brand-logos {
+  .slick-track {
+    @apply flex items-center justify-center gap-x-2 !important;
+  }
+}

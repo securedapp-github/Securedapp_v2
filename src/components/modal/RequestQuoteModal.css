@@ -1,0 +1,63 @@
+.request-quote-modal-container {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50;
+}
+
+.request-quote-modal {
+  @apply p-8 m-2 lg:m-0 bg-primary dark:bg-secondary rounded-lg shadow-xl w-full lg:w-5/12 flex flex-col items-center gap-y-8 border border-[#A4CDFF];
+}
+
+.request-quote-modal-close-container {
+  @apply w-full flex justify-end items-center;
+}
+
+.request-modal-close-button {
+  @apply cursor-pointer;
+}
+
+.requeset-quote-modal-header {
+  @apply text-lg lg:text-2xl font-bold;
+}
+
+.request-quote-modal-body {
+  @apply font-light w-full grid grid-cols-2 gap-y-2 gap-x-8 text-sm justify-center items-center;
+}
+
+.request-quote-modal-input-container {
+  @apply flex flex-col items-end justify-start gap-y-2 h-20;
+}
+
+.request-quote-modal-input-box {
+  @apply py-2 px-4 border w-full rounded-xl border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.requeste-quote-modal-input-warning {
+  @apply text-[#FC5A5A];
+}
+
+.request-quote-modal-dropdown-container {
+  @apply flex flex-col gap-y-1 h-20 justify-start;
+}
+
+.request-quote-modal-dropdown {
+  @apply py-2 px-4 rounded-xl border border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.request-quote-modal-dropdown-label {
+  @apply text-[#0019385f] dark:text-[#ffffff5f];
+}
+
+.request-quote-modal-textarea-container {
+  @apply w-full col-span-2;
+}
+
+.request-quote-modal-textarea {
+  @apply py-2 px-4 w-full rounded border border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.request-quote-modal-checkbox-container {
+  @apply flex gap-x-2 col-span-2;
+}
+
+.request-quote-modal-button-container {
+  @apply w-full flex justify-center items-center;
+}
