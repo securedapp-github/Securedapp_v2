@@ -1,3 +1,5 @@
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import ProductServiceHero from "../../components/common/ProductServiceHero";
 import Testimonials from "../../components/common/Testimonials";
 import SectionTitle from "../../components/common/SectionTitle";
@@ -20,6 +22,10 @@ import HowItWorksCard from "../../components/productService/HowItWorksCard";
 function Product({ isLargeScreen, setIsLargeScreen }) {
   return (
     <div className="product">
+      <Navbar
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
       <ProductServiceHero
         name="A PRODUCT OF SECURE DAPP"
         title="Discover Endless Possibilities with Solidity Shield"
@@ -85,6 +91,7 @@ function Product({ isLargeScreen, setIsLargeScreen }) {
           faqsData={faqsData}
         />
       </div>
+      <Footer />
     </div>
   );
 }

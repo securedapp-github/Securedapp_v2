@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import { Link, useParams } from "react-router-dom";
 import BlogCard from "../../components/blog/BlogCard";
 import Button from "../../components/common/Button";
@@ -77,7 +79,7 @@ const getTags = (tags) => {
   return tags.split(",");
 };
 
-const BlogPost = () => {
+const BlogPost = ({ isLargeScreen, setIsLargeScreen }) => {
   const { url } = useParams();
   const [blogDetails, setBlogDetails] = useState({
     title: "",
@@ -180,6 +182,10 @@ const BlogPost = () => {
   const IndexSummaryCard = ({ title, desc, index }) => {
     return (
       <div className="index-summary-card">
+        <Navbar
+          isLargeScreen={isLargeScreen}
+          setIsLargeScreen={setIsLargeScreen}
+        />
         {index ? (
           <div className="card-details">
             <div className="card-title">{title}</div>
@@ -261,14 +267,16 @@ const BlogPost = () => {
                     blogDetails.title
                   )}&url=${window.location.origin}${encodeURIComponent(
                     +"/" + url
-                  )}`}>
+                  )}`}
+                >
                   <i className="fa-brands fa-square-x-twitter" />
                 </a>
                 <a
                   target="_blank"
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${
                     window.location.origin
-                  }${+"/" + url}`}>
+                  }${+"/" + url}`}
+                >
                   <i className="fa-brands fa-linkedin" />
                 </a>
                 <a
@@ -277,7 +285,8 @@ const BlogPost = () => {
                     window.location.origin
                   }${encodeURIComponent(+"/" + url)}&text=${encodeURIComponent(
                     blogDetails.title
-                  )}`}>
+                  )}`}
+                >
                   <i className="fa-brands fa-telegram" />
                 </a>
                 <i
@@ -365,6 +374,7 @@ const BlogPost = () => {
           <div className="no-related-posts">No Related Posts</div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

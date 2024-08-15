@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import BlogCard from "../../components/blog/BlogCard";
 import SectionTitle from "../../components/common/SectionTitle";
 import { blogsData, tags } from "./blog-data";
@@ -7,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 
-function Blog() {
+function Blog({ isLargeScreen, setIsLargeScreen }) {
   const [blogs, setBlogs] = useState([]);
   const [originalBlogs, setOriginalBlogs] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -76,6 +78,10 @@ function Blog() {
 
   return (
     <div className="blog">
+      <Navbar
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
       <SectionTitle
         title="News & Articles"
         description="#1 Blog on theme marketing by Bodrum"
@@ -118,11 +124,13 @@ function Blog() {
             }`}
             key={i + 1}
             onClick={() => paginate(i + 1)}
-            disabled={currentPage === i + 1}>
+            disabled={currentPage === i + 1}
+          >
             {i + 1}
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

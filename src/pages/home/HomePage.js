@@ -1,3 +1,5 @@
+import Footer from "../../components/footer/footer";
+import Navbar from "../../components/navbar/Navbar";
 import CTA from "./sections/CTA";
 import FAQs from "../../components/common/FAQs";
 import Hero from "./sections/Hero";
@@ -13,6 +15,10 @@ import { reviews, faqHeaders, faqsData } from "./home.data";
 const Home = ({ isLargeScreen, setIsLargeScreen }) => {
   return (
     <div id="home">
+      <Navbar
+        isLargeScreen={isLargeScreen}
+        setIsLargeScreen={setIsLargeScreen}
+      />
       <Hero />
       <Statitics />
       <Features />
@@ -30,6 +36,7 @@ const Home = ({ isLargeScreen, setIsLargeScreen }) => {
         setIsLargeScreen={setIsLargeScreen}
       />
       <CTA />
+      <Footer />
     </div>
   );
 };

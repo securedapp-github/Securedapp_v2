@@ -10,6 +10,7 @@ import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import RequestQuoteModal from "./components/modal/RequestQuoteModal";
+import SolidityShield from "./SolidityShield/index";
 
 function App() {
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
@@ -77,11 +78,43 @@ function App() {
               />
             }
           />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/:url" element={<BlogPost />} />
-          <Route path="about" element={<AboutUs />} />
+          <Route
+            path="blog"
+            element={
+              <Blog
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route
+            path="blog/:url"
+            element={
+              <BlogPost
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route
+            path="about"
+            element={
+              <AboutUs
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
+          <Route
+            path="solidity-shield-scan"
+            element={
+              <SolidityShield
+                isLargeScreen={isLargeScreen}
+                setIsLargeScreen={setIsLargeScreen}
+              />
+            }
+          />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
