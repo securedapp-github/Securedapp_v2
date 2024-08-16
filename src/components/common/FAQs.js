@@ -7,13 +7,12 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick/lib/slider";
+import { useSelector } from "react-redux";
+import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 
-const FAQs = ({
-  faqHeaders = [],
-  faqsData,
-  isLargeScreen,
-  setIsLargeScreen,
-}) => {
+const FAQs = ({ faqHeaders = [], faqsData }) => {
+  const { isLargeScreen } = useSelector(getHomeSelector);
+
   const [detail, setDetail] = useState(0);
   const [topic, setTopic] = useState(0);
 

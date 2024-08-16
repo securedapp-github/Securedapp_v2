@@ -3,13 +3,13 @@ import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/Navbar";
 import BlogCard from "../../components/blog/BlogCard";
 import SectionTitle from "../../components/common/SectionTitle";
-import { blogsData, tags } from "./blog-data";
+import { tags } from "./blog-data";
 import "./Blog.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 
-function Blog({ isLargeScreen, setIsLargeScreen }) {
+function Blog() {
   const [blogs, setBlogs] = useState([]);
   const [originalBlogs, setOriginalBlogs] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -77,54 +77,57 @@ function Blog({ isLargeScreen, setIsLargeScreen }) {
   };
 
   return (
-    <div className="blog">
-      <SectionTitle
-        title="News & Articles"
-        description="#1 Blog on theme marketing by Bodrum"
-      />
-      <div className="blog-search">
-        <div className="blog-search-input">
-          <input
-            className="search-input-box"
-            placeholder="Search blog..."
-            onChange={handleSearchChange}
-            type="text"
-          />
-          <div className="search-input-icon">
-            <FontAwesomeIcon className="" icon={faSearch} />
+    <div className="blog-container">
+      <Navbar />
+      <div className="blog">
+        <SectionTitle
+          title="News & Articles"
+          description="#1 Blog on theme marketing by Bodrum"
+        />
+        <div className="blog-search">
+          <div className="blog-search-input">
+            <input
+              className="search-input-box"
+              placeholder="Search blog..."
+              onChange={handleSearchChange}
+              type="text"
+            />
+            <div className="search-input-icon">
+              <FontAwesomeIcon className="" icon={faSearch} />
+            </div>
+          </div>
+          <div className="blog-search-tags-container">
+            <div>Search via tags</div>
+            <div className="blog-search-tags">
+              {tags.map((tag) => (
+                <BlogTag
+                  tag={tag}
+                  selected={selectedTag}
+                  onClick={() => toggleTagClick(tag)}
+                />
+              ))}
+            </div>
           </div>
         </div>
-        <div className="blog-search-tags-container">
-          <div>Search via tags</div>
-          <div className="blog-search-tags">
-            {tags.map((tag) => (
-              <BlogTag
-                tag={tag}
-                selected={selectedTag}
-                onClick={() => toggleTagClick(tag)}
-              />
-            ))}
-          </div>
+        <div className="blog-cards">
+          {currentItems.map((item) => (
+            <BlogCard key={item.id} details={item} />
+          ))}
         </div>
-      </div>
-      <div className="blog-cards">
-        {currentItems.map((item) => (
-          <BlogCard key={item.id} details={item} />
-        ))}
-      </div>
-      <div className="blog-pagination">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <div
-            className={`blog-pagination-item ${
-              currentPage === i + 1 && "selected-number"
-            }`}
-            key={i + 1}
-            onClick={() => paginate(i + 1)}
-            disabled={currentPage === i + 1}
-          >
-            {i + 1}
-          </div>
-        ))}
+        <div className="blog-pagination">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <div
+              className={`blog-pagination-item ${
+                currentPage === i + 1 && "selected-number"
+              }`}
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              disabled={currentPage === i + 1}
+            >
+              {i + 1}
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

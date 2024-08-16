@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import "./Navbar.css";
 import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  getHomeSelector,
+  setIsRequestModalOpen,
+  setDarkMode,
+} from "../../redux/slices/main/homeSlice";
 
-const Navbar = ({ isLargeScreen, setIsLargeScreen, openRequestModal }) => {
-  const [darkMode, setDarkMode] = useState(false);
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const { darkMode, isLargeScreen } = useSelector(getHomeSelector);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,7 +34,7 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen, openRequestModal }) => {
   const handleNavigation = () => {
     if (nextPath) navigate(nextPath);
     else {
-      // TODO: Add Callback for Request Quote button
+      dispatch(setIsRequestModalOpen(true));
     }
   };
 
@@ -36,14 +44,14 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen, openRequestModal }) => {
     } else {
       localStorage.theme = "dark";
     }
-    setDarkMode(!darkMode);
+    dispatch(setDarkMode(!darkMode));
     document.body.classList.toggle("dark");
   };
 
   useEffect(() => {
     if (localStorage.theme === "dark") {
       document.body.classList.add("dark");
-      setDarkMode(true);
+      dispatch(setDarkMode(true));
     }
   }, []);
 
@@ -55,7 +63,6 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen, openRequestModal }) => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
-          openRequestModal={openRequestModal}
         />
       ) : (
         <NavbarSmallScreen
@@ -63,7 +70,6 @@ const Navbar = ({ isLargeScreen, setIsLargeScreen, openRequestModal }) => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
-          openRequestModal={openRequestModal}
         />
       )}
     </div>

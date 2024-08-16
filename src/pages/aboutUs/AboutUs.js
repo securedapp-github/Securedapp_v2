@@ -32,7 +32,7 @@ const TeamCard = ({ details }) => {
   );
 };
 
-const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
+const AboutUs = () => {
   return (
     <div className="about-us">
       <div className="about-us-hero-container">

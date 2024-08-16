@@ -1,12 +1,17 @@
 import { useState } from "react";
 import "./RequestQuoteModal.css";
 import Button from "../common/Button";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  getHomeSelector,
+  setIsRequestModalOpen,
+} from "../../redux/slices/main/homeSlice";
 
-const RequestQuoteModal = ({
-  isRequestQuoteModal,
-  openRequestQuoteModal,
-  closeRequestQuoteModal,
-}) => {
+const RequestQuoteModal = () => {
+  const dispatch = useDispatch();
+  const { isRequestModalOpen } = useSelector(getHomeSelector);
+
   const [fullName, setFullName] = useState("");
   const [fullNameWarning, setFullNameWarning] = useState("");
 
@@ -56,15 +61,19 @@ const RequestQuoteModal = ({
     }
   };
 
-  if (!isRequestQuoteModal) return null;
+  const closeModal = () => {
+    dispatch(setIsRequestModalOpen(false));
+  };
+
+  if (!isRequestModalOpen) return null;
 
   return (
-    isRequestQuoteModal && (
+    isRequestModalOpen && (
       <div className="request-quote-modal-container">
         <div className="request-quote-modal">
           <div className="request-quote-modal-close-container">
             <i
-              onClick={closeRequestQuoteModal}
+              onClick={closeModal}
               className="fa-solid fa-xmark fa-xl request-modal-close-button"
             />
           </div>

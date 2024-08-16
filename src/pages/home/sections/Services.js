@@ -10,6 +10,8 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { getHomeSelector } from "../../../redux/slices/main/homeSlice";
 
 const servicesData = [
   {
@@ -110,7 +112,9 @@ const servicesData = [
   },
 ];
 
-const Services = ({ isLargeScreen, setIsLargeScreen }) => {
+const Services = () => {
+  const { isLargeScreen } = useSelector(getHomeSelector);
+
   const [selectedService, setService] = useState(0);
   let sliderRef = useRef(null);
 

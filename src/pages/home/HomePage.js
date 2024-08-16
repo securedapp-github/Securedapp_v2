@@ -12,25 +12,18 @@ import "./HomePage.css";
 import Statitics from "./sections/Statistics";
 import { reviews, faqHeaders, faqsData } from "./home.data";
 
-const Home = ({ isLargeScreen, setIsLargeScreen }) => {
+const Home = () => {
   return (
     <div id="home">
+      <Navbar />
       <Hero />
       <Statitics />
       <Features />
       <Solutions />
       <HowItWorks />
-      <Services
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
+      <Services />
       <Testimonials reviews={reviews} />
-      <FAQs
-        faqHeaders={faqHeaders}
-        faqsData={faqsData}
-        isLargeScreen={isLargeScreen}
-        setIsLargeScreen={setIsLargeScreen}
-      />
+      <FAQs faqHeaders={faqHeaders} faqsData={faqsData} />
       <CTA />
       <Footer />
     </div>

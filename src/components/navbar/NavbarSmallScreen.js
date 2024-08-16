@@ -18,7 +18,6 @@ const NavbarSmallScreen = ({
   nextPath,
   darkMode,
   toggleTheme,
-  openRequestModal,
 }) => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
   const [dropDown, setDropDown] = useState("");
@@ -115,7 +114,7 @@ const NavbarSmallScreen = ({
               ) : (
                 <Button
                   text="Request Quote"
-                  onClick={openRequestModal}></Button>
+                  onClick={handleNavigation}></Button>
               )}
             </div>
           </div>
