@@ -13,7 +13,9 @@ const Statitics = () => {
 const StatisticsCard = ({ title, subtitle }) => {
   return (
     <div className="statistics-card">
-      <div className="pt-2 text-2xl mg:text-3xl lg:text-4xl font-bold">{title}</div>
+      <div className="pt-2 text-2xl mg:text-3xl lg:text-4xl font-bold">
+        {title}
+      </div>
       <div className="statistics-card-subtitle">{subtitle}</div>
     </div>
   );

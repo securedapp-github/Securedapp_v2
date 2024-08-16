@@ -1,9 +1,7 @@
 import "./App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
-import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/HomePage";
-import { useEffect, useState } from "react";
-import Footer from "./components/footer/footer";
+import { useEffect } from "react";
 import Product from "./pages/product/Product";
 import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
@@ -11,15 +9,22 @@ import BlogPost from "./pages/blogpost/BlogPost";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 import SolidityShield from "./SolidityShield/index";
+import { useDispatch } from "react-redux";
+import {
+  getHomeSelector,
+  setIsLargeScreen,
+} from "./redux/slices/main/homeSlice";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
-  const [isRequestModal, setRequestModel] = useState(false);
+  const dispatch = useDispatch();
+  const { isRequestModalOpen } = useSelector(getHomeSelector);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
+      dispatch(setIsLargeScreen(window.innerWidth >= 1024));
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -30,90 +35,15 @@ function App() {
   return (
     <div className="App bg-primary dark:bg-secondary">
       <Router>
-        <Navbar
-          isLargeScreen={isLargeScreen}
-          setIsLargeScreen={setIsLargeScreen}
-          openRequestModal={() => {
-            setRequestModel(true);
-          }}
-        />
-        {isRequestModal && (
-          <RequestQuoteModal
-            isRequestQuoteModal={isRequestModal}
-            openRequestQuoteModal={() => {
-              setRequestModel(true);
-            }}
-            closeRequestQuoteModal={() => {
-              setRequestModel(false);
-              console.log(isRequestModal);
-            }}
-          />
-        )}
+        {isRequestModalOpen && <RequestQuoteModal />}
         <Routes>
-          <Route
-            path="/"
-            index
-            element={
-              <Home
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
-          <Route
-            path="product"
-            element={
-              <Product
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
-          <Route
-            path="service"
-            element={
-              <Service
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
-          <Route
-            path="blog"
-            element={
-              <Blog
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
-          <Route
-            path="blog/:url"
-            element={
-              <BlogPost
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
-          <Route
-            path="about"
-            element={
-              <AboutUs
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
-          <Route
-            path="solidity-shield-scan"
-            element={
-              <SolidityShield
-                isLargeScreen={isLargeScreen}
-                setIsLargeScreen={setIsLargeScreen}
-              />
-            }
-          />
+          <Route path="/" index element={<Home />} />
+          <Route path="product" element={<Product />} />
+          <Route path="service" element={<Service />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:url" element={<BlogPost />} />
+          <Route path="about" element={<AboutUs />} />
+          <Route path="solidity-shield-scan" element={<SolidityShield />} />
         </Routes>
       </Router>
     </div>

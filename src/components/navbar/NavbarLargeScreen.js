@@ -9,7 +9,6 @@ const NavbarLargeScreen = ({
   nextPath,
   darkMode,
   toggleTheme,
-  openRequestModal,
 }) => {
   const [dropDown, setDropDown] = useState("");
 
@@ -46,7 +45,7 @@ const NavbarLargeScreen = ({
           <Button
             className="w-36"
             text="Request Quote"
-            onClick={openRequestModal}></Button>
+            onClick={handleNavigation}></Button>
         )}
       </div>
     </nav>
