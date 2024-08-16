@@ -35,26 +35,26 @@ const navigationItems = [
     ],
   },
   {
-    title: "Features",
+    title: "Services",
     items: [
       {
-        name: "Features",
+        name: "DApp Development",
         to: "",
       },
       {
-        name: "Integration",
+        name: "Smart contract Audit",
         to: "",
       },
       {
-        name: "Pricing",
-        to: "https://securedapp.gitbook.io/securedapp-launchpad/pricing-policy",
-      },
-      {
-        name: "Changelog",
+        name: "Web3 Security",
         to: "",
       },
       {
-        name: "Roadmap",
+        name: "Web3 KYC",
+        to: "",
+      },
+      {
+        name: "NFT Development",
         to: "",
       },
     ],
@@ -66,6 +66,22 @@ const navigationItems = [
         name: "About Us",
         to: "/about",
       },
+      {
+        name: "Team",
+        to: "/about",
+      },
+      {
+        name: "Community",
+        to: "https://linktr.ee/securedapp",
+      },
+      {
+        name: "Careers",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/careers",
+      },
+      {
+        name: "Contact Us",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/contact-us",
+      },
     ],
   },
   {
@@ -76,12 +92,28 @@ const navigationItems = [
         to: "/blog",
       },
       {
-        name: "Documentation",
+        name: "Docs",
         to: "https://securedapp.gitbook.io/securedapp-launchpad",
       },
       {
-        name: "Contact",
-        to: "https://securedapp.gitbook.io/securedapp-launchpad/contact-us",
+        name: "Github",
+        to: "https://github.com/securedapp-github",
+      },
+      {
+        name: "Workplace Policy",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/workplace-policy",
+      },
+      {
+        name: "Shipping & Delivery Policy",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/shipping-and-delivery-policy",
+      },
+      {
+        name: "Pricing Policy",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/pricing-policy",
+      },
+      {
+        name: "Cancellation & Refunds",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad/cancellation-and-refund-policy",
       },
     ],
   },
@@ -169,14 +201,16 @@ const Footer = () => (
         <a
           target="_blank"
           href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-          rel="noreferrer">
+          rel="noreferrer"
+        >
           Privacy Policy{" "}
         </a>
         <FontAwesomeIcon size="2xs" icon={faCircle} />
         <a
           target="_blank"
           href="https://securedapp.gitbook.io/securedapp-launchpad/terms-and-conditions"
-          rel="noreferrer">
+          rel="noreferrer"
+        >
           Terms & Conditions
         </a>
       </div>

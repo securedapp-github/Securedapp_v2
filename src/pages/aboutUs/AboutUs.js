@@ -37,13 +37,17 @@ const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
     <div className="about-us">
       <div className="about-us-hero-container">
         <div className="about-us-hero">
-          <div className="about-us-hero-title">Our Story</div>
+          <div className="about-us-hero-title">
+            Our Story : From Vision to Reality
+          </div>
           <div className="about-us-hero-description">
-            EhyaSpace is the collaboration hub that brings the right people,
-            information, and tools together to get work done. From Fortune 100
-            companies to corner markets, millions of people around the world use
-            Slack to connect their teams, unify their systems, and drive their
-            business forward.
+            SecureDApp emerged from a united vision to secure the future of
+            Web3. Founded by two dedicated innovators from India, the company
+            recognized the urgent need for specialized blockchain security
+            solutions. Having experienced the devastating effects of
+            cyberattacks firsthand, they were compelled by a mission to
+            safeguard digital assets and ensure the security of decentralized
+            applications (dApps) from their inception through to their expansion
           </div>
           <div className="about-us-hero-image">
             <img src="/assets/images/about-us-story.svg" alt="" />
@@ -55,6 +59,15 @@ const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
         <CustomHr />
       </div>
       <div className="about-us-company">
+        <div className="about-us-hero-description">
+          SecureDApp’s journey began with a commitment to fortify the Web3
+          ecosystem, not just through innovative security measures and building
+          a foundation of trust. Our goal is clear: to pave the way for the
+          secure and widespread adoption of Web3 technologies. SecureDApp's
+          mission is to create a safer digital world where innovation thrives
+          without compromise and every transaction and application is shielded
+          from potential threats.
+        </div>
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
             <img src="/assets/images/about-us-story.svg" alt="" />
@@ -62,15 +75,19 @@ const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
           <div className="about-us-company-eco-content-container">
             <div className="about-us-company-eco-content">
               <div className="about-us-company-eco-content-header">
-                Building the work ecosystem
+                Creating an Effective Work Ecosystem
               </div>
               <div>
-                Connect your conversations with the tools and services that you
-                use to get the job done. With over 1,500 apps and a robust API,
-                the Slack platform team works with partners and developers
-                globally to build apps and integrations that streamline your
-                work, automate mundane tasks and bring context into your
-                conversations in Ehya.
+                At SecureDApp, we tackle every challenge with a product-centric
+                approach that seamlessly scales across industries. Our
+                cutting-edge solutions—Solidity Shield, SecureWatch, and
+                SecureTrace—offer complete Web3 security, empowering clients
+                across various sectors to fortify their digital assets
+                <br />
+                <br />
+                Our state-of-the-art infrastructure and streamlined processes
+                ensure that our innovative products evolve with your needs,
+                providing unparalleled protection and peace of mind
               </div>
             </div>
           </div>
@@ -80,16 +97,20 @@ const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
             <div className="about-us-company-culture-content">
               <div className="about-us-company-culture-content-title">
                 <div className="about-us-company-culture-content-title-top">
-                  Our Work
+                  Building a Vibrant Culture
                 </div>
-                <div className="about-us-company-culture-content-title-bottom">
+                {/* <div className="about-us-company-culture-content-title-bottom">
                   Culture Company's
-                </div>
+                </div> */}
               </div>
               <div className="about-us-company-culture-content-description">
-                Like Steve Jobs quotes, “Design is not just what it looks like
-                and feels like. Design is how it works”. We always try to make a
-                great output by this culture:
+                At SecureDApp, we cultivate a culture where innovation and
+                equilibrium intertwine seamlessly. Our team embraces autonomy
+                and accountability, empowering each member to excel while
+                enjoying a balanced work-life dynamic. We believe that true
+                excellence is achieved through hard work and fostering an
+                environment where creativity flourishes, and results speak
+                volumes. Our values are built on :
               </div>
               <div className="about-us-company-culture-content-points">
                 {companyCulture.map((item) => {
@@ -117,8 +138,11 @@ const AboutUs = ({ isLargeScreen, setIsLargeScreen }) => {
         <div className="about-us-team-header">
           <div className="about-us-team-header-title">Our Team</div>
           <div className="about-us-team-header-description">
-            Worem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            vulputate libero et velit interdum, ac aliquet odio mattis.
+            Together, we are energized and inspired, dedicated to shaping the
+            future of Web3 security. This dedication, fueled by a blend of
+            passion and purpose, is what motivates us to push boundaries and
+            explore new horizons. At SecureDApp, we are more than a team; we are
+            a movement toward a safer and more innovative digital world
           </div>
         </div>
         <div className="about-us-team-cards">

@@ -4,24 +4,56 @@ import Slider from "react-slick";
 
 const brandLogos = [
   {
-    src: "/assets/images/brand-logo-1.svg",
-    alt: "videohive",
+    src: "/assets/images/clients/Zapit.png",
+    alt: "Zapit",
   },
   {
-    src: "/assets/images/brand-logo-2.svg",
-    alt: "codecanyon",
+    src: "/assets/images/clients/T-hub.png",
+    alt: "T-Hub",
   },
   {
-    src: "/assets/images/brand-logo-3.svg",
-    alt: "graphicriver",
+    src: "/assets/images/clients/Tenex-Finanace.png",
+    alt: "Tenex Finance",
   },
   {
-    src: "/assets/images/brand-logo-4.svg",
-    alt: "photodune",
+    src: "/assets/images/clients/STPI.png",
+    alt: "STPI",
   },
   {
-    src: "/assets/images/brand-logo-5.svg",
-    alt: "themeforest",
+    src: "/assets/images/clients/IFSCA.png",
+    alt: "IFSCA",
+  },
+  {
+    src: "/assets/images/clients/gpu.png",
+    alt: "Gpu",
+  },
+  {
+    src: "/assets/images/clients/Evolve-AI.png",
+    alt: "Evolve AI",
+  },
+  {
+    src: "/assets/images/clients/Cyseck.png",
+    alt: "Cyseck",
+  },
+  {
+    src: "/assets/images/clients/CCOE-Telangana.png",
+    alt: "CCOE Telangana",
+  },
+  {
+    src: "/assets/images/clients/C3ihub.png",
+    alt: "C3ihub",
+  },
+  {
+    src: "/assets/images/clients/Broadridge.png",
+    alt: "Broadridge",
+  },
+  {
+    src: "/assets/images/clients/Blits-Estate.png",
+    alt: "Blits Estate",
+  },
+  {
+    src: "/assets/images/clients/Amrita-Tbi.png",
+    alt: "Amrite TBI",
   },
 ];
 
