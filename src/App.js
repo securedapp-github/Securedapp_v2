@@ -3,6 +3,10 @@ import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./pages/home/HomePage";
 import { useEffect } from "react";
 import Product from "./pages/product/Product";
+import SolidityShieldPage from "./pages/product/SolidityShieldPage";
+import SecureWatchPage from "./pages/product/SecureWatchPage";
+import SecureTracePage from "./pages/product/SecureTracePage";
+import SecurePadPage from "./pages/product/SecurePadPage";
 import Service from "./pages/service/Service";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
@@ -39,6 +43,10 @@ function App() {
         <Routes>
           <Route path="/" index element={<Home />} />
           <Route path="product" element={<Product />} />
+          <Route path="solidity-shield" element={<SolidityShieldPage />} />
+          <Route path="secure-watch" element={<SecureWatchPage />} />
+          <Route path="secure-trace" element={<SecureTracePage />} />
+          <Route path="secure-pad" element={<SecurePadPage />} />
           <Route path="service" element={<Service />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:url" element={<BlogPost />} />

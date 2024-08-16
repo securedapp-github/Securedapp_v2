@@ -16,7 +16,10 @@ const ProductCard = ({
       </div>
       <div className="product-card-content">
         <div className="product-card-content-header">{header}</div>
-        <div className="product-card-content-description">{description}</div>
+        <div
+          className="product-card-content-description"
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></div>
         <div className="product-card-content-button">
           <Button text={buttonText} onClick={onClick} filled={true} />
         </div>

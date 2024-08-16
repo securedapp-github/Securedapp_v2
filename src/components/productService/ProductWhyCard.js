@@ -17,8 +17,11 @@ const ProductWhyCard = ({
           <div className="product-why-card-content-descriptions">
             {descriptions.map((description) => {
               return (
-                <div className="product-why-card-content-description">
-                  {description}
+                <div
+                  dangerouslySetInnerHTML={{ __html: description }}
+                  className="product-why-card-content-description"
+                >
+                  {}
                 </div>
               );
             })}

@@ -5,7 +5,8 @@ export const FeatureIcon = ({ icon, iconBackgroundColor }) => {
   return (
     <div
       className="feature-icon"
-      style={{ background: `${iconBackgroundColor}` }}>
+      style={{ background: `${iconBackgroundColor}` }}
+    >
       <FontAwesomeIcon icon={icon} />
     </div>
   );
@@ -19,12 +20,19 @@ export const FeatureCard = ({
 }) => {
   return (
     <div className="feature-card">
-      <div>
-        <FeatureIcon icon={icon} iconBackgroundColor={iconBackgroundColor} />
-      </div>
+      {icon && (
+        <div>
+          <FeatureIcon icon={icon} iconBackgroundColor={""} />
+        </div>
+      )}
       <div className="feature-card-content">
         <div className="feature-card-content-header">{header}</div>
-        <div className="feature-card-content-description">{description}</div>
+        <div
+          className="feature-card-content-description"
+          dangerouslySetInnerHTML={{ __html: description }}
+        >
+          {}
+        </div>
       </div>
     </div>
   );

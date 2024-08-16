@@ -35,6 +35,7 @@ const TeamCard = ({ details }) => {
 const AboutUs = () => {
   return (
     <div className="about-us">
+      <Navbar />
       <div className="about-us-hero-container">
         <div className="about-us-hero">
           <div className="about-us-hero-title">
@@ -49,6 +50,15 @@ const AboutUs = () => {
             safeguard digital assets and ensure the security of decentralized
             applications (dApps) from their inception through to their expansion
           </div>
+          <div className="about-us-hero-description">
+            SecureDApp’s journey began with a commitment to fortify the Web3
+            ecosystem, not just through innovative security measures and
+            building a foundation of trust. Our goal is clear: to pave the way
+            for the secure and widespread adoption of Web3 technologies.
+            SecureDApp's mission is to create a safer digital world where
+            innovation thrives without compromise and every transaction and
+            application is shielded from potential threats.
+          </div>
           <div className="about-us-hero-image">
             <img src="/assets/images/about-us-story.svg" alt="" />
           </div>
@@ -59,15 +69,6 @@ const AboutUs = () => {
         <CustomHr />
       </div>
       <div className="about-us-company">
-        <div className="about-us-hero-description">
-          SecureDApp’s journey began with a commitment to fortify the Web3
-          ecosystem, not just through innovative security measures and building
-          a foundation of trust. Our goal is clear: to pave the way for the
-          secure and widespread adoption of Web3 technologies. SecureDApp's
-          mission is to create a safer digital world where innovation thrives
-          without compromise and every transaction and application is shielded
-          from potential threats.
-        </div>
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
             <img src="/assets/images/about-us-story.svg" alt="" />
