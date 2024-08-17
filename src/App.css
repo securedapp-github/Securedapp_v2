@@ -1,5 +1,5 @@
 .App {
-  @apply bg-grid font-nunitoSans text-secondary dark:text-primary overflow-hidden;
+  @apply font-nunitoSans text-secondary dark:text-primary overflow-hidden;
 
   scroll-behavior: smooth;
 }

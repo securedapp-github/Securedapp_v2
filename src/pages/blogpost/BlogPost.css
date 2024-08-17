@@ -3,7 +3,7 @@ h2 {
 }
 
 .blog-post {
-  @apply pt-32;
+  @apply pt-32 bg-grid;
 }
 
 .blog-post-header {

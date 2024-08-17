@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, Link } from "react-router-dom";
 import { useState } from "react";
 import {
   generatePDF,
@@ -11,13 +11,19 @@ import {
   downloadReport,
 } from "./functions";
 import SolidityShield0 from "./product";
+import AuthScreen from "./pages/auth/AuthScreen";
+import LoginScreen from "./pages/auth/LoginScreen";
 
-function SolidityShield() {
+const SolidityShield = () => {
   return (
     <div>
-      <h1>Solidity Shield Scan</h1>
+      <Routes>
+        <Route path="/" element={<div>Solidity Shield Scan</div>} />
+        <Route path="auth" element={<AuthScreen />} />
+        <Route path="login" element={<LoginScreen />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default SolidityShield;
