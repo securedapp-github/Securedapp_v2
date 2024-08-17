@@ -26,7 +26,7 @@ export const FeatureCard = ({
         </div>
       )}
       <div className="feature-card-content">
-        <div className="feature-card-content-header">{header}</div>
+        {header && <div className="feature-card-content-header">{header}</div>}
         <div
           className="feature-card-content-description"
           dangerouslySetInnerHTML={{ __html: description }}

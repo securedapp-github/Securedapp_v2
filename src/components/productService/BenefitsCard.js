@@ -13,7 +13,9 @@ const BenefitsCard = ({ header, description, image, imageAlt = "" }) => {
     <div className="benefits-card">
       <BenefitsCardIcon img={image} imgAlt={imageAlt} />
       <div className="benefits-card-header">{header}</div>
-      <div className="benefits-card-description">{description}</div>
+      {description.length > 1 && (
+        <div className="benefits-card-description">{description}</div>
+      )}
     </div>
   );
 };
