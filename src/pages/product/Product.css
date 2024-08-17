@@ -9,7 +9,7 @@
 }
 
 .how-it-works-section {
-  @apply px-4 pb-8 lg:pb-16 lg:px-16 grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-4;
+  @apply flex flex-wrap justify-center gap-x-10 gap-y-10;
 }
 .how-it-works-section-end-image {
   @apply w-full lg:col-span-2;
