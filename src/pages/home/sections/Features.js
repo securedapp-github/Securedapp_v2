@@ -46,9 +46,9 @@ const Features = () => {
         title="Trust SecureDApp for Your Blockchain Security Journey"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />
-      <div className="flex lg:flex-row flex-col justify-between items-center px-4 lg:px-0 lg:items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
+      <div className="features-container-left-right">
         <div className="feature-left">
-          <div className="features-container flex flex-col">
+          <div className="features-container">
             {featureData.map((feature) => {
               const isSelected = detail === feature.id;
               return (
@@ -56,14 +56,12 @@ const Features = () => {
                   <div
                     className={`vertical-scroll ${
                       isSelected && "vertical-scroll-selected"
-                    }`}
-                  ></div>
+                    }`}></div>
                   <div
                     className={`feature-card ${
                       isSelected && "feature-card-selected"
                     }`}
-                    onClick={() => selectFeatureCard(feature["id"])}
-                  >
+                    onClick={() => selectFeatureCard(feature["id"])}>
                     {detail !== feature["id"] && (
                       <div className="font-light">{feature["title"]}</div>
                     )}

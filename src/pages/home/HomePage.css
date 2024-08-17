@@ -43,8 +43,17 @@
 .features {
   @apply h-full font-nunitoSans px-2 md:px-6 lg:px-24 pb-12 flex flex-col items-center justify-center;
 }
+
+.features-container-left-right {
+  @apply w-full flex lg:flex-row flex-col justify-between items-center px-4 lg:px-0 lg:items-stretch space-y-8 lg:space-y-0 lg:space-x-12;
+}
+
 .feature-left {
-  @apply lg:w-1/2 flex justify-center lg:justify-end space-x-0 lg:space-x-10;
+  @apply w-full flex-1 flex justify-center lg:justify-end space-x-0 lg:space-x-10;
+}
+
+.features-container {
+  @apply w-full flex flex-col;
 }
 
 .feature-cards-container {
@@ -52,7 +61,7 @@
 }
 
 .vertical-scroll {
-  @apply relative bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
+  @apply hidden lg:block  relative bg-cardBackgroundLight dark:bg-cardBorderColorDark lg:w-2 h-full;
 }
 
 .vertical-scroll-selected {
@@ -80,7 +89,7 @@
 }
 
 .feature-right {
-  @apply w-full mx-4 py-10 lg:w-1/2 font-outfit font-light rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col justify-center items-center;
+  @apply flex-1 w-full mx-4 py-10 lg:w-1/2 font-outfit font-light rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col justify-center items-center;
 }
 .feature-right-card {
   @apply w-3/4 py-4 px-4 lg:px-6 rounded-2xl bg-cardBackgroundLight dark:caret-cardBackgroundDark border border-[#A4CDFF] dark:border-[#D2E6FF4D] flex flex-col justify-center items-center space-y-2;
