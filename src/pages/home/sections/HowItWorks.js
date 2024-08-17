@@ -3,20 +3,20 @@ import SectionTitle from "../../../components/common/SectionTitle";
 
 const hows = [
   {
-    title: "Review of the smart contract code",
-    desc: "Seamlessly transact across Bitcoin, Ethereum, and a multitude of other popular blockchains.",
+    title: "Analyzing the Project Requirements",
+    desc: "We start by deeply understanding your project's goals, functionalities, and potential areas of vulnerability to tailor our audit approach.",
   },
   {
-    title: "Manual review of the smart contract",
-    desc: "Designed by the award-winning UX expert, Sarah Simplifyer, our interface is effortless to navigate, even for crypto beginners.",
+    title: "Review & Auditing the Smart Contracts",
+    desc: "Our team meticulously reviews and audits the smart contract code, scrutinizing it for security risks, inefficiencies, and potential flaws",
   },
   {
-    title: "Execution on a test network with",
-    desc: "Stay ahead of the curve with market trends and portfolio updates, powered by our cutting-edge analytics engine led by Maya Marketseer.",
+    title: "Reporting the Findings",
+    desc: "After the audit, we compile a comprehensive report detailing our findings, including any issues identified and recommendations for addressing them",
   },
   {
-    title: "Reporting of the findings",
-    desc: "Stay ahead of the curve with market trends and portfolio updates, powered by our cutting-edge analytics engine led by Maya Marketseer.",
+    title: "Publicizing the Audit Report",
+    desc: "To foster transparency and trust within the community, we make the audit report publicly available, showcasing our commitment to security and quality.",
   },
 ];
 
@@ -34,7 +34,7 @@ const HowItWorks = () => (
     <SectionTitle
       name="How it works"
       title="How it works"
-      description="Dengan wireframe kit ini, kamu dapat mengefisiensikan pekerjaanmu."
+      description="A Peek Into Our Audit Process"
     />
     <div className="how-cards">
       {hows.map((how) => {

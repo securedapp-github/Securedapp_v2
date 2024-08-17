@@ -15,7 +15,7 @@ const solutions = [
   {
     title: "Secure Watch",
     items: [
-      "Real-time threat detection for blockchain projects",
+      "Leverage AI for Real-time threat detection for blockchain projects",
       "Machine learning for anomaly identification",
       "Customizable security measures",
     ],
@@ -24,18 +24,18 @@ const solutions = [
   {
     title: "Secure Trace",
     items: [
-      "SecureTrace empowers you to trace illicit activity across complex blockchain networks",
-      "Gain a comprehensive view of blockchain investigations with SecureTraces advanced analytics",
-      "SecureTrace always stays ahead in evolving threats",
+      "A sophisticated blockchain forensic tool ",
+      "Analyzes transaction data",
+      "Supports regulatory compliance",
     ],
     to: "",
   },
   {
     title: "SecurePad",
     items: [
-      "SecureTrace empowers you to trace illicit activity across complex blockchain networks",
-      "Gain a comprehensive view of blockchain investigations with SecureTraces advanced analytics",
-      "SecureTrace stays ahead of evolving blockchain threats.",
+      "A leading cost-free tokenization platform for a comprehensive suite of blockchain services",
+      "Enhancing versatility by allowing projects to deploy tokens across multiple blockchains",
+      "Decentralized exchange for seamless token trading",
     ],
     to: "",
   },
@@ -46,7 +46,8 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
     <div
       className={`solution-card lg:flex ${
         isImageLeft ? "lg:flex-row-reverse" : "lg:flex-row"
-      } flex-col items-center`}>
+      } flex-col items-center`}
+    >
       <div className="solution-card-content">
         <div className="solution-card-title">{title}</div>
         <ul className="solution-card-list">

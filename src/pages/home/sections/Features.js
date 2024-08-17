@@ -14,28 +14,28 @@ const Features = () => {
   const featureData = [
     {
       id: 0,
-      title: "Ad-hoc reporting",
-      desc: "Facilitate real-time collaboration among team members with chat and messaging features and Share files and documents securely within the platform.",
+      title: "Vulnerability Detection",
+      desc: "Scans for over 150+ types of vulnerabilities to ensure robust security.",
     },
     {
       id: 1,
-      title: "Interactive dashboards",
-      desc: "Facilitate real-time collaboration among team members with chat and messaging features and Share files and documents securely within the platform.",
+      title: "Detects Unusual Deviations",
+      desc: "Tracks your smart contract's activities to spot any unusual behavior or deviations that might signal potential threats.",
     },
     {
       id: 2,
-      title: "Data drill-down and exploration",
-      desc: "Facilitate real-time collaboration among team members with chat and messaging features and Share files and documents securely within the platform.",
+      title: "Oversight of Transactions",
+      desc: "Keeps a close watch on blockchain transactions to quickly flag suspicious or unauthorized actions.",
     },
     {
       id: 3,
-      title: "Scheduled reports and alerts",
-      desc: "Facilitate real-time collaboration among team members with chat and messaging features and Share files and documents securely within the platform.",
+      title: "Forensic Techniques",
+      desc: "Employs specialized blockchain forensic techniques to delve deeply into transaction histories and uncover hidden connections related to fraudulent schemes.",
     },
     {
       id: 4,
-      title: "Data exports and sharing",
-      desc: "Facilitate real-time collaboration among team members with chat and messaging features and Share files and documents securely within the platform.",
+      title: "Regulatory Compliance",
+      desc: "Supports regulatory compliance by providing tools that streamline investigative workflows.",
     },
   ];
 
@@ -43,12 +43,12 @@ const Features = () => {
     <div className="features features-background">
       <SectionTitle
         name="Why ScureDApp"
-        title="SecureDApp for Your Blockchain Security Needs"
+        title="Trust SecureDApp for Your Blockchain Security Journey"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />
-      <div className="flex lg:flex-row flex-col justify-between items-center px-4 lg:px-0 lg:items-stretch space-y-8 lg:space-y-0 lg:space-x-12">
+      <div className="features-container-left-right">
         <div className="feature-left">
-          <div className="features-container flex flex-col">
+          <div className="features-container">
             {featureData.map((feature) => {
               const isSelected = detail === feature.id;
               return (
@@ -66,7 +66,7 @@ const Features = () => {
                       <div className="font-light">{feature["title"]}</div>
                     )}
                     {detail === feature["id"] && (
-                      <div>
+                      <div style={{ width: "100%" }}>
                         <FontAwesomeIcon
                           icon={faCrown}
                           className="feature-card-icon"

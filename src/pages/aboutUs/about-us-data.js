@@ -30,12 +30,12 @@ const teamData = [
 ];
 
 export const companyCulture = [
-  "Fast Delivery",
-  "Communication is the Key",
-  "Hungry for Explorations",
-  "Weekly Evaluation",
-  "Teamwork Always",
-  "Update for the Trend",
+  "Honesty",
+  "Modesty",
+  "Pushing Boundaries",
+  "Transparency",
+  "Ethical Standards",
+  "Hungry for Exploration",
 ];
 
 export default teamData;

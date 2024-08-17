@@ -33,7 +33,7 @@
   @apply py-4 flex flex-col-reverse lg:flex-row justify-between items-center;
 }
 .benefits-body-content {
-  @apply lg:w-3/5 grid grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:gap-y-32;
+  @apply lg:w-3/5 grid grid-cols-1 lg:grid-cols-2 lg:gap-6 lg:gap-y-20;
 }
 
 .benefits-body-image {
@@ -48,7 +48,7 @@
 }
 
 .how-it-works-section {
-  @apply px-4 pb-8 lg:pb-16 lg:px-16 grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-4;
+  @apply flex flex-wrap justify-center gap-x-10 gap-y-10;
 }
 .how-it-works-section-end-image {
   @apply lg:col-span-2;

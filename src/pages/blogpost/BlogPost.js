@@ -269,14 +269,16 @@ const BlogPost = () => {
                       blogDetails.title
                     )}&url=${window.location.origin}${encodeURIComponent(
                       +"/" + url
-                    )}`}>
+                    )}`}
+                  >
                     <i className="fa-brands fa-square-x-twitter" />
                   </a>
                   <a
                     target="_blank"
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${
                       window.location.origin
-                    }${+"/" + url}`}>
+                    }${+"/" + url}`}
+                  >
                     <i className="fa-brands fa-linkedin" />
                   </a>
                   <a
@@ -285,7 +287,8 @@ const BlogPost = () => {
                       window.location.origin
                     }${encodeURIComponent(
                       +"/" + url
-                    )}&text=${encodeURIComponent(blogDetails.title)}`}>
+                    )}&text=${encodeURIComponent(blogDetails.title)}`}
+                  >
                     <i className="fa-brands fa-telegram" />
                   </a>
                   <i

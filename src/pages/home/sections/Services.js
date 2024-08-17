@@ -10,55 +10,107 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import { getHomeSelector } from "../../../redux/slices/main/homeSlice";
 
 const servicesData = [
   {
     id: 0,
     title: "DApp Development",
-    name: "Plan, execute, and track projects of any size",
-    desc: "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
+    name: "DApp Development Service",
+    desc: "Focus on blockchain application development, from building applications from the ground up to providing consultancy and ongoing support. Our no-code platform ensures your decentralized applications are secure, efficient, and transformative for your business",
     alt: "",
     to: "",
   },
   {
     id: 1,
     title: "Dapp Security",
-    name: "Plan, execute, and track projects of any size",
-    desc: "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
+    name: "DApp Security Audit",
+    desc: "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. We focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
     alt: "",
     to: "",
   },
   {
     id: 2,
-    title: "Web3 KYC",
-    name: "Plan, execute, and track projects of any size",
-    desc: "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
+    title: "Smart Contract Audit",
+    name: "Smart Contract Audit",
+    desc: "Focus on delivering top-notch smart contract audit services at competitive prices. Our smart contract audit is dedicated to ensuring the security and reliability of your smart contracts.",
     alt: "",
     to: "",
   },
   {
     id: 3,
-    title: "Blockchain Forensic",
-    name: "Plan, execute, and track projects of any size",
-    desc: "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
+    title: "Token Audit",
+    name: "Token Audit",
+    desc: "Token audits are crucial for technical robustness and regulatory compliance. With a token audit, protect your assets and investors from threats like DDoS attacks, reentrancy, overflows, and flash loan exploits.",
     alt: "",
     to: "",
   },
   {
     id: 4,
-    title: "Crypto Compliance & AML",
-    name: "Plan, execute, and track projects of any size",
-    desc: "Easily assign tasks and prioritize what's most important to your team. Track your team's progress, set project timelines, and manage their work all in one place.",
+    title: "Web 3.0 KYC",
+    name: "Web 3.0 KYC",
+    desc: "As we approach a new digital era, it's essential to reimagine KYC for Web 3.0. Decentralized KYC solutions empower users by giving them control over their data",
     alt: "",
     button: "",
+  },
+  {
+    id: 5,
+    title: "Web 3.0 Security",
+    name: "Web 3.0 Security",
+    desc: "As Web 3.0 advances, a thorough risk assessment is essential to safeguard your business and unlock its full potential. We assist in protecting your smart contracts, NFTs, and DApp with our high-tech security expertise.",
+    alt: "",
+    to: "",
+  },
+  {
+    id: 6,
+    title: "Blockchain Forensics",
+    name: "Blockchain Forensics",
+    desc: "Using our blockchain forensics tools, investigators can trace the movement of funds, detect illicit transactions, and identify suspicious behavior and individuals involved in illegal activities",
+    alt: "",
+    to: "",
+  },
+  {
+    id: 7,
+    title: "RWA Audit",
+    name: "RWA Audit",
+    desc: "Now is the time for early adopters and forward-thinking investors to explore the real-world asset tokenization audit for better transparency and liquidity and seize the unique business opportunity from the ground up.",
+    alt: "",
+    to: "",
+  },
+  {
+    id: 8,
+    title: "Crypto compliance and AML",
+    name: "Crypto compliance and AML",
+    desc: "Top-tier crypto compliance consulting tailored to your unique needs. Understand the complexities of cryptocurrency regulations and get customized strategies to ensure your business adheres to all legal requirements.",
+    alt: "",
+    to: "",
+  },
+  {
+    id: 9,
+    title: "Decentralized Identity (DID)",
+    name: "Decentralized Identity (DID)",
+    desc: "Incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards",
+    alt: "",
+    button: "",
+  },
+  {
+    id: 10,
+    title: "NFT Development",
+    name: "NFT Development",
+    desc: "Offering top-notch NFT development services has significantly impacted the blockchain world, with applications in digital art, gaming, and more.",
+    alt: "",
+    to: "",
+  },
+  {
+    id: 11,
+    title: "DeFi Development",
+    name: "DeFi Development",
+    desc: "DeFi is evolving rapidly compared to centralized finance systems, with new applications emerging frequently. We specialize in crafting innovative DeFi solutions tailored to your needs, whether offering or receiving financial services.",
+    alt: "",
+    to: "",
   },
 ];
 
 const Services = () => {
-  const { isLargeScreen } = useSelector(getHomeSelector);
-
   const [selectedService, setService] = useState(0);
   let sliderRef = useRef(null);
 
@@ -111,7 +163,7 @@ const Services = () => {
     arrows: false,
     accessibility: true,
     centerPadding: "0",
-    slidesToShow: 1,
+    slidesToShow: 5,
     lazyLoad: "progressive",
     slidesToScroll: 1,
     speed: 500,
@@ -121,6 +173,32 @@ const Services = () => {
     beforeChange: (current, next) => {
       setService(next);
     },
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -130,41 +208,23 @@ const Services = () => {
         title="Services Provided by us"
         description="Dengan wireframe kit ini, kamu dapat mengefisiensikan pekerjaanmu."
       />
-      {isLargeScreen ? (
-        <div className="services-navbar">
+      <div className="services-mobile-navbar">
+        <PreviousArrow />
+        <Slider ref={sliderRef} className="w-full" {...slickSettings}>
           {servicesData.map((service, index) => {
             return (
               <div
                 onClick={() => setService(index)}
-                className={`services-navbar-item ${
-                  service.id === selectedService && "selected-navbar"
-                } ${service.id === 0 && "first-navbar"} ${
-                  service.id === servicesData.length - 1 && "last-navbar"
+                className={`services-mobile-navbar-item ${
+                  service.id === selectedService && "selected-mobile-navbar"
                 }`}>
                 {service.title}
               </div>
             );
           })}
-        </div>
-      ) : (
-        <div className="services-mobile-navbar">
-          <PreviousArrow />
-          <Slider ref={sliderRef} className="w-full" {...slickSettings}>
-            {servicesData.map((service, index) => {
-              return (
-                <div
-                  onClick={() => setService(index)}
-                  className={`services-mobile-navbar-item ${
-                    service.id === selectedService && "selected-mobile-navbar"
-                  }`}>
-                  {service.title}
-                </div>
-              );
-            })}
-          </Slider>
-          <NextArrow />
-        </div>
-      )}
+        </Slider>
+        <NextArrow />
+      </div>
       <div className="services-content">
         <div className="services-content-left">
           <div className="services-content-left-title">
@@ -179,7 +239,7 @@ const Services = () => {
         </div>
         <div className="services-content-right">
           <img
-            src={`/assets/images/services-${selectedService}.svg`}
+            src={`/assets/images/services-homepage/${selectedService}.svg`}
             alt={servicesData[selectedService].alt}
           />
         </div>
