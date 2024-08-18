@@ -1,9 +1,11 @@
 import "./CustomButton.css";
 
-const CustomButton = ({ text, onClick = () => {} }) => {
+const CustomButton = ({ className, text, onClick = () => {} }) => {
   return (
     <div onClick={onClick} className="sss-custom-button-container">
-      <button className="sss-custom-button">{text}</button>
+      <button className={`rounded-xl bg-tertiary text-white ${className}`}>
+        {text}
+      </button>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { getCommonSelector, setSideBar } from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import CustomDivider from "../common/CustomDivider";
 
 const Header = () => {
   const { showSideBar } = useSelector(getCommonSelector);
@@ -57,10 +58,11 @@ const Header = () => {
             />
           </div>
           <div className="sss-header-right-button">
-            <CustomButton text={"Scan Now"} />
+            <CustomButton className={"w-[125px] px-3 py-2"} text={"Scan Now"} />
           </div>
         </div>
       </div>
+      <CustomDivider classname={"w-full"} />
     </div>
   );
 };

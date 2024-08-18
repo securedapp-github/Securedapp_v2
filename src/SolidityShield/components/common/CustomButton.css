@@ -1,7 +1,6 @@
 .sss-custom-button-container {
-  @apply w-[125px];
+  @apply w-full flex items-center justify-center;
 }
 
 .sss-custom-button {
-  @apply rounded-xl w-full px-3 py-2 bg-tertiary text-white;
 }

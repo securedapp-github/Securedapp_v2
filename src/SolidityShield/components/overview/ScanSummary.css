@@ -1,0 +1,91 @@
+.sss-overview-scan-summary-container {
+  @apply p-5;
+}
+
+.sss-overview-scan-summary-header {
+  @apply w-full flex justify-between items-end;
+}
+
+.sss-overview-scan-summary-header-left {
+  @apply flex flex-col gap-y-1;
+}
+
+.sss-overview-scan-summary-header-left-desc {
+  @apply text-xs text-[#969BA0] font-light;
+}
+
+.sss-overview-scan-summary-header-right {
+  @apply flex;
+}
+
+.sss-overview-scan-summary-header-right-item-container {
+  @apply flex flex-col gap-y-2 cursor-pointer items-center justify-end;
+}
+
+.sss-overview-scan-summary-header-right-item {
+  @apply mx-3 text-sm text-[#969BA0];
+}
+
+.sss-scan-summary-selected-date-filter {
+  @apply text-[#EA7A9A];
+}
+
+.sss-scan-summary-date-filter-under {
+  @apply w-full h-[1px] bg-[#E5EAEF];
+}
+
+.sss-scan-summary-date-filter-under-selected {
+  @apply h-[2px] bg-[#EA7A9A];
+}
+
+.sss-scan-summary-body {
+  @apply py-8 w-full flex gap-x-5 items-center justify-between;
+}
+
+.sss-scan-summary-body-chart-container {
+  @apply w-5/12;
+}
+
+.sss-scan-summary-progress-value-container {
+  @apply h-28 w-28 flex items-center justify-center shadow-xl rounded-full;
+}
+
+.sss-scan-summary-progress-value {
+  @apply font-semibold text-3xl p-4;
+}
+
+.sss-scan-summary-body-result {
+  @apply px-4 gap-y-6 w-full h-full flex flex-col items-center justify-center;
+}
+
+.sss-scan-summary-body-result-title {
+  @apply text-lg font-semibold;
+}
+
+.sss-scan-summary-body-result-description {
+  @apply font-light text-sm text-center;
+}
+
+.sss-scan-summary-body-result-button {
+  @apply w-full flex items-center justify-center;
+}
+
+.sss-scan-summary-body-footer {
+  @apply flex items-center justify-between gap-x-3;
+}
+
+.sss-figure-component-container {
+  @apply flex-1 border border-[#F2F2F2] rounded-lg;
+}
+
+.sss-figure-component {
+  @apply p-3;
+}
+
+.sss-figure-component-figure {
+  @apply font-semibold text-xl;
+}
+
+.sss-figure-component-text {
+  @apply text-sm text-[#969BA0];
+}

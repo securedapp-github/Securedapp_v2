@@ -34,7 +34,7 @@
 }
 
 .sss-header-right-calendar {
-  @apply flex gap-x-2 text-[#404040];
+  @apply flex items-center justify-center gap-x-2 text-[#404040];
 }
 
 .sss-header-right-notifications {

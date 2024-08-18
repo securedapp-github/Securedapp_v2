@@ -3,5 +3,5 @@
 }
 
 .sss-product-with-header {
-  @apply w-full;
+  @apply w-full bg-[#FAFAFA];
 }
