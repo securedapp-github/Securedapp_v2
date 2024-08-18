@@ -1,5 +1,6 @@
 import Header from "../../components/header/Header";
 import ChartCard from "../../components/overview/ChartCard";
+import IssuesChart from "../../components/overview/IssuesChart";
 import ScanSummary from "../../components/overview/ScanSummary";
 import Sidebar from "../../components/sidebar/Sidebar";
 import "./Overview.css";
@@ -18,7 +19,7 @@ const OverviewScreen = () => {
             <div className="sss-overview-body">
               <div className="sss-overview-top-cards">
                 <ScanSummary />
-                <ChartCard>Issues</ChartCard>
+                <IssuesChart />
               </div>
               <div className="sss-overview-bottom-cards"></div>
             </div>
