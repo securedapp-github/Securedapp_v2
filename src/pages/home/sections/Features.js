@@ -56,12 +56,14 @@ const Features = () => {
                   <div
                     className={`vertical-scroll ${
                       isSelected && "vertical-scroll-selected"
-                    }`}></div>
+                    }`}
+                  ></div>
                   <div
-                    className={`feature-card ${
+                    className={`feature-card-home ${
                       isSelected && "feature-card-selected"
                     }`}
-                    onClick={() => selectFeatureCard(feature["id"])}>
+                    onClick={() => selectFeatureCard(feature["id"])}
+                  >
                     {detail !== feature["id"] && (
                       <div className="font-light">{feature["title"]}</div>
                     )}

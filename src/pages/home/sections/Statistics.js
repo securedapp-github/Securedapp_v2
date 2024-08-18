@@ -25,7 +25,7 @@ const Counter = ({ endValue }) => {
 
 const Statitics = () => {
   return (
-    <div className="statistics">
+    <div data-aos="fade-up" className="statistics">
       <div className="grid grid-col grid-cols-1 lg:grid-cols-3 gap-4">
         <StatisticsCard
           unit=""
