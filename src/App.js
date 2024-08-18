@@ -31,6 +31,8 @@ import {
   setIsLargeScreen,
 } from "./redux/slices/main/homeSlice";
 import { useSelector } from "react-redux";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +43,7 @@ function App() {
       dispatch(setIsLargeScreen(window.innerWidth >= 1024));
     };
     handleResize();
+    AOS.init();
     window.addEventListener("resize", handleResize);
 
     return () => {
