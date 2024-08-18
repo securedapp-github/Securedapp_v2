@@ -1,13 +1,13 @@
 .sss-sidebar-container {
-  @apply h-screen w-[25%] border-r border-[#E5EAEF] shadow-lg;
+  @apply fixed md:relative h-screen w-2/3 sm:w-2/4 md:max-w-[25%] border-r border-[#E5EAEF] shadow-lg;
 }
 
 .sss-sidebar {
-  @apply py-4 font-poppins;
+  @apply py-4 font-poppins bg-white;
 }
 
 .sss-sidebar-header {
-  @apply px-4 w-full flex justify-between;
+  @apply px-5 w-full flex justify-between;
 }
 
 .sss-sidebar-header-logo {
@@ -30,10 +30,14 @@
   @apply w-full text-[#B2ABAB];
 }
 
+.selected-sss-sidebar-item {
+  @apply text-[#12D576];
+}
+
 .sss-sidebar-item-container:hover {
-  @apply bg-[#F8F9FA];
+  @apply bg-[#F8F9FA] cursor-pointer;
 }
 
 .sss-sidebar-item {
-  @apply w-full flex gap-x-4 mx-4 my-3;
+  @apply w-full flex gap-x-4 px-4 my-3;
 }

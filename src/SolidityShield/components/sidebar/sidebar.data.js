@@ -1,26 +1,32 @@
+import { ReactComponent as HistoryLogo } from "./images/sidebar-history.svg";
+import { ReactComponent as LogoutLogo } from "./images/sidebar-logout.svg";
+import { ReactComponent as OverviewLogo } from "./images/sidebar-overview.svg";
+import { ReactComponent as SettingsLogo } from "./images/sidebar-settings.svg";
+import { ReactComponent as VulnerabilityLogo } from "./images/sidebar-vulnerability.svg";
+
 export const sidebarItems = [
   {
-    image: "/assets/images/solidity-shield-scan/sidebar-overview.svg",
+    image: OverviewLogo,
     name: "Overview",
   },
   {
-    image: "/assets/images/solidity-shield-scan/sidebar-history.svg",
+    image: HistoryLogo,
     name: "History",
   },
   {
-    image: "/assets/images/solidity-shield-scan/sidebar-vulnerability.svg",
+    image: VulnerabilityLogo,
     name: "Vulnerability Scans",
   },
   {
-    image: "/assets/images/solidity-shield-scan/sidebar-settings.svg",
+    image: SettingsLogo,
     name: "Audit Certificate",
   },
   {
-    image: "/assets/images/solidity-shield-scan/sidebar-settings.svg",
+    image: SettingsLogo,
     name: "Settings",
   },
   {
-    image: "/assets/images/solidity-shield-scan/sidebar-logout.svg",
+    image: LogoutLogo,
     name: "Log Out",
   },
 ];

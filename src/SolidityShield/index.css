@@ -1,3 +1,7 @@
 .sss-product {
-    @apply w-full flex gap-x-12;
+  @apply w-full md:flex;
+}
+
+.sss-product-with-header {
+  @apply w-full;
 }
