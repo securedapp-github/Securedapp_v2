@@ -7,12 +7,22 @@ import {
   getHomeSelector,
   setIsRequestModalOpen,
 } from "../../redux/slices/main/homeSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const services = [
+  "Dapp Development",
   "Smart Contract Audit",
-  "Smart Contract Development",
-  "DAPP Development",
-  "Tokenomics Consultation",
+  "Dapp Security Audit",
+  "Token Audit",
+  "Web3 KYC",
+  "Web3 security",
+  "Blockchain Forensic",
+  "RWA Audit",
+  "Crypto Compliance & AMl",
+  "Decentralized Identity (DID)",
+  "NFTs Development",
+  "DeFi Development",
 ];
 
 const RequestQuoteModal = () => {
@@ -30,6 +40,8 @@ const RequestQuoteModal = () => {
 
   const [email, setEmail] = useState("");
   const [emailWarning, setEmailWarning] = useState("");
+
+  const [message, setMessage] = useState("");
 
   const onFullNameChange = (e) => {
     const value = e.target.value;
@@ -73,15 +85,56 @@ const RequestQuoteModal = () => {
     }
   };
 
+  const onMessageChange = (e) => {
+    const value = e.target.value;
+    setMessage(value);
+  };
+
   const closeModal = () => {
     dispatch(setIsRequestModalOpen(false));
   };
 
   if (!isRequestModalOpen) return null;
 
+  const sendMail = async ({ name, email, mobile, description, service }) => {
+    if (
+      name === "" ||
+      email === "" ||
+      service === "Choose a Service..." ||
+      mobile === ""
+    ) {
+      toast.error("Please fill in the details");
+      return;
+    }
+    fetch("https://139-59-5-56.nip.io:3443/contactMail", {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        mail: email,
+        number: mobile,
+        msg: service + "---" + description,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        toast.success("Sumbitted. Will soon reach out to you!");
+      })
+      .catch((err) => {
+        toast.error("Error in sending mail");
+      });
+  };
+
   return (
     isRequestModalOpen && (
       <div className="request-quote-modal-container">
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          theme="dark"
+          pauseOnHover
+        />
         <div className="request-quote-modal">
           <div className="request-quote-modal-close-container">
             <i
@@ -136,7 +189,8 @@ const RequestQuoteModal = () => {
               </select> */}
               <div
                 onClick={toggleDropDown}
-                className="request-quote-modal-dropdown">
+                className="request-quote-modal-dropdown"
+              >
                 <div>{selectedService}</div>
                 {dropDown && (
                   <div className="request-quote-modal-dropdown-options">
@@ -144,7 +198,8 @@ const RequestQuoteModal = () => {
                       return (
                         <div
                           onClick={() => setSelectedService(service)}
-                          className="request-quote-modal-dropdown-option-container">
+                          className="request-quote-modal-dropdown-option-container"
+                        >
                           <div className="request-quote-modal-dropdown-option">
                             {service}
                           </div>
@@ -168,7 +223,10 @@ const RequestQuoteModal = () => {
               </div>
             </div>
             <div className="request-quote-modal-textarea-container">
-              <textarea className="request-quote-modal-textarea"></textarea>
+              <textarea
+                onChange={onMessageChange}
+                className="request-quote-modal-textarea"
+              ></textarea>
             </div>
             <div className="request-quote-modal-checkbox-container">
               <input type="checkbox" />
@@ -178,7 +236,8 @@ const RequestQuoteModal = () => {
                   className="text-[#A4CDFF] font-bold"
                   target="_blank"
                   href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-                  rel="noreferrer">
+                  rel="noreferrer"
+                >
                   Privacy Policy
                 </a>{" "}
                 and information being used to contact me
@@ -190,7 +249,19 @@ const RequestQuoteModal = () => {
             </div>
           </div>
           <div className="request-quote-modal-button-container">
-            <Button className="w-1/4" text={"Submit"} />
+            <Button
+              onClick={async () => {
+                await sendMail({
+                  name: fullName,
+                  email: email,
+                  number: mobileNumber,
+                  service: selectedService,
+                  description: message,
+                });
+              }}
+              className="w-1/4"
+              text={"Submit"}
+            />
           </div>
         </div>
       </div>
