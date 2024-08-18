@@ -8,6 +8,13 @@ import {
   setIsRequestModalOpen,
 } from "../../redux/slices/main/homeSlice";
 
+const services = [
+  "Smart Contract Audit",
+  "Smart Contract Development",
+  "DAPP Development",
+  "Tokenomics Consultation",
+];
+
 const RequestQuoteModal = () => {
   const dispatch = useDispatch();
   const { isRequestModalOpen } = useSelector(getHomeSelector);
@@ -18,7 +25,8 @@ const RequestQuoteModal = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [mobileNumberWarning, setMobileNumberWarning] = useState("");
 
-  const [selectedService, setSelectedService] = useState("");
+  const [selectedService, setSelectedService] = useState("Choose a Service...");
+  const [dropDown, setDropDown] = useState(false);
 
   const [email, setEmail] = useState("");
   const [emailWarning, setEmailWarning] = useState("");
@@ -47,6 +55,10 @@ const RequestQuoteModal = () => {
 
   const handleSelectedService = (e) => {
     setSelectedService(e.target.value);
+  };
+
+  const toggleDropDown = () => {
+    setDropDown(!dropDown);
   };
 
   const onEmailChange = (e) => {
@@ -106,7 +118,7 @@ const RequestQuoteModal = () => {
               </div>
             </div>
             <div className="request-quote-modal-dropdown-container">
-              <select
+              {/* <select
                 value={selectedService}
                 onChange={handleSelectedService}
                 className="request-quote-modal-dropdown">
@@ -121,7 +133,27 @@ const RequestQuoteModal = () => {
                 <option value={"Tokenomics Consultation"}>
                   Tokenomics Consultation
                 </option>
-              </select>
+              </select> */}
+              <div
+                onClick={toggleDropDown}
+                className="request-quote-modal-dropdown">
+                <div>{selectedService}</div>
+                {dropDown && (
+                  <div className="request-quote-modal-dropdown-options">
+                    {services.map((service) => {
+                      return (
+                        <div
+                          onClick={() => setSelectedService(service)}
+                          className="request-quote-modal-dropdown-option-container">
+                          <div className="request-quote-modal-dropdown-option">
+                            {service}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="request-quote-modal-input-container">
               <input
