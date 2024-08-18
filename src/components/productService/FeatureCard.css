@@ -6,6 +6,10 @@
   @apply p-6 w-[300px] bg-cardBackgroundLight dark:bg-cardBackgroundDark border-2 rounded-xl border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF];
 }
 
+.feature-card-home {
+  @apply p-6 w-full mb-[15px] bg-cardBackgroundLight dark:bg-cardBackgroundDark border-2 rounded-xl border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF];
+}
+
 .feature-card-content {
   @apply pt-6 flex flex-col space-y-2 items-center;
 }
