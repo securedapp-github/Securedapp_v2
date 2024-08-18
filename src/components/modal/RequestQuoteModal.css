@@ -35,11 +35,23 @@
 }
 
 .request-quote-modal-dropdown-container {
-  @apply flex flex-col gap-y-1 h-20 justify-start;
+  @apply relative flex flex-col gap-y-1 h-20 justify-start;
 }
 
 .request-quote-modal-dropdown {
-  @apply py-2 px-4 text-secondary dark:text-primary rounded-xl border border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+  @apply cursor-pointer py-2 px-4 text-secondary dark:text-primary rounded-xl border border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.request-quote-modal-dropdown-options {
+  @apply text-sm w-full absolute left-0 text-secondary dark:text-primary rounded border border-[#A4CDFF] bg-primary dark:bg-secondary;
+}
+
+.request-quote-modal-dropdown-option-container:hover {
+  @apply border border-[#A4CDFF];
+}
+
+.request-quote-modal-dropdown-option {
+  @apply py-1 lg:py-3 px-4;
 }
 
 .request-quote-modal-dropdown-label {
