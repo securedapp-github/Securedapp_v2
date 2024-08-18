@@ -10,8 +10,6 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import { getHomeSelector } from "../../../redux/slices/main/homeSlice";
 
 const servicesData = [
   {
@@ -113,8 +111,6 @@ const servicesData = [
 ];
 
 const Services = () => {
-  const { isLargeScreen } = useSelector(getHomeSelector);
-
   const [selectedService, setService] = useState(0);
   let sliderRef = useRef(null);
 
@@ -138,8 +134,7 @@ const Services = () => {
     return (
       <div
         className="services-mobile-navbar-arrow-container"
-        onClick={moveLeft}
-      >
+        onClick={moveLeft}>
         <FontAwesomeIcon
           icon={faChevronLeft}
           size="xl"
@@ -153,8 +148,7 @@ const Services = () => {
     return (
       <div
         className="services-mobile-navbar-arrow-container"
-        onClick={moveRight}
-      >
+        onClick={moveRight}>
         <FontAwesomeIcon
           icon={faChevronRight}
           size="xl"
@@ -169,7 +163,7 @@ const Services = () => {
     arrows: false,
     accessibility: true,
     centerPadding: "0",
-    slidesToShow: 1,
+    slidesToShow: 5,
     lazyLoad: "progressive",
     slidesToScroll: 1,
     speed: 500,
@@ -179,6 +173,32 @@ const Services = () => {
     beforeChange: (current, next) => {
       setService(next);
     },
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -188,43 +208,23 @@ const Services = () => {
         title="Services Provided by us"
         description="Dengan wireframe kit ini, kamu dapat mengefisiensikan pekerjaanmu."
       />
-      {isLargeScreen ? (
-        <div className="services-navbar">
+      <div className="services-mobile-navbar">
+        <PreviousArrow />
+        <Slider ref={sliderRef} className="w-full" {...slickSettings}>
           {servicesData.map((service, index) => {
             return (
               <div
                 onClick={() => setService(index)}
-                className={`services-navbar-item ${
-                  service.id === selectedService && "selected-navbar"
-                } ${service.id === 0 && "first-navbar"} ${
-                  service.id === servicesData.length - 1 && "last-navbar"
-                }`}
-              >
+                className={`services-mobile-navbar-item ${
+                  service.id === selectedService && "selected-mobile-navbar"
+                }`}>
                 {service.title}
               </div>
             );
           })}
-        </div>
-      ) : (
-        <div className="services-mobile-navbar">
-          <PreviousArrow />
-          <Slider ref={sliderRef} className="w-full" {...slickSettings}>
-            {servicesData.map((service, index) => {
-              return (
-                <div
-                  onClick={() => setService(index)}
-                  className={`services-mobile-navbar-item ${
-                    service.id === selectedService && "selected-mobile-navbar"
-                  }`}
-                >
-                  {service.title}
-                </div>
-              );
-            })}
-          </Slider>
-          <NextArrow />
-        </div>
-      )}
+        </Slider>
+        <NextArrow />
+      </div>
       <div className="services-content">
         <div className="services-content-left">
           <div className="services-content-left-title">

@@ -14,7 +14,7 @@ const Benefits = ({ benefitsData, title, subTitle, button, img }) => {
         <div className="benefits-header-button">
           <Button
             text={"Get Started"}
-            onClick={navigate(button)}
+            onClick={() => navigate(button)}
             filled={true}
           />
         </div>

@@ -1,9 +1,9 @@
 .product-service-hero-container {
-  @apply flex flex-col justify-center items-start space-y-12;
+  @apply w-full flex flex-col justify-center items-start space-y-12;
 }
 
 .product-service-hero {
-  @apply h-full px-4 pt-20 lg:pt-28 lg:px-24 flex flex-col justify-center items-start space-y-12;
+  @apply w-full h-full px-4 pt-20 lg:pt-28 lg:px-24 flex flex-col justify-center items-start space-y-12;
 }
 
 .hero-header-title {

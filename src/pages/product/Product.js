@@ -67,12 +67,12 @@ function Product() {
                 />
               );
             })}
-            <div className="how-it-works-section-end-image">
+            {/* <div className="how-it-works-section-end-image">
               <img
                 src="/assets/images/product-1-how-it-works-1-end.svg"
                 alt="product 1 how it works end"
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <Testimonials reviews={reviews} />
