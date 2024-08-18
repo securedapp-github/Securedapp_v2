@@ -1,0 +1,7 @@
+.sss-custom-divider-container {
+
+}
+
+.sss-custom-divider {
+  @apply w-full h-[1px] border bg-[#E5EAEF];
+}

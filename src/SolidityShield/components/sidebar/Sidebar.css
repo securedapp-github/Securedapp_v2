@@ -1,0 +1,39 @@
+.sss-sidebar-container {
+  @apply h-screen w-[25%] border-r border-[#E5EAEF] shadow-lg;
+}
+
+.sss-sidebar {
+  @apply py-4 font-poppins;
+}
+
+.sss-sidebar-header {
+  @apply px-4 w-full flex justify-between;
+}
+
+.sss-sidebar-header-logo {
+  @apply w-7/12;
+}
+
+.ss-body {
+  @apply w-full flex flex-col gap-y-4;
+}
+
+.sss-body-header {
+  @apply py-6 px-4 text-[#737373];
+}
+
+.sss-body-navigation {
+  @apply flex flex-col items-center justify-center;
+}
+
+.sss-sidebar-item-container {
+  @apply w-full text-[#B2ABAB];
+}
+
+.sss-sidebar-item-container:hover {
+  @apply bg-[#F8F9FA];
+}
+
+.sss-sidebar-item {
+  @apply w-full flex gap-x-4 mx-4 my-3;
+}

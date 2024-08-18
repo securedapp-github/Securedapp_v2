@@ -5,7 +5,11 @@ const OverviewScreen = () => {
     <div className="sss-product">
       <Sidebar />
       <div className="sss-overview-screen-container">
-        <div className="sss-overview-screen"></div>
+        <div className="sss-overview-screen">
+          <div className="sss-overview-header">
+            <div className="">Dashboard</div>
+          </div>
+        </div>
       </div>
     </div>
   );

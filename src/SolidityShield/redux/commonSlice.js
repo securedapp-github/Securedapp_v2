@@ -2,6 +2,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialCommonState = {
   showSideBar: false,
+  selectedSidebarItem: "Overview",
 };
 
 const commonSlice = createSlice({
@@ -10,6 +11,9 @@ const commonSlice = createSlice({
   reducers: {
     setSideBar(state, action) {
       state.showSideBar = action.payload;
+    },
+    setSelectedSidebarItem(state, action) {
+      state.selectedSidebarItem = action.payload;
     },
   },
 });

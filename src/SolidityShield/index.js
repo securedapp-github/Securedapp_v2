@@ -17,6 +17,7 @@ import ContactUs from "./pages/contactUs/ContactUs";
 import OverviewScreen from "./pages/overview/Overview";
 import { Provider } from "react-redux";
 import { solidityShieldScanStore } from "./redux/store";
+import "./index.css";
 
 const SolidityShield = () => {
   return (
