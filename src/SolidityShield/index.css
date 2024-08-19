@@ -1,7 +1,5 @@
-
-
 .sss-product {
-  @apply w-full md:flex overflow-y-hidden;
+  @apply w-full h-screen md:flex overflow-y-auto;
 }
 
 .sss-product-with-header {

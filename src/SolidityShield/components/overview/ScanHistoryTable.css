@@ -1,0 +1,62 @@
+.sss-history-status-type-component-container {
+  @apply rounded-lg;
+}
+
+.sss-history-status-type-component-container-red {
+  @apply text-[#EA7A9A] bg-[#FFEEF3];
+}
+
+.sss-history-status-type-component-container-green {
+  @apply text-[#119C2B] bg-[#EBFFF1];
+}
+
+.sss-history-status-type-component-container-yellow {
+  @apply text-[#F6D11A] bg-[#F6D11A22];
+}
+
+.sss-history-status-type-component {
+  @apply w-full justify-center px-2 py-1 flex gap-x-2 items-center font-semibold text-sm;
+}
+
+.sss-history-table-container {
+  @apply w-full pt-8;
+}
+
+.sss-history-table {
+}
+
+.sss-history-table-header {
+  @apply w-full flex gap-x-6 text-[#84919A] text-center;
+}
+
+.sss-history-table-checkbox-container {
+  @apply w-[100px];
+}
+
+.sss-history-table-report-id-container {
+  @apply w-[300px];
+}
+
+.sss-history-table-date-container {
+  @apply w-[400px];
+}
+
+.sss-history-table-report-link-container {
+  @apply w-full text-left;
+}
+
+.sss-history-table-status-container {
+  @apply w-[300px];
+}
+
+.sss-history-table-options-container {
+  @apply w-[100px];
+}
+
+.sss-history-table-body {
+  @apply flex flex-col gap-y-5;
+}
+
+.sss-history-table-row {
+  @apply flex items-center gap-x-6 w-full text-center font-light;
+}
