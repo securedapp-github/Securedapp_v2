@@ -1,4 +1,3 @@
-import { ToastContainer, toast } from "react-toastify";
 import jsPDF from "jspdf";
 import Chart from "chart.js/auto";
 
@@ -19,12 +18,12 @@ const downloadReport = async (id) => {
       if (response.ok) {
         return response.json();
       }
-      toast("Invalid Network response ");
+      alert("Invalid Network response ");
     })
     .then((data) => {
       // if (PurchasePlan(0)) {
       //   console.log("PDF generation is not available for free plan users.");
-      //   toast("PDF generation is not available for free plan users.");
+      //   alert("PDF generation is not available for free plan users.");
       //   return;
       // }
       console.log(JSON.parse(data[0].reportdata));
@@ -50,7 +49,7 @@ const getScanHistory = async ({ userEmail }) => {
       if (response.ok) {
         return response.json();
       }
-      toast("Invalid Network Response");
+      alert("Invalid Network Response");
     })
     .then((data) => {
       // console.log(data);
@@ -102,7 +101,6 @@ const ScanSubmit = async ({
   etherscanUrl,
   chain,
   file,
-  contracts,
   credit,
   rcredit,
   email,
@@ -112,12 +110,12 @@ const ScanSubmit = async ({
   const formData = new FormData();
 
   if (inputTypes == "") {
-    toast("Please Select a source");
+    alert("Please Select a source");
     return;
   }
 
   if (companyName == "") {
-    toast("Please enter your Company Name");
+    alert("Please enter your Company Name");
     return;
   }
 
@@ -125,7 +123,7 @@ const ScanSubmit = async ({
 
   if (inputTypes.includes("github") && githubUrl) {
     if (!githubUrl) {
-      toast("Please enter the link.");
+      alert("Please enter the link.");
       return;
     }
     if (githubUrl) {
@@ -138,11 +136,11 @@ const ScanSubmit = async ({
         if (compilerVersion) {
           console.log("Compiler Version:", compilerVersion);
         } else {
-          toast("The contract is not flattened.");
+          alert("The contract is not flattened.");
           return;
         }
       } else {
-        toast("Failed to fetch contract source code.");
+        alert("Failed to fetch contract source code.");
         return;
       }
     }
@@ -150,7 +148,7 @@ const ScanSubmit = async ({
 
   if (inputTypes.includes("etherscan") && etherscanUrl) {
     if (!etherscanUrl || !chain) {
-      toast("Invlaid Chain OR Address");
+      alert("Invlaid Chain OR Address");
       return;
     } else if (etherscanUrl && chain) {
       // console.log(contractAddress);
@@ -178,23 +176,25 @@ const ScanSubmit = async ({
     formData.append("files", file);
 
     if (!file) {
-      toast.error("Please select a file.");
+      alert("Please select a file.");
       return;
     }
 
-    if (!contracts) {
-      toast.error("No contract file uploaded.");
-      return;
-    }
+    let contracts;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      contracts = event.target.result;
+    };
+    reader.readAsText(file);
 
     if (!isFlattened(contracts)) {
-      toast.error("The contract must be flattened before submission.");
+      alert("The contract must be flattened before submission.");
       return;
     }
 
     compilerVersion = detectCompilerVersion(contracts);
     if (!compilerVersion) {
-      toast.error("Could not detect the compiler version.");
+      alert("Could not detect the compiler version.");
       return;
     }
 
@@ -202,7 +202,7 @@ const ScanSubmit = async ({
   }
 
   if (rcredit < 1) {
-    toast("No Credit, Please Purchase a Plan to scan");
+    alert("No Credit, Please Purchase a Plan to scan");
     return;
   }
 
@@ -220,19 +220,18 @@ const ScanSubmit = async ({
       if (response.ok) {
         return response.json();
       }
-      toast("Invalid Network Response");
+      alert("Invalid Network Response");
     })
     .then((data) => {
       result = generateTable(data);
       // setFile(null);
-      // console.log(data);
+      console.log(result);
     })
     .catch((error) => {
       console.error("Error:", error);
     });
   return result;
-  toast.success("Awesome! The AI scan is now underway");
-  return result;
+  alert("Awesome! The AI scan is now underway");
 };
 
 const isFlattened = (contracts) => {
@@ -264,7 +263,7 @@ const detectCompilerVersion = (contracts) => {
     ? contracts.join(" ")
     : contracts;
   if (typeof contractsString !== "string") {
-    toast("Invalid Contract");
+    alert("Invalid Contract");
   }
 
   const matches = contractsString.match(
@@ -312,11 +311,11 @@ const fetchContractSourceCode = async (contractAddress, _chain) => {
     if (data.status == "1" && data.result.length > 0) {
       return data.result[0].SourceCode;
     } else {
-      toast("Error fetching source code");
+      alert("Error fetching source code");
       return false;
     }
   } catch (error) {
-    toast("Error fetching source code");
+    alert("Error fetching source code");
     console.error("Error fetching contract source code:", error);
     return false;
   }
@@ -332,7 +331,7 @@ const githuburlfetch = async (repoUrl, companyName) => {
 
     const response = await fetch(rawUrl);
     if (!response.ok) {
-      toast("Failed to fetch file");
+      alert("Failed to fetch file");
     }
     const content = await response.text();
     // console.log(content);

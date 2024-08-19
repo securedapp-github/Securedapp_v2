@@ -468,6 +468,7 @@ const SolidityShield0 = () => {
       setFile(null);
       setcontracts("");
     }
+    console.log(contracts);
   };
 
   const sendOTP = async () => {
@@ -755,10 +756,10 @@ const SolidityShield0 = () => {
       console.log(`Compiler version: ${compilerVersion}`);
     }
 
-    if (rcredit < 1) {
-      toast("No Credit, Please Purchase a Plan to scan");
-      return;
-    }
+    // if (rcredit < 1) {
+    //   toast("No Credit, Please Purchase a Plan to scan");
+    //   return;
+    // }
 
     setLoading(true);
     formData.append("mail", email);
@@ -781,7 +782,7 @@ const SolidityShield0 = () => {
         setShowScanResult(true);
         generateTable(data);
         // setFile(null);
-        // console.log(data);
+        console.log(data);
         if (credit > 1 && rcredit > 1) {
           generatePDF(data);
         }
