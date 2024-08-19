@@ -591,7 +591,7 @@ const SolidityShield0 = () => {
         toast("Invlaid Network Response - verify otp");
       })
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         if (data.length == 0) toast("Wrong OTP");
         let userdata = data[0];
 

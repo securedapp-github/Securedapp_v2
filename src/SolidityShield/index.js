@@ -24,7 +24,15 @@ const SolidityShield = () => {
     <Provider store={solidityShieldScanStore}>
       <div>
         <Routes>
-          <Route path="/" element={<div>Solidity Shield Scan</div>} />
+          <Route
+            path="/"
+            element={
+              <div>
+                Solidity Shield Scan
+                <SolidityShield0 />
+              </div>
+            }
+          />
           <Route path="overview" element={<OverviewScreen />} />
           <Route path="auth" element={<AuthScreen />} />
           <Route path="login" element={<LoginScreen />} />

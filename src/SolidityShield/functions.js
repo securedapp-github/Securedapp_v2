@@ -1,9 +1,107 @@
+import axios from "axios";
 import jsPDF from "jspdf";
 import Chart from "chart.js/auto";
+import CryptoJS from "crypto-js";
+import { toast } from "react-toastify";
+import { getUserData, login } from "../SolidityShield/redux/auth/authSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const logo = "/assets/images/securedapp_logo.svg";
 
-const downloadReport = async (id) => {
+export const sendOTP = async ({ email, dispatch, selector }) => {
+  const user = selector;
+
+  if (email == "") {
+    toast.error("Invalid Email, Try again");
+    return;
+  }
+  fetch("https://139-59-5-56.nip.io:3443/sendOtp2", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: email,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => {
+      res.status === 200 && toast.success("OTP Send Successfully, Check Mail");
+    })
+    .catch((err) => {
+      console.log(err.message);
+      toast("Error in sending OTP, Try again");
+    });
+};
+
+export const verifyOTP = async ({ email, otp, dispatch }) => {
+  fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: email,
+      otp: otp,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      toast.error("Invlaid Network Response: verify otp");
+    })
+    .then((data) => {
+      //console.log(data);
+      if (data.length == 0) toast("Wrong OTP");
+      let userdata = data[0];
+
+      let plandetail = "Free Plan";
+      if (userdata.plan == 1) {
+        plandetail = "Basic Plan";
+      }
+      if (userdata.plan == 2) {
+        plandetail = "Premium Plan";
+      }
+      if (userdata.plan == 3) {
+        plandetail = "Exclusive Plan";
+      }
+
+      const jwt = CryptoJS.AES.encrypt(
+        JSON.stringify(email),
+        "secretKey123"
+      ).toString();
+      sessionStorage.setItem("session_user", jwt);
+
+      dispatch(
+        login({
+          email: userdata.email,
+          credits: userdata.credit,
+          remainingCredits: userdata.rcredit,
+          plan: userdata.plan,
+          planName: plandetail,
+          planExpiry: userdata.planexpiry,
+          firstName: "First Name",
+          lastName: "Last Name",
+          jwt: jwt,
+          companyName: "Company Name",
+        })
+      );
+
+      toast.success("Login Successful!");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      toast.error("Unable to login. Please try again!");
+    });
+};
+
+export const logout = () => {
+  sessionStorage.removeItem("session_user");
+  window.location.reload();
+};
+
+export const downloadReport = async (id) => {
   fetch("https://139-59-5-56.nip.io:3443/getReport", {
     method: "POST",
     body: JSON.stringify({
@@ -34,7 +132,7 @@ const downloadReport = async (id) => {
     });
 };
 
-const getScanHistory = async ({ userEmail }) => {
+export const getScanHistory = async ({ userEmail }) => {
   let result;
   fetch("https://139-59-5-56.nip.io:3443/getHistory", {
     method: "POST",
@@ -61,7 +159,7 @@ const getScanHistory = async ({ userEmail }) => {
   return result;
 };
 
-function generateTable(data) {
+export function generateTable(data) {
   let finding_names = [
     "high_issues",
     "medium_issues",
@@ -94,7 +192,7 @@ function generateTable(data) {
   };
 }
 
-const ScanSubmit = async ({
+export const ScanSubmit = async ({
   inputTypes,
   companyName,
   githubUrl,
@@ -321,7 +419,7 @@ const fetchContractSourceCode = async (contractAddress, _chain) => {
   }
 };
 
-const githuburlfetch = async (repoUrl, companyName) => {
+export const githuburlfetch = async (repoUrl, companyName) => {
   try {
     let rawUrl = repoUrl;
     if (repoUrl.includes("/blob/")) {
@@ -348,7 +446,7 @@ const githuburlfetch = async (repoUrl, companyName) => {
   }
 };
 
-const PurchasePlan = async (planid, email) => {
+export const PurchasePlan = async (planid, email) => {
   const { v4: uuidv4 } = require("uuid");
 
   let cost = 0;
@@ -416,13 +514,13 @@ function formatDate(dateString) {
   return ` ${day}${suffix} ${month} ${year}`;
 }
 
-const generatePDF = async (reportData) => {
+export const generatePDF = async (reportData) => {
   try {
     console.log("Starting PDF generation");
     console.log("Report Data:", reportData);
 
     const date = formatDate(reportData.date);
-    // const logo = logo;
+    //  const logo = logo;
     const pdf = new jsPDF("p", "mm", "a4");
     const linePositionY = 25;
 
@@ -570,7 +668,7 @@ const generatePDF = async (reportData) => {
     }
 
     // Create an array of vulnerability analysis details
-    // const vulnerabilityAnalysis = [
+    //  const vulnerabilityAnalysis = [
     //   { type: "CRITICAL", issue: "Unencrypted Sensitive Data in Session Storage", recommendation: "Store keys in environment variables and use secure methods to handle sensitive data." },
     //   { type: "CRITICAL", issue: "Weak Encryption Method", recommendation: "Use a more secure key management system and ensure encryption keys are kept secret." },
     //   { type: "MEDIUM", issue: "Insecure API Endpoints", recommendation: "Store API endpoints in environment variables and ensure they are not exposed in the client-side code." },
@@ -668,7 +766,7 @@ const generatePDF = async (reportData) => {
       "array-by-reference: Modifying storage arrays by value rather than reference can lead to unexpected behavior or data corruption, hence posing a high risk.",
       "encode-packed-collision: This error highlights a collision in the ABI encoding process, which can result in incorrect interpretation of function calls or data manipulation, posing a high risk to contract integrity.",
       "incorrect-shift: Incorrect order of parameters in a shift instruction can lead to unintended behavior or vulnerabilities, posing a high risk.",
-      "multiple-constructors: Having multiple constructor schemes can lead to confusion or unexpected behavior during contract deployment, hence posing a high risk.",
+      "multiple- constructors: Having multiple  constructor schemes can lead to confusion or unexpected behavior during contract deployment, hence posing a high risk.",
       "name-reused: Reusing a contract's name can lead to ambiguity or confusion, posing a high risk due to potential misunderstandings or unintended interactions",
       "protected-vars: Unprotected variables can be manipulated by unauthorized parties, posing a high risk to data integrity and security.",
       "public-mappings-nested: Public mappings with nested variables can expose sensitive data to unauthorized access, posing a high risk to data privacy and integrity.",
@@ -679,7 +777,7 @@ const generatePDF = async (reportData) => {
       "solc-version: Incorrect Solidity version is categorized as informational as it provides insights into the usage of incorrect Solidity versions within the contract, which can aid in ensuring compatibility or adherence to best practices.",
       "naming-convention: Conformity to Solidity naming conventions is categorized as informational as it provides insights into adherence to Solidity naming conventions within the contract, which can aid in code readability or maintainability.",
       "codex: While not posing a direct security risk, utilizing Codex to find vulnerabilities is a recommended practice for improving contract security. This error is categorized as high severity due to its importance in vulnerability detection.",
-      "uninitialized-fptr-cst: Uninitialized function pointer calls in constructors pose a low risk as they can lead to issues with contract initialization or unexpected behavior related to function pointer assignments.",
+      "uninitialized-fptr-cst: Uninitialized function pointer calls in  constructors pose a low risk as they can lead to issues with contract initialization or unexpected behavior related to function pointer assignments.",
       "uninitialized-state: Uninitialized state variables pose a high risk as they can lead to unpredictable behavior or vulnerabilities in the contract's logic or storage state.",
       "uninitialized-storage: Similarly, uninitialized storage variables pose a high risk as they can lead to unpredictable behavior or vulnerabilities related to the contract's storage state.",
       "unprotected-upgrade: Unprotected upgradeable contracts pose a high risk as they can be vulnerable to unauthorized modifications or upgrades, potentially leading to unexpected behavior or security breaches.",
@@ -706,13 +804,13 @@ const generatePDF = async (reportData) => {
       "tautological-compare: Comparing a variable to itself always returns true or false, depending on comparison, posing a medium risk due to potential issues with logic or unintended consequences.",
       "tautology: Tautology or contradiction poses a medium risk as it can lead to issues with logic or unintended consequences due to redundant or contradictory statements.",
       "write-after-write: Unused write poses a medium risk as it can lead to inefficient or unnecessary operations, potentially affecting contract performance or gas usage.",
-      "boolean-cst: Misuse of Boolean constant poses a medium risk as it can lead to issues with logic or unintended consequences due to incorrect or inconsistent usage of Boolean values.",
-      "constant-function-asm: Constant functions using assembly code pose a medium risk as they can lead to issues with portability or compatibility with different EVM implementations or Solidity versions.",
-      "constant-function-state: Constant functions changing the state pose a medium risk as they can lead to unexpected or unintended changes to contract state, potentially affecting contract behavior or security.",
+      "boolean-cst: Misuse of Boolean  constant poses a medium risk as it can lead to issues with logic or unintended consequences due to incorrect or inconsistent usage of Boolean values.",
+      " constant-function-asm:  constant functions using assembly code pose a medium risk as they can lead to issues with portability or compatibility with different EVM implementations or Solidity versions.",
+      " constant-function-state:  constant functions changing the state pose a medium risk as they can lead to unexpected or unintended changes to contract state, potentially affecting contract behavior or security.",
       "divide-before-multiply: Imprecise arithmetic operations order poses a medium risk as it can lead to incorrect mathematical calculations, potentially affecting the accuracy or integrity of computations within the contract.",
       "out-of-order-retryable: Out-of-order retryable transactions pose a medium risk as they can lead to issues with transaction ordering or unexpected behavior related to transaction retries or retries",
       "reentrancy-no-eth: Reentrancy vulnerabilities (no theft of ethers) pose a medium risk as they can lead to unexpected or unintended behavior related to reentrant calls, potentially affecting contract behavior or security.",
-      "reused-constructor: Reused base constructor poses a medium risk as it can lead to issues with inheritance or unintended consequences due to multiple constructor invocations.",
+      "reused- constructor: Reused base  constructor poses a medium risk as it can lead to issues with inheritance or unintended consequences due to multiple  constructor invocations.",
       "tx-origin: Dangerous usage of tx.origin poses a medium risk as it can lead to issues with authentication or authorization, potentially enabling unauthorized access or manipulation of contract state.",
       "unchecked-lowlevel: Unchecked low-level calls pose a medium risk as they can lead to issues with gas usage or unexpected behavior related to low-level interactions with the EVM.",
       "unchecked-send: Unchecked send poses a medium risk as it can lead to issues with gas usage or unexpected behavior related to transfers of Ether or tokens.",
@@ -722,7 +820,7 @@ const generatePDF = async (reportData) => {
       "shadowing-builtin: Built-in symbol shadowing poses a low risk as it can lead to confusion or unintended consequences due to ambiguity in variable references or function calls.",
       "shadowing-local: Local variables shadowing poses a low risk as it can lead to confusion or unintended consequences due to ambiguity in variable references or function calls.",
       "variable-scope: Local variables used prior their declaration pose a low risk as they can lead to confusion or unintended consequences due to ambiguity in variable references or function calls.",
-      "void-cst: Constructor called not implemented poses a low risk as it can lead to issues with contract initialization or unexpected behavior related to constructor execution.",
+      "void-cst:  constructor called not implemented poses a low risk as it can lead to issues with contract initialization or unexpected behavior related to  constructor execution.",
       "calls-loop: Multiple calls in a loop pose a low risk as they can lead to issues with gas usage or unexpected behavior related to multiple invocations of external contracts.",
       "events-access: Missing Events Access Control poses a low risk as it can lead to issues with event emission or unintended consequences due to unauthorized access to event data.",
       "events-maths: Missing Events Arithmetic poses a low risk as it can lead to issues with event emission or unintended consequences due to incorrect or inconsistent event data.",
@@ -734,7 +832,7 @@ const generatePDF = async (reportData) => {
       "timestamp: Dangerous usage of block.timestamp poses a low risk as it can lead to issues with security or unexpected behavior related to timestamp-dependent logic.",
       "assembly: Assembly usage is categorized as informational as it provides insights into the usage of assembly code within the contract, which can be used for optimization or fine-tuning contract performance.",
       "assert-State-Change: Assert state change is categorized as informational as it provides insights into assertions related to state changes within the contract, which can aid in understanding contract behavior or logic.",
-      "boolean-Equal: Comparison to boolean constant is categorized as informational as it provides insights into comparisons to boolean constants within the contract, which can aid in understanding contract behavior or logic.",
+      "boolean-Equal: Comparison to boolean  constant is categorized as informational as it provides insights into comparisons to boolean  constants within the contract, which can aid in understanding contract behavior or logic.",
       "cyclomatic-complexity: Detects functions with high (> 11) cyclomatic complexity. This is categorized as informational as it provides insights into the complexity of contract functions, which can aid in code review or optimization efforts.",
       "deprecated-standards: Deprecated Solidity Standards is categorized as informational as it provides insights into the usage of deprecated Solidity standards or practices within the contract, which can aid in identifying areas for improvement or modernization.",
       "erc20-indexed: Un-indexed ERC20 event parameters is categorized as informational as it provides insights into ERC20 event parameters that are not indexed, which can aid in understanding event emission or event handling within the contract.",
@@ -750,7 +848,7 @@ const generatePDF = async (reportData) => {
       "similar-names: Variable names are too similar is categorized as informational as it provides insights into variable naming conventions within the contract, which can aid in code readability or maintainability.",
       "too-many-digits: Conformance to numeric notation best practices is categorized as informational as it provides insights into adherence to numeric notation best practices within the contract, which can aid in code readability or maintainability.",
       "cache-array-length: Detects for loops that use length member of some storage array in their loop condition and don't modify it. This optimization is categorized as high risk as it can lead to unnecessary gas consumption or potential vulnerabilities related to array manipulation.",
-      "constable-states: State variables that could be declared constant is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to state variables that should be constant.",
+      " constable-states: State variables that could be declared  constant is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to state variables that should be  constant.",
       "external-function: Public function that could be declared external is categorized as high risk as it can lead to issues with gas usage or unexpected behavior related to function calls that could be marked as external.",
       "immutable-states: State variables that could be declared immutable is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to state variables that should be immutable.",
       "var-read-using-this: Contract reads its own variable using this is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to incorrect or inconsistent usage of this keyword.",
@@ -764,7 +862,7 @@ const generatePDF = async (reportData) => {
       "array-by-reference Solution: Modify storage arrays by reference rather than value to ensure that changes are reflected consistently throughout the contract. Utilize proper data structures and access patterns to prevent unexpected behavior or data corruption.",
       "encode-packed-collision solution: Review the ABI encoding process and resolve any collisions to ensure that function calls are interpreted correctly. Adjust encoding methods or function signatures as necessary to avoid ambiguity and maintain contract integrity.",
       "incorrect-shift solution: Verify and correct the order of parameters in shift instructions to ensure that operations are performed as intended. Double-check bitwise operations to prevent unintended behavior that could lead to vulnerabilities.",
-      "multiple-constructors solution: Consolidate multiple constructor schemes into a single constructor to streamline contract deployment and reduce complexity. Ensure that initialization logic is clear and unambiguous to avoid confusion during contract instantiation.",
+      "multiple- constructors solution: Consolidate multiple  constructor schemes into a single  constructor to streamline contract deployment and reduce complexity. Ensure that initialization logic is clear and unambiguous to avoid confusion during contract instantiation.",
       "name-reused solution: Use unique and descriptive names for contracts to avoid ambiguity and potential conflicts. Choose names that accurately reflect the purpose and functionality of each contract to facilitate understanding and prevent unintended interactions.",
       "protected-vars solution: Implement access control mechanisms such as modifiers or visibility specifiers to protect variables from unauthorized access or manipulation. Ensure that sensitive data is only accessible to authorized parties to maintain data integrity and security.",
       "public-mappings-nested solution: Review and redesign data structures to minimize exposure of sensitive data. Consider using private or internal mappings instead of public mappings with nested variables to limit access to privileged information.",
@@ -775,9 +873,9 @@ const generatePDF = async (reportData) => {
       "solc-version solution: Update the Solidity version to the correct one specified for the contract. Ensure that the contract is compatible with the targeted Solidity compiler version to avoid potential issues or unexpected behavior.",
       "naming-convention solution: Enforce Solidity naming conventions consistently throughout the contract codebase. Use descriptive and meaningful names for variables, functions, and contracts to enhance code readability and maintainability.",
       "codex solution: Integrate Codex for vulnerability detection and utilize its findings to address any identified issues. Regularly scan the contract codebase with Codex to improve contract security and mitigate potential vulnerabilities.",
-      "uninitialized-fptr-cst solution: Initialize function pointers properly in constructors to avoid issues with contract initialization or unexpected behavior related to function pointer assignments.",
+      "uninitialized-fptr-cst solution: Initialize function pointers properly in  constructors to avoid issues with contract initialization or unexpected behavior related to function pointer assignments.",
       "uninitialized-state solution: Ensure that all state variables are properly initialized to prevent unpredictable behavior or vulnerabilities in the contract's logic or storage state.",
-      "uninitialized-storage solution: Properly initialize storage variables to avoid unpredictable behavior or vulnerabilities related to the contract's storage state. Initialize storage variables within the contract constructor or relevant functions to ensure consistent behavior.",
+      "uninitialized-storage solution: Properly initialize storage variables to avoid unpredictable behavior or vulnerabilities related to the contract's storage state. Initialize storage variables within the contract  constructor or relevant functions to ensure consistent behavior.",
       "unprotected-upgrade solution: Implement access controls and authentication mechanisms to secure upgradeable contracts from unauthorized modifications or upgrades. Utilize techniques such as access modifiers, role-based permissions, or multi-signature schemes to enforce upgrade restrictions and maintain contract integrity.",
       "arbitrary-send-eth solution: Implement proper access controls and validation checks for functions that send Ether to arbitrary destinations. Use permission-based systems or whitelists to restrict Ether transfers to trusted addresses and prevent unauthorized withdrawals.",
       "controlled-array-length solution: Validate and sanitize input data to prevent tainted array length assignments that could lead to unintended or malicious modification of array lengths. Implement input validation checks to ensure that array length assignments are within expected bounds and do not pose security risks.",
@@ -785,9 +883,9 @@ const generatePDF = async (reportData) => {
       "delegatecall-loop solution: Avoid using delegatecall inside loops, especially in payable functions, to prevent unintended or unexpected execution of code in external contracts. Review and refactor code to eliminate delegatecall loops and ensure that contract behavior is predictable and secure.",
       "incorrect-exp solution: Review and correct exponentiation operations to ensure accurate mathematical calculations. Use standard libraries or built-in functions for exponentiation to minimize the risk of errors and ensure computational integrity.",
       "incorrect-return solution: Verify and correct the usage of the return instruction in assembly mode to prevent unexpected behavior or vulnerabilities related to contract execution or state manipulation. Ensure that return statements are used appropriately and consistently throughout the contract codebase.",
-      "msg-value-loop solution: Refactor code to avoid using msg.value inside loops to prevent unexpected gas consumption or Ether transfers. Review and redesign contract logic to eliminate the need for msg.value inside loop constructs and ensure efficient and secure contract execution.",
+      "msg-value-loop solution: Refactor code to avoid using msg.value inside loops to prevent unexpected gas consumption or Ether transfers. Review and redesign contract logic to eliminate the need for msg.value inside loop  constructs and ensure efficient and secure contract execution.",
       "reentrancy-eth solution: Implement reentrancy guards and secure state management techniques to prevent reentrancy vulnerabilities involving the theft of Ether. Use mutex locks, state flags, or withdrawal patterns to ensure that contract funds are not susceptible to unauthorized withdrawals or manipulation.",
-      "return-leave solution: Review and correct the usage of return statements to ensure proper control flow and prevent unexpected behavior related to contract execution. Replace return statements with appropriate control flow constructs such as leave to ensure consistent and secure contract behavior.",
+      "return-leave solution: Review and correct the usage of return statements to ensure proper control flow and prevent unexpected behavior related to contract execution. Replace return statements with appropriate control flow  constructs such as leave to ensure consistent and secure contract behavior.",
       "storage-array solution: Address compiler bugs related to signed storage integer arrays to prevent unexpected or unintended behavior related to storage operations or manipulation of array data. Utilize safe storage practices and thorough testing to mitigate the risk of storage-related vulnerabilities.",
       "unchecked-transfer solution: Implement proper validation and authorization checks for token transfers to prevent unauthorized or unintended transfers of tokens. Use access controls, permission-based systems, or token whitelists to restrict token transfers to trusted addresses and prevent exploitation.",
       "weak-prng solution: Enhance random number generation mechanisms to prevent weak or predictable randomness that could enable attacks or manipulation of contract behavior or state. Utilize secure random number generation algorithms and external randomness sources to ensure cryptographic strength and unpredictability.",
@@ -802,13 +900,13 @@ const generatePDF = async (reportData) => {
       "tautological-compare solution: Review and correct tautological comparisons to prevent issues with logic or unintended consequences. Ensure that comparisons are meaningful and accurate to avoid logic errors or vulnerabilities.",
       "tautology solution: Review and eliminate tautologies or contradictions in the contract code to ensure logical consistency and prevent unintended consequences. Refactor code to remove redundant or contradictory statements that may introduce vulnerabilities.",
       "write-after-write solution: Avoid unused write operations to prevent inefficient or unnecessary operations that could affect contract performance or gas usage. Review and refactor code to eliminate unnecessary write operations and optimize resource usage.",
-      "boolean-cst solution: Use Boolean constants correctly to ensure logical consistency and prevent issues with logic or unintended consequences. Review and correct the usage of Boolean constants to maintain code clarity and prevent logic errors.",
-      "constant-function-asm solution: Review and refactor constant functions using assembly code to ensure portability and compatibility with different EVM implementations or Solidity versions. Use standard Solidity constructs whenever possible to maintain code consistency and readability.",
-      "constant-function-state solution: Review and refactor constant functions that modify the state to ensure that state changes are handled appropriately and consistently. Consider whether state modifications are necessary in constant functions and refactor code as needed to maintain contract behavior and security.",
+      "boolean-cst solution: Use Boolean  constants correctly to ensure logical consistency and prevent issues with logic or unintended consequences. Review and correct the usage of Boolean  constants to maintain code clarity and prevent logic errors.",
+      " constant-function-asm solution: Review and refactor  constant functions using assembly code to ensure portability and compatibility with different EVM implementations or Solidity versions. Use standard Solidity  constructs whenever possible to maintain code consistency and readability.",
+      " constant-function-state solution: Review and refactor  constant functions that modify the state to ensure that state changes are handled appropriately and consistently. Consider whether state modifications are necessary in  constant functions and refactor code as needed to maintain contract behavior and security.",
       "sivide-before-multiply solution: Review and correct arithmetic operations to ensure accurate mathematical calculations. Ensure that operations are performed in the correct order to prevent issues with arithmetic precision or integrity.",
       "out-of-order-retryable solution: Handle out-of-order retryable transactions carefully to prevent issues with transaction ordering or unexpected behavior related to transaction retries. Implement proper validation checks and error handling to ensure transaction ordering is maintained correctly.",
       "reentrancy-no-eth solution: Mitigate reentrancy vulnerabilities (no theft of ethers) by carefully managing reentrant calls and ensuring that state changes are handled safely. Implement reentrancy guards and secure state management techniques to prevent unauthorized access or manipulation of contract state.",
-      "reused-constructor solution: Avoid reusing base constructors to prevent issues with inheritance or unintended consequences. Ensure that constructors are invoked correctly and only once to maintain contract integrity and prevent unexpected behavior.",
+      "reused- constructor solution: Avoid reusing base  constructors to prevent issues with inheritance or unintended consequences. Ensure that  constructors are invoked correctly and only once to maintain contract integrity and prevent unexpected behavior.",
       "tx-origin solution: Safely handle dangerous usage of tx.origin to prevent issues with authentication or authorization. Use alternative authentication mechanisms and avoid relying solely on tx.origin for access control to prevent potential security risks.",
       "unchecked-lowlevel solution: Handle unchecked low-level calls carefully to prevent issues with gas usage or unexpected behavior related to low-level interactions with the EVM. Implement proper validation checks and error handling to ensure safe and secure low-level call operations.",
       "unused-return solution: Handle unused return values appropriately to prevent inefficiencies or unnecessary complexity in contract code. Review and refactor code to eliminate unused return values and optimize resource usage where possible.",
@@ -816,7 +914,7 @@ const generatePDF = async (reportData) => {
       "shadowing-builtin solution: Avoid built-in symbol shadowing to prevent confusion or unintended consequences. Use unique names for variables and functions to prevent ambiguity and maintain clarity in the codebase.",
       "shadowing-local solution: Prevent local variables from shadowing to avoid confusion or unintended consequences. Use unique names for local variables to maintain clarity and readability in the codebase.",
       "variable-scope solution: Ensure that local variables are declared before their use to prevent confusion or unintended consequences. Review and refactor code to maintain consistent variable scope and avoid ambiguity.",
-      "void-cst solution: Implement constructor logic as needed to prevent issues with contract initialization or unexpected behavior related to constructor execution. Ensure that all necessary initialization steps are performed correctly to maintain contract integrity and functionality.",
+      "void-cst solution: Implement  constructor logic as needed to prevent issues with contract initialization or unexpected behavior related to  constructor execution. Ensure that all necessary initialization steps are performed correctly to maintain contract integrity and functionality.",
       "calls-loop solution: Minimize the use of multiple calls inside loops to prevent issues with gas usage or unexpected behavior related to multiple invocations of external contracts. Refactor code to eliminate unnecessary calls and optimize resource usage where possible.",
       "events-access solution: Implement proper access control mechanisms for event emission to prevent unauthorized access to event data. Ensure that only authorized parties can emit events and access event data to maintain data privacy and security.",
       "events-maths solution: Handle events arithmetic carefully to prevent issues with event emission or unintended consequences. Review and correct event data calculations to ensure accuracy and consistency in event emission.",
@@ -831,12 +929,12 @@ const generatePDF = async (reportData) => {
       "unchecked-calls solution: Handle unchecked calls carefully to prevent issues with gas usage or unexpected behavior related to external function calls. Implement proper validation checks and error handling to ensure safe and secure call operations.",
       "excessive-states solution: Reduce the number of state variables to improve contract readability, reduce complexity, and optimize gas usage. Identify and eliminate redundant or unnecessary state variables to streamline contract logic and storage.",
       "empty-blocks solution: Remove empty blocks to improve contract readability and reduce complexity. Conduct regular code reviews and refactorings to identify and eliminate unnecessary empty blocks.",
-      "const-functions solution: Use constant functions where applicable to improve contract efficiency and reduce gas usage. Identify functions that do not modify state and declare them as constant to enable compiler optimizations and improve contract performance.",
-      "assembly-overuse solution: Limit the use of assembly code to only when necessary to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use higher-level Solidity constructs whenever possible to maintain code consistency and readability.",
+      " const-functions solution: Use  constant functions where applicable to improve contract efficiency and reduce gas usage. Identify functions that do not modify state and declare them as  constant to enable compiler optimizations and improve contract performance.",
+      "assembly-overuse solution: Limit the use of assembly code to only when necessary to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use higher-level Solidity  constructs whenever possible to maintain code consistency and readability.",
       "assert-dos solution: Mitigate risks associated with excessive assert statements that could lead to denial-of-service (DoS) attacks. Use assert statements judiciously and ensure that they do not introduce vulnerabilities or performance issues.",
       "useless-statements solution: Remove unused statements to improve contract readability, reduce complexity, and optimize gas usage. Conduct regular code reviews and refactorings to identify and eliminate redundant or obsolete statements.",
       "useless-modifiers solution: Remove unused modifiers to improve contract readability, reduce complexity, and optimize gas usage. Conduct regular code reviews and refactorings to identify and eliminate redundant or obsolete modifiers.",
-      "useless-assembly solution: Eliminate unnecessary assembly code to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use standard Solidity constructs whenever possible to maintain code consistency and readability.",
+      "useless-assembly solution: Eliminate unnecessary assembly code to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use standard Solidity  constructs whenever possible to maintain code consistency and readability.",
       "unchecked-tx-origin solution: Safely handle usage of tx.origin to prevent issues with authentication or authorization. Use alternative authentication mechanisms and avoid relying solely on tx.origin for access control to prevent potential security risks.",
       "unchecked-delegatecall solution: Handle unchecked delegatecall operations carefully to prevent issues with gas usage or unexpected behavior related to delegatecall invocations. Implement proper validation checks and error handling to ensure safe and secure delegatecall operations.",
       "unused-struct-members solution: Remove unused members from structs to improve contract readability, reduce complexity, and optimize gas usage. Conduct regular code reviews and refactorings to identify and eliminate redundant or obsolete struct members",
@@ -849,7 +947,7 @@ const generatePDF = async (reportData) => {
       "unchecked-blockhash solution: Handle blockhash operations carefully to prevent issues with gas usage or unexpected behavior related to blockhash retrieval. Implement proper validation checks and error handling to ensure safe and secure blockhash operations.",
       "unchecked-array-index solution: Implement proper bounds checking for array accesses to prevent out-of-bounds errors or vulnerabilities related to unchecked array indexing. Validate array indices before accessing array elements to ensure data integrity and contract security.",
       "self-destruct-ownership Solution: Secure self-destruct functions to prevent unauthorized contract termination or manipulation of contract ownership. Implement access controls and validation checks to ensure that self-destruct functions can only be called by authorized parties.",
-      "Return-Bomb Solution: Mitigate the risk of low-level callees consuming all callers' gas unexpectedly. Implement gas limits or constraints to prevent excessive gas consumption by low-level callees, ensuring that the contract's gas usage remains within acceptable bounds and preventing potential denial-of-service (DoS) attacks.",
+      "Return-Bomb Solution: Mitigate the risk of low-level callees consuming all callers' gas unexpectedly. Implement gas limits or  constraints to prevent excessive gas consumption by low-level callees, ensuring that the contract's gas usage remains within acceptable bounds and preventing potential denial-of-service (DoS) attacks.",
       "too-many-digits solution: Ensure adherence to numeric notation best practices by avoiding excessive digits in numerical values. Trim down the number of digits to maintain code readability and conform to standard practices, enhancing maintainability and reducing the likelihood of errors.",
       "immutable-states solution: Declare state variables as immutable where appropriate to prevent unintended modification and ensure data consistency. Immutable variables cannot be altered after initialization, enhancing contract security and reducing the risk of unintentional state changes.",
     ];
@@ -884,7 +982,7 @@ const generatePDF = async (reportData) => {
               headString = "OPTIMIZATIONS";
               break;
           }
-          // const vulnerabilitiesData = Object.entries(reportData[index]).map(([type, locations]) => [type, locations.join(', ')]);
+          //  const vulnerabilitiesData = Object.entries(reportData[index]).map(([type, locations]) => [type, locations.join(', ')]);
           const vulnerabilitiesData = Object.entries(reportData[index]).map(
             ([type, locations]) => {
               // Remove "contracts/" prefix from each location string if present
@@ -1024,7 +1122,7 @@ const generatePDF = async (reportData) => {
       { name: reportData[5], level: "Optimizational" },
     ];
 
-    // const getCriticalLevel = (reportData) => {
+    //  const getCriticalLevel = (reportData) => {
     //   if (reportData[1]) {
     //     console.log('high');
     //     return 'High';
@@ -1048,7 +1146,7 @@ const generatePDF = async (reportData) => {
     //     return 'Unknown'; // Default case if none of the keys are present
     //   }
     // };
-    // const B = getCriticalLevel(reportData);
+    //  const B = getCriticalLevel(reportData);
 
     for (let a of arr) {
       let category = vulnerabilityCategories.find((category) =>
@@ -1250,14 +1348,4 @@ const generatePDF = async (reportData) => {
     alert(e);
     console.log("error: ", e);
   }
-};
-
-export {
-  generatePDF,
-  formatDate,
-  PurchasePlan,
-  ScanSubmit,
-  generateTable,
-  getScanHistory,
-  downloadReport,
 };
