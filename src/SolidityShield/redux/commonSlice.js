@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialCommonState = {
-  showSideBar: true,
+  showSideBar: false,
   selectedSidebarItem: "History",
 };
 

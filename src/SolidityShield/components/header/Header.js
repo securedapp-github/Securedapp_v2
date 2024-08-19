@@ -58,7 +58,12 @@ const Header = () => {
             />
           </div>
           <div className="sss-header-right-button">
-            <CustomButton className={"w-[125px] px-3 py-2"} text={"Scan Now"} />
+            <CustomButton
+              className={
+                "w-[125px] px-3 py-2 rounded-xl bg-tertiary text-white"
+              }
+              text={"Scan Now"}
+            />
           </div>
         </div>
       </div>
