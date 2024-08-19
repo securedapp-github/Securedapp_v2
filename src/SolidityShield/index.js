@@ -18,11 +18,18 @@ import OverviewScreen from "./pages/overview/Overview";
 import { Provider } from "react-redux";
 import { solidityShieldScanStore } from "./redux/store";
 import "./index.css";
+import { ToastContainer } from "react-toastify";
 
 const SolidityShield = () => {
   return (
     <Provider store={solidityShieldScanStore}>
       <div>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          theme="dark"
+          pauseOnHover
+        />
         <Routes>
           <Route
             path="/"

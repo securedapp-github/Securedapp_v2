@@ -32,12 +32,6 @@ const AuthScreen = () => {
 
   return (
     <div className="auth-screen-container">
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        theme="dark"
-        pauseOnHover
-      />
       <div className="auth-screen">
         <AuthScrenHeader
           title={"Sign in to your account"}

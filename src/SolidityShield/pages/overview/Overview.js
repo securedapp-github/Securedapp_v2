@@ -8,13 +8,29 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./Overview.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData, login } from "../../redux/auth/authSlice";
+import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
+import { getScanHistoryData, downloadReport } from "../../functions";
 
 const OverviewScreen = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const auth = useSelector(getUserData);
+  var scanHistory = useSelector(getScanHistory);
+  scanHistory = scanHistory.history;
+
   useEffect(() => {
-    console.log(auth.user);
-  });
+    auth.user.email
+      ? getScanHistoryData({
+          userEmail: auth.user.email,
+          dispatch,
+        })
+      : navigate("/solidity-shield-scan/auth");
+    const latestScan = scanHistory.sort((a, b) => b.id - a.id);
+    downloadReport(latestScan.id);
+    //console.log(scanSum);
+  }, []);
+
   return (
     <div className="sss-product">
       <Sidebar />
@@ -27,8 +43,8 @@ const OverviewScreen = () => {
             </div>
             <div className="sss-overview-body">
               <div className="sss-overview-top-cards">
-                <ScanSummary />
-                <IssuesChart />
+                <ScanSummary data={null} />
+                <IssuesChart data={null} />
               </div>
               <div className="sss-overview-bottom-cards"></div>
             </div>

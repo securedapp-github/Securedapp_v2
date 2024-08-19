@@ -1,10 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const auth = {
-  user: {
-    email: "",
-    jwt: "",
-  },
+  user: {},
 };
 
 const authSlice = createSlice({

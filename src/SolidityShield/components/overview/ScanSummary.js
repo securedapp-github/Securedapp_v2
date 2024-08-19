@@ -1,9 +1,10 @@
 import ChartCard from "./ChartCard";
 import "./ScanSummary.css";
 import {
-  getScanSummarySelector,
+  getOverviewSelector,
   setDateFilter,
 } from "../../redux/dashboard/scanSummarySlice";
+import { getUserData } from "../../redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
@@ -12,6 +13,9 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import CustomButton from "../common/CustomButton";
+import { getScanHistory } from "../../functions";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const scanSummaryTimeFilter = ["Monthly", "Weekly", "Today"];
 
@@ -24,7 +28,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
         <defs>
           <linearGradient
             id={"circularGradient"}
-            gradientTransform={gradientTransform}>
+            gradientTransform={gradientTransform}
+          >
             <stop offset="0%" stopColor={"#EA7A9A"} />
             <stop offset="100%" stopColor={"#FAC7B6"} />
           </linearGradient>
@@ -39,7 +44,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
           strokeLinecap: "butt",
           trailColor: "#F0F0F0",
           pathColor: "url(#circularGradient)",
-        })}>
+        })}
+      >
         <div className="sss-scan-summary-progress-value-container">
           <div className="sss-scan-summary-progress-value">{text}</div>
         </div>
@@ -59,8 +65,8 @@ const FigureComponent = ({ value, text }) => {
   );
 };
 
-const ScanSummary = () => {
-  const { dateFilter, scanSummary } = useSelector(getScanSummarySelector);
+const ScanSummary = ({ data }) => {
+  const { dateFilter, scanSummary } = useSelector(getOverviewSelector);
   const dispatch = useDispatch();
 
   return (
@@ -81,19 +87,22 @@ const ScanSummary = () => {
                 return (
                   <div
                     onClick={() => dispatch(setDateFilter(time))}
-                    className="sss-overview-scan-summary-header-right-item-container">
+                    className="sss-overview-scan-summary-header-right-item-container"
+                  >
                     <div
                       className={`sss-overview-scan-summary-header-right-item ${
                         time === dateFilter &&
                         "sss-scan-summary-selected-date-filter"
-                      }`}>
+                      }`}
+                    >
                       {time}
                     </div>
                     <div
                       className={`sss-scan-summary-date-filter-under ${
                         time === dateFilter &&
                         "sss-scan-summary-date-filter-under-selected"
-                      }`}></div>
+                      }`}
+                    ></div>
                   </div>
                 );
               })}

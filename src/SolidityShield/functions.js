@@ -4,6 +4,8 @@ import Chart from "chart.js/auto";
 import CryptoJS from "crypto-js";
 import { toast } from "react-toastify";
 import { getUserData, login } from "../SolidityShield/redux/auth/authSlice";
+import { setIssuesChart } from "./redux/dashboard/scanSummarySlice";
+import { setScanHistory } from "./redux/scanHistory/scanHistorySlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -116,24 +118,24 @@ export const downloadReport = async (id) => {
       if (response.ok) {
         return response.json();
       }
-      alert("Invalid Network response ");
+      toast.error("Invalid Network response ");
     })
     .then((data) => {
+      console.log(data);
       // if (PurchasePlan(0)) {
       //   console.log("PDF generation is not available for free plan users.");
-      //   alert("PDF generation is not available for free plan users.");
+      //   toast.error("PDF generation is not available for free plan users.");
       //   return;
       // }
-      console.log(JSON.parse(data[0].reportdata));
-      generatePDF(JSON.parse(data[0].reportdata));
+      // console.log(JSON.parse(data[0].reportdata));
+      //generatePDF(JSON.parse(data[0].reportdata));
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 };
 
-export const getScanHistory = async ({ userEmail }) => {
-  let result;
+export const getScanHistoryData = async ({ userEmail, dispatch }) => {
   fetch("https://139-59-5-56.nip.io:3443/getHistory", {
     method: "POST",
     body: JSON.stringify({
@@ -147,16 +149,16 @@ export const getScanHistory = async ({ userEmail }) => {
       if (response.ok) {
         return response.json();
       }
-      alert("Invalid Network Response");
+      toast.error("Invalid Network Response. Please try again!");
     })
     .then((data) => {
       // console.log(data);
-      result = data;
+      dispatch(setScanHistory(data));
+      // toast("setScanHitsory");
     })
     .catch((error) => {
       console.error("Error:", error);
     });
-  return result;
 };
 
 export function generateTable(data) {
