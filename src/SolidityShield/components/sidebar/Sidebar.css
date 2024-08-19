@@ -1,0 +1,43 @@
+.sss-sidebar-container {
+  @apply z-40 fixed md:relative min-h-screen w-2/3 sm:w-2/4 md:max-w-[20%] border-r border-[#E5EAEF] shadow-lg bg-white;
+}
+
+.sss-sidebar {
+  @apply py-4 font-poppins bg-white;
+}
+
+.sss-sidebar-header {
+  @apply px-5 w-full flex justify-between;
+}
+
+.sss-sidebar-header-logo {
+  @apply w-7/12;
+}
+
+.ss-body {
+  @apply w-full flex flex-col gap-y-4;
+}
+
+.sss-body-header {
+  @apply py-6 px-4 text-[#737373];
+}
+
+.sss-body-navigation {
+  @apply flex flex-col items-center justify-center;
+}
+
+.sss-sidebar-item-container {
+  @apply w-full text-[#B2ABAB];
+}
+
+.selected-sss-sidebar-item {
+  @apply text-[#12D576];
+}
+
+.sss-sidebar-item-container:hover {
+  @apply bg-[#F8F9FA] cursor-pointer;
+}
+
+.sss-sidebar-item {
+  @apply w-full flex gap-x-4 px-4 my-3;
+}

@@ -84,7 +84,7 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:url" element={<BlogPost />} />
           <Route path="about" element={<AboutUs />} />
-          <Route path="solidity-shield-scan" element={<SolidityShield />} />
+          <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
         </Routes>
       </Router>
     </div>

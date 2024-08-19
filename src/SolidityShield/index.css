@@ -1,0 +1,7 @@
+.sss-product {
+  @apply w-full md:flex;
+}
+
+.sss-product-with-header {
+  @apply w-full bg-[#FAFAFA];
+}

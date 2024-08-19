@@ -1,0 +1,17 @@
+.sss-overview-screen-container {
+  @apply py-4 px-8 font-poppins;
+}
+
+.sss-overview-screen {
+}
+
+.sss-overview-header {
+  @apply font-semibold text-4xl;
+}
+
+.sss-overview-body {
+}
+
+.sss-overview-top-cards {
+  @apply pt-4 flex w-full gap-x-6 items-center justify-center;
+}

@@ -1,0 +1,22 @@
+.sss-overview-issues-card-container {
+  @apply flex-1 min-h-[450px] w-full p-5;
+}
+
+.sss-overview-issues-card {
+}
+
+.sss-overview-issues-card-header {
+  @apply w-full flex justify-between items-end;
+}
+
+.sss-overview-issues-header-left {
+  @apply flex flex-col gap-y-1;
+}
+
+.sss-overview-issues-header-left-desc {
+  @apply text-xs text-[#969BA0] font-light;
+}
+
+.sss-overview-issues-card-body {
+  @apply w-full;
+}
