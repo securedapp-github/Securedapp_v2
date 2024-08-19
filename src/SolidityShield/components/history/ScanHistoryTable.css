@@ -31,7 +31,11 @@
 }
 
 .sss-history-table-header {
-  @apply min-w-full flex gap-x-6 text-[#84919A] text-center;
+  @apply min-w-full flex gap-x-6 items-end text-[#84919A] text-center;
+}
+
+.sss-history-table-header-item {
+  @apply border-b pb-3;
 }
 
 .sss-history-table-checkbox-container {
@@ -58,12 +62,16 @@
   @apply min-w-[50px];
 }
 
+.sss-history-table-options {
+  @apply w-full flex justify-center;
+}
+
 .sss-history-table-divider {
   @apply min-w-full py-3;
 }
 
 .sss-history-table-body {
-  @apply flex flex-col gap-y-5;
+  @apply pt-3 flex flex-col gap-y-5;
 }
 
 .sss-history-table-row {

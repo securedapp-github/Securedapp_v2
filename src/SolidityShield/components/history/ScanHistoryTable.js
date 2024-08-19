@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CustomDivider from "../common/CustomDivider";
 import "./ScanHistoryTable.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -36,31 +35,34 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
         <div className="sss-history-table">
           <div className="sss-history-table-header">
             <div className="sss-history-table-checkbox-container">
-              <div className="sss-history-table-checkbox-header">
+              <div className="sss-history-table-checkbox-header sss-history-table-header-item">
                 <input type="checkbox" />
               </div>
             </div>
             <div className="sss-history-table-report-id-container">
-              <div className="sss-history-table-header-report-id">
+              <div className="sss-history-table-header-report-id sss-history-table-header-item">
                 REPORT ID
               </div>
             </div>
             <div className="sss-history-table-date-container">
-              <div className="sss-history-header-table-date">DATE</div>
+              <div className="sss-history-header-table-date sss-history-table-header-item">
+                DATE
+              </div>
             </div>
             <div className="sss-history-table-report-link-container">
-              <div className="sss-history-table-header-report-link">
+              <div className="sss-history-table-header-report-link sss-history-table-header-item">
                 REPORT LINK
               </div>
             </div>
             <div className="sss-history-table-status-container">
-              <div className="sss-history-table-header-status">STATUS</div>
+              <div className="sss-history-table-header-status sss-history-table-header-item">
+                STATUS
+              </div>
             </div>
             <div className="sss-history-table-options-container">
-              <div className="sss-history-table-header-options"></div>
+              <div className="sss-history-table-header-options sss-history-table-header-item"></div>
             </div>
           </div>
-          <div className="sss-history-table-divider"></div>
           <div className="sss-history-table-body">
             {scanHistoryData.map((data, index) => {
               return (

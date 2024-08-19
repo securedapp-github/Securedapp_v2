@@ -5,7 +5,7 @@ import {
   setHistoryStatusFilter,
 } from "../../redux/dashboard/historySlice";
 import { useDispatch } from "react-redux";
-import ScanHistoryTable from "../../components/overview/ScanHistoryTable";
+import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { scanHistoryDummyData } from "./scanHistory.data";
 
 const scanHistoryStatusFilter = ["Succeeded", "Failed", "Inprogress", "All"];
