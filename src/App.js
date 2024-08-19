@@ -41,7 +41,7 @@ import "aos/dist/aos.css";
 
 function App() {
   const dispatch = useDispatch();
-  const { isRequestModalOpen } = useSelector(getHomeSelector);
+  const { isLargeScreen, isRequestModalOpen } = useSelector(getHomeSelector);
   const location = useLocation();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ function App() {
   );
 
   // remove default scroll-bar
-  if (isSolidityShieldScan) {
+  if (isSolidityShieldScan && isLargeScreen) {
     document.body.style.overflowY = "hidden";
   } else {
     document.body.style.overflowY = "auto";
