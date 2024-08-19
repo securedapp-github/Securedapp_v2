@@ -2,7 +2,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialCommonState = {
   showSideBar: false,
-  selectedSidebarItem: "History",
+  selectedSidebarItem: "Overview",
 };
 
 const commonSlice = createSlice({

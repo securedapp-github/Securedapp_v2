@@ -1,5 +1,10 @@
 import "./App.css";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/home/HomePage";
 import { useEffect } from "react";
 import Product from "./pages/product/Product";
@@ -37,6 +42,7 @@ import "aos/dist/aos.css";
 function App() {
   const dispatch = useDispatch();
   const { isRequestModalOpen } = useSelector(getHomeSelector);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -51,42 +57,51 @@ function App() {
     };
   }, []);
 
+  const isSolidityShieldScan = location.pathname.startsWith(
+    "/solidity-shield-scan"
+  );
+
+  // remove default scroll-bar
+  if (isSolidityShieldScan) {
+    document.body.style.overflowY = "hidden";
+  } else {
+    document.body.style.overflowY = "auto";
+  }
+
   return (
-    <div className="App bg-primary dark:bg-secondary">
-      <Router>
-        {isRequestModalOpen && <RequestQuoteModal />}
-        <Routes>
-          <Route path="/" index element={<Home />} />
-          <Route path="product" element={<Product />} />
-          <Route path="solidity-shield" element={<SolidityShieldPage />} />
-          <Route path="secure-watch" element={<SecureWatchPage />} />
-          <Route path="secure-trace" element={<SecureTracePage />} />
-          <Route path="secure-pad" element={<SecurePadPage />} />
-          <Route path="service" element={<Service />} />
-          <Route path="dapp-development" element={<DappDevelopment />} />
-          <Route path="smart-contract-audit" element={<SmartContractAudit />} />
-          <Route path="dapp-security-audit" element={<DappSecurityAudit />} />
-          <Route path="token-audit" element={<TokenAudit />} />
-          <Route path="web3-kyc" element={<Web3KYC />} />
-          <Route path="web3-security" element={<Web3Security />} />
-          <Route path="blockchain-forensic" element={<BlockchainForensic />} />
-          <Route path="rwa-audit" element={<RwaAudit />} />
-          <Route
-            path="crypto-compliance-aml"
-            element={<CryptoComplianceAml />}
-          />
-          <Route
-            path="decentralized-identity-did"
-            element={<DecentralizedIdentity />}
-          />
-          <Route path="nfts-development" element={<NftsDvelopment />} />
-          <Route path="defi-development" element={<DefiDevelopment />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/:url" element={<BlogPost />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
-        </Routes>
-      </Router>
+    <div
+      className={`App bg-primary dark:bg-secondary ${
+        isSolidityShieldScan && "overflow-hidden"
+      }`}>
+      {isRequestModalOpen && <RequestQuoteModal />}
+      <Routes>
+        <Route path="/" index element={<Home />} />
+        <Route path="product" element={<Product />} />
+        <Route path="solidity-shield" element={<SolidityShieldPage />} />
+        <Route path="secure-watch" element={<SecureWatchPage />} />
+        <Route path="secure-trace" element={<SecureTracePage />} />
+        <Route path="secure-pad" element={<SecurePadPage />} />
+        <Route path="service" element={<Service />} />
+        <Route path="dapp-development" element={<DappDevelopment />} />
+        <Route path="smart-contract-audit" element={<SmartContractAudit />} />
+        <Route path="dapp-security-audit" element={<DappSecurityAudit />} />
+        <Route path="token-audit" element={<TokenAudit />} />
+        <Route path="web3-kyc" element={<Web3KYC />} />
+        <Route path="web3-security" element={<Web3Security />} />
+        <Route path="blockchain-forensic" element={<BlockchainForensic />} />
+        <Route path="rwa-audit" element={<RwaAudit />} />
+        <Route path="crypto-compliance-aml" element={<CryptoComplianceAml />} />
+        <Route
+          path="decentralized-identity-did"
+          element={<DecentralizedIdentity />}
+        />
+        <Route path="nfts-development" element={<NftsDvelopment />} />
+        <Route path="defi-development" element={<DefiDevelopment />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:url" element={<BlogPost />} />
+        <Route path="about" element={<AboutUs />} />
+        <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
+      </Routes>
     </div>
   );
 }

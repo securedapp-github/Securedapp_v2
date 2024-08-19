@@ -1,7 +1,9 @@
+
+
 .sss-product {
-  @apply w-full md:flex;
+  @apply w-full md:flex overflow-y-hidden;
 }
 
 .sss-product-with-header {
-  @apply w-full bg-[#FAFAFA];
+  @apply w-full bg-[#FAFAFA] overflow-y-scroll;
 }

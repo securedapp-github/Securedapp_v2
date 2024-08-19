@@ -8,12 +8,15 @@ import {
 import { useDispatch } from "react-redux";
 import CustomDivider from "../../components/common/CustomDivider";
 import { sidebarItems } from "./sidebar.data.js";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const { showSideBar, selectedSidebarItem } = useSelector(getCommonSelector);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const selectMenuItem = (name) => {
+    navigate(name.toLowerCase());
     dispatch(setSelectedSidebarItem(name));
   };
 

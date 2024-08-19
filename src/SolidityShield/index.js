@@ -18,6 +18,7 @@ import OverviewScreen from "./pages/overview/Overview";
 import { Provider } from "react-redux";
 import { solidityShieldScanStore } from "./redux/store";
 import "./index.css";
+import { MainLayout, NoSidebarLayout } from "./components/sidebar/Layout";
 
 const SolidityShield = () => {
   return (
@@ -25,10 +26,14 @@ const SolidityShield = () => {
       <div>
         <Routes>
           <Route path="/" element={<div>Solidity Shield Scan</div>} />
-          <Route path="overview" element={<OverviewScreen />} />
-          <Route path="auth" element={<AuthScreen />} />
-          <Route path="login" element={<LoginScreen />} />
-          <Route path="contact" element={<ContactUs />} />
+          <Route element={<MainLayout />}>
+            <Route path="overview" element={<OverviewScreen />} />
+          </Route>
+          <Route element={<NoSidebarLayout />}>
+            <Route path="auth" element={<AuthScreen />} />
+            <Route path="login" element={<LoginScreen />} />
+            <Route path="contact" element={<ContactUs />} />
+          </Route>
         </Routes>
       </div>
     </Provider>
