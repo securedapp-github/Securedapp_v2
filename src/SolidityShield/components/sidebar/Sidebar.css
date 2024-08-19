@@ -3,7 +3,7 @@
 }
 
 .sss-sidebar {
-  @apply py-4 font-poppins bg-white;
+  @apply py-4 font-poppins h-full bg-white flex flex-col justify-between;
 }
 
 .sss-sidebar-header {
@@ -40,4 +40,20 @@
 
 .sss-sidebar-item {
   @apply w-full flex gap-x-4 px-4 my-3;
+}
+
+.sss-sidebar-lower {
+  @apply mx-4 bg-[#E6E6E6] rounded-xl;
+}
+
+.sss-sidebar-credits-card {
+  @apply w-full p-4 flex flex-col gap-y-6;
+}
+
+.sss-sidebar-credits-container {
+  @apply w-full flex flex-col gap-y-2;
+}
+
+.sss-sidebar-credits-text {
+  @apply w-full flex justify-end text-sm;
 }

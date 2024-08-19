@@ -837,16 +837,14 @@ const SolidityShield0 = () => {
       style={{
         boxShadow: "6px 4px 5px 0px rgba(0, 0, 0, 0.06) inset",
         background: "rgba(255, 255, 255, 0.30)",
-      }}
-    >
+      }}>
       <div
         style={{
           background: "linear-gradient(90deg, #12D576 0%, #2D5C8F 100%)",
           width: width > 100 ? "100%" : `${width}%`,
           height: "40px",
         }}
-        className="bg-primary text-left flex justify-start  items-center align-middle rounded-full font-sans text-[20px] font-normal leading-[110%] text-black text-primary-100"
-      >
+        className="bg-primary text-left flex justify-start  items-center align-middle rounded-full font-sans text-[20px] font-normal leading-[110%] text-black text-primary-100">
         <span className="lg:px-[50px] pl-[10px] lg:text-[20px] w-full text-white whitespace-nowrap text-[14px]">
           {label}: {value}
         </span>
@@ -1074,20 +1072,17 @@ const SolidityShield0 = () => {
               onClick={() => {
                 getScanHistory();
                 setShowHisotryTable(!showHistoryTable);
-              }}
-            >
+              }}>
               {showHistoryTable ? "Hide Scan History" : "Show Scan History"}
             </button>
             <button
               className="flex px-[22px] py-[11px] text-black justify-center items-center gap-3 rounded-[11px] bg-[#FFF] mt-4"
-              onClick={() => setshowFileUpload(!showFileUpload)}
-            >
+              onClick={() => setshowFileUpload(!showFileUpload)}>
               Scan Contract
             </button>
             <button
               className="flex px-[22px] py-[11px] text-black justify-center items-center gap-3 rounded-[11px] bg-[#FFF] mt-4"
-              onClick={() => logout()}
-            >
+              onClick={() => logout()}>
               Logout
             </button>
           </div>
@@ -1100,8 +1095,7 @@ const SolidityShield0 = () => {
                   backgroundColor: "black",
                   border: "2px solid white",
                   marginTop: "20px",
-                }}
-              >
+                }}>
                 <thead>
                   <tr className="text-[#12D576]">
                     <th>Report ID</th>
@@ -1117,8 +1111,7 @@ const SolidityShield0 = () => {
                         index % 2 === 0
                           ? "bg-transparent"
                           : "bg-[#12D57612] bg-opacity-7"
-                      }
-                    >
+                      }>
                       <td className="px-4 py-2 text-white text-center">
                         {row.id}{" "}
                       </td>
@@ -1132,8 +1125,7 @@ const SolidityShield0 = () => {
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
-                          fill="none"
-                        >
+                          fill="none">
                           <path
                             d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z"
                             fill="#12D576"
@@ -1147,8 +1139,7 @@ const SolidityShield0 = () => {
                             e.preventDefault();
                             // console.log(row.id);
                             downloadReport(row.id);
-                          }}
-                        >
+                          }}>
                           Download Report
                         </a>
                       </td>
@@ -1162,8 +1153,7 @@ const SolidityShield0 = () => {
                     handlePrev();
                   }}
                   disabled={page === 1}
-                  className="text-white bg-[#12D576] px-6 py-3 font-medium rounded-md"
-                >
+                  className="text-white bg-[#12D576] px-6 py-3 font-medium rounded-md">
                   Prev
                 </button>
                 <button
@@ -1171,8 +1161,7 @@ const SolidityShield0 = () => {
                     handleNext();
                   }}
                   disabled={page === totHistory}
-                  className="text-white bg-[#12D576] px-6 py-3 font-medium rounded-md"
-                >
+                  className="text-white bg-[#12D576] px-6 py-3 font-medium rounded-md">
                   Next
                 </button>
               </div>
@@ -1295,8 +1284,7 @@ const SolidityShield0 = () => {
           <div className="flex gap-5">
             <button
               onClick={() => setshowFileUpload(!showFileUpload)}
-              className="flex px-[32px] py-[21px] text-white justify-center items-center gap-3 rounded-[11px] bg-[#00D870] "
-            >
+              className="flex px-[32px] py-[21px] text-white justify-center items-center gap-3 rounded-[11px] bg-[#00D870] ">
               {" "}
               Get Started For Free
             </button>
@@ -1305,8 +1293,7 @@ const SolidityShield0 = () => {
               onClick={() => {
                 setIsPlanVisible(!isplanVisible);
               }}
-              className="flex px-[32px] py-[21px] text-black justify-center items-center gap-3 rounded-[11px] bg-[#FFF] "
-            >
+              className="flex px-[32px] py-[21px] text-black justify-center items-center gap-3 rounded-[11px] bg-[#FFF] ">
               {isplanVisible ? "Hide Plans" : "See Plans"}
             </button>
           </div>
@@ -1330,8 +1317,7 @@ const SolidityShield0 = () => {
                   </h1>
                   <button
                     onClick={() => setshowFileUpload(!showFileUpload)}
-                    className="bg-[#00C767] text-white flex md:px-[15px] py-[10px] justify-center rounded-[4px] text-center"
-                  >
+                    className="bg-[#00C767] text-white flex md:px-[15px] py-[10px] justify-center rounded-[4px] text-center">
                     {" "}
                     Choose This Plan
                   </button>
@@ -1354,8 +1340,7 @@ const SolidityShield0 = () => {
                     onClick={() => {
                       PurchasePlan(1);
                     }}
-                    className="bg-[#00C767] text-white flex md:px-[15px]  py-[10px] justify-center rounded-[4px] text-center"
-                  >
+                    className="bg-[#00C767] text-white flex md:px-[15px]  py-[10px] justify-center rounded-[4px] text-center">
                     {" "}
                     Choose This Plan
                   </button>
@@ -1377,8 +1362,7 @@ const SolidityShield0 = () => {
                     onClick={() => {
                       PurchasePlan(2);
                     }}
-                    className="bg-[#00C767] text-white flex md:px-[15px] py-[10px] justify-center rounded-[4px] text-center"
-                  >
+                    className="bg-[#00C767] text-white flex md:px-[15px] py-[10px] justify-center rounded-[4px] text-center">
                     {" "}
                     Choose This Plan
                   </button>
@@ -1400,8 +1384,7 @@ const SolidityShield0 = () => {
                     onClick={() => {
                       PurchasePlan(3);
                     }}
-                    className="bg-[#00C767] text-white flex md:px-[15px] py-[10px] justify-center rounded-[4px] text-center"
-                  >
+                    className="bg-[#00C767] text-white flex md:px-[15px] py-[10px] justify-center rounded-[4px] text-center">
                     {" "}
                     Choose This Plan
                   </button>
@@ -1420,8 +1403,7 @@ const SolidityShield0 = () => {
                           width="25"
                           height="25"
                           viewBox="0 0 25 25"
-                          fill="none"
-                        >
+                          fill="none">
                           <path
                             d="M20.5 6.87903L9.5 17.879L4.5 12.879"
                             stroke="white"
@@ -1443,8 +1425,7 @@ const SolidityShield0 = () => {
                           width="25"
                           height="25"
                           viewBox="0 0 25 25"
-                          fill="none"
-                        >
+                          fill="none">
                           <path
                             d="M20.5 6.87903L9.5 17.879L4.5 12.879"
                             stroke="white"
@@ -1467,8 +1448,7 @@ const SolidityShield0 = () => {
                           width="25"
                           height="25"
                           viewBox="0 0 25 25"
-                          fill="none"
-                        >
+                          fill="none">
                           <path
                             d="M20.5 6.87903L9.5 17.879L4.5 12.879"
                             stroke="white"
@@ -1490,8 +1470,7 @@ const SolidityShield0 = () => {
                           width="25"
                           height="25"
                           viewBox="0 0 25 25"
-                          fill="none"
-                        >
+                          fill="none">
                           <path
                             d="M20.5 6.87903L9.5 17.879L4.5 12.879"
                             stroke="white"
@@ -2444,8 +2423,7 @@ const SolidityShield0 = () => {
           ...blurryDivStyle,
           marginTop: "100px",
         }}
-        className="lg:pt-[110px] pt-[0px] py-[60px]    "
-      >
+        className="lg:pt-[110px] pt-[0px] py-[60px]    ">
         {showsendotp && (
           <>
             <div className="flex justify-center items-center mt-[50px] lg:px-0 md:px-[50px] px-[20px]">
@@ -2469,8 +2447,7 @@ const SolidityShield0 = () => {
                     onClick={() => {
                       sendOTP();
                     }}
-                    className="md:w-4/6 bg-[#12D576] rounded-[20px] p-3 uppercase text-[#000000]"
-                  >
+                    className="md:w-4/6 bg-[#12D576] rounded-[20px] p-3 uppercase text-[#000000]">
                     Send OTP
                   </button>
                 </div>
@@ -2503,8 +2480,7 @@ const SolidityShield0 = () => {
                     onClick={() => {
                       verifyOTP();
                     }}
-                    className="md:w-4/6 bg-[#12D576] rounded-[20px] p-3 uppercase text-[#000000]"
-                  >
+                    className="md:w-4/6 bg-[#12D576] rounded-[20px] p-3 uppercase text-[#000000]">
                     Verify OTP
                   </button>
                 </div>
@@ -2526,8 +2502,7 @@ const SolidityShield0 = () => {
                     value={inputTypes}
                     onChange={handleInputTypeChange}
                     style={{ backgroundColor: "black" }}
-                    className="md:w-11/12 w-full border text-white rounded-[20px] p-3  file-input-info:text-white"
-                  >
+                    className="md:w-11/12 w-full border text-white rounded-[20px] p-3  file-input-info:text-white">
                     <option className="text-white" value="">
                       Select Source
                     </option>
@@ -2562,8 +2537,7 @@ const SolidityShield0 = () => {
                       value={chain}
                       onChange={handleChain}
                       style={{ backgroundColor: "black" }}
-                      className="md:w-11/12 w-full border text-white rounded-[20px] p-3  file-input-info:text-white"
-                    >
+                      className="md:w-11/12 w-full border text-white rounded-[20px] p-3  file-input-info:text-white">
                       <option className="text-white" value="">
                         Select Chain
                       </option>
@@ -2620,8 +2594,7 @@ const SolidityShield0 = () => {
                 <div className="md:w-1/6">
                   <button
                     type="submit"
-                    className="md:w-4/6 bg-[#12D576] rounded-[20px] p-3 uppercase text-[#000000]"
-                  >
+                    className="md:w-4/6 bg-[#12D576] rounded-[20px] p-3 uppercase text-[#000000]">
                     SCAN
                   </button>
                 </div>
