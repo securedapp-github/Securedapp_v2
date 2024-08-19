@@ -6,6 +6,7 @@ import {
 } from "../../redux/dashboard/historySlice";
 import { useDispatch } from "react-redux";
 import ScanHistoryTable from "../../components/overview/ScanHistoryTable";
+import { scanHistoryDummyData } from "./scanHistory.data";
 
 const scanHistoryStatusFilter = ["Succeeded", "Failed", "Inprogress", "All"];
 
@@ -63,7 +64,10 @@ const ScanHistory = () => {
               })}
             </div>
           </div>
-          <ScanHistoryTable statusFilter={statusFilter} />
+          <ScanHistoryTable
+            scanHistoryData={scanHistoryDummyData}
+            statusFilter={statusFilter}
+          />
         </div>
       </div>
     </div>
