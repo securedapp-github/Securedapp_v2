@@ -48,3 +48,7 @@
 .sss-scan-history-body-header-filter-under-selected {
   @apply h-[2px] bg-black;
 }
+
+.sss-scan-history-footer {
+  @apply py-6 lg:py-8;
+}

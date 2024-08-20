@@ -7,6 +7,7 @@ import {
 import { useDispatch } from "react-redux";
 import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { scanHistoryDummyData } from "./scanHistory.data";
+import Pagination from "../../components/common/Pagination";
 
 const scanHistoryStatusFilter = ["Succeeded", "Failed", "Inprogress", "All"];
 
@@ -68,6 +69,9 @@ const ScanHistory = () => {
             scanHistoryData={scanHistoryDummyData}
             statusFilter={statusFilter}
           />
+        </div>
+        <div className="sss-scan-history-footer">
+          <Pagination />
         </div>
       </div>
     </div>
