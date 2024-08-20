@@ -22,6 +22,10 @@
   @apply min-w-full pt-8;
 }
 
+.sss-billing-table-scrollable {
+  @apply overflow-x-auto;
+}
+
 .sss-history-table-scrollable {
   @apply overflow-x-auto;
 }

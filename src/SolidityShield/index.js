@@ -9,6 +9,7 @@ import { solidityShieldScanStore } from "./redux/store";
 import "./index.css";
 import { MainLayout, NoSidebarLayout } from "./components/sidebar/Layout";
 import ScanHistory from "./pages/history/ScanHistory";
+import BillingScreen from "./pages/billing/Billing";
 
 const SolidityShield = () => {
   return (
@@ -19,6 +20,7 @@ const SolidityShield = () => {
           <Route element={<MainLayout />}>
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
+            <Route path="payment" element={<BillingScreen />} />
           </Route>
           <Route element={<NoSidebarLayout />}>
             <Route path="auth" element={<AuthScreen />} />
