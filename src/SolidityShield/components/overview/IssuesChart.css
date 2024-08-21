@@ -1,12 +1,13 @@
 .sss-overview-issues-card-container {
-  @apply flex-1 min-h-[450px] w-full p-5;
+  @apply w-full p-5 min-h-[600px] flex flex-col items-center justify-center;
 }
 
 .sss-overview-issues-card {
+  @apply w-full;
 }
 
 .sss-overview-issues-card-header {
-  @apply w-full flex justify-between items-end;
+  @apply w-full flex justify-between items-center;
 }
 
 .sss-overview-issues-header-left {
@@ -17,6 +18,37 @@
   @apply text-xs text-[#969BA0] font-light;
 }
 
+.sss-overview-issues-header-right {
+}
+
+.sss-overview-issues-header-right-dropdown {
+  @apply relative cursor-pointer text-sm py-2 px-4 bg-[#FFEEF3] text-[#EA7A9A] rounded-full;
+}
+
+.sss-overview-issues-header-right-dropdown-content {
+  @apply flex gap-x-4 justify-end items-center;
+}
+
+.sss-overview-issues-header-right-dropdown-options {
+  @apply shadow-md text-sm w-full z-20 absolute left-0 bg-[#FFEEF3] text-[#EA7A9A] border border-[#EA7A9A];
+}
+
+.sss-overview-issues-header-right-dropdown-option-container:hover {
+  @apply border border-[#EA7A9A];
+}
+
+.sss-overview-issues-header-right-dropdown-option {
+  @apply py-1 lg:py-3 px-4;
+}
+
 .sss-overview-issues-card-body {
   @apply w-full;
+}
+
+.sss-overview-issues-card-chart-header {
+  @apply w-full py-5 flex gap-x-3;
+}
+
+.sss-overview-issues-card-chart-main {
+  @apply w-full flex items-start justify-start;
 }

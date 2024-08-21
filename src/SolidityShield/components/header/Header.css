@@ -14,7 +14,7 @@
   @apply cursor-pointer text-[#B2ABAB];
 }
 .sss-header-search-container {
-  @apply w-full;
+  @apply w-full hidden md:block;
 }
 
 .sss-header-search {
@@ -34,9 +34,9 @@
 }
 
 .sss-header-right-calendar {
-  @apply flex items-center justify-center gap-x-2 text-[#404040];
+  @apply hidden md:flex items-center justify-center gap-x-2 text-[#404040];
 }
 
 .sss-header-right-notifications {
-  @apply border rounded-full p-3 flex items-center justify-center;
+  @apply hidden md:block border rounded-full p-3 flex items-center justify-center;
 }

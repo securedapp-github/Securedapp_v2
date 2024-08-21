@@ -17,6 +17,14 @@ const initialScanSummaryState = {
         value: 7,
         text: "Lorem Ipsum",
       },
+      {
+        value: 60,
+        text: "Lorem Ipsum",
+      },
+      {
+        value: 7,
+        text: "Lorem Ipsum",
+      },
     ],
   },
 };
