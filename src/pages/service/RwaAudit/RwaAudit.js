@@ -12,15 +12,7 @@ import "../Service.css";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
-import {
-  faqsData,
-  benefitsData,
-  needData,
-  securityAspectData,
-  projectIndustries,
-  facts,
-  platforms,
-} from "./data";
+import { faqsData, benefitsData, needData, securityAspectData } from "./data";
 
 function RwaAudit() {
   return (
@@ -29,66 +21,38 @@ function RwaAudit() {
       <div className="service">
         <ProductServiceHero
           name="RWA AUDIT"
-          title="Helping Your Business to Launch Error-free Blockchain Applications"
-          image={"/assets/images/product-hero.svg"}
+          title="Audit for Secure Blockchain Asset Valuation"
+          image={"/assets/images/ServicePages/s8-hero.png"}
         />
         <ProductCard
-          header={"What is a Smart Contract ?"}
+          header={"What are Real-world Assets?"}
           description={
-            "A smart contract—a digital agreement stored on a blockchain network and programmed to execute automatically when predetermined conditions are met. These self-enforcing contracts encode the agreement terms between seller and buyer directly into lines of code. Operating on a decentralized blockchain, smart contracts help several parties achieve collective outcomes promptly and accurately.<br/><br/>Smart contracts are not limited to a single condition. In fact, a single smart contract can include multiple conditions, showcasing their versatility. Furthermore, an application can utilize several smart contracts to support interconnected processes, demonstrating their potential in a variety of scenarios. Multiple languages, such as Ethereum's Solidity language, are available for programming smart contracts, one of the most popular"
+            "Real-world assets (RWAs) are tangible assets that exist outside of the digital space, including bonds, real estate properties, commodities, and machinery. In the context of blockchain, RWAs refer to digital tokens representing these physical and traditional financial assets.<br/><br/>Tokenizing real-world assets involves converting them into security tokens on the blockchain, allowing them to be utilized in on-chain transactions. This process enables any valued asset to be tokenized and leveraged within the digital ecosystem."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s8-1.png"}
         />
         <ProductWhyCard
-          header={"Smart Contract Audit Meaning"}
+          header={"Real-World Assets Fit for Tokenization"}
           descriptions={[
-            "A small error while deploying smart contracts can result in huge financial losses. This is why smart contracts security audits are imperative. A smart contract audit involves a detailed analysis of a protocol’s smart contract code to identify security vulnerabilities and inefficient code before identifying solutions to resolve these issues.  Audits help ensure decentralized applications' security, reliability, and performance across Web3.",
+            `• Real Estate
+            <br/><br/>• Art and Collectables
+            <br/><br/>• Commodities 
+            <br/><br/>• Stocks and Securities
+            <br/><br/>• Currencies
+            <br/><br/>• Intellectual Property`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ServicePages/s8-2.png"}
           imageAlt={"Product 1 Why Image"}
-        />
-        <ProductCard
-          header={"Why SecureDApp for Smart Contract Security Audit?"}
-          description={
-            "SecureDApp harnesses its experience and expertise to conduct blockchain security audits, carefully examining smart contracts for existing and potential errors, security flaws, and compliance issues. SecureDApp is committed to helping businesses develop secure and reliable DApps.<br/><br/>We believe that smart contracts have the potential to transform the way businesses operate, and we are excited to be a part of that revolution. By choosing SecureDApp, you ensure your smart contracts are thoroughly audited, enhancing your blockchain applications' security, reliability, and efficiency."
-          }
-          buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <div className="features-section">
-          <SectionTitle
-            name={"Facts & Figures"}
-            title={"Uniques Dapp Development Services"}
-            description={
-              "These numbers underscore the urgent need for smart contract security audits. With significant losses attributed to security breaches and a high frequency of attacks in critical areas like DeFi, ensuring that your smart contracts are thoroughly audited is more crucial than ever."
-            }
-          />
-          <FeatureCards featureData={facts} />
-          <div className="features-section-button">
-            <Button text={"Learn more"} filled={true} />
-          </div>
-        </div>
-        <Benefits
-          benefitsData={platforms}
-          title={"Blockchain Networks We Work On"}
-          subTitle={
-            "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
-          }
-          img={"/assets/images/service-1-benefits.svg"}
-          button={""}
         />
         <div>
           <SectionTitle
-            name={"Industries"}
-            title="The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively. "
-            description={
-              "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban"
-            }
+            name={"Benefits"}
+            title="Benefits of RWA Tokenization"
           />
           <div className="how-it-works-section">
-            {projectIndustries.map((data) => {
+            {benefitsData.map((data) => {
               return (
                 <HowItWorksCard
                   image={data.image}
@@ -100,6 +64,42 @@ function RwaAudit() {
             })}
           </div>
         </div>
+        <ProductWhyCard
+          header={"What is RWA Audit?"}
+          descriptions={[
+            "RWA (Real World Asset) Audit comprehensively evaluates real-world assets tokenized on a blockchain platform. It assesses the underlying asset's value, the accuracy of the token representation, and the overall security and compliance of the tokenization process.",
+          ]}
+          buttonText={"Get Started"}
+          image={"/assets/images/ServicePages/s8-3.png"}
+          imageAlt={"Product 1 Why Image"}
+        />
+        <div className="features-section">
+          <SectionTitle
+            name={"The Need"}
+            title={"Need of RWA Security Audit"}
+            description={
+              "The real-world asset tokenization market is expected to reach $30.1 trillion by 2034. With this in mind, now is the ideal time for early adopters and forward-thinking investors to explore the real-world asset tokenization audit and seize this unique business opportunity from the ground up. Businesses can get the benefit of the following:"
+            }
+          />
+          <FeatureCards featureData={needData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
+        </div>
+        <div className="features-section">
+          <SectionTitle
+            name={"Assets Audit"}
+            title={"Security Aspect of Tokenized Asset Audit"}
+            description={
+              "To safeguard tokenized assets and prevent unauthorized access, asset tokenization platforms must implement robust security measures :"
+            }
+          />
+          <FeatureCards featureData={securityAspectData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
+        </div>
+
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

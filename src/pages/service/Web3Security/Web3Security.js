@@ -22,7 +22,7 @@ function Web3Security() {
         <ProductServiceHero
           name="WEB 3.0 SECURITY"
           title="Real-time Prevention from Cyber Threats"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ServicePages/s6-hero.png"}
         />
         <ProductCard
           header={"What is Web 3.0 ?"}
@@ -30,7 +30,7 @@ function Web3Security() {
             "Web 3.0 represents a decentralized internet that runs on blockchain technology and isn't controlled by one group. It's different from Web 2.0, where a handful of big companies call the shots. <br/><br/> Instead, Web3 works on shared records that are more transparent. As more parts of Web 3.0 come into play, a shift is expected to usher in an era where the use and access of the internet are governed by community-run networks, rather than centralized entities."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s6-1.png"}
         />
         <div>
           <SectionTitle
@@ -63,7 +63,7 @@ function Web3Security() {
             <br/><br/>As Web 3.0 advances, a thorough risk assessment is essential to safeguard your business and unlock its full potential.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ServicePages/s6-2.png"}
           imageAlt={"Product 1 Why Image"}
         />
         <div className="features-section">

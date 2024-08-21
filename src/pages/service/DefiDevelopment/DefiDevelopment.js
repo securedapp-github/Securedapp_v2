@@ -12,15 +12,7 @@ import "../Service.css";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
-import {
-  faqsData,
-  responsibleData,
-  usesData,
-  workingGuideData,
-  projectIndustries,
-  facts,
-  platforms,
-} from "./data";
+import { faqsData, applicationsData, usesData, workingGuideData } from "./data";
 
 function DefiDevelopment() {
   return (
@@ -29,66 +21,27 @@ function DefiDevelopment() {
       <div className="service">
         <ProductServiceHero
           name="DeFi DEVELOPMENT"
-          title="Helping Your Business to Launch Error-free Blockchain Applications"
-          image={"/assets/images/product-hero.svg"}
+          title="Transforming Financial Services"
+          image={"/assets/images/ServicePages/s12-hero.png"}
         />
         <ProductCard
-          header={"What is a Smart Contract ?"}
+          header={"What is a Decentralized Finance (DeFi)?"}
           description={
-            "A smart contract—a digital agreement stored on a blockchain network and programmed to execute automatically when predetermined conditions are met. These self-enforcing contracts encode the agreement terms between seller and buyer directly into lines of code. Operating on a decentralized blockchain, smart contracts help several parties achieve collective outcomes promptly and accurately.<br/><br/>Smart contracts are not limited to a single condition. In fact, a single smart contract can include multiple conditions, showcasing their versatility. Furthermore, an application can utilize several smart contracts to support interconnected processes, demonstrating their potential in a variety of scenarios. Multiple languages, such as Ethereum's Solidity language, are available for programming smart contracts, one of the most popular"
+            "Decentralized Finance (DeFi)) is an emerging financial instrument built on blockchain technology that provides financial services without intermediaries. It includes various applications such as lending, borrowing, trading, and asset management. DeFi platforms operate on a decentralized network, offering transparency, accessibility, and financial inclusion.<br/><br/> DeFi services are decentralized applications (dApps) that utilize the decentralized nature of public blockchains and the power of smart contracts to offer globally accessible financial services."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <ProductWhyCard
-          header={"Smart Contract Audit Meaning"}
-          descriptions={[
-            "A small error while deploying smart contracts can result in huge financial losses. This is why smart contracts security audits are imperative. A smart contract audit involves a detailed analysis of a protocol’s smart contract code to identify security vulnerabilities and inefficient code before identifying solutions to resolve these issues.  Audits help ensure decentralized applications' security, reliability, and performance across Web3.",
-          ]}
-          buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
-          imageAlt={"Product 1 Why Image"}
-        />
-        <ProductCard
-          header={"Why SecureDApp for Smart Contract Security Audit?"}
-          description={
-            "SecureDApp harnesses its experience and expertise to conduct blockchain security audits, carefully examining smart contracts for existing and potential errors, security flaws, and compliance issues. SecureDApp is committed to helping businesses develop secure and reliable DApps.<br/><br/>We believe that smart contracts have the potential to transform the way businesses operate, and we are excited to be a part of that revolution. By choosing SecureDApp, you ensure your smart contracts are thoroughly audited, enhancing your blockchain applications' security, reliability, and efficiency."
-          }
-          buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <div className="features-section">
-          <SectionTitle
-            name={"Facts & Figures"}
-            title={"Uniques Dapp Development Services"}
-            description={
-              "These numbers underscore the urgent need for smart contract security audits. With significant losses attributed to security breaches and a high frequency of attacks in critical areas like DeFi, ensuring that your smart contracts are thoroughly audited is more crucial than ever."
-            }
-          />
-          <FeatureCards featureData={facts} />
-          <div className="features-section-button">
-            <Button text={"Learn more"} filled={true} />
-          </div>
-        </div>
-        <Benefits
-          benefitsData={platforms}
-          title={"Blockchain Networks We Work On"}
-          subTitle={
-            "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
-          }
-          img={"/assets/images/service-1-benefits.svg"}
-          button={""}
+          image={"/assets/images/ServicePages/s12-1.png"}
         />
         <div>
           <SectionTitle
-            name={"Industries"}
-            title="The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively. "
+            name={"Applications"}
+            title="Understanding DeFi Applications"
             description={
-              "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban"
+              "DeFi applications transform the way we interact with money by leveraging blockchain technology. These innovative programs, installed on devices like personal computers, tablets, or smartphones, facilitate various financial activities—such as purchases, loans, gifts, and trading—without intermediaries."
             }
           />
           <div className="how-it-works-section">
-            {projectIndustries.map((data) => {
+            {applicationsData.map((data) => {
               return (
                 <HowItWorksCard
                   image={data.image}
@@ -100,6 +53,31 @@ function DefiDevelopment() {
             })}
           </div>
         </div>
+        <div className="features-section">
+          <SectionTitle
+            name={"Use cases"}
+            title={"Decentralized Finance (DeFi) Use Cases"}
+          />
+          <FeatureCards featureData={usesData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
+        </div>
+        <div className="features-section">
+          <SectionTitle name={"How it works"} title={"DeFi Working Guide"} />
+          <FeatureCards featureData={workingGuideData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
+        </div>
+        <ProductCard
+          header={"Why SecureDApp for Your DeFi Needs?"}
+          description={
+            "At SecureDApp, we specialize in crafting innovative DeFi solutions tailored to your needs. Our recent success in building a cutting-edge DeFi exchange from scratch highlights our expertise and commitment to excellence.<br/><br/>Whether you're looking to launch a new DeFi platform or enhance an existing one, our team brings unparalleled experience in smart contract development, security, and blockchain integration.<br/><br/>By choosing SecureDApp, you're not just selecting a service provider—you're partnering with a dedicated team ready to drive your DeFi vision to success. Let us help you navigate the exciting world of decentralized finance with confidence and efficiency."
+          }
+          buttonText={"Scan now"}
+          image={"/assets/images/ServicePages/s12-2.png"}
+        />
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

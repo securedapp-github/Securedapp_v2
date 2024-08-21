@@ -12,15 +12,7 @@ import "../Service.css";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
-import {
-  faqsData,
-  benefits,
-  applicationsData,
-  differenceData,
-  projectIndustries,
-  facts,
-  platforms,
-} from "./data";
+import { faqsData, benefits, differenceData } from "./data";
 
 function DecentralizedIdentity() {
   return (
@@ -29,66 +21,27 @@ function DecentralizedIdentity() {
       <div className="service">
         <ProductServiceHero
           name="DECENTRALIZED IDENTITY (DID)"
-          title="Helping Your Business to Launch Error-free Blockchain Applications"
-          image={"/assets/images/product-hero.svg"}
+          title="Decentralized Identity (DID) Solutions Offers Privacy-first Digital Identities"
+          image={"/assets/images/ServicePages/s10-hero.png"}
         />
         <ProductCard
-          header={"What is a Smart Contract ?"}
+          header={"What is Decentralized Identity (DID)?"}
           description={
-            "A smart contract—a digital agreement stored on a blockchain network and programmed to execute automatically when predetermined conditions are met. These self-enforcing contracts encode the agreement terms between seller and buyer directly into lines of code. Operating on a decentralized blockchain, smart contracts help several parties achieve collective outcomes promptly and accurately.<br/><br/>Smart contracts are not limited to a single condition. In fact, a single smart contract can include multiple conditions, showcasing their versatility. Furthermore, an application can utilize several smart contracts to support interconnected processes, demonstrating their potential in a variety of scenarios. Multiple languages, such as Ethereum's Solidity language, are available for programming smart contracts, one of the most popular"
+            "Decentralized identity is a method for identifying and authenticating users and entities without relying on a central authority. Traditional identity management verifies individuals through attributes like name, Social Security number, birth date, or email address, whereas decentralized identity leverages blockchain and other decentralized technologies. This approach minimizes the risk of data breaches by avoiding the concentration of sensitive information in a single, vulnerable location, thus enhancing overall security."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <ProductWhyCard
-          header={"Smart Contract Audit Meaning"}
-          descriptions={[
-            "A small error while deploying smart contracts can result in huge financial losses. This is why smart contracts security audits are imperative. A smart contract audit involves a detailed analysis of a protocol’s smart contract code to identify security vulnerabilities and inefficient code before identifying solutions to resolve these issues.  Audits help ensure decentralized applications' security, reliability, and performance across Web3.",
-          ]}
-          buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
-          imageAlt={"Product 1 Why Image"}
-        />
-        <ProductCard
-          header={"Why SecureDApp for Smart Contract Security Audit?"}
-          description={
-            "SecureDApp harnesses its experience and expertise to conduct blockchain security audits, carefully examining smart contracts for existing and potential errors, security flaws, and compliance issues. SecureDApp is committed to helping businesses develop secure and reliable DApps.<br/><br/>We believe that smart contracts have the potential to transform the way businesses operate, and we are excited to be a part of that revolution. By choosing SecureDApp, you ensure your smart contracts are thoroughly audited, enhancing your blockchain applications' security, reliability, and efficiency."
-          }
-          buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <div className="features-section">
-          <SectionTitle
-            name={"Facts & Figures"}
-            title={"Uniques Dapp Development Services"}
-            description={
-              "These numbers underscore the urgent need for smart contract security audits. With significant losses attributed to security breaches and a high frequency of attacks in critical areas like DeFi, ensuring that your smart contracts are thoroughly audited is more crucial than ever."
-            }
-          />
-          <FeatureCards featureData={facts} />
-          <div className="features-section-button">
-            <Button text={"Learn more"} filled={true} />
-          </div>
-        </div>
-        <Benefits
-          benefitsData={platforms}
-          title={"Blockchain Networks We Work On"}
-          subTitle={
-            "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
-          }
-          img={"/assets/images/service-1-benefits.svg"}
-          button={""}
+          image={"/assets/images/ServicePages/s10-1.png"}
         />
         <div>
           <SectionTitle
-            name={"Industries"}
-            title="The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively. "
+            name={"Benefits"}
+            title="Benefits of DID Technology"
             description={
               "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban"
             }
           />
           <div className="how-it-works-section">
-            {projectIndustries.map((data) => {
+            {benefits.map((data) => {
               return (
                 <HowItWorksCard
                   image={data.image}
@@ -100,6 +53,42 @@ function DecentralizedIdentity() {
             })}
           </div>
         </div>
+        <div className="features-section">
+          <SectionTitle
+            name={"Differences"}
+            title={
+              "Difference Between Decentralized Identity and Self-sovereign Identity"
+            }
+            description={
+              "While decentralized identity and self-sovereign identity are often used interchangeably, self-sovereign identity specifically encompasses four key attributes:"
+            }
+          />
+          <FeatureCards featureData={differenceData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
+        </div>
+        <ProductCard
+          header={"Decentralized Identity (DID) Applications Across Industrie"}
+          description={`• Supply Chain Management
+            <br/><br/>• Government and Voting Systems
+            <br/><br/>• Education Credentials
+            <br/><br/>• Digital Identity Verification
+            <br/><br/>• Healthcare
+            <br/><br/>• Decentralized Social Media`}
+          buttonText={"Scan now"}
+          image={"/assets/images/ServicePages/s10-2.png"}
+        />
+        <ProductWhyCard
+          header={"Why Choose SecureDApp for Decentralized Identity Service?"}
+          descriptions={[
+            "SecureDApp stands out as a leading decentralized identity (DID) technology provider due to our unparalleled expertise in blockchain technology and commitment to security. <br/><br/> Our services incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards.<br/><br/>We understand that each organization has different requirements, so we offer customizable DID solutions designed to fit various use cases and industry needs. Our user-centric approach ensures that our DID solutions are easy to use, and enhance the overall user experience.",
+          ]}
+          buttonText={"Get Started"}
+          image={"/assets/images/ServicePages/s10-3.png"}
+          imageAlt={"Product 1 Why Image"}
+        />
+
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

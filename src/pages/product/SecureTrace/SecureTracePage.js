@@ -29,7 +29,7 @@ function SecureTracePage() {
             "SecureTrace, a sophisticated blockchain forensic tool, harnesses advanced AI and machine learning (ML) technologies. It excels in post-transaction analysis and forensic thread tracing, with a standout feature-Auto-Trace. This feature automates the tracing of transactions, saving time and effort for the user. <br/><br/> SecureTrace analyzes transaction data using specialized blockchain forensic techniques, enhancing the detection of intricate patterns and potential vulnerabilities."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ProductPages/st/1.png"}
         />
         <div className="features-section">
           <SectionTitle
@@ -49,7 +49,7 @@ function SecureTracePage() {
             "As an innovative and forward-thinking company, SecureDApp embodies a dynamic, humble, and challenge-driven approach, positioning itself as a leading force in blockchain security.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ProductPages/st/2.png"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>

@@ -14,7 +14,8 @@ const Button = ({
       className={`px-2 py-1 whitespace-nowrap lg:px-4 lg:py-2 border-2 border-tertiary ${
         blogButton ? "rounded" : "rounded-lg"
       } ${hoverClassName} ${className}`}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {text}
     </button>
   );

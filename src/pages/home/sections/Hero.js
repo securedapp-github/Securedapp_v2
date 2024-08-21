@@ -7,18 +7,18 @@ import "swiper/swiper-bundle.css";
 
 const images = [
   {
-    src: "/assets/images/hero-image1.svg",
+    src: "/assets/images/home/hero.png",
     alt: "Hero 1",
     to: "",
   },
   {
-    src: "/assets/images/hero-image1.svg",
-    alt: "Hero 1",
+    src: "/assets/images/home/hero.png",
+    alt: "Hero 2",
     to: "",
   },
   {
-    src: "/assets/images/hero-image1.svg",
-    alt: "Hero 1",
+    src: "/assets/images/home/hero.png",
+    alt: "Hero 3",
     to: "",
   },
 ];
@@ -39,7 +39,8 @@ const Hero = () => (
         loop={true}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
         grabCursor={true}
-        className="hero-swiper">
+        className="hero-swiper"
+      >
         {images.map((image, index) => {
           return (
             <SwiperSlide key={`swiper-slide-${index}`}>

@@ -12,16 +12,7 @@ import "../Service.css";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
-import {
-  faqsData,
-  whyChooseData,
-  whyData,
-  whyCrucialData,
-  importanceData,
-  projectIndustries,
-  facts,
-  platforms,
-} from "./data";
+import { faqsData, whyChooseData, whyData, importanceData } from "./data";
 
 function CryptoComplianceAml() {
   return (
@@ -30,66 +21,55 @@ function CryptoComplianceAml() {
       <div className="service">
         <ProductServiceHero
           name="CRYPTO COMPLIANCE & AML"
-          title="Helping Your Business to Launch Error-free Blockchain Applications"
-          image={"/assets/images/product-hero.svg"}
+          title="Crypto KYC, and AML Solutions Under One Place"
+          image={"/assets/images/ServicePages/s9-hero.png"}
         />
         <ProductCard
-          header={"What is a Smart Contract ?"}
+          header={"What Is Anti-money Laundering (AML)?"}
           description={
-            "A smart contract—a digital agreement stored on a blockchain network and programmed to execute automatically when predetermined conditions are met. These self-enforcing contracts encode the agreement terms between seller and buyer directly into lines of code. Operating on a decentralized blockchain, smart contracts help several parties achieve collective outcomes promptly and accurately.<br/><br/>Smart contracts are not limited to a single condition. In fact, a single smart contract can include multiple conditions, showcasing their versatility. Furthermore, an application can utilize several smart contracts to support interconnected processes, demonstrating their potential in a variety of scenarios. Multiple languages, such as Ethereum's Solidity language, are available for programming smart contracts, one of the most popular"
+            "Anti-money laundering (AML) involves a comprehensive framework of policies, laws, and regulations to thwart financial crimes and illicit activities. Global and local regulators collaborate to enforce these measures, targeting a broad spectrum of offenses, such as corruption, tax evasion, market manipulation, illicit trade, and terrorist financing. "
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s9-1.png"}
         />
         <ProductWhyCard
-          header={"Smart Contract Audit Meaning"}
+          header={"AML is Crucial For:"}
           descriptions={[
-            "A small error while deploying smart contracts can result in huge financial losses. This is why smart contracts security audits are imperative. A smart contract audit involves a detailed analysis of a protocol’s smart contract code to identify security vulnerabilities and inefficient code before identifying solutions to resolve these issues.  Audits help ensure decentralized applications' security, reliability, and performance across Web3.",
+            `• Safeguarding brand reputation 
+            <br/><br/>• Ensuring compliance and crypto transaction monitoring
+            <br/><br/>• Reporting any suspicious activity
+            <br/><br/>• Avoiding legal penalties and fines due to non-compliance
+            <br/><br/>• Reducing costs associated with fines and IT infrastructure
+            <br/><br/>• Securing shareholder's value`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ServicePages/s9-2.png"}
           imageAlt={"Product 1 Why Image"}
         />
         <ProductCard
-          header={"Why SecureDApp for Smart Contract Security Audit?"}
+          header={"AML for Cryptocurrency"}
           description={
-            "SecureDApp harnesses its experience and expertise to conduct blockchain security audits, carefully examining smart contracts for existing and potential errors, security flaws, and compliance issues. SecureDApp is committed to helping businesses develop secure and reliable DApps.<br/><br/>We believe that smart contracts have the potential to transform the way businesses operate, and we are excited to be a part of that revolution. By choosing SecureDApp, you ensure your smart contracts are thoroughly audited, enhancing your blockchain applications' security, reliability, and efficiency."
+            "Cryptocurrency offers a cost-effective, direct settlement process, making it an attractive option for money launderers to move illicit funds with minimal detection. This is where Anti-Money Laundering (AML) practices play a crucial role, providing necessary oversight to prevent financial crimes. AML measures to safeguard the cryptocurrency ecosystem, ensuring compliance with regulatory standards and protecting the industry's reputation.<br/><br/>In 2023 alone, crypto companies faced over $ 5.8 billion in fines due to inadequate AML programs. Effective AML practices are therefore essential for cryptocurrency exchanges, wallet providers, and other virtual asset service providers (VASPs) to comply with legal requirements, avoid penalties, and build trust.<br/><br/>By enforcing these standards, AML initiatives protect the industry and promote broader acceptance and adoption of cryptocurrencies."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s9-3.png"}
         />
-        <div className="features-section">
-          <SectionTitle
-            name={"Facts & Figures"}
-            title={"Uniques Dapp Development Services"}
-            description={
-              "These numbers underscore the urgent need for smart contract security audits. With significant losses attributed to security breaches and a high frequency of attacks in critical areas like DeFi, ensuring that your smart contracts are thoroughly audited is more crucial than ever."
-            }
-          />
-          <FeatureCards featureData={facts} />
-          <div className="features-section-button">
-            <Button text={"Learn more"} filled={true} />
-          </div>
-        </div>
-        <Benefits
-          benefitsData={platforms}
-          title={"Blockchain Networks We Work On"}
-          subTitle={
-            "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
-          }
-          img={"/assets/images/service-1-benefits.svg"}
-          button={""}
+        <ProductWhyCard
+          header={"What are Crypto Compliance and AML Services?"}
+          descriptions={[
+            "Crypto Compliance and AML (Anti-Money Laundering) services are designed to help cryptocurrency companies comply with regulatory standards. These services include establishing strong Know Your Customer (KYC) protocols, monitoring transactions, and reporting suspicious activities to the appropriate authorities. The primary aim is to prevent money laundering, terrorist financing, and other financial crimes in crypto.",
+          ]}
+          buttonText={"Get Started"}
+          image={"/assets/images/ServicePages/s9-4.png"}
+          imageAlt={"Product 1 Why Image"}
         />
         <div>
           <SectionTitle
-            name={"Industries"}
-            title="The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively. "
-            description={
-              "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban"
-            }
+            name={"Compliances"}
+            title="Why is Cryptocurrency Compliance Crucial?"
           />
           <div className="how-it-works-section">
-            {projectIndustries.map((data) => {
+            {whyData.map((data) => {
               return (
                 <HowItWorksCard
                   image={data.image}
@@ -99,6 +79,29 @@ function CryptoComplianceAml() {
                 />
               );
             })}
+          </div>
+        </div>
+        <div className="features-section">
+          <SectionTitle
+            name={"Importance"}
+            title={"Importance of Cryptocurrency KYC"}
+            description={
+              "KYC (Know Your Customer) is essential in cryptocurrency as it collects and verifies customer information to identify potential risks and outliers. This process is a fundamental expectation that ensures cryptocurrency businesses conduct thorough due diligence and gain a clear understanding of their users. By implementing KYC, financial institutions and crypto platforms can:"
+            }
+          />
+          <FeatureCards featureData={importanceData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
+          </div>
+        </div>
+        <div className="features-section">
+          <SectionTitle
+            name={"Why choose us"}
+            title={"Why Choose SecureDApp for Your Business?"}
+          />
+          <FeatureCards featureData={whyChooseData} />
+          <div className="features-section-button">
+            <Button text={"Learn more"} filled={true} />
           </div>
         </div>
         <Testimonials reviews={reviews} />

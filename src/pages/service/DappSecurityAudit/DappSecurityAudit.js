@@ -22,7 +22,7 @@ function DappSecurityAudit() {
         <ProductServiceHero
           name="DAPP SECURITY AUDIT"
           title="A Comprehensive Service Ensure Decentralized Application Security Against Malicious Attack"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ServicePages/s3-hero.png"}
         />
         <ProductCard
           header={"What is a Dapp ?"}
@@ -30,7 +30,7 @@ function DappSecurityAudit() {
             "A decentralized application (dApp) operates on a decentralized network and integrates a smart contract with a front-end user interface.<br/><br/> DApps utilize the decentralized nature of blockchain technology, unlike traditional software applications that rely on centralized servers to store data and process information based on user requests. <br/><br/> Once a developer releases a dApp's codebase, others can build upon it, fostering a collaborative development environment."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s3-1.png"}
         />
         <ProductWhyCard
           header={"What Makes DApp Security Crucial?"}
@@ -38,7 +38,7 @@ function DappSecurityAudit() {
             "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. <br/><br/> Since DApps function as off-chain components, they become attractive targets for hackers. Applications such as DeFi, marketplaces, GameFi, wallets, supply chains, and DEXs are particularly vulnerable, as hackers constantly scrutinize them for exploitable weaknesses. <br/><br/> Therefore, it is crucial to focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ServicePages/s3-2.png"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>
