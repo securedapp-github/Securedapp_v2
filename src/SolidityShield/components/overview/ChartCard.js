@@ -1,8 +1,8 @@
 import "./ChartCard.css";
 
-const ChartCard = ({ children }) => {
+const ChartCard = ({ children, className }) => {
   return (
-    <div className="sss-chart-card-container">
+    <div className={`sss-chart-card-container ${className}`}>
       <div className="sss-chart-card">{children}</div>
     </div>
   );

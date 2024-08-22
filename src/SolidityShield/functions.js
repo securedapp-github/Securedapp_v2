@@ -1,15 +1,308 @@
 import axios from "axios";
 import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import Chart from "chart.js/auto";
 import CryptoJS from "crypto-js";
 import { toast } from "react-toastify";
 import { getUserData, login } from "../SolidityShield/redux/auth/authSlice";
-import { setIssuesChart } from "./redux/dashboard/scanSummarySlice";
+import { setIssuesData } from "./redux/dashboard/issuesSlice";
 import { setScanHistory } from "./redux/scanHistory/scanHistorySlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
 
 const logo = "/assets/images/securedapp_logo.svg";
+
+export const PurchasePlan = async (planid, email) => {
+  const { v4: uuidv4 } = require("uuid");
+
+  let cost = 0;
+  if (planid > 0) {
+    //setplanid(planid);
+
+    const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
+    // console.log("Txn_ID : ", transactionid);
+
+    const response2 = await fetch(
+      "https://139-59-5-56.nip.io:3443/payment-insert",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          mail: email,
+          paymentid: transactionid,
+          planid: planid,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+
+    const data = await response2.json();
+    // console.log("db entry data : ", data);
+
+    if (!data.status) {
+      console.log("Failed DB payment Entry");
+      return;
+    } else {
+      window.location.replace(data.redirect);
+    }
+  }
+};
+
+export const scanSubmit = async ({
+  inputTypes,
+  companyName,
+  githubUrl,
+  etherscanUrl,
+  chain,
+  file,
+  contract,
+  user,
+  dispatch,
+}) => {
+  let result;
+  let compilerVersion;
+  const formData = new FormData();
+
+  // Validation
+  if (inputTypes === "") {
+    alert("Please Select a source");
+    return;
+  }
+
+  if (companyName === "") {
+    alert("Please enter your Company Name");
+    return;
+  }
+
+  // Handling GitHub URL
+  if (inputTypes.includes("github") && githubUrl) {
+    try {
+      const { sourceCode, file: githubFile } = await githuburlfetch(githubUrl);
+      if (!sourceCode) {
+        alert("Failed to fetch contract source code.");
+        return;
+      }
+
+      formData.append("files", githubFile);
+
+      compilerVersion = isContractFlattened(sourceCode);
+      if (!compilerVersion) {
+        alert("The contract is not flattened.");
+        return;
+      }
+    } catch (error) {
+      alert("Error fetching GitHub URL.");
+      console.error("GitHub URL fetch error:", error);
+      return;
+    }
+  }
+
+  // Handling Etherscan URL
+  if (inputTypes.includes("etherscan") && etherscanUrl && chain) {
+    try {
+      const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
+      const blob = new Blob([sourceCode], { type: "text/plain" });
+      const etherscanFile = new File([blob], `${companyName}.sol`, {
+        type: "text/plain",
+      });
+      formData.append("files", etherscanFile);
+
+      compilerVersion = isContractFlattened(sourceCode);
+      if (!compilerVersion) {
+        alert("The contract is not flattened.");
+        return;
+      }
+    } catch (error) {
+      alert("Error fetching Etherscan URL.");
+      console.error("Etherscan fetch error:", error);
+      return;
+    }
+  }
+
+  if (inputTypes.includes("file") && file) {
+    formData.append("files", file);
+    if (!file) {
+      toast.error("Please select a file.");
+      return;
+    }
+
+    if (!contract) {
+      toast.error("No contract file uploaded.");
+      return;
+    }
+
+    if (!isFlattened(contract)) {
+      toast.error("The contract must be flattened before submission.");
+      return;
+    }
+
+    compilerVersion = detectCompilerVersion(contract);
+    if (!compilerVersion) {
+      toast.error("Could not detect the compiler version.");
+      return;
+    }
+
+    console.log(`Compiler version: ${compilerVersion}`);
+  }
+
+  // if (rcredit < 1) {
+  //   toast("No Credit, Please Purchase a Plan to scan");
+  //   return;
+  // }
+
+  formData.append("mail", user.email);
+  formData.append("version", compilerVersion);
+  formData.append("company", companyName);
+
+  await fetch("https://139-59-5-56.nip.io:3443/audits", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        toast("Invalid Network Response");
+      }
+      return response.text();
+    })
+    .then(async (data) => {
+      console.log(data);
+      const history = await getScanHistoryData({
+        userEmail: user.email,
+        dispatch,
+      });
+      var latestScan = history.reduce((max, item) => {
+        return item.id > max.id ? item : max;
+      }, history[0]);
+      window.open("/solidity-shield-scan/report/" + latestScan.id);
+      toast.success("Scan finished");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+export const downloadfReportPdf = (id) => {
+  const input = document.getElementById("scan-report-" + id);
+  if (!input) {
+    toast.error("Error downloading the report! Try again.");
+    return;
+  }
+  html2canvas(input)
+    .then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("solidity-shield-scan-report-" + id + ".pdf");
+    })
+    .catch((error) => {
+      toast.error("Error downloading the report! Try again.");
+    });
+};
+
+export const getScanSummaryData = async ({ dispatch, email }) => {
+  var history = await getScanHistoryData({
+    userEmail: email,
+    dispatch,
+  });
+  var latestScan = history.reduce((max, item) => {
+    return item.id > max.id ? item : max;
+  }, history[0]);
+  latestScan = await getReport(latestScan.id, email);
+  var data = latestScan.findings;
+  var score =
+    5 -
+    ((Number(data["high_issues"]) +
+      Number(data["medium_issues"]) +
+      Number(data["low_issues"])) /
+      30) *
+      5;
+
+  dispatch(
+    setScanSummary({
+      percentageValue: (score * 20).toFixed(1),
+      values: [
+        { name: "High Issues", value: data.high_issues },
+        { name: "Medium Issues", value: data.medium_issues },
+        { name: "Low Issues", value: data.low_issues },
+        { name: "Optimization Issues", value: data.optimization_issues },
+        { name: "Informational Issues", value: data.informational_issues },
+      ],
+    })
+  );
+  //console.log(data);
+};
+
+export const getIssuesChartData = async ({ dispatch, email }) => {
+  var history = await getScanHistoryData({
+    userEmail: email,
+    dispatch,
+  });
+  // console.log(history);
+  let data = [];
+  for (let i = 0; i < history.length; i++) {
+    var scanReport = await getReport(history[i].id, email);
+    data.push(scanReport.findings);
+  }
+  data = data.reduce((accumulator, currentObject) => {
+    for (let key in currentObject) {
+      if (!accumulator[key]) {
+        accumulator[key] = 0;
+      }
+      accumulator[key] += currentObject[key];
+    }
+    return accumulator;
+  }, {});
+  data = [
+    { name: "", value: 0 },
+    { name: "High Issues", value: data.high_issues },
+    { name: "Medium Issues", value: data.medium_issues },
+    { name: "Low Issues", value: data.low_issues },
+    { name: "Optimization Issues", value: data.optimization_issues },
+    { name: "Informational Issues", value: data.informational_issues },
+    { name: "", value: 0 },
+  ];
+  // console.log(data);
+  dispatch(setIssuesData(data));
+  return data;
+};
+
+export const getReport = async (id, email) => {
+  return await fetch("https://139-59-5-56.nip.io:3443/getReport", {
+    method: "POST",
+    body: JSON.stringify({
+      id: id,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((response) => {
+      // console.log(response);
+      // if (PurchasePlan(0)) {
+      //   console.log("PDF generation is not available for free plan users.");
+      //   toast("PDF generation is not available for free plan users.");
+      //   return;
+      // }
+      if (!response.ok) {
+        toast("Invalid Network response ");
+      }
+      return response.text();
+    })
+    .then((data) => {
+      var report = JSON.parse(data);
+      report = report[0].reportdata;
+      report = JSON.parse(report);
+      //console.log(report);
+      return report;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
 
 export const sendOTP = async ({ email, dispatch, selector }) => {
   const user = selector;
@@ -114,14 +407,14 @@ export const downloadReport = async (id) => {
     },
   })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       if (response.ok) {
         return response.json();
       }
       toast.error("Invalid Network response ");
     })
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       // if (PurchasePlan(0)) {
       //   console.log("PDF generation is not available for free plan users.");
       //   toast.error("PDF generation is not available for free plan users.");
@@ -136,7 +429,7 @@ export const downloadReport = async (id) => {
 };
 
 export const getScanHistoryData = async ({ userEmail, dispatch }) => {
-  fetch("https://139-59-5-56.nip.io:3443/getHistory", {
+  return fetch("https://139-59-5-56.nip.io:3443/getHistory", {
     method: "POST",
     body: JSON.stringify({
       mail: userEmail,
@@ -155,6 +448,7 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
       // console.log(data);
       dispatch(setScanHistory(data));
       // toast("setScanHitsory");
+      return data;
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -193,146 +487,6 @@ export function generateTable(data) {
     settotal: data.detectors,
   };
 }
-
-export const ScanSubmit = async ({
-  inputTypes,
-  companyName,
-  githubUrl,
-  etherscanUrl,
-  chain,
-  file,
-  credit,
-  rcredit,
-  email,
-}) => {
-  let result;
-  let compilerVersion;
-  const formData = new FormData();
-
-  if (inputTypes == "") {
-    alert("Please Select a source");
-    return;
-  }
-
-  if (companyName == "") {
-    alert("Please enter your Company Name");
-    return;
-  }
-
-  // https://github.com/himang305/Breeding-NFTs/blob/main/Breeding_nft.sol
-
-  if (inputTypes.includes("github") && githubUrl) {
-    if (!githubUrl) {
-      alert("Please enter the link.");
-      return;
-    }
-    if (githubUrl) {
-      console.log(githubUrl);
-      const { sourceCode, file } = await githuburlfetch(githubUrl);
-      formData.append("files", file);
-      if (sourceCode) {
-        compilerVersion = isContractFlattened(sourceCode);
-        console.log("Compiler Version = ", compilerVersion);
-        if (compilerVersion) {
-          console.log("Compiler Version:", compilerVersion);
-        } else {
-          alert("The contract is not flattened.");
-          return;
-        }
-      } else {
-        alert("Failed to fetch contract source code.");
-        return;
-      }
-    }
-  }
-
-  if (inputTypes.includes("etherscan") && etherscanUrl) {
-    if (!etherscanUrl || !chain) {
-      alert("Invlaid Chain OR Address");
-      return;
-    } else if (etherscanUrl && chain) {
-      // console.log(contractAddress);
-      const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
-      const blob = new Blob([sourceCode], { type: "text/plain" });
-      const file = new File([blob], `${companyName}.sol`, {
-        type: "text/plain",
-      });
-      formData.append("files", file);
-
-      if (sourceCode) {
-        compilerVersion = isContractFlattened(sourceCode);
-        if (compilerVersion) {
-          console.log("Compiler Version:", compilerVersion);
-        } else {
-          alert("The contract is not flattened.");
-        }
-      } else {
-        alert("Failed to fetch contract source code.");
-      }
-    }
-  }
-
-  if (inputTypes.includes("file") && file) {
-    formData.append("files", file);
-
-    if (!file) {
-      alert("Please select a file.");
-      return;
-    }
-
-    let contracts;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      contracts = event.target.result;
-    };
-    reader.readAsText(file);
-
-    if (!isFlattened(contracts)) {
-      alert("The contract must be flattened before submission.");
-      return;
-    }
-
-    compilerVersion = detectCompilerVersion(contracts);
-    if (!compilerVersion) {
-      alert("Could not detect the compiler version.");
-      return;
-    }
-
-    console.log(`Compiler version: ${compilerVersion}`);
-  }
-
-  if (rcredit < 1) {
-    alert("No Credit, Please Purchase a Plan to scan");
-    return;
-  }
-
-  formData.append("mail", email);
-  // formData.append("files", _file);
-  formData.append("version", compilerVersion);
-  formData.append("company", companyName);
-
-  // fetch('http://127.0.0.1:8000/audits', {
-  fetch("https://139-59-5-56.nip.io:3443/audits", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      alert("Invalid Network Response");
-    })
-    .then((data) => {
-      result = generateTable(data);
-      // setFile(null);
-      console.log(result);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  return result;
-  alert("Awesome! The AI scan is now underway");
-};
 
 const isFlattened = (contracts) => {
   return !/import\s+/i.test(contracts);
@@ -448,44 +602,7 @@ export const githuburlfetch = async (repoUrl, companyName) => {
   }
 };
 
-export const PurchasePlan = async (planid, email) => {
-  const { v4: uuidv4 } = require("uuid");
-
-  let cost = 0;
-  if (planid > 0) {
-    //setplanid(planid);
-
-    const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
-    // console.log("Txn_ID : ", transactionid);
-
-    const response2 = await fetch(
-      "https://139-59-5-56.nip.io:3443/payment-insert",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          mail: email,
-          paymentid: transactionid,
-          planid: planid,
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
-
-    const data = await response2.json();
-    // console.log("db entry data : ", data);
-
-    if (!data.status) {
-      console.log("Failed DB payment Entry");
-      return;
-    } else {
-      window.location.replace(data.redirect);
-    }
-  }
-};
-
-function formatDate(dateString) {
+export function formatDate(dateString) {
   //..
   function getDaySuffix(day) {
     if (day >= 11 && day <= 13) {

@@ -3,9 +3,7 @@ import "./CustomButton.css";
 const CustomButton = ({ className, text, onClick = () => {} }) => {
   return (
     <div onClick={onClick} className="sss-custom-button-container">
-      <button className={`rounded-xl bg-tertiary text-white ${className}`}>
-        {text}
-      </button>
+      <button className={className}>{text}</button>
     </div>
   );
 };

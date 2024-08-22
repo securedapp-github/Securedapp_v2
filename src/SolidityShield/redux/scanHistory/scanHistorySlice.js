@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const scanHistory = {
-  history: [],
+  history: ["a"],
 };
 
 const scanHistorySlice = createSlice({

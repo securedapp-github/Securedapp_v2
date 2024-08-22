@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import commonReducer from "./commonSlice";
-import scanSummaryReducer from "./dashboard/scanSummarySlice";
 import authReducer from "./auth/authSlice";
+import scanSummaryReducer from "./dashboard/scanSummarySlice";
+import issuesReducer from "./dashboard/issuesSlice";
+import historyReducer from "./dashboard/historySlice";
 import scanHistoryReducer from "./scanHistory/scanHistorySlice";
 
 export const solidityShieldScanStore = configureStore({
@@ -9,6 +11,8 @@ export const solidityShieldScanStore = configureStore({
     common: commonReducer,
     auth: authReducer,
     scanSummary: scanSummaryReducer,
+    issues: issuesReducer,
+    history: historyReducer,
     scanHistory: scanHistoryReducer,
   },
 });
