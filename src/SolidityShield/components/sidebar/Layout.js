@@ -36,7 +36,7 @@ export const MainLayout = () => {
 
 export const NoSidebarLayout = () => {
   return (
-    <div>
+    <div className="overflow-y-auto">
       <Outlet />
     </div>
   );

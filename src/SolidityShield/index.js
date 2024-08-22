@@ -10,6 +10,7 @@ import "./index.css";
 import { MainLayout, NoSidebarLayout } from "./components/sidebar/Layout";
 import ScanHistory from "./pages/history/ScanHistory";
 import BillingScreen from "./pages/billing/Billing";
+import Pricing from "./pages/pricing/Pricing";
 
 const SolidityShield = () => {
   return (
@@ -23,6 +24,7 @@ const SolidityShield = () => {
             <Route path="payment" element={<BillingScreen />} />
           </Route>
           <Route element={<NoSidebarLayout />}>
+            <Route path="pricing" element={<Pricing />} />
             <Route path="auth" element={<AuthScreen />} />
             <Route path="login" element={<LoginScreen />} />
             <Route path="contact" element={<ContactUs />} />
