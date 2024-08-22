@@ -22,6 +22,7 @@ import NftsDvelopment from "./pages/service/NftsDevelopment/NftsDevelopment";
 import DefiDevelopment from "./pages/service/DefiDevelopment/DefiDevelopment";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
+import Media from "./pages/media/Media";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 import SolidityShield from "./SolidityShield/index";
@@ -83,6 +84,7 @@ function App() {
           <Route path="defi-development" element={<DefiDevelopment />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:url" element={<BlogPost />} />
+          <Route path="media" element={<Media />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="solidity-shield-scan" element={<SolidityShield />} />
         </Routes>
