@@ -37,31 +37,16 @@ export const impactData = [
     header: "Advanced Investigation Capabilities",
     description:
       "Blockchain forensics provides law enforcement agencies with sophisticated tools to delve into blockchain transactions. By decoding complex transaction details, investigators can uncover patterns and connections previously hidden, thereby strengthening cases against criminal activities.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Prevent Criminal Activities",
     description:
       "Implementing blockchain forensics is a significant deterrent to criminal activities on the blockchain. As the risk of detection escalates, potential illicit actors can be dissuaded from engaging in illegal transactions, thereby enhancing the overall security of the blockchain ecosystem.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Regulatory Focus",
     description:
       "Incorporating blockchain transaction analysis into law enforcement strategies fosters improved collaboration between the blockchain industry and regulatory bodies. This synergy helps establish guidelines, compliance standards, and best practices, ensuring blockchain technology's responsible and secure use.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Additional Impact",
@@ -69,11 +54,6 @@ export const impactData = [
        • Digital Asset Recovery<br/>
        • Proactive Threat Detection<br/>
        • Building Trust`,
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];
 
@@ -82,97 +62,28 @@ export const whyChooseData = [
     header: "Cryptocurrency Forensics",
     description:
       "We provide essential services for asset recovery and bankruptcy proceedings. We can identify, trace, and recover digital assets, providing a clear picture of asset ownership and transfers.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "flower",
   },
   {
     header: "Blockchain Compliance Audits",
     description:
       "As the regulatory landscape for blockchain and cryptocurrency evolves, maintaining compliance can be complex. Our Blockchain Forensics services assist in conducting compliance audits, ensuring operations align with current laws and regulations. We identify potential areas of non-compliance and provide recommendations for corrective actions to help avoid legal complications.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "box",
   },
   {
     header: "Fraud Investigation",
     description:
       "Blockchain forensics is crucial in detecting and preventing fraudulent activities. By analyzing transaction patterns and tracing digital footprints, our team can identify signs of fraudulent behavior, such as unusual transaction volumes or patterns, and provide immediate alerts.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "pentagon-1",
   },
   {
     header: "Blockchain Security Audit and Threat Detection",
     description:
       "Blockchain forensics plays a vital role in identifying and mitigating security threats. We can uncover evidence of fraud, theft, and other illicit activities, providing actionable insights to help secure your digital assets and operations.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-];
-
-export const platforms = [
-  {
-    header: "Ethereum Smart Contract Audit",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-  {
-    header: "Polygon Smart Contract Audit",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-  {
-    header: "Solana Smart Contract Audit",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-  {
-    header: "Avalanche Smart Contract Audit",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-  {
-    header: "Binance Smart Chain (BSC) Smart Contract Audit",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-  {
-    header: "Other Blockchain Networks",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "feathers",
   },
 ];

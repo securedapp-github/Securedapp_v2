@@ -37,40 +37,24 @@ export const servicesData = [
     header: "NFT Platform Development",
     description:
       "Our NFT platform development services offer end-to-end solutions for creating, deploying, and managing NFT platforms tailored to your unique requirements. Our services cover everything from smart contract development to user interface design, ensuring your NFT platform is robust, feature-rich, and optimized for seamless transactions and interactions within the digital asset ecosystem.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "flower",
   },
   {
     header: "NFT Minting Platform",
     description:
       "We specialize in developing NFT minting platforms that empower users to transform their digital assets into NFTs. Whether you're an artist looking to mint your artwork, a musician wanting to tokenize your music, or a gamer aiming to create in-game assets, our platforms are designed to support a wide range of digital content. Our comprehensive solutions cover everything from minting unique collectables to creating videos and other digital media as NFTs. By offering a user-friendly interface and robust backend technology, we ensure that the process of minting NFTs is seamless, secure, and accessible to all types of creators.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "triangle-circle",
   },
   {
     header: "NFT Smart Contract Development",
     description:
       "We offer a secure smart contract development service that automates the ownership and transfer of NFTs, ensuring a smooth and trustworthy transaction process. Our smart contracts are designed to facilitate seamless asset exchanges without intermediaries, enabling trustless transactions that enhance security and efficiency. By automating key processes, we help you streamline NFT ownership, transfer, and verification, providing a robust foundation for your digital assets to thrive in a decentralized ecosystem.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "box",
   },
   {
     header: "Blockchain NFT Development",
     description:
       "SecureDApp offers blockchain technology by creating and deploying comprehensive NFT solutions customized to your needs. By leveraging blockchain, we help you establish a trusted and tamper-proof environment for your NFTs, allowing you to confidently engage with a global audience while safeguarding the uniqueness and value of your assets.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "feathers",
   },
 ];

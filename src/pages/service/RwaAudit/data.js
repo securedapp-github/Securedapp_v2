@@ -37,41 +37,29 @@ export const benefitsData = [
     header: "Automation in Smart Contracts",
     description:
       "The tokenization process utilizes smart contracts to automate key asset management functions, including dividend distributions, compliance monitoring, and voting rights management.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "flower",
   },
   {
     header: "Global Reach",
     description:
       "Tokenizing real-world assets makes them accessible to a global audience of investors, facilitating cross-border transactions and broadening your potential investor base.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "box",
   },
   {
     header: "Interoperability",
     description:
       "Interoperability is a crucial factor when selecting a tokenization platform and blockchain protocol for asset tokenization. Public blockchains generally provide superior interoperability, allowing tokenized Real-World Assets (RWAs) to interact with other digital assets such as stablecoins, NFTs, and DAOs.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "pentagon-2",
   },
   {
     header: "Financial Inclusion",
     description:
       "RWA token holders can trade their assets around the clock, unrestricted by conventional exchanges' traditional office hours. These digital assets are accessible to anyone worldwide, including unbanked and underbanked individuals.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "feathers",
   },
 ];
 
@@ -80,21 +68,11 @@ export const needData = [
     header: "Better Transparency",
     description:
       "With blockchain's transparent ledger, achieve complete visibility of asset ownership and transaction activity at any time. Asset transaction data is stored immutably on the decentralized blockchain, enhancing transparency without compromising security.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "High Liquidity",
     description:
       "Tokenization enhances the liquidity of traditionally illiquid assets by breaking them down into millions or even billions of digital tokens. These small fractions can be easily bought, sold, and traded, making the assets more liquid.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];
 
@@ -103,40 +81,20 @@ export const securityAspectData = [
     header: "Smart Contract Audit for RWA",
     description:
       "Validates the security and reliability of the smart contracts governing the tokenization process.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Two-factor Authentication",
     description:
       "An additional layer of protection against unauthorized access.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "KYC for RWA",
     description:
       "Ensures compliance with Anti-Money Laundering (AML) regulations by verifying user identities.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Licensing Requirement",
     description:
       "Adheres to regulatory standards to uphold the platform's integrity.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];

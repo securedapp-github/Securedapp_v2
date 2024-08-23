@@ -37,21 +37,13 @@ export const benefits = [
     header: "For Organizations",
     description:
       "• Data Security<br/>• Identify Certificate Fraud<br/>• Identity Verification<br/>• Regulatory Compliance",
-    icon: "faShieldAlt",
-    iconBackgroundColor: "#E3F2FD",
-    imageBackground: "#B3E5FC",
-    image: "/assets/images/organization-benefits.svg",
-    imageAlt: "For Organizations",
+    image: "flower",
   },
   {
     header: "For Developers",
     description:
       "• User-centric Approach<br/>• Enhance User Experience<br/>• Safe Data Request<br/>• Fraud-proof Information",
-    icon: "faCode",
-    iconBackgroundColor: "#F0F4C3",
-    imageBackground: "#DCE775",
-    image: "/assets/images/developer-benefits.svg",
-    imageAlt: "For Developers",
+    image: "box",
   },
 ];
 
@@ -60,40 +52,20 @@ export const differenceData = [
     header: "Decentralized Identity Wallets",
     description:
       "Decentralized identity wallets are digital tools that store and manage a user’s identity credentials securely in a decentralized manner. They offer secure, tamper-proof, and portable solutions without relying on central intermediaries.",
-    icon: "faWallet",
-    iconBackgroundColor: "#E3F2FD",
-    imageBackground: "#B3E5FC",
-    image: "/assets/images/identity-wallets.svg",
-    imageAlt: "Decentralized Identity Wallets",
   },
   {
     header: "Decentralized Identifiers",
     description:
       "Decentralized Identifiers are cryptographically secure identifiers created and controlled by the user. They are independent of any organization and do not include personally identifiable information.",
-    icon: "faKey",
-    iconBackgroundColor: "#F0F4C3",
-    imageBackground: "#DCE775",
-    image: "/assets/images/decentralized-identifiers.svg",
-    imageAlt: "Decentralized Identifiers",
   },
   {
     header: "Blockchain Identity",
     description:
       "Blockchain identity solutions are gaining traction for their secure and cost-effective approach to managing digital identities. Users can store their identification data and credentials in a decentralized identity wallet app, with the blockchain allowing for instant verification without needing to contact the original issuer.",
-    icon: "faBlockchain",
-    iconBackgroundColor: "#FFEBEE",
-    imageBackground: "#FFCDD2",
-    image: "/assets/images/blockchain-identity.svg",
-    imageAlt: "Blockchain Identity",
   },
   {
     header: "Verifiable Credentials (VCs)",
     description:
       "VCs are digital representations of paper and digital credentials secured through cryptographic methods. These credentials allow individuals to present verified information to organizations and services, ensuring authenticity and integrity without direct contact with the original issuer.<br/>• Holder<br/>• Verifier<br/>• Issuer",
-    icon: "faCertificate",
-    iconBackgroundColor: "#E8F5E9",
-    imageBackground: "#C8E6C9",
-    image: "/assets/images/verifiable-credentials.svg",
-    imageAlt: "Verifiable Credentials",
   },
 ];

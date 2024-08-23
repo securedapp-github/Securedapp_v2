@@ -1,21 +1,37 @@
 import "./WhyChooseCard.css";
+import { useSelector } from "react-redux";
+import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 
 export const WhyChooseCardIcon = ({ image, imageBackground }) => {
+  const { darkMode } = useSelector(getHomeSelector);
   return (
     <div
       className="why-choose-card-icon"
-      style={{ background: `${imageBackground}` }}>
-      <img className="p-2" src={image} alt="" />
+      style={{ background: `${imageBackground}` }}
+    >
+      <img
+        style={{
+          filter: darkMode
+            ? "brightness(0) invert(1)"
+            : "brightness(1) invert(0)",
+        }}
+        className="p-2"
+        src={image}
+        alt=""
+      />
     </div>
   );
 };
 
-const WhyChooseCard = ({ image, imageBackground, title, description }) => {
+const WhyChooseCard = ({ icon, imageBackground, title, description }) => {
   return (
     <div className="why-choose-card">
       <div className="why-choose-card-header">
         <div className="why-choose-card-header-image">
-          <WhyChooseCardIcon image={image} imageBackground={imageBackground} />
+          <WhyChooseCardIcon
+            image={`/assets/images/icons/${icon}.svg`}
+            imageBackground={imageBackground}
+          />
         </div>
         <div className="why-choose-card-header-title">{title}</div>
       </div>

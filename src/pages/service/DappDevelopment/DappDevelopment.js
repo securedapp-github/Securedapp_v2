@@ -69,7 +69,7 @@ function DappDevelopment() {
             {benefits.map((data) => {
               return (
                 <WhyChooseCard
-                  image={data.image}
+                  icon={data.icon}
                   imageBackground={data.imageBackground}
                   title={data.header}
                   description={data.description}

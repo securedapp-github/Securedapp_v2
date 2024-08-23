@@ -37,41 +37,29 @@ export const whyData = [
     header: "Regulatory Adherence",
     description:
       "Cryptocurrency compliance ensures businesses meet local and international laws, avoiding severe penalties, fines, or even shutdowns. Adhering to regulations like Anti-Money Laundering (AML) and Know Your Customer (KYC) procedures is essential for legal operations and maintaining licenses.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "flower",
   },
   {
     header: "Worldwide Accessibility",
     description:
       "Compliance with international standards allows cryptocurrency businesses to operate across multiple jurisdictions. This global accessibility opens up new markets, enabling companies to reach a wider audience while maintaining the trust and confidence of international customers.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "triangle-circle",
   },
   {
     header: "Safeguard Reputation",
     description:
       "Maintaining crypto compliance is key to building a strong reputation in the industry. Companies prioritizing blockchain compliance are viewed as more trustworthy and reliable, enhancing their brand image and attracting more customers and partners.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "pentagon-2",
   },
   {
     header: "Prevent Financial Fraud",
     description:
       "Cryptocurrencies' decentralized and anonymous nature can make them attractive for illicit activities such as fraud, money laundering, and terrorist financing. Compliance with AML and KYC regulations helps detect and prevent such activities, ensuring the crypto ecosystem remains safe and legitimate.",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "box",
   },
 ];
 
@@ -80,41 +68,21 @@ export const importanceData = [
     header: "Build Trust",
     description:
       "Implementing robust KYC practices and compliance measures fosters trust among users, including investors, traders, and everyday participants.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Protect Themselves Legally",
     description:
       "Adhering to KYC and other compliance measures helps firms avoid legal repercussions and potential penalties.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Build Investor Confidence",
     description:
       "A solid crypto compliance framework, including effective KYC processes, boosts confidence in the cryptocurrency ecosystem and its revolutionary potential.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Ensure Accountability",
     description:
       "KYC is a fundamental requirement that ensures financial institutions are accountable for understanding their customers and conducting proper due diligence.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];
 
@@ -123,40 +91,20 @@ export const whyChooseData = [
     header: "Best Crypto Compliance Consulting",
     description:
       "At SecureDApp, we offer top-tier crypto compliance consulting tailored to your unique needs. Our expert team understands the complexities of cryptocurrency regulations and provides customized strategies to ensure your business adheres to all legal requirements. We work closely with you to develop a robust compliance framework that aligns with your operational goals and regulatory obligations.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Real-time Tracking",
     description:
       "Our advanced monitoring tools provide you with up-to-the-minute insights into transactions and activities within your platform. This proactive approach allows you to address anomalies promptly, safeguarding your operations and maintaining regulatory compliance.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Integrated AML Checks",
     description:
       "We integrate comprehensive Anti-Money Laundering (AML) checks seamlessly into your operations with SecureDApp. Our solutions can streamline and automate your AML processes, ensuring thorough transaction monitoring and adherence to anti-money laundering regulations.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Conduct Crypto KYC Process",
     description:
       "SecureDApp enhances your Know Your Customer (KYC) procedures and provides personalized support. We guide you through the crypto KYC process, ensuring you effectively verify and authenticate your users.",
-    icon: "faEnvelope",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];

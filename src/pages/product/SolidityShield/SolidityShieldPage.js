@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
 import ProductServiceHero from "../../../components/common/ProductServiceHero";
@@ -18,6 +19,17 @@ import {
   features,
   benefits,
 } from "./data";
+
+function changeSvgFill(color) {
+  const svgElements = document.querySelectorAll("svg");
+  svgElements.forEach((svg) => {
+    const paths = svg.querySelectorAll("path, circle, rect, polygon, ellipse");
+
+    paths.forEach((path) => {
+      path.setAttribute("fill", color);
+    });
+  });
+}
 
 function SolidityShieldPage() {
   return (
