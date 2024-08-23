@@ -12,12 +12,14 @@ import ScanHistory from "./pages/history/ScanHistory";
 import BillingScreen from "./pages/billing/Billing";
 import Pricing from "./pages/pricing/Pricing";
 import ScanNowModal from "./components/modal/ScanNowModal";
+import PaymentModal from "./components/modal/PaymentModal";
 
 const SolidityShield = () => {
   return (
     <Provider store={solidityShieldScanStore}>
       <div>
         <ScanNowModal />
+        <PaymentModal />
         <Routes>
           <Route path="/" element={<div>Solidity Shield Scan</div>} />
           <Route element={<MainLayout />}>

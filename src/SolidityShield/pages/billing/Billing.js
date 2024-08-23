@@ -1,10 +1,23 @@
+import { useSelector } from "react-redux";
 import BillingTable from "../../components/billing/BillingTable";
 import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
 import "./Billing.css";
+import {
+  getPaymentSelector,
+  setPaymentModal,
+} from "../../redux/dashboard/paymentSlice";
+import { useDispatch } from "react-redux";
 
 const BillingScreen = () => {
+  const { paymentModal } = useSelector(getPaymentSelector);
+  const dispatch = useDispatch();
+
+  const openModal = () => {
+    dispatch(setPaymentModal(true));
+  };
+
   return (
     <div className="sss-billing-screen-container">
       <div className="sss-billing-screen">
@@ -36,6 +49,7 @@ const BillingScreen = () => {
               <div className="sss-billing-current-button-container">
                 <div className="sss-billing-current-buttons">
                   <CustomButton
+                    onClick={openModal}
                     className={
                       "px-3 py-2 rounded-xl bg-[#3F52FF] border border-[#3F52FF] text-white"
                     }

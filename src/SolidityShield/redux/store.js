@@ -3,6 +3,7 @@ import commonReducer from "./commonSlice";
 import scanSummaryReducer from "./dashboard/scanSummarySlice";
 import issuesReducer from "./dashboard/issuesSlice";
 import historyReducer from "./dashboard/historySlice";
+import paymentReducer from "./dashboard/paymentSlice";
 
 export const solidityShieldScanStore = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const solidityShieldScanStore = configureStore({
     scanSummary: scanSummaryReducer,
     issues: issuesReducer,
     history: historyReducer,
+    payment: paymentReducer,
   },
 });
