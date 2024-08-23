@@ -20,7 +20,10 @@ function Blog() {
     let data = await response.json();
     data = data.filter((item) => item.status === 1);
     setOriginalBlogs(data);
-    setBlogs(data.sort((a, b) => a.id - b.id));
+    setBlogs(
+      data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
+    );
+    console.log(blogs);
   }
 
   useEffect(() => {

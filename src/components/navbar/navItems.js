@@ -34,11 +34,8 @@ export const navItems = [
     to: "",
     items: [
       { name: "Blogs", to: "/blog" },
+      { name: "About Us", to: "/about" },
       { name: "Media", to: "/media" },
-      {
-        name: "Documentation",
-        to: "https://securedapp.gitbook.io/securedapp-launchpad",
-      },
     ],
     label: "Resources",
   },

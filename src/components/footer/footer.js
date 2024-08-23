@@ -22,15 +22,23 @@ const navigationItems = [
     items: [
       {
         name: "Solidity Shield Scan",
-        to: "",
+        to: "/solidity-shield",
       },
       {
         name: "Secure Watch",
+        to: "/secure-watch",
+      },
+      {
+        name: "Audit Express",
         to: "",
       },
       {
         name: "Secure Audit",
-        to: "",
+        to: "/secure-audit",
+      },
+      {
+        name: "Secure Pad",
+        to: "/secure-pad",
       },
     ],
   },
@@ -38,23 +46,19 @@ const navigationItems = [
     title: "Services",
     items: [
       {
-        name: "DApp Development",
+        name: "Audit",
         to: "",
       },
       {
-        name: "Smart contract Audit",
+        name: "Security",
         to: "",
       },
       {
-        name: "Web3 Security",
+        name: "Regulatory Solutions",
         to: "",
       },
       {
-        name: "Web3 KYC",
-        to: "",
-      },
-      {
-        name: "NFT Development",
+        name: "Training & Education",
         to: "",
       },
     ],
@@ -67,15 +71,11 @@ const navigationItems = [
         to: "/about",
       },
       {
-        name: "Team",
-        to: "/about",
+        name: "Media",
+        to: "/media",
       },
       {
-        name: "Community",
-        to: "https://linktr.ee/securedapp",
-      },
-      {
-        name: "Careers",
+        name: "Career",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/careers",
       },
       {
@@ -92,12 +92,12 @@ const navigationItems = [
         to: "/blog",
       },
       {
-        name: "Docs",
-        to: "https://securedapp.gitbook.io/securedapp-launchpad",
-      },
-      {
         name: "Github",
         to: "https://github.com/securedapp-github",
+      },
+      {
+        name: "Referral",
+        to: "",
       },
       {
         name: "Workplace Policy",
@@ -114,6 +114,14 @@ const navigationItems = [
       {
         name: "Cancellation & Refunds",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/cancellation-and-refund-policy",
+      },
+      {
+        name: "Whitepaper",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad",
+      },
+      {
+        name: "Research Reports",
+        to: "",
       },
     ],
   },
