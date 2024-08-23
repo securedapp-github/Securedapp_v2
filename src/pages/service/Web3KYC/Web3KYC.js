@@ -59,9 +59,9 @@ function Web3KYC() {
             title={"Deep Dive into our Services"}
           />
           <FeatureCards featureData={services} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Testimonials reviews={reviews} />
         <div>

@@ -37,9 +37,9 @@ function SecureTracePage() {
             title={"What are the Benefits of SecureTrace?"}
           />
           <FeatureCards featureData={benefits} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductWhyCard
           header={"How SecureDApp Helps in Compliance and Streamlined Process?"}

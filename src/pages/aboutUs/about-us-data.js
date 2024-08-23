@@ -27,6 +27,34 @@ const teamData = [
     twitter: "",
     linkedin: "",
   },
+  {
+    name: "Aryaman Tiwari",
+    designation: "Social Media Manager",
+    image: "/assets/images/team/aryaman.png",
+    twitter: "",
+    linkedin: "",
+  },
+  {
+    name: "Akshit Mokani",
+    designation: "Legal Manager",
+    image: "/assets/images/team/akshit.png",
+    twitter: "",
+    linkedin: "",
+  },
+  {
+    name: "Thejaswi PB",
+    designation: "Head HR",
+    image: "/assets/images/team/thejaswi.png",
+    twitter: "",
+    linkedin: "",
+  },
+  {
+    name: "Manish Kumar",
+    designation: "Growth & Delivery Advisor",
+    image: "/assets/images/team/manish.png",
+    twitter: "",
+    linkedin: "",
+  },
 ];
 
 export const companyCulture = [

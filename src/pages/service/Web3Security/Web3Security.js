@@ -73,9 +73,9 @@ function Web3Security() {
             description={""}
           />
           <FeatureCards featureData={services} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Testimonials reviews={reviews} />
         <div>

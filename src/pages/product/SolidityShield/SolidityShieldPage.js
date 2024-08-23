@@ -58,9 +58,9 @@ function SolidityShieldPage() {
         <div className="features-section">
           <SectionTitle name={"Features"} title={"Shield Features"} />
           <FeatureCards featureData={features} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductWhyCard
           header={"What is Solidity Shield?"}
@@ -106,9 +106,9 @@ function SolidityShieldPage() {
             }
           />
           <FeatureCards featureData={benefits} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <div className="features-section">
           <SectionTitle
@@ -119,9 +119,9 @@ function SolidityShieldPage() {
             }
           />
           <FeatureCards featureData={methodology} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Testimonials reviews={reviews} />
         <div>

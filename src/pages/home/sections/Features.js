@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import { getHomeSelector } from "../../../redux/slices/main/homeSlice";
 
 const Features = () => {
   const [detail, setDetail] = useState(0);
+  const { darkMode } = useSelector(getHomeSelector);
+  const [image, setImage] = useState(1);
 
   const selectFeatureCard = (id) => {
     setDetail(id);
@@ -17,30 +19,35 @@ const Features = () => {
       title: "Vulnerability Detection",
       desc: "Scans for over 150+ types of vulnerabilities to ensure robust security.",
       image: "/assets/images/home-why-1.png",
+      icon: "shield-bright",
     },
     {
       id: 1,
       title: "Detects Unusual Deviations",
       desc: "Tracks your smart contract's activities to spot any unusual behavior or deviations that might signal potential threats.",
       image: "/assets/images/home-why-2.png",
+      icon: "reload",
     },
     {
       id: 2,
       title: "Oversight of Transactions",
       desc: "Keeps a close watch on blockchain transactions to quickly flag suspicious or unauthorized actions.",
       image: "/assets/images/home-why-3.png",
+      icon: "4x3-lines",
     },
     {
       id: 3,
       title: "Forensic Techniques",
       desc: "Employs specialized blockchain forensic techniques to delve deeply into transaction histories and uncover hidden connections related to fraudulent schemes.",
       image: "/assets/images/home-why-4.png",
+      icon: "checklist-shield",
     },
     {
       id: 4,
       title: "Regulatory Compliance",
       desc: "Supports regulatory compliance by providing tools that streamline investigative workflows.",
       image: "/assets/images/home-why-5.png",
+      icon: "atom",
     },
   ];
 
@@ -74,10 +81,17 @@ const Features = () => {
                     )}
                     {detail === feature["id"] && (
                       <div style={{ width: "100%" }}>
-                        <FontAwesomeIcon
-                          icon={faCrown}
-                          className="feature-card-icon"
-                        />
+                        <img
+                          width={"25px"}
+                          style={{
+                            filter: darkMode
+                              ? "brightness(1) invert(0)"
+                              : "brightness(0) invert(1)",
+                            marginBottom: "10px",
+                          }}
+                          src={`/assets/images/icons/${feature["icon"]}.svg`}
+                          alt="icon"
+                        ></img>
                         <div className="feature-card-title">{`${feature["title"]}:`}</div>
                         <div className="feature-card-desc">
                           {feature["desc"]}

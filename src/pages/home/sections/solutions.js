@@ -11,6 +11,7 @@ const solutions = [
       "Enhanced developer workflow",
     ],
     to: "",
+    image: "/assets/images/home/hero.png",
   },
   {
     title: "Secure Watch",
@@ -20,6 +21,7 @@ const solutions = [
       "Customizable security measures",
     ],
     to: "",
+    image: "/assets/images/solution-1.svg",
   },
   {
     title: "Secure Trace",
@@ -29,6 +31,7 @@ const solutions = [
       "Supports regulatory compliance",
     ],
     to: "",
+    image: "/assets/images/solution-2.svg",
   },
   {
     title: "SecurePad",
@@ -38,6 +41,7 @@ const solutions = [
       "Decentralized exchange for seamless token trading",
     ],
     to: "",
+    image: "/assets/images/solution-3.svg",
   },
 ];
 
@@ -78,7 +82,7 @@ const Solutions = () => (
             title={solution.title}
             items={solution.items}
             to={solution.to}
-            image={`/assets/images/solution-${index}.svg`}
+            image={solution.image}
             isImageLeft={index % 2}
           />
         );

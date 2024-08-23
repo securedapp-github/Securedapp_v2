@@ -59,16 +59,16 @@ function DefiDevelopment() {
             title={"Decentralized Finance (DeFi) Use Cases"}
           />
           <FeatureCards featureData={usesData} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <div className="features-section">
           <SectionTitle name={"How it works"} title={"DeFi Working Guide"} />
           <FeatureCards featureData={workingGuideData} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductCard
           header={"Why SecureDApp for Your DeFi Needs?"}

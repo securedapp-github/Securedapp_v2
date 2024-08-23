@@ -24,8 +24,8 @@ const Navbar = () => {
 
   switch (currentPath) {
     case "/product":
-    case "/service":
-      nextPath = "/login";
+    case "/solidity-shield":
+      nextPath = "/solidity-shield-scan";
       break;
     default:
       nextPath = null;

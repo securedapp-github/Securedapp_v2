@@ -22,17 +22,17 @@ const servicesData = [
   },
   {
     id: 1,
-    title: "Dapp Security",
-    name: "DApp Security Audit",
-    desc: "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. We focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
+    title: "Smart Contract Audit",
+    name: "Smart Contract Audit",
+    desc: "Focus on delivering top-notch smart contract audit services at competitive prices. Our smart contract audit is dedicated to ensuring the security and reliability of your smart contracts.",
     alt: "",
     to: "",
   },
   {
     id: 2,
-    title: "Smart Contract Audit",
-    name: "Smart Contract Audit",
-    desc: "Focus on delivering top-notch smart contract audit services at competitive prices. Our smart contract audit is dedicated to ensuring the security and reliability of your smart contracts.",
+    title: "Dapp Security",
+    name: "DApp Security Audit",
+    desc: "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. We focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
     alt: "",
     to: "",
   },
@@ -134,7 +134,8 @@ const Services = () => {
     return (
       <div
         className="services-mobile-navbar-arrow-container"
-        onClick={moveLeft}>
+        onClick={moveLeft}
+      >
         <FontAwesomeIcon
           icon={faChevronLeft}
           size="xl"
@@ -148,7 +149,8 @@ const Services = () => {
     return (
       <div
         className="services-mobile-navbar-arrow-container"
-        onClick={moveRight}>
+        onClick={moveRight}
+      >
         <FontAwesomeIcon
           icon={faChevronRight}
           size="xl"
@@ -217,7 +219,8 @@ const Services = () => {
                 onClick={() => setService(index)}
                 className={`services-mobile-navbar-item ${
                   service.id === selectedService && "selected-mobile-navbar"
-                }`}>
+                }`}
+              >
                 {service.title}
               </div>
             );
@@ -239,7 +242,7 @@ const Services = () => {
         </div>
         <div className="services-content-right">
           <img
-            src={`/assets/images/services-homepage/${selectedService}.svg`}
+            src={`/assets/images/ServicePages/s${selectedService + 1}-hero.png`}
             alt={servicesData[selectedService].alt}
           />
         </div>

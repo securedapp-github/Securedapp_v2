@@ -87,7 +87,7 @@ export const industries = [
                   <br/> • Supply Chain Management
                   <br/> • Citizen Services`,
     imageBackground: "",
-    image: "pentagon2",
+    image: "pentagon-2",
     imageAlt: "",
   },
 ];

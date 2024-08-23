@@ -7,7 +7,7 @@
 }
 
 .how-it-works-card-title {
-  @apply text-lg font-bold text-center lg:min-h-[36px];
+  @apply text-lg font-bold text-left lg:min-h-[36px];
 }
 
 .how-it-works-card-description {

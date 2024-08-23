@@ -42,9 +42,9 @@ function DappDevelopment() {
             }
           />
           <FeatureCards featureData={functions} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Benefits
           benefitsData={platforms}

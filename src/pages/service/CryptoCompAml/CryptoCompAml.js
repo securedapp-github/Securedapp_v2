@@ -90,9 +90,9 @@ function CryptoComplianceAml() {
             }
           />
           <FeatureCards featureData={importanceData} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <div className="features-section">
           <SectionTitle
@@ -100,9 +100,9 @@ function CryptoComplianceAml() {
             title={"Why Choose SecureDApp for Your Business?"}
           />
           <FeatureCards featureData={whyChooseData} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Testimonials reviews={reviews} />
         <div>

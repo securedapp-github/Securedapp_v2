@@ -40,9 +40,9 @@ function SecureWatchPage() {
             }
           />
           <FeatureCards featureData={threats} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <div className="features-section">
           <SectionTitle
@@ -53,9 +53,9 @@ function SecureWatchPage() {
             }
           />
           <FeatureCards featureData={features} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductWhyCard
           header={"Why Choose Secure Watch?"}

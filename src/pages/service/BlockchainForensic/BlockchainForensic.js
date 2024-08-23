@@ -66,19 +66,10 @@ function BlockchainForensic() {
             title={"Visible Impact of Blockchain Forensics"}
           />
           <FeatureCards featureData={impactData} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
-        <Benefits
-          benefitsData={impactData}
-          title={"Blockchain Networks We Work On"}
-          subTitle={
-            "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
-          }
-          img={"/assets/images/ServicePages/s7-3.png"}
-          button={""}
-        />
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

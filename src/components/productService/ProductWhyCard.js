@@ -5,7 +5,7 @@ const ProductWhyCard = ({
   header,
   descriptions,
   buttonText,
-  onClick,
+  link,
   image,
   imageAlt,
 }) => {
@@ -26,9 +26,15 @@ const ProductWhyCard = ({
               );
             })}
           </div>
-          <div className="product-why-card-content-button">
-            <Button text={buttonText} onClick={onClick} filled={true} />
-          </div>
+          {link && (
+            <div className="product-why-card-content-button">
+              <Button
+                text={buttonText}
+                onClick={() => window.open(link)}
+                filled={true}
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="product-why-card-image">

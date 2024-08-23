@@ -64,9 +64,9 @@ function DecentralizedIdentity() {
             }
           />
           <FeatureCards featureData={differenceData} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductCard
           header={"Decentralized Identity (DID) Applications Across Industrie"}

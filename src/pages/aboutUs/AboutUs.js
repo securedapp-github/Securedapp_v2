@@ -10,22 +10,30 @@ import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 
 const TeamCard = ({ details }) => {
   return (
-    <div className="team-card">
-      <div className="team-card-header">
-        <div className="team-card-header-image-container">
-          <img className="team-card-header-image" alt="" src={details.image} />
+    <div style={{ paddingBottom: "30px" }}>
+      <div className="team-card">
+        <div className="team-card-header">
+          <div className="team-card-header-image-container">
+            <img
+              className="team-card-header-image"
+              alt=""
+              src={details.image}
+            />
+          </div>
         </div>
-      </div>
-      <div className="team-card-body">
-        <div className="team-card-body-name">{details.name}</div>
-        <div className="team-card-body-designation">{details.designation}</div>
-        <div className="team-card-body-socials">
-          <Link to={details.linkedin}>
-            <FontAwesomeIcon size="lg" icon={faLinkedin} />
-          </Link>
-          <Link to={details.twitter}>
-            <FontAwesomeIcon size="lg" icon={faTwitter} />
-          </Link>
+        <div className="team-card-body">
+          <div className="team-card-body-name">{details.name}</div>
+          <div className="team-card-body-designation">
+            {details.designation}
+          </div>
+          <div className="team-card-body-socials">
+            <Link to={details.linkedin}>
+              <FontAwesomeIcon size="lg" icon={faLinkedin} />
+            </Link>
+            <Link to={details.twitter}>
+              <FontAwesomeIcon size="lg" icon={faTwitter} />
+            </Link>
+          </div>
         </div>
       </div>
     </div>
