@@ -36,16 +36,19 @@ const CTA = () => {
         the hundreds of businesses already benefiting from our powerful sales
         analytics dashboard.
       </div>
-      <div className="cta-section-buttons">
-        <Button
+      <div style={{ margin: "0p 0 70px 0" }} className="cta-section-buttons">
+        {/* <Button
           className="cta-section-button w-72"
           text={"Sign Up"}
           filled={true}
-        />
+        /> */}
         <Link>
           <Button
             className="cta-section-button w-72"
             text={"Schedule a Demo"}
+            onClick={() =>
+              window.open("https://calendar.app.google/DwaR8QDDAotwnafu5")
+            }
           />
         </Link>
       </div>

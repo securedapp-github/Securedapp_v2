@@ -13,6 +13,14 @@ const Features = () => {
     setDetail(id);
   };
 
+  const handleMouseEnter = (id) => {
+    setDetail(id);
+  };
+
+  const handleMouseLeave = (id) => {
+    setDetail(id);
+  };
+
   const featureData = [
     {
       id: 0,
@@ -75,6 +83,8 @@ const Features = () => {
                       isSelected && "feature-card-selected"
                     }`}
                     onClick={() => selectFeatureCard(feature["id"])}
+                    onMouseEnter={() => handleMouseEnter(feature["id"])}
+                    onMouseLeave={() => handleMouseLeave(feature["id"])}
                   >
                     {detail !== feature["id"] && (
                       <div className="font-light">{feature["title"]}</div>
@@ -105,7 +115,7 @@ const Features = () => {
           </div>
         </div>
         <div className="feature-right">
-          <div className="feature-right-card">
+          {/* <div className="feature-right-card">
             <div className="feature-right-card-row">
               <div>Website</div>
               <div>E - Commerce</div>
@@ -119,7 +129,14 @@ const Features = () => {
               <div className="last-bar website-bar"></div>
               <div className="last-bar ecommerce-bar"></div>
             </div>
-          </div>
+          </div> */}
+          <img
+            style={{
+              maxHeight: "80%",
+            }}
+            src={`/assets/images/home/home-why-${detail + 1}.png`}
+            alt={"image"}
+          ></img>
         </div>
       </div>
     </div>
