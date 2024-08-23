@@ -1,50 +1,88 @@
 export const mediaData = [
   {
-    heading: "Do millennials care about saving?",
+    heading: "Q&A: Securing the Future of Web3 with SecureDApp’s Co-Founders",
     description:
-      "Curabitur tincidunt sed neque id pretium. Aenean volutpat tristique tincidunt. Pellentesque ac urna.",
-    date: "July 15",
-    link: "",
-    image: "",
+      "Anjali Kochhar from NFTMetta explores the landscape of Web3 security with insights from Himanshu Gautam and Abhishek Singh, the co-founders of SecureDApp. SecureDApp is a groundbreaking blockchain start-up recognized by the Department For Promotion Of Industry And Internal Trade, Ministry of Commerce and Industry, Government of India",
+    date: "May 21, 2024",
+    link: "https://nftmetta.com/qa-securing-the-future-of-web3-with-securedapps-co-founders/",
+    image: "/assets/images/media/nftmetta.png",
   },
   {
-    heading: "Do millennials care about saving?",
+    heading:
+      "Blockchain Potential Immense in Underbanked Nations, Need Robust Infra : Say SecureDApp Founders",
     description:
-      "Curabitur tincidunt sed neque id pretium. Aenean volutpat tristique tincidunt. Pellentesque ac urna.",
-    date: "July 15",
-    link: "",
-    image: "",
+      "The Blockchain technology has truly served as a disruptor in the information technology sector as its utility has gone beyond cryptocurrencies and touched diverse fields including artificial intelligence, entertainment, healthcare, logistics and banking.",
+    date: "June 1, 2024",
+    link: "https://www.cryptotimes.io/2024/06/01/exclusive-interview-with-securedapp-founders/",
+    image: "/assets/images/media/cryptotimes1.png",
   },
   {
-    heading: "Do millennials care about saving?",
+    heading:
+      "Modi Fractured Mandate: What to expect for Crypto and Web3 in India",
     description:
-      "Curabitur tincidunt sed neque id pretium. Aenean volutpat tristique tincidunt. Pellentesque ac urna.",
-    date: "July 15",
-    link: "",
-    image: "",
+      "In the recently concluded general elections of India, the incumbent Indian Prime Minister Narendra Modi led coalition secured a majority in the parliament with fractured mandate on Tuesday. ",
+    date: "June 5, 2024",
+    link: "https://www.cryptotimes.io/2024/06/05/modi-fractured-mandate-what-to-expect-for-crypto-and-web3-in-india/",
+    image: "/assets/images/media/cryptotimes-modi.png",
   },
   {
-    heading: "Do millennials care about saving?",
+    heading: "Will Nirmala Sitharaman Go Soft on Crypto in Her 2nd Term as FM?",
     description:
-      "Curabitur tincidunt sed neque id pretium. Aenean volutpat tristique tincidunt. Pellentesque ac urna.",
-    date: "July 15",
-    link: "",
-    image: "",
+      "The harsh treatment of 30 per cent tax on profit and one per cent VDA coupled with India's decision to not yet ban the currency has left many in a fix. So, what does the coming times mean for crypto players in India",
+    date: "June 13, 2024",
+    link: "https://www.entrepreneur.com/en-in/news-and-trends/will-nirmala-sitharaman-go-soft-on-crypto-in-her-2nd-term/475608",
+    image: "/assets/images/media/entrepreneur.png",
   },
   {
-    heading: "Do millennials care about saving?",
+    heading:
+      "Understanding blockchain security: Safeguarding digital assets in the Web3 Era",
     description:
-      "Curabitur tincidunt sed neque id pretium. Aenean volutpat tristique tincidunt. Pellentesque ac urna.",
-    date: "July 15",
-    link: "",
-    image: "",
+      "The current state of Web3 security shows that there is a need to come up with better solutions. The opportunities in the global blockchain market are expected to reach a massive $67 Global sales are expected to grow from $0",
+    date: "June 12, 2024",
+    link: "https://www.expresscomputer.in/guest-blogs/understanding-blockchain-security-safeguarding-digital-assets-in-the-web3-era/113012/#:~:text=digital%20assets%20are%20protected%20from,being%20presented%20in%20today%27s%20world.&text=The%20current%20state%20of%20Web3,expected%20to%20grow%20from%20%240",
+    image: "/assets/images/media/expresscomputer.png",
   },
   {
-    heading: "Do millennials care about saving?",
+    heading: "Interview: Himanshu Gautam, Co-founder and CTO of SecureDApp",
     description:
-      "Curabitur tincidunt sed neque id pretium. Aenean volutpat tristique tincidunt. Pellentesque ac urna.",
-    date: "July 15",
-    link: "",
-    image: "",
+      "Meet Himanshu Gautam, Co-founder and CTO of SecureDApp, a trailblazing blockchain startup at the forefront of digital security solutions. With a profound expertise in blockchain technology and a passion for enhancing, Himanshu drives innovation at SecureDApp",
+    date: "July 1, 2024",
+    link: "https://sugermint.com/himanshu-gautam/",
+    image: "/assets/images/media/sugermint.png",
+  },
+  {
+    heading: "The Need For Security In Rapidly Evolving Web3 Innovations",
+    description:
+      "Web3, the next generation of the Internet, seeks to establish a transparent and decentralized ecosystem, eliminating reliance on centralized entities and restoring users' data and asset ownership",
+    date: "July 17, 2024",
+    link: "https://www.goodreturns.in/classroom/the-need-for-security-in-rapidly-evolving-web3-innovations-1357687.html",
+    image: "/assets/images/media/goodreturns.png",
+  },
+  {
+    heading:
+      "Budget 2024 Live Highlights: Time to push divestment of state-owned banks this Budget, says SBI report",
+    description:
+      "Union Budget 2024 Live Highlights: The report also pitched for the consolidation of existing government-owned banks. 'As banks are in good condition, the government should take stance on disinvestment of PSBs,' the report titled 'Prelude to Union Budget 2024-25' said.",
+    date: "July 11, 2024",
+    link: "https://economictimes.indiatimes.com/news/newsblogs/union-budget-2024-live-updates-expectations-finance-minister-nirmala-sitharaman-tax-slabs-announcements-gst-infrastructure-india-general-budget-date-time/liveblog/111622204.cms?from=mdr",
+    image: "/assets/images/media/et.png",
+  },
+  {
+    heading:
+      "Bangalore-based Abhishek and Himanshu’s SecureDApp is Revolutionizing the Blockchain Security",
+    description:
+      "Did you know that inadequate blockchain security can lead to financial losses worth millions of dollars? And SecureDApp is offering state-of-the-art solutions to safeguard digital assets. Their AI-powered automated smart contract auditing is not only faster but also more affordable than traditional methods",
+    date: "June 15, 2024",
+    link: "https://thekarostartup.com/securedapp/",
+    image: "/assets/images/media/karostartup.png",
+  },
+  {
+    heading:
+      "What Are FraudGPT & WormGPT? Experts on Edge as Dark AI Models Transform Cyber Threat Landscape",
+    description:
+      "A particularly alarming development in AI is the creation of “dark large language models” that have been repurposed for illicit activities, functioning without ethical constraints and with disturbing accuracy and efficiency",
+    date: "July 30, 2024",
+    link: "https://www.news18.com/tech/what-are-fraudgpt-wormgpt-experts-on-edge-as-dark-ai-models-transform-cyber-threat-landscape-8982747.html",
+    image: "/assets/images/media/news18.png",
   },
 ];
