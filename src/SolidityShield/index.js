@@ -11,11 +11,13 @@ import { MainLayout, NoSidebarLayout } from "./components/sidebar/Layout";
 import ScanHistory from "./pages/history/ScanHistory";
 import BillingScreen from "./pages/billing/Billing";
 import Pricing from "./pages/pricing/Pricing";
+import ScanNowModal from "./components/modal/ScanNowModal";
 
 const SolidityShield = () => {
   return (
     <Provider store={solidityShieldScanStore}>
       <div>
+        <ScanNowModal />
         <Routes>
           <Route path="/" element={<div>Solidity Shield Scan</div>} />
           <Route element={<MainLayout />}>

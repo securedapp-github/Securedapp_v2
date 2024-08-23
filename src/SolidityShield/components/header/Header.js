@@ -1,14 +1,18 @@
 import { useSelector } from "react-redux";
 import CustomButton from "../common/CustomButton";
 import "./Header.css";
-import { getCommonSelector, setSideBar } from "../../redux/commonSlice";
+import {
+  getCommonSelector,
+  setScanNowModal,
+  setSideBar,
+} from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import CustomDivider from "../common/CustomDivider";
 
 const Header = () => {
-  const { showSideBar } = useSelector(getCommonSelector);
+  const { showSideBar, scanNowModal } = useSelector(getCommonSelector);
   const dispatch = useDispatch();
 
   return (
@@ -59,6 +63,7 @@ const Header = () => {
           </div>
           <div className="sss-header-right-button">
             <CustomButton
+              onClick={() => dispatch(setScanNowModal(true))}
               className={
                 "w-[125px] px-3 py-2 rounded-xl bg-tertiary text-white"
               }

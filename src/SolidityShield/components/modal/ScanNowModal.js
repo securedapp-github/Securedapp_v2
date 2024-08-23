@@ -1,0 +1,203 @@
+import { useSelector } from "react-redux";
+import "./ScanNowModal.css";
+import {
+  getCommonSelector,
+  setChainType,
+  setScanNowModal,
+  setSourceType,
+} from "../../redux/commonSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CustomButton from "../common/CustomButton";
+import FileUpload from "../common/FileUpload";
+
+const sourceTypes = ["Github", "Contract Address", "Upload File"];
+const chainTypes = ["Ethereum", "MATIC", "Bitcoin"];
+
+const ScanNowModalField = ({ label, children }) => {
+  return (
+    <div className="scan-now-modal-field-container">
+      <div className="scan-now-modal-field">
+        <div className="scan-now-modal-field-label">{label}</div>
+        <div className="scan-now-modal-field-children">{children}</div>
+      </div>
+    </div>
+  );
+};
+
+const ScanNowModalInputTextField = ({ type, placeHolder }) => {
+  return (
+    <div className="scan-now-modal-input-text-field-container">
+      <input
+        className="scan-now-modal-input-text-field"
+        type={type}
+        placeholder={placeHolder}
+      />
+    </div>
+  );
+};
+
+const ScanNowModalFieldDropDown = ({
+  toggleDropDown,
+  currentValue,
+  values,
+  dropDown,
+  setValueTypeEvent,
+}) => {
+  return (
+    <div onClick={toggleDropDown} className="scan-now-modal-body-dropdown">
+      <div className="scan-now-modal-body-dropdown-content">
+        {currentValue}
+        <FontAwesomeIcon icon={faChevronDown} />
+      </div>
+      {dropDown && (
+        <div className="scan-now-modal-body-dropdown-options">
+          {values.map((filter) => {
+            return (
+              <div
+                onClick={() => setValueTypeEvent(filter)}
+                className="scan-now-modal-body-dropdown-option-container">
+                <div className="scan-now-modal-body-dropdown-option">
+                  {filter}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
+const ScanNowModal = () => {
+  const { scanNowModal, sourceType, chainType } =
+    useSelector(getCommonSelector);
+  const dispatch = useDispatch();
+  const [dropDown, setDropDown] = useState(false);
+  const [file, setFile] = useState(null);
+  const [chainTypeDropDown, setChainTypeDropDown] = useState(false);
+
+  const closeModal = () => {
+    dispatch(setScanNowModal(false));
+  };
+
+  const toggleChainTypeDropDown = () => {
+    setChainTypeDropDown(!chainTypeDropDown);
+  };
+
+  const setSourceTypeEvent = (filter) => {
+    dispatch(setSourceType(filter));
+  };
+
+  const setChainTypeEvent = (filter) => {
+    dispatch(setChainType(filter));
+  };
+
+  const toggleDropDown = () => {
+    setDropDown(!dropDown);
+  };
+
+  return (
+    scanNowModal && (
+      <div className="scan-now-modal-container">
+        <div className="scan-now-modal">
+          <div className="scan-now-modal-header">
+            <div className="scan-now-modal-header-title">Scan Now</div>
+            <div className="scan-now-modal-close-container">
+              <i
+                onClick={closeModal}
+                className="fa-solid fa-xmark fa-xl cursor-pointer"
+              />
+            </div>
+          </div>
+          <div className="scan-now-modal-body">
+            <ScanNowModalField label={"Select Sources"}>
+              <ScanNowModalFieldDropDown
+                toggleDropDown={toggleDropDown}
+                currentValue={sourceType}
+                values={sourceTypes}
+                setValueTypeEvent={setSourceTypeEvent}
+                dropDown={dropDown}
+              />
+            </ScanNowModalField>
+            {sourceType === "Github" && (
+              <div className="scan-now-modal-body-items">
+                <ScanNowModalField label={"URL"}>
+                  <ScanNowModalInputTextField
+                    type={"text"}
+                    placeHolder={"Enter Github URL of Flatten Smart Contract"}
+                  />
+                </ScanNowModalField>
+                <ScanNowModalField label={"Company Name"}>
+                  <ScanNowModalInputTextField
+                    type={"text"}
+                    placeHolder={"Enter Company Name"}
+                  />
+                </ScanNowModalField>
+              </div>
+            )}
+            {sourceType === "Contract Address" && (
+              <div className="scan-now-modal-body-items">
+                <ScanNowModalField label={"Select Chain"}>
+                  <ScanNowModalFieldDropDown
+                    toggleDropDown={toggleChainTypeDropDown}
+                    currentValue={chainType}
+                    values={chainTypes}
+                    setValueTypeEvent={setChainTypeEvent}
+                    dropDown={chainTypeDropDown}
+                  />
+                </ScanNowModalField>
+                <ScanNowModalField label={"URL"}>
+                  <ScanNowModalInputTextField
+                    type={"text"}
+                    placeHolder={"Enter contract address"}
+                  />
+                </ScanNowModalField>
+                <ScanNowModalField label={"Company Name"}>
+                  <ScanNowModalInputTextField
+                    type={"text"}
+                    placeHolder={"Enter company name"}
+                  />
+                </ScanNowModalField>
+              </div>
+            )}
+            {sourceType === "Upload File" && (
+              <div className="scan-now-modal-body-items">
+                <FileUpload file={file} setFile={setFile} />
+                <ScanNowModalField label={"Company Name"}>
+                  <ScanNowModalInputTextField
+                    type={"text"}
+                    placeHolder={"Enter company name"}
+                  />
+                </ScanNowModalField>
+              </div>
+            )}
+          </div>
+          <div className="scan-now-modal-fotter">
+            <div className="scan-now-modal-footer-button">
+              <CustomButton
+                onClick={closeModal}
+                text={"Cancel"}
+                className={
+                  "w-[120px] py-3 px-2 rounded-xl border border-tertiary"
+                }
+              />
+            </div>
+            <div className="scan-now-modal-footer-button">
+              <CustomButton
+                text={"Scan"}
+                className={
+                  "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary"
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  );
+};
+
+export default ScanNowModal;
