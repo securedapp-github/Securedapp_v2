@@ -13,6 +13,7 @@ import BillingScreen from "./pages/billing/Billing";
 import Pricing from "./pages/pricing/Pricing";
 import ScanNowModal from "./components/modal/ScanNowModal";
 import PaymentModal from "./components/modal/PaymentModal";
+import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
 
 const SolidityShield = () => {
   return (
@@ -25,6 +26,7 @@ const SolidityShield = () => {
           <Route element={<MainLayout />}>
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
+            <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
             <Route path="payment" element={<BillingScreen />} />
           </Route>
           <Route element={<NoSidebarLayout />}>

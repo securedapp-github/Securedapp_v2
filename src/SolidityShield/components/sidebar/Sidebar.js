@@ -19,9 +19,9 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const totalCredits = 20;
 
-  const selectMenuItem = (name) => {
-    navigate(name.toLowerCase());
-    dispatch(setSelectedSidebarItem(name));
+  const selectMenuItem = (index) => {
+    navigate(sidebarItems[index].to);
+    dispatch(setSelectedSidebarItem(sidebarItems[index].name));
   };
 
   return (
@@ -48,10 +48,10 @@ const Sidebar = () => {
                 <div className="">MAIN MENUS</div>
               </div>
               <div className="sss-body-navigation">
-                {sidebarItems.map((item) => {
+                {sidebarItems.map((item, index) => {
                   return (
                     <div
-                      onClick={() => selectMenuItem(item.name)}
+                      onClick={() => selectMenuItem(index)}
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"

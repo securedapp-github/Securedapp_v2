@@ -17,10 +17,12 @@ export const MainLayout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(capitalizePath(location.pathname.split("/")[2]));
-    dispatch(
-      setSelectedSidebarItem(capitalizePath(location.pathname.split("/")[2]))
-    );
+    const pathName = location.pathname.split("/")[2];
+    if (pathName === "vulnerability-scans") {
+      dispatch(setSelectedSidebarItem("Vulnerability Scans"));
+    } else {
+      dispatch(setSelectedSidebarItem(capitalizePath(pathName)));
+    }
   }, [location]);
 
   return (
