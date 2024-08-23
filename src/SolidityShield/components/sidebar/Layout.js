@@ -18,7 +18,7 @@ export const MainLayout = () => {
 
   useEffect(() => {
     const pathName = location.pathname.split("/")[2];
-    if (pathName === "vulnerability-scans") {
+    if (pathName === "vulnerability-scans" || pathName === "scan-report") {
       dispatch(setSelectedSidebarItem("Vulnerability Scans"));
     } else {
       dispatch(setSelectedSidebarItem(capitalizePath(pathName)));
