@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { scanHistoryDummyData } from "./scanHistory.data";
 import Pagination from "../../components/common/Pagination";
+import { useState } from "react";
 
 const scanHistoryStatusFilter = ["Succeeded", "Failed", "Inprogress", "All"];
 

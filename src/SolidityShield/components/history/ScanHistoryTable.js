@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ScanHistoryTable.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 const StatusTypeComponent = ({ status }) => {
   return (
@@ -29,6 +30,8 @@ const StatusTypeComponent = ({ status }) => {
 };
 
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
+  const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
+
   return (
     <div className="sss-history-table-container">
       <div className="sss-history-table-scrollable">
@@ -91,13 +94,26 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         {<StatusTypeComponent status={data.status} />}
                       </div>
                     </div>
-                    <div className="sss-history-table-options-container">
+                    <div
+                      onMouseEnter={() => setHoveredRowIndex(index)}
+                      onMouseLeave={() => setHoveredRowIndex(null)}
+                      className="sss-history-table-options-container">
                       <div className="sss-history-table-options">
                         <img
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                           alt="Option Icon"
                         />
                       </div>
+                      {hoveredRowIndex === index && (
+                        <div className="sss-history-table-options-dropdown">
+                          <div className="sss-history-table-options-dropdown-item">
+                            View
+                          </div>
+                          <div className="sss-history-table-options-dropdown-item">
+                            Download
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )

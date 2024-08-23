@@ -63,11 +63,23 @@
 }
 
 .sss-history-table-options-container {
-  @apply min-w-[50px];
+  @apply min-w-[50px] relative;
 }
 
 .sss-history-table-options {
-  @apply w-full flex justify-center;
+  @apply cursor-pointer w-full flex justify-center;
+}
+
+.sss-history-table-options-dropdown {
+  @apply shadow-md text-sm w-[100px] z-20 bg-white absolute right-0 border border-[#D2E6FF] flex flex-col items-end gap-y-1 rounded-lg;
+}
+
+.sss-history-table-options-dropdown-item {
+  @apply w-full p-1;
+}
+
+.sss-history-table-options-dropdown-item:hover {
+  @apply cursor-pointer border;
 }
 
 .sss-history-table-divider {
