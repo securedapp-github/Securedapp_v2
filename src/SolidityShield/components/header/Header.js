@@ -41,6 +41,9 @@ const Header = () => {
             </div>
           </div>
         </div>
+        <div className="sss-header-center">
+          <img className="w-1/3" src="/assets/images/securedapp-logo-light.svg" alt="" />
+        </div>
         <div className="sss-header-right">
           <div className="sss-header-right-calendar">
             <img
@@ -65,7 +68,7 @@ const Header = () => {
             <CustomButton
               onClick={() => dispatch(setScanNowModal(true))}
               className={
-                "w-[125px] px-3 py-2 rounded-xl bg-tertiary text-white"
+                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-white"
               }
               text={"Scan Now"}
             />
