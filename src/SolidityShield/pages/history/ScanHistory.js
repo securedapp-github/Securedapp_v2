@@ -1,19 +1,37 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./ScanHistory.css";
 import {
   getHistorySelector,
   setHistoryStatusFilter,
 } from "../../redux/dashboard/historySlice";
+import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
+import { getScanHistoryData } from "../../functions";
 import { useDispatch } from "react-redux";
 import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { scanHistoryDummyData } from "./scanHistory.data";
 import Pagination from "../../components/common/Pagination";
+import { getUserData } from "../../redux/auth/authSlice";
 
 const scanHistoryStatusFilter = ["Succeeded", "Failed", "Inprogress", "All"];
 
 const ScanHistory = () => {
   const { statusFilter } = useSelector(getHistorySelector);
+  const auth = useSelector(getUserData);
+  var scanHistory = useSelector(getScanHistory);
+  const [history, setHistory] = useState(scanHistory.history);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !auth.user.email && navigate("/solidity-shield-scan/auth");
+    async function fetch() {
+      await getScanHistoryData({ userEmail: "himang305@gmail.com", dispatch });
+      setHistory(scanHistory.history);
+    }
+    fetch();
+  }, [history]);
 
   return (
     <div className="sss-scan-history-container">
@@ -66,7 +84,7 @@ const ScanHistory = () => {
             </div>
           </div>
           <ScanHistoryTable
-            scanHistoryData={scanHistoryDummyData}
+            scanHistoryData={history}
             statusFilter={statusFilter}
           />
         </div>

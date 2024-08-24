@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import AuthInputField from "../../components/auth/AuthInputField";
 import "./ContactUs.css";
 import AuthButton from "../../components/auth/AuthButton";
@@ -13,6 +15,36 @@ export const AuthInputFieldContainer = ({ label, InputField }) => {
 };
 
 const ContactUs = () => {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const sendMail = async () => {
+    if (name.length === 0 || email.length === 0 || number.length === 0) {
+      toast.error("Please fill in the details");
+      return;
+    }
+    fetch("https://139-59-5-56.nip.io:3443/contactMail", {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        mail: email,
+        number: number,
+        msg: message,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        toast.success("Sumbitted. Will soon reach out to you!");
+      })
+      .catch((err) => {
+        toast.error("Error in sending mail");
+      });
+  };
+
   return (
     <div className="contact-us-container">
       <div className="contact-us">
@@ -30,11 +62,12 @@ const ContactUs = () => {
               InputField={
                 <AuthInputField
                   authInputType={"text"}
-                  placeholder={"First Name"}
+                  placeholder={"Full Name"}
+                  onChange={setName}
                 />
               }
             />
-            <AuthInputFieldContainer
+            {/* <AuthInputFieldContainer
               label={"Last Name"}
               InputField={
                 <AuthInputField
@@ -42,7 +75,7 @@ const ContactUs = () => {
                   placeholder={"Last Name"}
                 />
               }
-            />
+            /> */}
           </div>
           <div className="contact-us-body-email">
             <AuthInputFieldContainer
@@ -51,6 +84,7 @@ const ContactUs = () => {
                 <AuthInputField
                   authInputType={"email"}
                   placeholder={"you@company.com"}
+                  onChange={setEmail}
                 />
               }
             />
@@ -62,13 +96,17 @@ const ContactUs = () => {
                 <AuthInputField
                   authInputType={"text"}
                   placeholder={"+1 (555) 000-0000"}
+                  onChange={setNumber}
                 />
               }
             />
           </div>
           <div className="contact-us-body-message">
             <div className="auth-input-field-div-label">{"Message"}</div>
-            <textarea className="contact-us-body-message-textarea" />
+            <textarea
+              onChange={(e) => setMessage(e.target.value)}
+              className="contact-us-body-message-textarea"
+            />
           </div>
           <div className="contact-us-body-privacy">
             <input type="checkbox" />
@@ -80,7 +118,9 @@ const ContactUs = () => {
             </div>
           </div>
           <div className="contact-us-body-button">
-            <AuthButton filled={true}>Send Message</AuthButton>
+            <AuthButton onClick={sendMail} filled={true}>
+              Send Message
+            </AuthButton>
           </div>
         </div>
       </div>

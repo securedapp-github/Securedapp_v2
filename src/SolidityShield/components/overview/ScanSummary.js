@@ -1,17 +1,21 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import ChartCard from "./ChartCard";
 import "./ScanSummary.css";
 import {
-  getScanSummarySelector,
+  getOverviewSelector,
   setDateFilter,
 } from "../../redux/dashboard/scanSummarySlice";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { getUserData } from "../../redux/auth/authSlice";
+import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
 import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import CustomButton from "../common/CustomButton";
+import { getScanHistoryData, getScanSummaryData } from "../../functions";
 
 const scanSummaryTimeFilter = ["Monthly", "Weekly", "Today"];
 
@@ -61,8 +65,17 @@ const FigureComponent = ({ value, text }) => {
 };
 
 const ScanSummary = () => {
-  const { dateFilter, scanSummary } = useSelector(getScanSummarySelector);
+  const { dateFilter, scanSummary } = useSelector(getOverviewSelector);
+  const scanHistory = useSelector(getScanHistory);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const auth = useSelector(getUserData);
+
+  useEffect(() => {
+    getScanSummaryData({ email: auth.user.email, dispatch });
+    console.log(scanSummary.values);
+  }, []);
 
   return (
     <div className="flex-1 w-full">
@@ -75,7 +88,7 @@ const ScanSummary = () => {
                   Scan Summary
                 </div>
                 <div className="sss-overview-scan-summary-header-left-desc">
-                  Lorem ipsum dolor sit amet, consectetur
+                  Summary of your latest scan
                 </div>
               </div>
               {/* <div className="sss-overview-scan-summary-header-right">
@@ -83,19 +96,22 @@ const ScanSummary = () => {
                   return (
                     <div
                       onClick={() => dispatch(setDateFilter(time))}
-                      className="sss-overview-scan-summary-header-right-item-container">
+                      className="sss-overview-scan-summary-header-right-item-container"
+                    >
                       <div
                         className={`sss-overview-scan-summary-header-right-item ${
                           time === dateFilter &&
                           "sss-scan-summary-selected-date-filter"
-                        }`}>
+                        }`}
+                      >
                         {time}
                       </div>
                       <div
                         className={`sss-scan-summary-date-filter-under ${
                           time === dateFilter &&
                           "sss-scan-summary-date-filter-under-selected"
-                        }`}></div>
+                        }`}
+                      ></div>
                     </div>
                   );
                 })}
@@ -112,20 +128,30 @@ const ScanSummary = () => {
               </div>
               <div className="sss-scan-summary-body-cards">
                 {scanSummary.values.map((item) => [
-                  <FigureComponent value={item.value} text={item.text} />,
+                  <FigureComponent value={item.value} text={item.name} />,
                 ])}
               </div>
               <div className="sss-scan-summary-body-result">
-                <div className="sss-scan-summary-body-result-title">Issue</div>
+                <div className="sss-scan-summary-body-result-title">
+                  Summary
+                </div>
                 <div className="sss-scan-summary-body-result-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do
+                  {scanSummary.summary}
                 </div>
                 <div className="sss-scan-summary-body-result-button">
                   <CustomButton
                     text={"More Details"}
                     className={
                       "bg-[#12D576] rounded-3xl text-[#ffffff] py-3 w-[150px]"
+                    }
+                    onClick={() =>
+                      navigate(
+                        `/solidity-shield-scan/report/${
+                          scanHistory.history.reduce((max, item) => {
+                            return item.id > max.id ? item : max;
+                          }, scanHistory.history[0]).id
+                        }`
+                      )
                     }
                   />
                 </div>

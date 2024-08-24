@@ -1,22 +1,35 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BillingTable from "../../components/billing/BillingTable";
 import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
 import "./Billing.css";
+import { getUserData } from "../../redux/auth/authSlice";
 import {
   getPaymentSelector,
   setPaymentModal,
 } from "../../redux/dashboard/paymentSlice";
 import { useDispatch } from "react-redux";
+import { pricingDetails } from "../pricing/pricing.data";
 
 const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
+  const auth = useSelector(getUserData);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const openModal = () => {
     dispatch(setPaymentModal(true));
   };
+
+  useEffect(() => {
+    console.log(auth.user);
+    //auth.user.email && navigate("/solidity-shield-scan/auth");
+    async function fetch() {}
+    fetch();
+  }, []);
 
   return (
     <div className="sss-billing-screen-container">
@@ -29,15 +42,24 @@ const BillingScreen = () => {
             <div className="sss-billing-current-container">
               <div className="sss-billing-current-header">
                 <div className="sss-billing-current-header-tittle">
-                  Basic Plan
+                  {auth &&
+                    pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                      .planType}
                 </div>
                 <div className="sss-billing-current-header-desc">
-                  Our most popular plan for small team
+                  {auth &&
+                    pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                      .description}
                 </div>
               </div>
               <div className="sss-billing-current-body">
                 <div className="sss-billing-current-body-rate">
-                  <div className="sss-billing-current-body-price">{"$15"}</div>
+                  <div className="sss-billing-current-body-price">
+                    {auth &&
+                      pricingDetails[
+                        Number(auth.user.plan) + 1
+                      ].pricingCard.price.replace("/-", "")}
+                  </div>
                   <div className="sss-billing-current-body-per">
                     {"Permonth"}
                   </div>
@@ -49,17 +71,18 @@ const BillingScreen = () => {
               <div className="sss-billing-current-button-container">
                 <div className="sss-billing-current-buttons">
                   <CustomButton
-                    onClick={openModal}
+                    onClick={() => navigate("/solidity-shield-scan/pricing")}
                     className={
                       "px-3 py-2 rounded-xl bg-tertiary border border-black text-black"
                     }
                     text={"Upgrade Plan"}
                   />
                   <CustomButton
+                    onClick={() => navigate("/solidity-shield-scan/pricing")}
                     className={
                       "px-3 py-2 rounded-xl text-black border border-tertiary bg-white"
                     }
-                    text={"Manage Plan"}
+                    text={"Buy Credits"}
                   />
                 </div>
               </div>
@@ -108,9 +131,10 @@ const BillingScreen = () => {
             </div>
           </ChartCard>
         </div>
-        <div className="sss-billing-body">
+        {/* <div className="sss-billing-body">
           <BillingTable />
         </div>
+         */}
       </div>
     </div>
   );

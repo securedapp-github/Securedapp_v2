@@ -1,5 +1,5 @@
 .sss-pricing-plan-card-container {
-  @apply md:mx-4  md:min-h-[300px] xl:min-h-[280px] rounded-lg md:rounded-2xl border border-[#D2E6FF] bg-[#FAFAFA] flex items-center justify-center;
+  @apply md:mx-4 md:min-h-[300px] xl:min-h-[280px] rounded-lg md:rounded-2xl border border-[#D2E6FF] bg-[#FAFAFA] flex items-center justify-center;
 }
 
 .sss-pricing-plan-card {

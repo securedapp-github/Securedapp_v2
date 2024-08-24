@@ -1,5 +1,6 @@
 export const pricingDetails = [
   {
+    id: null,
     pricingCard: {},
     details: {
       numberOfScans: {
@@ -57,6 +58,7 @@ export const pricingDetails = [
     },
   },
   {
+    id: 0,
     pricingCard: {
       icon: "/assets/images/solidity-shield-scan/free-pricing-plan.svg",
       planType: "Free",
@@ -119,6 +121,7 @@ export const pricingDetails = [
     },
   },
   {
+    id: 1,
     pricingCard: {
       icon: "/assets/images/solidity-shield-scan/plus-pricing-plan.svg",
       planType: "Plus",
@@ -181,6 +184,7 @@ export const pricingDetails = [
     },
   },
   {
+    id: 2,
     pricingCard: {
       icon: "/assets/images/solidity-shield-scan/premium-pricing-plan.svg",
       planType: "Premium",

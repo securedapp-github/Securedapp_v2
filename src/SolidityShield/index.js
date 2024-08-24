@@ -15,21 +15,29 @@ import ScanNowModal from "./components/modal/ScanNowModal";
 import PaymentModal from "./components/modal/PaymentModal";
 import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
 import ScanReport from "./pages/scanReport/ScanReport";
+import { ToastContainer } from "react-toastify";
+import SolidityShield0 from "./product";
 
 const SolidityShield = () => {
   return (
     <Provider store={solidityShieldScanStore}>
       <div>
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          theme="dark"
+          pauseOnHover
+        />
         <ScanNowModal />
         <PaymentModal />
         <Routes>
-          <Route path="/" element={<div>Solidity Shield Scan</div>} />
           <Route element={<MainLayout />}>
+            <Route path="/" element={<OverviewScreen />} />
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
             <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
-            <Route path="scan-report" element={<ScanReport />} />
             <Route path="pricing" element={<Pricing />} />
+            <Route path="report/:id" element={<ScanReport />} />
             <Route path="payment" element={<BillingScreen />} />
           </Route>
           <Route element={<NoSidebarLayout />}>

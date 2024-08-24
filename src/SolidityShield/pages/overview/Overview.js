@@ -1,10 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import IssuesChart from "../../components/overview/IssuesChart";
 import ScanSummary from "../../components/overview/ScanSummary";
 import "./Overview.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../../redux/auth/authSlice";
+import { getScanHistoryData } from "../../functions";
+import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
 
 const OverviewScreen = () => {
-  const [firstTime, setFirstTime] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const auth = useSelector(getUserData);
+  const scanHistory = useSelector(getScanHistory);
+  const [firstTime, setFirstTime] = useState(true);
+
+  useEffect(() => {
+    async function fetch() {
+      auth.user.email
+        ? await getScanHistoryData({
+            userEmail: auth.user.email,
+            dispatch,
+          })
+        : navigate("/solidity-shield-scan/auth");
+    }
+    fetch();
+    console.log("History", scanHistory.history);
+    console.log("Firsttime ", firstTime);
+    if (scanHistory.history.length > 0) setFirstTime(false);
+  }, [scanHistory]);
 
   return (
     <div className="sss-overview-screen-container">

@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialHistorySliceState = {
-  statusFilter: "Succeeded",
+  statusFilter: "All",
 };
 
 const historySlice = createSlice({

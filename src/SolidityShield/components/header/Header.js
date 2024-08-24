@@ -1,6 +1,8 @@
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import CustomButton from "../common/CustomButton";
 import "./Header.css";
+import { toast } from "react-toastify";
 import {
   getCommonSelector,
   setScanNowModal,
@@ -10,9 +12,12 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import CustomDivider from "../common/CustomDivider";
+import { scanSubmit } from "../../functions";
+import { getUserData } from "../../redux/auth/authSlice";
 
 const Header = () => {
   const { showSideBar, scanNowModal } = useSelector(getCommonSelector);
+  const auth = useSelector(getUserData);
   const dispatch = useDispatch();
 
   return (
@@ -22,7 +27,8 @@ const Header = () => {
           {!showSideBar && (
             <div
               onClick={() => dispatch(setSideBar(true))}
-              className="sss-header-sidebar-opener">
+              className="sss-header-sidebar-opener"
+            >
               <FontAwesomeIcon icon={faBars} size="lg" />
             </div>
           )}
@@ -45,7 +51,7 @@ const Header = () => {
           <img className="w-1/3" src="/assets/images/securedapp-logo-light.svg" alt="" />
         </div>
         <div className="sss-header-right">
-          <div className="sss-header-right-calendar">
+          {/* <div className="sss-header-right-calendar">
             <img
               src="/assets/images/solidity-shield-scan/header-calendar.svg"
               alt="Calendar Logo"
@@ -63,7 +69,7 @@ const Header = () => {
               src="/assets/images/solidity-shield-scan/header-notif.svg"
               alt="Notification Logo"
             />
-          </div>
+          </div> */}
           <div className="sss-header-right-button">
             <CustomButton
               onClick={() => dispatch(setScanNowModal(true))}

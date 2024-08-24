@@ -4,28 +4,9 @@ const initialScanSummaryState = {
   dateFilter: "Today",
   scanSummary: {
     percentageValue: 85,
-    values: [
-      {
-        value: 25,
-        text: "Lorem Ipsum",
-      },
-      {
-        value: 60,
-        text: "Lorem Ipsum",
-      },
-      {
-        value: 7,
-        text: "Lorem Ipsum",
-      },
-      {
-        value: 60,
-        text: "Lorem Ipsum",
-      },
-      {
-        value: 7,
-        text: "Lorem Ipsum",
-      },
-    ],
+    values: [],
+    summary: "",
+    id: 0,
   },
 };
 
@@ -42,7 +23,7 @@ const scanSummarySlice = createSlice({
   },
 });
 
-export const getScanSummarySelector = createSelector(
+export const getOverviewSelector = createSelector(
   (state) => state.scanSummary,
   (state) => state
 );

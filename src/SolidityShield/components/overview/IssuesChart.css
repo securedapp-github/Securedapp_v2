@@ -62,5 +62,5 @@
 }
 
 .sss-overview-issues-card-chart-main {
-  @apply w-full flex items-start justify-start;
+  @apply w-full pt-6 flex items-start justify-start;
 }

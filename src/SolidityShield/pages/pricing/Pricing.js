@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
 import "./Pricing.css";
 import CustomButton from "../../components/common/CustomButton";
@@ -7,11 +8,30 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import {
+  getPaymentSelector,
+  setPaymentModal,
+  setPlan,
+} from "../../redux/dashboard/paymentSlice";
+import { getUserData } from "../../redux/auth/authSlice";
 
-const PricingPlanCard = ({ icon, planType, price, description, onClick }) => {
+const PricingPlanCard = ({
+  icon,
+  planType,
+  price,
+  description,
+  onClick,
+  id,
+}) => {
+  const auth = useSelector(getUserData);
   return (
     <div className="sss-pricing-plan-card-container">
-      <div className="sss-pricing-plan-card">
+      <div
+        style={{
+          border: auth.user.plan === id && "2px solid black",
+          borderRadius: "10px",
+        }}
+        className="sss-pricing-plan-card">
         <div className="sss-pricing-card-header">
           <img src={icon} alt="" />
           <div className="sss-pricing-card-header-plan-type">{planType}</div>
@@ -23,8 +43,18 @@ const PricingPlanCard = ({ icon, planType, price, description, onClick }) => {
         <div className="sss-pricing-card-description">{description}</div>
         <div onClick={onClick} className="sss-pricing-card-button-container">
           <button className="sss-pricing-card-button">
-            <div className="">Get Started</div>
-            <i class="fa-solid fa-arrow-right"></i>
+            <div className="">
+              {auth.user.plan === id && auth.user.plan > 0
+                ? "Renew Plan"
+                : auth.user.plan === 0 && auth.user.plan === id
+                ? "Free Plan"
+                : "Get Started"}
+            </div>
+            {auth.user.plan === 0 && auth.user.plan === id ? (
+              ""
+            ) : (
+              <i class="fa-solid fa-arrow-right"></i>
+            )}
           </button>
         </div>
       </div>
@@ -57,6 +87,12 @@ const Pricing = () => {
     console.log(currentVisible);
     if (currentVisible > 1) setCurrentVisible(currentVisible - 1);
   };
+  const dispatch = useDispatch();
+
+  const openModal = (plan) => {
+    dispatch(setPaymentModal(true));
+    dispatch(setPlan(plan));
+  };
 
   return (
     <div className="sss-pricing-container">
@@ -75,7 +111,8 @@ const Pricing = () => {
                         planType={detail.pricingCard.planType}
                         price={detail.pricingCard.price}
                         description={detail.pricingCard.description}
-                        onClick={() => {}}
+                        onClick={() => openModal(detail.id)}
+                        id={detail.id}
                       />
                       <div className="sss-pricing-card-changer-buttons">
                         <div

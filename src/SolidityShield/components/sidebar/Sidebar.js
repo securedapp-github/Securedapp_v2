@@ -11,6 +11,8 @@ import { sidebarItems } from "./sidebar.data.js";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../common/CustomButton.js";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { getUserData } from "../../redux/auth/authSlice.js";
+import { logout } from "../../functions.js";
 
 const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
@@ -18,6 +20,8 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const totalCredits = 20;
+
+  const auth = useSelector(getUserData);
 
   const selectMenuItem = (index) => {
     navigate(sidebarItems[index].to);
@@ -51,7 +55,12 @@ const Sidebar = () => {
                 {sidebarItems.map((item, index) => {
                   return (
                     <div
-                      onClick={() => selectMenuItem(index)}
+                      onClick={() => {
+                        if (item.name === "Log Out") {
+                          logout();
+                        }
+                        selectMenuItem(index);
+                      }}
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"
@@ -82,7 +91,11 @@ const Sidebar = () => {
               <div className="sss-sidebar-credits-container">
                 <div className="">
                   <ProgressBar
-                    completed={(creditsRemaining / totalCredits) * 100}
+                    completed={
+                      ((auth.user.credits - auth.user.remainingCredits) /
+                        auth.user.credits) *
+                      100
+                    }
                     height={"10px"}
                     bgColor="#12D576"
                     isLabelVisible={false}
@@ -90,12 +103,13 @@ const Sidebar = () => {
                   />
                 </div>
                 <div className="sss-sidebar-credits-text">
-                  {creditsRemaining}/{totalCredits}
+                  {auth.user.remainingCredits}/{auth.user.credits}
                 </div>
               </div>
               <CustomButton
                 text={"Upgrade Now"}
                 className="w-full text-black bg-[#12D576] py-3 rounded-xl"
+                onClick={() => navigate("/solidity-shield-scan/pricing")}
               />
             </div>
           </div>
