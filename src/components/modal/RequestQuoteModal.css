@@ -43,7 +43,7 @@
 }
 
 .request-quote-modal-dropdown-options {
-  @apply text-sm w-full absolute left-0 text-secondary dark:text-primary rounded border border-[#A4CDFF] bg-primary dark:bg-secondary;
+  @apply h-[250px] overflow-y-auto text-sm w-full absolute left-0 text-secondary dark:text-primary rounded border border-[#A4CDFF] bg-primary dark:bg-secondary;
 }
 
 .request-quote-modal-dropdown-option-container:hover {
