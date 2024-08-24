@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { howData, faqsData } from "./data";
 
 function DappSecurityAudit() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

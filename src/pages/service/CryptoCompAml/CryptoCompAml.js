@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { faqsData, whyChooseData, whyData, importanceData } from "./data";
 
 function CryptoComplianceAml() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

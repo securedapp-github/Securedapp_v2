@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { platforms, projectIndustries, facts, faqsData } from "./data";
 
 function SmartContractAudit() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

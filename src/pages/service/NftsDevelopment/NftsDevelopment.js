@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { faqsData, servicesData } from "./data";
 
 function NftsDevelopment() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

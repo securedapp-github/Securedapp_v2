@@ -9,17 +9,17 @@ import "swiper/swiper-bundle.css";
 const images = [
   {
     src: "/assets/images/ProductPages/ss/hero.jpg",
-    alt: "Hero 1",
+    alt: "Solidity Shield",
     to: "/solidity-shield",
   },
   {
-    src: "/assets/images/home/hero.png",
-    alt: "Hero 2",
-    to: "",
+    src: "/assets/images/ProductPages/sw/hero.png",
+    alt: "Secure Watch",
+    to: "/secure-watch",
   },
   {
     src: "/assets/images/ProductPages/sp/hero.jpg",
-    alt: "Hero 3",
+    alt: "Secure Pad",
     to: "/secure-pad",
   },
 ];
@@ -67,7 +67,11 @@ const Hero = () => {
           })}
         </Swiper>
       </div>
+      <br />
+      <br />
       <BrandLogos />
+      <br />
+      <br />
     </div>
   );
 };

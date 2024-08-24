@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { compliances, faqsData, benefits } from "./data";
 
 function TokenAudit() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

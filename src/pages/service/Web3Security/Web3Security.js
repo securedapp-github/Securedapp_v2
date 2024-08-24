@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { faqsData, services, technologies } from "./data";
 
 function Web3Security() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

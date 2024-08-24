@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { faqsData, applicationsData, usesData, workingGuideData } from "./data";
 
 function DefiDevelopment() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

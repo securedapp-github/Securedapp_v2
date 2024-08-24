@@ -23,7 +23,6 @@ const Navbar = () => {
   const currentPath = location.pathname;
 
   switch (currentPath) {
-    case "/product":
     case "/solidity-shield":
       nextPath = "/solidity-shield-scan";
       break;
@@ -35,7 +34,7 @@ const Navbar = () => {
   }
 
   const handleNavigation = () => {
-    if (nextPath) navigate(nextPath);
+    if (nextPath) window.open(nextPath);
     else {
       dispatch(setIsRequestModalOpen(true));
     }

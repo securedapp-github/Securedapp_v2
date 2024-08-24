@@ -13,6 +13,7 @@ import Statitics from "./sections/Statistics";
 import { reviews, faqHeaders, faqsData } from "./home.data";
 
 const Home = () => {
+  window.scrollTo(0, 0);
   return (
     <div id="home">
       <Navbar />

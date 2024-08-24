@@ -14,6 +14,7 @@ import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import { faqsData, howItWorksData, benefits } from "./data";
 
 function SecurePadPage() {
+  window.scrollTo(0, 0);
   return (
     <div className="product-container">
       <Navbar />

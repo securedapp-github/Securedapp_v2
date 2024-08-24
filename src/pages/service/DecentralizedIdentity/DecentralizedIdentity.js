@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { faqsData, benefits, differenceData } from "./data";
 
 function DecentralizedIdentity() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

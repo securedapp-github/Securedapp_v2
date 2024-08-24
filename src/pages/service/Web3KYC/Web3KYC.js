@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { services, benefits, faqsData } from "./data";
 
 function Web3KYC() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

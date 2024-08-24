@@ -10,6 +10,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 
 function Blog() {
+  window.scrollTo(0, 0);
   const [blogs, setBlogs] = useState([]);
   const [originalBlogs, setOriginalBlogs] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -28,7 +29,6 @@ function Blog() {
 
   useEffect(() => {
     getBlogs();
-    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

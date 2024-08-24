@@ -7,6 +7,7 @@ import { mediaData } from "./media-data";
 import "./Blog.css";
 
 function Media() {
+  window.scrollTo(0, 0);
   const [blogs, setBlogs] = useState(mediaData);
   const [originalBlogs, setOriginalBlogs] = useState([]);
   const [searchText, setSearchText] = useState("");

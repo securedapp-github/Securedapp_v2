@@ -22,7 +22,7 @@ const solutions = [
       "Customizable security measures",
     ],
     to: "/secure-watch",
-    image: "/assets/images/solution-1.svg",
+    image: "/assets/images/ProductPages/sw/hero.png",
   },
   {
     title: "Secure Trace",

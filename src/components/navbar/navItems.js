@@ -1,6 +1,6 @@
 export const navItems = [
   {
-    to: "/product",
+    to: "",
     items: [
       { name: "Solidity Shield", to: "/solidity-shield" },
       { name: "Secure Watch", to: "/secure-watch" },
@@ -10,7 +10,7 @@ export const navItems = [
     label: "Product",
   },
   {
-    to: "/service",
+    to: "",
     items: [
       { name: "DApp Development", to: "/dapp-development" },
       { name: "Smart Contract Audit", to: "/smart-contract-audit" },

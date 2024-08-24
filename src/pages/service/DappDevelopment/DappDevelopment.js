@@ -16,6 +16,7 @@ import Benefits from "../sections/Benefits";
 import { platforms, faqsData, functions, benefits, industries } from "./data";
 
 function DappDevelopment() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />

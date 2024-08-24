@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/home/HomePage";
 import { useEffect } from "react";
 import Product from "./pages/product/Product";
@@ -56,6 +57,12 @@ function App() {
     <div className="App bg-primary dark:bg-secondary">
       <Router>
         {isRequestModalOpen && <RequestQuoteModal />}
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          theme="dark"
+          pauseOnHover
+        />
         <Routes>
           <Route path="/" index element={<Home />} />
           <Route path="product" element={<Product />} />

@@ -14,6 +14,7 @@ import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import { faqsData, threats, features } from "./data";
 
 function SecureWatchPage() {
+  window.scrollTo(0, 0);
   return (
     <div className="product-container">
       <Navbar />
@@ -21,7 +22,7 @@ function SecureWatchPage() {
         <ProductServiceHero
           name="SECURE WATCH"
           title="Blockchain Threat Detection"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/sw/hero.png"}
           onClick={() => window.open("https://securewatch.securedapp.io")}
         />
         <ProductCard
@@ -66,7 +67,7 @@ function SecureWatchPage() {
             "With Blockchain Threat Intelligence at its core, SecureWatch offers unmatched insights and threat detection capabilities, helping you stay ahead of emerging vulnerabilities and risks. By continuously tracking deviations from normal behavior, SecureWatch proactively identifies potential threats before they escalate.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ProductPages/sw/1.png"}
+          image={"/assets/images/ProductPages/sw/2.png"}
           imageAlt={"Product 1 Why Image"}
         />
         {/* <div>

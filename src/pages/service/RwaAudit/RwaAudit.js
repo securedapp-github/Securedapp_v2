@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { faqsData, benefitsData, needData, securityAspectData } from "./data";
 
 function RwaAudit() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />
