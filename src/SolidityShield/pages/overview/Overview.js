@@ -4,7 +4,7 @@ import ScanSummary from "../../components/overview/ScanSummary";
 import "./Overview.css";
 
 const OverviewScreen = () => {
-  const [firstTime, setFirstTime] = useState(true);
+  const [firstTime, setFirstTime] = useState(false);
 
   return (
     <div className="sss-overview-screen-container">
@@ -27,12 +27,9 @@ const OverviewScreen = () => {
               </div>
             </div>
           ) : (
-            <div>
-              <div className="sss-overview-top-cards">
-                <ScanSummary />
-                <IssuesChart />
-              </div>
-              <div className="sss-overview-bottom-cards"></div>
+            <div className="sss-overview-top-cards">
+              <ScanSummary />
+              <IssuesChart />
             </div>
           )}
         </div>

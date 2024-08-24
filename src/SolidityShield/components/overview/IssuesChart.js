@@ -62,7 +62,7 @@ const IssuesChart = () => {
   };
 
   return (
-    <div className="flex-1 w-full xl:w-1/2">
+    <div className="flex-1 w-full">
       <ChartCard>
         <div className="sss-overview-issues-card-container">
           <div className="sss-overview-issues-card">

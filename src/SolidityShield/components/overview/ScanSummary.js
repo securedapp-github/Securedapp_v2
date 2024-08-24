@@ -25,8 +25,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
           <linearGradient
             id={"circularGradient"}
             gradientTransform={gradientTransform}>
-            <stop offset="0%" stopColor={"#EA7A9A"} />
-            <stop offset="100%" stopColor={"#FAC7B6"} />
+            <stop offset="0%" stopColor={"#12D576"} />
+            <stop offset="100%" stopColor={"#6BFFB7"} />
           </linearGradient>
         </defs>
       </svg>
@@ -65,7 +65,7 @@ const ScanSummary = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex-1 w-full xl:w-1/2">
+    <div className="flex-1 w-full">
       <ChartCard>
         <div className="sss-overview-scan-summary-container">
           <div className="sss-overview-scan-summary">
@@ -78,7 +78,7 @@ const ScanSummary = () => {
                   Lorem ipsum dolor sit amet, consectetur
                 </div>
               </div>
-              <div className="sss-overview-scan-summary-header-right">
+              {/* <div className="sss-overview-scan-summary-header-right">
                 {scanSummaryTimeFilter.map((time) => {
                   return (
                     <div
@@ -99,14 +99,21 @@ const ScanSummary = () => {
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
             <div className="sss-scan-summary-body">
               <div className="sss-scan-summary-body-chart-container">
-                <GradientCircularProgressbar
-                  value={scanSummary.percentageValue}
-                  text={`${scanSummary.percentageValue}%`}
-                />
+                <div className="sss-scan-summary-body-chart">
+                  <GradientCircularProgressbar
+                    value={scanSummary.percentageValue}
+                    text={`${scanSummary.percentageValue}%`}
+                  />
+                </div>
+              </div>
+              <div className="sss-scan-summary-body-cards">
+                {scanSummary.values.map((item) => [
+                  <FigureComponent value={item.value} text={item.text} />,
+                ])}
               </div>
               <div className="sss-scan-summary-body-result">
                 <div className="sss-scan-summary-body-result-title">Issue</div>
@@ -123,11 +130,6 @@ const ScanSummary = () => {
                   />
                 </div>
               </div>
-            </div>
-            <div className="sss-scan-summary-body-footer">
-              {scanSummary.values.map((item) => [
-                <FigureComponent value={item.value} text={item.text} />,
-              ])}
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 .sss-overview-issues-card-container {
-  @apply w-full p-5 min-h-[600px] flex flex-col items-center justify-center;
+  @apply w-full p-5 flex flex-col items-center justify-center;
 }
 
 .sss-overview-issues-card {
