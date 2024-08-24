@@ -138,6 +138,9 @@ const Pricing = () => {
                                     alt=""
                                   />
                                   <div className="sss-pricing-plan-detail-row-info">
+                                    <div className="font-semibold">
+                                      {detail.details[feature].value}
+                                    </div>
                                     {detail.details[feature].info}
                                   </div>
                                 </div>

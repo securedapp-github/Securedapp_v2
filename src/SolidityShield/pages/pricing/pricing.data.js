@@ -4,43 +4,43 @@ export const pricingDetails = [
     details: {
       numberOfScans: {
         value: "No. of Scans",
-        info: "No. of Scans",
+        info: "Track your scan credit and its usage and plan accordingly",
       },
       run: {
         value: "Run",
-        info: "Run",
+        info: "Launch a full scan to ensure your smart contract's safety",
       },
       auditScore: {
         value: "Audit Score",
-        info: "Audit Score",
+        info: "View your smart contract's overall security rating",
       },
       vulnerabilityCount: {
         value: "Vulnerability Count",
-        info: "Vulnerability Count",
+        info: "Understand the specific security risks in your smart contract",
       },
       vulnerabilityDescriptions: {
         value: "Vulnerability Descriptions",
-        info: "Vulnerability Descriptions",
+        info: "Understand the specific security risks in your smart contract",
       },
       auditReport: {
         value: "Audit Report",
-        info: "Audit Report",
+        info: "Contains a comprehensive report of your smart contract audit",
       },
       reportPublic: {
         value: "Report Publish",
-        info: "Report Publish",
+        info: "Share your audit report publicly to enhance transparency",
       },
       github: {
         value: "Github",
-        info: "Github",
+        info: "Enhances transparency and builds trust by publishing your audit reports on SecureDApp's GitHub account as 3rd party auditor",
       },
       socialShares: {
         value: "Social Shares (SecureDApp)",
-        info: "Social Shares (SecureDApp)",
+        info: "Spread awareness about your project's security commitment via SecureDApp's social handle",
       },
       dedicateBlog: {
         value: "Dedicate Blog (SecureDApp)",
-        info: "Dedicate Blog (SecureDApp)",
+        info: "Access in-depth blog posts about your project via the SecureDApps blog page",
       },
       emailSupport: {
         value: "Email Support",
@@ -48,11 +48,11 @@ export const pricingDetails = [
       },
       api: {
         value: "API",
-        info: "API",
+        info: "Solidity shield API",
       },
       dedicatedSupport: {
         value: "Dedicated Support",
-        info: "Dedicated Support",
+        info: "24/7 dedicated support for your project via email",
       },
     },
   },
