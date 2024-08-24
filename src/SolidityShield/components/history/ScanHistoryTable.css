@@ -31,7 +31,7 @@
 }
 
 .sss-history-table-header {
-  @apply min-w-full flex gap-x-6 items-end text-[#84919A] text-center;
+  @apply min-w-full flex  items-end text-[#84919A] text-center;
 }
 
 .sss-history-table-header-item {
@@ -59,7 +59,7 @@
 }
 
 .sss-history-table-options-container {
-  @apply min-w-[50px] relative;
+  @apply mr-16 min-w-[50px] relative;
 }
 
 .sss-history-table-options {
@@ -67,7 +67,7 @@
 }
 
 .sss-history-table-options-dropdown {
-  @apply shadow-md text-sm w-[100px] z-20 bg-white absolute right-0 border border-[#D2E6FF] flex flex-col items-end gap-y-1 rounded-lg;
+  @apply shadow-md text-sm w-[100px] z-20 bg-white absolute left-0 border border-[#D2E6FF] flex flex-col items-end gap-y-1 rounded-lg;
 }
 
 .sss-history-table-options-dropdown-item {
@@ -87,5 +87,5 @@
 }
 
 .sss-history-table-row {
-  @apply flex items-center gap-x-6 w-full text-center font-light;
+  @apply flex items-center  w-full text-center font-light;
 }

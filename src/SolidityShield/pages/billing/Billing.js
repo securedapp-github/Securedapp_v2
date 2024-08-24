@@ -111,9 +111,6 @@ const BillingScreen = () => {
         <div className="sss-billing-body">
           <BillingTable />
         </div>
-        <div className="sss-billing-footer">
-          <Pagination />
-        </div>
       </div>
     </div>
   );

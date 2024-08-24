@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ScanHistoryTable.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Pagination from "../common/Pagination";
 
 const StatusTypeComponent = ({ status }) => {
   return (
@@ -31,8 +32,19 @@ const StatusTypeComponent = ({ status }) => {
 
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   const filteredData = scanHistoryData.filter(
     (data) => data.status === statusFilter || statusFilter === "All"
+  );
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  const paginatedData = filteredData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
   );
 
   return (
@@ -60,17 +72,17 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                 REPORT LINK
               </div>
             </div>
-            <div className="sss-history-table-status-container">
+            {/* <div className="sss-history-table-status-container">
               <div className="sss-history-table-header-status sss-history-table-header-item">
                 STATUS
               </div>
-            </div>
+            </div> */}
             <div className="sss-history-table-options-container">
               <div className="sss-history-table-header-options sss-history-table-header-item"></div>
             </div>
           </div>
           <div className="sss-history-table-body">
-            {filteredData.map((data, index) => {
+            {paginatedData.map((data, index) => {
               return (
                 (data.status === statusFilter || statusFilter === "All") && (
                   <div className="sss-history-table-row">
@@ -92,11 +104,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         {data.reportLink}
                       </div>
                     </div>
-                    <div className="sss-history-table-status-container">
+                    {/* <div className="sss-history-table-status-container">
                       <div className="sss-history-table-status">
                         {<StatusTypeComponent status={data.status} />}
                       </div>
-                    </div>
+                    </div> */}
                     <div
                       onMouseEnter={() => setHoveredRowIndex(index)}
                       onMouseLeave={() => setHoveredRowIndex(null)}
@@ -108,7 +120,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         />
                       </div>
                       {hoveredRowIndex === index && (
-                        <div className={`sss-history-table-options-dropdown ${hoveredRowIndex === filteredData.length - 1 && 'bottom-0'}`}>
+                        <div
+                          className={`sss-history-table-options-dropdown ${
+                            hoveredRowIndex === paginatedData.length - 1 &&
+                            "bottom-0"
+                          }`}>
                           <div className="sss-history-table-options-dropdown-item">
                             View
                           </div>
@@ -125,6 +141,13 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
           </div>
         </div>
       </div>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+        totalLength={filteredData.length}
+      />
     </div>
   );
 };

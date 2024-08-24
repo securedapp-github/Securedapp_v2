@@ -86,7 +86,7 @@
 }
 
 .sss-billing-body {
-  @apply py-8;
+  @apply pt-8;
 }
 
 .sss-billing-footer {
