@@ -32,7 +32,7 @@ const solutions = [
       "Supports regulatory compliance",
     ],
     to: "/secure-trace",
-    image: "/assets/images/solution-2.svg",
+    image: "/assets/images/ProductPages/st/st-hero.png",
   },
   {
     title: "SecurePad",
@@ -42,7 +42,7 @@ const solutions = [
       "Decentralized exchange for seamless token trading",
     ],
     to: "/secure-pad",
-    image: "/assets/images/ProductPages/sp/hero.jpg",
+    image: "/assets/images/ProductPages/sp/hero.png",
   },
 ];
 

@@ -18,9 +18,9 @@ const images = [
     to: "/secure-watch",
   },
   {
-    src: "/assets/images/ProductPages/sp/hero.jpg",
-    alt: "Secure Pad",
-    to: "/secure-pad",
+    src: "/assets/images/ProductPages/st/st-hero.png",
+    alt: "Secure Trace",
+    to: "/secure-trace",
   },
 ];
 

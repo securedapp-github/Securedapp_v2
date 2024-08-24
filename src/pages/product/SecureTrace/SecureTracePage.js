@@ -22,7 +22,7 @@ function SecureTracePage() {
         <ProductServiceHero
           name="SECURE TRACE"
           title="SecureTrace: Advanced AI for Blockchain Investigation & Forensic Analysis"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/st/st-hero.png"}
         />
         <ProductCard
           header={"What is Secure Trace"}
