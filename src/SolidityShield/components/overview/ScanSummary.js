@@ -142,7 +142,7 @@ const ScanSummary = () => {
                   <CustomButton
                     text={"More Details"}
                     className={
-                      "bg-[#12D576] rounded-3xl text-[#ffffff] py-3 w-[150px]"
+                      "bg-[#12D576] rounded-3xl text-[#ffffff] py-3 w-[150px] active:bg-white active:border active:border-tertiary active:text-black"
                     }
                     onClick={() =>
                       navigate(

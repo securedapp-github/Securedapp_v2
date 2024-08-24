@@ -27,8 +27,7 @@ const Header = () => {
           {!showSideBar && (
             <div
               onClick={() => dispatch(setSideBar(true))}
-              className="sss-header-sidebar-opener"
-            >
+              className="sss-header-sidebar-opener">
               <FontAwesomeIcon icon={faBars} size="lg" />
             </div>
           )}
@@ -48,7 +47,11 @@ const Header = () => {
           </div>
         </div>
         <div className="sss-header-center">
-          <img className="w-1/3" src="/assets/images/securedapp-logo-light.svg" alt="" />
+          <img
+            className="w-1/3"
+            src="/assets/images/securedapp-logo-light.svg"
+            alt=""
+          />
         </div>
         <div className="sss-header-right">
           {/* <div className="sss-header-right-calendar">
@@ -74,7 +77,7 @@ const Header = () => {
             <CustomButton
               onClick={() => dispatch(setScanNowModal(true))}
               className={
-                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-white"
+                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-white active:bg-white active:border active:border-tertiary active:text-black"
               }
               text={"Scan Now"}
             />

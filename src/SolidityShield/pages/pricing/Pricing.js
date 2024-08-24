@@ -200,7 +200,9 @@ const Pricing = () => {
           <div className="sas-pricing-plan-footer-button-container">
             <CustomButton
               text={"Contact Us"}
-              className={"border border-tertiary px-12 py-2 rounded-xl"}
+              className={
+                "border border-tertiary px-12 py-2 rounded-xl active:bg-tertiary"
+              }
             />
           </div>
         </div>

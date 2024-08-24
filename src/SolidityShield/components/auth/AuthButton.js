@@ -6,7 +6,9 @@ const AuthButton = ({ children, onClick, filled = true }) => {
       <button
         onClick={onClick}
         className={`auth-button ${
-          !filled ? "bg-[#F8FAFC]" : "bg-[#12D576] text-white"
+          !filled
+            ? "bg-[#F8FAFC] active:bg-tertiary active:text-black"
+            : "bg-[#12D576] text-white active:bg-[#F8FAFC] active:text-black"
         }`}>
         {children}
       </button>

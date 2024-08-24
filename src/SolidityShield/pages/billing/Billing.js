@@ -73,14 +73,14 @@ const BillingScreen = () => {
                   <CustomButton
                     onClick={() => navigate("/solidity-shield-scan/pricing")}
                     className={
-                      "px-3 py-2 rounded-xl bg-tertiary border border-black text-black"
+                      "px-3 py-2 rounded-xl bg-tertiary border border-black text-black active:bg-white"
                     }
                     text={"Upgrade Plan"}
                   />
                   <CustomButton
                     onClick={() => navigate("/solidity-shield-scan/pricing")}
                     className={
-                      "px-3 py-2 rounded-xl text-black border border-tertiary bg-white"
+                      "px-3 py-2 rounded-xl text-black border border-tertiary bg-white active:bg-white"
                     }
                     text={"Buy Credits"}
                   />
@@ -122,7 +122,9 @@ const BillingScreen = () => {
                   </div>
                   <div className="sss-billing-payment-method-right">
                     <CustomButton
-                      className={"px-6 py-2 bg-tertiary rounded-lg "}
+                      className={
+                        "px-6 py-2 border border-tertiary bg-tertiary rounded-lg active:bg-white active:text-black"
+                      }
                       text={"Edit"}
                     />
                   </div>

@@ -57,7 +57,7 @@ const PaymentModal = () => {
                     <CustomButton
                       text={"Pay Now"}
                       className={
-                        "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3"
+                        "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3 active:bg-white"
                       }
                       onClick={() => {
                         payPhonpe({
@@ -88,7 +88,7 @@ const PaymentModal = () => {
                       }}
                       text={"Pay Now"}
                       className={
-                        "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3"
+                        "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3 active:bg-white"
                       }
                     />
                   </div>
@@ -112,8 +112,7 @@ const PaymentModal = () => {
                           web3PayDetails.pay_address
                         );
                         toast("Wallet Address copied to clipboard");
-                      }}
-                    >
+                      }}>
                       <FontAwesomeIcon icon={faCopy} />
                     </div>
                   </div>
@@ -127,7 +126,7 @@ const PaymentModal = () => {
                       onClick={closeModal}
                       text={"Cancel"}
                       className={
-                        "w-[120px] py-3 px-2 rounded-xl border border-tertiary"
+                        "w-[120px] py-3 px-2 rounded-xl border border-tertiary active:bg-tertiary"
                       }
                     />
                   </div>
@@ -135,7 +134,7 @@ const PaymentModal = () => {
                     <CustomButton
                       text={"Verify"}
                       className={
-                        "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary"
+                        "w-[120px] border border-tertiary py-3 px-2 rounded-xl bg-tertiary active:bg-white"
                       }
                       onClick={() => {
                         payCryptoVerify({

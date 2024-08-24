@@ -62,8 +62,7 @@ const ScanNowModalFieldDropDown = ({
             return (
               <div
                 onClick={() => setValueTypeEvent(filter)}
-                className="scan-now-modal-body-dropdown-option-container"
-              >
+                className="scan-now-modal-body-dropdown-option-container">
                 <div className="scan-now-modal-body-dropdown-option">
                   {filter}
                 </div>
@@ -228,7 +227,7 @@ const ScanNowModal = () => {
                 onClick={closeModal}
                 text={"Cancel"}
                 className={
-                  "w-[120px] py-3 px-2 rounded-xl border border-tertiary"
+                  "w-[120px] py-3 px-2 rounded-xl border border-tertiary active:bg-tertiary"
                 }
               />
             </div>
@@ -236,7 +235,7 @@ const ScanNowModal = () => {
               <CustomButton
                 text={"Scan"}
                 className={
-                  "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary"
+                  "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary active:bg-white"
                 }
                 onClick={handleSubmit}
               />

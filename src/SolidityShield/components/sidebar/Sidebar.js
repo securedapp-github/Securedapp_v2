@@ -108,7 +108,7 @@ const Sidebar = () => {
               </div>
               <CustomButton
                 text={"Upgrade Now"}
-                className="w-full text-black bg-[#12D576] py-3 rounded-xl"
+                className="w-full border border-tertiary text-black bg-[#12D576] py-2 rounded-xl active:bg-white"
                 onClick={() => navigate("/solidity-shield-scan/pricing")}
               />
             </div>

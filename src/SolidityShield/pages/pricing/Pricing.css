@@ -31,7 +31,7 @@
 }
 
 .sss-pricing-card-button {
-  @apply w-full p-2 text-sm md:text-base rounded-lg bg-tertiary flex justify-center items-center gap-x-2;
+  @apply w-full p-2 text-sm md:text-base rounded-lg border border-tertiary bg-tertiary active:bg-white flex justify-center items-center gap-x-2;
 }
 
 .sss-pricing-container {
