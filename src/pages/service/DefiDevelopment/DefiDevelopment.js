@@ -24,6 +24,7 @@ function DefiDevelopment() {
           name="DeFi DEVELOPMENT"
           title="Transforming Financial Services"
           image={"/assets/images/ServicePages/s12-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is a Decentralized Finance (DeFi)?"}

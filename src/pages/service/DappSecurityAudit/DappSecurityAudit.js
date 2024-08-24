@@ -24,6 +24,7 @@ function DappSecurityAudit() {
           name="DAPP SECURITY AUDIT"
           title="A Comprehensive Service Ensure Decentralized Application Security Against Malicious Attack"
           image={"/assets/images/ServicePages/s3-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is a Dapp ?"}

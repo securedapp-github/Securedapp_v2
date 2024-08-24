@@ -24,6 +24,7 @@ function NftsDevelopment() {
           name="NFTs DEVELOPMENT"
           title="Comprehensive NFT Development Services for Unique Digital Assets"
           image={"/assets/images/ServicePages/s11-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is NFT Development?"}

@@ -28,10 +28,7 @@ const issuesChartHeaderOptions = [
 ];
 
 const CustomAreaChart = ({ data }) => (
-  <ResponsiveContainer
-    className="w-1/2 text-xs"
-    width="100%"
-    height={350}>
+  <ResponsiveContainer className="w-1/2 text-xs" width="100%" height={350}>
     <AreaChart
       margin={{
         left: -30,
@@ -80,9 +77,9 @@ const IssuesChart = () => {
     fetch();
   }, []);
 
-  const toggleDropDown = () => {
-    setDropDown(!dropDown);
-  };
+  // const toggleDropDown = () => {
+  //   setDropDown(!dropDown);
+  // };
 
   return (
     <div className="flex-1 w-full">

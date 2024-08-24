@@ -24,6 +24,7 @@ function CryptoComplianceAml() {
           name="CRYPTO COMPLIANCE & AML"
           title="Crypto KYC, and AML Solutions Under One Place"
           image={"/assets/images/ServicePages/s9-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What Is Anti-money Laundering (AML)?"}

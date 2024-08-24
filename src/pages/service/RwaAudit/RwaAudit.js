@@ -24,6 +24,7 @@ function RwaAudit() {
           name="RWA AUDIT"
           title="Audit for Secure Blockchain Asset Valuation"
           image={"/assets/images/ServicePages/s8-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What are Real-world Assets?"}

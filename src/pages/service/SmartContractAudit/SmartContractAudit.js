@@ -24,6 +24,7 @@ function SmartContractAudit() {
           name="SMART CONTRACT AUDIT"
           title="Helping Your Business to Launch Error-free Blockchain Applications"
           image={"/assets/images/ServicePages/s2-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is a Smart Contract ?"}

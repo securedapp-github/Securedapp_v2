@@ -24,6 +24,7 @@ function DecentralizedIdentity() {
           name="DECENTRALIZED IDENTITY (DID)"
           title="Decentralized Identity (DID) Solutions Offers Privacy-first Digital Identities"
           image={"/assets/images/ServicePages/s10-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is Decentralized Identity (DID)?"}

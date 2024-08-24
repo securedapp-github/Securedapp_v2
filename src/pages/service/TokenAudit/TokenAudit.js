@@ -24,6 +24,7 @@ function TokenAudit() {
           name="TOKEN AUDIT"
           title="A Must Code Review for Your Smart Contracts"
           image={"/assets/images/ServicePages/s4-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is Token Audit ?"}

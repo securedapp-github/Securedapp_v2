@@ -25,6 +25,7 @@ function DappDevelopment() {
           name="DAPP DEVELOPMENT"
           title="Empowering Developers with Secure, No-Code Blockchain Solutions"
           image={"/assets/images/ServicePages/s1-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is DApp Development"}

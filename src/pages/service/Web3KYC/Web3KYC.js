@@ -24,6 +24,7 @@ function Web3KYC() {
           name="WEB 3.0 KYC"
           title="Advance Blockchain Identity Verification for Modern Compliance"
           image={"/assets/images/ServicePages/s5-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is Web 3.0 KYC ?"}

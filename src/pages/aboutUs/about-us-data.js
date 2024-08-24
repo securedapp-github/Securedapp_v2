@@ -22,7 +22,7 @@ const teamData = [
   },
   {
     name: "Dinesh",
-    designation: "Head of accounts",
+    designation: "Head of Finance",
     image: "/assets/images/team/dinesh.png",
     twitter: "",
     linkedin: "",

@@ -215,7 +215,7 @@ const BlogPost = () => {
           <div className="blog-post-header-left">
             <div className="blog-post-header-title">
               <div className="blog-post-header-title-text">
-                Relevant Brands!
+                Smart Contract Audit
               </div>
             </div>
             <Button
@@ -227,7 +227,7 @@ const BlogPost = () => {
           <div className="blog-post-header-right">
             <div className="blog-post-header-title">
               <div className="blog-post-header-title-text">
-                Relevant Brands!
+                Runtime Monitoring
               </div>
             </div>
             <Button

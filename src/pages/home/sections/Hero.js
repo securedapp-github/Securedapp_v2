@@ -40,7 +40,7 @@ const Hero = () => {
           slidesPerView={1}
           pagination={{ clickable: true }}
           loop={true}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           grabCursor={true}
           className="hero-swiper"
         >

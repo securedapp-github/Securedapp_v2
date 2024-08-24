@@ -24,6 +24,7 @@ function Web3Security() {
           name="WEB 3.0 SECURITY"
           title="Real-time Prevention from Cyber Threats"
           image={"/assets/images/ServicePages/s6-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is Web 3.0 ?"}

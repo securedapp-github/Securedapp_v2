@@ -24,6 +24,7 @@ function BlockchainForensic() {
           name="BLOCKCHAIN FORENSIC"
           title="Tracing & Investigation cryptocurrency Transactions"
           image={"/assets/images/ServicePages/s7-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is a Blockchain Forensic ?"}

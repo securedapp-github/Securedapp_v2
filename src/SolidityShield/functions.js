@@ -555,7 +555,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 
 export const logout = () => {
   sessionStorage.removeItem("session_user");
-  window.location.reload();
+  window.location.replace("/solidity-shield-scan/auth");
 };
 
 export const downloadReport = async (id) => {
