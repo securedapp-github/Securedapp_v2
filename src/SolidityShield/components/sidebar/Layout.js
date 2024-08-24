@@ -20,6 +20,8 @@ export const MainLayout = () => {
     const pathName = location.pathname.split("/")[2];
     if (pathName === "vulnerability-scans" || pathName === "scan-report") {
       dispatch(setSelectedSidebarItem("Vulnerability Scans"));
+    } else if (pathName === "pricing") {
+      dispatch(setSelectedSidebarItem("Payment"));
     } else {
       dispatch(setSelectedSidebarItem(capitalizePath(pathName)));
     }

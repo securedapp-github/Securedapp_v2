@@ -1,9 +1,9 @@
 .sss-pricing-plan-card-container {
-  @apply mx-4 min-h-[300px] lg:min-h-[280px] xl:min-h-[250px] rounded-2xl border border-[#D2E6FF] bg-[#FAFAFA] flex justify-center items-center;
+  @apply md:mx-4  md:min-h-[300px] xl:min-h-[280px] rounded-lg md:rounded-2xl border border-[#D2E6FF] bg-[#FAFAFA] flex items-center justify-center;
 }
 
 .sss-pricing-plan-card {
-  @apply w-full p-6 flex flex-col gap-y-5;
+  @apply w-full px-2 py-4 md:p-6 flex flex-col gap-y-5;
 }
 
 .sss-pricing-card-header {
@@ -15,15 +15,15 @@
 }
 
 .sss-pricing-card-body {
-  @apply w-full flex justify-between items-baseline;
+  @apply w-full text-sm md:text-base flex justify-between items-baseline;
 }
 
 .sss-pricing-card-body-price {
-  @apply text-3xl font-semibold;
+  @apply text-sm md:text-3xl font-semibold;
 }
 
 .sss-pricing-card-description {
-  @apply font-light;
+  @apply font-light text-sm md:text-base lg:h-[80px];
 }
 
 .sss-pricing-card-button-container {
@@ -31,7 +31,7 @@
 }
 
 .sss-pricing-card-button {
-  @apply w-full p-2 rounded-lg bg-tertiary flex justify-center items-center gap-x-2;
+  @apply w-full p-2 text-sm md:text-base rounded-lg bg-tertiary flex justify-center items-center gap-x-2;
 }
 
 .sss-pricing-container {
@@ -54,7 +54,7 @@
 }
 
 .sss-pricing-plan-headers-card-container {
-  @apply flex-1 min-w-[300px];
+  @apply flex-1 w-full md:min-w-[300px];
 }
 
 .sss-pricing-plan-body {
@@ -66,7 +66,7 @@
 }
 
 .sss-pricing-plan-detail-row {
-  @apply w-full flex flex-col min-w-[300px];
+  @apply flex flex-col w-full md:min-w-[300px] text-xs md:text-base;
 }
 
 .sss-pricing-plan-detail-row-value-container {
@@ -97,4 +97,21 @@
 }
 
 .sas-pricing-plan-footer-button-container {
+}
+
+.sss-pricing-card-changer-buttons {
+  @apply pt-5 flex md:hidden  gap-x-2 items-center justify-center;
+}
+
+.sss-pricing-card-changer-button-container {
+  @apply h-8 w-8 flex items-center justify-center border rounded-full text-center;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.sss-pricing-card-changer-current-button {
+  @apply bg-tertiary;
+}
+
+.sss-pricing-card-changer-button {
+  @apply p-2;
 }
