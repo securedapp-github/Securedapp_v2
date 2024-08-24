@@ -61,8 +61,6 @@ const ScanReport = ({ downloadId }) => {
   }
 
   useEffect(() => {
-    !auth && navigate("/solidity-shield-scan/auth");
-    auth.user.plan == 0 && navigate("/solidity-shield-scan/overview");
     async function fetch() {
       const report = await getReport({ id: id, email: auth.user.email });
       setData(report);
@@ -72,10 +70,7 @@ const ScanReport = ({ downloadId }) => {
   }, []);
 
   return (
-    <div
-      id={`scan-report-${downloadId}`}
-      className="sss-scan-report-screen-container"
-    >
+    <div id={`scan-report-${id}`} className="sss-scan-report-screen-container">
       <div className="sss-scan-report-screen">
         <div className="sss-scan-report-header">
           <div className="">Scan Report</div>

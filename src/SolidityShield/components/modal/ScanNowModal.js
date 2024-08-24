@@ -136,10 +136,7 @@ const ScanNowModal = () => {
       chain: chainType,
       file,
       contract,
-      user: {
-        email: "himang305@gmail.com",
-        remainingCredits: 10,
-      },
+      user: auth.user,
       dispatch,
     });
   }

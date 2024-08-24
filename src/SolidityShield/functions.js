@@ -179,6 +179,11 @@ export const scanSubmit = async ({
   let compilerVersion;
   const formData = new FormData();
 
+  if (user.remainingCredits < 1) {
+    toast.error("No Credit, Please Purchase a Plan to scan");
+    return;
+  }
+
   // Validation
   if (inputTypes === "") {
     alert("Please Select a source");
@@ -260,11 +265,6 @@ export const scanSubmit = async ({
 
     console.log(`Compiler version: ${compilerVersion}`);
   }
-
-  // if (rcredit < 1) {
-  //   toast("No Credit, Please Purchase a Plan to scan");
-  //   return;
-  // }
 
   formData.append("mail", user.email);
   formData.append("version", compilerVersion);

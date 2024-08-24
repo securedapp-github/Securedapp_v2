@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { formatDate, downloadfReportPdf } from "../../functions";
 import { useState } from "react";
 import ScanReport from "../../pages/scanReport/ScanReport";
+import IssuesChart from "../overview/IssuesChart";
 
 const StatusTypeComponent = ({ status }) => {
   return (
@@ -35,7 +36,7 @@ const StatusTypeComponent = ({ status }) => {
 
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
-  const [downloadId, setDownload] = useState();
+  const [downloadId, setDownload] = useState(0);
 
   return (
     <div className="sss-history-table-container">
@@ -129,6 +130,7 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           <div
                             onClick={() => {
                               setDownload(data.id);
+                              alert(downloadId);
                               downloadfReportPdf(downloadId);
                             }}
                             className="sss-history-table-options-dropdown-item"

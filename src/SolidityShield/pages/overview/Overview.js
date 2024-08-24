@@ -14,7 +14,7 @@ const OverviewScreen = () => {
 
   const auth = useSelector(getUserData);
   const scanHistory = useSelector(getScanHistory);
-  const [firstTime, setFirstTime] = useState(true);
+  const [firstTime, setFirstTime] = useState(false);
 
   useEffect(() => {
     async function fetch() {
@@ -24,12 +24,9 @@ const OverviewScreen = () => {
             dispatch,
           })
         : navigate("/solidity-shield-scan/auth");
-      console.log(scanHistory.history);
-      if (scanHistory.history.length > 0) {
-        setFirstTime(false);
-      }
     }
     fetch();
+    scanHistory.history.length > 0 && setFirstTime(false);
   }, [firstTime]);
 
   return (
