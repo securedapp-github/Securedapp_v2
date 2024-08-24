@@ -92,7 +92,7 @@
 }
 
 .sss-figure-component-container {
-  @apply w-full md:w-[150px] border border-[#F2F2F2] rounded-lg;
+  @apply w-full md:w-[150px] border border-[#D2E6FF] rounded-lg;
 }
 
 .sss-figure-component {

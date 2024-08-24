@@ -21,9 +21,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 const issuesTimeFilter = ["All", "Monthly", "Weekly", "Today"];
+const issuesChartHeaderOptions = [
+  "High level issues",
+  "Medium level issues",
+  "Low level issues",
+];
 
 const CustomAreaChart = ({ data }) => (
-  <ResponsiveContainer className="w-1/2" width="100%" height={350}>
+  <ResponsiveContainer
+    className="w-1/2 text-xs md:text-sm lg:text-xl"
+    width="100%"
+    height={350}>
     <AreaChart
       margin={{
         left: -30,
@@ -44,7 +52,7 @@ const CustomAreaChart = ({ data }) => (
       <Area
         type="monotone"
         dataKey="value"
-        stroke="#ff7f7f"
+        stroke="#47EF9E"
         fill="url(#colorUv)"
         strokeWidth={3}
       />
@@ -55,6 +63,7 @@ const CustomAreaChart = ({ data }) => (
 const IssuesChart = () => {
   const { issuesData, dateFilter } = useSelector(getIssuesSelector);
   const [dropDown, setDropDown] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState("High level issues");
   const dispatch = useDispatch();
 
   const toggleDropDown = () => {
@@ -103,13 +112,30 @@ const IssuesChart = () => {
             </div>
             <div className="sss-overview-issues-card-body">
               <div className="sss-overview-issues-card-chart-header">
-                <img
-                  src="/assets/images/solidity-shield-scan/issues-chart-header-icon.svg"
-                  alt="Issues Chart Header Icon"
-                />
-                <div className="sss-overview-issues-card-chart-header-right">
-                  <div className="text-xs text-[#969BA0]">Income</div>
-                  <div className="text-lg font-semibold">Lorem Ipsum</div>
+                <div className="sss-overview-issues-card-chart-header-text">
+                  <img
+                    src="/assets/images/solidity-shield-scan/issues-chart-header-icon.svg"
+                    alt="Issues Chart Header Icon"
+                  />
+                  <div className="sss-overview-issues-card-chart-header-right">
+                    <div className="text-xs text-[#969BA0]">Income</div>
+                    <div className="text-lg font-semibold">Lorem Ipsum</div>
+                  </div>
+                </div>
+                <div className="sss-overview-issues-card-chart-header-options">
+                  {issuesChartHeaderOptions.map((option) => {
+                    return (
+                      <div
+                        onClick={() => setSelectedOptions(option)}
+                        className={`sss-overview-issues-card-chart-header-option ${
+                          option === selectedOptions
+                            ? "border-[#EA7A9A] text-[#EA7A9A]"
+                            : "border-[#FFEEF3]"
+                        }`}>
+                        {option}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="sss-overview-issues-card-chart-main">
