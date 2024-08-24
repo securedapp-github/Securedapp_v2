@@ -1,5 +1,5 @@
 .footer {
-  @apply lg:px-32 pt-24 lg:pt-48 pb-12 flex flex-col space-y-16 justify-center lg:items-stretch;
+  @apply bg-grid lg:px-32 pt-24 lg:pt-48 pb-12 flex flex-col space-y-16 justify-center lg:items-stretch;
 }
 
 .footer-newsletter {

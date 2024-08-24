@@ -1,6 +1,11 @@
 import "./App.css";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  useLocation,
+} from "react-router-dom";
 import Home from "./pages/home/HomePage";
 import { useEffect } from "react";
 import Product from "./pages/product/Product";
@@ -38,7 +43,8 @@ import "aos/dist/aos.css";
 
 function App() {
   const dispatch = useDispatch();
-  const { isRequestModalOpen } = useSelector(getHomeSelector);
+  const { isLargeScreen, isRequestModalOpen } = useSelector(getHomeSelector);
+  const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,6 +58,17 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const isSolidityShieldScan = location.pathname.startsWith(
+    "/solidity-shield-scan"
+  );
+
+  // remove default scroll-bar
+  if (isSolidityShieldScan && isLargeScreen) {
+    document.body.style.overflowY = "hidden";
+  } else {
+    document.body.style.overflowY = "auto";
+  }
 
   return (
     <div className="App bg-primary dark:bg-secondary">
@@ -93,9 +110,8 @@ function App() {
           <Route path="blog/:url" element={<BlogPost />} />
           <Route path="media" element={<Media />} />
           <Route path="about" element={<AboutUs />} />
-          <Route path="solidity-shield-scan" element={<SolidityShield />} />
-        </Routes>
-      </Router>
+        <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
+      </Routes>
     </div>
   );
 }
