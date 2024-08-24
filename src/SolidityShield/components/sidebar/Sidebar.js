@@ -55,7 +55,12 @@ const Sidebar = () => {
                 {sidebarItems.map((item, index) => {
                   return (
                     <div
-                      onClick={() => selectMenuItem(index)}
+                      onClick={() => {
+                        if (item.name === "Log Out") {
+                          logout();
+                        }
+                        selectMenuItem(index);
+                      }}
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"

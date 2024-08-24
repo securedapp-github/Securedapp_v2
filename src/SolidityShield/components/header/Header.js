@@ -48,7 +48,7 @@ const Header = () => {
           </div>
         </div>
         <div className="sss-header-right">
-          <div className="sss-header-right-calendar">
+          {/* <div className="sss-header-right-calendar">
             <img
               src="/assets/images/solidity-shield-scan/header-calendar.svg"
               alt="Calendar Logo"
@@ -66,7 +66,7 @@ const Header = () => {
               src="/assets/images/solidity-shield-scan/header-notif.svg"
               alt="Notification Logo"
             />
-          </div>
+          </div> */}
           <div className="sss-header-right-button">
             <CustomButton
               onClick={() => dispatch(setScanNowModal(true))}

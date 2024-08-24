@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import ScanReport from "../../pages/scanReport/ScanReport";
 import IssuesChart from "../overview/IssuesChart";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { getUserData } from "../../redux/auth/authSlice";
 
 const StatusTypeComponent = ({ status }) => {
   return (
@@ -38,6 +40,7 @@ const StatusTypeComponent = ({ status }) => {
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
   const [downloadId, setDownload] = useState();
+  const auth = useSelector(getUserData);
 
   return (
     <div className="sss-history-table-container">
@@ -120,9 +123,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         <div className="sss-history-table-options-dropdown">
                           <div
                             onClick={() =>
-                              window.open(
-                                `/solidity-shield-scan/report/${data.id}`
-                              )
+                              auth.user.plan > 0
+                                ? window.open(
+                                    `/solidity-shield-scan/report/${data.id}`
+                                  )
+                                : toast("Upgrade your plan to view the report")
                             }
                             className="sss-history-table-options-dropdown-item"
                           >
@@ -131,7 +136,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           <div
                             onClick={() => {
                               setDownload(data.id);
-                              downloadfReportPdf(data.id);
+                              auth.user.plan > 0
+                                ? downloadfReportPdf(data.id)
+                                : toast(
+                                    "Upgrade your plan to download the report"
+                                  );
                             }}
                             className="sss-history-table-options-dropdown-item"
                           >

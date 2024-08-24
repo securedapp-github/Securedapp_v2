@@ -26,6 +26,8 @@ const initialScanSummaryState = {
         text: "Lorem Ipsum",
       },
     ],
+    summary: "",
+    id: 0,
   },
 };
 

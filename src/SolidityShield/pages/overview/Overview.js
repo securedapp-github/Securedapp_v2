@@ -14,7 +14,7 @@ const OverviewScreen = () => {
 
   const auth = useSelector(getUserData);
   const scanHistory = useSelector(getScanHistory);
-  const [firstTime, setFirstTime] = useState(false);
+  const [firstTime, setFirstTime] = useState(true);
 
   useEffect(() => {
     async function fetch() {

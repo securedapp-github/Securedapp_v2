@@ -5,6 +5,7 @@ import "./ScanReport.css";
 import { auditStats, scanReportData } from "./scanReport.data";
 import { getReport } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
+import { toast } from "react-toastify";
 
 const ScanReportBar = ({ type, number, color }) => {
   return (
@@ -54,7 +55,7 @@ function formatDate(dateString) {
 const ScanReport = ({ downloadId }) => {
   const auth = useSelector(getUserData);
   const [data, setData] = useState();
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   var { id } = useParams();
   if (!id) {
     id = downloadId;
@@ -62,6 +63,11 @@ const ScanReport = ({ downloadId }) => {
 
   useEffect(() => {
     async function fetch() {
+      !auth.user.email && navigate("/solidity-shield-scan/auth");
+      if (auth.user.plan == 0) {
+        !downloadId && toast("Upgrade to view the report");
+        !downloadId && navigate("/solidity-shield-scan/overview");
+      }
       const report = await getReport({ id: id, email: auth.user.email });
       setData(report);
       console.log(report);

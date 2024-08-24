@@ -68,6 +68,7 @@ const FigureComponent = ({ value, text }) => {
 
 const ScanSummary = () => {
   const { dateFilter, scanSummary } = useSelector(getOverviewSelector);
+  const scanHistory = useSelector(getScanHistory);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -89,7 +90,7 @@ const ScanSummary = () => {
                   Scan Summary
                 </div>
                 <div className="sss-overview-scan-summary-header-left-desc">
-                  Lorem ipsum dolor sit amet, consectetur
+                  Summary of your latest scan
                 </div>
               </div>
               <div className="sss-overview-scan-summary-header-right">
@@ -126,16 +127,26 @@ const ScanSummary = () => {
                 />
               </div>
               <div className="sss-scan-summary-body-result">
-                <div className="sss-scan-summary-body-result-title">Issue</div>
+                <div className="sss-scan-summary-body-result-title">
+                  Summary
+                </div>
                 <div className="sss-scan-summary-body-result-description">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do
+                  {scanSummary.summary}
                 </div>
                 <div className="sss-scan-summary-body-result-button">
                   <CustomButton
                     text={"More Details"}
                     className={
                       "bg-[#FFEEF3] rounded-3xl text-[#EA7A9A] py-3 w-[150px]"
+                    }
+                    onClick={() =>
+                      navigate(
+                        `/solidity-shield-scan/report/${
+                          scanHistory.history.reduce((max, item) => {
+                            return item.id > max.id ? item : max;
+                          }, scanHistory.history[0]).id
+                        }`
+                      )
                     }
                   />
                 </div>

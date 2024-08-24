@@ -86,7 +86,7 @@ const IssuesChart = () => {
                   Issues
                 </div>
                 <div className="sss-overview-issues-header-left-desc">
-                  Lorem ipsum dolor sit amet, consectetur
+                  Issues found you in your scans
                 </div>
               </div>
               <div className="sss-overview-issues-header-right">

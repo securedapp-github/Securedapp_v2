@@ -328,6 +328,14 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
     return item.id > max.id ? item : max;
   }, history[0]);
   latestScan = await getReport({ id: latestScan.id, email });
+  var summary = `Scanned ${latestScan.contracts} contracts, ${
+    latestScan.lines
+  } lines of code and found ${Object.values(latestScan.findings).reduce(
+    (accumulator, currentValue) => {
+      return accumulator + currentValue;
+    },
+    0
+  )} vulnerabilities`;
   var data = latestScan.findings;
   var score =
     5 -
@@ -347,6 +355,8 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
         { name: "Optimization Issues", value: data.optimization_issues },
         { name: "Informational Issues", value: data.informational_issues },
       ],
+      summary,
+      id: latestScan.id,
     })
   );
   //console.log(data);
