@@ -1,18 +1,62 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import BillingTable from "../../components/billing/BillingTable";
 import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
 import "./Billing.css";
+import { payPhonpe, payCrypto, payCryptoVerify } from "../../functions";
+import { getUserData } from "../../redux/auth/authSlice";
 
 const BillingScreen = () => {
+  const auth = useSelector(getUserData);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !auth.user.email && navigate("/solidity-shield-scan/auth");
+    async function fetch() {
+      //
+    }
+    fetch();
+  }, []);
   return (
     <div className="sss-billing-screen-container">
+      <button
+        onClick={async () => {
+          await payPhonpe({
+            planid: 1,
+            email: auth.user.email,
+          });
+        }}
+      >
+        Pay via Phonpe
+      </button>
+      <br />
+      <button
+        onClick={async () => {
+          const pay = await payCrypto({
+            planid: 1,
+            email: auth.user.email,
+          });
+          console.log(pay);
+          const verify = await payCryptoVerify({
+            id: pay.payment_id,
+            transactionId: pay.newTransactionId,
+            amount: pay.payAmount,
+          });
+          console.log(verify);
+        }}
+      >
+        Pay via Crypto
+      </button>
       <div className="sss-billing-screen">
         <div className="sss-billing-header">
           <ChartCard
             className={
               "flex-1 w-full min-h-[250px] lg:w-1/2 flex flex-col justify-center"
-            }>
+            }
+          >
             <div className="sss-billing-current-container">
               <div className="sss-billing-current-header">
                 <div className="sss-billing-current-header-tittle">
@@ -54,7 +98,8 @@ const BillingScreen = () => {
           <ChartCard
             className={
               "flex-1 w-full min-h-[250px] lg:w-1/2 flex flex-col justify-center"
-            }>
+            }
+          >
             <div className="sss-billing-payment-container">
               <div className="sss-billing-payment-header">
                 <div className="sss-billing-current-header-tittle">

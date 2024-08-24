@@ -13,15 +13,123 @@ import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
 
 const logo = "/assets/images/securedapp_logo.svg";
 
-export const PurchasePlan = async (planid, email) => {
+export const payCryptoVerify = async ({ id, transactionId, amount }) => {
+  try {
+    return await fetch(`https://api.nowpayments.io/v1/payment/${id}`, {
+      headers: {
+        "Content-type": "application/json",
+        "X-api-key": "F2TDXCK-K0Q4N8J-JWSHQW1-P5AM1RH",
+      },
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        if (data.payment_status === "success") {
+          toast.success("Payment Successful!");
+          await fetch("https://139-59-5-56.nip.io:3443/payment-update-web3", {
+            method: "POST",
+            body: JSON.stringify({
+              status: "success",
+              transactionId,
+              amount,
+            }),
+          }).then(async (response2) => {
+            const res = await response2.json();
+            if (res.status) {
+              toast.success("Updated your plan!");
+              return data;
+            } else {
+              toast.error("Error updating your plan!");
+              return data;
+            }
+          });
+        } else if (data.payment_status === "waiting") {
+          toast.error("Waiting for the payment to be done!");
+          return data;
+        } else {
+          toast.error("Payment verififcation failed!");
+          return data;
+        }
+      })
+      .catch((error) => {
+        toast.error("Error Verifying payment!");
+        console.log(error);
+      });
+  } catch (error) {
+    toast.error("Error Verifying payment!");
+    console.log(error);
+  }
+};
+
+export const payCrypto = async ({ planid, email }) => {
+  const { v4: uuidv4 } = require("uuid");
+  const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
+  const price = 100;
+  try {
+    return await fetch("https://api.nowpayments.io/v1/payment", {
+      method: "POST",
+      body: JSON.stringify({
+        price_amount: price,
+        price_currency: "usd",
+        pay_currency: "USDTMATIC",
+        pay_amount: 100,
+        order_id: "21314",
+        order_description: "Securedapp Subscription Plan A",
+        is_fixed_rate: true,
+        is_fee_paid_by_user: false,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        "X-api-key": "F2TDXCK-K0Q4N8J-JWSHQW1-P5AM1RH",
+      },
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        return await fetch(
+          "https://139-59-5-56.nip.io:3443/payment-insert-web3",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              mail: email,
+              planid,
+              paymentid: transactionid,
+            }),
+          }
+        ).then(async (response2) => {
+          const res = await response2.json();
+          if (res.status) {
+            localStorage.setItem(
+              "latestPayment",
+              JSON.stringify({
+                transactionId: transactionid,
+                amount: price,
+              })
+            );
+            return {
+              ...data,
+              newTransactionId: transactionid,
+              payAmount: price,
+            };
+          } else {
+            toast.error("Error initiating the payment!");
+          }
+        });
+      })
+      .catch((error) => {
+        toast.error("Error initiating payment!");
+        console.log(error);
+      });
+  } catch (error) {
+    toast.error("Unexpected error! Try again.");
+    console.log(error);
+  }
+};
+
+export const payPhonpe = async ({ planid, email }) => {
   const { v4: uuidv4 } = require("uuid");
 
   let cost = 0;
   if (planid > 0) {
-    //setplanid(planid);
-
     const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
-    // console.log("Txn_ID : ", transactionid);
 
     const response2 = await fetch(
       "https://139-59-5-56.nip.io:3443/payment-insert",
@@ -39,13 +147,13 @@ export const PurchasePlan = async (planid, email) => {
     );
 
     const data = await response2.json();
-    // console.log("db entry data : ", data);
+    console.log("db entry data : ", data);
 
     if (!data.status) {
-      console.log("Failed DB payment Entry");
+      toast.error("Failed to proceed to payment! Try again.");
       return;
     } else {
-      window.location.replace(data.redirect);
+      window.open(data.redirect);
     }
   }
 };
@@ -304,6 +412,33 @@ export const getReport = async (id, email) => {
     });
 };
 
+export const getScanHistoryData = async ({ userEmail, dispatch }) => {
+  return fetch("https://139-59-5-56.nip.io:3443/getHistory", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: userEmail,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      toast.error("Invalid Network Response. Please try again!");
+    })
+    .then((data) => {
+      // console.log(data);
+      dispatch(setScanHistory(data));
+      // toast("setScanHitsory");
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
 export const sendOTP = async ({ email, dispatch, selector }) => {
   const user = selector;
 
@@ -422,33 +557,6 @@ export const downloadReport = async (id) => {
       // }
       // console.log(JSON.parse(data[0].reportdata));
       //generatePDF(JSON.parse(data[0].reportdata));
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-};
-
-export const getScanHistoryData = async ({ userEmail, dispatch }) => {
-  return fetch("https://139-59-5-56.nip.io:3443/getHistory", {
-    method: "POST",
-    body: JSON.stringify({
-      mail: userEmail,
-    }),
-    headers: {
-      "Content-type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      toast.error("Invalid Network Response. Please try again!");
-    })
-    .then((data) => {
-      // console.log(data);
-      dispatch(setScanHistory(data));
-      // toast("setScanHitsory");
-      return data;
     })
     .catch((error) => {
       console.error("Error:", error);
