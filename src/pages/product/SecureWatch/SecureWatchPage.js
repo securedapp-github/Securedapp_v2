@@ -22,6 +22,7 @@ function SecureWatchPage() {
           name="SECURE WATCH"
           title="Blockchain Threat Detection"
           image={"/assets/images/product-hero.svg"}
+          onClick={() => window.open("https://securewatch.securedapp.io")}
         />
         <ProductCard
           header={"What is Secure Watch"}

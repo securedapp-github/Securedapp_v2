@@ -83,10 +83,7 @@ function Blog() {
     <div className="blog-container">
       <Navbar />
       <div className="blog">
-        <SectionTitle
-          title="News & Articles"
-          description="#1 Blog on theme marketing by Bodrum"
-        />
+        <SectionTitle title="Blog" description="Read the fastest Web3 blog" />
         <div className="blog-search">
           <div className="blog-search-input">
             <input

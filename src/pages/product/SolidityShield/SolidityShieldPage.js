@@ -39,7 +39,8 @@ function SolidityShieldPage() {
         <ProductServiceHero
           name="SOLIDITY SHIELD"
           title="Smart Contract Security Audit Solution"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/ss/hero.jpg"}
+          onClick={() => window.open("/solidity-shield-scan")}
         />
         <ProductCard
           header={"What is a Smart Contract?"}

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SectionTitle from "../../../components/common/SectionTitle";
 import Button from "../../../components/common/Button";
 
@@ -10,8 +11,8 @@ const solutions = [
       "Customizable security audits",
       "Enhanced developer workflow",
     ],
-    to: "",
-    image: "/assets/images/home/hero.png",
+    to: "/solidity-shield",
+    image: "/assets/images/ProductPages/ss/hero.jpg",
   },
   {
     title: "Secure Watch",
@@ -20,7 +21,7 @@ const solutions = [
       "Machine learning for anomaly identification",
       "Customizable security measures",
     ],
-    to: "",
+    to: "/secure-watch",
     image: "/assets/images/solution-1.svg",
   },
   {
@@ -30,7 +31,7 @@ const solutions = [
       "Analyzes transaction data",
       "Supports regulatory compliance",
     ],
-    to: "",
+    to: "/secure-trace",
     image: "/assets/images/solution-2.svg",
   },
   {
@@ -40,12 +41,13 @@ const solutions = [
       "Enhancing versatility by allowing projects to deploy tokens across multiple blockchains",
       "Decentralized exchange for seamless token trading",
     ],
-    to: "",
-    image: "/assets/images/solution-3.svg",
+    to: "/secure-pad",
+    image: "/assets/images/ProductPages/sp/hero.jpg",
   },
 ];
 
 const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
+  const navigate = useNavigate();
   return (
     <div
       className={`solution-card lg:flex ${
@@ -59,10 +61,18 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
             return <li className="solution-card-list-item">{item}</li>;
           })}
         </ul>
-        <Button text={"Learn More"} filled={true} />
+        <Button
+          onClick={() => navigate(to)}
+          text={"Learn More"}
+          filled={true}
+        />
       </div>
       <div className="solution-card-image">
-        <img src={image} alt="solution#" />
+        <img
+          style={{ borderRadius: "25px 15px 0 0" }}
+          src={image}
+          alt="solution#"
+        />
       </div>
     </div>
   );

@@ -217,7 +217,11 @@ const BlogPost = () => {
                 Relevant Brands!
               </div>
             </div>
-            <Button text={"Solidity Shield"} onClick={{}} filled={true} />
+            <Button
+              text={"Solidity Shield"}
+              onClick={() => window.open("/solidity-shield-scan")}
+              filled={true}
+            />
           </div>
           <div className="blog-post-header-right">
             <div className="blog-post-header-title">
@@ -225,7 +229,11 @@ const BlogPost = () => {
                 Relevant Brands!
               </div>
             </div>
-            <Button text={"Secure Watch"} onClick={{}} filled={true} />
+            <Button
+              text={"Secure Watch"}
+              onClick={() => window.open("https://securewatch.securedapp.io")}
+              filled={true}
+            />
           </div>
         </div>
         <div className="blog-post-content">

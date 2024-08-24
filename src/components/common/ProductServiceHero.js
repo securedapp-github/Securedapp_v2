@@ -6,7 +6,7 @@ import Button from "../common/Button";
 import "./ProductServiceHero.css";
 import GetStartedButton from "./GetStartedButton";
 
-const ProductServiceHero = ({ name, title, image }) => (
+const ProductServiceHero = ({ name, title, image, cta, onClick }) => (
   <div className="product-service-hero-container">
     <div className="product-service-hero">
       <div className="hero-header">
@@ -23,12 +23,21 @@ const ProductServiceHero = ({ name, title, image }) => (
             <div>
               Trusted by more than <b>100+</b> companies
             </div>
-            <GetStartedButton filled={true} />
+            <GetStartedButton
+              onClick={onClick && onClick}
+              to={cta}
+              filled={true}
+            />
           </div>
         </div>
       </div>
       <div className="hero-image-container">
-        <img className="hero-image" src={image} alt="Product Service Hero" />
+        <img
+          style={{ borderRadius: "15px" }}
+          className="hero-image"
+          src={image}
+          alt="Product Service Hero"
+        />
       </div>
     </div>
     <BrandLogos />

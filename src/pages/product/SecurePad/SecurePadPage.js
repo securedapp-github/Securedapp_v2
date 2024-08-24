@@ -21,7 +21,8 @@ function SecurePadPage() {
         <ProductServiceHero
           name="SECURE PAD"
           title="A platform for Cost-free Tokenization in Blockchain Security Space"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/sp/hero.jpg"}
+          onClick={() => window.open("https://securepad.xyz/")}
         />
         <ProductCard
           header={"What is SecurePAD"}

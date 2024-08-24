@@ -36,7 +36,7 @@ const CTA = () => {
         the hundreds of businesses already benefiting from our powerful sales
         analytics dashboard.
       </div>
-      <div style={{ margin: "0p 0 70px 0" }} className="cta-section-buttons">
+      <div style={{ padding: "20px 0 60px 0" }} className="cta-section-buttons">
         {/* <Button
           className="cta-section-button w-72"
           text={"Sign Up"}
