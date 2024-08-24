@@ -129,12 +129,6 @@ const RequestQuoteModal = () => {
   return (
     isRequestModalOpen && (
       <div className="request-quote-modal-container">
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          theme="dark"
-          pauseOnHover
-        />
         <div className="request-quote-modal">
           <div className="request-quote-modal-close-container">
             <i
