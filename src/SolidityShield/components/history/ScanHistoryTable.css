@@ -22,10 +22,6 @@
   @apply min-w-full pt-8;
 }
 
-.sss-billing-table-scrollable {
-  @apply overflow-x-auto;
-}
-
 .sss-history-table-scrollable {
   @apply overflow-x-auto;
 }
@@ -75,7 +71,7 @@
 }
 
 .sss-history-table-options-dropdown-item {
-  @apply w-full p-1;
+  @apply w-full p-0.5;
 }
 
 .sss-history-table-options-dropdown-item:hover {

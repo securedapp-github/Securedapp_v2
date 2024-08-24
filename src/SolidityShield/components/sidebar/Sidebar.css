@@ -39,7 +39,11 @@
 }
 
 .sss-sidebar-item {
-  @apply w-full flex gap-x-4 px-4 my-3;
+  @apply w-full flex items-center gap-x-4 px-4 my-2;
+}
+
+.sss-sidebar-item-text {
+  @apply text-[12px] lg:text-[10px] xl:text-base;
 }
 
 .sss-sidebar-lower {

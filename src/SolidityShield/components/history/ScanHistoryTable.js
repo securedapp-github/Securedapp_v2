@@ -31,6 +31,9 @@ const StatusTypeComponent = ({ status }) => {
 
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
+  const filteredData = scanHistoryData.filter(
+    (data) => data.status === statusFilter || statusFilter === "All"
+  );
 
   return (
     <div className="sss-history-table-container">
@@ -67,7 +70,7 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
             </div>
           </div>
           <div className="sss-history-table-body">
-            {scanHistoryData.map((data, index) => {
+            {filteredData.map((data, index) => {
               return (
                 (data.status === statusFilter || statusFilter === "All") && (
                   <div className="sss-history-table-row">
@@ -105,7 +108,7 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         />
                       </div>
                       {hoveredRowIndex === index && (
-                        <div className="sss-history-table-options-dropdown">
+                        <div className={`sss-history-table-options-dropdown ${hoveredRowIndex === filteredData.length - 1 && 'bottom-0'}`}>
                           <div className="sss-history-table-options-dropdown-item">
                             View
                           </div>
