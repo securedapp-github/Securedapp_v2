@@ -45,12 +45,16 @@ const AuthScreen = () => {
               authInputType={"email"}
               placeholder={"Email Address"}
               onChange={setEmail}
+              regexCheck={/^\S+@\S+\.\S+$/}
+              message={"Invalid Email"}
             />
             {button === "Log In" ? (
               <AuthInputField
                 authInputType={"text"}
                 placeholder={"OTP"}
                 onChange={setOtp}
+                regexCheck={/^\d{4}$/}
+                message={"Invalid OTP"}
               />
             ) : null}
             <AuthButton
