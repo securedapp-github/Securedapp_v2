@@ -78,6 +78,7 @@ function App() {
         autoClose={2000}
         theme="dark"
         pauseOnHover
+        containerId={"toast-1"}
       />
       <Routes>
         <Route path="/" index element={<Home />} />
