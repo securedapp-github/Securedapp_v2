@@ -3,9 +3,10 @@ import "./ScanHistoryTable.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { formatDate, downloadfReportPdf } from "../../functions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ScanReport from "../../pages/scanReport/ScanReport";
 import IssuesChart from "../overview/IssuesChart";
+import { toast } from "react-toastify";
 
 const StatusTypeComponent = ({ status }) => {
   return (
@@ -36,7 +37,7 @@ const StatusTypeComponent = ({ status }) => {
 
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
-  const [downloadId, setDownload] = useState(0);
+  const [downloadId, setDownload] = useState();
 
   return (
     <div className="sss-history-table-container">
@@ -130,13 +131,28 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           <div
                             onClick={() => {
                               setDownload(data.id);
-                              alert(downloadId);
-                              downloadfReportPdf(downloadId);
+                              downloadfReportPdf(data.id);
                             }}
                             className="sss-history-table-options-dropdown-item"
                           >
                             Download
                           </div>
+                          {/* scan report start */}
+                          <div
+                            style={{
+                              textAlign: "left",
+                              opacity: "0",
+                              position: "absolute",
+                              left: "-9999px",
+                              top: "-9999px",
+                              width: "auto",
+                              height: "auto",
+                              overflow: "hidden",
+                            }}
+                          >
+                            <ScanReport downloadId={data.id} />
+                          </div>
+                          {/* scan report end */}
                         </div>
                       )}
                     </div>
@@ -146,19 +162,6 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
             })}
           </div>
         </div>
-      </div>
-      <div
-        style={{
-          opacity: "0",
-          position: "absolute",
-          left: "-9999px",
-          top: "-9999px",
-          width: "auto",
-          height: "auto",
-          overflow: "hidden",
-        }}
-      >
-        <ScanReport downloadId={downloadId} />
       </div>
     </div>
   );

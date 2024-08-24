@@ -302,6 +302,8 @@ export const downloadfReportPdf = (id) => {
   if (!input) {
     toast.error("Error downloading the report! Try again.");
     return;
+  } else {
+    toast(`Downloading Scan Report - ${id}`);
   }
   html2canvas(input)
     .then((canvas) => {

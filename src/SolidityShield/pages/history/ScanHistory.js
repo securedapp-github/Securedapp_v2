@@ -27,11 +27,11 @@ const ScanHistory = () => {
   useEffect(() => {
     !auth.user.email && navigate("/solidity-shield-scan/auth");
     async function fetch() {
-      await getScanHistoryData({ userEmail: auth.user.email, dispatch });
+      await getScanHistoryData({ userEmail: "himang305@gmail.com", dispatch });
       setHistory(scanHistory.history);
     }
     fetch();
-  }, []);
+  }, [history]);
 
   return (
     <div className="sss-scan-history-container">
