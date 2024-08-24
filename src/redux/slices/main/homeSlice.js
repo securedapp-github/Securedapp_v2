@@ -3,7 +3,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLargeScreen: true,
   isRequestModalOpen: false,
-  darkMode: true,
+  darkMode: false,
 };
 
 const homeSlice = createSlice({

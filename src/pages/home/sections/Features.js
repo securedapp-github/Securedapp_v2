@@ -95,8 +95,8 @@ const Features = () => {
                           width={"25px"}
                           style={{
                             filter: darkMode
-                              ? "brightness(0) invert(1)"
-                              : "brightness(1) invert(0)",
+                              ? "brightness(1) invert(1)"
+                              : "brightness(1)",
                             marginBottom: "10px",
                           }}
                           src={`/assets/images/icons/${feature["icon"]}.svg`}
