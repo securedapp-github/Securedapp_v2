@@ -8,16 +8,25 @@ import ChartCard from "../../components/overview/ChartCard";
 import "./Billing.css";
 import { payPhonpe, payCrypto, payCryptoVerify } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
+import {
+  getPaymentSelector,
+  setPaymentModal,
+} from "../../redux/dashboard/paymentSlice";
+import { useDispatch } from "react-redux";
 
 const BillingScreen = () => {
+  const { paymentModal } = useSelector(getPaymentSelector);
   const auth = useSelector(getUserData);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const openModal = () => {
+    dispatch(setPaymentModal(true));
+  };
 
   useEffect(() => {
     !auth.user.email && navigate("/solidity-shield-scan/auth");
-    async function fetch() {
-      //
-    }
+    async function fetch() {}
     fetch();
   }, []);
   return (
@@ -80,6 +89,7 @@ const BillingScreen = () => {
               <div className="sss-billing-current-button-container">
                 <div className="sss-billing-current-buttons">
                   <CustomButton
+                    onClick={openModal}
                     className={
                       "px-3 py-2 rounded-xl bg-[#3F52FF] border border-[#3F52FF] text-white"
                     }

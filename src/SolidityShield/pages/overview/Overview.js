@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IssuesChart from "../../components/overview/IssuesChart";
 import ScanSummary from "../../components/overview/ScanSummary";
@@ -12,6 +12,7 @@ const OverviewScreen = () => {
   const navigate = useNavigate();
 
   const auth = useSelector(getUserData);
+  const [firstTime, setFirstTime] = useState(true);
 
   useEffect(() => {
     auth.user.email
@@ -29,11 +30,28 @@ const OverviewScreen = () => {
           <div className="">Dashboard</div>
         </div>
         <div className="sss-overview-body">
-          <div className="sss-overview-top-cards">
-            <ScanSummary />
-            <IssuesChart />
-          </div>
-          <div className="sss-overview-bottom-cards"></div>
+          {firstTime ? (
+            <div className="sss-overview-first-time">
+              <img
+                src="/assets/images/solidity-shield-scan/dashboard-icon.svg"
+                alt=""
+              />
+              <div className="sss-overview-first-time-details">
+                Start your scan here or choose plan{" "}
+                <span className="font-semibold underline cursor-pointer">
+                  {"Scan Now"}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="sss-overview-top-cards">
+                <ScanSummary />
+                <IssuesChart />
+              </div>
+              <div className="sss-overview-bottom-cards"></div>
+            </div>
+          )}
         </div>
       </div>
     </div>

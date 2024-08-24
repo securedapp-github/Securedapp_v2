@@ -3,6 +3,7 @@
 }
 
 .sss-overview-screen {
+  @apply min-h-screen;
 }
 
 .sss-overview-header {
@@ -14,4 +15,8 @@
 
 .sss-overview-top-cards {
   @apply h-full pt-4 flex flex-col lg:flex-row w-full gap-y-6 lg:gap-x-6 lg:gap-y-0 items-center justify-center;
+}
+
+.sss-overview-first-time {
+  @apply pt-24 xl:pt-44 flex text-center flex-col items-center justify-center;
 }

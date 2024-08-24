@@ -10,8 +10,18 @@ import "./index.css";
 import { MainLayout, NoSidebarLayout } from "./components/sidebar/Layout";
 import ScanHistory from "./pages/history/ScanHistory";
 import BillingScreen from "./pages/billing/Billing";
+import Pricing from "./pages/pricing/Pricing";
+import ScanNowModal from "./components/modal/ScanNowModal";
+import PaymentModal from "./components/modal/PaymentModal";
+import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
+import ScanReport from "./pages/scanReport/ScanReport";
 import { ToastContainer } from "react-toastify";
 import SolidityShield0 from "./product";
+import Pricing from "./pages/pricing/Pricing";
+import ScanNowModal from "./components/modal/ScanNowModal";
+import PaymentModal from "./components/modal/PaymentModal";
+import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
+import ScanReport from "./pages/scanReport/ScanReport";
 
 const SolidityShield = () => {
   return (
@@ -23,6 +33,8 @@ const SolidityShield = () => {
           theme="dark"
           pauseOnHover
         />
+        <ScanNowModal />
+        <PaymentModal />
         <Routes>
           <Route
             path="/"
@@ -36,9 +48,12 @@ const SolidityShield = () => {
           <Route element={<MainLayout />}>
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
+            <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
+            <Route path="scan-report" element={<ScanReport />} />
             <Route path="payment" element={<BillingScreen />} />
           </Route>
           <Route element={<NoSidebarLayout />}>
+            <Route path="pricing" element={<Pricing />} />
             <Route path="auth" element={<AuthScreen />} />
             <Route path="login" element={<LoginScreen />} />
             <Route path="contact" element={<ContactUs />} />

@@ -3,7 +3,11 @@ import { useSelector } from "react-redux";
 import CustomButton from "../common/CustomButton";
 import "./Header.css";
 import { toast } from "react-toastify";
-import { getCommonSelector, setSideBar } from "../../redux/commonSlice";
+import {
+  getCommonSelector,
+  setScanNowModal,
+  setSideBar,
+} from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +16,7 @@ import { scanSubmit } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 
 const Header = () => {
-  const { showSideBar } = useSelector(getCommonSelector);
+  const { showSideBar, scanNowModal } = useSelector(getCommonSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
   const componentRef = useRef();
@@ -89,20 +93,11 @@ const Header = () => {
           </div>
           <div className="sss-header-right-button">
             <CustomButton
+              onClick={() => dispatch(setScanNowModal(true))}
               className={
                 "w-[125px] px-3 py-2 rounded-xl bg-tertiary text-white"
               }
               text={"Scan Now"}
-              onClick={async () => {
-                await scanSubmit({
-                  companyName: "Webuidl",
-                  user: auth.user,
-                  inputTypes: "file",
-                  file,
-                  contract,
-                  dispatch,
-                });
-              }}
             />
           </div>
         </div>
