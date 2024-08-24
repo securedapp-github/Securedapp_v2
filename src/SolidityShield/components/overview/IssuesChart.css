@@ -22,7 +22,7 @@
 }
 
 .sss-overview-issues-header-right-dropdown {
-  @apply w-[120px] md:w-[150px] lg:w-[200px] relative cursor-pointer py-1 md:py-3 px-2 md:px-5 bg-[#FAFAFA] rounded-full border border-[#D2E6FF];
+  @apply w-[120px] md:w-[150px] lg:w-[200px] relative cursor-pointer py-1 md:py-3 px-2 md:px-5 bg-[#FAFAFA] rounded-full border border-tertiary;
 }
 
 .sss-overview-issues-header-right-dropdown-content {
@@ -30,11 +30,11 @@
 }
 
 .sss-overview-issues-header-right-dropdown-options {
-  @apply shadow-md w-full z-20 absolute left-0 bg-[#FAFAFA] border border-[#D2E6FF] rounded-lg;
+  @apply shadow-md w-full z-20 absolute left-0 bg-[#FAFAFA] border border-tertiary rounded-lg;
 }
 
 .sss-overview-issues-header-right-dropdown-option-container:hover {
-  @apply border border-[#D2E6FF] rounded-lg;
+  @apply border border-tertiary rounded-lg;
 }
 
 .sss-overview-issues-header-right-dropdown-option {

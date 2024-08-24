@@ -16,5 +16,5 @@
 }
 
 .auth-card-footer-answer {
-  @apply text-[#2563EB] font-semibold;
+  @apply text-tertiary font-semibold;
 }

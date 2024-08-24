@@ -125,7 +125,7 @@ const ScanSummary = () => {
                   <CustomButton
                     text={"More Details"}
                     className={
-                      "bg-[#FFEEF3] rounded-3xl text-[#EA7A9A] py-3 w-[150px]"
+                      "bg-[#12D576] rounded-3xl text-[#ffffff] py-3 w-[150px]"
                     }
                   />
                 </div>

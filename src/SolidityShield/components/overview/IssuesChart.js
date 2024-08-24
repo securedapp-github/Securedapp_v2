@@ -39,8 +39,8 @@ const CustomAreaChart = ({ data }) => (
       data={data}>
       <defs>
         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#ff7f7f" stopOpacity={1} />
-          <stop offset="100%" stopColor="#ff7f7f" stopOpacity={0} />
+          <stop offset="0%" stopColor="#12D576" stopOpacity={1} />
+          <stop offset="100%" stopColor="#12D576" stopOpacity={0} />
         </linearGradient>
       </defs>
       <CartesianGrid strokeDasharray="3 3" />
@@ -129,8 +129,8 @@ const IssuesChart = () => {
                         onClick={() => setSelectedOptions(option)}
                         className={`sss-overview-issues-card-chart-header-option ${
                           option === selectedOptions
-                            ? "border-[#EA7A9A] text-[#EA7A9A]"
-                            : "border-[#FFEEF3]"
+                            ? "border-[#12D576] text-black"
+                            : "border-black"
                         }`}>
                         {option}
                       </div>

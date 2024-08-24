@@ -84,10 +84,9 @@ const Sidebar = () => {
                   <ProgressBar
                     completed={(creditsRemaining / totalCredits) * 100}
                     height={"10px"}
-                    bgColor="#00ABB5"
+                    bgColor="#12D576"
                     isLabelVisible={false}
                     baseBgColor="#CDCDCD"
-                    labelColor="#e80909"
                   />
                 </div>
                 <div className="sss-sidebar-credits-text">
@@ -96,7 +95,7 @@ const Sidebar = () => {
               </div>
               <CustomButton
                 text={"Upgrade Now"}
-                className="w-full text-black bg-[#009580] py-3 rounded-xl"
+                className="w-full text-black bg-[#12D576] py-3 rounded-xl"
               />
             </div>
           </div>

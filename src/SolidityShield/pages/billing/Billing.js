@@ -51,13 +51,13 @@ const BillingScreen = () => {
                   <CustomButton
                     onClick={openModal}
                     className={
-                      "px-3 py-2 rounded-xl bg-[#3F52FF] border border-[#3F52FF] text-white"
+                      "px-3 py-2 rounded-xl bg-tertiary border border-black text-black"
                     }
                     text={"Upgrade Plan"}
                   />
                   <CustomButton
                     className={
-                      "px-3 py-2 rounded-xl text-[#3F52FF] border border-[#3F52FF] bg-white"
+                      "px-3 py-2 rounded-xl text-black border border-tertiary bg-white"
                     }
                     text={"Manage Plan"}
                   />
