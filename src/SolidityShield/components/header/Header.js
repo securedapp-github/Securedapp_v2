@@ -19,28 +19,6 @@ const Header = () => {
   const { showSideBar, scanNowModal } = useSelector(getCommonSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
-  const componentRef = useRef();
-
-  const [file, setFile] = useState();
-  const [contract, setContract] = useState();
-
-  const handleFileChange = (e) => {
-    // setFile(e.target.files[0]);
-    const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.name.endsWith(".sol")) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setContract(event.target.result);
-      };
-      reader.readAsText(selectedFile);
-      setFile(selectedFile);
-    } else {
-      toast.error("Only .sol files are allowed.");
-      setFile(null);
-      setContract("");
-    }
-    console.log(contract);
-  };
 
   return (
     <div className="sss-header-container">
@@ -65,8 +43,6 @@ const Header = () => {
               <input
                 placeholder="Search..."
                 className="sss-header-search-input"
-                type="file"
-                onChange={(e) => handleFileChange(e)}
               />
             </div>
           </div>

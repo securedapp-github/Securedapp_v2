@@ -43,7 +43,7 @@ export const payCryptoVerify = async ({ id, transactionId, amount }) => {
             }
           });
         } else if (data.payment_status === "waiting") {
-          toast.error("Waiting for the payment to be done!");
+          toast("Waiting for the payment to be done!");
           return data;
         } else {
           toast.error("Payment verififcation failed!");
@@ -61,66 +61,70 @@ export const payCryptoVerify = async ({ id, transactionId, amount }) => {
 };
 
 export const payCrypto = async ({ planid, email }) => {
-  const { v4: uuidv4 } = require("uuid");
-  const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
-  const price = 100;
-  try {
-    return await fetch("https://api.nowpayments.io/v1/payment", {
-      method: "POST",
-      body: JSON.stringify({
-        price_amount: price,
-        price_currency: "usd",
-        pay_currency: "USDTMATIC",
-        pay_amount: 100,
-        order_id: "21314",
-        order_description: "Securedapp Subscription Plan A",
-        is_fixed_rate: true,
-        is_fee_paid_by_user: false,
-      }),
-      headers: {
-        "Content-type": "application/json",
-        "X-api-key": "F2TDXCK-K0Q4N8J-JWSHQW1-P5AM1RH",
-      },
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        return await fetch(
-          "https://139-59-5-56.nip.io:3443/payment-insert-web3",
-          {
-            method: "POST",
-            body: JSON.stringify({
-              mail: email,
-              planid,
-              paymentid: transactionid,
-            }),
-          }
-        ).then(async (response2) => {
-          const res = await response2.json();
-          if (res.status) {
-            localStorage.setItem(
-              "latestPayment",
-              JSON.stringify({
-                transactionId: transactionid,
-                amount: price,
-              })
-            );
-            return {
-              ...data,
-              newTransactionId: transactionid,
-              payAmount: price,
-            };
-          } else {
-            toast.error("Error initiating the payment!");
-          }
-        });
+  if (planid > 0) {
+    const { v4: uuidv4 } = require("uuid");
+    const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
+    const price = 100;
+    try {
+      return await fetch("https://api.nowpayments.io/v1/payment", {
+        method: "POST",
+        body: JSON.stringify({
+          price_amount: price,
+          price_currency: "usd",
+          pay_currency: "USDTMATIC",
+          pay_amount: 100,
+          order_id: "21314",
+          order_description: "Securedapp Subscription Plan A",
+          is_fixed_rate: true,
+          is_fee_paid_by_user: false,
+        }),
+        headers: {
+          "Content-type": "application/json",
+          "X-api-key": "F2TDXCK-K0Q4N8J-JWSHQW1-P5AM1RH",
+        },
       })
-      .catch((error) => {
-        toast.error("Error initiating payment!");
-        console.log(error);
-      });
-  } catch (error) {
-    toast.error("Unexpected error! Try again.");
-    console.log(error);
+        .then(async (response) => {
+          const data = await response.json();
+          return await fetch(
+            "https://139-59-5-56.nip.io:3443/payment-insert-web3",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                mail: email,
+                planid,
+                paymentid: transactionid,
+              }),
+            }
+          ).then(async (response2) => {
+            const res = await response2.json();
+            if (res.status) {
+              localStorage.setItem(
+                "latestPayment",
+                JSON.stringify({
+                  transactionId: transactionid,
+                  amount: price,
+                })
+              );
+              return {
+                ...data,
+                newTransactionId: transactionid,
+                payAmount: price,
+              };
+            } else {
+              toast.error("Error initiating the payment!");
+            }
+          });
+        })
+        .catch((error) => {
+          toast.error("Error initiating payment!");
+          console.log(error);
+        });
+    } catch (error) {
+      toast.error("Unexpected error! Try again.");
+      console.log(error);
+    }
+  } else {
+    toast("Free Plan");
   }
 };
 
@@ -155,6 +159,8 @@ export const payPhonpe = async ({ planid, email }) => {
     } else {
       window.open(data.redirect);
     }
+  } else {
+    toast("Free Plan");
   }
 };
 
@@ -185,7 +191,7 @@ export const scanSubmit = async ({
   }
 
   // Handling GitHub URL
-  if (inputTypes.includes("github") && githubUrl) {
+  if (inputTypes.includes("Github") && githubUrl) {
     try {
       const { sourceCode, file: githubFile } = await githuburlfetch(githubUrl);
       if (!sourceCode) {
@@ -208,7 +214,7 @@ export const scanSubmit = async ({
   }
 
   // Handling Etherscan URL
-  if (inputTypes.includes("etherscan") && etherscanUrl && chain) {
+  if (inputTypes.includes("Contract Address") && etherscanUrl && chain) {
     try {
       const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
       const blob = new Blob([sourceCode], { type: "text/plain" });
@@ -229,7 +235,7 @@ export const scanSubmit = async ({
     }
   }
 
-  if (inputTypes.includes("file") && file) {
+  if (inputTypes.includes("Upload File") && file) {
     formData.append("files", file);
     if (!file) {
       toast.error("Please select a file.");
@@ -319,7 +325,7 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
   var latestScan = history.reduce((max, item) => {
     return item.id > max.id ? item : max;
   }, history[0]);
-  latestScan = await getReport(latestScan.id, email);
+  latestScan = await getReport({ id: latestScan.id, email });
   var data = latestScan.findings;
   var score =
     5 -
@@ -352,7 +358,7 @@ export const getIssuesChartData = async ({ dispatch, email }) => {
   // console.log(history);
   let data = [];
   for (let i = 0; i < history.length; i++) {
-    var scanReport = await getReport(history[i].id, email);
+    var scanReport = await getReport({ id: history[i].id, email });
     data.push(scanReport.findings);
   }
   data = data.reduce((accumulator, currentObject) => {
@@ -378,7 +384,7 @@ export const getIssuesChartData = async ({ dispatch, email }) => {
   return data;
 };
 
-export const getReport = async (id, email) => {
+export const getReport = async ({ id, email }) => {
   return await fetch("https://139-59-5-56.nip.io:3443/getReport", {
     method: "POST",
     body: JSON.stringify({
@@ -388,8 +394,7 @@ export const getReport = async (id, email) => {
       "Content-type": "application/json",
     },
   })
-    .then((response) => {
-      // console.log(response);
+    .then(async (response) => {
       // if (PurchasePlan(0)) {
       //   console.log("PDF generation is not available for free plan users.");
       //   toast("PDF generation is not available for free plan users.");
@@ -398,13 +403,20 @@ export const getReport = async (id, email) => {
       if (!response.ok) {
         toast("Invalid Network response ");
       }
-      return response.text();
+      return await response.text();
     })
     .then((data) => {
       var report = JSON.parse(data);
-      report = report[0].reportdata;
-      report = JSON.parse(report);
       //console.log(report);
+      report = JSON.parse(report[0].reportdata);
+      var score =
+        5 -
+        ((Number(report.findings["high_issues"]) +
+          Number(report.findings["medium_issues"]) +
+          Number(report.findings["low_issues"])) /
+          30) *
+          5;
+      report.score = score.toFixed(1) + "/5";
       return report;
     })
     .catch((error) => {

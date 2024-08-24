@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import QRCode from "react-qr-code";
 import {
   getPaymentSelector,
   setPaymentModal,
@@ -7,18 +8,26 @@ import { useDispatch } from "react-redux";
 import "./PaymentModal.css";
 import { useState } from "react";
 import CustomButton from "../common/CustomButton";
+import { payPhonpe, payCrypto, payCryptoVerify } from "../../functions";
+import { getUserData } from "../../redux/auth/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 const PaymentModal = () => {
-  const { paymentModal } = useSelector(getPaymentSelector);
+  const { paymentModal, selectedPlan } = useSelector(getPaymentSelector);
+  const auth = useSelector(getUserData);
   const dispatch = useDispatch();
-  const [phase, setPhase] = useState(0);
+  const [phase, setPhase] = useState(1);
+  const [web3PayDetails, setWeb3PayDetails] = useState();
 
   const closeModal = () => {
+    setPhase(1);
     dispatch(setPaymentModal(false));
   };
 
   const nextPhase = () => {
-    setPhase(phase + 1);
+    setPhase(2);
   };
 
   return (
@@ -35,7 +44,7 @@ const PaymentModal = () => {
             </div>
           </div>
           <div className="sss-payment-modal-body">
-            {phase === 0 && (
+            {phase === 1 && (
               <div className="sss-payment-modal-body-methods">
                 <div className="sss-payment-modal-body-method">
                   <div className="sss-payment-modal-body-method-image">
@@ -50,6 +59,12 @@ const PaymentModal = () => {
                       className={
                         "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3"
                       }
+                      onClick={() => {
+                        payPhonpe({
+                          planid: selectedPlan,
+                          email: auth.user.email,
+                        });
+                      }}
                     />
                   </div>
                 </div>
@@ -62,7 +77,15 @@ const PaymentModal = () => {
                   </div>
                   <div className="sss-payment-modal-body-method-button">
                     <CustomButton
-                      onClick={nextPhase}
+                      onClick={async () => {
+                        var pay = await payCrypto({
+                          planid: selectedPlan,
+                          email: auth.user.email,
+                        });
+                        console.log(pay);
+                        setWeb3PayDetails(pay);
+                        pay && nextPhase();
+                      }}
                       text={"Pay Now"}
                       className={
                         "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3"
@@ -72,20 +95,31 @@ const PaymentModal = () => {
                 </div>
               </div>
             )}
-            {phase === 1 && (
+            {phase === 2 && web3PayDetails && (
               <div className="sss-payment-modal-body-crypto-container">
                 <div className="sss-payment-modal-body-crypto-qr">
-                  <img
-                    src="/assets/images/solidity-shield-scan/crypto-qr.svg"
-                    alt=""
-                  />
+                  {web3PayDetails && (
+                    <QRCode value={web3PayDetails.pay_address} />
+                  )}
                 </div>
                 <div className="sss-payment-modal-body-cyrpto-details">
-                  <div className="">Chain: Ethereum</div>
+                  <div className="">{`Chain : ${web3PayDetails.network.toUpperCase()}`}</div>
                   <div className="">
-                    Address: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+                    {`Address : ${web3PayDetails.pay_address}   `}
+                    <div
+                      onClick={() => {
+                        navigator.clipboard.writeText(
+                          web3PayDetails.pay_address
+                        );
+                        toast("Wallet Address copied to clipboard");
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} />
+                    </div>
                   </div>
-                  <div className="">USDT: 40</div>
+                  <div className="">{`${
+                    web3PayDetails.pay_amount
+                  } ${web3PayDetails.pay_currency.toUpperCase()} `}</div>
                 </div>
                 <div className="sss-payment-modal-fotter">
                   <div className="sss-payment-modal-footer-button">
@@ -103,6 +137,13 @@ const PaymentModal = () => {
                       className={
                         "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary"
                       }
+                      onClick={() => {
+                        payCryptoVerify({
+                          id: web3PayDetails.payment_id,
+                          transactionId: web3PayDetails.newTransactionId,
+                          amount: web3PayDetails.pay_amount,
+                        });
+                      }}
                     />
                   </div>
                 </div>

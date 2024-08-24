@@ -1,17 +1,17 @@
-const FileUpload = ({ file, setFile }) => {
+const FileUpload = ({ file, handleChange }) => {
   const handleDrop = (event) => {
     event.preventDefault();
-    const droppedFile = event.dataTransfer.files[0];
-    setFile(droppedFile);
+    //const droppedFile = event.dataTransfer.files[0];
+    handleChange(event);
   };
 
   const handleFileSelect = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
+    handleChange(event);
   };
 
   const handleDragOver = (event) => {
     event.preventDefault();
+    handleChange(event);
   };
 
   return (
@@ -19,10 +19,12 @@ const FileUpload = ({ file, setFile }) => {
       <div
         className="h-full w-full flex items-center justify-center"
         onDrop={handleDrop}
-        onDragOver={handleDragOver}>
+        onDragOver={handleDragOver}
+      >
         <label
           htmlFor="file-upload"
-          className="flex flex-col items-center justify-center cursor-pointer">
+          className="flex flex-col items-center justify-center cursor-pointer"
+        >
           <div>
             <span className="text-lg text-gray-700">
               Drag & drop your file here, or{" "}
@@ -35,6 +37,7 @@ const FileUpload = ({ file, setFile }) => {
           <input
             id="file-upload"
             type="file"
+            accept=".sol"
             className="hidden"
             onChange={handleFileSelect}
           />

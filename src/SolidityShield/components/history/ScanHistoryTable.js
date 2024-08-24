@@ -2,8 +2,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ScanHistoryTable.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { formatDate } from "../../functions";
+import { formatDate, downloadfReportPdf } from "../../functions";
 import { useState } from "react";
+import ScanReport from "../../pages/scanReport/ScanReport";
 
 const StatusTypeComponent = ({ status }) => {
   return (
@@ -34,6 +35,7 @@ const StatusTypeComponent = ({ status }) => {
 
 const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
+  const [downloadId, setDownload] = useState();
 
   return (
     <div className="sss-history-table-container">
@@ -60,11 +62,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                 REPORT LINK
               </div>
             </div>
-            <div className="sss-history-table-status-container">
+            {/* <div className="sss-history-table-status-container">
               <div className="sss-history-table-header-status sss-history-table-header-item">
                 STATUS
               </div>
-            </div>
+            </div> */}
             <div className="sss-history-table-options-container">
               <div className="sss-history-table-header-options sss-history-table-header-item"></div>
             </div>
@@ -96,11 +98,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         </Link>
                       </div>
                     </div>
-                    <div className="sss-history-table-status-container">
+                    {/* <div className="sss-history-table-status-container">
                       <div className="sss-history-table-status">
                         {<StatusTypeComponent status={data.status} />}
                       </div>
-                    </div>
+                    </div> */}
                     <div
                       onMouseEnter={() => setHoveredRowIndex(index)}
                       onMouseLeave={() => setHoveredRowIndex(null)}
@@ -114,10 +116,23 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                       </div>
                       {hoveredRowIndex === index && (
                         <div className="sss-history-table-options-dropdown">
-                          <div className="sss-history-table-options-dropdown-item">
+                          <div
+                            onClick={() =>
+                              window.open(
+                                `/solidity-shield-scan/report/${data.id}`
+                              )
+                            }
+                            className="sss-history-table-options-dropdown-item"
+                          >
                             View
                           </div>
-                          <div className="sss-history-table-options-dropdown-item">
+                          <div
+                            onClick={() => {
+                              setDownload(data.id);
+                              downloadfReportPdf(downloadId);
+                            }}
+                            className="sss-history-table-options-dropdown-item"
+                          >
                             Download
                           </div>
                         </div>
@@ -129,6 +144,19 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
             })}
           </div>
         </div>
+      </div>
+      <div
+        style={{
+          opacity: "0",
+          position: "absolute",
+          left: "-9999px",
+          top: "-9999px",
+          width: "auto",
+          height: "auto",
+          overflow: "hidden",
+        }}
+      >
+        <ScanReport downloadId={downloadId} />
       </div>
     </div>
   );

@@ -1,6 +1,12 @@
+import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
 import "./Pricing.css";
 import CustomButton from "../../components/common/CustomButton";
+import {
+  getPaymentSelector,
+  setPaymentModal,
+  setPlan,
+} from "../../redux/dashboard/paymentSlice";
 
 const PricingPlanCard = ({ icon, planType, price, description, onClick }) => {
   return (
@@ -27,6 +33,13 @@ const PricingPlanCard = ({ icon, planType, price, description, onClick }) => {
 };
 
 const Pricing = () => {
+  const dispatch = useDispatch();
+
+  const openModal = (plan) => {
+    dispatch(setPaymentModal(true));
+    dispatch(setPlan(plan));
+  };
+
   return (
     <div className="sss-pricing-container">
       <div className="sss-pricing-plans-scrollable">
@@ -43,7 +56,7 @@ const Pricing = () => {
                         planType={detail.pricingCard.planType}
                         price={detail.pricingCard.price}
                         description={detail.pricingCard.description}
-                        onClick={() => {}}
+                        onClick={() => openModal(detail.id)}
                       />
                     </div>
                   )
@@ -63,7 +76,8 @@ const Pricing = () => {
                             className={`sss-pricing-plan-detail-row-value ${
                               planIndex === 0 &&
                               "sss-pricing-plan-detail-row-value-first"
-                            }`}>
+                            }`}
+                          >
                             {detail.details[feature].value === "TICK" ? (
                               <img
                                 src="/assets/images/solidity-shield-scan/billing-price-tick.svg"

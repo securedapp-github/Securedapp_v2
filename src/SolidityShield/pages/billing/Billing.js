@@ -6,13 +6,13 @@ import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
 import "./Billing.css";
-import { payPhonpe, payCrypto, payCryptoVerify } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 import {
   getPaymentSelector,
   setPaymentModal,
 } from "../../redux/dashboard/paymentSlice";
 import { useDispatch } from "react-redux";
+import { pricingDetails } from "../pricing/pricing.data";
 
 const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
@@ -25,40 +25,14 @@ const BillingScreen = () => {
   };
 
   useEffect(() => {
-    !auth.user.email && navigate("/solidity-shield-scan/auth");
+    console.log(auth.user);
+    //auth.user.email && navigate("/solidity-shield-scan/auth");
     async function fetch() {}
     fetch();
   }, []);
+
   return (
     <div className="sss-billing-screen-container">
-      <button
-        onClick={async () => {
-          await payPhonpe({
-            planid: 1,
-            email: auth.user.email,
-          });
-        }}
-      >
-        Pay via Phonpe
-      </button>
-      <br />
-      <button
-        onClick={async () => {
-          const pay = await payCrypto({
-            planid: 1,
-            email: auth.user.email,
-          });
-          console.log(pay);
-          const verify = await payCryptoVerify({
-            id: pay.payment_id,
-            transactionId: pay.newTransactionId,
-            amount: pay.payAmount,
-          });
-          console.log(verify);
-        }}
-      >
-        Pay via Crypto
-      </button>
       <div className="sss-billing-screen">
         <div className="sss-billing-header">
           <ChartCard
@@ -69,15 +43,24 @@ const BillingScreen = () => {
             <div className="sss-billing-current-container">
               <div className="sss-billing-current-header">
                 <div className="sss-billing-current-header-tittle">
-                  Basic Plan
+                  {auth &&
+                    pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                      .planType}
                 </div>
                 <div className="sss-billing-current-header-desc">
-                  Our most popular plan for small team
+                  {auth &&
+                    pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                      .description}
                 </div>
               </div>
               <div className="sss-billing-current-body">
                 <div className="sss-billing-current-body-rate">
-                  <div className="sss-billing-current-body-price">{"$15"}</div>
+                  <div className="sss-billing-current-body-price">
+                    {auth &&
+                      pricingDetails[
+                        Number(auth.user.plan) + 1
+                      ].pricingCard.price.replace("/-", "")}
+                  </div>
                   <div className="sss-billing-current-body-per">
                     {"Permonth"}
                   </div>
@@ -89,17 +72,18 @@ const BillingScreen = () => {
               <div className="sss-billing-current-button-container">
                 <div className="sss-billing-current-buttons">
                   <CustomButton
-                    onClick={openModal}
+                    onClick={() => navigate("/solidity-shield-scan/pricing")}
                     className={
                       "px-3 py-2 rounded-xl bg-[#3F52FF] border border-[#3F52FF] text-white"
                     }
                     text={"Upgrade Plan"}
                   />
                   <CustomButton
+                    onClick={() => navigate("/solidity-shield-scan/pricing")}
                     className={
                       "px-3 py-2 rounded-xl text-[#3F52FF] border border-[#3F52FF] bg-white"
                     }
-                    text={"Manage Plan"}
+                    text={"Buy Credits"}
                   />
                 </div>
               </div>
@@ -149,12 +133,12 @@ const BillingScreen = () => {
             </div>
           </ChartCard>
         </div>
-        <div className="sss-billing-body">
+        {/* <div className="sss-billing-body">
           <BillingTable />
         </div>
         <div className="sss-billing-footer">
           <Pagination />
-        </div>
+        </div> */}
       </div>
     </div>
   );

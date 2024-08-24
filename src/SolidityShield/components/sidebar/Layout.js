@@ -14,6 +14,7 @@ const capitalizePath = (str) => {
 
 export const MainLayout = () => {
   const location = useLocation();
+
   const dispatch = useDispatch();
 
   useEffect(() => {

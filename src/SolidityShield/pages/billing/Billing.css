@@ -34,7 +34,7 @@
 }
 
 .sss-billing-current-body-price {
-  @apply font-semibold text-5xl;
+  @apply font-semibold text-3xl;
 }
 
 .sss-billing-current-body-per {

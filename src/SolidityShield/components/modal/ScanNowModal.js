@@ -8,10 +8,13 @@ import {
 } from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CustomButton from "../common/CustomButton";
 import FileUpload from "../common/FileUpload";
+import { scanSubmit } from "../../functions";
+import { getUserData } from "../../redux/auth/authSlice";
 
 const sourceTypes = ["Github", "Contract Address", "Upload File"];
 const chainTypes = ["Ethereum", "MATIC", "Bitcoin"];
@@ -27,13 +30,14 @@ const ScanNowModalField = ({ label, children }) => {
   );
 };
 
-const ScanNowModalInputTextField = ({ type, placeHolder }) => {
+const ScanNowModalInputTextField = ({ type, placeHolder, onChangee }) => {
   return (
     <div className="scan-now-modal-input-text-field-container">
       <input
         className="scan-now-modal-input-text-field"
         type={type}
         placeholder={placeHolder}
+        onChange={(e) => onChangee(e.target.value)}
       />
     </div>
   );
@@ -58,7 +62,8 @@ const ScanNowModalFieldDropDown = ({
             return (
               <div
                 onClick={() => setValueTypeEvent(filter)}
-                className="scan-now-modal-body-dropdown-option-container">
+                className="scan-now-modal-body-dropdown-option-container"
+              >
                 <div className="scan-now-modal-body-dropdown-option">
                   {filter}
                 </div>
@@ -74,10 +79,33 @@ const ScanNowModalFieldDropDown = ({
 const ScanNowModal = () => {
   const { scanNowModal, sourceType, chainType } =
     useSelector(getCommonSelector);
+  const auth = useSelector(getUserData);
   const dispatch = useDispatch();
   const [dropDown, setDropDown] = useState(false);
-  const [file, setFile] = useState(null);
+
+  const [company, setCompany] = useState();
+  const [github, setGithub] = useState();
+  const [contractUrl, setContractUrl] = useState();
   const [chainTypeDropDown, setChainTypeDropDown] = useState(false);
+  const [file, setFile] = useState(null);
+  const [contract, setContract] = useState();
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile && selectedFile.name.endsWith(".sol")) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setContract(event.target.result);
+      };
+      reader.readAsText(selectedFile);
+      setFile(selectedFile);
+    } else {
+      toast.error("Only .sol files are allowed.");
+      setFile(null);
+      setContract("");
+    }
+    console.log(contract);
+  };
 
   const closeModal = () => {
     dispatch(setScanNowModal(false));
@@ -98,6 +126,23 @@ const ScanNowModal = () => {
   const toggleDropDown = () => {
     setDropDown(!dropDown);
   };
+
+  async function handleSubmit() {
+    await scanSubmit({
+      inputTypes: sourceType,
+      companyName: company,
+      githubUrl: github,
+      etherscanUrl: contractUrl,
+      chain: chainType,
+      file,
+      contract,
+      user: {
+        email: "himang305@gmail.com",
+        remainingCredits: 10,
+      },
+      dispatch,
+    });
+  }
 
   return (
     scanNowModal && (
@@ -128,12 +173,14 @@ const ScanNowModal = () => {
                   <ScanNowModalInputTextField
                     type={"text"}
                     placeHolder={"Enter Github URL of Flatten Smart Contract"}
+                    onChangee={setGithub}
                   />
                 </ScanNowModalField>
                 <ScanNowModalField label={"Company Name"}>
                   <ScanNowModalInputTextField
                     type={"text"}
                     placeHolder={"Enter Company Name"}
+                    onChangee={setCompany}
                   />
                 </ScanNowModalField>
               </div>
@@ -152,24 +199,27 @@ const ScanNowModal = () => {
                 <ScanNowModalField label={"URL"}>
                   <ScanNowModalInputTextField
                     type={"text"}
-                    placeHolder={"Enter contract address"}
+                    placeHolder={"Enter contract URL"}
+                    onChangee={setContractUrl}
                   />
                 </ScanNowModalField>
                 <ScanNowModalField label={"Company Name"}>
                   <ScanNowModalInputTextField
                     type={"text"}
                     placeHolder={"Enter company name"}
+                    onChangee={setCompany}
                   />
                 </ScanNowModalField>
               </div>
             )}
             {sourceType === "Upload File" && (
               <div className="scan-now-modal-body-items">
-                <FileUpload file={file} setFile={setFile} />
+                <FileUpload file={file} handleChange={handleFileChange} />
                 <ScanNowModalField label={"Company Name"}>
                   <ScanNowModalInputTextField
                     type={"text"}
                     placeHolder={"Enter company name"}
+                    onChangee={setCompany}
                   />
                 </ScanNowModalField>
               </div>
@@ -191,6 +241,7 @@ const ScanNowModal = () => {
                 className={
                   "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary"
                 }
+                onClick={handleSubmit}
               />
             </div>
           </div>
