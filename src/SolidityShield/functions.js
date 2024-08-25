@@ -110,6 +110,9 @@ export const payCrypto = async ({ planid, email }) => {
                   amount: price,
                 })
               );
+              toast(
+                "Payment initiated successfully. Please transfer the amount & verify."
+              );
               return {
                 ...data,
                 newTransactionId: transactionid,
@@ -275,7 +278,7 @@ export const scanSubmit = async ({
   formData.append("version", compilerVersion);
   formData.append("company", companyName);
 
-  await fetch("https://139-59-5-56.nip.io:3443/audits", {
+  return await fetch("https://139-59-5-56.nip.io:3443/audits", {
     method: "POST",
     body: formData,
   })
@@ -294,11 +297,13 @@ export const scanSubmit = async ({
       var latestScan = history.reduce((max, item) => {
         return item.id > max.id ? item : max;
       }, history[0]);
-      window.open("/solidity-shield-scan/report/" + latestScan.id);
+      // window.open("/solidity-shield-scan/report/" + latestScan.id);
       toast.success("Scan finished");
+      return latestScan.id;
     })
     .catch((error) => {
       console.error("Error:", error);
+      return "error";
     });
 };
 

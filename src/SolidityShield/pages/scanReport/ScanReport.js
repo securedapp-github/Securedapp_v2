@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./ScanReport.css";
 import { auditStats, scanReportData } from "./scanReport.data";
-import { getReport } from "../../functions";
+import { getReport, getScanHistoryData } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 import { toast } from "react-toastify";
+import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
 
 const ScanReportBar = ({ type, number, color }) => {
   return (
@@ -54,7 +55,10 @@ function formatDate(dateString) {
 
 const ScanReport = ({ downloadId }) => {
   const auth = useSelector(getUserData);
+  const scanHistory = useSelector(getScanHistory);
+  const [history, setHistory] = useState(scanHistory.history);
   const [data, setData] = useState();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   var { id } = useParams();
   if (!id) {
@@ -64,7 +68,12 @@ const ScanReport = ({ downloadId }) => {
   useEffect(() => {
     async function fetch() {
       !auth.user.email && navigate("/solidity-shield-scan/auth");
-      if (auth.user.plan == 0) {
+      await getScanHistoryData({ userEmail: auth.user.email, dispatch });
+      setHistory(scanHistory.history);
+      var latestScan = scanHistory.history.reduce((max, item) => {
+        return item.id > max.id ? item : max;
+      }, history[0]);
+      if (auth.user.plan == 0 && Number(latestScan.id) != Number(id)) {
         !downloadId && toast("Upgrade to view the report");
         !downloadId && navigate("/solidity-shield-scan/overview");
       }
@@ -73,7 +82,7 @@ const ScanReport = ({ downloadId }) => {
       console.log(report);
     }
     fetch();
-  }, []);
+  }, [history]);
 
   return (
     <div id={`scan-report-${id}`} className="sss-scan-report-screen-container">

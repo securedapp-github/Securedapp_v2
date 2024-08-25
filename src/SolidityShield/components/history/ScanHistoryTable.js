@@ -19,7 +19,8 @@ const StatusTypeComponent = ({ status }) => {
           : status === "Failed"
           ? "sss-history-status-type-component-container-red"
           : "sss-history-status-type-component-container-yellow"
-      }`}>
+      }`}
+    >
       <div className="sss-history-status-type-component">
         <FontAwesomeIcon
           icon={
@@ -124,7 +125,8 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     <div
                       onMouseEnter={() => setHoveredRowIndex(index)}
                       onMouseLeave={() => setHoveredRowIndex(null)}
-                      className="sss-history-table-options-container">
+                      className="sss-history-table-options-container"
+                    >
                       <div className="sss-history-table-options">
                         <img
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
@@ -136,28 +138,36 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           className={`sss-history-table-options-dropdown ${
                             hoveredRowIndex === paginatedData.length - 1 &&
                             "bottom-0"
-                          }`}>
-                          <div
-                            onClick={() =>
-                              auth.user.plan > 0
-                                ? window.open(
-                                    `/solidity-shield-scan/report/${data.id}`
-                                  )
-                                : toast("Upgrade your plan to view the report")
-                            }
-                            className="sss-history-table-options-dropdown-item">
-                            View
+                          }`}
+                        >
+                          <div className="sss-history-table-options-dropdown-item">
+                            <Link
+                              to={"/solidity-shield-scan/report/" + data.id}
+                            >
+                              View
+                            </Link>
                           </div>
                           <div
                             onClick={() => {
-                              setDownload(data.id);
-                              auth.user.plan > 0
-                                ? downloadfReportPdf(data.id)
-                                : toast(
-                                    "Upgrade your plan to download the report"
-                                  );
+                              var latestScan = scanHistoryData.reduce(
+                                (max, item) => {
+                                  return item.id > max.id ? item : max;
+                                },
+                                scanHistoryData[0]
+                              );
+                              if (
+                                auth.user.plan > 0 ||
+                                latestScan.id === data.id
+                              ) {
+                                downloadfReportPdf(data.id);
+                              } else {
+                                toast(
+                                  "Upgrade your plan to download the report"
+                                );
+                              }
                             }}
-                            className="sss-history-table-options-dropdown-item">
+                            className="sss-history-table-options-dropdown-item"
+                          >
                             Download
                           </div>
                           {/* scan report start */}
@@ -171,7 +181,8 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                               width: "auto",
                               height: "auto",
                               overflow: "hidden",
-                            }}>
+                            }}
+                          >
                             <ScanReport downloadId={data.id} />
                           </div>
                           {/* scan report end */}

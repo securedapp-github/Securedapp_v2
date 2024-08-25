@@ -27,7 +27,7 @@ const ScanHistory = () => {
   useEffect(() => {
     !auth.user.email && navigate("/solidity-shield-scan/auth");
     async function fetch() {
-      await getScanHistoryData({ userEmail: "himang305@gmail.com", dispatch });
+      await getScanHistoryData({ userEmail: auth.user.email, dispatch });
       setHistory(scanHistory.history);
     }
     fetch();
@@ -71,13 +71,15 @@ const ScanHistory = () => {
                     className={`sss-scan-history-body-header-filter ${
                       filter === statusFilter &&
                       "sss-scan-history-body-header-filter-selected"
-                    }`}>
+                    }`}
+                  >
                     {filter}
                     <div
                       className={`sss-scan-history-body-header-filter-under ${
                         filter === statusFilter &&
                         "sss-scan-history-body-header-filter-under-selected"
-                      }`}></div>
+                      }`}
+                    ></div>
                   </div>
                 );
               })}

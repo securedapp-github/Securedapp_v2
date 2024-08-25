@@ -8,6 +8,7 @@ import {
 } from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -62,7 +63,8 @@ const ScanNowModalFieldDropDown = ({
             return (
               <div
                 onClick={() => setValueTypeEvent(filter)}
-                className="scan-now-modal-body-dropdown-option-container">
+                className="scan-now-modal-body-dropdown-option-container"
+              >
                 <div className="scan-now-modal-body-dropdown-option">
                   {filter}
                 </div>
@@ -80,6 +82,7 @@ const ScanNowModal = () => {
     useSelector(getCommonSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [dropDown, setDropDown] = useState(false);
 
   const [company, setCompany] = useState();
@@ -127,7 +130,7 @@ const ScanNowModal = () => {
   };
 
   async function handleSubmit() {
-    await scanSubmit({
+    var res = await scanSubmit({
       inputTypes: sourceType,
       companyName: company,
       githubUrl: github,
@@ -138,6 +141,9 @@ const ScanNowModal = () => {
       user: auth.user,
       dispatch,
     });
+    res !== "error"
+      ? navigate(`/solidity-shield-scan/report/${res}`)
+      : toast.error("Error Scanning!");
   }
 
   return (

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../redux/auth/authSlice";
 import { getScanHistoryData } from "../../functions";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
+import { setScanNowModal } from "../../redux/commonSlice";
 
 const OverviewScreen = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,14 @@ const OverviewScreen = () => {
               />
               <div className="sss-overview-first-time-details">
                 Start your scan here or choose plan{" "}
-                <span className="font-semibold underline cursor-pointer">
+                <span
+                  onClick={() =>
+                    auth.user.email
+                      ? dispatch(setScanNowModal(true))
+                      : navigate("/solidity-shield-scan/auth")
+                  }
+                  className="font-semibold underline cursor-pointer"
+                >
                   {"Scan Now"}
                 </span>
               </div>
