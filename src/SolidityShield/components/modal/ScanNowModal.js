@@ -18,7 +18,12 @@ import { scanSubmit } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 
 const sourceTypes = ["Github", "Contract Address", "Upload File"];
-const chainTypes = ["Ethereum", "MATIC", "Bitcoin"];
+const chainTypes = [
+  "Ethereum Mainnet",
+  "Polygon Mainnet",
+  "Sepolia",
+  "Polygon Amoy",
+];
 
 const ScanNowModalField = ({ label, children }) => {
   return (
