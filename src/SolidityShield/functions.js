@@ -10,6 +10,7 @@ import { setScanHistory } from "./redux/scanHistory/scanHistorySlice";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
+import { pricingDetails } from "./pages/pricing/pricing.data";
 
 const logo = "/assets/images/securedapp_logo.svg";
 
@@ -64,15 +65,19 @@ export const payCrypto = async ({ planid, email }) => {
   if (planid > 0) {
     const { v4: uuidv4 } = require("uuid");
     const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
-    const price = 100;
+    var price = pricingDetails[Number(planid) + 1].pricingCard.price
+      .replace("/-", "")
+      .replace("₹", "")
+      .replace(",", "");
+    price = Number(price);
     try {
       return await fetch("https://api.nowpayments.io/v1/payment", {
         method: "POST",
         body: JSON.stringify({
           price_amount: price,
-          price_currency: "usd",
+          price_currency: "inr",
           pay_currency: "USDTMATIC",
-          pay_amount: 100,
+          pay_amount: price,
           order_id: "21314",
           order_description: "Securedapp Subscription Plan A",
           is_fixed_rate: true,

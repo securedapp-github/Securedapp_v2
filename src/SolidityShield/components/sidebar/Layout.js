@@ -45,7 +45,7 @@ export const MainLayout = () => {
 
 export const NoSidebarLayout = () => {
   return (
-    <div className="overflow-y-auto">
+    <div className="py-4 h-screen overflow-y-auto">
       <Outlet />
     </div>
   );

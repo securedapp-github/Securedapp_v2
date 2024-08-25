@@ -95,7 +95,7 @@ const PaymentModal = () => {
                 </div>
               </div>
             )}
-            {phase === 2 && web3PayDetails && (
+            {phase === 2 && web3PayDetails.network && (
               <div className="sss-payment-modal-body-crypto-container">
                 <div className="sss-payment-modal-body-crypto-qr">
                   {web3PayDetails && (
@@ -112,7 +112,8 @@ const PaymentModal = () => {
                           web3PayDetails.pay_address
                         );
                         toast("Wallet Address copied to clipboard");
-                      }}>
+                      }}
+                    >
                       <FontAwesomeIcon icon={faCopy} />
                     </div>
                   </div>
@@ -140,7 +141,7 @@ const PaymentModal = () => {
                         payCryptoVerify({
                           id: web3PayDetails.payment_id,
                           transactionId: web3PayDetails.newTransactionId,
-                          amount: web3PayDetails.pay_amount,
+                          amount: web3PayDetails.payAmount,
                         });
                       }}
                     />
