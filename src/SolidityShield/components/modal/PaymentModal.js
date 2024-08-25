@@ -68,7 +68,7 @@ const PaymentModal = () => {
                     />
                     <br />
                     <p style={{ textAlign: "center" }}>
-                      (UPI, Card & Net Bnaking)
+                      (UPI, Card & Net Banking)
                     </p>
                   </div>
                 </div>
@@ -96,30 +96,37 @@ const PaymentModal = () => {
                       }
                     />
                     <br />
-                    <p style={{ textAlign: "center" }}>
-                      (Available on MATIC Network)
-                    </p>
+                    <p style={{ textAlign: "center" }}>(USDT Polygon)</p>
                   </div>
                 </div>
               </div>
             )}
             {phase === 2 && web3PayDetails.network && (
               <div className="sss-payment-modal-body-crypto-container">
-                <div className="sss-payment-modal-body-crypto-qr">
+                <div
+                  style={{ transform: "scale(0.7)", margin: "0 auto" }}
+                  className="sss-payment-modal-body-crypto-qr"
+                >
                   {web3PayDetails && (
                     <QRCode value={web3PayDetails.pay_address} />
                   )}
                 </div>
-                <br />
-                <br />
                 <div className="sss-payment-modal-body-cyrpto-details">
-                  <div className="">{`Chain : ${web3PayDetails.network.toUpperCase()}`}</div>
                   <div
-                    style={{ display: "flex", justifyContent: "" }}
+                    style={{ fontSize: "17px" }}
+                    className=""
+                  >{`Chain : ${web3PayDetails.network.toUpperCase()}`}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      fontSize: "17px",
+                    }}
                     className=""
                   >
                     {`To : ${web3PayDetails.pay_address}`}
                     <div
+                      style={{ marginLeft: "10px" }}
                       onClick={() => {
                         navigator.clipboard.writeText(
                           web3PayDetails.pay_address
@@ -130,7 +137,7 @@ const PaymentModal = () => {
                       <FontAwesomeIcon icon={faCopy} />
                     </div>
                   </div>
-                  <div className="">{`${
+                  <div style={{ fontSize: "17px" }} className="">{`Amount : ${
                     web3PayDetails.pay_amount
                   } ${web3PayDetails.pay_currency.toUpperCase()} `}</div>
                 </div>

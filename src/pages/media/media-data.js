@@ -6,6 +6,7 @@ export const mediaData = [
     date: "May 21, 2024",
     link: "https://nftmetta.com/qa-securing-the-future-of-web3-with-securedapps-co-founders/",
     image: "/assets/images/media/nftmetta.png",
+    tags: "NFTMetta",
   },
   {
     heading:
@@ -15,6 +16,7 @@ export const mediaData = [
     date: "June 1, 2024",
     link: "https://www.cryptotimes.io/2024/06/01/exclusive-interview-with-securedapp-founders/",
     image: "/assets/images/media/cryptotimes1.png",
+    tags: "Crypto Times",
   },
   {
     heading:
@@ -24,6 +26,7 @@ export const mediaData = [
     date: "June 5, 2024",
     link: "https://www.cryptotimes.io/2024/06/05/modi-fractured-mandate-what-to-expect-for-crypto-and-web3-in-india/",
     image: "/assets/images/media/cryptotimes-modi.png",
+    tags: "Crypto Times",
   },
   {
     heading: "Will Nirmala Sitharaman Go Soft on Crypto in Her 2nd Term as FM?",
@@ -32,6 +35,7 @@ export const mediaData = [
     date: "June 13, 2024",
     link: "https://www.entrepreneur.com/en-in/news-and-trends/will-nirmala-sitharaman-go-soft-on-crypto-in-her-2nd-term/475608",
     image: "/assets/images/media/entrepreneur.png",
+    tags: "Entrepreneur",
   },
   {
     heading:
@@ -41,6 +45,7 @@ export const mediaData = [
     date: "June 12, 2024",
     link: "https://www.expresscomputer.in/guest-blogs/understanding-blockchain-security-safeguarding-digital-assets-in-the-web3-era/113012/#:~:text=digital%20assets%20are%20protected%20from,being%20presented%20in%20today%27s%20world.&text=The%20current%20state%20of%20Web3,expected%20to%20grow%20from%20%240",
     image: "/assets/images/media/expresscomputer.png",
+    tags: "Express Computer",
   },
   {
     heading: "Interview: Himanshu Gautam, Co-founder and CTO of SecureDApp",
@@ -49,6 +54,7 @@ export const mediaData = [
     date: "July 1, 2024",
     link: "https://sugermint.com/himanshu-gautam/",
     image: "/assets/images/media/sugermint.png",
+    tags: "Suger Mint",
   },
   {
     heading: "The Need For Security In Rapidly Evolving Web3 Innovations",
@@ -57,6 +63,7 @@ export const mediaData = [
     date: "July 17, 2024",
     link: "https://www.goodreturns.in/classroom/the-need-for-security-in-rapidly-evolving-web3-innovations-1357687.html",
     image: "/assets/images/media/goodreturns.png",
+    tags: "Good Rerurns",
   },
   {
     heading:
@@ -66,6 +73,7 @@ export const mediaData = [
     date: "July 11, 2024",
     link: "https://economictimes.indiatimes.com/news/newsblogs/union-budget-2024-live-updates-expectations-finance-minister-nirmala-sitharaman-tax-slabs-announcements-gst-infrastructure-india-general-budget-date-time/liveblog/111622204.cms?from=mdr",
     image: "/assets/images/media/et.png",
+    tags: "Economic times",
   },
   {
     heading:
@@ -75,6 +83,7 @@ export const mediaData = [
     date: "June 15, 2024",
     link: "https://thekarostartup.com/securedapp/",
     image: "/assets/images/media/karostartup.png",
+    tags: "Karo Startup",
   },
   {
     heading:
@@ -84,5 +93,6 @@ export const mediaData = [
     date: "July 30, 2024",
     link: "https://www.news18.com/tech/what-are-fraudgpt-wormgpt-experts-on-edge-as-dark-ai-models-transform-cyber-threat-landscape-8982747.html",
     image: "/assets/images/media/news18.png",
+    tags: "News18",
   },
 ];

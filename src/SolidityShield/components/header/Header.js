@@ -84,7 +84,7 @@ const Header = () => {
                   : navigate("/solidity-shield-scan/auth")
               }
               className={
-                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-white active:bg-white active:border active:border-tertiary active:text-black"
+                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-black active:bg-white active:border active:border-tertiary active:text-black"
               }
               text={"Scan Now"}
             />

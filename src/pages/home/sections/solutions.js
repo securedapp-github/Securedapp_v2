@@ -42,7 +42,7 @@ const solutions = [
       "Decentralized exchange for seamless token trading",
     ],
     to: "/secure-pad",
-    image: "/assets/images/ProductPages/sp/hero.png",
+    image: "/assets/images/ProductPages/sp/sp-hero.jpg",
   },
 ];
 

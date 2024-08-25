@@ -22,7 +22,7 @@ function SecurePadPage() {
         <ProductServiceHero
           name="SECURE PAD"
           title="A platform for Cost-free Tokenization in Blockchain Security Space"
-          image={"/assets/images/ProductPages/sp/hero.jpg"}
+          image={"/assets/images/ProductPages/sp/sp-hero.jpg"}
           onClick={() => window.open("https://securepad.xyz/")}
         />
         <ProductCard

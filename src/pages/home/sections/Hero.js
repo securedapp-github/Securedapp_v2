@@ -49,7 +49,7 @@ const Hero = () => {
               <SwiperSlide key={`swiper-slide-${index}`}>
                 <div className="hero-image-container">
                   <img
-                    style={{ borderRadius: "15px" }}
+                    style={{ borderRadius: "15px", maxWidth: "600px" }}
                     className="hero-image"
                     src={image.src}
                     alt={image.alt}

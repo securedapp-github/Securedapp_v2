@@ -1,14 +1,13 @@
 import axios from "axios";
 import jsPDF from "jspdf";
+import "jspdf-autotable";
 import html2canvas from "html2canvas";
 import Chart from "chart.js/auto";
 import CryptoJS from "crypto-js";
 import { toast } from "react-toastify";
-import { getUserData, login } from "../SolidityShield/redux/auth/authSlice";
+import { login } from "../SolidityShield/redux/auth/authSlice";
 import { setIssuesData } from "./redux/dashboard/issuesSlice";
 import { setScanHistory } from "./redux/scanHistory/scanHistorySlice";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
 import { pricingDetails } from "./pages/pricing/pricing.data";
 
@@ -307,26 +306,27 @@ export const scanSubmit = async ({
     });
 };
 
-export const downloadfReportPdf = (id) => {
-  const input = document.getElementById("scan-report-" + id);
-  if (!input) {
-    toast.error("Error downloading the report! Try again.");
-    return;
-  } else {
-    toast(`Downloading Scan Report - ${id}`);
-  }
-  html2canvas(input)
-    .then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("solidity-shield-scan-report-" + id + ".pdf");
-    })
-    .catch((error) => {
-      toast.error("Error downloading the report! Try again.");
-    });
+export const downloadfReportPdf = (id, user) => {
+  downloadReport(id, user);
+  // const input = document.getElementById("scan-report-" + id);
+  // if (!input) {
+  //   toast.error("Error downloading the report! Try again.");
+  //   return;
+  // } else {
+  //   toast(`Downloading Scan Report - ${id}`);
+  // }
+  // html2canvas(input)
+  //   .then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4");
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save("solidity-shield-scan-report-" + id + ".pdf");
+  //   })
+  //   .catch((error) => {
+  //     toast.error("Error downloading the report! Try again.");
+  //   });
 };
 
 export const getScanSummaryData = async ({ dispatch, email }) => {
@@ -359,13 +359,29 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
 
     dispatch(
       setScanSummary({
-        percentageValue: (score * 20).toFixed(1),
+        percentageValue: (score * 2).toFixed(1),
         values: [
-          { name: "High Issues", value: data.high_issues },
-          { name: "Medium Issues", value: data.medium_issues },
-          { name: "Low Issues", value: data.low_issues },
-          { name: "Optimization Issues", value: data.optimization_issues },
-          { name: "Informational Issues", value: data.informational_issues },
+          {
+            name: "Critical Issues",
+            value: data.high_issues,
+            color: "#ff6666",
+          },
+          {
+            name: "Medium Issues",
+            value: data.medium_issues,
+            color: "#ffa366",
+          },
+          { name: "Low Issues", value: data.low_issues, color: "#ffff33" },
+          {
+            name: "Optimization Issues",
+            value: data.optimization_issues,
+            color: "#d98cb3",
+          },
+          {
+            name: "Informational Issues",
+            value: data.informational_issues,
+            color: "#b3b3b3",
+          },
         ],
         summary,
         id: latestScan.id,
@@ -441,7 +457,7 @@ export const getReport = async ({ id, email }) => {
           Number(report.findings["low_issues"])) /
           30) *
           5;
-      report.score = score.toFixed(1) + "/5";
+      report.score = (score * 2).toFixed(1) + "/10";
       return report;
     })
     .catch((error) => {
@@ -568,7 +584,7 @@ export const logout = () => {
   window.location.replace("/solidity-shield-scan/auth");
 };
 
-export const downloadReport = async (id) => {
+export const downloadReport = async (id, user) => {
   fetch("https://139-59-5-56.nip.io:3443/getReport", {
     method: "POST",
     body: JSON.stringify({
@@ -586,14 +602,14 @@ export const downloadReport = async (id) => {
       toast.error("Invalid Network response ");
     })
     .then((data) => {
-      // console.log(data);
-      // if (PurchasePlan(0)) {
-      //   console.log("PDF generation is not available for free plan users.");
-      //   toast.error("PDF generation is not available for free plan users.");
-      //   return;
-      // }
-      // console.log(JSON.parse(data[0].reportdata));
-      //generatePDF(JSON.parse(data[0].reportdata));
+      console.log(data);
+      if (user.plan == 0) {
+        console.log("Upgrade your plan to download the report");
+        toast("Upgrade your plan to download the report");
+        return;
+      }
+      console.log(JSON.parse(data[0].reportdata));
+      generatePDF(JSON.parse(data[0].reportdata));
     })
     .catch((error) => {
       console.error("Error:", error);

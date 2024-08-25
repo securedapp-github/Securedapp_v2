@@ -47,14 +47,12 @@ function BlogCard({ details }) {
         </div>
       </div>
       <div className="blog-card-body">
-        {details.tags && (
-          <div className="blog-card-body-tags">
-            {details.tags &&
-              details.tags.split(",").map((tag) => {
-                return <BlogTag tag={tag} onClick={() => {}} />;
-              })}
-          </div>
-        )}
+        <div className="blog-card-body-tags">
+          {details.tags &&
+            details.tags.split(",").map((tag) => {
+              return <BlogTag tag={tag} onClick={() => {}} />;
+            })}
+        </div>
         <div className="blog-card-body-header">{details.heading}</div>
         <div className="blog-card-body-preview">{preview}</div>
         <div className="blog-card-body-button">

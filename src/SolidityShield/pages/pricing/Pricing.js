@@ -104,7 +104,15 @@ const Pricing = () => {
 
   return (
     <div className="sss-pricing-container">
-      <div className="sss-pricing-plans-scrollable">
+      <div
+        style={{
+          width: "125%",
+          transform: "scale(0.8)",
+          transformOrigin: "top left",
+          overflowX: "hidden",
+        }}
+        className="sss-pricing-plans-scrollable"
+      >
         <div className="sss-pricing-plans">
           <div className="sss-pricing-plan-headers">
             <div className="sss-pricing-plan-headers-cards">

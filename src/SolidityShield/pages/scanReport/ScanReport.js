@@ -8,10 +8,26 @@ import { getUserData } from "../../redux/auth/authSlice";
 import { toast } from "react-toastify";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
 
-const ScanReportBar = ({ type, number, color }) => {
+const ScanReportBar = ({ type, number, color, width = "100%" }) => {
   return (
-    <div className="sss-scan-report-bar-container">
-      <div style={{ backgroundColor: color }} className={`sss-scan-report-bar`}>
+    <div
+      style={{
+        marginBottom: "10px",
+        border: `1px solid grey,`,
+        borderRadius: "10px",
+      }}
+      className="sss-scan-report-bar-container"
+    >
+      <div
+        style={{
+          backgroundColor: color,
+          width: width,
+          maxWidth: "100%",
+          borderRadius: `${width === "100%" ? "10px" : "10px 0 0 10px"}`,
+          height: "40px",
+        }}
+        className={`sss-scan-report-bar`}
+      >
         <div className="sss-scan-report-bar-type">{type}</div>
         <div className="sss-scan-report-bar-number">{number}</div>
       </div>
@@ -101,40 +117,44 @@ const ScanReport = ({ downloadId }) => {
               </div>
             </div>
             <div className="sss-scan-report-body-bars">
-              {data &&
-                Object.keys(data.findings).map((key) => {
-                  return (
-                    <ScanReportBar
-                      type={
-                        key === "optimization_issues"
-                          ? "Gas Optimization"
-                          : key === "informational_issues"
-                          ? "Informational Issues"
-                          : key === "high_issues"
-                          ? "Critical"
-                          : key === "medium_issues"
-                          ? "Medium"
-                          : key === "low_issues"
-                          ? "Low"
-                          : ""
-                      }
-                      number={data.findings[key]}
-                      color={
-                        key === "optimization_issues"
-                          ? "#22EC8A"
-                          : key === "informational_issues"
-                          ? "#EFAB59"
-                          : key === "high_issues"
-                          ? "#22EC8A"
-                          : key === "medium_issues"
-                          ? "#22EC8A"
-                          : key === "low_issues"
-                          ? "#F8DAB5"
-                          : ""
-                      }
-                    />
-                  );
-                })}
+              {data && (
+                <div>
+                  <ScanReportBar
+                    type={"Critical"}
+                    number={data.findings.high_issues}
+                    color={"#ff6666"}
+                    width={`${(data.findings.high_issues / 10) * 80 + 20}%`}
+                  />
+                  <ScanReportBar
+                    type={"Medium"}
+                    number={data.findings.medium_issues}
+                    color={"#ffa366"}
+                    width={`${(data.findings.medium_issues / 20) * 80 + 20}%`}
+                  />
+                  <ScanReportBar
+                    type={"Low"}
+                    number={data.findings.low_issues}
+                    color={"#ffff33"}
+                    width={`${(data.findings.low_issues / 30) * 80 + 20}%`}
+                  />
+                  <ScanReportBar
+                    type={"Gas Optimization"}
+                    number={data.findings.optimization_issues}
+                    color={"#d98cb3"}
+                    width={`${
+                      (data.findings.optimization_issues / 30) * 80 + 20
+                    }%`}
+                  />
+                  <ScanReportBar
+                    type={"Informational Issues"}
+                    number={data.findings.informational_issues}
+                    color={"#b3b3b3"}
+                    width={`${
+                      (data.findings.informational_issues / 100) * 80 + 20
+                    }%`}
+                  />
+                </div>
+              )}
             </div>
             <div className="sss-scan-report-body-audit-stats">
               <div className="sss-scan-report-body-audit-title">
@@ -223,8 +243,13 @@ const ScanReport = ({ downloadId }) => {
                     <div className="sss-scan-report-body-audit-stats-table-row-name">
                       By SecureDApp
                     </div>
-                    <div className="sss-scan-report-body-audit-stats-table-row-value">
-                      <Link to={"/contact"}>Request Manual Audit</Link>
+                    <div
+                      style={{ textDecoration: "underline" }}
+                      className="sss-scan-report-body-audit-stats-table-row-value"
+                    >
+                      <Link to={"/solidity-shield-scan/contact"}>
+                        Request Manual Audit
+                      </Link>
                     </div>
                   </div>
                 </div>

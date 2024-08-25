@@ -23,6 +23,7 @@ const services = [
   "Decentralized Identity (DID)",
   "NFTs Development",
   "DeFi Development",
+  "LevelUp Academy",
 ];
 
 const RequestQuoteModal = () => {

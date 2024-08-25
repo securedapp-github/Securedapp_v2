@@ -29,6 +29,9 @@ const Navbar = () => {
     case "/secure-watch":
       nextPath = "https://securewatch.securedapp.io/";
       break;
+    case "/secure-pad":
+      nextPath = "https://securepad.xyz/";
+      break;
     default:
       nextPath = null;
   }

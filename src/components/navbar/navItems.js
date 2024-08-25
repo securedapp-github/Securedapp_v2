@@ -27,6 +27,7 @@ export const navItems = [
       },
       { name: "NFTs Development", to: "/nfts-development" },
       { name: "DeFi Development", to: "/defi-development" },
+      { name: "LevelUp Academy", to: "/levelup-academy" },
     ],
     label: "Services",
   },

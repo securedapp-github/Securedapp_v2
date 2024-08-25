@@ -79,7 +79,7 @@ const servicesData = [
   },
   {
     id: 8,
-    title: "Crypto compliance and AML",
+    title: "Crypto compliance & AML",
     name: "Crypto compliance and AML",
     desc: "Top-tier crypto compliance consulting tailored to your unique needs. Understand the complexities of cryptocurrency regulations and get customized strategies to ensure your business adheres to all legal requirements.",
     alt: "",
@@ -87,7 +87,7 @@ const servicesData = [
   },
   {
     id: 9,
-    title: "Decentralized Identity (DID)",
+    title: "Decentralized Identity",
     name: "Decentralized Identity (DID)",
     desc: "Incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards",
     alt: "",

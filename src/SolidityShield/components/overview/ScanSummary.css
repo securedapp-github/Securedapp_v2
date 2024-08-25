@@ -64,7 +64,7 @@
 }
 
 .sss-scan-summary-progress-value {
-  @apply font-semibold text-3xl lg:text-5xl p-4;
+  @apply font-semibold text-3xl lg:text-3xl p-4;
 }
 
 .sss-scan-summary-body-cards {

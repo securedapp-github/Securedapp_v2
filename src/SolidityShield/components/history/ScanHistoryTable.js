@@ -61,11 +61,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
       <div className="sss-history-table-scrollable">
         <div className="sss-history-table">
           <div className="sss-history-table-header">
-            <div className="sss-history-table-checkbox-container">
+            {/* <div className="sss-history-table-checkbox-container">
               <div className="sss-history-table-checkbox-header sss-history-table-header-item">
                 <input type="checkbox" />
               </div>
-            </div>
+            </div> */}
             <div className="sss-history-table-report-id-container">
               <div className="sss-history-table-header-report-id sss-history-table-header-item">
                 REPORT ID
@@ -95,11 +95,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
               return (
                 (data.status !== statusFilter || statusFilter === "All") && (
                   <div className="sss-history-table-row">
-                    <div className="sss-history-table-checkbox-container">
+                    {/* <div className="sss-history-table-checkbox-container">
                       <div className="sss-history-table-checkbox">
                         <input type="checkbox" />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="sss-history-table-report-id-container">
                       <div className="sss-history-table-report-id">
                         {data.id}
@@ -149,29 +149,14 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           </div>
                           <div
                             onClick={() => {
-                              var latestScan = scanHistoryData.reduce(
-                                (max, item) => {
-                                  return item.id > max.id ? item : max;
-                                },
-                                scanHistoryData[0]
-                              );
-                              if (
-                                auth.user.plan > 0 ||
-                                latestScan.id === data.id
-                              ) {
-                                downloadfReportPdf(data.id);
-                              } else {
-                                toast(
-                                  "Upgrade your plan to download the report"
-                                );
-                              }
+                              downloadfReportPdf(data.id, auth.user);
                             }}
                             className="sss-history-table-options-dropdown-item"
                           >
                             Download
                           </div>
                           {/* scan report start */}
-                          <div
+                          {/* <div
                             style={{
                               textAlign: "left",
                               opacity: "0",
@@ -184,7 +169,7 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                             }}
                           >
                             <ScanReport downloadId={data.id} />
-                          </div>
+                          </div> */}
                           {/* scan report end */}
                         </div>
                       )}

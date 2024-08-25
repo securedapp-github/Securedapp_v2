@@ -34,8 +34,8 @@ const navigationItems = [
         to: "",
       },
       {
-        name: "Secure Audit",
-        to: "/secure-audit",
+        name: "Secure Trace",
+        to: "/secure-trace",
       },
       {
         name: "Secure Pad",
@@ -48,19 +48,19 @@ const navigationItems = [
     items: [
       {
         name: "Audit",
-        to: "",
+        to: "/smart-contract-audit",
       },
       {
         name: "Security",
-        to: "",
+        to: "/web3-security",
       },
       {
         name: "Regulatory Solutions",
-        to: "",
+        to: "/crypto-compliance-aml",
       },
       {
         name: "Training & Education",
-        to: "",
+        to: "/levelup-academy",
       },
     ],
   },
