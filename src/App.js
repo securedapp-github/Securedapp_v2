@@ -26,6 +26,7 @@ import CryptoComplianceAml from "./pages/service/CryptoCompAml/CryptoCompAml";
 import DecentralizedIdentity from "./pages/service/DecentralizedIdentity/DecentralizedIdentity";
 import NftsDvelopment from "./pages/service/NftsDevelopment/NftsDevelopment";
 import DefiDevelopment from "./pages/service/DefiDevelopment/DefiDevelopment";
+import LevelUpAcademy from "./pages/service/LevelUpAcademy/LevelUpAcademy";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import Media from "./pages/media/Media";
@@ -102,6 +103,7 @@ function App() {
         />
         <Route path="nfts-development" element={<NftsDvelopment />} />
         <Route path="defi-development" element={<DefiDevelopment />} />
+        <Route path="levelup-academy" element={<LevelUpAcademy />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:url" element={<BlogPost />} />
         <Route path="media" element={<Media />} />
