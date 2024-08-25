@@ -226,9 +226,10 @@ export const scanSubmit = async ({
   }
 
   // Handling Etherscan URL
-  if (inputTypes.includes("Contract Address") && etherscanUrl && chain) {
+  if (etherscanUrl.length > 0) {
     try {
       const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
+      console.log(sourceCode);
       const blob = new Blob([sourceCode], { type: "text/plain" });
       const etherscanFile = new File([blob], `${companyName}.sol`, {
         type: "text/plain",
@@ -240,8 +241,9 @@ export const scanSubmit = async ({
         alert("The contract is not flattened.");
         return;
       }
+      console.log("contract processed");
     } catch (error) {
-      alert("Error fetching Etherscan URL.");
+      toast.error("Error fetching Etherscan URL.");
       console.error("Etherscan fetch error:", error);
       return;
     }
@@ -281,27 +283,28 @@ export const scanSubmit = async ({
     method: "POST",
     body: formData,
   })
-    .then((response) => {
+    .then(async (response) => {
       if (!response.ok) {
         toast("Invalid Network Response");
       }
-      return response.text();
+      return await response.text();
     })
     .then(async (data) => {
-      console.log(data);
       const history = await getScanHistoryData({
         userEmail: user.email,
         dispatch,
       });
+      alert(history.length);
       var latestScan = history.reduce((max, item) => {
         return item.id > max.id ? item : max;
       }, history[0]);
       // window.open("/solidity-shield-scan/report/" + latestScan.id);
+      alert("id:" + latestScan.id);
       toast.success("Scan finished");
-      return latestScan.id;
+      return Number(latestScan.id);
     })
     .catch((error) => {
-      console.error("Error:", error);
+      toast("Error:", error);
       return "error";
     });
 };

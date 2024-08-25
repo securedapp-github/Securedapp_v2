@@ -81,6 +81,10 @@ const ScanReport = ({ downloadId }) => {
     id = downloadId;
   }
 
+  if (!id && !downloadId) {
+    id = 1;
+  }
+
   useEffect(() => {
     async function fetch() {
       !auth.user.email && navigate("/solidity-shield-scan/auth");

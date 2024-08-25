@@ -6,7 +6,7 @@ const initialCommonState = {
   creditsRemaining: 10,
   scanNowModal: false,
   sourceType: "Github",
-  chainType: "Ethereum",
+  chainType: "Ethereum Mainnet",
 };
 
 const commonSlice = createSlice({

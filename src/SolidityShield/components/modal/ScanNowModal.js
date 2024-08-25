@@ -140,16 +140,16 @@ const ScanNowModal = () => {
       companyName: company,
       githubUrl: github,
       etherscanUrl: contractUrl,
-      chain: chainType,
+      chain: chainTypes.indexOf(chainType),
       file,
       contract,
       user: auth.user,
       dispatch,
     });
-    if (res !== "error") {
+    if (typeof res === "number") {
       closeModal();
       navigate(`/solidity-shield-scan/report/${res}`);
-    } else {
+    } else if (res === "error") {
       toast.error("Error Scanning!");
     }
   }
@@ -206,10 +206,10 @@ const ScanNowModal = () => {
                     dropDown={chainTypeDropDown}
                   />
                 </ScanNowModalField>
-                <ScanNowModalField label={"URL"}>
+                <ScanNowModalField label={"Contract Address"}>
                   <ScanNowModalInputTextField
                     type={"text"}
-                    placeHolder={"Enter contract URL"}
+                    placeHolder={"Enter contract Address"}
                     onChangee={setContractUrl}
                   />
                 </ScanNowModalField>
