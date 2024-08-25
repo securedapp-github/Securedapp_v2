@@ -163,9 +163,12 @@ const Footer = () => {
           }),
         })
           .then((res) => {
-            res.status
-              ? toast.success("Succesfully Subscribed!")
-              : toast.error("Unexpected error! Try again.");
+            if (res.status) {
+              toast.success("Succesfully Subscribed!");
+              setEmail("");
+            } else {
+              toast.error("Unexpected error! Try again.");
+            }
           })
           .catch((err) => {
             toast.error("Unexpected error! Try again.");
@@ -188,6 +191,7 @@ const Footer = () => {
             className="email-input-box"
             placeholder="Enter your email"
             type="email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Button
@@ -205,7 +209,9 @@ const Footer = () => {
           </div>
           <div className="footer-socials">
             {socials.map((social) => {
-              return <Link to={social.to}>{social.icon}</Link>;
+              return (
+                <div onClick={() => window.open(social.to)}>{social.icon}</div>
+              );
             })}
           </div>
         </div>

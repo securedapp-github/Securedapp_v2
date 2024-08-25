@@ -7,7 +7,7 @@ import {
   setSourceType,
 } from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -36,7 +36,12 @@ const ScanNowModalField = ({ label, children }) => {
   );
 };
 
-const ScanNowModalInputTextField = ({ type, placeHolder, onChangee }) => {
+const ScanNowModalInputTextField = ({
+  type,
+  placeHolder,
+  onChangee,
+  value,
+}) => {
   return (
     <div className="scan-now-modal-input-text-field-container">
       <input
@@ -44,6 +49,7 @@ const ScanNowModalInputTextField = ({ type, placeHolder, onChangee }) => {
         type={type}
         placeholder={placeHolder}
         onChange={(e) => onChangee(e.target.value)}
+        value={value}
       />
     </div>
   );
@@ -116,6 +122,10 @@ const ScanNowModal = () => {
 
   const closeModal = () => {
     dispatch(setScanNowModal(false));
+    setGithub();
+    setContractUrl();
+    setFile();
+    setCompany();
   };
 
   const toggleChainTypeDropDown = () => {
@@ -149,8 +159,17 @@ const ScanNowModal = () => {
     if (typeof res === "number") {
       closeModal();
       navigate(`/solidity-shield-scan/report/${res}`);
+      setGithub();
+      setContractUrl();
+      setFile();
+      setCompany();
     } else if (res === "error") {
       toast.error("Error Scanning!");
+      setGithub();
+      setContractUrl();
+      setFile();
+      setCompany();
+    } else {
     }
   }
 
@@ -184,6 +203,7 @@ const ScanNowModal = () => {
                     type={"text"}
                     placeHolder={"Enter Github URL of Flatten Smart Contract"}
                     onChangee={setGithub}
+                    value={github}
                   />
                 </ScanNowModalField>
                 <ScanNowModalField label={"Company Name"}>
@@ -191,6 +211,7 @@ const ScanNowModal = () => {
                     type={"text"}
                     placeHolder={"Enter Company Name"}
                     onChangee={setCompany}
+                    value={company}
                   />
                 </ScanNowModalField>
               </div>
@@ -210,6 +231,7 @@ const ScanNowModal = () => {
                   <ScanNowModalInputTextField
                     type={"text"}
                     placeHolder={"Enter contract Address"}
+                    value={contractUrl}
                     onChangee={setContractUrl}
                   />
                 </ScanNowModalField>
@@ -218,6 +240,7 @@ const ScanNowModal = () => {
                     type={"text"}
                     placeHolder={"Enter company name"}
                     onChangee={setCompany}
+                    value={company}
                   />
                 </ScanNowModalField>
               </div>
@@ -230,6 +253,7 @@ const ScanNowModal = () => {
                     type={"text"}
                     placeHolder={"Enter company name"}
                     onChangee={setCompany}
+                    value={company}
                   />
                 </ScanNowModalField>
               </div>

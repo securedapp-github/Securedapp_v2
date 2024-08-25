@@ -1,5 +1,15 @@
 export const mediaData = [
   {
+    heading:
+      "The future of blockchain security: Emerging trends and technologies",
+    description:
+      "Blockchain technology—a cornerstone of the Web 3.0 ecosystem—is not only transforming the digital space but also pushing the boundaries of what's possible in business and beyond. As the industry is poised to reach$825.93 billion by 2032, the spotlight is increasingly on the evolving landscape of blockchain security.",
+    date: "August 23, 2024",
+    link: "https://yourstory.com/2024/08/future-blockchain-security-emerging-trends-technologies",
+    image: "/assets/images/media/yourstory.png",
+    tags: "Yourstory",
+  },
+  {
     heading: "Q&A: Securing the Future of Web3 with SecureDApp’s Co-Founders",
     description:
       "Anjali Kochhar from NFTMetta explores the landscape of Web3 security with insights from Himanshu Gautam and Abhishek Singh, the co-founders of SecureDApp. SecureDApp is a groundbreaking blockchain start-up recognized by the Department For Promotion Of Industry And Internal Trade, Ministry of Commerce and Industry, Government of India",

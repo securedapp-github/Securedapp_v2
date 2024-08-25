@@ -13,10 +13,12 @@ import CustomButton from "../common/CustomButton.js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { getUserData } from "../../redux/auth/authSlice.js";
 import { logout } from "../../functions.js";
+import { getHomeSelector } from "../../../redux/slices/main/homeSlice.js";
 
 const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
     useSelector(getCommonSelector);
+  const isMobile = window.innerWidth < 1024;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const totalCredits = 20;
@@ -26,6 +28,7 @@ const Sidebar = () => {
   const selectMenuItem = (index) => {
     navigate(sidebarItems[index].to);
     dispatch(setSelectedSidebarItem(sidebarItems[index].name));
+    isMobile && dispatch(setSideBar(false));
   };
 
   return (
@@ -57,14 +60,15 @@ const Sidebar = () => {
                     <div
                       onClick={() => {
                         if (item.name === "Log Out") {
-                          logout();
+                          window.confirm("Do you want to logout ?") && logout();
                         }
                         selectMenuItem(index);
                       }}
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"
-                      }`}>
+                      }`}
+                    >
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
                           <img src={item.image} alt="" />

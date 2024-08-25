@@ -186,19 +186,24 @@ export const scanSubmit = async ({
   let compilerVersion;
   const formData = new FormData();
 
-  if (user.remainingCredits < 1) {
-    toast.error("No Credit, Please Purchase a Plan to scan");
-    return;
-  }
+  // if (user.remainingCredits < 1) {
+  //   toast.error("No Credit, Please Purchase a Plan to scan");
+  //   return;
+  // }
 
   // Validation
-  if (inputTypes === "") {
+  if (!inputTypes) {
     alert("Please Select a source");
     return;
   }
 
-  if (companyName === "") {
-    alert("Please enter your Company Name");
+  if (!companyName) {
+    toast.error("Please enter your Company Name");
+    return;
+  }
+
+  if (!githubUrl && !file && !etherscanUrl) {
+    toast.error("Please input your smart contracts");
     return;
   }
 
@@ -207,7 +212,7 @@ export const scanSubmit = async ({
     try {
       const { sourceCode, file: githubFile } = await githuburlfetch(githubUrl);
       if (!sourceCode) {
-        alert("Failed to fetch contract source code.");
+        toast.error("Failed to fetch contract source code.");
         return;
       }
 
@@ -215,18 +220,18 @@ export const scanSubmit = async ({
 
       compilerVersion = isContractFlattened(sourceCode);
       if (!compilerVersion) {
-        alert("The contract is not flattened.");
+        toast.error("The contract is not flattened.");
         return;
       }
     } catch (error) {
-      alert("Error fetching GitHub URL.");
+      toast.error("Error fetching GitHub URL.");
       console.error("GitHub URL fetch error:", error);
       return;
     }
   }
 
   // Handling Etherscan URL
-  if (etherscanUrl.length > 0) {
+  if (etherscanUrl && etherscanUrl.length > 0) {
     try {
       const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
       console.log(sourceCode);
@@ -243,7 +248,7 @@ export const scanSubmit = async ({
       }
       console.log("contract processed");
     } catch (error) {
-      toast.error("Error fetching Etherscan URL.");
+      toast.error("Error fetching the contract");
       console.error("Etherscan fetch error:", error);
       return;
     }
@@ -286,20 +291,21 @@ export const scanSubmit = async ({
     .then(async (response) => {
       if (!response.ok) {
         toast("Invalid Network Response");
+      } else {
+        return await response.text();
       }
-      return await response.text();
     })
     .then(async (data) => {
       const history = await getScanHistoryData({
         userEmail: user.email,
         dispatch,
       });
-      alert(history.length);
+
       var latestScan = history.reduce((max, item) => {
         return item.id > max.id ? item : max;
       }, history[0]);
       // window.open("/solidity-shield-scan/report/" + latestScan.id);
-      alert("id:" + latestScan.id);
+
       toast.success("Scan finished");
       return Number(latestScan.id);
     })
@@ -729,11 +735,11 @@ const fetchContractSourceCode = async (contractAddress, _chain) => {
     if (data.status == "1" && data.result.length > 0) {
       return data.result[0].SourceCode;
     } else {
-      alert("Error fetching source code");
+      toast.error("Error fetching source code");
       return false;
     }
   } catch (error) {
-    alert("Error fetching source code");
+    toast.error("Error fetching source code");
     console.error("Error fetching contract source code:", error);
     return false;
   }
@@ -749,7 +755,7 @@ export const githuburlfetch = async (repoUrl, companyName) => {
 
     const response = await fetch(rawUrl);
     if (!response.ok) {
-      alert("Failed to fetch file");
+      toast.error("Failed to fetch file");
     }
     const content = await response.text();
     // console.log(content);

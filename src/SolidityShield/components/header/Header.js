@@ -34,7 +34,7 @@ const Header = () => {
               <FontAwesomeIcon icon={faBars} size="lg" />
             </div>
           )}
-          <div className="sss-header-search-container">
+          {/* <div className="sss-header-search-container">
             <div className="sss-header-search">
               <div className="sss-header-search-icon">
                 <img
@@ -47,6 +47,10 @@ const Header = () => {
                 className="sss-header-search-input"
               />
             </div>
+          </div> */}
+          <div>
+            {window.width > 1024 &&
+              "Solidity Shield to protect the heart of your Web3 project"}
           </div>
         </div>
         <div className="sss-header-center">

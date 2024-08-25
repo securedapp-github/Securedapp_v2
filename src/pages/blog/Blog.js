@@ -110,9 +110,16 @@ function Blog() {
           </div>
         </div>
         <div className="blog-cards">
-          {currentItems.map((item) => (
-            <BlogCard key={item.id} details={item} />
-          ))}
+          {currentItems.length > 0 ? (
+            currentItems.map((item) => (
+              <BlogCard key={item.id} details={item} />
+            ))
+          ) : (
+            <div style={{ width: "100%", height: "300px" }}>
+              <br />
+              <p style={{ margin: "auto" }}>No Results Found</p>
+            </div>
+          )}
         </div>
         <div className="blog-pagination">
           {Array.from({ length: totalPages }, (_, i) => (

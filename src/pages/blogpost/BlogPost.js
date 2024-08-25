@@ -80,7 +80,6 @@ const getTags = (tags) => {
 };
 
 const BlogPost = () => {
-  window.scrollTo(0, 0);
   const { url } = useParams();
   const [blogDetails, setBlogDetails] = useState({
     title: "",
