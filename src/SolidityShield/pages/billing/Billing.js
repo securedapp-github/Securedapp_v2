@@ -38,7 +38,8 @@ const BillingScreen = () => {
           <ChartCard
             className={
               "flex-1 w-full min-h-[250px] lg:w-1/2 flex flex-col justify-center"
-            }>
+            }
+          >
             <div className="sss-billing-current-container">
               <div className="sss-billing-current-header">
                 <div className="sss-billing-current-header-tittle">
@@ -91,8 +92,9 @@ const BillingScreen = () => {
           <ChartCard
             className={
               "flex-1 w-full min-h-[250px] lg:w-1/2 flex flex-col justify-center"
-            }>
-            <div className="sss-billing-payment-container">
+            }
+          >
+            {/*  <div className="sss-billing-payment-container">
               <div className="sss-billing-payment-header">
                 <div className="sss-billing-current-header-tittle">
                   Payment Method
@@ -130,7 +132,7 @@ const BillingScreen = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>*/}
           </ChartCard>
         </div>
         {/* <div className="sss-billing-body">

@@ -28,7 +28,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
         <defs>
           <linearGradient
             id={"circularGradient"}
-            gradientTransform={gradientTransform}>
+            gradientTransform={gradientTransform}
+          >
             <stop offset="0%" stopColor={"#12D576"} />
             <stop offset="100%" stopColor={"#6BFFB7"} />
           </linearGradient>
@@ -44,7 +45,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
           strokeLinecap: "butt",
           trailColor: "#F0F0F0",
           pathColor: "url(#circularGradient)",
-        })}>
+        })}
+      >
         <div className="sss-scan-summary-progress-value-container">
           <div className="sss-scan-summary-progress-value">{text}</div>
         </div>
@@ -124,6 +126,7 @@ const ScanSummary = () => {
                     value={scanSummary.percentageValue}
                     text={`${scanSummary.percentageValue}%`}
                   />
+                  <p style={{ textAlign: "center" }}>Audit Score</p>
                 </div>
               </div>
               <div className="sss-scan-summary-body-cards">

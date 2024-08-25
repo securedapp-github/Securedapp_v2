@@ -33,7 +33,7 @@ const PaymentModal = () => {
   return (
     paymentModal && (
       <div className="sss-payment-modal-container">
-        <div className="sss-payment-modal">
+        <div style={{ minWidth: "50vw" }} className="sss-payment-modal">
           <div className="sss-payment-modal-header">
             <div className="sss-payment-modal-header-title">Payment</div>
             <div className="sss-payment-modal-close-container">
@@ -55,7 +55,7 @@ const PaymentModal = () => {
                   </div>
                   <div className="sss-payment-modal-body-method-button">
                     <CustomButton
-                      text={"Pay Now"}
+                      text={"Pay via PhonPe"}
                       className={
                         "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3 active:bg-white"
                       }
@@ -66,6 +66,10 @@ const PaymentModal = () => {
                         });
                       }}
                     />
+                    <br />
+                    <p style={{ textAlign: "center" }}>
+                      (UPI, Card & Net Bnaking)
+                    </p>
                   </div>
                 </div>
                 <div className="sss-payment-modal-body-method">
@@ -86,11 +90,15 @@ const PaymentModal = () => {
                         setWeb3PayDetails(pay);
                         pay && nextPhase();
                       }}
-                      text={"Pay Now"}
+                      text={"Pay via USDT"}
                       className={
                         "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3 active:bg-white"
                       }
                     />
+                    <br />
+                    <p style={{ textAlign: "center" }}>
+                      (Available on MATIC Network)
+                    </p>
                   </div>
                 </div>
               </div>
@@ -102,10 +110,15 @@ const PaymentModal = () => {
                     <QRCode value={web3PayDetails.pay_address} />
                   )}
                 </div>
+                <br />
+                <br />
                 <div className="sss-payment-modal-body-cyrpto-details">
                   <div className="">{`Chain : ${web3PayDetails.network.toUpperCase()}`}</div>
-                  <div className="">
-                    {`Address : ${web3PayDetails.pay_address}   `}
+                  <div
+                    style={{ display: "flex", justifyContent: "" }}
+                    className=""
+                  >
+                    {`To : ${web3PayDetails.pay_address}`}
                     <div
                       onClick={() => {
                         navigator.clipboard.writeText(

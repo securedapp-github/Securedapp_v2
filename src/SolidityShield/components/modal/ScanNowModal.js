@@ -141,9 +141,12 @@ const ScanNowModal = () => {
       user: auth.user,
       dispatch,
     });
-    res !== "error"
-      ? navigate(`/solidity-shield-scan/report/${res}`)
-      : toast.error("Error Scanning!");
+    if (res !== "error") {
+      closeModal();
+      navigate(`/solidity-shield-scan/report/${res}`);
+    } else {
+      toast.error("Error Scanning!");
+    }
   }
 
   return (
