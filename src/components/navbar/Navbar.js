@@ -43,24 +43,39 @@ const Navbar = () => {
     }
   };
 
+  const setModeDark = () => {
+    document.body.classList.add("dark");
+    dispatch(setDarkMode(true));
+    localStorage.theme = "dark";
+  };
+
+  const setModeLight = () => {
+    document.body.classList.remove("dark");
+    dispatch(setDarkMode(false));
+    localStorage.theme = "light";
+  };
+
   const toggleTheme = () => {
-    document.body.classList.toggle("dark");
-    dispatch(setDarkMode(!darkMode));
-    // if (darkMode === true) {
-    //   localStorage.theme = "light";
-    //   dispatch(setDarkMode(false));
-    //   document.body.classList.toggle("light");
-    // } else {
-    //   localStorage.theme = "dark";
-    //   dispatch(setDarkMode(true));
-    //   document.body.classList.toggle("dark");
-    // }
+    if (darkMode === true) {
+      setModeLight();
+    } else {
+      setModeDark();
+    }
   };
 
   useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.body.classList.add("dark");
-      dispatch(setDarkMode(true));
+    if (localStorage.theme) {
+      if (localStorage.theme === "dark") {
+        setModeDark();
+      } else if (localStorage.theme === "light") {
+        setModeLight();
+      }
+    } else {
+      if (darkMode) {
+        setModeDark();
+      } else {
+        setModeLight();
+      }
     }
   }, []);
 
