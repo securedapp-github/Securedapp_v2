@@ -21,7 +21,7 @@ const ProductServiceHero = ({
   service = false,
 }) => {
   const dispatch = useDispatch();
-  const isOnWeb = window.width > 1024;
+  const isOnWeb = window.innerWidth > 1024;
   return (
     <div className="product-service-hero-container">
       <div
