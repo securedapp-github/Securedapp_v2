@@ -44,13 +44,17 @@ const Navbar = () => {
   };
 
   const toggleTheme = () => {
-    if (darkMode) {
-      localStorage.theme = "light";
-    } else {
-      localStorage.theme = "dark";
-    }
-    dispatch(setDarkMode(!darkMode));
     document.body.classList.toggle("dark");
+    dispatch(setDarkMode(!darkMode));
+    // if (darkMode === true) {
+    //   localStorage.theme = "light";
+    //   dispatch(setDarkMode(false));
+    //   document.body.classList.toggle("light");
+    // } else {
+    //   localStorage.theme = "dark";
+    //   dispatch(setDarkMode(true));
+    //   document.body.classList.toggle("dark");
+    // }
   };
 
   useEffect(() => {
