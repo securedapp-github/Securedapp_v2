@@ -23,21 +23,59 @@ const ProductServiceHero = ({
   const dispatch = useDispatch();
   return (
     <div className="product-service-hero-container">
-      <div className="product-service-hero">
-        <div className="hero-header">
-          <div className="hero-header-title">{name}</div>
-          <div className="hero-header-content">
-            <div className="hero-header-left">{title}</div>
-            <div className="hero-header-line"></div>
+      <div
+        style={{
+          display: service && "flex",
+          flexDirection: service && "row",
+          margin: service && "50px 0 100px 0",
+        }}
+        className="product-service-hero"
+      >
+        <div
+          style={{
+            width: service && "45%",
+          }}
+          className="hero-header"
+        >
+          {!service && <div className="hero-header-title">{name}</div>}
+          <div
+            style={{
+              width: service && "100%",
+              display: service && "flex",
+              flexWrap: service && "wrap",
+              flexDirection: service && "column",
+            }}
+            className="hero-header-content"
+          >
+            {service && (
+              <div
+                style={{
+                  width: "100%",
+                  marginLeft: "20px",
+                }}
+                className="hero-header-title"
+              >
+                {name}
+              </div>
+            )}
+            <div
+              style={{ width: service && "100%" }}
+              className="hero-header-left"
+            >
+              {title}
+            </div>
+            {!service ? <div className="hero-header-line"></div> : <br></br>}
             <div className="hero-header-right">
               <div className="hero-header-right-stars">
                 {Array.from({ length: 5 }).map((_) => {
                   return <FontAwesomeIcon icon={faStar} />;
                 })}
               </div>
+              {service && <br></br>}
               <div>
                 Trusted by more than <b>120+</b> companies
               </div>
+              {service && <br></br>}
               <GetStartedButton
                 onClick={
                   service === true
@@ -54,9 +92,12 @@ const ProductServiceHero = ({
             </div>
           </div>
         </div>
-        <div className="hero-image-container">
+        <div
+          style={{ width: service && "50%" }}
+          className="hero-image-container"
+        >
           <img
-            style={{ borderRadius: "15px" }}
+            style={{ borderRadius: "15px", width: service && "100%" }}
             className="hero-image"
             src={image}
             alt="Product Service Hero"
