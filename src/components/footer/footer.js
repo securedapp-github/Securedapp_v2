@@ -262,7 +262,9 @@ const Footer = () => {
           </a>
         </div>
         <div className="footer-legacy-right">
-          <div>© 2024, Secure Dapp. All rights reserved</div>
+          <div>
+            © 2024, Vettedcode Technologies India Pvt. Ltd.. All rights reserved
+          </div>
         </div>
       </div>
     </div>
