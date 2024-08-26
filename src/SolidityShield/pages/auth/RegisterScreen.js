@@ -5,29 +5,38 @@ import AuthLogos from "../../components/auth/AuthLogos";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
 import "./LoginScreen.css";
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
   return (
     <div className="auth-screen-container">
       <div className="auth-screen">
         <AuthScrenHeader title={"Sign in to your account"} description={""} />
         <div className="auth-screen-body">
-          <AuthCard footer={true} isLogin={true}>
+          <AuthCard footer={true} isLogin={false}>
+            <AuthInputField
+              authInputType={"text"}
+              placeholder={"First & Last Name"}
+            />
             <AuthInputField
               authInputType={"email"}
               placeholder={"Email Address"}
             />
             <AuthInputField
               authInputType={"password"}
-              placeholder={"Password"}
+              placeholder={"Create Password"}
             />
             <div className="login-screen-body-options">
               <div className="login-screen-remember-me">
                 <input type="checkbox" />
-                <div>Remember Me</div>
+                <div>
+                  I agree with the{" "}
+                  <span className="text-[#2563EB] cursor-pointer">
+                    Terms & Conditions
+                  </span>{" "}
+                  of SecureDApp
+                </div>
               </div>
-              <div>Forgot Password?</div>
             </div>
-            <AuthButton children={"Sign In"} onClick={() => {}} />
+            <AuthButton children={"Sign Up"} onClick={() => {}} />
             {/* <AuthButton filled={false}>
               <div className="auth-screen-google">
                 <img
@@ -49,4 +58,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

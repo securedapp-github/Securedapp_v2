@@ -16,6 +16,7 @@ import PaymentModal from "./components/modal/PaymentModal";
 import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
 import ScanReport from "./pages/scanReport/ScanReport";
 import { ToastContainer } from "react-toastify";
+import RegisterScreen from "./pages/auth/RegisterScreen";
 
 const SolidityShield = () => {
   return (
@@ -36,6 +37,7 @@ const SolidityShield = () => {
           <Route element={<NoSidebarLayout />}>
             <Route path="auth" element={<AuthScreen />} />
             <Route path="login" element={<LoginScreen />} />
+            <Route path="register" element={<RegisterScreen />} />
             <Route path="contact" element={<ContactUs />} />
           </Route>
         </Routes>

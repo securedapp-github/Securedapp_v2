@@ -19,18 +19,21 @@ const OverviewScreen = () => {
 
   useEffect(() => {
     async function fetch() {
-      auth.user.email
-        ? await getScanHistoryData({
-            userEmail: auth.user.email,
-            dispatch,
-          })
-        : navigate("/solidity-shield-scan/auth");
+      if (auth.user.email) {
+        await getScanHistoryData({
+          userEmail: auth.user.email,
+          dispatch,
+        });
+      } else {
+        navigate("/solidity-shield-scan/auth");
+      }
     }
     fetch();
-    console.log("History", scanHistory.history);
-    console.log("Firsttime ", firstTime);
+  }, [auth.user.email, dispatch, navigate]);
+
+  useEffect(() => {
     if (scanHistory.history.length > 0) setFirstTime(false);
-  }, [scanHistory]);
+  }, [scanHistory.history]);
 
   return (
     <div className="sss-overview-screen-container">
@@ -53,8 +56,7 @@ const OverviewScreen = () => {
                       ? dispatch(setScanNowModal(true))
                       : navigate("/solidity-shield-scan/auth")
                   }
-                  className="font-semibold underline cursor-pointer"
-                >
+                  className="font-semibold underline cursor-pointer">
                   {"Scan Now"}
                 </span>
               </div>
