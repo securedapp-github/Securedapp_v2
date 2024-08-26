@@ -25,7 +25,8 @@ const NavbarLargeScreen = ({
               items={item["items"]}
               dropDown={dropDown}
               setDropDown={setDropDown}
-              darkMode={darkMode}>
+              darkMode={darkMode}
+            >
               {item["label"]}
             </NavbarItem>
           );
@@ -34,9 +35,9 @@ const NavbarLargeScreen = ({
       <div className="flex space-x-4 items-center">
         <button onClick={toggleTheme}>
           {darkMode ? (
-            <i class="fa-regular fa-brightness fa-lg"></i>
-          ) : (
             <i class="fa-regular fa-moon fa-lg"></i>
+          ) : (
+            <i class="fa-regular fa-brightness fa-lg"></i>
           )}
         </button>
         {nextPath !== undefined && nextPath !== null ? (
@@ -45,7 +46,8 @@ const NavbarLargeScreen = ({
           <Button
             className="w-36"
             text="Request Quote"
-            onClick={handleNavigation}></Button>
+            onClick={handleNavigation}
+          ></Button>
         )}
       </div>
     </nav>

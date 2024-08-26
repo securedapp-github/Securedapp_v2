@@ -13,7 +13,7 @@ export const FeatureIcon = ({ icon, iconBackgroundColor }) => {
       >
         <img
           style={{
-            filter: darkMode ? "invert(1)" : "invert(0)",
+            filter: darkMode && "invert(1)",
           }}
           src={`/assets/images/icons/${icon}.svg`}
           alt="icon"

@@ -94,7 +94,7 @@ const Features = () => {
                         <img
                           width={"25px"}
                           style={{
-                            filter: darkMode ? "invert(1)" : "invert(0)",
+                            filter: darkMode && "invert(1)",
                             marginBottom: "10px",
                           }}
                           src={`/assets/images/icons/${feature["icon"]}.svg`}

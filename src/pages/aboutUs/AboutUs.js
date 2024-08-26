@@ -69,7 +69,7 @@ const AboutUs = () => {
             application is shielded from potential threats.
           </div>
           <div className="about-us-hero-image">
-            <img src="/assets/images/about/1.png" alt="" />
+            <img src="/assets/images/about/photo1.png" alt="" />
           </div>
           <hr />
         </div>
@@ -80,7 +80,7 @@ const AboutUs = () => {
       <div className="about-us-company">
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
-            <img src="/assets/images/about/2.png" alt="" />
+            <img src="/assets/images/about/photo2.png" alt="" />
           </div>
           <div className="about-us-company-eco-content-container">
             <div className="about-us-company-eco-content">
@@ -140,7 +140,7 @@ const AboutUs = () => {
             </div>
           </div>
           <div className=" about-us-company-culture-image">
-            <img src="/assets/images/about/3.png" alt="" />
+            <img src="/assets/images/about/photo3.png" alt="" />
           </div>
         </div>
       </div>
