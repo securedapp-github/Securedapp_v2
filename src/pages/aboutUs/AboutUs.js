@@ -80,7 +80,11 @@ const AboutUs = () => {
       <div className="about-us-company">
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
-            <img src="/assets/images/about/photo2.png" alt="" />
+            <img
+              style={{ maxWidth: "450px", margin: "0 auto" }}
+              src="/assets/images/about/photo2.png"
+              alt=""
+            />
           </div>
           <div className="about-us-company-eco-content-container">
             <div className="about-us-company-eco-content">
@@ -140,7 +144,11 @@ const AboutUs = () => {
             </div>
           </div>
           <div className=" about-us-company-culture-image">
-            <img src="/assets/images/about/photo3.png" alt="" />
+            <img
+              style={{ maxWidth: "400px" }}
+              src="/assets/images/about/photo3.png"
+              alt=""
+            />
           </div>
         </div>
       </div>
