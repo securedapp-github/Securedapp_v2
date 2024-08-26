@@ -21,33 +21,36 @@ const ProductServiceHero = ({
   service = false,
 }) => {
   const dispatch = useDispatch();
+  const isOnWeb = window.width > 1024;
   return (
     <div className="product-service-hero-container">
       <div
         style={{
-          display: service && "flex",
-          flexDirection: service && "row",
-          margin: service && "50px 0 100px 0",
+          display: service && isOnWeb && "flex",
+          flexDirection: service && isOnWeb && "row",
+          margin: service && isOnWeb && "50px 0 100px 0",
         }}
         className="product-service-hero"
       >
         <div
           style={{
-            width: service && "45%",
+            width: service && isOnWeb && "45%",
           }}
           className="hero-header"
         >
-          {!service && <div className="hero-header-title">{name}</div>}
+          {!service && isOnWeb && (
+            <div className="hero-header-title">{name}</div>
+          )}
           <div
             style={{
-              width: service && "100%",
-              display: service && "flex",
-              flexWrap: service && "wrap",
-              flexDirection: service && "column",
+              width: service && isOnWeb && "100%",
+              display: service && isOnWeb && "flex",
+              flexWrap: service && isOnWeb && "wrap",
+              flexDirection: service && isOnWeb && "column",
             }}
             className="hero-header-content"
           >
-            {service && (
+            {service && isOnWeb && (
               <div
                 style={{
                   width: "100%",
@@ -59,7 +62,7 @@ const ProductServiceHero = ({
               </div>
             )}
             <div
-              style={{ width: service && "100%" }}
+              style={{ width: service && isOnWeb && "100%" }}
               className="hero-header-left"
             >
               {title}
@@ -71,11 +74,11 @@ const ProductServiceHero = ({
                   return <FontAwesomeIcon icon={faStar} />;
                 })}
               </div>
-              {service && <br></br>}
+              {service && isOnWeb && <br></br>}
               <div>
                 Trusted by more than <b>120+</b> companies
               </div>
-              {service && <br></br>}
+              {service && isOnWeb && <br></br>}
               <GetStartedButton
                 onClick={
                   service === true
@@ -93,11 +96,14 @@ const ProductServiceHero = ({
           </div>
         </div>
         <div
-          style={{ width: service && "50%" }}
+          style={{ width: service && isOnWeb && "50%" }}
           className="hero-image-container"
         >
           <img
-            style={{ borderRadius: "15px", width: service && "100%" }}
+            style={{
+              borderRadius: "15px",
+              width: service && isOnWeb && "100%",
+            }}
             className="hero-image"
             src={image}
             alt="Product Service Hero"
