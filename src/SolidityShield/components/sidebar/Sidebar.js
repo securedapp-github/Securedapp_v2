@@ -67,8 +67,7 @@ const Sidebar = () => {
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"
-                      }`}
-                    >
+                      }`}>
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
                           <img src={item.image} alt="" />

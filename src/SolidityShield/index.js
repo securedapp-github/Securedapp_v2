@@ -17,6 +17,7 @@ import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
 import ScanReport from "./pages/scanReport/ScanReport";
 import { ToastContainer } from "react-toastify";
 import RegisterScreen from "./pages/auth/RegisterScreen";
+import AuditCertificate from "./pages/auditCertificate/AuditCertificate";
 
 const SolidityShield = () => {
   return (
@@ -30,6 +31,7 @@ const SolidityShield = () => {
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
             <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
+            <Route path="audit-certificate" element={<AuditCertificate />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="report/:id" element={<ScanReport />} />
             <Route path="payment" element={<BillingScreen />} />

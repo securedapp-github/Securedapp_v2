@@ -4,6 +4,7 @@ import { ReactComponent as OverviewLogo } from "./images/sidebar-overview.svg";
 import { ReactComponent as SettingsLogo } from "./images/sidebar-settings.svg";
 import { ReactComponent as VulnerabilityLogo } from "./images/sidebar-vulnerability.svg";
 import { ReactComponent as PaymentsLogo } from "./images/sidebar-payment.svg";
+import { ReactComponent as AuditCertificateLogo } from "./images/sidebar-audit-certificate.svg";
 
 export const sidebarItems = [
   {
@@ -21,11 +22,11 @@ export const sidebarItems = [
   //   name: "Vulnerability Scans",
   //   to: "vulnerability-scans",
   // },
-  // {
-  //   image: SettingsLogo,
-  //   name: "Audit Certificate",
-  //   to: "audit-certificate",
-  // },
+  {
+    image: AuditCertificateLogo,
+    name: "Audit Certificate",
+    to: "audit-certificate",
+  },
   {
     image: PaymentsLogo,
     name: "Payment",

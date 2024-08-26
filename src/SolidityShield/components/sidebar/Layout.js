@@ -25,6 +25,8 @@ export const MainLayout = () => {
           dispatch(setSelectedSidebarItem("Vulnerability Scans"));
         } else if (pathName === "pricing") {
           dispatch(setSelectedSidebarItem("Payment"));
+        } else if (pathName === "audit-certificate") {
+          dispatch(setSelectedSidebarItem("Audit Certificate"));
         } else {
           dispatch(setSelectedSidebarItem(capitalizePath(pathName)));
         }
