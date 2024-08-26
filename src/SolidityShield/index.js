@@ -16,18 +16,11 @@ import PaymentModal from "./components/modal/PaymentModal";
 import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
 import ScanReport from "./pages/scanReport/ScanReport";
 import { ToastContainer } from "react-toastify";
-import SolidityShield0 from "./product";
 
 const SolidityShield = () => {
   return (
     <Provider store={solidityShieldScanStore}>
       <div>
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          theme="dark"
-          pauseOnHover
-        />
         <ScanNowModal />
         <PaymentModal />
         <Routes>

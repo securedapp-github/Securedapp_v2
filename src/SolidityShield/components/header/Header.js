@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomButton from "../common/CustomButton";
 import "./Header.css";
@@ -19,6 +20,7 @@ const Header = () => {
   const { showSideBar, scanNowModal } = useSelector(getCommonSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="sss-header-container">
@@ -27,11 +29,12 @@ const Header = () => {
           {!showSideBar && (
             <div
               onClick={() => dispatch(setSideBar(true))}
-              className="sss-header-sidebar-opener">
+              className="sss-header-sidebar-opener"
+            >
               <FontAwesomeIcon icon={faBars} size="lg" />
             </div>
           )}
-          <div className="sss-header-search-container">
+          {/* <div className="sss-header-search-container">
             <div className="sss-header-search">
               <div className="sss-header-search-icon">
                 <img
@@ -44,6 +47,10 @@ const Header = () => {
                 className="sss-header-search-input"
               />
             </div>
+          </div> */}
+          <div>
+            {window.width > 1024 &&
+              "Solidity Shield to protect the heart of your Web3 project"}
           </div>
         </div>
         <div className="sss-header-center">
@@ -75,9 +82,13 @@ const Header = () => {
           </div> */}
           <div className="sss-header-right-button">
             <CustomButton
-              onClick={() => dispatch(setScanNowModal(true))}
+              onClick={() =>
+                auth.user.email
+                  ? dispatch(setScanNowModal(true))
+                  : navigate("/solidity-shield-scan/auth")
+              }
               className={
-                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-white active:bg-white active:border active:border-tertiary active:text-black"
+                "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-black active:bg-white active:border active:border-tertiary active:text-black"
               }
               text={"Scan Now"}
             />

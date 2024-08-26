@@ -37,56 +37,56 @@ export const benefits = [
     header: "Detailed Reports on Historical Data",
     description:
       "Generates comprehensive reports that provide clear insights into transaction histories and security incidents, aiding in thorough forensic analysis.",
-    icon: faEnvelope,
+    icon: "dashboard",
     iconBackgroundColor: "",
   },
   {
     header: "Suitable for All-Size Organizations",
     description:
       "Adapts to various sizes and complexities of blockchain networks, making it suitable for small and large-scale operations.",
-    icon: faEnvelope,
+    icon: "user-flow",
     iconBackgroundColor: "",
   },
   {
     header: "Leverage AI Capabilities",
     description:
       "Utilizes advanced AI to identify unusual patterns and anomalies in transaction data, crucial for detecting fraudulent activities.",
-    icon: faEnvelope,
+    icon: "chip-brain",
     iconBackgroundColor: "",
   },
   {
     header: "Documentation",
     description:
       "Ensures thorough documentation and analysis required for legal and regulatory purposes, reinforcing compliance.",
-    icon: faEnvelope,
+    icon: "report-pencil",
     iconBackgroundColor: "",
   },
   {
     header: "Forensic Techniques",
     description:
       "Employs specialized blockchain forensic techniques to delve deeply into transaction histories and uncover hidden connections related to fraudulent schemes.",
-    icon: faEnvelope,
+    icon: "block-chain",
     iconBackgroundColor: "",
   },
   {
     header: "Regulatory Compliance",
     description:
       "Supports regulatory compliance by providing tools and features that streamline investigative workflows.",
-    icon: faEnvelope,
+    icon: "justice",
     iconBackgroundColor: "",
   },
 ];
 
 export const UsesData = [
   {
-    image: "/assets/images/product-1-how-it-works-1.svg",
+    image: "flower",
     imageAlt: "",
     header: "Reclaim lost or compromised digital assets",
     description:
       "SecureTrace’s advanced forensic techniques trace transaction histories and identify missing assets, aiding in recovery efforts.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-2.svg",
+    image: "triangle-circle",
     imageAlt: "",
     header:
       "Identify and prevent fraudulent activities within blockchain transactions",
@@ -94,7 +94,7 @@ export const UsesData = [
       "By monitoring and analyzing transaction patterns and anomalies, SecureTrace helps detect suspicious behavior and potential fraud.",
   },
   {
-    image: "/assets/images/product-1-how-it-works-3.svg",
+    image: "pentagon-1",
     imageAlt: "",
     header:
       "Respond to and investigate security breaches or suspicious activities.",
@@ -102,7 +102,7 @@ export const UsesData = [
       "SecureTrace’s real-time monitoring and forensic capabilities allow teams to quickly identify, assess, and address security incidents",
   },
   {
-    image: "/assets/images/product-1-how-it-works-4.svg",
+    image: "feathers",
     imageAlt: "",
     header: "Ensure the security and integrity of smart contracts",
     description:

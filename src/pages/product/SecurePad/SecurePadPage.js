@@ -14,6 +14,7 @@ import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import { faqsData, howItWorksData, benefits } from "./data";
 
 function SecurePadPage() {
+  window.scrollTo(0, 0);
   return (
     <div className="product-container">
       <Navbar />
@@ -21,7 +22,8 @@ function SecurePadPage() {
         <ProductServiceHero
           name="SECURE PAD"
           title="A platform for Cost-free Tokenization in Blockchain Security Space"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/sp/sp-hero.jpg"}
+          onClick={() => window.open("https://securepad.xyz/")}
         />
         <ProductCard
           header={"What is SecurePAD"}
@@ -29,7 +31,7 @@ function SecurePadPage() {
             "SecurePAD stands out as a zero-fee tokenization platform, combining sturdy security with simple no-code functionality and versatile cross-chain capabilities. <br/><br/> This unique blend empowers individuals and projects to effortlessly create, trade, and manage tokens throughout their entire lifecycle, all without incurring high costs."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ProductPages/sp/1.png"}
         />
         <div className="features-section">
           <SectionTitle
@@ -40,9 +42,9 @@ function SecurePadPage() {
             }
           />
           <FeatureCards featureData={benefits} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductWhyCard
           header={"Why Choose SecurePAD?"}
@@ -57,10 +59,10 @@ function SecurePadPage() {
             <br/><br/> • Serves as a governance system that empowers users to participate in the decision-making process of the platform.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ProductPages/sp/2.png"}
           imageAlt={"Product 1 Why Image"}
         />
-        <div>
+        {/* <div>
           <SectionTitle
             name={"How it works"}
             title="How it works"
@@ -86,7 +88,7 @@ function SecurePadPage() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

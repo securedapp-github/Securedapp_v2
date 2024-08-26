@@ -1,4 +1,5 @@
 import "./App.css";
+import { ToastContainer } from "react-toastify";
 import {
   Routes,
   Route,
@@ -25,8 +26,10 @@ import CryptoComplianceAml from "./pages/service/CryptoCompAml/CryptoCompAml";
 import DecentralizedIdentity from "./pages/service/DecentralizedIdentity/DecentralizedIdentity";
 import NftsDvelopment from "./pages/service/NftsDevelopment/NftsDevelopment";
 import DefiDevelopment from "./pages/service/DefiDevelopment/DefiDevelopment";
+import LevelUpAcademy from "./pages/service/LevelUpAcademy/LevelUpAcademy";
 import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
+import Media from "./pages/media/Media";
 import AboutUs from "./pages/aboutUs/AboutUs";
 import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 import SolidityShield from "./SolidityShield/index";
@@ -69,11 +72,14 @@ function App() {
   }
 
   return (
-    <div
-      className={`App bg-primary dark:bg-secondary ${
-        isSolidityShieldScan && "overflow-hidden"
-      }`}>
+    <div className="App bg-primary dark:bg-secondary">
       {isRequestModalOpen && <RequestQuoteModal />}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        theme="dark"
+        pauseOnHover
+      />
       <Routes>
         <Route path="/" index element={<Home />} />
         <Route path="product" element={<Product />} />
@@ -97,8 +103,10 @@ function App() {
         />
         <Route path="nfts-development" element={<NftsDvelopment />} />
         <Route path="defi-development" element={<DefiDevelopment />} />
+        <Route path="levelup-academy" element={<LevelUpAcademy />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:url" element={<BlogPost />} />
+        <Route path="media" element={<Media />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
       </Routes>

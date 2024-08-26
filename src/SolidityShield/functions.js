@@ -1,15 +1,15 @@
 import axios from "axios";
 import jsPDF from "jspdf";
+import "jspdf-autotable";
 import html2canvas from "html2canvas";
 import Chart from "chart.js/auto";
 import CryptoJS from "crypto-js";
 import { toast } from "react-toastify";
-import { getUserData, login } from "../SolidityShield/redux/auth/authSlice";
+import { login } from "../SolidityShield/redux/auth/authSlice";
 import { setIssuesData } from "./redux/dashboard/issuesSlice";
 import { setScanHistory } from "./redux/scanHistory/scanHistorySlice";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
+import { pricingDetails } from "./pages/pricing/pricing.data";
 
 const logo = "/assets/images/securedapp_logo.svg";
 
@@ -64,15 +64,19 @@ export const payCrypto = async ({ planid, email }) => {
   if (planid > 0) {
     const { v4: uuidv4 } = require("uuid");
     const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
-    const price = 100;
+    var price = pricingDetails[Number(planid) + 1].pricingCard.price
+      .replace("/-", "")
+      .replace("₹", "")
+      .replace(",", "");
+    price = Number(price);
     try {
       return await fetch("https://api.nowpayments.io/v1/payment", {
         method: "POST",
         body: JSON.stringify({
           price_amount: price,
-          price_currency: "usd",
+          price_currency: "inr",
           pay_currency: "USDTMATIC",
-          pay_amount: 100,
+          pay_amount: price,
           order_id: "21314",
           order_description: "Securedapp Subscription Plan A",
           is_fixed_rate: true,
@@ -104,6 +108,9 @@ export const payCrypto = async ({ planid, email }) => {
                   transactionId: transactionid,
                   amount: price,
                 })
+              );
+              toast(
+                "Payment initiated successfully. Please transfer the amount & verify."
               );
               return {
                 ...data,
@@ -179,19 +186,24 @@ export const scanSubmit = async ({
   let compilerVersion;
   const formData = new FormData();
 
-  if (user.remainingCredits < 1) {
-    toast.error("No Credit, Please Purchase a Plan to scan");
-    return;
-  }
+  // if (user.remainingCredits < 1) {
+  //   toast.error("No Credit, Please Purchase a Plan to scan");
+  //   return;
+  // }
 
   // Validation
-  if (inputTypes === "") {
+  if (!inputTypes) {
     alert("Please Select a source");
     return;
   }
 
-  if (companyName === "") {
-    alert("Please enter your Company Name");
+  if (!companyName) {
+    toast.error("Please enter your Company Name");
+    return;
+  }
+
+  if (!githubUrl && !file && !etherscanUrl) {
+    toast.error("Please input your smart contracts");
     return;
   }
 
@@ -200,7 +212,7 @@ export const scanSubmit = async ({
     try {
       const { sourceCode, file: githubFile } = await githuburlfetch(githubUrl);
       if (!sourceCode) {
-        alert("Failed to fetch contract source code.");
+        toast.error("Failed to fetch contract source code.");
         return;
       }
 
@@ -208,20 +220,21 @@ export const scanSubmit = async ({
 
       compilerVersion = isContractFlattened(sourceCode);
       if (!compilerVersion) {
-        alert("The contract is not flattened.");
+        toast.error("The contract is not flattened.");
         return;
       }
     } catch (error) {
-      alert("Error fetching GitHub URL.");
+      toast.error("Error fetching GitHub URL.");
       console.error("GitHub URL fetch error:", error);
       return;
     }
   }
 
   // Handling Etherscan URL
-  if (inputTypes.includes("Contract Address") && etherscanUrl && chain) {
+  if (etherscanUrl && etherscanUrl.length > 0) {
     try {
       const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
+      console.log(sourceCode);
       const blob = new Blob([sourceCode], { type: "text/plain" });
       const etherscanFile = new File([blob], `${companyName}.sol`, {
         type: "text/plain",
@@ -233,8 +246,9 @@ export const scanSubmit = async ({
         alert("The contract is not flattened.");
         return;
       }
+      console.log("contract processed");
     } catch (error) {
-      alert("Error fetching Etherscan URL.");
+      toast.error("Error fetching the contract");
       console.error("Etherscan fetch error:", error);
       return;
     }
@@ -270,53 +284,58 @@ export const scanSubmit = async ({
   formData.append("version", compilerVersion);
   formData.append("company", companyName);
 
-  await fetch("https://139-59-5-56.nip.io:3443/audits", {
+  return await fetch("https://139-59-5-56.nip.io:3443/audits", {
     method: "POST",
     body: formData,
   })
-    .then((response) => {
+    .then(async (response) => {
       if (!response.ok) {
         toast("Invalid Network Response");
+      } else {
+        return await response.text();
       }
-      return response.text();
     })
     .then(async (data) => {
-      console.log(data);
       const history = await getScanHistoryData({
         userEmail: user.email,
         dispatch,
       });
+
       var latestScan = history.reduce((max, item) => {
         return item.id > max.id ? item : max;
       }, history[0]);
-      window.open("/solidity-shield-scan/report/" + latestScan.id);
+      // window.open("/solidity-shield-scan/report/" + latestScan.id);
+
       toast.success("Scan finished");
+      return Number(latestScan.id);
     })
     .catch((error) => {
-      console.error("Error:", error);
+      toast("Error:", error);
+      return "error";
     });
 };
 
-export const downloadfReportPdf = (id) => {
-  const input = document.getElementById("scan-report-" + id);
-  if (!input) {
-    toast.error("Error downloading the report! Try again.");
-    return;
-  } else {
-    toast(`Downloading Scan Report - ${id}`);
-  }
-  html2canvas(input)
-    .then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("solidity-shield-scan-report-" + id + ".pdf");
-    })
-    .catch((error) => {
-      toast.error("Error downloading the report! Try again.");
-    });
+export const downloadfReportPdf = (id, user) => {
+  downloadReport(id, user);
+  // const input = document.getElementById("scan-report-" + id);
+  // if (!input) {
+  //   toast.error("Error downloading the report! Try again.");
+  //   return;
+  // } else {
+  //   toast(`Downloading Scan Report - ${id}`);
+  // }
+  // html2canvas(input)
+  //   .then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4");
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save("solidity-shield-scan-report-" + id + ".pdf");
+  //   })
+  //   .catch((error) => {
+  //     toast.error("Error downloading the report! Try again.");
+  //   });
 };
 
 export const getScanSummaryData = async ({ dispatch, email }) => {
@@ -349,13 +368,29 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
 
     dispatch(
       setScanSummary({
-        percentageValue: (score * 20).toFixed(1),
+        percentageValue: (score * 2).toFixed(1),
         values: [
-          { name: "High Issues", value: data.high_issues },
-          { name: "Medium Issues", value: data.medium_issues },
-          { name: "Low Issues", value: data.low_issues },
-          { name: "Optimization Issues", value: data.optimization_issues },
-          { name: "Informational Issues", value: data.informational_issues },
+          {
+            name: "Critical Issues",
+            value: data.high_issues,
+            color: "#ff6666",
+          },
+          {
+            name: "Medium Issues",
+            value: data.medium_issues,
+            color: "#ffa366",
+          },
+          { name: "Low Issues", value: data.low_issues, color: "#ffff33" },
+          {
+            name: "Optimization Issues",
+            value: data.optimization_issues,
+            color: "#d98cb3",
+          },
+          {
+            name: "Informational Issues",
+            value: data.informational_issues,
+            color: "#b3b3b3",
+          },
         ],
         summary,
         id: latestScan.id,
@@ -431,7 +466,7 @@ export const getReport = async ({ id, email }) => {
           Number(report.findings["low_issues"])) /
           30) *
           5;
-      report.score = score.toFixed(1) + "/5";
+      report.score = (score * 2).toFixed(1) + "/10";
       return report;
     })
     .catch((error) => {
@@ -555,10 +590,10 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 
 export const logout = () => {
   sessionStorage.removeItem("session_user");
-  window.location.reload();
+  window.location.replace("/solidity-shield-scan/auth");
 };
 
-export const downloadReport = async (id) => {
+export const downloadReport = async (id, user) => {
   fetch("https://139-59-5-56.nip.io:3443/getReport", {
     method: "POST",
     body: JSON.stringify({
@@ -576,14 +611,14 @@ export const downloadReport = async (id) => {
       toast.error("Invalid Network response ");
     })
     .then((data) => {
-      // console.log(data);
-      // if (PurchasePlan(0)) {
-      //   console.log("PDF generation is not available for free plan users.");
-      //   toast.error("PDF generation is not available for free plan users.");
-      //   return;
-      // }
-      // console.log(JSON.parse(data[0].reportdata));
-      //generatePDF(JSON.parse(data[0].reportdata));
+      console.log(data);
+      if (user.plan == 0) {
+        console.log("Upgrade your plan to download the report");
+        toast("Upgrade your plan to download the report");
+        return;
+      }
+      console.log(JSON.parse(data[0].reportdata));
+      generatePDF(JSON.parse(data[0].reportdata));
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -700,11 +735,11 @@ const fetchContractSourceCode = async (contractAddress, _chain) => {
     if (data.status == "1" && data.result.length > 0) {
       return data.result[0].SourceCode;
     } else {
-      alert("Error fetching source code");
+      toast.error("Error fetching source code");
       return false;
     }
   } catch (error) {
-    alert("Error fetching source code");
+    toast.error("Error fetching source code");
     console.error("Error fetching contract source code:", error);
     return false;
   }
@@ -720,7 +755,7 @@ export const githuburlfetch = async (repoUrl, companyName) => {
 
     const response = await fetch(rawUrl);
     if (!response.ok) {
-      alert("Failed to fetch file");
+      toast.error("Failed to fetch file");
     }
     const content = await response.text();
     // console.log(content);

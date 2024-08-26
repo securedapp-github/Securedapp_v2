@@ -36,38 +36,26 @@ export const benefits = [
   {
     header: "Secure Funds",
     description: `Protect your assets and your investors from potential threats like DDoS attacks, reentrancy, overflows, and flash loan exploits.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "flower",
   },
   {
     header: "Performance Optimization Suggestions",
     description: `Audits identify and prevent vulnerabilities and enhance code efficiency for improved performance and resource utilization.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "box",
   },
   {
     header: "Greater Investor Confidence",
     description: `An audit provides solid assurance, boosting trust and confidence among potential investors in your token.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "feathers",
   },
   {
     header: "Safe Exchange Listings",
     description: `Exchanges prioritize their reputation and are cautious about adding tokens that could pose security risks. A thorough token audit serves as a crucial security endorsement for these platforms.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "pentagon-2",
   },
 ];
 
@@ -78,11 +66,6 @@ export const compliances = [
                   <br/><br/> • Tokens utilize arithmetic operations such as addition, subtraction, and multiplication, which we thoroughly audit to ensure accuracy.
                   <br/><br/> • As a fungible token standard, ERC-20 tokens are created, transferred, and managed through smart contracts on the Ethereum network. Their adherence to the ERC-20 standard facilitates easy trading on cryptocurrency exchanges.
                   <br/><br/> • ERC-20 tokens are especially susceptible to reentrancy attacks that exploit smart contract vulnerabilities, making audits more crucial.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "ERC-721 Token",
@@ -90,32 +73,17 @@ export const compliances = [
                   <br/><br/> • ERC-721 token audit verifies the accuracy and integrity of the data, ensuring it aligns with the token and is stored and accessed properly.
                   <br/><br/> • Tokens enable owners to approve other users' spending of their tokens.
                   <br/><br/> • The token audit identifies potential security vulnerabilities and risks in the token contract's code and confirms that the contract operates as intended and meets your project's goals.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "ERC-1155 Token",
     description: `• ERC-1155 contracts are designed to manage multiple token balances efficiently, allowing for significant improvements in performance during batch transfers of various token types.
                   <br/><br/> • ERC-1155 token audits assess the contract's gas usage and overall efficiency, ensuring optimal performance even with a diverse range of token classes.
                   <br/><br/> • The ability to batch transfer and bundle multiple assets into a single smart contract makes ERC-1155 both cost-effective and capable of significantly reducing gas fees.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "ERC-777 Token",
     description: `• ERC-777 is an advanced iteration of the ERC-20 standard designed to enhance efficiency in token transactions while maintaining backward compatibility.
                   <br/><br/> • Leverage well-regarded libraries and standards specifically developed for ERC-777 tokens to ensure robust security and performance. These libraries are regularly audited and updated to adhere to the latest security protocols.
                   <br/><br/> • Before deploying an ERC-777 token contract, audits are necessary to evaluate potential vulnerabilities, including reentrancy attacks, integer overflows, and unauthorized token transfers.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];

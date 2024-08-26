@@ -1,6 +1,6 @@
 export const navItems = [
   {
-    to: "/product",
+    to: "",
     items: [
       { name: "Solidity Shield", to: "/solidity-shield" },
       { name: "Secure Watch", to: "/secure-watch" },
@@ -10,7 +10,7 @@ export const navItems = [
     label: "Product",
   },
   {
-    to: "/service",
+    to: "",
     items: [
       { name: "DApp Development", to: "/dapp-development" },
       { name: "Smart Contract Audit", to: "/smart-contract-audit" },
@@ -27,6 +27,7 @@ export const navItems = [
       },
       { name: "NFTs Development", to: "/nfts-development" },
       { name: "DeFi Development", to: "/defi-development" },
+      { name: "LevelUp Academy", to: "/levelup-academy" },
     ],
     label: "Services",
   },
@@ -34,12 +35,13 @@ export const navItems = [
     to: "",
     items: [
       { name: "Blogs", to: "/blog" },
-      { name: "Documentation", to: "" },
+      { name: "About Us", to: "/about" },
+      { name: "Media", to: "/media" },
     ],
     label: "Resources",
   },
   {
-    to: "/pricing",
+    to: "/solidity-shield-scan/pricing",
     items: [],
     label: "Pricing",
   },

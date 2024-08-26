@@ -1,9 +1,20 @@
 import "./BenefitsCard.css";
+import { useSelector } from "react-redux";
+import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 
 export const BenefitsCardIcon = ({ img, imgAlt = "" }) => {
+  const { darkMode } = useSelector(getHomeSelector);
   return (
     <div className="benefits-card-icon">
-      <img src={img} alt={imgAlt} />
+      <img
+        style={{
+          filter: darkMode
+            ? "brightness(0) invert(1)"
+            : "brightness(1) invert(0)",
+        }}
+        src={img}
+        alt={imgAlt}
+      />
     </div>
   );
 };
@@ -11,7 +22,10 @@ export const BenefitsCardIcon = ({ img, imgAlt = "" }) => {
 const BenefitsCard = ({ header, description, image, imageAlt = "" }) => {
   return (
     <div className="benefits-card">
-      <BenefitsCardIcon img={image} imgAlt={imageAlt} />
+      <BenefitsCardIcon
+        img={`/assets/images/icons/${image}.svg`}
+        imgAlt={imageAlt}
+      />
       <div className="benefits-card-header">{header}</div>
       {description.length > 1 && (
         <div className="benefits-card-description">{description}</div>

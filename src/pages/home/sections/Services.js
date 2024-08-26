@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../components/common/Button";
 import SectionTitle from "../../../components/common/SectionTitle";
 import Slider from "react-slick";
@@ -18,23 +19,23 @@ const servicesData = [
     name: "DApp Development Service",
     desc: "Focus on blockchain application development, from building applications from the ground up to providing consultancy and ongoing support. Our no-code platform ensures your decentralized applications are secure, efficient, and transformative for your business",
     alt: "",
-    to: "",
+    to: "/dapp-development",
   },
   {
     id: 1,
-    title: "Dapp Security",
-    name: "DApp Security Audit",
-    desc: "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. We focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
-    alt: "",
-    to: "",
-  },
-  {
-    id: 2,
     title: "Smart Contract Audit",
     name: "Smart Contract Audit",
     desc: "Focus on delivering top-notch smart contract audit services at competitive prices. Our smart contract audit is dedicated to ensuring the security and reliability of your smart contracts.",
     alt: "",
-    to: "",
+    to: "/smart-contract-audit",
+  },
+  {
+    id: 2,
+    title: "Dapp Security",
+    name: "DApp Security Audit",
+    desc: "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. We focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
+    alt: "",
+    to: "/dapp-security-audit",
   },
   {
     id: 3,
@@ -42,7 +43,7 @@ const servicesData = [
     name: "Token Audit",
     desc: "Token audits are crucial for technical robustness and regulatory compliance. With a token audit, protect your assets and investors from threats like DDoS attacks, reentrancy, overflows, and flash loan exploits.",
     alt: "",
-    to: "",
+    to: "/token-audit",
   },
   {
     id: 4,
@@ -50,7 +51,7 @@ const servicesData = [
     name: "Web 3.0 KYC",
     desc: "As we approach a new digital era, it's essential to reimagine KYC for Web 3.0. Decentralized KYC solutions empower users by giving them control over their data",
     alt: "",
-    button: "",
+    to: "/web3-kyc",
   },
   {
     id: 5,
@@ -58,7 +59,7 @@ const servicesData = [
     name: "Web 3.0 Security",
     desc: "As Web 3.0 advances, a thorough risk assessment is essential to safeguard your business and unlock its full potential. We assist in protecting your smart contracts, NFTs, and DApp with our high-tech security expertise.",
     alt: "",
-    to: "",
+    to: "/web3-security",
   },
   {
     id: 6,
@@ -66,7 +67,7 @@ const servicesData = [
     name: "Blockchain Forensics",
     desc: "Using our blockchain forensics tools, investigators can trace the movement of funds, detect illicit transactions, and identify suspicious behavior and individuals involved in illegal activities",
     alt: "",
-    to: "",
+    to: "/blockchain-forensic",
   },
   {
     id: 7,
@@ -74,23 +75,23 @@ const servicesData = [
     name: "RWA Audit",
     desc: "Now is the time for early adopters and forward-thinking investors to explore the real-world asset tokenization audit for better transparency and liquidity and seize the unique business opportunity from the ground up.",
     alt: "",
-    to: "",
+    to: "/rwa-audit",
   },
   {
     id: 8,
-    title: "Crypto compliance and AML",
+    title: "Crypto compliance & AML",
     name: "Crypto compliance and AML",
     desc: "Top-tier crypto compliance consulting tailored to your unique needs. Understand the complexities of cryptocurrency regulations and get customized strategies to ensure your business adheres to all legal requirements.",
     alt: "",
-    to: "",
+    to: "/crypto-compliance-aml",
   },
   {
     id: 9,
-    title: "Decentralized Identity (DID)",
+    title: "Decentralized Identity",
     name: "Decentralized Identity (DID)",
     desc: "Incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards",
     alt: "",
-    button: "",
+    to: "/decentralized-identity-did",
   },
   {
     id: 10,
@@ -98,7 +99,7 @@ const servicesData = [
     name: "NFT Development",
     desc: "Offering top-notch NFT development services has significantly impacted the blockchain world, with applications in digital art, gaming, and more.",
     alt: "",
-    to: "",
+    to: "/nfts-development",
   },
   {
     id: 11,
@@ -106,11 +107,13 @@ const servicesData = [
     name: "DeFi Development",
     desc: "DeFi is evolving rapidly compared to centralized finance systems, with new applications emerging frequently. We specialize in crafting innovative DeFi solutions tailored to your needs, whether offering or receiving financial services.",
     alt: "",
-    to: "",
+    to: "/defi-development",
   },
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
+
   const [selectedService, setService] = useState(0);
   let sliderRef = useRef(null);
 
@@ -134,7 +137,8 @@ const Services = () => {
     return (
       <div
         className="services-mobile-navbar-arrow-container"
-        onClick={moveLeft}>
+        onClick={moveLeft}
+      >
         <FontAwesomeIcon
           icon={faChevronLeft}
           size="xl"
@@ -148,7 +152,8 @@ const Services = () => {
     return (
       <div
         className="services-mobile-navbar-arrow-container"
-        onClick={moveRight}>
+        onClick={moveRight}
+      >
         <FontAwesomeIcon
           icon={faChevronRight}
           size="xl"
@@ -217,7 +222,8 @@ const Services = () => {
                 onClick={() => setService(index)}
                 className={`services-mobile-navbar-item ${
                   service.id === selectedService && "selected-mobile-navbar"
-                }`}>
+                }`}
+              >
                 {service.title}
               </div>
             );
@@ -234,12 +240,16 @@ const Services = () => {
             {servicesData[selectedService].desc}
           </div>
           <div className="services-content-left-button">
-            <Button text={"Get Started"} filled={true} />
+            <Button
+              onClick={() => navigate(servicesData[selectedService].to)}
+              text={"Get Started"}
+              filled={true}
+            />
           </div>
         </div>
         <div className="services-content-right">
           <img
-            src={`/assets/images/services-homepage/${selectedService}.svg`}
+            src={`/assets/images/ServicePages/s${selectedService + 1}-hero.png`}
             alt={servicesData[selectedService].alt}
           />
         </div>

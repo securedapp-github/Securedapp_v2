@@ -12,82 +12,35 @@ import "../Service.css";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
-import {
-  faqsData,
-  servicesData,
-  industriesData,
-  projectIndustries,
-  facts,
-  platforms,
-} from "./data";
+import { faqsData, servicesData } from "./data";
 
 function NftsDevelopment() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="NFTs DEVELOPMENT"
-          title="Helping Your Business to Launch Error-free Blockchain Applications"
-          image={"/assets/images/product-hero.svg"}
+          title="Comprehensive NFT Development Services for Unique Digital Assets"
+          image={"/assets/images/ServicePages/s11-hero.png"}
+          service={true}
         />
         <ProductCard
-          header={"What is a Smart Contract ?"}
+          header={"What is NFT Development?"}
           description={
-            "A smart contract—a digital agreement stored on a blockchain network and programmed to execute automatically when predetermined conditions are met. These self-enforcing contracts encode the agreement terms between seller and buyer directly into lines of code. Operating on a decentralized blockchain, smart contracts help several parties achieve collective outcomes promptly and accurately.<br/><br/>Smart contracts are not limited to a single condition. In fact, a single smart contract can include multiple conditions, showcasing their versatility. Furthermore, an application can utilize several smart contracts to support interconnected processes, demonstrating their potential in a variety of scenarios. Multiple languages, such as Ethereum's Solidity language, are available for programming smart contracts, one of the most popular"
+            "NFT development- a process of creating Non-Fungible Tokens (NFTs), which are unique digital assets stored on a blockchain. These tokens can represent digital or physical items, such as art, music, collectables, virtual real estate, and more. The NFT development process involves designing the digital asset, writing smart contracts to ensure ownership and authenticity, and deploying the NFT on a blockchain platform, ensuring it is secure, verifiable, and transferable."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <ProductWhyCard
-          header={"Smart Contract Audit Meaning"}
-          descriptions={[
-            "A small error while deploying smart contracts can result in huge financial losses. This is why smart contracts security audits are imperative. A smart contract audit involves a detailed analysis of a protocol’s smart contract code to identify security vulnerabilities and inefficient code before identifying solutions to resolve these issues.  Audits help ensure decentralized applications' security, reliability, and performance across Web3.",
-          ]}
-          buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
-          imageAlt={"Product 1 Why Image"}
-        />
-        <ProductCard
-          header={"Why SecureDApp for Smart Contract Security Audit?"}
-          description={
-            "SecureDApp harnesses its experience and expertise to conduct blockchain security audits, carefully examining smart contracts for existing and potential errors, security flaws, and compliance issues. SecureDApp is committed to helping businesses develop secure and reliable DApps.<br/><br/>We believe that smart contracts have the potential to transform the way businesses operate, and we are excited to be a part of that revolution. By choosing SecureDApp, you ensure your smart contracts are thoroughly audited, enhancing your blockchain applications' security, reliability, and efficiency."
-          }
-          buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
-        />
-        <div className="features-section">
-          <SectionTitle
-            name={"Facts & Figures"}
-            title={"Uniques Dapp Development Services"}
-            description={
-              "These numbers underscore the urgent need for smart contract security audits. With significant losses attributed to security breaches and a high frequency of attacks in critical areas like DeFi, ensuring that your smart contracts are thoroughly audited is more crucial than ever."
-            }
-          />
-          <FeatureCards featureData={facts} />
-          <div className="features-section-button">
-            <Button text={"Learn more"} filled={true} />
-          </div>
-        </div>
-        <Benefits
-          benefitsData={platforms}
-          title={"Blockchain Networks We Work On"}
-          subTitle={
-            "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
-          }
-          img={"/assets/images/service-1-benefits.svg"}
-          button={""}
+          image={"/assets/images/ServicePages/s11-1.png"}
         />
         <div>
           <SectionTitle
-            name={"Industries"}
-            title="The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively. "
-            description={
-              "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban"
-            }
+            name={"Services"}
+            title="Take A Look Into Our Services"
           />
           <div className="how-it-works-section">
-            {projectIndustries.map((data) => {
+            {servicesData.map((data) => {
               return (
                 <HowItWorksCard
                   image={data.image}
@@ -99,6 +52,28 @@ function NftsDevelopment() {
             })}
           </div>
         </div>
+        <ProductCard
+          header={"Industries We Serve"}
+          description={`• Art and collectables
+            <br/><br/>• Real Estate
+            <br/><br/>• Healthcare
+            <br/><br/>• Gaming
+            <br/><br/>• Music
+            <br/><br/>• Retail
+            <br/><br/>• Government and Public Sector
+            <br/><br/>• Finance`}
+          buttonText={"Scan now"}
+          image={"/assets/images/ServicePages/s11-2.png"}
+        />
+        <ProductWhyCard
+          header={"Why SecureDApp for Your Business?"}
+          descriptions={[
+            "SecureDApp provides top-notch NFT development services to a global clientele. SecureDApp has the expertise and resources to turn your vision into reality. NFTs have significantly impacted the blockchain world with applications in digital art, gaming, and more.<br/><br/>Our expert developers and blockchain enthusiasts are committed to delivering high-quality NFT development services tailored to your needs.<br/><br/>Whether you're an artist, brand, or platform aiming to tokenize assets, create NFT collectables, or require customized NFT marketplace development, we ensure your project is secure, scalable, and innovative. ",
+          ]}
+          buttonText={"Get Started"}
+          image={"/assets/images/ServicePages/s11-3.png"}
+          imageAlt={"Product 1 Why Image"}
+        />
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

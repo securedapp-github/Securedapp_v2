@@ -5,7 +5,7 @@ const ProductCard = ({
   header,
   description,
   buttonText,
-  onClick,
+  link,
   image,
   imageAlt,
 }) => {
@@ -20,9 +20,15 @@ const ProductCard = ({
           className="product-card-content-description"
           dangerouslySetInnerHTML={{ __html: description }}
         ></div>
-        <div className="product-card-content-button">
-          <Button text={buttonText} onClick={onClick} filled={true} />
-        </div>
+        {link && (
+          <div className="product-card-content-button">
+            <Button
+              text={buttonText}
+              onClick={() => window.open(link)}
+              filled={true}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

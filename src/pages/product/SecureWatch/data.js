@@ -37,42 +37,42 @@ export const features = [
     header: "Detects Unusual Deviations",
     description:
       "Tracks your smart contract’s activities to spot any unusual behavior or deviations that might signal potential threats.",
-    icon: faVoicemail,
+    icon: "search-chip",
     iconBackgroundColor: "",
   },
   {
     header: "Keen Eye on Transactions",
     description:
       "Keeps a close watch on blockchain transactions to quickly flag suspicious or unauthorized actions.",
-    icon: faVoicemail,
+    icon: "transaction",
     iconBackgroundColor: "",
   },
   {
     header: "Easy Integration",
     description:
       "Fits effortlessly into your existing DevOps processes, maintaining consistent security across all stages of development and operation.",
-    icon: faVoicemail,
+    icon: "settings-gear",
     iconBackgroundColor: "",
   },
   {
     header: "Detailed Reports",
     description:
       "Delivers advanced analytics and detailed reports to help you understand and tackle security vulnerabilities and emerging threat patterns.",
-    icon: faVoicemail,
+    icon: "reports",
     iconBackgroundColor: "",
   },
   {
     header: "Customized Security Policies",
     description:
       "Allows you to tailor security policies to meet your specific needs and risk profiles, ensuring optimal protection.",
-    icon: faVoicemail,
+    icon: "bug",
     iconBackgroundColor: "",
   },
   {
     header: "Analyze Historical Data",
     description:
       "Examine past data to spot trends and refine security measures, helping you learn from previous incidents and bolster your defenses.",
-    icon: faVoicemail,
+    icon: "camera",
     iconBackgroundColor: "",
   },
 ];
@@ -82,42 +82,42 @@ export const threats = [
     header: "Unauthorized Parties",
     description:
       "Identifies attempts by unauthorized parties to access or manipulate smart contracts or blockchain projects.",
-    icon: faVoicemail,
+    icon: "desktop-error",
     iconBackgroundColor: "",
   },
   {
     header: "Unauthorized Access",
     description:
       "Flags any suspicious activity related to compromised user accounts or credentials.",
-    icon: faVoicemail,
+    icon: "shield-unlock",
     iconBackgroundColor: "",
   },
   {
     header: "Unusual Patterns",
     description:
       "Spots unusual patterns or behaviors in transaction flows that deviate from established norms, which could signal an attack or exploitation.",
-    icon: faVoicemail,
+    icon: "grid",
     iconBackgroundColor: "",
   },
   {
     header: "Contract Parameters",
     description:
       "Monitors for any unauthorized changes to on-chain data or contract parameters that could compromise security.",
-    icon: faVoicemail,
+    icon: "3line-circles",
     iconBackgroundColor: "",
   },
   {
     header: "Uncertified Roles",
     description:
       "Detects unauthorized user roles or permissions changes that could grant elevated access or control.",
-    icon: faVoicemail,
+    icon: "shield-wrong",
     iconBackgroundColor: "",
   },
   {
     header: "Vulnerabilities During Deployment",
     description:
       "Identifies potential exploits or vulnerabilities being actively targeted, even if not initially detected during the contract’s deployment phase.",
-    icon: faVoicemail,
+    icon: "settings-flow",
     iconBackgroundColor: "",
   },
 ];

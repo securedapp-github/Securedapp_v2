@@ -43,19 +43,19 @@
 }
 
 .sss-history-table-report-id-container {
-  @apply min-w-[100px];
+  @apply min-w-[150px];
 }
 
 .sss-history-table-date-container {
-  @apply min-w-[200px];
+  @apply min-w-[250px];
 }
 
 .sss-history-table-report-link-container {
-  @apply min-w-[300px] md:w-full text-left;
+  @apply min-w-[400px] md:w-full text-center;
 }
 
 .sss-history-table-status-container {
-  @apply min-w-[200px];
+  @apply min-w-[100px];
 }
 
 .sss-history-table-options-container {

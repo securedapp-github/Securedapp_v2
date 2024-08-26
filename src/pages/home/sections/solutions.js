@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SectionTitle from "../../../components/common/SectionTitle";
 import Button from "../../../components/common/Button";
 
@@ -10,7 +11,8 @@ const solutions = [
       "Customizable security audits",
       "Enhanced developer workflow",
     ],
-    to: "",
+    to: "/solidity-shield",
+    image: "/assets/images/ProductPages/ss/hero.jpg",
   },
   {
     title: "Secure Watch",
@@ -19,7 +21,8 @@ const solutions = [
       "Machine learning for anomaly identification",
       "Customizable security measures",
     ],
-    to: "",
+    to: "/secure-watch",
+    image: "/assets/images/ProductPages/sw/hero.png",
   },
   {
     title: "Secure Trace",
@@ -28,7 +31,8 @@ const solutions = [
       "Analyzes transaction data",
       "Supports regulatory compliance",
     ],
-    to: "",
+    to: "/secure-trace",
+    image: "/assets/images/ProductPages/st/st-hero.png",
   },
   {
     title: "SecurePad",
@@ -37,11 +41,13 @@ const solutions = [
       "Enhancing versatility by allowing projects to deploy tokens across multiple blockchains",
       "Decentralized exchange for seamless token trading",
     ],
-    to: "",
+    to: "/secure-pad",
+    image: "/assets/images/ProductPages/sp/sp-hero.jpg",
   },
 ];
 
 const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
+  const navigate = useNavigate();
   return (
     <div
       className={`solution-card lg:flex ${
@@ -55,10 +61,18 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
             return <li className="solution-card-list-item">{item}</li>;
           })}
         </ul>
-        <Button text={"Learn More"} filled={true} />
+        <Button
+          onClick={() => navigate(to)}
+          text={"Learn More"}
+          filled={true}
+        />
       </div>
       <div className="solution-card-image">
-        <img src={image} alt="solution#" />
+        <img
+          style={{ borderRadius: "25px 15px 0 0" }}
+          src={image}
+          alt="solution#"
+        />
       </div>
     </div>
   );
@@ -78,7 +92,7 @@ const Solutions = () => (
             title={solution.title}
             items={solution.items}
             to={solution.to}
-            image={`/assets/images/solution-${index}.svg`}
+            image={solution.image}
             isImageLeft={index % 2}
           />
         );

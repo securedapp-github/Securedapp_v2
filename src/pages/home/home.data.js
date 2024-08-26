@@ -167,30 +167,30 @@ export const faqHeaders = [
 export const reviews = [
   {
     id: 0,
-    name: "Adlinda Paw",
-    designation: "Engineering Head",
+    name: "Mr. Romit Goswami",
+    designation: "Founder, Zapit",
     testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
+      '"Abhishek and Himanshu were excellent in understanding our requirements as we had a custom smart contract that had to be audited. The entire experience was seamless with the right guidance which was provided to us by the SecureDApp Team. Definitely recommend them for newer or experienced project as they are more than capable of handling even complex audits. Will surely be coming back for our future projects"',
   },
   {
     id: 1,
-    name: "Adlinda Paw",
-    designation: "Engineering Head 2",
+    name: "Mr. Basheer",
+    designation: "Founder, E-Riyal",
     testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
+      '"Partnering with SecureDApp has transformed our business. Their security solutions have minimized our vulnerabilities, safeguarding our data and earning our customers’ trust. The team’s expertise and proactive support have exceeded our expectations. Highly recommended!"',
   },
   {
     id: 2,
-    name: "Adlinda Paw",
-    designation: "Engineering Head 3",
+    name: "Mr. Victor Jack",
+    designation: "Founder, Rep Coin",
     testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
+      '"Partnering with SecureDApp has transformed our business. Their security solutions have minimized our vulnerabilities, safeguarding our data and earning our customers’ trust. The team’s expertise and proactive support have exceeded our expectations. Highly recommended!"',
   },
   {
     id: 3,
-    name: "Adlinda Paw",
-    designation: "Engineering Head 4",
+    name: "Mr. A Mohammed Eshan",
+    designation: "Founder, Blits Estate",
     testimonial:
-      '"Working with Bilqis has been a game-changer for our business.  Their strategic insights and innovative solutions helped us streamline  our operations and achieve remarkable growth"',
+      '"Working with SecureDApp has significantly strengthened our platform’s security. Their advanced solutions and prompt service gave us peace of mind, enabling us to focus on growth while they handled the complexities of safeguarding our data."',
   },
 ];

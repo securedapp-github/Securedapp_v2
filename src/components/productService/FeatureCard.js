@@ -1,14 +1,25 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./FeatureCard.css";
+import { useSelector } from "react-redux";
+import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 
 export const FeatureIcon = ({ icon, iconBackgroundColor }) => {
+  const { darkMode } = useSelector(getHomeSelector);
   return (
-    <div
-      className="feature-icon"
-      style={{ background: `${iconBackgroundColor}` }}
-    >
-      <FontAwesomeIcon icon={icon} />
-    </div>
+    icon && (
+      <div
+        className="feature-icon"
+        style={{ background: `${iconBackgroundColor}` }}
+      >
+        <img
+          style={{
+            filter: darkMode && "invert(1)",
+          }}
+          src={`/assets/images/icons/${icon}.svg`}
+          alt="icon"
+        ></img>
+      </div>
+    )
   );
 };
 

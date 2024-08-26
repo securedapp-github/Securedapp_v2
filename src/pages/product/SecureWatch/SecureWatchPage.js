@@ -14,6 +14,7 @@ import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import { faqsData, threats, features } from "./data";
 
 function SecureWatchPage() {
+  window.scrollTo(0, 0);
   return (
     <div className="product-container">
       <Navbar />
@@ -21,7 +22,8 @@ function SecureWatchPage() {
         <ProductServiceHero
           name="SECURE WATCH"
           title="Blockchain Threat Detection"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/sw/hero.png"}
+          onClick={() => window.open("https://securewatch.securedapp.io")}
         />
         <ProductCard
           header={"What is Secure Watch"}
@@ -29,7 +31,7 @@ function SecureWatchPage() {
             "SecureWatch is a cutting-edge post-deployment security monitoring and threat detection tool that leverages AI for real-time surveillance of your projects and smart contracts. It provides continuous protection by constantly monitoring on-chain transactions to identify security breaches, unauthorized access, and abnormal behavior. <br/><br/> Seamlessly integrating with your existing DevOps processes, it guarantees that security measures are consistently applied throughout development and operations.<br/><br/>Comply with needed regulations and have complete visibility and control of your Web3 environment, 24-7, safeguarding client assets and stopping illicit finance."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ProductPages/sw/1.png"}
         />
         <div className="features-section">
           <SectionTitle
@@ -40,9 +42,9 @@ function SecureWatchPage() {
             }
           />
           <FeatureCards featureData={threats} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <div className="features-section">
           <SectionTitle
@@ -53,9 +55,9 @@ function SecureWatchPage() {
             }
           />
           <FeatureCards featureData={features} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductWhyCard
           header={"Why Choose Secure Watch?"}
@@ -65,7 +67,7 @@ function SecureWatchPage() {
             "With Blockchain Threat Intelligence at its core, SecureWatch offers unmatched insights and threat detection capabilities, helping you stay ahead of emerging vulnerabilities and risks. By continuously tracking deviations from normal behavior, SecureWatch proactively identifies potential threats before they escalate.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/product-1-why.svg"}
+          image={"/assets/images/ProductPages/sw/2.png"}
           imageAlt={"Product 1 Why Image"}
         />
         {/* <div>

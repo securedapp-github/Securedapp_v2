@@ -16,6 +16,7 @@ import Benefits from "../sections/Benefits";
 import { platforms, faqsData, functions, benefits, industries } from "./data";
 
 function DappDevelopment() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />
@@ -23,7 +24,8 @@ function DappDevelopment() {
         <ProductServiceHero
           name="DAPP DEVELOPMENT"
           title="Empowering Developers with Secure, No-Code Blockchain Solutions"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ServicePages/s1-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is DApp Development"}
@@ -31,7 +33,7 @@ function DappDevelopment() {
             "DApp Development involves developing decentralized applications wherein the back-end code runs on a decentralized P2P network. The discipline in coding DApps is much higher compared to conventional app development, as smart contracts are immutable once deployed on the main network. These DApp applications utilize smart contracts to execute code autonomously and manage transactions without any central authority."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s1-1.png"}
         />
         <div className="features-section">
           <SectionTitle
@@ -42,23 +44,23 @@ function DappDevelopment() {
             }
           />
           <FeatureCards featureData={functions} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Benefits
           benefitsData={platforms}
           title={"DApp Development Blockchain Platform We Leverage"}
           subTitle={""}
           button={""}
-          img={"/assets/images/service-1-benefits.svg"}
+          img={"/assets/images/ServicePages/s1-2.png"}
         />
         <ProductCard
           header={"What SecureDapp has to offer"}
           description={`SecureDApp offers a comprehensive range of services designed specifically for developers building decentralized applications. Our no-code platform allows developers of all skill levels to get started easily, without the need for extensive coding experience. The security-based approach ensures that your DApps are built on a solid, transparent, and secure foundation.
-            < br /> <br />Our dedicated experts develop tailored Web 3.0-based DApp development solutions. With a focus on blockchain application development, we ensure your decentralized applications are secure, efficient, and transformative for your business.`}
+            <br /> <br />Our dedicated experts develop tailored Web 3.0-based DApp development solutions. With a focus on blockchain application development, we ensure your decentralized applications are secure, efficient, and transformative for your business.`}
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s1-3.png"}
         />
         <div className="service-why-choose">
           <SectionTitle
@@ -69,7 +71,7 @@ function DappDevelopment() {
             {benefits.map((data) => {
               return (
                 <WhyChooseCard
-                  image={data.image}
+                  icon={data.icon}
                   imageBackground={data.imageBackground}
                   title={data.header}
                   description={data.description}

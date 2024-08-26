@@ -14,6 +14,7 @@ import {
   setPlan,
 } from "../../redux/dashboard/paymentSlice";
 import { getUserData } from "../../redux/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const PricingPlanCard = ({
   icon,
@@ -31,7 +32,8 @@ const PricingPlanCard = ({
           border: auth.user.plan === id && "2px solid black",
           borderRadius: "10px",
         }}
-        className="sss-pricing-plan-card">
+        className="sss-pricing-plan-card"
+      >
         <div className="sss-pricing-card-header">
           <img src={icon} alt="" />
           <div className="sss-pricing-card-header-plan-type">{planType}</div>
@@ -65,6 +67,8 @@ const PricingPlanCard = ({
 const Pricing = () => {
   const [currentVisible, setCurrentVisible] = useState(1);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
+  const auth = useSelector(getUserData);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -90,13 +94,25 @@ const Pricing = () => {
   const dispatch = useDispatch();
 
   const openModal = (plan) => {
-    dispatch(setPaymentModal(true));
-    dispatch(setPlan(plan));
+    if (auth.user.email) {
+      dispatch(setPaymentModal(true));
+      dispatch(setPlan(plan));
+    } else {
+      navigate("/solidity-shield-scan/auth");
+    }
   };
 
   return (
     <div className="sss-pricing-container">
-      <div className="sss-pricing-plans-scrollable">
+      <div
+        style={{
+          width: "125%",
+          transform: "scale(0.8)",
+          transformOrigin: "top left",
+          overflowX: "hidden",
+        }}
+        className="sss-pricing-plans-scrollable"
+      >
         <div className="sss-pricing-plans">
           <div className="sss-pricing-plan-headers">
             <div className="sss-pricing-plan-headers-cards">
@@ -117,7 +133,8 @@ const Pricing = () => {
                       <div className="sss-pricing-card-changer-buttons">
                         <div
                           onClick={previousPricingCard}
-                          className="sss-pricing-card-changer-button-container">
+                          className="sss-pricing-card-changer-button-container"
+                        >
                           <FontAwesomeIcon
                             className="sss-pricing-card-changer-button"
                             icon={faChevronLeft}
@@ -125,7 +142,8 @@ const Pricing = () => {
                         </div>
                         <div
                           onClick={nextPricingCard}
-                          className="sss-pricing-card-changer-button-container">
+                          className="sss-pricing-card-changer-button-container"
+                        >
                           <FontAwesomeIcon
                             className="sss-pricing-card-changer-button"
                             icon={faChevronRight}
@@ -154,7 +172,8 @@ const Pricing = () => {
                               className={`sss-pricing-plan-detail-row-value ${
                                 planIndex === 0 &&
                                 "sss-pricing-plan-detail-row-value-first"
-                              }`}>
+                              }`}
+                            >
                               {detail.details[feature].value === "TICK" ? (
                                 <img
                                   src="/assets/images/solidity-shield-scan/billing-price-tick.svg"
@@ -203,6 +222,7 @@ const Pricing = () => {
               className={
                 "border border-tertiary px-12 py-2 rounded-xl active:bg-tertiary"
               }
+              onClick={() => navigate("/solidity-shield-scan/contact")}
             />
           </div>
         </div>

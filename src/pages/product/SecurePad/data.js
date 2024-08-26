@@ -41,28 +41,28 @@ export const benefits = [
     header: "Cost-Free Tokenization",
     description:
       "SecurePAD is a zero fee platform, making it an ideal choice for projects looking to conduct Initial DEX Offerings (IDOs). This cost-free approach significantly lowers the financial barrier, enabling more projects to enter the market and raise funds without the burden of high costs.",
-    icon: faEnvelope,
+    icon: "two-circles",
     iconBackgroundColor: "",
   },
   {
     header: "Enhanced Security",
     description:
       "SecurePAD places a strong emphasis on security. The platform integrates KYC (Know Your Customer) verification to ensure that all participants are properly vetted, and conducts comprehensive smart contract audits to identify and address potential vulnerabilities.",
-    icon: faEnvelope,
+    icon: "shield",
     iconBackgroundColor: "",
   },
   {
     header: "No-Code Platform",
     description:
       "SecurePAD simplifies the process of launching Initial DEX Offerings (IDOs), enabling users to concentrate on their project’s vision rather than dealing with blockchain complexities.",
-    icon: faEnvelope,
+    icon: "code",
     iconBackgroundColor: "",
   },
   {
     header: "Cross-Chain Functionality",
     description:
       "SecurePAD enhances versatility by allowing projects to deploy tokens across multiple blockchains, broadening their reach and integration capabilities.",
-    icon: faEnvelope,
+    icon: "user-desktop-setting",
     iconBackgroundColor: "",
   },
 ];

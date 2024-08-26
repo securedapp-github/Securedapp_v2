@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faSun } from "@fortawesome/free-solid-svg-icons";
 import Button from "../common/Button";
@@ -22,15 +23,23 @@ const navigationItems = [
     items: [
       {
         name: "Solidity Shield Scan",
-        to: "",
+        to: "/solidity-shield",
       },
       {
         name: "Secure Watch",
+        to: "/secure-watch",
+      },
+      {
+        name: "Audit Express",
         to: "",
       },
       {
-        name: "Secure Audit",
-        to: "",
+        name: "Secure Trace",
+        to: "/secure-trace",
+      },
+      {
+        name: "Secure Pad",
+        to: "/secure-pad",
       },
     ],
   },
@@ -38,24 +47,20 @@ const navigationItems = [
     title: "Services",
     items: [
       {
-        name: "DApp Development",
-        to: "",
+        name: "Audit",
+        to: "/smart-contract-audit",
       },
       {
-        name: "Smart contract Audit",
-        to: "",
+        name: "Security",
+        to: "/web3-security",
       },
       {
-        name: "Web3 Security",
-        to: "",
+        name: "Regulatory Solutions",
+        to: "/crypto-compliance-aml",
       },
       {
-        name: "Web3 KYC",
-        to: "",
-      },
-      {
-        name: "NFT Development",
-        to: "",
+        name: "Training & Education",
+        to: "/levelup-academy",
       },
     ],
   },
@@ -67,15 +72,11 @@ const navigationItems = [
         to: "/about",
       },
       {
-        name: "Team",
-        to: "/about",
+        name: "Media",
+        to: "/media",
       },
       {
-        name: "Community",
-        to: "https://linktr.ee/securedapp",
-      },
-      {
-        name: "Careers",
+        name: "Career",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/careers",
       },
       {
@@ -92,12 +93,12 @@ const navigationItems = [
         to: "/blog",
       },
       {
-        name: "Docs",
-        to: "https://securedapp.gitbook.io/securedapp-launchpad",
-      },
-      {
         name: "Github",
         to: "https://github.com/securedapp-github",
+      },
+      {
+        name: "Referral",
+        to: "",
       },
       {
         name: "Workplace Policy",
@@ -114,6 +115,14 @@ const navigationItems = [
       {
         name: "Cancellation & Refunds",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/cancellation-and-refund-policy",
+      },
+      {
+        name: "Whitepaper",
+        to: "https://securedapp.gitbook.io/securedapp-launchpad",
+      },
+      {
+        name: "Research Reports",
+        to: "",
       },
     ],
   },
@@ -138,87 +147,128 @@ const socials = [
   },
 ];
 
-function Subscribe() {}
-
-const Footer = () => (
-  <div className="footer">
-    <div className="footer-newsletter">
-      <div className="footer-newsletter-left">
-        <div className="text-lg font-bold">Join our newsletter</div>
-        <div className="font-light">Keep upto date evrything SecureDapp</div>
-      </div>
-      <div className="footer-newsletter-right">
-        <input
-          className="email-input-box"
-          placeholder="Enter your email"
-          type="email"
-        />
-        <Button text={"Subscribe"} filled={true} onClick={Subscribe} />
-      </div>
-    </div>
-    <CustomHr />
-    <div className="footer-about">
-      <div className="footer-about-left">
-        <div className="footer-logo">
-          <Logo isLeft={true} />
+const Footer = () => {
+  const [email, setEmail] = useState("");
+  function subscribe() {
+    if (email.length === 0) {
+      toast("Please enter your email");
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      toast.error("Invalid Email");
+    } else {
+      try {
+        fetch("https://139-59-5-56.nip.io:3443/addSecurewatchUser", {
+          method: "POST",
+          body: JSON.stringify({
+            mail: email,
+          }),
+        })
+          .then((res) => {
+            if (res.status) {
+              toast.success("Succesfully Subscribed!");
+              setEmail("");
+            } else {
+              toast.error("Unexpected error! Try again.");
+            }
+          })
+          .catch((err) => {
+            toast.error("Unexpected error! Try again.");
+          });
+      } catch (error) {
+        console.log(error);
+        toast.error("Unexpected error! Try again.");
+      }
+    }
+  }
+  return (
+    <div className="footer">
+      <div className="footer-newsletter">
+        <div className="footer-newsletter-left">
+          <div className="text-lg font-bold">Join our newsletter</div>
+          <div className="font-light">Keep upto date evrything SecureDapp</div>
         </div>
-        <div className="footer-socials">
-          {socials.map((social) => {
-            return <Link to={social.to}>{social.icon}</Link>;
+        <div className="footer-newsletter-right">
+          <input
+            className="email-input-box"
+            placeholder="Enter your email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Button
+            text={"Subscribe"}
+            filled={true}
+            onClick={() => subscribe()}
+          />
+        </div>
+      </div>
+      <CustomHr />
+      <div className="footer-about">
+        <div className="footer-about-left">
+          <div className="footer-logo">
+            <Logo isLeft={true} />
+          </div>
+          <div className="footer-socials">
+            {socials.map((social) => {
+              return (
+                <div onClick={() => window.open(social.to)}>{social.icon}</div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="footer-about-right">
+          {navigationItems.map((navigationItem, navigationIndex) => {
+            return (
+              <div className="footer-navigation-item">
+                <div className="footer-navigation-item-title">
+                  {navigationItem.title}
+                </div>
+                <div className="footer-navigation-item-items">
+                  {navigationItem.items.map((item, index) => {
+                    return (
+                      <div className="footer-navigation-item-item">
+                        {item.to.startsWith("/") ? (
+                          <Link to={item.to}>{item.name}</Link>
+                        ) : (
+                          <Link to={item.to} target="_blank">
+                            {item.name}
+                          </Link>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
           })}
         </div>
       </div>
-      <div className="footer-about-right">
-        {navigationItems.map((navigationItem, navigationIndex) => {
-          return (
-            <div className="footer-navigation-item">
-              <div className="footer-navigation-item-title">
-                {navigationItem.title}
-              </div>
-              <div className="footer-navigation-item-items">
-                {navigationItem.items.map((item, index) => {
-                  return (
-                    <div className="footer-navigation-item-item">
-                      {item.to.startsWith("/") ? (
-                        <Link to={item.to}>{item.name}</Link>
-                      ) : (
-                        <Link to={item.to} target="_blank">
-                          {item.name}
-                        </Link>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+      <CustomHr />
+      <div className="footer-legacy">
+        <div className="footer-legacy-left">
+          <a
+            target="_blank"
+            href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
+            rel="noreferrer"
+          >
+            Privacy Policy{" "}
+          </a>
+          <FontAwesomeIcon size="2xs" icon={faCircle} />
+          <a
+            target="_blank"
+            href="https://securedapp.gitbook.io/securedapp-launchpad/terms-and-conditions"
+            rel="noreferrer"
+          >
+            Terms & Conditions
+          </a>
+        </div>
+        <div className="footer-legacy-right">
+          <div>
+            © 2024, Vettedcode Technologies India Pvt. Ltd.. All rights reserved
+          </div>
+        </div>
       </div>
     </div>
-    <CustomHr />
-    <div className="footer-legacy">
-      <div className="footer-legacy-left">
-        <a
-          target="_blank"
-          href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-          rel="noreferrer"
-        >
-          Privacy Policy{" "}
-        </a>
-        <FontAwesomeIcon size="2xs" icon={faCircle} />
-        <a
-          target="_blank"
-          href="https://securedapp.gitbook.io/securedapp-launchpad/terms-and-conditions"
-          rel="noreferrer"
-        >
-          Terms & Conditions
-        </a>
-      </div>
-      <div className="footer-legacy-right">
-        <div>© 2024, Secure Dapp. All rights reserved</div>
-      </div>
-    </div>
-  </div>
-);
+  );
+};
 
 export default Footer;

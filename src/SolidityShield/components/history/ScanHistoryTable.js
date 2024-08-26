@@ -19,7 +19,8 @@ const StatusTypeComponent = ({ status }) => {
           : status === "Failed"
           ? "sss-history-status-type-component-container-red"
           : "sss-history-status-type-component-container-yellow"
-      }`}>
+      }`}
+    >
       <div className="sss-history-status-type-component">
         <FontAwesomeIcon
           icon={
@@ -60,11 +61,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
       <div className="sss-history-table-scrollable">
         <div className="sss-history-table">
           <div className="sss-history-table-header">
-            <div className="sss-history-table-checkbox-container">
+            {/* <div className="sss-history-table-checkbox-container">
               <div className="sss-history-table-checkbox-header sss-history-table-header-item">
                 <input type="checkbox" />
               </div>
-            </div>
+            </div> */}
             <div className="sss-history-table-report-id-container">
               <div className="sss-history-table-header-report-id sss-history-table-header-item">
                 REPORT ID
@@ -94,11 +95,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
               return (
                 (data.status !== statusFilter || statusFilter === "All") && (
                   <div className="sss-history-table-row">
-                    <div className="sss-history-table-checkbox-container">
+                    {/* <div className="sss-history-table-checkbox-container">
                       <div className="sss-history-table-checkbox">
                         <input type="checkbox" />
                       </div>
-                    </div>
+                    </div> */}
                     <div className="sss-history-table-report-id-container">
                       <div className="sss-history-table-report-id">
                         {data.id}
@@ -124,7 +125,8 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     <div
                       onMouseEnter={() => setHoveredRowIndex(index)}
                       onMouseLeave={() => setHoveredRowIndex(null)}
-                      className="sss-history-table-options-container">
+                      className="sss-history-table-options-container"
+                    >
                       <div className="sss-history-table-options">
                         <img
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
@@ -136,32 +138,25 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           className={`sss-history-table-options-dropdown ${
                             hoveredRowIndex === paginatedData.length - 1 &&
                             "bottom-0"
-                          }`}>
-                          <div
-                            onClick={() =>
-                              auth.user.plan > 0
-                                ? window.open(
-                                    `/solidity-shield-scan/report/${data.id}`
-                                  )
-                                : toast("Upgrade your plan to view the report")
-                            }
-                            className="sss-history-table-options-dropdown-item">
-                            View
+                          }`}
+                        >
+                          <div className="sss-history-table-options-dropdown-item">
+                            <Link
+                              to={"/solidity-shield-scan/report/" + data.id}
+                            >
+                              View
+                            </Link>
                           </div>
                           <div
                             onClick={() => {
-                              setDownload(data.id);
-                              auth.user.plan > 0
-                                ? downloadfReportPdf(data.id)
-                                : toast(
-                                    "Upgrade your plan to download the report"
-                                  );
+                              downloadfReportPdf(data.id, auth.user);
                             }}
-                            className="sss-history-table-options-dropdown-item">
+                            className="sss-history-table-options-dropdown-item"
+                          >
                             Download
                           </div>
                           {/* scan report start */}
-                          <div
+                          {/* <div
                             style={{
                               textAlign: "left",
                               opacity: "0",
@@ -171,9 +166,10 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                               width: "auto",
                               height: "auto",
                               overflow: "hidden",
-                            }}>
+                            }}
+                          >
                             <ScanReport downloadId={data.id} />
-                          </div>
+                          </div> */}
                           {/* scan report end */}
                         </div>
                       )}

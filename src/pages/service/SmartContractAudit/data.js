@@ -43,11 +43,8 @@ export const projectIndustries = [
                   <br/> • Tokenization Projects
                   <br/> • Supply Chain Projects
                   <br/> • Governance and DAO Projects`,
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "flower",
   },
   {
     header: "Industries We Serve",
@@ -57,11 +54,8 @@ export const projectIndustries = [
                   <br/> • Government and Public Sector
                   <br/> • Supply Chain and Logistics
                   <br/> • Finance`,
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "feathers",
   },
 ];
 
@@ -70,41 +64,21 @@ export const facts = [
     description:
       "Total losses in the Web3 ecosystem were $889.26 million in 2023. There were 9 incidents of private key compromise this quarter, leading to losses totaling $223 million, the highest among attack types.",
     header: "",
-    icon: "",
-    iconBackgroundColor: "",
-    imageBackground: "",
-    image: "",
-    imageAlt: "",
   },
   {
     description:
       "DeFi continues to be the most targeted sector, with 29 attacks making up 67.4% of all incidents.",
     header: "",
-    icon: "",
-    iconBackgroundColor: "",
-    imageBackground: "",
-    image: "",
-    imageAlt: "",
   },
   {
     description:
       "Payment platforms experienced the third highest losses, with two security incidents resulting in a combined $97.3 million loss.",
     header: "",
-    icon: "",
-    iconBackgroundColor: "",
-    imageBackground: "",
-    image: "",
-    imageAlt: "",
   },
   {
     description:
       "The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively.",
     header: "",
-    icon: "",
-    iconBackgroundColor: "",
-    imageBackground: "",
-    image: "",
-    imageAlt: "",
   },
 ];
 
@@ -112,55 +86,26 @@ export const platforms = [
   {
     header: "Ethereum Smart Contract Audit",
     description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "ethereum",
   },
   {
     header: "Polygon Smart Contract Audit",
     description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "polygon",
   },
   {
     header: "Solana Smart Contract Audit",
     description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "solana",
   },
   {
     header: "Avalanche Smart Contract Audit",
     description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "avalanche",
   },
   {
     header: "Binance Smart Chain (BSC) Smart Contract Audit",
     description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
-  },
-  {
-    header: "Other Blockchain Networks",
-    description: "",
-    icon: faEnvelope,
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    image: "binance",
   },
 ];

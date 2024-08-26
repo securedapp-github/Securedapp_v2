@@ -10,6 +10,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 
 function Blog() {
+  window.scrollTo(0, 0);
   const [blogs, setBlogs] = useState([]);
   const [originalBlogs, setOriginalBlogs] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -20,12 +21,14 @@ function Blog() {
     let data = await response.json();
     data = data.filter((item) => item.status === 1);
     setOriginalBlogs(data);
-    setBlogs(data.sort((a, b) => a.id - b.id));
+    setBlogs(
+      data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
+    );
+    console.log(blogs);
   }
 
   useEffect(() => {
     getBlogs();
-    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -80,10 +83,7 @@ function Blog() {
     <div className="blog-container">
       <Navbar />
       <div className="blog">
-        <SectionTitle
-          title="News & Articles"
-          description="#1 Blog on theme marketing by Bodrum"
-        />
+        <SectionTitle title="Blog" description="Read the fastest Web3 blog" />
         <div className="blog-search">
           <div className="blog-search-input">
             <input
@@ -110,9 +110,16 @@ function Blog() {
           </div>
         </div>
         <div className="blog-cards">
-          {currentItems.map((item) => (
-            <BlogCard key={item.id} details={item} />
-          ))}
+          {currentItems.length > 0 ? (
+            currentItems.map((item) => (
+              <BlogCard key={item.id} details={item} />
+            ))
+          ) : (
+            <div style={{ width: "100%", height: "300px" }}>
+              <br />
+              <p style={{ margin: "auto" }}>No Results Found</p>
+            </div>
+          )}
         </div>
         <div className="blog-pagination">
           {Array.from({ length: totalPages }, (_, i) => (

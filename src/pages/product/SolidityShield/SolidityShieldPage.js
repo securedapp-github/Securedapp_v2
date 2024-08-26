@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
 import ProductServiceHero from "../../../components/common/ProductServiceHero";
@@ -19,7 +20,19 @@ import {
   benefits,
 } from "./data";
 
+function changeSvgFill(color) {
+  const svgElements = document.querySelectorAll("svg");
+  svgElements.forEach((svg) => {
+    const paths = svg.querySelectorAll("path, circle, rect, polygon, ellipse");
+
+    paths.forEach((path) => {
+      path.setAttribute("fill", color);
+    });
+  });
+}
+
 function SolidityShieldPage() {
+  window.scrollTo(0, 0);
   return (
     <div className="product-container">
       <Navbar />
@@ -27,7 +40,8 @@ function SolidityShieldPage() {
         <ProductServiceHero
           name="SOLIDITY SHIELD"
           title="Smart Contract Security Audit Solution"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ProductPages/ss/hero.jpg"}
+          onClick={() => window.open("/solidity-shield-scan")}
         />
         <ProductCard
           header={"What is a Smart Contract?"}
@@ -46,9 +60,9 @@ function SolidityShieldPage() {
         <div className="features-section">
           <SectionTitle name={"Features"} title={"Shield Features"} />
           <FeatureCards featureData={features} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <ProductWhyCard
           header={"What is Solidity Shield?"}
@@ -94,9 +108,9 @@ function SolidityShieldPage() {
             }
           />
           <FeatureCards featureData={benefits} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <div className="features-section">
           <SectionTitle
@@ -107,9 +121,9 @@ function SolidityShieldPage() {
             }
           />
           <FeatureCards featureData={methodology} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Testimonials reviews={reviews} />
         <div>

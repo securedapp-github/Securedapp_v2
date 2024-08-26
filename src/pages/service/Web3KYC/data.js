@@ -36,38 +36,26 @@ export const benefits = [
   {
     header: "Eliminating Third-party Interruptions",
     description: `Decentralized KYC service transforms Web3 identity verification by eliminating third-party intermediaries, leading to cost-effective processes.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "flower",
   },
   {
     header: "Decentralized KYC",
     description: `By leveraging a distributed ledger for storing credentials, decentralized KYC ensures that user identities are verified accurately and reliably, eliminating repeated checks and maintaining consistency across platforms.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "box",
   },
   {
     header: "Enhance Regulatory Compliance",
     description: `Blockchain KYC solutions enhance regulatory compliance by providing transparent and immutable records, making it simpler for businesses to adhere to AML and other regulatory requirements.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "pentagon-1",
   },
   {
     header: "Great User Control",
     description: `Decentralized KYC solutions empower users by giving them control over their personal data. Users can decide who has access to their information, enhancing transparency and trust.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
+    icon: "iii",
+    image: "feathers",
   },
 ];
 
@@ -78,11 +66,6 @@ export const services = [
                   <br/> • Mitigates the risk of fraudulent activities and illegal transactions by thoroughly vetting participants.
                   <br/> • Provides a robust layer of security, protecting against the misuse of decentralized platforms.
                   <br/> • Builds confidence among users and stakeholders through transparent and secure identity verification processes.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Blockchain Identity Verification for NFT Marketplaces",
@@ -90,11 +73,6 @@ export const services = [
                   <br/> • Identity checking makes it possible for an NFT platform to ensure conformance to regulations, hence providing the legal grounds for a transparent marketplace.
                   <br/> • With blockchain verification of digital identity, NFT marketplaces improve security and confidence between the seller and the purchaser against a number of malicious activities.
                   <br/> • Blockchain verification minimizes the chances of fraudulent transactions and fake identities, hence safeguarding the sanctity of the NFT ecosystem.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Web3 Anti-money Laundering Solutions",
@@ -102,11 +80,6 @@ export const services = [
                   <br/> • AML KYC services in Web 3.0 are for customer identity verification and to satisfy the norms of regulatory requirements in a decentralized, secure, and transparent process.
                   <br/> • Effective measures against money laundering help detect and prevent related criminal activities, thus safeguarding the entire financial system.
                   <br/> • Cryptocurrency AML compliance is important if cryptocurrency exchanges and businesses are to meet legal requirements and prevent huge legal penalties and penalties for themselves.`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
   {
     header: "Web 3.0 KYC Applications",
@@ -118,10 +91,5 @@ export const services = [
                   <br/> • Real Estate
                   <br/> • Supply Chain and Logistics
                   <br/> • Government and Public Sector`,
-    icon: "",
-    iconBackgroundColor: "#F4CAE8",
-    imageBackground: "#FFBD3E",
-    image: "/assets/images/product-1-how-it-works-1.svg",
-    imageAlt: "",
   },
 ];

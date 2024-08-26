@@ -12,32 +12,46 @@ function BlogCard({ details }) {
   var dateObj = dateObj.toLocaleDateString("en-US", dateOptions);
 
   var preview;
-  preview = details.content.replaceAll("[", " ");
-  preview = preview.replaceAll("]", " ");
-  preview = preview.replaceAll("/n", " ");
-  preview = preview.replaceAll("\n", " ");
-  preview = preview.replaceAll("/", " ");
-  preview = preview.replaceAll("*", " ");
-  preview = preview.slice(0, 250);
-  preview = preview + "...";
+  if (details.content) {
+    preview = details.content.replaceAll("[", " ");
+    preview = preview.replaceAll("]", " ");
+    preview = preview.replaceAll("/n", " ");
+    preview = preview.replaceAll("\n", " ");
+    preview = preview.replaceAll("/", " ");
+    preview = preview.replaceAll("*", " ");
+    preview = preview.slice(0, 250);
+    preview = preview + "...";
+  } else if (details.description) {
+    preview = details.description;
+  }
 
   return (
     <div
       className="blog-card"
       onClick={() => {
-        navigate(`/blog/${details.url}`);
-      }}>
+        details.url
+          ? navigate(`/blog/${details.url}`)
+          : window.open(details.link, "_blank");
+      }}
+    >
       <div className="blog-card-header">
-        <div className="blog-card-header-date">{dateObj}</div>
+        {details.modifiedon ? (
+          <div className="blog-card-header-date">{dateObj}</div>
+        ) : details.date ? (
+          <div className="blog-card-header-date">{details.date}</div>
+        ) : (
+          ""
+        )}
         <div className="blog-card-header-image-container">
           <img className="blog-card-header-image" src={details.image} alt="" />
         </div>
       </div>
       <div className="blog-card-body">
         <div className="blog-card-body-tags">
-          {details.tags.split(",").map((tag) => {
-            return <BlogTag tag={tag} onClick={() => {}} />;
-          })}
+          {details.tags &&
+            details.tags.split(",").map((tag) => {
+              return <BlogTag tag={tag} onClick={() => {}} />;
+            })}
         </div>
         <div className="blog-card-body-header">{details.heading}</div>
         <div className="blog-card-body-preview">{preview}</div>

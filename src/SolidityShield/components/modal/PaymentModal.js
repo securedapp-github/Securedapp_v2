@@ -33,7 +33,7 @@ const PaymentModal = () => {
   return (
     paymentModal && (
       <div className="sss-payment-modal-container">
-        <div className="sss-payment-modal">
+        <div style={{ minWidth: "50vw" }} className="sss-payment-modal">
           <div className="sss-payment-modal-header">
             <div className="sss-payment-modal-header-title">Payment</div>
             <div className="sss-payment-modal-close-container">
@@ -55,7 +55,7 @@ const PaymentModal = () => {
                   </div>
                   <div className="sss-payment-modal-body-method-button">
                     <CustomButton
-                      text={"Pay Now"}
+                      text={"Pay via PhonPe"}
                       className={
                         "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3 active:bg-white"
                       }
@@ -66,6 +66,10 @@ const PaymentModal = () => {
                         });
                       }}
                     />
+                    <br />
+                    <p style={{ textAlign: "center" }}>
+                      (UPI, Card & Net Banking)
+                    </p>
                   </div>
                 </div>
                 <div className="sss-payment-modal-body-method">
@@ -86,37 +90,54 @@ const PaymentModal = () => {
                         setWeb3PayDetails(pay);
                         pay && nextPhase();
                       }}
-                      text={"Pay Now"}
+                      text={"Pay via USDT"}
                       className={
                         "w-[200px] bg-tertiary border rounded-xl border-tertiary py-3 active:bg-white"
                       }
                     />
+                    <br />
+                    <p style={{ textAlign: "center" }}>(USDT Polygon)</p>
                   </div>
                 </div>
               </div>
             )}
-            {phase === 2 && web3PayDetails && (
+            {phase === 2 && web3PayDetails.network && (
               <div className="sss-payment-modal-body-crypto-container">
-                <div className="sss-payment-modal-body-crypto-qr">
+                <div
+                  style={{ transform: "scale(0.7)", margin: "0 auto" }}
+                  className="sss-payment-modal-body-crypto-qr"
+                >
                   {web3PayDetails && (
                     <QRCode value={web3PayDetails.pay_address} />
                   )}
                 </div>
                 <div className="sss-payment-modal-body-cyrpto-details">
-                  <div className="">{`Chain : ${web3PayDetails.network.toUpperCase()}`}</div>
-                  <div className="">
-                    {`Address : ${web3PayDetails.pay_address}   `}
+                  <div
+                    style={{ fontSize: "17px" }}
+                    className=""
+                  >{`Chain : ${web3PayDetails.network.toUpperCase()}`}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      fontSize: "17px",
+                    }}
+                    className=""
+                  >
+                    {`To : ${web3PayDetails.pay_address}`}
                     <div
+                      style={{ marginLeft: "10px" }}
                       onClick={() => {
                         navigator.clipboard.writeText(
                           web3PayDetails.pay_address
                         );
                         toast("Wallet Address copied to clipboard");
-                      }}>
+                      }}
+                    >
                       <FontAwesomeIcon icon={faCopy} />
                     </div>
                   </div>
-                  <div className="">{`${
+                  <div style={{ fontSize: "17px" }} className="">{`Amount : ${
                     web3PayDetails.pay_amount
                   } ${web3PayDetails.pay_currency.toUpperCase()} `}</div>
                 </div>
@@ -140,7 +161,7 @@ const PaymentModal = () => {
                         payCryptoVerify({
                           id: web3PayDetails.payment_id,
                           transactionId: web3PayDetails.newTransactionId,
-                          amount: web3PayDetails.pay_amount,
+                          amount: web3PayDetails.payAmount,
                         });
                       }}
                     />

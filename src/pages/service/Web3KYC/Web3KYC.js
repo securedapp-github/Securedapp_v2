@@ -15,6 +15,7 @@ import Benefits from "../sections/Benefits";
 import { services, benefits, faqsData } from "./data";
 
 function Web3KYC() {
+  window.scrollTo(0, 0);
   return (
     <div className="service-container">
       <Navbar />
@@ -22,7 +23,8 @@ function Web3KYC() {
         <ProductServiceHero
           name="WEB 3.0 KYC"
           title="Advance Blockchain Identity Verification for Modern Compliance"
-          image={"/assets/images/product-hero.svg"}
+          image={"/assets/images/ServicePages/s5-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is Web 3.0 KYC ?"}
@@ -30,7 +32,7 @@ function Web3KYC() {
             "Web3 KYC (Know Your Customer) is an advanced blockchain identity verification tool designed specifically for the decentralized Web3 ecosystem. <br/><br/>This service enables businesses to authenticate user identities, ensuring compliance with regulatory standards and mitigating risks associated with anonymous transactions in decentralized finance (DeFi) applications, NFT marketplaces, and cryptocurrency exchanges."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/product-1-intro.svg"}
+          image={"/assets/images/ServicePages/s5-1.png"}
         />
         <div>
           <SectionTitle
@@ -59,9 +61,9 @@ function Web3KYC() {
             title={"Deep Dive into our Services"}
           />
           <FeatureCards featureData={services} />
-          <div className="features-section-button">
+          {/* <div className="features-section-button">
             <Button text={"Learn more"} filled={true} />
-          </div>
+          </div> */}
         </div>
         <Testimonials reviews={reviews} />
         <div>
