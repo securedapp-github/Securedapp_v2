@@ -16,6 +16,11 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
   const [detail, setDetail] = useState(0);
   const [topic, setTopic] = useState(0);
 
+  const toggleDetail = (index) => {
+    if (index === detail) setDetail(-1);
+    else setDetail(index);
+  };
+
   let sliderRef = useRef(null);
 
   function moveLeft() {
@@ -154,7 +159,7 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
           return (
             <Faq
               isActive={detail === index}
-              onClick={() => setDetail(index)}
+              onClick={() => toggleDetail(index)}
               question={faq.q}
               answer={faq.a}
             />
