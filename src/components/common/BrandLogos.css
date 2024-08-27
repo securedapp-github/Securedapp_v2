@@ -1,6 +1,6 @@
 .brand-logos {
   background-color: #ffffff05;
-  @apply w-full;
+  @apply w-full md:px-12;
 }
 
 .brand-logos {
