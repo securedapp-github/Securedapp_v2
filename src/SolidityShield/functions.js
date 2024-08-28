@@ -186,10 +186,10 @@ export const scanSubmit = async ({
   let compilerVersion;
   const formData = new FormData();
 
-  // if (user.remainingCredits < 1) {
-  //   toast.error("No Credit, Please Purchase a Plan to scan");
-  //   return;
-  // }
+  if (user.remainingCredits < 1) {
+    toast.error("No Credit, Please Purchase a Plan to scan");
+    return;
+  }
 
   // Validation
   if (!inputTypes) {
