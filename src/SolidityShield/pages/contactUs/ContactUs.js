@@ -21,8 +21,18 @@ const ContactUs = () => {
   const [message, setMessage] = useState("");
 
   const sendMail = async () => {
-    if (name.length === 0 || email.length === 0 || number.length === 0) {
+    if (
+      name.length === 0 ||
+      email.length === 0 ||
+      number.length === 0 ||
+      message.length < 3
+    ) {
       toast.error("Please fill in the details");
+      return;
+    } else if (
+      document.getElementById("contactus-check-privacy").checked === false
+    ) {
+      toast("Please accept our privacy policy to continue");
       return;
     }
     fetch("https://139-59-5-56.nip.io:3443/contactMail", {
@@ -31,7 +41,7 @@ const ContactUs = () => {
         name: name,
         mail: email,
         number: number,
-        msg: message,
+        msg: `Solidity Shield - ${message}`,
       }),
       headers: {
         "Content-type": "application/json",
@@ -109,10 +119,15 @@ const ContactUs = () => {
             />
           </div>
           <div className="contact-us-body-privacy">
-            <input type="checkbox" />
+            <input id="contactus-check-privacy" type="checkbox" />
             <div className="contact-us-body-privacy-message">
               You agree to our friendly
-              <Link className="contact-us-body-privacy-link">
+              <Link
+                to={
+                  "https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
+                }
+                className="contact-us-body-privacy-link"
+              >
                 privacy policy
               </Link>
             </div>

@@ -78,7 +78,7 @@ function SmartContractAudit() {
             name={"Industries"}
             title="The ratio of audited to non-audited projects was nearly even, at 48.8% and 46.5%, respectively. "
             description={
-              "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban"
+              "At SecureDApp, we pride ourselves on delivering top-notch smart contract audit services at competitive prices. With years of experience in the industry, we are dedicated to ensuring the reliability and security of your smart contracts without breaking the ban."
             }
           />
           <div className="how-it-works-section">

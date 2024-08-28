@@ -41,7 +41,7 @@ export const navItems = [
     label: "Resources",
   },
   {
-    to: "/solidity-shield-scan/pricing",
+    to: "",
     items: [],
     label: "Pricing",
   },

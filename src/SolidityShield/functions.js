@@ -492,7 +492,7 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
     })
     .then((data) => {
       // console.log(data);
-      dispatch(setScanHistory(data));
+      dispatch(setScanHistory(data.sort((a, b) => b.id - a.id)));
       // toast("setScanHitsory");
       return data;
     })
@@ -612,9 +612,11 @@ export const downloadReport = async (id, user) => {
     })
     .then((data) => {
       console.log(data);
-      if (user.plan == 0) {
+      if (user.remainingCredits === 0) {
         console.log("Upgrade your plan to download the report");
-        toast("Upgrade your plan to download the report");
+        toast(
+          "No credits left in your account! Plesae purchase a paid plan to download the report."
+        );
         return;
       }
       console.log(JSON.parse(data[0].reportdata));

@@ -62,7 +62,7 @@ const Features = () => {
   return (
     <div className="features features-background">
       <SectionTitle
-        name="Why ScureDApp"
+        name="Why SecureDApp"
         title="Trust SecureDApp for Your Blockchain Security Journey"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />

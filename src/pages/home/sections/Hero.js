@@ -8,17 +8,17 @@ import "swiper/swiper-bundle.css";
 
 const images = [
   {
-    src: "/assets/images/ProductPages/ss/hero.jpg",
+    src: "/assets/images/ProductPages/ss/hero.webp",
     alt: "Solidity Shield",
     to: "/solidity-shield",
   },
   {
-    src: "/assets/images/ProductPages/sw/hero.png",
+    src: "/assets/images/ProductPages/sw/hero.webp",
     alt: "Secure Watch",
     to: "/secure-watch",
   },
   {
-    src: "/assets/images/ProductPages/st/st-hero.png",
+    src: "/assets/images/ProductPages/st/st-hero.webp",
     alt: "Secure Trace",
     to: "/secure-trace",
   },

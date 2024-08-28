@@ -22,7 +22,7 @@ function BlockchainForensic() {
       <div className="service">
         <ProductServiceHero
           name="BLOCKCHAIN FORENSIC"
-          title="Tracing & Investigation cryptocurrency Transactions"
+          title="Tracing & Investigation Cryptocurrency Transactions"
           image={"/assets/images/ServicePages/s7-hero.png"}
           service={true}
         />

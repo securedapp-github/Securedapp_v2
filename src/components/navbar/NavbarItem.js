@@ -17,10 +17,18 @@ const NavbarItem = ({
     <div
       className="navbar-item"
       onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}>
+      onMouseOut={handleMouseLeave}
+    >
       <Link to={to}>
         <div className="navbar-item-primary">
-          <p>{children}</p>
+          <p
+            onClick={() =>
+              children === "Pricing" &&
+              window.open("/solidity-shield-scan/pricing")
+            }
+          >
+            {children}
+          </p>
           {items.length > 0 && (
             <FontAwesomeIcon
               icon={faChevronDown}

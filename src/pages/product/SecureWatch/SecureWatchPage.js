@@ -22,7 +22,7 @@ function SecureWatchPage() {
         <ProductServiceHero
           name="SECURE WATCH"
           title="Blockchain Threat Detection"
-          image={"/assets/images/ProductPages/sw/hero.png"}
+          image={"/assets/images/ProductPages/sw/hero.webp"}
           onClick={() => window.open("https://securewatch.securedapp.io")}
         />
         <ProductCard

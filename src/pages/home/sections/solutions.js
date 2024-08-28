@@ -12,7 +12,7 @@ const solutions = [
       "Enhanced developer workflow",
     ],
     to: "/solidity-shield",
-    image: "/assets/images/ProductPages/ss/hero.jpg",
+    image: "/assets/images/ProductPages/ss/hero.webp",
   },
   {
     title: "Secure Watch",
@@ -22,7 +22,7 @@ const solutions = [
       "Customizable security measures",
     ],
     to: "/secure-watch",
-    image: "/assets/images/ProductPages/sw/hero.png",
+    image: "/assets/images/ProductPages/sw/hero.webp",
   },
   {
     title: "Secure Trace",
@@ -32,7 +32,7 @@ const solutions = [
       "Supports regulatory compliance",
     ],
     to: "/secure-trace",
-    image: "/assets/images/ProductPages/st/st-hero.png",
+    image: "/assets/images/ProductPages/st/st-hero.webp",
   },
   {
     title: "SecurePad",
@@ -80,11 +80,7 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
 
 const Solutions = () => (
   <div className="solutions">
-    <SectionTitle
-      name="Our Solutions"
-      title="Explore Our Security Solutions"
-      description="Briefly explain your core offerings (Solidity Shield, SecureWatch) using clear and concise language."
-    />
+    <SectionTitle name="Our Solutions" title="Explore Our Security Solutions" />
     <div className="solution-cards">
       {solutions.map((solution, index) => {
         return (

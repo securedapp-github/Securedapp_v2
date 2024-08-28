@@ -130,7 +130,7 @@ const navigationItems = [
 
 const socials = [
   {
-    to: "https://discord.com/invite/jQcd5WwhNy",
+    to: "https://discord.gg/BweY4Ze4",
     icon: <FontAwesomeIcon size="xl" icon={faDiscord} />,
   },
   {
@@ -184,7 +184,7 @@ const Footer = () => {
       <div className="footer-newsletter">
         <div className="footer-newsletter-left">
           <div className="text-lg font-bold">Join our newsletter</div>
-          <div className="font-light">Keep upto date evrything SecureDapp</div>
+          <div className="font-light">Keep upto date everything SecureDapp</div>
         </div>
         <div className="footer-newsletter-right">
           <input
@@ -226,13 +226,7 @@ const Footer = () => {
                   {navigationItem.items.map((item, index) => {
                     return (
                       <div className="footer-navigation-item-item">
-                        {item.to.startsWith("/") ? (
-                          <Link to={item.to}>{item.name}</Link>
-                        ) : (
-                          <Link to={item.to} target="_blank">
-                            {item.name}
-                          </Link>
-                        )}
+                        <Link to={item.to}>{item.name}</Link>
                       </div>
                     );
                   })}
@@ -255,7 +249,7 @@ const Footer = () => {
           <FontAwesomeIcon size="2xs" icon={faCircle} />
           <a
             target="_blank"
-            href="https://securedapp.gitbook.io/securedapp-launchpad/terms-and-conditions"
+            href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
             rel="noreferrer"
           >
             Terms & Conditions

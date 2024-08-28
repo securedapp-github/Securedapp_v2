@@ -29,7 +29,7 @@ function NftsDevelopment() {
         <ProductCard
           header={"What is NFT Development?"}
           description={
-            "NFT development- a process of creating Non-Fungible Tokens (NFTs), which are unique digital assets stored on a blockchain. These tokens can represent digital or physical items, such as art, music, collectables, virtual real estate, and more. The NFT development process involves designing the digital asset, writing smart contracts to ensure ownership and authenticity, and deploying the NFT on a blockchain platform, ensuring it is secure, verifiable, and transferable."
+            "NFT development- a process of creating Non-Fungible Tokens (NFTs), which are unique digital assets stored on a blockchain. These tokens can represent digital or physical items, such as art, music, collectibles, virtual real estate, and more. The NFT development process involves designing the digital asset, writing smart contracts to ensure ownership and authenticity, and deploying the NFT on a blockchain platform, ensuring it is secure, verifiable, and transferable."
           }
           buttonText={"Scan now"}
           image={"/assets/images/ServicePages/s11-1.png"}

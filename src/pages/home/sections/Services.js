@@ -208,11 +208,7 @@ const Services = () => {
 
   return (
     <div className="services">
-      <SectionTitle
-        name="Services"
-        title="Services Provided by us"
-        description="Dengan wireframe kit ini, kamu dapat mengefisiensikan pekerjaanmu."
-      />
+      <SectionTitle name="Services" title="Services Provided by us" />
       <div className="services-mobile-navbar">
         <PreviousArrow />
         <Slider ref={sliderRef} className="w-full" {...slickSettings}>

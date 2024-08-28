@@ -13,7 +13,8 @@ import CustomButton from "../common/CustomButton.js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { getUserData } from "../../redux/auth/authSlice.js";
 import { logout } from "../../functions.js";
-import { getHomeSelector } from "../../../redux/slices/main/homeSlice.js";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
@@ -29,6 +30,29 @@ const Sidebar = () => {
     navigate(sidebarItems[index].to);
     dispatch(setSelectedSidebarItem(sidebarItems[index].name));
     isMobile && dispatch(setSideBar(false));
+  };
+
+  const handleLogout = () => {
+    const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      //title: "Are you sure?",
+      text: "Are you sure you want to logout ?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+      cancelButtonText: "Cancel",
+      background: "#f4f4f4",
+      customClass: {
+        title: "text-danger",
+        popup: "custom-popup-class", // You can define your own class for further customization
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+      }
+    });
   };
 
   return (
@@ -60,7 +84,7 @@ const Sidebar = () => {
                     <div
                       onClick={() => {
                         if (item.name === "Log Out") {
-                          window.confirm("Do you want to logout ?") && logout();
+                          handleLogout();
                         }
                         selectMenuItem(index);
                       }}

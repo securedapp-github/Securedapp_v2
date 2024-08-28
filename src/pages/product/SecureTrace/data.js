@@ -99,7 +99,7 @@ export const UsesData = [
     header:
       "Respond to and investigate security breaches or suspicious activities.",
     description:
-      "SecureTrace’s real-time monitoring and forensic capabilities allow teams to quickly identify, assess, and address security incidents",
+      "SecureTrace’s real-time monitoring and forensic capabilities allow teams to quickly identify, assess, and address security incidents.",
   },
   {
     image: "feathers",

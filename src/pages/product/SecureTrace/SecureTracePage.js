@@ -22,7 +22,7 @@ function SecureTracePage() {
         <ProductServiceHero
           name="SECURE TRACE"
           title="SecureTrace: Advanced AI for Blockchain Investigation & Forensic Analysis"
-          image={"/assets/images/ProductPages/st/st-hero.png"}
+          image={"/assets/images/ProductPages/st/st-hero.webp"}
         />
         <ProductCard
           header={"What is Secure Trace"}
@@ -43,7 +43,7 @@ function SecureTracePage() {
           </div> */}
         </div>
         <ProductWhyCard
-          header={"How SecureDApp Helps in Compliance and Streamlined Process?"}
+          header={"How SecureDApp Helps in Compliance and Streamlined Process"}
           descriptions={[
             "The demand for streamlined operations through automated compliance checks and security policy updates is greater than ever. SecureDApp meets this need by focusing on preemptive security measures that enhance regulatory compliance and optimize processes.",
             "With a commitment to proactive security, SecureDApp is instrumental in fostering a secure and reliable blockchain environment, which is crucial for the technology’s sustainable advancement.",

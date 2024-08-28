@@ -11,7 +11,7 @@ export const faqsData = [
   [
     {
       q: "How can I apply for the Level Up Academy program?",
-      a: "Please send a detailed email outlining your requirements to hello@securedapp.in, and we will get back to you promptly",
+      a: "Please send a detailed email outlining your requirements to hello@securedapp.in, and we will get back to you promptly.",
     },
     {
       q: "Is there any cost associated with participating in Level Up Academy?",

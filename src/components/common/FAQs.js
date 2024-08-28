@@ -79,11 +79,17 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
     return (
       <div
         onClick={onClick}
-        className={`faq-item ${isActive && "faq-item-selected"}`}>
+        className={`faq-item ${isActive && "faq-item-selected"}`}
+      >
         <div className="faq-item-left">
           <div className="flex flex-col space-y-2">
             <div className="faq-item-question">{question}</div>
-            {isActive && <div className="faq-item-answer">{answer}</div>}
+            {isActive && (
+              <div
+                className="faq-item-answer"
+                dangerouslySetInnerHTML={{ __html: answer }}
+              ></div>
+            )}
           </div>
         </div>
         <div className="faq-item-right">{isActive ? "-" : "+"}</div>
@@ -95,7 +101,7 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
     <div className="faq">
       <SectionTitle
         name="FAQs"
-        title="Frequently asked Questions"
+        title="Frequently Asked Questions"
         description=""
       />
       {isLargeScreen ? (
@@ -106,7 +112,8 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
                 onClick={() => setTopic(index)}
                 className={`faq-navbar-item ${
                   topic === index && "faq-navbar-item-selected"
-                }`}>
+                }`}
+              >
                 {header}
               </div>
             );
@@ -124,7 +131,8 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
                       onClick={() => setTopic(index)}
                       className={`faq-mobile-navbar-item ${
                         index === topic && "selected-mobile-navbar"
-                      }`}>
+                      }`}
+                    >
                       {header}
                     </div>
                   );
@@ -140,7 +148,8 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
                     onClick={() => setTopic(index)}
                     className={`faq-mobile-navbar-item ${
                       index === topic && "selected-mobile-navbar"
-                    }`}>
+                    }`}
+                  >
                     {header}
                   </div>
                 );

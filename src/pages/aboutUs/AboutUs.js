@@ -27,12 +27,12 @@ const TeamCard = ({ details }) => {
             {details.designation}
           </div>
           <div className="team-card-body-socials">
-            <Link to={details.linkedin}>
+            <a target="_blank" href={details.linkedin && details.linkedin}>
               <FontAwesomeIcon size="lg" icon={faLinkedin} />
-            </Link>
-            <Link to={details.twitter}>
+            </a>
+            <a target="_blank" href={details.twitter && details.twitter}>
               <FontAwesomeIcon size="lg" icon={faTwitter} />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -57,7 +57,8 @@ const AboutUs = () => {
             solutions. Having experienced the devastating effects of
             cyberattacks firsthand, they were compelled by a mission to
             safeguard digital assets and ensure the security of decentralized
-            applications (dApps) from their inception through to their expansion
+            applications (dApps) from their inception through to their
+            expansion.
           </div>
           <div className="about-us-hero-description">
             SecureDApp’s journey began with a commitment to fortify the Web3
@@ -96,12 +97,12 @@ const AboutUs = () => {
                 approach that seamlessly scales across industries. Our
                 cutting-edge solutions—Solidity Shield, SecureWatch, and
                 SecureTrace—offer complete Web3 security, empowering clients
-                across various sectors to fortify their digital assets
+                across various sectors to fortify their digital assets.
                 <br />
                 <br />
                 Our state-of-the-art infrastructure and streamlined processes
                 ensure that our innovative products evolve with your needs,
-                providing unparalleled protection and peace of mind
+                providing unparalleled protection and peace of mind.
               </div>
             </div>
           </div>
@@ -160,7 +161,7 @@ const AboutUs = () => {
             future of Web3 security. This dedication, fueled by a blend of
             passion and purpose, is what motivates us to push boundaries and
             explore new horizons. At SecureDApp, we are more than a team; we are
-            a movement toward a safer and more innovative digital world
+            a movement toward a safer and more innovative digital world.
           </div>
         </div>
         <div className="about-us-team-cards">
