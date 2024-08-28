@@ -17,11 +17,11 @@ export const sidebarItems = [
     name: "History",
     to: "history",
   },
-  // {
-  //   image: VulnerabilityLogo,
-  //   name: "Vulnerability Scans",
-  //   to: "vulnerability-scans",
-  // },
+  {
+    image: VulnerabilityLogo,
+    name: "Vulnerability Scans",
+    to: "vulnerability-scans",
+  },
   {
     image: AuditCertificateLogo,
     name: "Audit Certificate",
@@ -32,11 +32,11 @@ export const sidebarItems = [
     name: "Payment",
     to: "payment",
   },
-  // {
-  //   image: SettingsLogo,
-  //   name: "Settings",
-  //   to: "settings",
-  // },
+  {
+    image: SettingsLogo,
+    name: "Settings",
+    to: "settings",
+  },
   {
     image: LogoutLogo,
     name: "Log Out",

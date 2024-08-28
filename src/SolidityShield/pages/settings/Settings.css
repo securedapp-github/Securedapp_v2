@@ -1,0 +1,84 @@
+.sss-settings-screen-field-container {
+}
+
+.sss-settings-screen-field {
+  @apply flex flex-col gap-y-3;
+}
+
+.sss-settings-screen-field-label {
+}
+
+.sss-settings-screen-field-children {
+  @apply w-full;
+}
+
+.sss-settings-screen-input-text-field-container {
+  @apply w-[300px] md:w-[350px] lg:w-[400px];
+}
+
+.sss-settings-screen-input-text-field {
+  @apply py-3 px-4 rounded-lg border w-full;
+}
+
+.sss-settings-screen-container {
+  @apply h-full py-4 px-2 lg:px-8 font-poppins;
+}
+
+.sss-settings-screen {
+}
+
+.sss-settings-header {
+  @apply font-semibold text-4xl;
+}
+
+.sss-settings-body {
+  @apply py-4;
+}
+
+.sss-settings-body-header {
+  @apply w-full;
+}
+
+.sss-settings-body-header-filter-container {
+  @apply flex gap-x-5 font-light text-sm;
+}
+
+.sss-settings-body-header-filter {
+  @apply cursor-pointer flex flex-col gap-y-2;
+}
+
+.sss-settings-body-header-filter-selected {
+  @apply font-normal;
+}
+
+.sss-settings-body-header-filter-under {
+  @apply w-full h-[1px] bg-[#E5EAEF];
+}
+
+.sss-settings-body-header-filter-under-selected {
+  @apply h-[2px] bg-black;
+}
+
+.sss-settings-body-main {
+  @apply pt-6;
+}
+
+.sss-settings-body-profile-container {
+  @apply flex flex-col gap-y-8;
+}
+
+.sss-settings-body-profile-fields-row {
+  @apply flex flex-col md:flex-row gap-y-8 md:gap-x-8 md:gap-y-0;
+}
+
+.sss-settings-body-profile-checkboxes {
+  @apply flex flex-col gap-y-3;
+}
+
+.sss-settings-body-profile-checkbox {
+  @apply flex gap-x-4 text-[#809FB8] font-light;
+}
+
+.sss-settings-body-profile-button {
+  @apply flex items-start w-[250px];
+}
