@@ -42,6 +42,7 @@ import { useSelector } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import AuditsPage from "./pages/audits/Audits";
+import Authors from "./pages/authors/Authors";
 
 function App() {
   const dispatch = useDispatch();
@@ -109,6 +110,7 @@ function App() {
         <Route path="blog/:url" element={<BlogPost />} />
         <Route path="media" element={<Media />} />
         <Route path="audits" element={<AuditsPage />} />
+        <Route path="authors" element={<Authors />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
       </Routes>
