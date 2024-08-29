@@ -83,7 +83,7 @@ export const mediaData = [
     date: "July 11, 2024",
     link: "https://economictimes.indiatimes.com/news/newsblogs/union-budget-2024-live-updates-expectations-finance-minister-nirmala-sitharaman-tax-slabs-announcements-gst-infrastructure-india-general-budget-date-time/liveblog/111622204.cms?from=mdr",
     image: "/assets/images/media/et.png",
-    tags: "Economic times",
+    tags: "The Economic Times",
   },
   {
     heading:
