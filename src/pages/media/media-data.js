@@ -1,6 +1,16 @@
 export const mediaData = [
   {
     heading:
+      "The Evolving Landscape of Web3 and Increasing Need for Advanced Security Solutions",
+    description:
+      "The web is the largest transformable information construct, introduced in 1989, and significant progress has been made in web-related technologies since then. Today, Web3 and its implications, particularly concerning security, are among the most discussed topics.",
+    date: "August 29, 2024",
+    link: "https://timestech.in/the-evolving-landscape-of-web3-and-increasing-need-for-advanced-security-solutions/",
+    image: "/assets/images/media/timestech.png",
+    tags: "TimesTech",
+  },
+  {
+    heading:
       "The future of blockchain security: Emerging trends and technologies",
     description:
       "Blockchain technology—a cornerstone of the Web 3.0 ecosystem—is not only transforming the digital space but also pushing the boundaries of what's possible in business and beyond. As the industry is poised to reach$825.93 billion by 2032, the spotlight is increasingly on the evolving landscape of blockchain security.",
