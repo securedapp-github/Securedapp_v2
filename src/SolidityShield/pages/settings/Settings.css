@@ -113,7 +113,7 @@
 }
 
 .sss-settings-connected-accounts-container {
-  @apply bg-white;
+  @apply bg-white rounded-lg shadow-lg;
 }
 
 .sss-settings-connected-accounts {
@@ -156,4 +156,63 @@
 
 /* -------------- */
 /* Notifications */
+.sss-notifications-section-container {
+}
+
+.sss-notifications-section {
+  @apply flex flex-col gap-y-3;
+}
+
+.sss-notifications-section-title {
+  @apply text-lg font-semibold;
+}
+
+.sss-notifications-section-description {
+  @apply w-full md:w-8/12 font-light text-sm text-[#5A5A5A];
+}
+
+.sss-notifications-section-children {
+  @apply text-sm font-light;
+}
+
+.sss-settings-notifications-container {
+  @apply bg-white rounded-lg shadow-lg;
+}
+
+.sss-settings-notifications {
+  @apply p-6 flex flex-col gap-y-8;
+}
+
+.sss-settings-notifications-email-notif-selections {
+  @apply flex flex-col gap-y-2;
+}
+
+.sss-settings-notifications-email-notif-selection {
+  @apply flex gap-x-3 items-center;
+}
+
+.sss-settings-notifications-email-news {
+  @apply flex flex-col gap-y-3;
+}
+
+.sss-settings-notifications-email-news-row {
+  @apply flex gap-x-3 items-center;
+}
+
+.sss-settings-notifications-sign-in {
+  @apply flex flex-col gap-y-2;
+}
+
+.sss-settings-notifs-sign-in-row {
+  @apply flex gap-x-3 items-center;
+}
+
+.sss-settings-notifs-sign-in-row-detail-container-title {
+  @apply text-base font-normal;
+}
+
+.sss-settings-notifs-sign-in-row-detail-container-desc {
+  @apply text-[#5A5A5A];
+}
+
 /* -------------- */
