@@ -19,8 +19,7 @@ const StatusTypeComponent = ({ status }) => {
           : status === "Failed"
           ? "sss-history-status-type-component-container-red"
           : "sss-history-status-type-component-container-yellow"
-      }`}
-    >
+      }`}>
       <div className="sss-history-status-type-component">
         <FontAwesomeIcon
           icon={
@@ -125,8 +124,7 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     <div
                       onMouseEnter={() => setHoveredRowIndex(index)}
                       onMouseLeave={() => setHoveredRowIndex(null)}
-                      className="sss-history-table-options-container"
-                    >
+                      className="sss-history-table-options-container">
                       <div className="sss-history-table-options">
                         <img
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
@@ -138,12 +136,10 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           className={`sss-history-table-options-dropdown ${
                             hoveredRowIndex === paginatedData.length - 1 &&
                             "bottom-0"
-                          }`}
-                        >
+                          }`}>
                           <div className="sss-history-table-options-dropdown-item">
                             <Link
-                              to={"/solidity-shield-scan/report/" + data.id}
-                            >
+                              to={"/solidity-shield-scan/report/" + data.id}>
                               View
                             </Link>
                           </div>
@@ -151,8 +147,7 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                             onClick={() => {
                               downloadfReportPdf(data.id, auth.user);
                             }}
-                            className="sss-history-table-options-dropdown-item"
-                          >
+                            className="sss-history-table-options-dropdown-item">
                             Download
                           </div>
                           {/* scan report start */}

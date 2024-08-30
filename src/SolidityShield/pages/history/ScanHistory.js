@@ -7,7 +7,7 @@ import {
   setHistoryStatusFilter,
 } from "../../redux/dashboard/historySlice";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
-import { getScanHistoryData } from "../../functions";
+import { getScanHistoryData, getUser, getJwt } from "../../functions";
 import { useDispatch } from "react-redux";
 import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { scanHistoryDummyData } from "./scanHistory.data";
@@ -24,14 +24,33 @@ const ScanHistory = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  async function fetch() {
+    await getScanHistoryData({
+      userEmail: localStorage.getItem("UserEmail"),
+      dispatch,
+    });
+    setHistory(scanHistory.history);
+    //alert(history.length);
+  }
+
   useEffect(() => {
-    !auth.user.email && navigate("/solidity-shield-scan/auth");
     async function fetch() {
-      await getScanHistoryData({ userEmail: auth.user.email, dispatch });
+      await getScanHistoryData({
+        userEmail: localStorage.getItem("UserEmail"),
+        dispatch,
+      });
       setHistory(scanHistory.history);
+      //alert(history.length);
     }
     fetch();
-  }, [history]);
+    const userJwt = getJwt();
+    if (userJwt) {
+      getUser({ dispatch });
+      fetch();
+    } else {
+      navigate("/solidity-shield-scan/auth");
+    }
+  }, []);
 
   return (
     <div className="sss-scan-history-container">
@@ -39,17 +58,19 @@ const ScanHistory = () => {
         <div className="sss-scan-history-header-container">
           <div className="sss-scan-history-header">History</div>
           <div className="sss-scan-history-header-right">
-            {/* <div className="sss-scan-history-header-button">
+            <div className="sss-scan-history-header-button">
               <div className="sss-scan-history-header-button-icon">
-                <img
+                {/* <img
                   src="/assets/images/solidity-shield-scan/history-filter.svg"
                   alt="Filter Icon"
-                />
+                /> */}
               </div>
-              <div className="">Filter</div>
+              <div onClick={fetch} className="">
+                Reload history
+              </div>
               <div className="sss-scan-history-header-button-text"></div>
             </div>
-            <div className="sss-scan-history-header-button">
+            {/* <div className="sss-scan-history-header-button">
               <div className="sss-scan-history-header-button-icon">
                 <img
                   src="/assets/images/solidity-shield-scan/history-export.svg"

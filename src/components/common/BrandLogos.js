@@ -84,7 +84,7 @@ const BrandLogos = () => {
     <div className="brand-logos">
       <Slider className="" {...sliderSettings}>
         {brandLogos.map((brandLogo, index) => (
-          <div key={index} className="flex justify-center items-center">
+          <div key={index} className="flex justify-center items-center py-2">
             <img
               src={brandLogo.src}
               alt={brandLogo.alt}

@@ -319,6 +319,7 @@ export const scanSubmit = async ({
       // window.open("/solidity-shield-scan/report/" + latestScan.id);
 
       toast.success("Scan finished");
+      dispatch(login({ ...user, remainingCredits: user.remainingCredits - 1 }));
       return Number(latestScan.id);
     })
     .catch((error) => {
@@ -534,6 +535,7 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
     .catch((err) => {
       console.log(err.message);
       toast("Error in sending OTP, Try again");
+      //window.location.replace("/solidity-shield-scan/auth");
     });
 };
 
@@ -558,6 +560,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
         return response.json();
       }
       toast.error("Invlaid Network Response: verify otp");
+      window.location.replace("/solidity-shield-scan/auth");
     })
     .then((data) => {
       //console.log(data);
@@ -576,6 +579,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       }
 
       localStorage.setItem("UserJwt", jwt);
+      localStorage.setItem("UserEmail", email);
 
       dispatch(
         login({
@@ -597,10 +601,11 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
     .catch((error) => {
       console.error("Error:", error);
       toast.error("Unable to login. Please try again!");
+      window.location.replace("/solidity-shield-scan/auth");
     });
 };
 
-function getJwt() {
+export function getJwt() {
   const jwt = localStorage.getItem("UserJwt");
   if (!jwt) {
     toast("Please sign in with your email.");
@@ -610,17 +615,18 @@ function getJwt() {
   return `Bearer ${jwt}`;
 }
 
-export const getUser = async ({ dispatch }) => {
+export const getUser = async ({ dispatch, email }) => {
   const jwt = getJwt();
   if (!jwt) {
     toast("Please sign in with your email.");
-    //window.location.replace("/solidity-shield-scan/auth");
+    window.location.replace("/solidity-shield-scan/auth");
     return;
   }
-  fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
+
+  fetch("https://139-59-5-56.nip.io:3443/getUser", {
     method: "POST",
     body: JSON.stringify({
-      //mail: email,
+      mail: localStorage.getItem("UserEmail"),
     }),
     headers: {
       "Content-type": "application/json",
@@ -629,11 +635,15 @@ export const getUser = async ({ dispatch }) => {
   })
     .then((response) => {
       if (response.ok) {
+        console.log(response);
         return response.json();
       }
-      toast.error("Invlaid Network Response: verify otp");
+      //console.log(response);
+      toast.error("Error signin in.");
+      window.location.replace("/solidity-shield-scan/auth");
+      return;
     })
-    .then((data) => {
+    .then(async (data) => {
       //console.log(data);
       if (data.length == 0) toast("Error Signing in. Try again.");
       let userdata = data[0];
@@ -663,12 +673,12 @@ export const getUser = async ({ dispatch }) => {
           companyName: "Company Name",
         })
       );
-
-      toast.success("Login Successful!");
+      getScanHistoryData({ userEmail: email, dispatch });
     })
     .catch((error) => {
       console.error("Error:", error);
       toast.error("Unable to login. Please try again!");
+      window.location.replace("/solidity-shield-scan/auth");
     });
 };
 

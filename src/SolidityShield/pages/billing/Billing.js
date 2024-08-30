@@ -13,6 +13,7 @@ import {
 } from "../../redux/dashboard/paymentSlice";
 import { useDispatch } from "react-redux";
 import { pricingDetails } from "../pricing/pricing.data";
+import { getUser, getJwt } from "../../functions";
 
 const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
@@ -25,9 +26,15 @@ const BillingScreen = () => {
   };
 
   useEffect(() => {
-    console.log(auth.user);
-    //auth.user.email && navigate("/solidity-shield-scan/auth");
-    async function fetch() {}
+    //alert(auth.user.plan);
+    async function fetch() {
+      const userJwt = getJwt();
+      if (userJwt) {
+        getUser({ dispatch });
+      } else {
+        navigate("/solidity-shield-scan/auth");
+      }
+    }
     fetch();
   }, []);
 
@@ -40,54 +47,56 @@ const BillingScreen = () => {
               "flex-1 w-full min-h-[250px] lg:w-1/2 flex flex-col justify-center"
             }
           >
-            <div className="sss-billing-current-container">
-              <div className="sss-billing-current-header">
-                <div className="sss-billing-current-header-tittle">
-                  {auth &&
-                    pricingDetails[Number(auth.user.plan) + 1].pricingCard
-                      .planType}
-                </div>
-                <div className="sss-billing-current-header-desc">
-                  {auth &&
-                    pricingDetails[Number(auth.user.plan) + 1].pricingCard
-                      .description}
-                </div>
-              </div>
-              <div className="sss-billing-current-body">
-                <div className="sss-billing-current-body-rate">
-                  <div className="sss-billing-current-body-price">
+            {auth.user.plan && (
+              <div className="sss-billing-current-container">
+                <div className="sss-billing-current-header">
+                  <div className="sss-billing-current-header-tittle">
                     {auth &&
-                      pricingDetails[
-                        Number(auth.user.plan) + 1
-                      ].pricingCard.price.replace("/-", "")}
+                      pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                        .planType}
                   </div>
-                  <div className="sss-billing-current-body-per">
-                    {"Permonth"}
+                  <div className="sss-billing-current-header-desc">
+                    {auth &&
+                      pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                        .description}
                   </div>
                 </div>
-                <div className="sss-billing-current-body-users">
-                  {"600+ Users"}
+                <div className="sss-billing-current-body">
+                  <div className="sss-billing-current-body-rate">
+                    <div className="sss-billing-current-body-price">
+                      {auth &&
+                        pricingDetails[
+                          Number(auth.user.plan) + 1
+                        ].pricingCard.price.replace("/-", "")}
+                    </div>
+                    <div className="sss-billing-current-body-per">
+                      {"Permonth"}
+                    </div>
+                  </div>
+                  <div className="sss-billing-current-body-users">
+                    {"600+ Users"}
+                  </div>
+                </div>
+                <div className="sss-billing-current-button-container">
+                  <div className="sss-billing-current-buttons">
+                    <CustomButton
+                      onClick={() => navigate("/solidity-shield-scan/pricing")}
+                      className={
+                        "px-3 py-2 rounded-xl bg-tertiary border border-black text-black active:bg-white"
+                      }
+                      text={"Upgrade Plan"}
+                    />
+                    <CustomButton
+                      onClick={() => navigate("/solidity-shield-scan/pricing")}
+                      className={
+                        "px-3 py-2 rounded-xl text-black border border-tertiary bg-white active:bg-white"
+                      }
+                      text={"Buy Credits"}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="sss-billing-current-button-container">
-                <div className="sss-billing-current-buttons">
-                  <CustomButton
-                    onClick={() => navigate("/solidity-shield-scan/pricing")}
-                    className={
-                      "px-3 py-2 rounded-xl bg-tertiary border border-black text-black active:bg-white"
-                    }
-                    text={"Upgrade Plan"}
-                  />
-                  <CustomButton
-                    onClick={() => navigate("/solidity-shield-scan/pricing")}
-                    className={
-                      "px-3 py-2 rounded-xl text-black border border-tertiary bg-white active:bg-white"
-                    }
-                    text={"Buy Credits"}
-                  />
-                </div>
-              </div>
-            </div>
+            )}
           </ChartCard>
           <ChartCard
             className={

@@ -13,8 +13,13 @@ import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 const FAQs = ({ faqHeaders = [], faqsData }) => {
   const { isLargeScreen } = useSelector(getHomeSelector);
 
-  const [detail, setDetail] = useState(0);
+  const [detail, setDetail] = useState();
   const [topic, setTopic] = useState(0);
+
+  const toggleDetail = (index) => {
+    if (index === detail) setDetail(-1);
+    else setDetail(index);
+  };
 
   let sliderRef = useRef(null);
 
@@ -163,7 +168,7 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
           return (
             <Faq
               isActive={detail === index}
-              onClick={() => setDetail(index)}
+              onClick={() => toggleDetail(index)}
               question={faq.q}
               answer={faq.a}
             />

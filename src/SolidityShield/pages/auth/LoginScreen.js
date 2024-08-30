@@ -1,6 +1,7 @@
 import AuthButton from "../../components/auth/AuthButton";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
+import AuthLogos from "../../components/auth/AuthLogos";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
 import "./LoginScreen.css";
 
@@ -8,14 +9,9 @@ const LoginScreen = () => {
   return (
     <div className="auth-screen-container">
       <div className="auth-screen">
-        <AuthScrenHeader
-          title={"Sign in to your account"}
-          description={
-            "Clarity gives you the blocks and components you need to create a truly professional website."
-          }
-        />
+        <AuthScrenHeader title={"Sign in to your account"} description={""} />
         <div className="auth-screen-body">
-          <AuthCard footer={true}>
+          <AuthCard footer={true} isLogin={true}>
             <AuthInputField
               authInputType={"email"}
               placeholder={"Email Address"}
@@ -32,7 +28,7 @@ const LoginScreen = () => {
               <div>Forgot Password?</div>
             </div>
             <AuthButton children={"Sign In"} onClick={() => {}} />
-            <AuthButton filled={false}>
+            {/* <AuthButton filled={false}>
               <div className="auth-screen-google">
                 <img
                   src="/assets/images/solidity-shield-scan/google-logo.svg"
@@ -40,7 +36,12 @@ const LoginScreen = () => {
                 />
                 <div>Sign in With Google</div>
               </div>
-            </AuthButton>
+            </AuthButton> */}
+            <div className="auth-logos-cards">
+              <AuthLogos imagePath="/assets/images/solidity-shield-scan/google-logo.svg" />
+              <AuthLogos imagePath="/assets/images/solidity-shield-scan/metamask.svg" />
+              <AuthLogos imagePath="/assets/images/solidity-shield-scan/github-icon.svg" />
+            </div>
           </AuthCard>
         </div>
       </div>

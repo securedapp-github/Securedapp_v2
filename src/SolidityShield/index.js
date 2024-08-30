@@ -16,6 +16,9 @@ import PaymentModal from "./components/modal/PaymentModal";
 import VulnerabilityScan from "./pages/vulnerabilityScan/VulnerabilityScan";
 import ScanReport from "./pages/scanReport/ScanReport";
 import { ToastContainer } from "react-toastify";
+import RegisterScreen from "./pages/auth/RegisterScreen";
+import AuditCertificate from "./pages/auditCertificate/AuditCertificate";
+import Settings from "./pages/settings/Settings";
 
 const SolidityShield = () => {
   return (
@@ -28,7 +31,9 @@ const SolidityShield = () => {
             <Route path="/" element={<OverviewScreen />} />
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
-            <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
+            {/* <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
+            <Route path="audit-certificate" element={<AuditCertificate />} />
+            <Route path="settings" element={<Settings />} /> */}
             <Route path="pricing" element={<Pricing />} />
             <Route path="report/:id" element={<ScanReport />} />
             <Route path="payment" element={<BillingScreen />} />
@@ -36,6 +41,7 @@ const SolidityShield = () => {
           <Route element={<NoSidebarLayout />}>
             <Route path="auth" element={<AuthScreen />} />
             <Route path="login" element={<LoginScreen />} />
+            <Route path="register" element={<RegisterScreen />} />
             <Route path="contact" element={<ContactUs />} />
           </Route>
         </Routes>

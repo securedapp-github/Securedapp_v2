@@ -14,7 +14,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CustomButton from "../common/CustomButton";
 import FileUpload from "../common/FileUpload";
-import { scanSubmit } from "../../functions";
+import { getUser, scanSubmit } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 
 const sourceTypes = ["Github", "Contract Address", "Upload File"];
