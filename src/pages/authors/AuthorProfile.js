@@ -5,23 +5,28 @@ import { authorsData } from "./authors.data";
 import "./AuthorProfile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const AuthorProfile = () => {
+  window.scrollTo(0, 0);
+
   const { url } = useParams();
-  const [authorDetail, setAuthorDetail] = useState(null);
+  const [authorDetail, setAuthorDetail] = useState(
+    authorsData.filter((author) => author.to === url)[0]
+  );
 
   useEffect(() => {
     const authorFound = authorsData.filter((author) => author.to === url);
     if (authorFound.length > 0) {
       setAuthorDetail(authorFound[0]);
     }
-  }, []);
+  }, [authorDetail]);
 
   return (
     <div className="author-profile-container">
       <Navbar />
       <div className="author-profile">
-        {authorDetail && (
+        {authorDetail.details && (
           <div className="author-profile-body">
             <div className="author-profile-body-image">
               <div className="author-profile-card">
@@ -59,6 +64,21 @@ const AuthorProfile = () => {
                     <div className="author-profile-detail-row-info">
                       {detail.info}
                     </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {authorDetail && (
+          <div className="author-profile-footer">
+            <div className="author-profile-footer-header">{`Expert Services Handled by ${authorDetail.name}`}</div>
+            <div className="author-profile-footer-links">
+              {authorDetail.expertServices.map((service) => {
+                return (
+                  <div className="author-profile-footer-link">
+                    <FontAwesomeIcon icon={faArrowRight} />
+                    {service.name}
                   </div>
                 );
               })}

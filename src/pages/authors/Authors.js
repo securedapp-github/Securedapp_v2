@@ -43,7 +43,7 @@ const AuthorCard = ({
 
 const Authors = () => {
   const navigate = useNavigate();
-
+  window.scrollTo(0, 0);
   return (
     <div className="authors-container">
       <Navbar />
@@ -61,7 +61,8 @@ const Authors = () => {
               return (
                 <div
                   onClick={() => navigate(`${author.to}`)}
-                  className="authors-body-author-card-container">
+                  className="authors-body-author-card-container"
+                >
                   <AuthorCard
                     image={author.image}
                     name={author.name}

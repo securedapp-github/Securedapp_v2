@@ -25,6 +25,32 @@ export const authorsData = [
         info: "Ram is known for his integrity and commitment to providing the highest level of security services. His clients trust him to protect their digital assets and maintain the confidentiality of their sensitive information.",
       },
     ],
+    expertServices: [
+      {
+        name: "Dapp Development",
+        to: "/dapp-development",
+      },
+      {
+        name: "NFTs development",
+        to: "/nfts-development",
+      },
+      {
+        name: "Web3 KYC",
+        to: "/web3-kyc",
+      },
+      {
+        name: "Dapp Security",
+        to: "/dapp-security",
+      },
+      {
+        name: "Web3 Security",
+        to: "/web3-security",
+      },
+      {
+        name: "DeFi Development",
+        to: "/defi-development",
+      },
+    ],
   },
   {
     to: "shyam-patel",
@@ -34,6 +60,50 @@ export const authorsData = [
     education: "B.Tech, M. Tech (VTU)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    details: [
+      {
+        title: "Experience",
+        info: "Shyam Patel has extensive experience in Web3 security, with a focus on real-time threat detection and mitigation. He has successfully protected numerous decentralized applications from cyberattacks and has a deep understanding of the unique security challenges faced by Web3 projects.",
+      },
+      {
+        title: "Expertise",
+        info: "Shyam's expertise includes blockchain forensics, incident response, and compliance. He is skilled in using advanced tools and techniques to identify and address security vulnerabilities.",
+      },
+      {
+        title: "Authoritativeness",
+        info: "Shyam is a respected figure in the Web3 community, known for his contributions to security research and best practices. His insights and expertise are highly valued by industry professionals.",
+      },
+      {
+        title: "Trustworthiness",
+        info: "Shyam's commitment to integrity and professionalism has earned him the trust of clients and colleagues. He is dedicated to providing the highest level of security services and protecting the interests of his clients.",
+      },
+    ],
+    expertServices: [
+      {
+        name: "Smart Contract Audit",
+        to: "/smart-contract-audit",
+      },
+      {
+        name: "Token Audit",
+        to: "/token-audit",
+      },
+      {
+        name: "Blockchain Forensic",
+        to: "/blockchain-forensic",
+      },
+      {
+        name: "Web3 Security",
+        to: "/web3-security",
+      },
+      {
+        name: "Dapp Security",
+        to: "/dapp-security",
+      },
+      {
+        name: "Decentralized Identity",
+        to: "/decentralized-identity-did",
+      },
+    ],
   },
   {
     to: "kartikeya-k",
@@ -43,6 +113,50 @@ export const authorsData = [
     education: "(Amity University, B Tech)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    details: [
+      {
+        title: "Experience",
+        info: "Kartikeya has over 6 years of hands-on experience in designing and implementing robust security solutions for a variety of blockchain projects, including DeFi platforms, NFT marketplaces, and supply chain networks. He has successfully protected billions of dollars in digital assets from cyber threats.",
+      },
+      {
+        title: "Expertise",
+        info: "Kartikeya's expertise spans a wide range of security domains, including cryptographic algorithms, consensus mechanisms, smart contract security, and network protocols. He is proficient in using advanced tools and techniques to identify and mitigate vulnerabilities.",
+      },
+      {
+        title: "Authoritativeness",
+        info: "Kartikeya is a recognized expert in the blockchain security community, with a strong track record of contributing to industry publications and conferences. His insights and recommendations are highly valued by both clients and peers.",
+      },
+      {
+        title: "Trustworthiness",
+        info: "Kartikeya is known for his integrity and commitment to providing the highest level of security services. His clients trust him to protect their sensitive data and maintain the confidentiality of their projects.",
+      },
+    ],
+    expertServices: [
+      {
+        name: "Crypto Compliance AML",
+        to: "/crypto-compliance-aml",
+      },
+      {
+        name: "Token Audit",
+        to: "/token-audit",
+      },
+      {
+        name: "Blockchain Forensic",
+        to: "/blockchain-forensic",
+      },
+      {
+        name: "Web3 Security",
+        to: "/web3-security",
+      },
+      {
+        name: "Dapp Development",
+        to: "/dapp-development",
+      },
+      {
+        name: "DeFi Development",
+        to: "/defi-development",
+      },
+    ],
   },
   {
     to: "irfan-ansari",
@@ -52,6 +166,50 @@ export const authorsData = [
     education: "",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    details: [
+      {
+        title: "Experience",
+        info: "Dr. Irfan Ansari  has 8+ years of experience in analyzing blockchain networks for vulnerabilities and threats. He has a deep understanding of the security landscape and is adept at using advanced tools and techniques to identify and mitigate risks.",
+      },
+      {
+        title: "Expertise",
+        info: "Dr. Irfan Ansari specializes in real-time threat detection, incident response, and compliance. He has a proven track record of successfully protecting decentralized applications from cyberattacks and ensuring regulatory compliance.",
+      },
+      {
+        title: "Authoritativeness",
+        info: "Dr. Irfan Ansari is respected for his contributions to the Web3 security community and his ability to stay ahead of emerging threats. He is frequently sought after for his expertise on security best practices and emerging trends.",
+      },
+      {
+        title: "Trustworthiness",
+        info: "Irfan is known for his reliability and dedication to providing exceptional security services. He is committed to protecting the interests of his clients and maintaining the highest standards of professionalism.",
+      },
+    ],
+    expertServices: [
+      {
+        name: "Dapp Development",
+        to: "/dapp-development",
+      },
+      {
+        name: "NFTs development",
+        to: "/nfts-development",
+      },
+      {
+        name: "Web3 KYC",
+        to: "/web3-kyc",
+      },
+      {
+        name: "Dapp Security",
+        to: "/dapp-security",
+      },
+      {
+        name: "Web3 Security",
+        to: "/web3-security",
+      },
+      {
+        name: "DeFi Development",
+        to: "/defi-development",
+      },
+    ],
   },
   {
     to: "hemlatha-s",
@@ -61,6 +219,50 @@ export const authorsData = [
     education: "(B.E, Delhi College of Engineering)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    details: [
+      {
+        title: "Experience",
+        info: "Ms. Hemlatha S has 7+ years of experience advising clients on best practices and mitigating risks in the Web3 space. She has worked with a diverse range of clients, including startups, established enterprises, and government agencies.",
+      },
+      {
+        title: "Expertise",
+        info: "Ms. Hemlatha S’s expertise extends to regulatory compliance, incident response, and governance frameworks. She has a deep understanding of the legal and regulatory landscape surrounding blockchain technology.",
+      },
+      {
+        title: "Authoritativeness",
+        info: "Hemlatha S is a respected figure in the blockchain industry, known for her insights and expertise in security matters. She has contributed to numerous publications and conferences, sharing her knowledge with the wider community.",
+      },
+      {
+        title: "Trustworthiness",
+        info: "Hemlatha S is known for her integrity and professionalism. She is committed to providing exceptional service to her clients and protecting their sensitive data.",
+      },
+    ],
+    expertServices: [
+      {
+        name: "Smart Contract Audit",
+        to: "/smart-contract-audit",
+      },
+      {
+        name: "Token Audit",
+        to: "/token-audit",
+      },
+      {
+        name: "Blockchain Forensic",
+        to: "/blockchain-forensic",
+      },
+      {
+        name: "Web3 Security",
+        to: "/web3-security",
+      },
+      {
+        name: "Dapp Security",
+        to: "/dapp-security",
+      },
+      {
+        name: "Decentralized Identity",
+        to: "/decentralized-identity-did",
+      },
+    ],
   },
   {
     to: "rashmi-bansal",
@@ -70,5 +272,49 @@ export const authorsData = [
     education: "Consultant Cyber Security (MCA)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    details: [
+      {
+        title: "Experience",
+        info: "Rashmi has 6+ years of experience in identifying and remediating vulnerabilities in smart contracts. She has a deep understanding of Solidity, Vyper, and other smart contract languages, and is skilled in using advanced auditing techniques.",
+      },
+      {
+        title: "Expertise",
+        info: "Rashmi is an expert in smart contract security, with a focus on preventing financial losses and ensuring the integrity of decentralized applications. She has a proven track record of identifying and addressing critical vulnerabilities.",
+      },
+      {
+        title: "Authoritativeness",
+        info: "Rashmi Bansa is recognized as a leading authority in the field of smart contract auditing. Her insights and recommendations are highly valued by industry professionals.",
+      },
+      {
+        title: "Trustworthiness",
+        info: "Rashmi Bansa is known for her attention to detail, reliability, and commitment to providing the highest quality of service to her clients.",
+      },
+    ],
+    expertServices: [
+      {
+        name: "Smart Contract Audit",
+        to: "/smart-contract-audit",
+      },
+      {
+        name: "Token Audit",
+        to: "/token-audit",
+      },
+      {
+        name: "Blockchain Forensic",
+        to: "/blockchain-forensic",
+      },
+      {
+        name: "Web3 KYC",
+        to: "/web3-kyc",
+      },
+      {
+        name: "Dapp Development",
+        to: "/dapp-development",
+      },
+      {
+        name: "DeFi Development",
+        to: "/defi-development",
+      },
+    ],
   },
 ];

@@ -104,6 +104,7 @@ const AuditsPageCard = ({ headers, details, children }) => {
 };
 
 const AuditsPage = () => {
+  window.scrollTo(0, 0);
   const { id } = useParams();
   const [report, setReport] = useState();
   const navigate = useNavigate();
