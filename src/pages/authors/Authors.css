@@ -27,7 +27,7 @@
 }
 
 .authors-card-container {
-  @apply w-[300px] border bg-cardBackgroundLight dark:bg-cardBackgroundDark border-cardBorderColorLight dark:border-cardBorderColorDark rounded-xl p-6;
+  @apply cursor-pointer w-[300px] border bg-cardBackgroundLight dark:bg-cardBackgroundDark border-cardBorderColorLight dark:border-cardBorderColorDark rounded-xl p-6;
 }
 
 .authors-card {

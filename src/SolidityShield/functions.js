@@ -471,8 +471,9 @@ export const getReport = async ({ id, email }) => {
     })
     .then((data) => {
       var report = JSON.parse(data);
-      //console.log(report);
+
       report = JSON.parse(report[0].reportdata);
+
       var score =
         5 -
         ((Number(report.findings["high_issues"]) +
@@ -481,6 +482,7 @@ export const getReport = async ({ id, email }) => {
           30) *
           5;
       report.score = (score * 2).toFixed(1) + "/10";
+
       return report;
     })
     .catch((error) => {

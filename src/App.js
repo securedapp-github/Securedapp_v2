@@ -43,6 +43,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import AuditsPage from "./pages/audits/Audits";
 import Authors from "./pages/authors/Authors";
+import AuthorProfile from "./pages/authors/AuthorProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -109,8 +110,9 @@ function App() {
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:url" element={<BlogPost />} />
         <Route path="media" element={<Media />} />
-        <Route path="audits" element={<AuditsPage />} />
+        <Route path="audits/:id" element={<AuditsPage />} />
         <Route path="authors" element={<Authors />} />
+        <Route path="authors/:url" element={<AuthorProfile />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
       </Routes>

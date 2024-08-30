@@ -55,6 +55,7 @@ export const navItems = [
     items: [
       { name: "Blogs", to: "/blog" },
       { name: "About Us", to: "/about" },
+      { name: "Our Authors", to: "/authors" },
       { name: "Media", to: "/media" },
     ],
     label: "Resources",
