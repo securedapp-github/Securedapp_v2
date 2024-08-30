@@ -5,6 +5,7 @@ import { authorsData } from "./authors.data";
 import "./AuthorProfile.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const AuthorProfile = () => {
   const { url } = useParams();
@@ -59,6 +60,21 @@ const AuthorProfile = () => {
                     <div className="author-profile-detail-row-info">
                       {detail.info}
                     </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+        {authorDetail && (
+          <div className="author-profile-footer">
+            <div className="author-profile-footer-header">{`Expert Services Handled by ${authorDetail.name}`}</div>
+            <div className="author-profile-footer-links">
+              {authorDetail.expertServices.map((service) => {
+                return (
+                  <div className="author-profile-footer-link">
+                    <FontAwesomeIcon icon={faArrowRight} />
+                    {service.name}
                   </div>
                 );
               })}

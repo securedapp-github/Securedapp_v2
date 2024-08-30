@@ -25,6 +25,32 @@ export const authorsData = [
         info: "Ram is known for his integrity and commitment to providing the highest level of security services. His clients trust him to protect their digital assets and maintain the confidentiality of their sensitive information.",
       },
     ],
+    expertServices: [
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+      {
+        name: "Solidity Shield Scan",
+        to: "",
+      },
+    ],
   },
   {
     to: "shyam-patel",
@@ -34,6 +60,7 @@ export const authorsData = [
     education: "B.Tech, M. Tech (VTU)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    expertServices: [],
   },
   {
     to: "kartikeya-k",
@@ -43,6 +70,7 @@ export const authorsData = [
     education: "(Amity University, B Tech)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    expertServices: [],
   },
   {
     to: "irfan-ansari",
@@ -52,6 +80,7 @@ export const authorsData = [
     education: "",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    expertServices: [],
   },
   {
     to: "hemlatha-s",
@@ -61,6 +90,7 @@ export const authorsData = [
     education: "(B.E, Delhi College of Engineering)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    expertServices: [],
   },
   {
     to: "rashmi-bansal",
@@ -70,5 +100,6 @@ export const authorsData = [
     education: "Consultant Cyber Security (MCA)",
     twitter: "x.com",
     linkedin: "linkedin.com",
+    expertServices: [],
   },
 ];
