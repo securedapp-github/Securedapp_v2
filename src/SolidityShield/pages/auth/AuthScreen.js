@@ -6,7 +6,7 @@ import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
 import "./AuthScreen.css";
-import { sendOTP, verifyOTP } from "../../functions";
+import { sendOTP, verifyOTP, getUser } from "../../functions";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData, login } from "../../redux/auth/authSlice";
 
@@ -24,11 +24,6 @@ const AuthScreen = () => {
     user.jwt && navigate("/solidity-shield-scan/overview");
     console.log(user);
   });
-
-  function log(e) {
-    dispatch(login(e));
-    console.log(user);
-  }
 
   return (
     <div className="auth-screen-container">

@@ -32,6 +32,10 @@ export const payCryptoVerify = async ({ id, transactionId, amount }) => {
               transactionId,
               amount,
             }),
+            headers: {
+              "Content-type": "application/json",
+              Authorization: getJwt(),
+            },
           }).then(async (response2) => {
             const res = await response2.json();
             if (res.status) {
@@ -98,6 +102,10 @@ export const payCrypto = async ({ planid, email }) => {
                 planid,
                 paymentid: transactionid,
               }),
+              headers: {
+                "Content-type": "application/json",
+                Authorization: getJwt(),
+              },
             }
           ).then(async (response2) => {
             const res = await response2.json();
@@ -153,6 +161,7 @@ export const payPhonpe = async ({ planid, email }) => {
         }),
         headers: {
           "Content-type": "application/json",
+          Authorization: getJwt(),
         },
       }
     );
@@ -287,6 +296,9 @@ export const scanSubmit = async ({
   return await fetch("https://139-59-5-56.nip.io:3443/audits", {
     method: "POST",
     body: formData,
+    headers: {
+      Authorization: getJwt(),
+    },
   })
     .then(async (response) => {
       if (!response.ok) {
@@ -442,6 +454,7 @@ export const getReport = async ({ id, email }) => {
     }),
     headers: {
       "Content-type": "application/json",
+      Authorization: getJwt(),
     },
   })
     .then(async (response) => {
@@ -482,6 +495,7 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
     }),
     headers: {
       "Content-type": "application/json",
+      Authorization: getJwt(),
     },
   })
     .then((response) => {
@@ -513,9 +527,6 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
     body: JSON.stringify({
       mail: email,
     }),
-    headers: {
-      "Content-type": "application/json",
-    },
   })
     .then((res) => {
       res.status === 200 && toast.success("OTP Send Successfully, Check Mail");
@@ -527,11 +538,16 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
 };
 
 export const verifyOTP = async ({ email, otp, dispatch }) => {
+  const jwt = CryptoJS.AES.encrypt(
+    JSON.stringify(email),
+    "secretKey123"
+  ).toString();
   fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
     method: "POST",
     body: JSON.stringify({
       mail: email,
       otp: otp,
+      jwt,
     }),
     headers: {
       "Content-type": "application/json",
@@ -559,11 +575,79 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
         plandetail = "Exclusive Plan";
       }
 
-      const jwt = CryptoJS.AES.encrypt(
-        JSON.stringify(email),
-        "secretKey123"
-      ).toString();
-      sessionStorage.setItem("session_user", jwt);
+      localStorage.setItem("UserJwt", jwt);
+
+      dispatch(
+        login({
+          email: userdata.email,
+          credits: userdata.credit,
+          remainingCredits: userdata.rcredit,
+          plan: userdata.plan,
+          planName: plandetail,
+          planExpiry: userdata.planexpiry,
+          firstName: "First Name",
+          lastName: "Last Name",
+          jwt: jwt,
+          companyName: "Company Name",
+        })
+      );
+
+      toast.success("Login Successful!");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      toast.error("Unable to login. Please try again!");
+    });
+};
+
+function getJwt() {
+  const jwt = localStorage.getItem("UserJwt");
+  if (!jwt) {
+    toast("Please sign in with your email.");
+    window.location.replace("/solidity-shield-scan/auth");
+    return;
+  }
+  return `Bearer ${jwt}`;
+}
+
+export const getUser = async ({ dispatch }) => {
+  const jwt = getJwt();
+  if (!jwt) {
+    toast("Please sign in with your email.");
+    //window.location.replace("/solidity-shield-scan/auth");
+    return;
+  }
+  fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
+    method: "POST",
+    body: JSON.stringify({
+      //mail: email,
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      toast.error("Invlaid Network Response: verify otp");
+    })
+    .then((data) => {
+      //console.log(data);
+      if (data.length == 0) toast("Error Signing in. Try again.");
+      let userdata = data[0];
+
+      let plandetail = "Free Plan";
+      if (userdata.plan == 1) {
+        plandetail = "Basic Plan";
+      }
+      if (userdata.plan == 2) {
+        plandetail = "Premium Plan";
+      }
+      if (userdata.plan == 3) {
+        plandetail = "Exclusive Plan";
+      }
 
       dispatch(
         login({
@@ -589,7 +673,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 };
 
 export const logout = () => {
-  sessionStorage.removeItem("session_user");
+  localStorage.removeItem("UserJwt");
   window.location.replace("/solidity-shield-scan/auth");
 };
 
@@ -601,6 +685,7 @@ export const downloadReport = async (id, user) => {
     }),
     headers: {
       "Content-type": "application/json",
+      Authorization: getJwt(),
     },
   })
     .then((response) => {

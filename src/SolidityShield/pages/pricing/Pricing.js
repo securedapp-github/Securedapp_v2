@@ -127,7 +127,11 @@ const Pricing = () => {
                         planType={detail.pricingCard.planType}
                         price={detail.pricingCard.price}
                         description={detail.pricingCard.description}
-                        onClick={() => detail.id > 0 && openModal(detail.id)}
+                        onClick={() =>
+                          detail.id > 0
+                            ? openModal(detail.id)
+                            : navigate("/solidity-shield-scan/auth")
+                        }
                         id={detail.id}
                       />
                       <div className="sss-pricing-card-changer-buttons">

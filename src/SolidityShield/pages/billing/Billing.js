@@ -26,7 +26,6 @@ const BillingScreen = () => {
 
   useEffect(() => {
     console.log(auth.user);
-    alert(auth.user.plan);
     //auth.user.email && navigate("/solidity-shield-scan/auth");
     async function fetch() {}
     fetch();

@@ -41,7 +41,7 @@ function Media() {
         />
         <div className="blog-cards">
           {currentItems.map((item) => (
-            <BlogCard key={item.id} details={item} />
+            <BlogCard key={item.id} details={item} isMedia={true} />
           ))}
         </div>
         <div className="blog-pagination">

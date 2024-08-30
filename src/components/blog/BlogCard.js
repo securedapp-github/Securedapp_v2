@@ -4,7 +4,7 @@ import "./BlogCard.css";
 import BlogTag from "./BlogTag";
 import { Link, useNavigate } from "react-router-dom";
 
-function BlogCard({ details }) {
+function BlogCard({ details, isMedia = false }) {
   const navigate = useNavigate();
   var dateObj = new Date(details.modifiedon);
 
@@ -31,7 +31,7 @@ function BlogCard({ details }) {
       onClick={() => {
         details.url
           ? navigate(`/blog/${details.url}`)
-          : window.open(details.link, "_blank");
+          : window.open(details.link);
       }}
     >
       <div className="blog-card-header">
@@ -61,7 +61,7 @@ function BlogCard({ details }) {
             filled={true}
             blogButton={true}
             onClick={() => {
-              navigate(`/blog/${details.url}`);
+              !isMedia && navigate(`/blog/${details.url}`);
             }}
           />
         </div>
