@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import "./Authors.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,6 +42,8 @@ const AuthorCard = ({
 };
 
 const Authors = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="authors-container">
       <Navbar />
@@ -57,14 +59,18 @@ const Authors = () => {
           <div className="authors-body-authors-cards">
             {authorsData.map((author) => {
               return (
-                <AuthorCard
-                  image={author.image}
-                  name={author.name}
-                  designation={author.designation}
-                  education={author.education}
-                  twitter={author.twitter}
-                  linkedin={author.linkedin}
-                />
+                <div
+                  onClick={() => navigate(`${author.to}`)}
+                  className="authors-body-author-card-container">
+                  <AuthorCard
+                    image={author.image}
+                    name={author.name}
+                    designation={author.designation}
+                    education={author.education}
+                    twitter={author.twitter}
+                    linkedin={author.linkedin}
+                  />
+                </div>
               );
             })}
           </div>
