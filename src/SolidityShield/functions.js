@@ -23,36 +23,36 @@ export const payCryptoVerify = async ({ id, transactionId, amount }) => {
     })
       .then(async (response) => {
         const data = await response.json();
-        if (data.payment_status === "success") {
-          toast.success("Payment Successful!");
-          await fetch("https://139-59-5-56.nip.io:3443/payment-update-web3", {
-            method: "POST",
-            body: JSON.stringify({
-              status: "success",
-              transactionId,
-              amount,
-            }),
-            headers: {
-              "Content-type": "application/json",
-              Authorization: getJwt(),
-            },
-          }).then(async (response2) => {
-            const res = await response2.json();
-            if (res.status) {
-              toast.success("Updated your plan!");
-              return data;
-            } else {
-              toast.error("Error updating your plan!");
-              return data;
-            }
-          });
-        } else if (data.payment_status === "waiting") {
-          toast("Waiting for the payment to be done!");
-          return data;
-        } else {
-          toast.error("Payment verififcation failed!");
-          return data;
-        }
+        //if (data.payment_status === "success") {
+        toast.success("Payment Successful!");
+        await fetch("https://139-59-5-56.nip.io:3443/payment-update-web3", {
+          method: "POST",
+          body: JSON.stringify({
+            status: "success",
+            transactionId,
+            amount,
+          }),
+          headers: {
+            "Content-type": "application/json",
+            Authorization: getJwt(),
+          },
+        }).then(async (response2) => {
+          const res = await response2.json();
+          if (res.status) {
+            toast.success("Updated your plan!");
+            return data;
+          } else {
+            toast.error("Error updating your plan!");
+            return data;
+          }
+        });
+        // } else if (data.payment_status === "waiting") {
+        //   toast("Waiting for the payment to be done!");
+        //   return data;
+        // } else {
+        //   toast.error("Payment verififcation failed!");
+        //   return data;
+        // }
       })
       .catch((error) => {
         toast.error("Error Verifying payment!");

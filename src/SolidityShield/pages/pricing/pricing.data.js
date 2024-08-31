@@ -125,7 +125,7 @@ export const pricingDetails = [
     pricingCard: {
       icon: "/assets/images/solidity-shield-scan/plus-pricing-plan.svg",
       planType: "Plus",
-      price: "₹ 14,999",
+      price: "₹ 500",
       description: "Enjoy advanced features & exclusive access privacy.",
     },
     details: {
@@ -188,7 +188,7 @@ export const pricingDetails = [
     pricingCard: {
       icon: "/assets/images/solidity-shield-scan/premium-pricing-plan.svg",
       planType: "Premium",
-      price: "₹ 29,999",
+      price: "₹ 800",
       description: "Enjoy advanced features & exclusive access privacy.",
     },
     details: {
