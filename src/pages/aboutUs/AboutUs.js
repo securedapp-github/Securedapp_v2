@@ -27,12 +27,16 @@ const TeamCard = ({ details }) => {
             {details.designation}
           </div>
           <div className="team-card-body-socials">
-            <a target="_blank" href={details.linkedin && details.linkedin}>
-              <FontAwesomeIcon size="lg" icon={faLinkedin} />
-            </a>
-            <a target="_blank" href={details.twitter && details.twitter}>
-              <FontAwesomeIcon size="lg" icon={faTwitter} />
-            </a>
+            {details.linkedin && (
+              <a target="_blank" href={details.linkedin}>
+                <FontAwesomeIcon size="lg" icon={faLinkedin} />
+              </a>
+            )}
+            {details.twitter && (
+              <a target="_blank" href={details.twitter}>
+                <FontAwesomeIcon size="lg" icon={faTwitter} />
+              </a>
+            )}
           </div>
         </div>
       </div>

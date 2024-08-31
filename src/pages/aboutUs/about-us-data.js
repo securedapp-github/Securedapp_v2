@@ -38,7 +38,7 @@ const teamData = [
     name: "Thejaswi PB",
     designation: "Head HR",
     image: "/assets/images/team/thejaswi.png",
-    twitter: "",
+
     linkedin: "https://www.linkedin.com/in/thejaswi1",
   },
   {
@@ -52,7 +52,7 @@ const teamData = [
     name: "Manish Kumar",
     designation: "Growth & Delivery Advisor",
     image: "/assets/images/team/manish.png",
-    twitter: "",
+
     linkedin: "https://www.linkedin.com/in/manish-kumar-9a7a2615/",
   },
 ];

@@ -23,6 +23,7 @@ function SecureTracePage() {
           name="SECURE TRACE"
           title="SecureTrace: Advanced AI for Blockchain Investigation & Forensic Analysis"
           image={"/assets/images/ProductPages/st/st-hero.webp"}
+          service={true}
         />
         <ProductCard
           header={"What is Secure Trace"}

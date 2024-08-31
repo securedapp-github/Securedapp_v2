@@ -455,7 +455,6 @@ export const getReport = async ({ id, email }) => {
     }),
     headers: {
       "Content-type": "application/json",
-      Authorization: getJwt() || "xyz",
     },
   })
     .then(async (response) => {
@@ -530,9 +529,14 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
     body: JSON.stringify({
       mail: email,
     }),
+    headers: {
+      "Content-type": "application/json",
+    },
   })
     .then((res) => {
-      res.status === 200 && toast.success("OTP Send Successfully, Check Mail");
+      console.log(res);
+      res.success === "true" &&
+        toast.success("OTP Send Successfully, Check Mail");
     })
     .catch((err) => {
       console.log(err.message);
