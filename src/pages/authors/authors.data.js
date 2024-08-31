@@ -40,7 +40,7 @@ export const authorsData = [
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security",
+        to: "/dapp-security-audit",
       },
       {
         name: "Web3 Security",
@@ -97,7 +97,7 @@ export const authorsData = [
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security",
+        to: "/dapp-security-audit",
       },
       {
         name: "Decentralized Identity",
@@ -199,7 +199,7 @@ export const authorsData = [
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security",
+        to: "/dapp-security-audit",
       },
       {
         name: "Web3 Security",
@@ -256,7 +256,7 @@ export const authorsData = [
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security",
+        to: "/dapp-security-audit",
       },
       {
         name: "Decentralized Identity",

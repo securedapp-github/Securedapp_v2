@@ -208,13 +208,13 @@ const BlogPost = () => {
       </div>
     );
   };
-  alert(blogDetails.image);
+
   return (
     <div className="blog-post-container">
       <Helmet>
         {/* Basic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
+        <title>{`SecureDapp - ${blogDetails.title}`}</title>
+        <meta name="description" content={blogDetails.Summary} />
         <meta name="author" content="Your Name or Website" />
 
         {/* Open Graph Meta Tags (For Facebook, LinkedIn, WhatsApp) */}
