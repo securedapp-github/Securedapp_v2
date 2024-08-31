@@ -79,3 +79,27 @@
 .nested-sidebar-item:hover {
   @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
 }
+
+.services-nested-sidebar-item {
+  @apply cursor-pointer;
+}
+
+.services-nested-sidebar-item-header {
+  @apply pl-6 py-1 w-full flex items-center gap-x-2;
+}
+
+.services-nested-sidebar-item-header:hover {
+  @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
+}
+
+.services-nested-sidebar-body-items {
+  @apply pl-8 py-2 flex flex-col gap-y-2;
+}
+
+.services-nested-sidebar-body-item {
+  @apply text-sm font-light;
+}
+
+.services-nested-sidebar-body-item:hover {
+  @apply underline;
+}
