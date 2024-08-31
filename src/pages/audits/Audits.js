@@ -105,9 +105,13 @@ const AuditsPageCard = ({ headers, details, children }) => {
 
 const AuditsPage = () => {
   window.scrollTo(0, 0);
-  const { id } = useParams();
+  var { id } = useParams();
   const [report, setReport] = useState();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+
+  if (!id) {
+    id = 0;
+  }
 
   async function fetch(e) {
     const data = await getReport({ id: e, email: "" });
@@ -171,7 +175,7 @@ const AuditsPage = () => {
 
   function search() {
     fetch(searchVal);
-    navigate(`/audits/${searchVal}`);
+    //navigate(`/audits/${searchVal}`);
   }
 
   return (

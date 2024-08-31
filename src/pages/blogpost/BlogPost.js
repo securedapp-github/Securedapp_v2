@@ -306,7 +306,7 @@ const BlogPost = () => {
                         window.location.origin + "/" + url
                       )
                     }
-                    className="fa-regular fa-link"
+                    className="fa-regular fa-link hover:cursor-pointer"
                   />
                 </div>
               </div>

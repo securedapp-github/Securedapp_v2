@@ -77,8 +77,10 @@ const AuthorProfile = () => {
               {authorDetail.expertServices.map((service) => {
                 return (
                   <div className="author-profile-footer-link">
-                    <FontAwesomeIcon icon={faArrowRight} />
-                    {service.name}
+                    <Link to={service.to}>
+                      <FontAwesomeIcon icon={faArrowRight} />
+                      {service.name}
+                    </Link>
                   </div>
                 );
               })}

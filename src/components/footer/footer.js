@@ -72,6 +72,10 @@ const navigationItems = [
         to: "/about",
       },
       {
+        name: "Authors",
+        to: "/authors",
+      },
+      {
         name: "Media",
         to: "/media",
       },
@@ -91,6 +95,10 @@ const navigationItems = [
       {
         name: "Blogs",
         to: "/blog",
+      },
+      {
+        name: "Audits",
+        to: "/audits",
       },
       {
         name: "Github",
@@ -210,7 +218,12 @@ const Footer = () => {
           <div className="footer-socials">
             {socials.map((social) => {
               return (
-                <div onClick={() => window.open(social.to)}>{social.icon}</div>
+                <div
+                  className="hover:cursor-pointer"
+                  onClick={() => window.open(social.to)}
+                >
+                  {social.icon}
+                </div>
               );
             })}
           </div>

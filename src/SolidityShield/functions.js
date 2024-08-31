@@ -455,7 +455,7 @@ export const getReport = async ({ id, email }) => {
     }),
     headers: {
       "Content-type": "application/json",
-      Authorization: getJwt(),
+      Authorization: getJwt() || "xyz",
     },
   })
     .then(async (response) => {
