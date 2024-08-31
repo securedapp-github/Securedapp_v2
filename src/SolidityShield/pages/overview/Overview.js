@@ -14,26 +14,26 @@ const OverviewScreen = () => {
   const navigate = useNavigate();
 
   const auth = useSelector(getUserData);
-  const scanHistory = useSelector(getScanHistory);
+  var scanHistory = useSelector(getScanHistory);
   const [firstTime, setFirstTime] = useState(true);
+  const [history, setHistory] = useState();
 
   useEffect(() => {
-    const userJwt = getJwt();
-    if (userJwt) {
-      getUser({ dispatch });
-    }
+    const userJwt = localStorage.getItem("UserJwt");
     async function fetch() {
-      if (auth.user.email) {
-        await getScanHistoryData({
-          userEmail: auth.user.email,
+      if (userJwt) {
+        await getUser({ dispatch });
+        var data = await getScanHistoryData({
+          userEmail: localStorage.getItem("UserEmail"),
           dispatch,
         });
+        setHistory(data);
       } else {
         navigate("/solidity-shield-scan/auth");
       }
     }
     fetch();
-  }, [auth.user.email, dispatch, navigate]);
+  }, [history]);
 
   useEffect(() => {
     if (scanHistory.history.length > 0) setFirstTime(false);

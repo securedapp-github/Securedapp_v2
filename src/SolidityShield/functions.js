@@ -356,12 +356,14 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
     userEmail: email,
     dispatch,
   });
+  console.log(history);
   var latestScan = history.reduce((max, item) => {
     return item.id > max.id ? item : max;
   }, history[0]);
+
   if (latestScan) {
     latestScan = await getReport({ id: latestScan.id, email });
-
+    console.log(latestScan);
     var summary = `Scanned ${latestScan.contracts} contracts, ${
       latestScan.lines
     } lines of code and found ${Object.values(latestScan.findings).reduce(
@@ -454,6 +456,7 @@ export const getReport = async ({ id, email }) => {
       id: id,
     }),
     headers: {
+      Authorization: getJwt(),
       "Content-type": "application/json",
     },
   })
@@ -546,16 +549,13 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
 };
 
 export const verifyOTP = async ({ email, otp, dispatch }) => {
-  const jwt = CryptoJS.AES.encrypt(
-    JSON.stringify(email),
-    "secretKey123"
-  ).toString();
+  let jwt;
+
   fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
     method: "POST",
     body: JSON.stringify({
       mail: email,
       otp: otp,
-      jwt,
     }),
     headers: {
       "Content-type": "application/json",
@@ -565,13 +565,21 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       if (response.ok) {
         return response.json();
       }
+
       toast.error("Invlaid Network Response: verify otp");
-      window.location.replace("/solidity-shield-scan/auth");
+      //window.location.replace("/solidity-shield-scan/auth");
     })
     .then((data) => {
       //console.log(data);
-      if (data.length == 0) toast("Wrong OTP");
+      if (data.length == 0) {
+        toast("Wrong OTP");
+        return;
+      }
       let userdata = data[0];
+
+      jwt = userdata.jwt;
+      localStorage.setItem("UserJwt", userdata.jwt);
+      localStorage.setItem("UserEmail", email);
 
       let plandetail = "Free Plan";
       if (userdata.plan == 1) {
@@ -583,9 +591,6 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       if (userdata.plan == 3) {
         plandetail = "Exclusive Plan";
       }
-
-      localStorage.setItem("UserJwt", jwt);
-      localStorage.setItem("UserEmail", email);
 
       dispatch(
         login({
@@ -617,8 +622,9 @@ export function getJwt() {
     toast("Please sign in with your email.");
     window.location.replace("/solidity-shield-scan/auth");
     return;
+  } else {
+    return `Bearer ${jwt}`;
   }
-  return `Bearer ${jwt}`;
 }
 
 export const getUser = async ({ dispatch, email }) => {

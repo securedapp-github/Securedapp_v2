@@ -21,7 +21,8 @@ const AuthScreen = () => {
   const [button, setButton] = useState("Send OTP");
 
   useEffect(() => {
-    user.jwt && navigate("/solidity-shield-scan/overview");
+    localStorage.getItem("UserJwt") &&
+      navigate("/solidity-shield-scan/overview");
     console.log(user);
   });
 
