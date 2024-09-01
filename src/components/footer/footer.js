@@ -104,10 +104,10 @@ const navigationItems = [
         name: "Github",
         to: "https://github.com/securedapp-github",
       },
-      {
-        name: "Referral",
-        to: "",
-      },
+      // {
+      //   name: "Referral",
+      //   to: "",
+      // },
       {
         name: "Workplace Policy",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/workplace-policy",
@@ -128,10 +128,10 @@ const navigationItems = [
         name: "Whitepaper",
         to: "https://securedapp.gitbook.io/securedapp-launchpad",
       },
-      {
-        name: "Research Reports",
-        to: "",
-      },
+      // {
+      //   name: "Research Reports",
+      //   to: "",
+      // },
     ],
   },
 ];
