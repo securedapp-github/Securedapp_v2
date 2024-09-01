@@ -44,6 +44,7 @@ import "aos/dist/aos.css";
 import AuditsPage from "./pages/audits/Audits";
 import Authors from "./pages/authors/Authors";
 import AuthorProfile from "./pages/authors/AuthorProfile";
+import VulnerabilityInfo from "./pages/vulnerability/Vulnerability";
 
 function App() {
   const dispatch = useDispatch();
@@ -114,6 +115,7 @@ function App() {
         <Route path="audits/:id" element={<AuditsPage />} />
         <Route path="authors" element={<Authors />} />
         <Route path="authors/:url" element={<AuthorProfile />} />
+        <Route path="vulnerability" element={<VulnerabilityInfo />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
       </Routes>
