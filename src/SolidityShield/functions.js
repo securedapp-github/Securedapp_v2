@@ -573,6 +573,11 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
 export const verifyOTP = async ({ email, otp, dispatch }) => {
   let jwt;
 
+  if (!otp) {
+    toast.error("Please enter the OTP");
+    return;
+  }
+
   fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
     method: "POST",
     body: JSON.stringify({
@@ -630,6 +635,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       );
 
       toast.success("Login Successful!");
+      window.location.replace("/solidity-shield-scan/overview");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -642,7 +648,7 @@ export function getJwt() {
   const jwt = localStorage.getItem("UserJwt");
   if (!jwt) {
     toast("Please sign in with your email.");
-    window.location.replace("/solidity-shield-scan/auth");
+    // window.location.replace("/solidity-shield-scan/auth");
     return;
   } else {
     return `Bearer ${jwt}`;
@@ -657,7 +663,7 @@ export const getUser = async ({ dispatch, email }) => {
     return;
   }
 
-  fetch("https://139-59-5-56.nip.io:3443/getUser", {
+  return await fetch("https://139-59-5-56.nip.io:3443/getUser", {
     method: "POST",
     body: JSON.stringify({
       mail: localStorage.getItem("UserEmail"),
@@ -707,6 +713,18 @@ export const getUser = async ({ dispatch, email }) => {
           companyName: "Company Name",
         })
       );
+      return {
+        email: userdata.email,
+        credits: userdata.credit,
+        remainingCredits: userdata.rcredit,
+        plan: userdata.plan,
+        planName: plandetail,
+        planExpiry: userdata.planexpiry,
+        firstName: "First Name",
+        lastName: "Last Name",
+        jwt: jwt,
+        companyName: "Company Name",
+      };
       getScanHistoryData({ userEmail: email, dispatch });
     })
     .catch((error) => {

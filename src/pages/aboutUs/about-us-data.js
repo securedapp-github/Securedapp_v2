@@ -52,7 +52,7 @@ const teamData = [
     name: "Manish Kumar",
     designation: "Growth & Delivery Advisor",
     image: "/assets/images/team/manish.png",
-
+    twitter: "https://x.com/manishimt2009",
     linkedin: "https://www.linkedin.com/in/manish-kumar-9a7a2615/",
   },
 ];
