@@ -66,7 +66,7 @@ const AuthScreen = () => {
                 } else {
                   await verifyOTP({ email, otp, dispatch });
                   setButton("Send OTP");
-                  navigate("/solidity-shield-scan/overview");
+                  //navigate("/solidity-shield-scan/overview");
                   console.log(user);
                 }
               }}

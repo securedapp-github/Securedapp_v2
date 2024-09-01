@@ -18,6 +18,7 @@ import { getUser, getJwt } from "../../functions";
 const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
   const auth = useSelector(getUserData);
+  const [user, setUser] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,13 +31,14 @@ const BillingScreen = () => {
     async function fetch() {
       const userJwt = getJwt();
       if (userJwt) {
-        getUser({ dispatch });
+        var data = await getUser({ dispatch });
+        setUser(data);
       } else {
         navigate("/solidity-shield-scan/auth");
       }
     }
     fetch();
-  }, []);
+  }, [auth.user]);
 
   return (
     <div className="sss-billing-screen-container">
@@ -47,26 +49,26 @@ const BillingScreen = () => {
               "flex-1 w-full min-h-[250px] lg:w-1/2 flex flex-col justify-center"
             }
           >
-            {auth.user.plan && (
+            {user && (
               <div className="sss-billing-current-container">
                 <div className="sss-billing-current-header">
                   <div className="sss-billing-current-header-tittle">
                     {auth &&
-                      pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                      pricingDetails[Number(user.plan) + 1].pricingCard
                         .planType}
                   </div>
                   <div className="sss-billing-current-header-desc">
                     {auth &&
-                      pricingDetails[Number(auth.user.plan) + 1].pricingCard
+                      pricingDetails[Number(user.plan) + 2].pricingCard
                         .description}
                   </div>
                 </div>
                 <div className="sss-billing-current-body">
                   <div className="sss-billing-current-body-rate">
                     <div className="sss-billing-current-body-price">
-                      {auth &&
+                      {user &&
                         pricingDetails[
-                          Number(auth.user.plan) + 1
+                          Number(user.plan) + 1
                         ].pricingCard.price.replace("/-", "")}
                     </div>
                     <div className="sss-billing-current-body-per">
