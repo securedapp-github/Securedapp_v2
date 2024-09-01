@@ -19,6 +19,7 @@ const ProductServiceHero = ({
   cta,
   onClick,
   service = false,
+  isSecureTrace = false,
 }) => {
   const dispatch = useDispatch();
   const isOnWeb = window.innerWidth > 1024;
@@ -81,7 +82,7 @@ const ProductServiceHero = ({
               {service && isOnWeb && <br></br>}
               <GetStartedButton
                 onClick={
-                  service === true
+                  service || isSecureTrace
                     ? () => {
                         dispatch(setIsRequestModalOpen(true));
                       }
