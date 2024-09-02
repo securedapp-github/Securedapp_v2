@@ -143,6 +143,28 @@ export const payCrypto = async ({ planid, email }) => {
   }
 };
 
+export const checkPhonpe = async ({ id }) => {
+  return await fetch("https://139-59-5-56.nip.io:3443/check-phonepay", {
+    method: "GET",
+    // body: JSON.stringify({
+    //   paymentid: id,
+    // }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
+    .then(async (res) => {
+      var data = await res.json();
+      //console.log(data);
+      return data.status;
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error getting transaction status");
+    });
+};
+
 export const payPhonpe = async ({ planid, email }) => {
   const { v4: uuidv4 } = require("uuid");
 
@@ -167,7 +189,7 @@ export const payPhonpe = async ({ planid, email }) => {
     );
 
     const data = await response2.json();
-    console.log("db entry data : ", data);
+    console.log(transactionid);
 
     if (!data.status) {
       toast.error("Failed to proceed to payment! Try again.");

@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 import RegisterScreen from "./pages/auth/RegisterScreen";
 import AuditCertificate from "./pages/auditCertificate/AuditCertificate";
 import Settings from "./pages/settings/Settings";
+import TxStatus from "./pages/txStatus/txStatus";
 
 const SolidityShield = () => {
   return (
@@ -37,6 +38,7 @@ const SolidityShield = () => {
             <Route path="pricing" element={<Pricing />} />
             <Route path="report/:id" element={<ScanReport />} />
             <Route path="payment" element={<BillingScreen />} />
+            <Route path="txn-status/:id" element={<TxStatus />} />
           </Route>
           <Route element={<NoSidebarLayout />}>
             <Route path="auth" element={<AuthScreen />} />
