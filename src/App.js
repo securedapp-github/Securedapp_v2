@@ -115,8 +115,11 @@ function App() {
         <Route path="audits/:id" element={<AuditsPage />} />
         <Route path="authors" element={<Authors />} />
         <Route path="authors/:url" element={<AuthorProfile />} />
-        <Route path="vulnerability" element={<VulnerabilityInfo />} />
         <Route path="about" element={<AboutUs />} />
+        <Route
+          path="solidity-shield-scan/vulnerabilities"
+          element={<VulnerabilityInfo />}
+        />
         <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
       </Routes>
     </div>

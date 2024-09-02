@@ -8,6 +8,7 @@ import "./BlogPost.css";
 import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 const renderContent = (blogData) => {
   const filteredBlog = blogData;
@@ -215,7 +216,7 @@ const BlogPost = () => {
         {/* Basic Meta Tags */}
         <title>{`SecureDapp - ${blogDetails.title}`}</title>
         <meta name="description" content={blogDetails.Summary} />
-        <meta name="author" content="Your Name or Website" />
+        <meta name="author" content="SecureDapp" />
 
         {/* Open Graph Meta Tags (For Facebook, LinkedIn, WhatsApp) */}
         <meta property="og:title" content={blogDetails.title} />
@@ -224,9 +225,11 @@ const BlogPost = () => {
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="SecureDapp" />
         <meta property="og:locale" content="en_IN" />
+        <meta property="og:url" content={window.location.href} />
 
         {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content={blogDetails.image} />
         <meta name="twitter:title" content={blogDetails.title} />
         <meta name="twitter:description" content={blogDetails.Summary} />
         <meta name="twitter:image" content={blogDetails.image} />
@@ -299,44 +302,47 @@ const BlogPost = () => {
                 </div>
                 <div className="publisher-socials">
                   <div>Share: </div>
-                  <a target="_blank" href={``}>
+                  {/* <a target="_blank" href={``}>
                     <i className="fa-brands fa-discord" />
-                  </a>
+                  </a> */}
                   <a
                     target="_blank"
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                       blogDetails.title
-                    )}&url=${window.location.origin}${encodeURIComponent(
-                      +"/" + url
+                    )}&url=${encodeURIComponent(
+                      "https://securedapp.io/blog/" + url
                     )}`}
                   >
                     <i className="fa-brands fa-square-x-twitter" />
                   </a>
                   <a
                     target="_blank"
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${
-                      window.location.origin
-                    }${+"/" + url}`}
+                    rel="noopener noreferrer"
+                    href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(
+                      blogDetails.title +
+                        " : " +
+                        "http://localhost:3000/blog/" +
+                        url
+                    )}`}
                   >
                     <i className="fa-brands fa-linkedin" />
                   </a>
                   <a
                     target="_blank"
-                    href={`https://t.me/share/url?url=${
-                      window.location.origin
-                    }${encodeURIComponent(
-                      +"/" + url
+                    href={`https://t.me/share/url?url=${encodeURIComponent(
+                      "https://securedapp.io/blog/" + url
                     )}&text=${encodeURIComponent(blogDetails.title)}`}
                   >
                     <i className="fa-brands fa-telegram" />
                   </a>
                   <i
                     target="_blank"
-                    onClick={() =>
+                    onClick={() => {
                       navigator.clipboard.writeText(
-                        window.location.origin + "/" + url
-                      )
-                    }
+                        "https://securedapp.io/blog/" + url
+                      );
+                      toast("Link copied");
+                    }}
                     className="fa-regular fa-link hover:cursor-pointer"
                   />
                 </div>
