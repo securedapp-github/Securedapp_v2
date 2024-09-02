@@ -1,5 +1,5 @@
 .audits-page-card-container {
-  @apply bg-[#FFFFFF0D] border border-[#D2E6FF26] w-full rounded-lg;
+  @apply border w-full rounded-lg border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
 }
 
 .audits-page-card {
@@ -7,7 +7,7 @@
 }
 
 .audits-page-card-headers {
-  @apply w-full bg-[#FFFFFF0F] flex rounded;
+  @apply w-full bg-[#A4CDFF] dark:bg-[#FFFFFF0F] flex rounded;
 }
 
 .audits-page-card-header {
@@ -22,7 +22,7 @@
 }
 
 .audits-page-card-body-row {
-  @apply px-2 text-[#FAFAFA] pt-3 pb-1 flex w-full font-light border-b border-[#D2E6FF26];
+  @apply px-2 dark:text-[#FAFAFA] pt-3 pb-1 flex w-full font-light border-b border-cardBorderColorLight dark:border-cardBorderColorDark;
 }
 
 .audits-page-card-body-row-topic {
