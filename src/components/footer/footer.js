@@ -101,6 +101,10 @@ const navigationItems = [
         to: "/audits",
       },
       {
+        name: "Vulnerabilities",
+        to: "/solidity-shield-scan/vulnerabilities",
+      },
+      {
         name: "Github",
         to: "https://github.com/securedapp-github",
       },
