@@ -29,7 +29,7 @@ const OverviewScreen = () => {
         });
         setHistory(data);
       } else {
-        //navigate("/solidity-shield-scan/auth");
+        navigate("/solidity-shield-scan/auth");
       }
     }
     fetch();
