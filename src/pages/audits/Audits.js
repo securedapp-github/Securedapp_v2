@@ -4,6 +4,7 @@ import {
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/footer";
 import "./Audits.css";
 import { auditChartsData, auditsCard1, auditsCard2 } from "./audits.data";
 import { getReport } from "../../SolidityShield/functions";
@@ -275,6 +276,7 @@ const AuditsPage = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -17,7 +17,7 @@ const Settings = () => {
         </div>
         <div className="sss-settings-body">
           <div className="sss-settings-body-header">
-            <div className="sss-settings-body-header-filter-container">
+            {/* <div className="sss-settings-body-header-filter-container">
               {settingsTypes.map((filter) => {
                 return (
                   <div
@@ -35,7 +35,7 @@ const Settings = () => {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
           </div>
           <div className="sss-settings-body-main">
             {settingsType === "Profile" ? (

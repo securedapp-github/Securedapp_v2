@@ -102,7 +102,7 @@ const navigationItems = [
       },
       {
         name: "Vulnerabilities",
-        to: "/solidity-shield-scan/vulnerabilities",
+        to: "/solidity-shield-vulnerabilities",
       },
       {
         name: "Github",

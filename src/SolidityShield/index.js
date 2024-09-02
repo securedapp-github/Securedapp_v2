@@ -33,8 +33,8 @@ const SolidityShield = () => {
             <Route path="overview" element={<OverviewScreen />} />
             <Route path="history" element={<ScanHistory />} />
             {/* <Route path="vulnerability-scans" element={<VulnerabilityScan />} />
-            <Route path="audit-certificate" element={<AuditCertificate />} />
-            <Route path="settings" element={<Settings />} /> */}
+            <Route path="audit-certificate" element={<AuditCertificate />} /> */}
+            <Route path="settings" element={<Settings />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="report/:id" element={<ScanReport />} />
             <Route path="payment" element={<BillingScreen />} />

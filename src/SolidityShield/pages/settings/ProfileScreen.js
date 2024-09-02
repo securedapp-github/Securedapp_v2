@@ -1,4 +1,9 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../../components/common/CustomButton";
+import { getUserData } from "../../redux/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { getUser, getJwt } from "../../functions";
 
 const ProfileScreenField = ({ label, children }) => {
   return (
@@ -31,23 +36,43 @@ const ProfileScreenInputTextField = ({
 };
 
 const ProfileScreen = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const auth = useSelector(getUserData);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    //alert(auth.user.plan);
+    async function fetch() {
+      const userJwt = getJwt();
+      if (userJwt) {
+        var data = await getUser({ dispatch });
+        setUser(data);
+      } else {
+        navigate("/solidity-shield-scan/auth");
+      }
+    }
+    fetch();
+  }, [user]);
+
   return (
     <div className="sss-settings-body-profile-container">
       <div className="sss-settings-body-profile-fields-row">
         <ProfileScreenField label={"First Name"}>
           <ProfileScreenInputTextField
             type={"text"}
-            placeHolder={"First Name"}
+            placeHolder={"Full Name"}
             onChangee={() => {}}
           />
         </ProfileScreenField>
-        <ProfileScreenField label={"Last Name"}>
+        {/* <ProfileScreenField label={"Last Name"}>
           <ProfileScreenInputTextField
             type={"text"}
             placeHolder={"Last Name"}
             onChangee={() => {}}
           />
-        </ProfileScreenField>
+        </ProfileScreenField> */}
       </div>
       <div className="sss-settings-body-profile-fields-row">
         <ProfileScreenField label={"Email"}>
@@ -55,17 +80,18 @@ const ProfileScreen = () => {
             type={"email"}
             placeHolder={"Email"}
             onChangee={() => {}}
+            value={user && user.email}
           />
         </ProfileScreenField>
-        <ProfileScreenField label={"Company Name"}>
+        {/* <ProfileScreenField label={"Company Name"}>
           <ProfileScreenInputTextField
             type={"text"}
             placeHolder={"Company Name"}
             onChangee={() => {}}
           />
-        </ProfileScreenField>
+        </ProfileScreenField> */}
       </div>
-      <div className="sss-settings-body-profile-checkboxes">
+      {/* <div className="sss-settings-body-profile-checkboxes">
         <div className="sss-settings-body-profile-checkbox">
           <input type="checkbox" />
           <div className="">Product updates and community announcements</div>
@@ -78,15 +104,15 @@ const ProfileScreen = () => {
           <input type="checkbox" />
           <div className="">Discounts and promotions</div>
         </div>
-      </div>
-      <div className="sss-settings-body-profile-button">
+      </div> */}
+      {/* <div className="sss-settings-body-profile-button">
         <CustomButton
           text={"Save & Continue"}
           className={
             "w-full px-3 py-3 rounded-xl text-black border border-tertiary active:bg-tertiary"
           }
         />
-      </div>
+      </div> */}
     </div>
   );
 };
