@@ -6,7 +6,11 @@ import SectionTitle from "../../components/common/SectionTitle";
 import { tags } from "./blog-data";
 import "./Blog.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 
 function Blog() {
@@ -79,6 +83,18 @@ function Blog() {
     window.scrollTo(0, 0);
   };
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      paginate(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
+
   return (
     <div className="blog-container">
       <Navbar />
@@ -122,18 +138,23 @@ function Blog() {
           )}
         </div>
         <div className="blog-pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <div
-              className={`blog-pagination-item ${
-                currentPage === i + 1 && "selected-number"
-              }`}
-              key={i + 1}
-              onClick={() => paginate(i + 1)}
-              disabled={currentPage === i + 1}
-            >
-              {i + 1}
-            </div>
-          ))}
+          <div className="blog-pagniation-arrow-container">
+            <button
+              className="blog-pagination-arrow"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+          </div>
+          <div className="blog-pagination-number">{currentPage}</div>
+          <div className="blog-pagniation-arrow-container">
+            <button
+              className="blog-pagination-arrow"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}>
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

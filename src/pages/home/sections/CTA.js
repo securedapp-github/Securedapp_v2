@@ -54,7 +54,7 @@ const CTA = () => {
       </div>
       <div className="cta-section-grid">
         <img
-          className="hidden dark:block"
+          className="hidden dark:block relative z-0"
           src="/assets/images/cta-lower-grid-dark.svg"
           alt="cta-lower-grid"
         />
