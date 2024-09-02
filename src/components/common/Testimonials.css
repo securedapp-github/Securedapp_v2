@@ -11,10 +11,10 @@
 }
 
 .testimonial-card {
-  @apply mx-4 px-8 py-10 flex flex-col rounded-2xl opacity-[76%] items-stretch bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
+  @apply h-[400px] mx-4 px-8 py-10 flex flex-col rounded-2xl opacity-[76%] items-center justify-between bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark;
 }
 .selected-card {
-  @apply pt-12 border-[#A4CDFF] opacity-100;
+  @apply h-[500px] pt-12 border-[#A4CDFF] opacity-100;
 }
 
 .testimonial-card-text {
@@ -23,9 +23,6 @@
 
 .testimonial-card-content {
   @apply w-full pt-8 flex justify-between;
-}
-.selected-card-content {
-  @apply pt-20;
 }
 
 .testimonial-card-reviwer {

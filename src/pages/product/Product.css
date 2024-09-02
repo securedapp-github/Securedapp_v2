@@ -1,5 +1,5 @@
 .product {
-  @apply w-full bg-grid;
+  @apply w-full;
 }
 .features-section {
   @apply px-4 lg:px-24;

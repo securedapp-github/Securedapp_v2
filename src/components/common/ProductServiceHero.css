@@ -1,5 +1,5 @@
 .product-service-hero-container {
-  @apply w-full flex flex-col justify-center items-start space-y-12;
+  @apply bg-grid w-full flex flex-col justify-center items-start space-y-12;
 }
 
 .product-service-hero {

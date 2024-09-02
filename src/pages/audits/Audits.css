@@ -38,7 +38,7 @@
 }
 
 .audits-page {
-  @apply py-32 px-4 lg:px-36;
+  @apply bg-grid py-32 px-4 lg:px-36;
 }
 
 .audits-page-header {

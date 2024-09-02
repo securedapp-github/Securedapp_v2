@@ -80,7 +80,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 right-0">
+    <div className="absolute z-10 top-0 left-0 right-0">
       {isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}
