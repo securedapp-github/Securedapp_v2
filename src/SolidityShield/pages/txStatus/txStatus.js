@@ -6,8 +6,15 @@ import { checkPhonpe } from "../../functions";
 
 const TxStatus = () => {
   const { id } = useParams();
+  const [status, setStatus] = useState(false);
 
-  useEffect(() => {});
+  useEffect(() => {
+    async function fetch() {
+      const data = await checkPhonpe({ id });
+      data.success && setStatus(true);
+    }
+    fetch();
+  }, [status]);
 
   return (
     <div className="auth-screen-container">
@@ -15,11 +22,7 @@ const TxStatus = () => {
         <AuthScrenHeader title={"Transaction of Id: " + id} />
         <br />
         <br />
-        <AuthButton
-          children={`Status : ${
-            checkPhonpe(id) === true ? "Success" : "Pending"
-          }`}
-        />
+        <AuthButton children={`Status : ${status ? "Success" : "Pending"}`} />
       </div>
     </div>
   );

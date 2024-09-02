@@ -144,20 +144,24 @@ export const payCrypto = async ({ planid, email }) => {
 };
 
 export const checkPhonpe = async ({ id }) => {
-  return await fetch("https://139-59-5-56.nip.io:3443/check-phonepay", {
-    method: "GET",
-    // body: JSON.stringify({
-    //   paymentid: id,
-    // }),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: getJwt(),
-    },
-  })
+  return await fetch(
+    `https://139-59-5-56.nip.io:3443/check-phonepay?txnid=${id}`,
+    {
+      method: "GET",
+      // body: JSON.stringify({
+      //   paymentid: id,
+      // }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: getJwt(),
+      },
+    }
+  )
     .then(async (res) => {
       var data = await res.json();
-      //console.log(data);
-      return data.status;
+      //alert(JSON.stringify(data));
+      console.log(data);
+      return data;
     })
     .catch((error) => {
       console.log(error);
@@ -589,6 +593,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
     },
   })
     .then((response) => {
+      //alert(JSON.stringify(response));
       if (response.ok) {
         return response.json();
       }
@@ -648,7 +653,7 @@ export function getJwt() {
   const jwt = localStorage.getItem("UserJwt");
   if (!jwt) {
     toast("Please sign in with your email.");
-    // window.location.replace("/solidity-shield-scan/auth");
+    window.location.replace("/solidity-shield-scan/auth");
     return;
   } else {
     return `Bearer ${jwt}`;
@@ -680,7 +685,7 @@ export const getUser = async ({ dispatch, email }) => {
       }
       //console.log(response);
       toast.error("Error signin in.");
-      window.location.replace("/solidity-shield-scan/auth");
+      //window.location.replace("/solidity-shield-scan/auth");
       return;
     })
     .then(async (data) => {

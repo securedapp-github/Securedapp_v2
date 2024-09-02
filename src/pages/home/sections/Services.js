@@ -136,7 +136,7 @@ const Services = () => {
   const PreviousArrow = () => {
     return (
       <div
-        className="services-mobile-navbar-arrow-container"
+        className="services-mobile-navbar-arrow-container hover:cursor-pointer"
         onClick={moveLeft}
       >
         <FontAwesomeIcon
@@ -151,7 +151,7 @@ const Services = () => {
   const NextArrow = () => {
     return (
       <div
-        className="services-mobile-navbar-arrow-container"
+        className="services-mobile-navbar-arrow-container hover:cursor-pointer"
         onClick={moveRight}
       >
         <FontAwesomeIcon

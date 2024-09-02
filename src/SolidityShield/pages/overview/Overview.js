@@ -28,6 +28,7 @@ const OverviewScreen = () => {
           dispatch,
         });
         setHistory(data);
+        return;
       } else {
         navigate("/solidity-shield-scan/auth");
       }
