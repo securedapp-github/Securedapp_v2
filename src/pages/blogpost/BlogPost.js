@@ -321,7 +321,7 @@ const BlogPost = () => {
                     href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(
                       blogDetails.title +
                         " : " +
-                        "http://localhost:3000/blog/" +
+                        "https://securedapp.io/blog/" +
                         url
                     )}`}
                   >

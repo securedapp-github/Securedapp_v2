@@ -1,7 +1,59 @@
 export const authorsData = [
   {
+    to: "harshajit",
+    image: "/assets/images/authors/harshajit-sarmah.png",
+    name: "Mr. Harshajit Sarmah",
+    designation: "Blockchain Architecture & Consultant Cyber Security (MCA)",
+    twitter: "https://x.com/whattheharsh",
+    linkedin: "https://www.linkedin.com/in/harshajit-sarmah",
+    details: [
+      {
+        title: "Experience",
+        info: "Harshajit Sarmah has carved a niche in the dynamic world of Web3 and AI journalism. His extensive experience in the field has equipped him with a deep understanding of the latest trends, technological advancements, and their implications. As a dedicated professional, Harshajit has consistently delivered insightful and informative content to his audience.",
+      },
+      {
+        title: "Expertise",
+        info: "Harshajit's expertise lies in unraveling the complexities of Web3 and AI. His ability to translate technical jargon into digestible language makes him a valuable resource for both seasoned professionals and newcomers to the industry. His in-depth knowledge of blockchain technology, cryptocurrency, and artificial intelligence enables him to provide accurate and reliable information.",
+      },
+      {
+        title: "Authoritativeness",
+        info: "As the founder of Crypto India Magazine, Harshajit has established himself as a leading authority in the Web3 and AI space. His platform serves as a trusted source of news and analysis, attracting a dedicated readership. Harshajit's reputation as a thought leader has solidified his position as a go-to expert for insights into the future of these transformative technologies.",
+      },
+      {
+        title: "Trustworthiness",
+        info: "Harshajit's commitment to journalistic integrity is evident in his work. He strives to deliver unbiased and objective reporting, ensuring that his audience receives accurate and reliable information. His dedication to fact-checking and verifying sources has earned him the trust and respect of his readers.",
+      },
+    ],
+    expertServices: [
+      {
+        name: "Dapp Development",
+        to: "/dapp-development",
+      },
+      {
+        name: "NFTs development",
+        to: "/nfts-development",
+      },
+      {
+        name: "Web3 KYC",
+        to: "/web3-kyc",
+      },
+      {
+        name: "Dapp Security",
+        to: "/dapp-security-audit",
+      },
+      {
+        name: "Web3 Security",
+        to: "/web3-security",
+      },
+      {
+        name: "DeFi Development",
+        to: "/defi-development",
+      },
+    ],
+  },
+  {
     to: "ram-kumar",
-    image: "/assets/images/authors/ram-kumar.svg",
+    image: "/assets/images/authors/ram-kumar.png",
     name: "Mr. Ram Kumar",
     designation: "Blockchain Security Expert",
     education: "B. Tech (IIT Kanpur)",
@@ -54,7 +106,7 @@ export const authorsData = [
   },
   {
     to: "shyam-patel",
-    image: "/assets/images/authors/shyam-patel.svg",
+    image: "/assets/images/authors/shyam-patel.png",
     name: "Dr. Shyam Patel",
     designation: "Web3 Security Specialist",
     education: "B.Tech, M. Tech (VTU)",
@@ -107,7 +159,7 @@ export const authorsData = [
   },
   {
     to: "kartikeya-k",
-    image: "/assets/images/authors/kartikeya-k.svg",
+    image: "/assets/images/authors/kartikeya-k.png",
     name: "Mr. Kartikeya K",
     designation: "Blockchain Security Architect",
     education: "(Amity University, B Tech)",
@@ -160,7 +212,7 @@ export const authorsData = [
   },
   {
     to: "irfan-ansari",
-    image: "/assets/images/authors/irfan-ansari.svg",
+    image: "/assets/images/authors/irfan-ansari.png",
     name: "Dr. Irfan Ansari",
     designation: "Web3 Security Analyst",
     education: "",
@@ -213,7 +265,7 @@ export const authorsData = [
   },
   {
     to: "hemlatha-s",
-    image: "/assets/images/authors/hemlatha-s.svg",
+    image: "/assets/images/authors/hemlatha-s.png",
     name: "Ms. Hemlatha S",
     designation: "Blockchain Security Consultant",
     education: "(B.E, Delhi College of Engineering)",
@@ -266,7 +318,7 @@ export const authorsData = [
   },
   {
     to: "rashmi-bansal",
-    image: "/assets/images/authors/rashmi-bansal.svg",
+    image: "/assets/images/authors/rashmi-bansal.png",
     name: "Mrs. Rashmi Bansal",
     designation: "Blockchain Architecture &",
     education: "Consultant Cyber Security (MCA)",

@@ -167,24 +167,24 @@ export const faqHeaders = [
 export const reviews = [
   {
     id: 0,
-    name: "Mr. Romit Goswami",
-    designation: "Founder, Zapit",
-    testimonial:
-      '"Abhishek and Himanshu were excellent in understanding our requirements as we had a custom smart contract that had to be audited. The entire experience was seamless with the right guidance which was provided to us by the SecureDApp Team. Definitely recommend them for newer or experienced project as they are more than capable of handling even complex audits. Will surely be coming back for our future projects"',
-  },
-  {
-    id: 1,
     name: "Mr. Basheer",
     designation: "Founder, E-Riyal",
     testimonial:
       '"Partnering with SecureDApp has transformed our business. Their security solutions have minimized our vulnerabilities, safeguarding our data and earning our customers’ trust. The team’s expertise and proactive support have exceeded our expectations. Highly recommended!"',
   },
   {
-    id: 2,
+    id: 1,
     name: "Mr. Victor Jack",
     designation: "Founder, Rep Coin",
     testimonial:
       '"Partnering with SecureDApp has transformed our business. Their security solutions have minimized our vulnerabilities, safeguarding our data and earning our customers’ trust. The team’s expertise and proactive support have exceeded our expectations. Highly recommended!"',
+  },
+  {
+    id: 2,
+    name: "Mr. Romit Goswami",
+    designation: "Founder, Zapit",
+    testimonial:
+      '"Abhishek and Himanshu were excellent in understanding our requirements as we had a custom smart contract that had to be audited. The entire experience was seamless with the right guidance which was provided to us by the SecureDApp Team. Definitely recommend them for newer or experienced project as they are more than capable of handling even complex audits. Will surely be coming back for our future projects"',
   },
   {
     id: 3,

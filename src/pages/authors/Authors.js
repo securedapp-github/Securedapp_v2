@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/footer";
 import "./Authors.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -26,14 +27,14 @@ const AuthorCard = ({
         </div>
         <div className="authors-card-socials">
           <div className="authors-card-social">
-            <Link to={twitter}>
+            <a target="_blank" href={twitter}>
               <FontAwesomeIcon icon={faTwitter} />
-            </Link>
+            </a>
           </div>
           <div className="authors-card-social">
-            <Link to={linkedin}>
+            <a target="_blank" href={linkedin}>
               <FontAwesomeIcon icon={faLinkedin} />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -77,6 +78,7 @@ const Authors = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

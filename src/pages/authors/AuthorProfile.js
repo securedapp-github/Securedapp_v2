@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/footer";
 import { useEffect, useState } from "react";
 import { authorsData } from "./authors.data";
 import "./AuthorProfile.css";
@@ -42,14 +43,14 @@ const AuthorProfile = () => {
                 </div>
                 <div className="author-profile-card-socials">
                   <div className="author-profile-card-social">
-                    <Link to={authorDetail.twitter}>
+                    <a target="_blank" href={authorDetail.twitter}>
                       <FontAwesomeIcon icon={faTwitter} />
-                    </Link>
+                    </a>
                   </div>
                   <div className="author-profile-card-social">
-                    <Link to={authorDetail.linkedin}>
+                    <a target="_blank" href={authorDetail.linkedin}>
                       <FontAwesomeIcon icon={faLinkedin} />
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -88,6 +89,7 @@ const AuthorProfile = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

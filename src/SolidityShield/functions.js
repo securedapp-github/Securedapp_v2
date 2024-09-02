@@ -564,8 +564,7 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
   })
     .then((res) => {
       console.log(res);
-      res.success === "true" &&
-        toast.success("OTP Send Successfully, Check Mail");
+      res.ok === true && toast.success("OTP Send Successfully, Check Mail");
     })
     .catch((err) => {
       console.log(err.message);
@@ -767,7 +766,7 @@ export const downloadReport = async (id, user) => {
       if (user.remainingCredits === 0) {
         console.log("Upgrade your plan to download the report");
         toast(
-          "No credits left in your account! Plesae purchase a paid plan to download the report."
+          "No credits left in your account! Please purchase a paid plan to download the report."
         );
         return;
       }
