@@ -55,7 +55,7 @@ function SolidityShieldPage() {
           <li> • What inputs result in what outputs?</li/>
           </ul/>`}
           buttonText={"Scan now"}
-          image={"/assets/images/ProductPages/ss/1.png"}
+          image={"/assets/images/ProductPages/ss/1.webp"}
         />
         <div className="features-section">
           <SectionTitle name={"Features"} title={"Shield Features"} />
@@ -71,7 +71,7 @@ function SolidityShieldPage() {
             "Solidity Shield leverages machine learning to analyze and safeguard smart contracts written in Solidity language. This technology enhances the security of your contracts and fosters greater trust and confidence in the entire blockchain ecosystem.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ProductPages/ss/2.png"}
+          image={"/assets/images/ProductPages/ss/2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>

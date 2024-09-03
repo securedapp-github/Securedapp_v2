@@ -108,6 +108,16 @@ const servicesData = [
     desc: "DeFi is evolving rapidly compared to centralized finance systems, with new applications emerging frequently. We specialize in crafting innovative DeFi solutions tailored to your needs, whether offering or receiving financial services.",
     alt: "",
     to: "/defi-development",
+    image: "/assets/images/ServicePages/s12-hero.png",
+  },
+  {
+    id: 12,
+    title: "Levelup Academy",
+    name: "LevelUp academy",
+    desc: "SecureDApp's flagship initiative aims to foster blockchain talent and innovation across Indian universities and colleges.",
+    alt: "",
+    to: "/levelup-academy",
+    image: "/assets/images/ServicePages/s8-3.webp",
   },
 ];
 
@@ -245,7 +255,13 @@ const Services = () => {
         </div>
         <div className="services-content-right">
           <img
-            src={`/assets/images/ServicePages/s${selectedService + 1}-hero.png`}
+            src={
+              servicesData[selectedService].image
+                ? servicesData[selectedService].image
+                : `/assets/images/ServicePages/s${
+                    selectedService + 1
+                  }-hero.webp`
+            }
             alt={servicesData[selectedService].alt}
           />
         </div>

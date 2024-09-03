@@ -24,7 +24,7 @@ function DappDevelopment() {
         <ProductServiceHero
           name="DAPP DEVELOPMENT"
           title="Empowering Developers with Secure, No-Code Blockchain Solutions"
-          image={"/assets/images/ServicePages/s1-hero.png"}
+          image={"/assets/images/ServicePages/s1-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -33,7 +33,7 @@ function DappDevelopment() {
             "DApp Development involves developing decentralized applications wherein the back-end code runs on a decentralized P2P network. The discipline in coding DApps is much higher compared to conventional app development, as smart contracts are immutable once deployed on the main network. These DApp applications utilize smart contracts to execute code autonomously and manage transactions without any central authority."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s1-1.png"}
+          image={"/assets/images/ServicePages/s1-1.webp"}
         />
         <div className="features-section">
           <SectionTitle
@@ -53,14 +53,14 @@ function DappDevelopment() {
           title={"DApp Development Blockchain Platform We Leverage"}
           subTitle={""}
           button={""}
-          img={"/assets/images/ServicePages/s1-2.png"}
+          img={"/assets/images/ServicePages/s1-2.webp"}
         />
         <ProductCard
           header={"What SecureDapp has to offer"}
           description={`SecureDApp offers a comprehensive range of services designed specifically for developers building decentralized applications. Our no-code platform allows developers of all skill levels to get started easily, without the need for extensive coding experience. The security-based approach ensures that your DApps are built on a solid, transparent, and secure foundation.
             <br /> <br />Our dedicated experts develop tailored Web 3.0-based DApp development solutions. With a focus on blockchain application development, we ensure your decentralized applications are secure, efficient, and transformative for your business.`}
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s1-3.png"}
+          image={"/assets/images/ServicePages/s1-3.webp"}
         />
         <div className="service-why-choose">
           <SectionTitle

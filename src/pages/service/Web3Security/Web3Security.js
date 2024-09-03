@@ -23,7 +23,7 @@ function Web3Security() {
         <ProductServiceHero
           name="WEB 3.0 SECURITY"
           title="Real-time Prevention from Cyber Threats"
-          image={"/assets/images/ServicePages/s6-hero.png"}
+          image={"/assets/images/ServicePages/s6-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -65,7 +65,7 @@ function Web3Security() {
             <br/><br/>As Web 3.0 advances, a thorough risk assessment is essential to safeguard your business and unlock its full potential.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s6-2.png"}
+          image={"/assets/images/ServicePages/s6-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div className="features-section">

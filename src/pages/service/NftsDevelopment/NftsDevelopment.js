@@ -23,7 +23,7 @@ function NftsDevelopment() {
         <ProductServiceHero
           name="NFTs DEVELOPMENT"
           title="Comprehensive NFT Development Services for Unique Digital Assets"
-          image={"/assets/images/ServicePages/s11-hero.png"}
+          image={"/assets/images/ServicePages/s11-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -32,7 +32,7 @@ function NftsDevelopment() {
             "NFT development- a process of creating Non-Fungible Tokens (NFTs), which are unique digital assets stored on a blockchain. These tokens can represent digital or physical items, such as art, music, collectibles, virtual real estate, and more. The NFT development process involves designing the digital asset, writing smart contracts to ensure ownership and authenticity, and deploying the NFT on a blockchain platform, ensuring it is secure, verifiable, and transferable."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s11-1.png"}
+          image={"/assets/images/ServicePages/s11-1.webp"}
         />
         <div>
           <SectionTitle
@@ -63,7 +63,7 @@ function NftsDevelopment() {
             <br/><br/>• Government and Public Sector
             <br/><br/>• Finance`}
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s11-2.png"}
+          image={"/assets/images/ServicePages/s11-2.webp"}
         />
         <ProductWhyCard
           header={"Why SecureDApp for Your Business?"}
@@ -71,7 +71,7 @@ function NftsDevelopment() {
             "SecureDApp provides top-notch NFT development services to a global clientele. SecureDApp has the expertise and resources to turn your vision into reality. NFTs have significantly impacted the blockchain world with applications in digital art, gaming, and more.<br/><br/>Our expert developers and blockchain enthusiasts are committed to delivering high-quality NFT development services tailored to your needs.<br/><br/>Whether you're an artist, brand, or platform aiming to tokenize assets, create NFT collectables, or require customized NFT marketplace development, we ensure your project is secure, scalable, and innovative. ",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s11-3.png"}
+          image={"/assets/images/ServicePages/s11-3.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <Testimonials reviews={reviews} />

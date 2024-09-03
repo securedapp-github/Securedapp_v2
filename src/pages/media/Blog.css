@@ -1,5 +1,5 @@
 .blog {
-  @apply pt-4 lg:pt-8 px-4 lg:px-32;
+  @apply bg-grid pt-4 lg:pt-8 px-4 lg:px-32;
 }
 
 .blog-search {

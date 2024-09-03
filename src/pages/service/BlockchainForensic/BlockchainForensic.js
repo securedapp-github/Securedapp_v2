@@ -23,7 +23,7 @@ function BlockchainForensic() {
         <ProductServiceHero
           name="BLOCKCHAIN FORENSIC"
           title="Tracing & Investigation Cryptocurrency Transactions"
-          image={"/assets/images/ServicePages/s7-hero.png"}
+          image={"/assets/images/ServicePages/s7-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -32,7 +32,7 @@ function BlockchainForensic() {
             "Blockchain forensics involves examining blockchain data to investigate criminal activities such as money laundering, fraud, and terrorism financing. Using blockchain forensics tools, investigators can trace the movement of funds, detect illicit transactions, and identify suspicious behavior and individuals involved in illegal activities."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s7-1.png"}
+          image={"/assets/images/ServicePages/s7-1.webp"}
         />
         <ProductWhyCard
           header={"Need of Blockchain Forensic"}
@@ -41,7 +41,7 @@ function BlockchainForensic() {
             "In the Web3 ecosystem, attackers exploit vulnerabilities in code, and the absence of robust legal frameworks makes it challenging to hold them accountable.While blockchain transactions are publicly visible, malicious actors use techniques such as peel chains, mixers, and chain hopping, complicating blockchain transaction analysis and making it extremely difficult to trace stolen funds.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s7-2.png"}
+          image={"/assets/images/ServicePages/s7-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>

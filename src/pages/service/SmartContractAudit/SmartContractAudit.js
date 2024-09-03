@@ -23,7 +23,7 @@ function SmartContractAudit() {
         <ProductServiceHero
           name="SMART CONTRACT AUDIT"
           title="Helping Your Business to Launch Error-free Blockchain Applications"
-          image={"/assets/images/ServicePages/s2-hero.png"}
+          image={"/assets/images/ServicePages/s2-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -40,7 +40,7 @@ function SmartContractAudit() {
             "A small error while deploying smart contracts can result in huge financial losses. This is why smart contracts security audits are imperative. A smart contract audit involves a detailed analysis of a protocol’s smart contract code to identify security vulnerabilities and inefficient code before identifying solutions to resolve these issues.  Audits help ensure decentralized applications' security, reliability, and performance across Web3.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s2-2.png"}
+          image={"/assets/images/ServicePages/s2-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <ProductCard
@@ -70,7 +70,7 @@ function SmartContractAudit() {
           subTitle={
             "SecureDApp conducts multi-chain smart contract audits across various blockchain networks, ensuring your projects are secure and high-performing."
           }
-          img={"/assets/images/ServicePages/s2-4.png"}
+          img={"/assets/images/ServicePages/s2-4.webp"}
           button={""}
         />
         <div>

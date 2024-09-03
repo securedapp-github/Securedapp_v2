@@ -54,7 +54,7 @@ const ProfileScreen = () => {
       }
     }
     fetch();
-  }, [user]);
+  }, [!user && user]);
 
   return (
     <div className="sss-settings-body-profile-container">

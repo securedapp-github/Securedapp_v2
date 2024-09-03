@@ -23,14 +23,14 @@ function LevelUpAcademy() {
         <ProductServiceHero
           name="LevelUp Academy"
           title="SecureDApp's flagship initiative aims to foster blockchain talent and innovation across Indian universities and colleges"
-          image={"/assets/images/ServicePages/s8-3.png"}
+          image={"/assets/images/ServicePages/s8-3.webp"}
           service={true}
         />
         <ProductCard
           header={"Why is Blockchain Skill Development in High Demand?"}
           description={`Blockchain technology reshapes industries from banking and finance to agriculture, supply chain, healthcare, government, and education. As more organizations embrace this transformative technology, blockchain skills development is becoming increasingly vital. Navigating the complexities of blockchain can be daunting, but whether you're an experienced professional or just starting out, investing in blockchain education can open doors to new opportunities.<br/><br/>By enhancing your expertise with a focus on blockchain talent development, you position yourself at the forefront of this revolution, ready to advance your skills and career in this exciting field. This is where SecureDApp's blockchain certification program, "Level Up Academy", comes into the picture.`}
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s2-hero.png"}
+          image={"/assets/images/ServicePages/s7-1.webp"}
         />
         <ProductWhyCard
           header={
@@ -49,7 +49,7 @@ function LevelUpAcademy() {
             `,
           ]}
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s2-hero.png"}
+          image={"/assets/images/ServicePages/s2-hero.webp"}
         />
         <div className="features-section">
           <SectionTitle

@@ -120,9 +120,7 @@ const Sidebar = () => {
                 <div className="">
                   <ProgressBar
                     completed={
-                      ((auth.user.credits - auth.user.remainingCredits) /
-                        auth.user.credits) *
-                      100
+                      (auth.user.remainingCredits / auth.user.credits) * 100
                     }
                     height={"10px"}
                     bgColor="#12D576"

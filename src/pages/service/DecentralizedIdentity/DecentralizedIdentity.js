@@ -23,7 +23,7 @@ function DecentralizedIdentity() {
         <ProductServiceHero
           name="DECENTRALIZED IDENTITY (DID)"
           title="Decentralized Identity (DID) Solutions Offers Privacy-first Digital Identities"
-          image={"/assets/images/ServicePages/s10-hero.png"}
+          image={"/assets/images/ServicePages/s10-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -32,7 +32,7 @@ function DecentralizedIdentity() {
             "Decentralized identity is a method for identifying and authenticating users and entities without relying on a central authority. Traditional identity management verifies individuals through attributes like name, Social Security number, birth date, or email address, whereas decentralized identity leverages blockchain and other decentralized technologies. This approach minimizes the risk of data breaches by avoiding the concentration of sensitive information in a single, vulnerable location, thus enhancing overall security."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s10-1.png"}
+          image={"/assets/images/ServicePages/s10-1.webp"}
         />
         <div>
           <SectionTitle
@@ -79,7 +79,7 @@ function DecentralizedIdentity() {
             <br/><br/>• Healthcare
             <br/><br/>• Decentralized Social Media`}
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s10-2.png"}
+          image={"/assets/images/ServicePages/s10-2.webp"}
         />
         <ProductWhyCard
           header={"Why Choose SecureDApp for Decentralized Identity Service?"}
@@ -87,7 +87,7 @@ function DecentralizedIdentity() {
             "SecureDApp stands out as a leading decentralized identity (DID) technology provider due to our unparalleled expertise in blockchain technology and commitment to security. <br/><br/> Our services incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards.<br/><br/>We understand that each organization has different requirements, so we offer customizable DID solutions designed to fit various use cases and industry needs. Our user-centric approach ensures that our DID solutions are easy to use, and enhance the overall user experience.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s10-3.png"}
+          image={"/assets/images/ServicePages/s10-3.webp"}
           imageAlt={"Product 1 Why Image"}
         />
 

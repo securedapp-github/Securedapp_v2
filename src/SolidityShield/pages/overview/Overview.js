@@ -34,7 +34,7 @@ const OverviewScreen = () => {
       }
     }
     fetch();
-  }, [history]);
+  }, [!history && history, !auth.user.email && auth.user]);
 
   useEffect(() => {
     if (scanHistory.history.length > 0) setFirstTime(false);

@@ -64,7 +64,7 @@ const BrandLogos = () => {
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
+    speed: 3000,
     autoplaySpeed: 0,
     pauseOnHover: false,
     cssEase: "linear",

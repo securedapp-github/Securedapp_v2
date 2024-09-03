@@ -2,11 +2,10 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 #home {
-  @apply bg-grid;
 }
 
 .hero {
-  @apply h-full text-center pt-28 lg:pt-28 w-full font-nunitoSans text-secondary dark:text-primary;
+  @apply bg-grid h-full text-center pt-28 lg:pt-28 w-full font-nunitoSans text-secondary dark:text-primary;
 }
 .hero-title {
   @apply text-4xl px-6 lg:text-5xl font-bold;

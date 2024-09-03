@@ -31,7 +31,7 @@ function SecurePadPage() {
             "SecurePAD stands out as a zero-fee tokenization platform, combining sturdy security with simple no-code functionality and versatile cross-chain capabilities. <br/><br/> This unique blend empowers individuals and projects to effortlessly create, trade, and manage tokens throughout their entire lifecycle, all without incurring high costs."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ProductPages/sp/1.png"}
+          image={"/assets/images/ProductPages/sp/1.webp"}
         />
         <div className="features-section">
           <SectionTitle
@@ -59,7 +59,7 @@ function SecurePadPage() {
             <br/><br/> • Serves as a governance system that empowers users to participate in the decision-making process of the platform.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ProductPages/sp/2.png"}
+          image={"/assets/images/ProductPages/sp/2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         {/* <div>

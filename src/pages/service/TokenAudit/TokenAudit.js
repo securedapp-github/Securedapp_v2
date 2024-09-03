@@ -23,7 +23,7 @@ function TokenAudit() {
         <ProductServiceHero
           name="TOKEN AUDIT"
           title="A Must Code Review for Your Smart Contracts"
-          image={"/assets/images/ServicePages/s4-hero.png"}
+          image={"/assets/images/ServicePages/s4-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -32,7 +32,7 @@ function TokenAudit() {
             "Token contracts have become increasingly prevalent in the blockchain space, with many seeking to develop their cryptocurrencies to capture the excitement of the crypto community. Within this, ensuring token security is of utmost importance. A Token Audit involves thoroughly examining a token's smart contract code to uncover vulnerabilities, bugs, and weaknesses that could jeopardize its security and value."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s4-1.png"}
+          image={"/assets/images/ServicePages/s4-1.webp"}
         />
         <div>
           <SectionTitle name={"Benefits"} title="Benefits of Token Audit" />
@@ -55,7 +55,7 @@ function TokenAudit() {
             `In the blockchain space, "Code is law" and mistakes made during code development can lead to significant security issues if not addressed.<br/><br/>Ensuring bug-free code is essential for any blockchain application. Regular audits provide the necessary security assurance and help identify potential flaws. A comprehensive token audit can perform a vulnerability assessment and correct any detected vulnerability before launch. <br/><br/>A token audit safeguards users' assets by testing for common attacks. By conducting a thorough token audit, you can proactively address potential risks, build trust with users, and offer performance optimization suggestions. As the saying goes, "Prevention is better than cure" and a detailed audit report can do so through smart contract code review, making them secure and reliable.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s4-2.png"}
+          image={"/assets/images/ServicePages/s4-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div className="features-section">

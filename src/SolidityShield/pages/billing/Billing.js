@@ -38,7 +38,7 @@ const BillingScreen = () => {
       }
     }
     fetch();
-  }, [auth.user]);
+  }, [!auth.user.email && auth.user]);
 
   return (
     <div className="sss-billing-screen-container">

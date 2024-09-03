@@ -23,7 +23,7 @@ function Web3KYC() {
         <ProductServiceHero
           name="WEB 3.0 KYC"
           title="Advance Blockchain Identity Verification for Modern Compliance"
-          image={"/assets/images/ServicePages/s5-hero.png"}
+          image={"/assets/images/ServicePages/s5-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -32,7 +32,7 @@ function Web3KYC() {
             "Web3 KYC (Know Your Customer) is an advanced blockchain identity verification tool designed specifically for the decentralized Web3 ecosystem. <br/><br/>This service enables businesses to authenticate user identities, ensuring compliance with regulatory standards and mitigating risks associated with anonymous transactions in decentralized finance (DeFi) applications, NFT marketplaces, and cryptocurrency exchanges."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s5-1.png"}
+          image={"/assets/images/ServicePages/s5-1.webp"}
         />
         <div>
           <SectionTitle

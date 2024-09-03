@@ -23,7 +23,7 @@ function RwaAudit() {
         <ProductServiceHero
           name="RWA AUDIT"
           title="Audit for Secure Blockchain Asset Valuation"
-          image={"/assets/images/ServicePages/s8-hero.png"}
+          image={"/assets/images/ServicePages/s8-hero.webp"}
           service={true}
         />
         <ProductCard
@@ -45,7 +45,7 @@ function RwaAudit() {
             <br/><br/>• Intellectual Property`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s8-2.png"}
+          image={"/assets/images/ServicePages/s8-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>
@@ -72,7 +72,7 @@ function RwaAudit() {
             "RWA (Real World Asset) Audit comprehensively evaluates real-world assets tokenized on a blockchain platform. It assesses the underlying asset's value, the accuracy of the token representation, and the overall security and compliance of the tokenization process.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s8-3.png"}
+          image={"/assets/images/ServicePages/s8-3.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div className="features-section">
