@@ -19,7 +19,9 @@ const TxStatus = () => {
   return (
     <div className="auth-screen-container">
       <div className="auth-screen">
-        <AuthScrenHeader title={"Transaction of Id: " + id} />
+        <div style={{ width: "100%", fontSize: "20px", textAlign: "center" }}>
+          {"Transaction of Id: " + id}
+        </div>
         <br />
         <br />
         <AuthButton children={`Status : ${status ? "Success" : "Pending"}`} />

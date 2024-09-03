@@ -59,7 +59,7 @@ const BillingScreen = () => {
                   </div>
                   <div className="sss-billing-current-header-desc">
                     {auth &&
-                      pricingDetails[Number(user.plan) + 2].pricingCard
+                      pricingDetails[Number(user.plan) + 1].pricingCard
                         .description}
                   </div>
                 </div>
