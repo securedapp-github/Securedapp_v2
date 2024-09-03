@@ -953,7 +953,7 @@ export function formatDate(dateString) {
 
   const suffix = getDaySuffix(day); // Function to get day suffix (e.g., 'th', 'st', 'nd')
 
-  return ` ${day}${suffix} ${month} ${year}`;
+  return ` ${day} ${month} ${year}`;
 }
 
 export const generatePDF = async (reportData) => {

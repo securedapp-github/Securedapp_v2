@@ -43,7 +43,8 @@ const NavbarItem = ({
           className={`nested-navbar ${
             children === "Services" &&
             "left-1/2 transform -translate-x-1/2 mt-1"
-          }`}>
+          }`}
+        >
           {/* <div className="nested-navbar-header">{children}</div> */}
           {/* <hr className="border my-2 border-cardBorderColorLight dark:border-cardBorderColorDark"></hr> */}
           {children !== "Services" ? (
@@ -69,7 +70,8 @@ const NavbarItem = ({
                         return (
                           <Link
                             to={child.to}
-                            className="nested-navbar-items-services-card-col-item">
+                            className="nested-navbar-items-services-card-col-item"
+                          >
                             <p>{child.name}</p>
                           </Link>
                         );

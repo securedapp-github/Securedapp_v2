@@ -1,3 +1,7 @@
+.audit-card {
+  @apply h-full flex flex-col overflow-hidden bg-cardBackgroundLight dark:bg-cardBackgroundDark border-2 rounded-xl border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-[#A4CDFF];
+}
+
 .audits-page-card-container {
   @apply border w-full rounded-lg border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
 }
@@ -115,4 +119,20 @@
 
 .audits-page-body-figure-component-text {
   @apply text-sm text-[#969BA0];
+}
+
+.blog-pagination {
+  @apply w-full pt-10 flex flex-wrap justify-center items-center gap-x-5;
+}
+
+.blog-pagination-item {
+  @apply py-2 px-4 cursor-pointer;
+}
+
+.blog-pagination-number {
+  @apply h-8 w-8 flex justify-center items-center border rounded-md border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.blog-pagniation-arrow-container {
+  @apply h-8 w-8 flex justify-center items-center border rounded-full border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
 }

@@ -26,7 +26,6 @@ export const navItems = [
         children: [
           { name: "Web3 Security", to: "/web3-security" },
           { name: "Web3 KYC", to: "/web3-kyc" },
-
           { name: "Blockchain Forensic", to: "/blockchain-forensic" },
         ],
       },

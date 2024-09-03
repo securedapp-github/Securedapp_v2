@@ -1,5 +1,5 @@
 .blog {
-  @apply bg-grid pt-4 lg:pt-8 px-4 lg:px-32;
+  @apply pt-4 lg:pt-8 px-4 lg:px-32;
 }
 
 .blog-search {
@@ -36,6 +36,10 @@
   @apply py-2 px-4 cursor-pointer;
 }
 
-selected-number {
-  @apply border rounded-md border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+.blog-pagination-number {
+  @apply h-8 w-8 flex justify-center items-center border rounded-md border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+}
+
+.blog-pagniation-arrow-container {
+  @apply h-8 w-8 flex justify-center items-center border rounded-full border-cardBorderColorLight dark:border-cardBorderColorDark bg-cardBackgroundLight dark:bg-cardBackgroundDark;
 }

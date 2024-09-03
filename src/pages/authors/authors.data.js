@@ -3,7 +3,7 @@ export const authorsData = [
     to: "harshajit",
     image: "/assets/images/authors/harshajit-sarmah.png",
     name: "Mr. Harshajit Sarmah",
-    designation: "Blockchain Architecture & Consultant Cyber Security (MCA)",
+    designation: "Journalist, B.E Computer Science",
     twitter: "https://x.com/whattheharsh",
     linkedin: "https://www.linkedin.com/in/harshajit-sarmah",
     details: [
