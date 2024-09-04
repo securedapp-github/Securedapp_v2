@@ -5,6 +5,7 @@ import {
   setSelectedSidebarItem,
   setSideBar,
 } from "../../redux/commonSlice";
+import { setIsRequestModalOpen } from "../../redux/commonSlice.js";
 import { useDispatch } from "react-redux";
 import CustomDivider from "../../components/common/CustomDivider";
 import { sidebarItems } from "./sidebar.data.js";
@@ -15,6 +16,7 @@ import { getUserData } from "../../redux/auth/authSlice.js";
 import { logout } from "../../functions.js";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { useState } from "react";
 
 const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
@@ -53,6 +55,10 @@ const Sidebar = () => {
         logout();
       }
     });
+  };
+
+  const handleRequest = () => {
+    dispatch(setIsRequestModalOpen(true));
   };
 
   return (
@@ -110,6 +116,15 @@ const Sidebar = () => {
                     </div>
                   );
                 })}
+              </div>
+              <div style={{ width: "calc(100% - 30px)", margin: "15px" }}>
+                <CustomButton
+                  onClick={handleRequest}
+                  className={
+                    "w-full border border-tertiary text-black bg-[#12D576] py-2 rounded-xl active:bg-white"
+                  }
+                  text={"Request Manual Audit"}
+                />
               </div>
             </div>
           </div>

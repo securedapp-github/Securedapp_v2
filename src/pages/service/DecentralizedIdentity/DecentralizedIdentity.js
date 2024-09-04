@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,16 @@ function DecentralizedIdentity() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "Decentralized Identity (DID): Secure & Private Digital Identities",
+          desc: "SecureDApp's Decentralized Identity solutions ensure privacy, data security, and seamless identity verification. Protect your digital identity now.",
+          keywords:
+            "decentralized identity, DID solutions, digital identity, privacy-first identities, blockchain identity, identity verification, secure digital identity, identity management, verifiable credentials, decentralized technology",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

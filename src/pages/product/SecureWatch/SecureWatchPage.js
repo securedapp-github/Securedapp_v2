@@ -7,6 +7,7 @@ import Button from "../../../components/common/Button";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../../product/Product.css";
+import MetaTags from "../../../components/common/MetaTags";
 import ProductCard from "../../../components/productService/ProductCard";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
@@ -17,6 +18,15 @@ function SecureWatchPage() {
   window.scrollTo(0, 0);
   return (
     <div className="product-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Blockchain Threat Detection with Secure Watch - SecureDApp",
+          desc: "Secure Watch offers AI-driven real-time blockchain threat detection, ensuring smart contract security by identifying and mitigating vulnerabilities.",
+          keywords:
+            "blockchain threat detection, smart contract security, Secure Watch, AI-driven monitoring, blockchain security tool, unauthorized access, real-time blockchain surveillance, smart contract vulnerabilities, blockchain threat intelligence, secure watch features",
+        }}
+      />
       <Navbar />
       <div className="product">
         <ProductServiceHero

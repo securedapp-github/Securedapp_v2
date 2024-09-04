@@ -15,6 +15,7 @@ import {
 } from "../../redux/dashboard/paymentSlice";
 import { getUserData } from "../../redux/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import MetaTags from "../../../components/common/MetaTags";
 
 const PricingPlanCard = ({
   icon,
@@ -104,6 +105,14 @@ const Pricing = () => {
 
   return (
     <div className="sss-pricing-container">
+      <MetaTags
+        data={{
+          title: "Solidity Shield Scan: Secure Audits & Vulnerability Checks",
+          desc: "Explore Solidity Shield’s pricing for blockchain security. Compare features and choose the plan that fits your needs with SecureDApp’s solutions.",
+          keywords:
+            "Solidity Shield Scan, smart contract audits, vulnerability checks, secure audits, Solidity security, blockchain security, contract vulnerability scan, smart contract security",
+        }}
+      />
       <div
         style={{
           width: "125%",

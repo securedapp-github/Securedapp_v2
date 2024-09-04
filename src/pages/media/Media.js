@@ -11,6 +11,7 @@ import {
   faArrowRight,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
+import MetaTags from "../../components/common/MetaTags";
 
 function Media() {
   window.scrollTo(0, 0);
@@ -51,6 +52,14 @@ function Media() {
 
   return (
     <div className="blog-container">
+      <MetaTags
+        data={{
+          title: "SecureDApp in the Media: Web3 and Blockchain Coverage",
+          desc: "Explore SecureDApp's media coverage on Web3, blockchain, and security. Read interviews and articles featuring our insights on the evolving digital space.",
+          keywords:
+            "SecureDApp media, Web3 coverage, blockchain security, blockchain interviews, Web3 insights, blockchain news, SecureDApp articles, digital security trends",
+        }}
+      />
       <Navbar />
       <div className="blog">
         <SectionTitle

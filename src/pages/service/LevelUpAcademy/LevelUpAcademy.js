@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,15 @@ function LevelUpAcademy() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Level Up Academy: Blockchain Talent & Innovation in India",
+          desc: "Join SecureDApp’s Level Up Academy to master blockchain skills with hands-on training in blockchain, DApps, and smart contract development.",
+          keywords:
+            "blockchain education, Level Up Academy, blockchain talent development, blockchain innovation, blockchain skills training, blockchain certification, SecureDApp, Indian universities, blockchain careers, decentralized applications training",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

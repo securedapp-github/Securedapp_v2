@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import WhyChooseCard from "../../../components/productService/WhyChooseCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
@@ -19,6 +20,15 @@ function DappDevelopment() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "DApp Development Solutions: Secure No-Code Blockchain Apps",
+          desc: "Build secure, scalable DApps with our no-code platform. Leverage Ethereum, Binance Smart Chain, and Solana for efficient blockchain solutions.",
+          keywords:
+            "DApp development, decentralized apps, blockchain solutions, no-code platform, smart contracts, DeFi, digital wallets, Ethereum, Binance Smart Chain, Solana, secure DApps, blockchain gaming, real estate tokenization, supply chain blockchain, Web 3.0 development",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

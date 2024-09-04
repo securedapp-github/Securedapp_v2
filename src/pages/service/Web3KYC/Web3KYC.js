@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,15 @@ function Web3KYC() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Blockchain Identity Verification for Secure KYC & Compliance",
+          desc: "Secure your business with Blockchain Identity Verification for KYC and compliance. Trusted by 120+ companies in DeFi, NFTs, and crypto exchanges.",
+          keywords:
+            "Blockchain Identity Verification, KYC, Compliance, Decentralized Finance, NFT Marketplaces, Cryptocurrency Exchanges",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

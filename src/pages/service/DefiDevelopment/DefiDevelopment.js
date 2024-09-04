@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,15 @@ function DefiDevelopment() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "DeFi Development: Securely Transforming Financial Services",
+          desc: "Build DeFi platforms with SecureDApp. Our solutions include smart contracts, yield farming, and token creation to securely transform financial services.",
+          keywords:
+            "DeFi development, decentralized finance, smart contracts, yield farming, DeFi platforms, blockchain finance, secure DeFi solutions, DeFi tokens, decentralized apps",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

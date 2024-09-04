@@ -19,6 +19,7 @@ import {
   features,
   benefits,
 } from "./data";
+import MetaTags from "../../../components/common/MetaTags";
 
 function changeSvgFill(color) {
   const svgElements = document.querySelectorAll("svg");
@@ -35,6 +36,14 @@ function SolidityShieldPage() {
   window.scrollTo(0, 0);
   return (
     <div className="product-container">
+      <MetaTags
+        data={{
+          title: "Solidity Shield: Smart Contract Security Audit",
+          desc: "Secure your Ethereum smart contracts with Solidity Shield's AI-driven audits. Detect vulnerabilities, enhance security, and ensure blockchain compliance.",
+          keywords:
+            "AI-powered smart contract audit, Solidity Shield, Ethereum security, blockchain security, vulnerability detection, smart contract compliance, DeFi security, Solidity language, smart contract analysis, reentrancy issues, code quality improvement, SaaS blockchain audit",
+        }}
+      />
       <Navbar />
       <div className="product">
         <ProductServiceHero

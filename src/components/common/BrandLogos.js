@@ -1,6 +1,7 @@
 import React from "react";
 import "./BrandLogos.css";
-import Slider from "react-slick";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const brandLogos = [
   {
@@ -58,33 +59,46 @@ const brandLogos = [
 ];
 
 const BrandLogos = () => {
-  const sliderSettings = {
-    arrows: false,
-    infinite: true,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 3000,
-    autoplaySpeed: 0,
-    pauseOnHover: false,
-    cssEase: "linear",
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-    ],
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+      slidesToSlide: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+      slidesToSlide: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 3,
+      slidesToSlide: 1,
+    },
   };
 
   return (
     <div className="brand-logos">
-      <Slider className="" {...sliderSettings}>
+      <Carousel
+        responsive={responsive}
+        showDots={false}
+        infinite={true}
+        autoPlay={true}
+        autoPlaySpeed={1}
+        keyBoardControl={false}
+        transitionDuration={8000}
+        arrows={false}
+        containerClass="carousel-container"
+        itemClass="carousel-item"
+        customTransition="all 8s linear"
+        draggable={false}
+        shouldResetAutoplay={false}
+      >
         {brandLogos.map((brandLogo, index) => (
-          <div key={index} className="flex justify-center items-center py-2">
+          <div
+            key={index}
+            className="w-full flex justify-center items-center py-2"
+          >
             <img
               src={brandLogo.src}
               alt={brandLogo.alt}
@@ -92,7 +106,7 @@ const BrandLogos = () => {
             />
           </div>
         ))}
-      </Slider>
+      </Carousel>
     </div>
   );
 };

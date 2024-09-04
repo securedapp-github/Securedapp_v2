@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,15 @@ function RwaAudit() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "RWA Audit: Secure Your Real-World Assets on Blockchain",
+          desc: "Ensure the security of your tokenized real-world assets with RWA audits. Gain transparency, compliance, and investor confidence on the blockchain.",
+          keywords:
+            "RWA audit, real-world asset audit, blockchain asset audit, tokenized asset security, blockchain compliance, asset tokenization audit",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

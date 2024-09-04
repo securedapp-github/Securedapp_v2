@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,16 @@ function BlockchainForensic() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "Blockchain Forensic: Crypto Transaction Tracing & Investigation",
+          desc: "Explore Blockchain Forensic solutions for tracing crypto transactions, ensuring compliance, and preventing fraud. Trusted by 120+ companies.",
+          keywords:
+            "Blockchain Forensics, Cryptocurrency Investigation, Crypto Transaction Tracing, Blockchain Compliance, Digital Asset Recovery, Blockchain Security Audit, Fraud Detection Blockchain, Cryptocurrency Tracing",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

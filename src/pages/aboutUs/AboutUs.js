@@ -7,6 +7,7 @@ import "./AboutUs.css";
 import CustomHr from "../../components/common/CustomHr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import MetaTags from "../../components/common/MetaTags";
 
 const TeamCard = ({ details }) => {
   return (
@@ -48,6 +49,14 @@ const AboutUs = () => {
   window.scrollTo(0, 0);
   return (
     <div className="about-us">
+      <MetaTags
+        data={{
+          title: "About SecureDApp: Leading Blockchain and Web3 Security",
+          desc: "Explore SecureDApp's journey in blockchain security. Meet our team and discover how we're securing the future of Web3 with innovative solutions.",
+          keywords:
+            "SecureDApp, blockchain security, Web3 security, decentralized applications, dApps protection, cybersecurity, blockchain innovation, Web3 solutions, SecureDApp team, blockchain pioneers",
+        }}
+      />
       <Navbar />
       <div className="about-us-hero-container">
         <div className="about-us-hero">

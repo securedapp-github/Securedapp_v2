@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,15 @@ function SmartContractAudit() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Smart Contract Audits: Expert Security for Blockchain DApps",
+          desc: "Get thorough smart contract audits to eliminate security flaws in your blockchain DApps. Ensure reliability and compliance with our expert services.",
+          keywords:
+            "smart contract audit, blockchain security, secure DApps, blockchain audit services, smart contract security, decentralized apps",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

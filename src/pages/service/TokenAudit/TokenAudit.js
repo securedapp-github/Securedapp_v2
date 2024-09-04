@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,16 @@ function TokenAudit() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "Token Audit Services: Secure Crypto Assets with Expert Reviews",
+          desc: "Ensure the security of your cryptocurrency with our thorough token audit services. Identify vulnerabilities, protect investor funds, and enhance trust.",
+          keywords:
+            "Token Audit, Crypto Asset Security, Blockchain Audit, Smart Contract Review, Cryptocurrency Audit, Token Security, Blockchain Compliance, Crypto Token Verification, Smart Contract Security, Token Audit Services",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

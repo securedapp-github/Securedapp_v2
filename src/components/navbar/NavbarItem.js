@@ -41,8 +41,7 @@ const NavbarItem = ({
       {items.length > 0 && dropDown === children && (
         <div
           className={`nested-navbar ${
-            children === "Services" &&
-            "left-1/2 transform -translate-x-1/2 mt-1"
+            children === "Services" && "left-1/2 transform -translate-x-1/2"
           }`}
         >
           {/* <div className="nested-navbar-header">{children}</div> */}

@@ -12,6 +12,7 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
+import MetaTags from "../../components/common/MetaTags";
 
 function Blog() {
   window.scrollTo(0, 0);
@@ -97,6 +98,14 @@ function Blog() {
 
   return (
     <div className="blog-container">
+      <MetaTags
+        data={{
+          title: "SecureDApp Blog: Top Insights on Web3, Blockchain, & DeFi",
+          desc: "Stay updated with SecureDApp’s blog on Web3, Blockchain, DeFi, and more. Explore in-depth articles on finance, legal, tokens, and smart contracts.",
+          keywords:
+            "Web3 blog, Blockchain insights, DeFi articles, smart contracts, finance blog, legal in blockchain, token regulation, supply chain blockchain",
+        }}
+      />
       <Navbar />
       <div className="blog">
         <SectionTitle title="Blog" description="Read the fastest Web3 blog" />
@@ -142,7 +151,8 @@ function Blog() {
             <button
               className="blog-pagination-arrow"
               onClick={handlePreviousPage}
-              disabled={currentPage === 1}>
+              disabled={currentPage === 1}
+            >
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
           </div>
@@ -151,7 +161,8 @@ function Blog() {
             <button
               className="blog-pagination-arrow"
               onClick={handleNextPage}
-              disabled={currentPage === totalPages}>
+              disabled={currentPage === totalPages}
+            >
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </div>

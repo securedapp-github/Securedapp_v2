@@ -20,13 +20,18 @@ import RegisterScreen from "./pages/auth/RegisterScreen";
 import AuditCertificate from "./pages/auditCertificate/AuditCertificate";
 import Settings from "./pages/settings/Settings";
 import TxStatus from "./pages/txStatus/txStatus";
+import { useSelector } from "react-redux";
+import { getCommonSelector } from "./redux/commonSlice";
+import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 
 const SolidityShield = () => {
+  const isRequestModalOpen = useSelector(getCommonSelector);
   return (
     <Provider store={solidityShieldScanStore}>
       <div>
         <ScanNowModal />
         <PaymentModal />
+        {!isRequestModalOpen && <RequestQuoteModal />}
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<OverviewScreen />} />

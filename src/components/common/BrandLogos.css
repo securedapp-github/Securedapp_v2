@@ -4,7 +4,7 @@
 }
 
 .brand-logos {
-  .slick-track {
+  .react-multi-carousel-track {
     @apply flex items-center justify-center gap-x-2 !important;
   }
 }

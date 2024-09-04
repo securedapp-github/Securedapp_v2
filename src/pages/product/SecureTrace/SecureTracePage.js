@@ -7,6 +7,7 @@ import Button from "../../../components/common/Button";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../../product/Product.css";
+import MetaTags from "../../../components/common/MetaTags";
 import ProductCard from "../../../components/productService/ProductCard";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
@@ -17,6 +18,15 @@ function SecureTracePage() {
   window.scrollTo(0, 0);
   return (
     <div className="product-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "SecureTrace: AI-Powered Blockchain Forensics & Compliance",
+          desc: "SecureTrace simplifies blockchain investigations with AI-driven tools. Trace transactions, enhance security, and ensure compliance with comprehensive analysis.",
+          keywords:
+            "SecureTrace, blockchain forensics, AI-powered investigation, blockchain compliance, transaction tracing, forensic analysis, SecureDApp, blockchain security, AI in blockchain, digital asset recovery",
+        }}
+      />
       <Navbar />
       <div className="product">
         <ProductServiceHero

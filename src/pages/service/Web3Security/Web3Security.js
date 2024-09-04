@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,16 @@ function Web3Security() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "Web 3.0 Security: Safeguard Crypto Assets & Blockchain Valuation",
+          desc: "Protect your crypto assets with Web 3.0 security services. Get smart contract audits, DeFi protection, and accurate blockchain asset valuation.",
+          keywords:
+            "Web 3.0 security, crypto asset protection, blockchain valuation, smart contract audit, DeFi security, crypto security audit, decentralized finance audit, blockchain asset valuation, Web 3.0 cybersecurity",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

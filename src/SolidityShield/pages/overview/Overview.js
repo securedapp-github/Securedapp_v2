@@ -8,6 +8,7 @@ import { getUserData } from "../../redux/auth/authSlice";
 import { getScanHistoryData, getJwt, getUser } from "../../functions";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
 import { setScanNowModal } from "../../redux/commonSlice";
+import MetaTags from "../../../components/common/MetaTags";
 
 const OverviewScreen = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,12 @@ const OverviewScreen = () => {
 
   return (
     <div className="sss-overview-screen-container">
+      <MetaTags
+        data={{
+          title: "Solidity Shield Scan",
+          desc: "Get your smart contracts audited here by SecureDapps's Solidity Shield with AI scanning.",
+        }}
+      />
       <div className="sss-overview-screen">
         <div className="sss-overview-header">
           <div className="">Dashboard</div>

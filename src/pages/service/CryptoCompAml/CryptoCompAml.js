@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,15 @@ function CryptoComplianceAml() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Crypto Compliance: Leading KYC & AML Solutions for Business",
+          desc: "Secure your business with Crypto KYC & AML solutions. Trusted by 120+ companies for compliance, fraud prevention, and regulatory adherence.",
+          keywords:
+            "crypto compliance, AML solutions, KYC services, anti-money laundering, cryptocurrency regulation, financial compliance, secure crypto transactions",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

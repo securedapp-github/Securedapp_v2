@@ -3,6 +3,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 const initialCommonState = {
   showSideBar: window.innerWidth > 1024,
   selectedSidebarItem: "Overview",
+  isRequestModalOpen: false,
   creditsRemaining: 10,
   scanNowModal: false,
   sourceType: "Github",
@@ -18,6 +19,9 @@ const commonSlice = createSlice({
     },
     setSelectedSidebarItem(state, action) {
       state.selectedSidebarItem = action.payload;
+    },
+    setIsRequestModalOpen(state, action) {
+      state.isRequestModalOpen = action.payload;
     },
     setCreditsRemaining(state, action) {
       state.creditsRemaining = action.payload;
@@ -46,6 +50,7 @@ export const {
   setScanNowModal,
   setSourceType,
   setChainType,
+  setIsRequestModalOpen,
 } = commonSlice.actions;
 
 export default commonSlice.reducer;

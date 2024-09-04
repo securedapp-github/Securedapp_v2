@@ -7,6 +7,7 @@ import Button from "../../../components/common/Button";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../../product/Product.css";
+import MetaTags from "../../../components/common/MetaTags";
 import ProductCard from "../../../components/productService/ProductCard";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
@@ -17,6 +18,15 @@ function SecurePadPage() {
   window.scrollTo(0, 0);
   return (
     <div className="product-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "SecurePad: Zero-Fee Tokenization for Blockchain Security",
+          desc: "Launch, trade, and manage tokens seamlessly with SecurePad, the zero-fee platform offering secure, no-code, cross-chain blockchain services.",
+          keywords:
+            "SecurePad, blockchain security, tokenization, free token creation, no-code blockchain, cross-chain functionality, decentralized exchange, token staking, token locker, Initial DEX Offering, blockchain project, SecureDApp",
+        }}
+      />
       <Navbar />
       <div className="product">
         <ProductServiceHero

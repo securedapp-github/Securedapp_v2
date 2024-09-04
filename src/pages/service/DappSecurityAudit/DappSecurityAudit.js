@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,16 @@ function DappSecurityAudit() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "DApp Security Audit: Safeguard Your Decentralized Applications",
+          desc: "Secure your DApps with expert security audits. Detect vulnerabilities, improve resilience, and protect against cyber threats with SecureDApp.",
+          keywords:
+            "dapp security audit, decentralized application security, dapp penetration testing, blockchain security audit, secure dapp development, cyber threats protection",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

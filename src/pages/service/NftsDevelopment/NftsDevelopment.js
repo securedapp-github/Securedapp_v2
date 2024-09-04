@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,6 +19,16 @@ function NftsDevelopment() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "NFT Development Services: Create & Secure Unique Digital Assets",
+          desc: "Develop, mint, and secure unique NFTs. Build robust NFT platforms tailored to your needs with SecureDApp's expert blockchain solutions.",
+          keywords:
+            "NFT development, digital assets, NFT minting, NFT platform, blockchain NFT, smart contracts, secure NFTs, NFT marketplace, tokenized assets, digital collectibles",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero

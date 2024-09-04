@@ -5,6 +5,7 @@ import "./Authors.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { authorsData } from "./authors.data";
+import MetaTags from "../../components/common/MetaTags";
 
 const AuthorCard = ({
   image,
@@ -16,6 +17,14 @@ const AuthorCard = ({
 }) => {
   return (
     <div className="authors-card-container">
+      <MetaTags
+        data={{
+          title: "Meet SecureDApp Authors: Blockchain Security Experts",
+          desc: "Get to know SecureDApp’s team of blockchain security professionals. Learn from leaders shaping the future of Web3 and cybersecurity innovation.",
+          keywords:
+            "SecureDApp team, blockchain security experts, Web3 professionals, cybersecurity leaders, blockchain innovation, Web3 security, decentralized applications, SecureDApp authors, blockchain technology, Web3 industry leaders",
+        }}
+      />
       <div className="authors-card">
         <div className="authors-card-image">
           <img src={image} alt={name} />
