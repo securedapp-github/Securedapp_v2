@@ -6,10 +6,18 @@ import {
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/footer";
 import "./Audits.css";
-import { auditChartsData, auditsCard1, auditsCard2 } from "./audits.data";
-import { getReport } from "../../SolidityShield/functions";
+import { dummyData } from "./audits.data";
+import { getReport, getScanHistoryData } from "../../SolidityShield/functions";
 import { useEffect, useState } from "react";
 import Button from "../../components/common/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import { formatDate } from "../../SolidityShield/functions";
+import MetaTags from "../../components/common/MetaTags";
 
 const GradientCircularProgressbar = ({ value, text }) => {
   let gradientTransform = `rotate(${120})`;
@@ -107,8 +115,46 @@ const AuditsPageCard = ({ headers, details, children }) => {
 const AuditsPage = () => {
   window.scrollTo(0, 0);
   var { id } = useParams();
+  const [audits, setAudits] = useState(dummyData);
   const [report, setReport] = useState();
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const AuditCard = ({ data }) => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          width:
+            window.innerWidth > 800 ? "calc(33% - 20px)" : "calc(100% - 20px)",
+          padding: "10px",
+          margin: "10px",
+        }}
+        className="audit-card"
+        onClick={() => {
+          fetch(data.auditId);
+          navigate(`/audits/${data.auditId}`);
+        }}
+      >
+        <div>
+          <img
+            style={{ marginRight: "12px", maxWidth: "90px" }}
+            src={data.image}
+          ></img>
+        </div>
+        <div style={{ margin: "auto", width: "100%", textAlign: "left" }}>
+          <p style={{ fontSize: "18px" }}>{data.companyName}</p>
+          <p style={{ color: "#858585", fontSize: "14px" }}>
+            Audit ID : {data.auditId}
+          </p>
+          <p style={{ color: "#858585", fontSize: "14px" }}>
+            Audit Date : {formatDate(data.auditDate)}
+          </p>
+        </div>
+      </div>
+    );
+  };
 
   if (!id) {
     id = 0;
@@ -172,48 +218,67 @@ const AuditsPage = () => {
     fetch(id);
   }, []);
 
-  const [searchVal, setSearch] = useState();
-
-  function search() {
-    fetch(searchVal);
-    //navigate(`/audits/${searchVal}`);
+  function search(searchVal) {
+    setAudits(
+      dummyData.filter((e) =>
+        JSON.stringify(e).toLocaleLowerCase().includes(searchVal)
+      )
+    );
   }
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(dummyData.length / 9);
+
+  const indexOfLastItem = currentPage * 9;
+  const indexOfFirstItem = indexOfLastItem - 9;
+  const currentItems = audits.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      paginate(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
 
   return (
     <div className="audits-page-container">
       <Navbar />
-
+      {/* <MetaTags data={{ title: "ttt", desc: "ddd", keywords: "kkk" }} /> */}
       <div className="audits-page">
         <div className="audits-page-header">
           <div className="audits-page-header-title">Audits</div>
           <div className="audits-page-header-description">
-            Report of the audit we've done
+            Audits we've done
           </div>
         </div>
 
         <div className="audits-page-body">
           <div className="audits-page-body-search">
-            <div
-              style={{ display: "flex", justifyContent: "space-between" }}
-              className="audits-page-body-search-input"
-            >
+            <div className="audits-page-body-search-input">
               <input
-                style={{ width: "85%" }}
                 className="audits-page-body-search-input-box"
-                placeholder="Search by Audit Id"
-                onChange={(e) => setSearch(e.target.value)}
-                type="number"
+                placeholder="Search by Company name, Audit Id or Date"
+                onChange={(e) => search(e.target.value)}
+                type="text"
               />
-              <div
-                style={{ width: "12%", display: "flex", alignItems: "center" }}
-              >
-                <Button onClick={search} text={"Search"} />
-              </div>
             </div>
           </div>
-          {report ? (
+          {report && id > 0 ? (
             <div>
-              {/* <div className="audits-page-body-logo">
+              <div
+                style={{ marginBottom: "15px" }}
+                className="audits-page-body-logo"
+              >
                 <div className="audits-page-body-logo-image">
                   <img
                     src="/assets/images/audits-page-logo.svg"
@@ -228,7 +293,7 @@ const AuditsPage = () => {
                     Date: 21 Aug 2024
                   </div>
                 </div>
-              </div> */}
+              </div>
               <div className="audits-page-body-cards">
                 <AuditsPageCard
                   headers={["Executive summary"]}
@@ -268,10 +333,39 @@ const AuditsPage = () => {
               </div>
             </div>
           ) : (
-            <div
-              style={{ width: "100%", textAlign: "center", marginTop: "100px" }}
-            >
-              No audit found
+            <div>
+              {currentItems.length > 0 ? (
+                <div>
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {currentItems.map((data) => (
+                      <AuditCard data={data} />
+                    ))}
+                  </div>
+                  <div className="blog-pagination">
+                    <div className="blog-pagniation-arrow-container">
+                      <button
+                        className="blog-pagination-arrow"
+                        onClick={handlePreviousPage}
+                        disabled={currentPage === 1}
+                      >
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                      </button>
+                    </div>
+                    <div className="blog-pagination-number">{currentPage}</div>
+                    <div className="blog-pagniation-arrow-container">
+                      <button
+                        className="blog-pagination-arrow"
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                      >
+                        <FontAwesomeIcon icon={faArrowRight} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                "No audit found"
+              )}
             </div>
           )}
         </div>

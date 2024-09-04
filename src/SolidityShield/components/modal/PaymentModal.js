@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import QRCode from "react-qr-code";
 import {
   getPaymentSelector,
@@ -18,6 +19,7 @@ const PaymentModal = () => {
   const { paymentModal, selectedPlan } = useSelector(getPaymentSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [phase, setPhase] = useState(1);
   const [web3PayDetails, setWeb3PayDetails] = useState();
 
@@ -157,12 +159,16 @@ const PaymentModal = () => {
                       className={
                         "w-[120px] border border-tertiary py-3 px-2 rounded-xl bg-tertiary active:bg-white"
                       }
-                      onClick={() => {
-                        payCryptoVerify({
+                      onClick={async () => {
+                        var data = await payCryptoVerify({
                           id: web3PayDetails.payment_id,
                           transactionId: web3PayDetails.newTransactionId,
                           amount: web3PayDetails.payAmount,
                         });
+                        if (data.payment_status === "success") {
+                          closeModal();
+                          navigate("/solidity-shield-scan/payment");
+                        }
                       }}
                     />
                   </div>
