@@ -1,6 +1,16 @@
 export const mediaData = [
   {
     heading:
+      "Breaking Boundaries in Web3 Security: An Exclusive Interview with Himanshu Gautam, Co-founder SecureDApp",
+    description:
+      "The idea for SecureDApp emerged from a critical need for standardized and accessible security protocols in the Web3 space. During my extensive experience in blockchain, starting in 2018, I observed that many decentralized applications (dApps) were deployed without undergoing adequate security audits.",
+    date: "September 4, 2024",
+    link: "https://thetechlove.com/breaking-boundaries-in-web3-security-an-exclusive-interview-with-himanshu-gautam-co-founder-securedapp/",
+    image: "/assets/images/media/thetechlove.png",
+    tags: "The TechLove",
+  },
+  {
+    heading:
       "The Evolving Landscape of Web3 and Increasing Need for Advanced Security Solutions",
     description:
       "The web is the largest transformable information construct, introduced in 1989, and significant progress has been made in web-related technologies since then. Today, Web3 and its implications, particularly concerning security, are among the most discussed topics.",
