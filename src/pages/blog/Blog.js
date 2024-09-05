@@ -104,6 +104,7 @@ function Blog() {
           desc: "Stay updated with SecureDApp’s blog on Web3, Blockchain, DeFi, and more. Explore in-depth articles on finance, legal, tokens, and smart contracts.",
           keywords:
             "Web3 blog, Blockchain insights, DeFi articles, smart contracts, finance blog, legal in blockchain, token regulation, supply chain blockchain",
+          image: "",
         }}
       />
       <Navbar />

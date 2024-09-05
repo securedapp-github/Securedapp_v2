@@ -26,6 +26,7 @@ function CryptoComplianceAml() {
           desc: "Secure your business with Crypto KYC & AML solutions. Trusted by 120+ companies for compliance, fraud prevention, and regulatory adherence.",
           keywords:
             "crypto compliance, AML solutions, KYC services, anti-money laundering, cryptocurrency regulation, financial compliance, secure crypto transactions",
+          image: "/assets/images/ServicePages/s9-hero.webp",
         }}
       />
       <Navbar />

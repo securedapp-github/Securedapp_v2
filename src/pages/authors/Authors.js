@@ -17,14 +17,6 @@ const AuthorCard = ({
 }) => {
   return (
     <div className="authors-card-container">
-      <MetaTags
-        data={{
-          title: "Meet SecureDApp Authors: Blockchain Security Experts",
-          desc: "Get to know SecureDApp’s team of blockchain security professionals. Learn from leaders shaping the future of Web3 and cybersecurity innovation.",
-          keywords:
-            "SecureDApp team, blockchain security experts, Web3 professionals, cybersecurity leaders, blockchain innovation, Web3 security, decentralized applications, SecureDApp authors, blockchain technology, Web3 industry leaders",
-        }}
-      />
       <div className="authors-card">
         <div className="authors-card-image">
           <img src={image} alt={name} />
@@ -56,6 +48,15 @@ const Authors = () => {
   window.scrollTo(0, 0);
   return (
     <div className="authors-container">
+      <MetaTags
+        data={{
+          title: "Meet SecureDApp Authors: Blockchain Security Experts",
+          desc: "Get to know SecureDApp’s team of blockchain security professionals. Learn from leaders shaping the future of Web3 and cybersecurity innovation.",
+          keywords:
+            "SecureDApp team, blockchain security experts, Web3 professionals, cybersecurity leaders, blockchain innovation, Web3 security, decentralized applications, SecureDApp authors, blockchain technology, Web3 industry leaders",
+          image: "/assets/images/authors/harshajit-sarmah.png",
+        }}
+      />
       <Navbar />
       <div className="authors">
         <div className="authors-header">

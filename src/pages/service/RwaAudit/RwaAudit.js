@@ -26,6 +26,7 @@ function RwaAudit() {
           desc: "Ensure the security of your tokenized real-world assets with RWA audits. Gain transparency, compliance, and investor confidence on the blockchain.",
           keywords:
             "RWA audit, real-world asset audit, blockchain asset audit, tokenized asset security, blockchain compliance, asset tokenization audit",
+          image: "/assets/images/ServicePages/s8-hero.webp",
         }}
       />
       <Navbar />

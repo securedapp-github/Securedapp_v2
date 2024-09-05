@@ -26,6 +26,7 @@ function SmartContractAudit() {
           desc: "Get thorough smart contract audits to eliminate security flaws in your blockchain DApps. Ensure reliability and compliance with our expert services.",
           keywords:
             "smart contract audit, blockchain security, secure DApps, blockchain audit services, smart contract security, decentralized apps",
+          image: "/assets/images/ServicePages/s2-hero.webp",
         }}
       />
       <Navbar />

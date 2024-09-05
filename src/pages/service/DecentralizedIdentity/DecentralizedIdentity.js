@@ -27,6 +27,7 @@ function DecentralizedIdentity() {
           desc: "SecureDApp's Decentralized Identity solutions ensure privacy, data security, and seamless identity verification. Protect your digital identity now.",
           keywords:
             "decentralized identity, DID solutions, digital identity, privacy-first identities, blockchain identity, identity verification, secure digital identity, identity management, verifiable credentials, decentralized technology",
+          image: "/assets/images/ServicePages/s10-hero.webp",
         }}
       />
       <Navbar />

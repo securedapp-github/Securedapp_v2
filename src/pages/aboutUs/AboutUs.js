@@ -55,6 +55,7 @@ const AboutUs = () => {
           desc: "Explore SecureDApp's journey in blockchain security. Meet our team and discover how we're securing the future of Web3 with innovative solutions.",
           keywords:
             "SecureDApp, blockchain security, Web3 security, decentralized applications, dApps protection, cybersecurity, blockchain innovation, Web3 solutions, SecureDApp team, blockchain pioneers",
+          image: "/assets/images/about/photo1.png",
         }}
       />
       <Navbar />

@@ -25,6 +25,7 @@ function SecurePadPage() {
           desc: "Launch, trade, and manage tokens seamlessly with SecurePad, the zero-fee platform offering secure, no-code, cross-chain blockchain services.",
           keywords:
             "SecurePad, blockchain security, tokenization, free token creation, no-code blockchain, cross-chain functionality, decentralized exchange, token staking, token locker, Initial DEX Offering, blockchain project, SecureDApp",
+          image: "/assets/images/ProductPages/sp/sp-hero.jpg",
         }}
       />
       <Navbar />

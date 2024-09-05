@@ -27,6 +27,7 @@ function NftsDevelopment() {
           desc: "Develop, mint, and secure unique NFTs. Build robust NFT platforms tailored to your needs with SecureDApp's expert blockchain solutions.",
           keywords:
             "NFT development, digital assets, NFT minting, NFT platform, blockchain NFT, smart contracts, secure NFTs, NFT marketplace, tokenized assets, digital collectibles",
+          image: "/assets/images/ServicePages/s11-hero.webp",
         }}
       />
       <Navbar />

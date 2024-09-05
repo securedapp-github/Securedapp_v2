@@ -26,6 +26,7 @@ function DefiDevelopment() {
           desc: "Build DeFi platforms with SecureDApp. Our solutions include smart contracts, yield farming, and token creation to securely transform financial services.",
           keywords:
             "DeFi development, decentralized finance, smart contracts, yield farming, DeFi platforms, blockchain finance, secure DeFi solutions, DeFi tokens, decentralized apps",
+          image: "/assets/images/ServicePages/s12-hero.png",
         }}
       />
       <Navbar />

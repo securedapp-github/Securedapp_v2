@@ -26,6 +26,7 @@ function Web3KYC() {
           desc: "Secure your business with Blockchain Identity Verification for KYC and compliance. Trusted by 120+ companies in DeFi, NFTs, and crypto exchanges.",
           keywords:
             "Blockchain Identity Verification, KYC, Compliance, Decentralized Finance, NFT Marketplaces, Cryptocurrency Exchanges",
+          image: "/assets/images/ServicePages/s5-hero.webp",
         }}
       />
       <Navbar />

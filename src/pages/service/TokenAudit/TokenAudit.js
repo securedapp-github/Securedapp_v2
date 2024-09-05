@@ -27,6 +27,7 @@ function TokenAudit() {
           desc: "Ensure the security of your cryptocurrency with our thorough token audit services. Identify vulnerabilities, protect investor funds, and enhance trust.",
           keywords:
             "Token Audit, Crypto Asset Security, Blockchain Audit, Smart Contract Review, Cryptocurrency Audit, Token Security, Blockchain Compliance, Crypto Token Verification, Smart Contract Security, Token Audit Services",
+          image: "/assets/images/ServicePages/s4-hero.webp",
         }}
       />
       <Navbar />

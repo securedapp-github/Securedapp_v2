@@ -25,6 +25,7 @@ function SecureWatchPage() {
           desc: "Secure Watch offers AI-driven real-time blockchain threat detection, ensuring smart contract security by identifying and mitigating vulnerabilities.",
           keywords:
             "blockchain threat detection, smart contract security, Secure Watch, AI-driven monitoring, blockchain security tool, unauthorized access, real-time blockchain surveillance, smart contract vulnerabilities, blockchain threat intelligence, secure watch features",
+          image: "/assets/images/ProductPages/sw/hero.webp",
         }}
       />
       <Navbar />

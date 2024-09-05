@@ -26,6 +26,7 @@ function LevelUpAcademy() {
           desc: "Join SecureDApp’s Level Up Academy to master blockchain skills with hands-on training in blockchain, DApps, and smart contract development.",
           keywords:
             "blockchain education, Level Up Academy, blockchain talent development, blockchain innovation, blockchain skills training, blockchain certification, SecureDApp, Indian universities, blockchain careers, decentralized applications training",
+          image: "/assets/images/ServicePages/s8-3.webp",
         }}
       />
       <Navbar />

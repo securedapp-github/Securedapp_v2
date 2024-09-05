@@ -58,6 +58,7 @@ function Media() {
           desc: "Explore SecureDApp's media coverage on Web3, blockchain, and security. Read interviews and articles featuring our insights on the evolving digital space.",
           keywords:
             "SecureDApp media, Web3 coverage, blockchain security, blockchain interviews, Web3 insights, blockchain news, SecureDApp articles, digital security trends",
+          image: "/assets/images/media/cryptotimes1.png",
         }}
       />
       <Navbar />

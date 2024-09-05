@@ -27,6 +27,7 @@ function BlockchainForensic() {
           desc: "Explore Blockchain Forensic solutions for tracing crypto transactions, ensuring compliance, and preventing fraud. Trusted by 120+ companies.",
           keywords:
             "Blockchain Forensics, Cryptocurrency Investigation, Crypto Transaction Tracing, Blockchain Compliance, Digital Asset Recovery, Blockchain Security Audit, Fraud Detection Blockchain, Cryptocurrency Tracing",
+          image: "/assets/images/ServicePages/s7-hero.webp",
         }}
       />
       <Navbar />

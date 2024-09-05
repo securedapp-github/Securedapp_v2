@@ -27,6 +27,7 @@ function DappSecurityAudit() {
           desc: "Secure your DApps with expert security audits. Detect vulnerabilities, improve resilience, and protect against cyber threats with SecureDApp.",
           keywords:
             "dapp security audit, decentralized application security, dapp penetration testing, blockchain security audit, secure dapp development, cyber threats protection",
+          image: "/assets/images/ServicePages/s3-hero.webp",
         }}
       />
       <Navbar />

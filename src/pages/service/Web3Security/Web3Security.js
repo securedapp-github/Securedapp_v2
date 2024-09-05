@@ -27,6 +27,7 @@ function Web3Security() {
           desc: "Protect your crypto assets with Web 3.0 security services. Get smart contract audits, DeFi protection, and accurate blockchain asset valuation.",
           keywords:
             "Web 3.0 security, crypto asset protection, blockchain valuation, smart contract audit, DeFi security, crypto security audit, decentralized finance audit, blockchain asset valuation, Web 3.0 cybersecurity",
+          image: "/assets/images/ServicePages/s6-hero.webp",
         }}
       />
       <Navbar />

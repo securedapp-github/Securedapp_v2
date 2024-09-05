@@ -7,7 +7,7 @@ import Button from "../../components/common/Button";
 import "./BlogPost.css";
 import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
-import { Helmet } from "react-helmet";
+import MetaTags from "../../components/common/MetaTags";
 import { toast } from "react-toastify";
 
 const renderContent = (blogData) => {
@@ -212,37 +212,14 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post-container">
-      <Helmet>
-        {/* Basic Meta Tags */}
-        <title>{`SecureDapp - ${blogDetails.title}`}</title>
-        <meta name="description" content={blogDetails.Summary} />
-        <meta name="author" content="SecureDapp" />
-
-        {/* Open Graph Meta Tags (For Facebook, LinkedIn, WhatsApp) */}
-        <meta property="og:title" content={blogDetails.title} />
-        <meta property="og:description" content={blogDetails.Summary} />
-        <meta property="og:image" content={blogDetails.image} />
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="SecureDapp" />
-        <meta property="og:locale" content="en_IN" />
-        <meta property="og:url" content={window.location.href} />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:card" content={blogDetails.image} />
-        <meta name="twitter:title" content={blogDetails.title} />
-        <meta name="twitter:description" content={blogDetails.Summary} />
-        <meta name="twitter:image" content={blogDetails.image} />
-
-        {/* WhatsApp-specific Tag (Open Graph) */}
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* LinkedIn uses Open Graph Tags, so no extra tags are needed */}
-
-        {/* Optional: Meta tags for other platforms (Pinterest, Slack, etc.) */}
-        <meta name="pinterest-rich-pin" content="true" />
-      </Helmet>
+      <MetaTags
+        data={{
+          title: blogDetails.title,
+          desc: blogDetails.Summary,
+          image: blogDetails.image,
+          keywords: blogDetails.tags,
+        }}
+      />
       <div className="blog-post">
         <div className="blog-post-header">
           <div className="blog-post-header-left">
