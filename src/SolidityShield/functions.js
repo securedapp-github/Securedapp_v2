@@ -12,6 +12,37 @@ import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
 import { pricingDetails } from "./pages/pricing/pricing.data";
 
 const logo = "/assets/images/securedapp_logo.svg";
+const apiUrl = "https://139-59-5-56.nip.io:3443";
+
+export async function getBlogs() {
+  const response = await fetch(apiUrl + "/getBlogList");
+  let data = await response.json();
+  data = data.filter((item) => item.status === 1);
+  console.log(data);
+  return data;
+}
+
+export const getAudits = async () => {
+  return await fetch(apiUrl + "/getAudits", {
+    method: "POST",
+    // body: JSON.stringify({
+    //   paymentid: id,
+    // }),
+    headers: {
+      "Content-type": "application/json",
+      //Authorization: getJwt(),
+    },
+  })
+    .then(async (res) => {
+      var data = await res.json();
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error getting transaction status");
+    });
+};
 
 export const payCryptoVerify = async ({ id, transactionId, amount }) => {
   try {
@@ -25,7 +56,7 @@ export const payCryptoVerify = async ({ id, transactionId, amount }) => {
         const data = await response.json();
         if (data.payment_status === "success") {
           toast.success("Payment Successful!");
-          await fetch("https://139-59-5-56.nip.io:3443/payment-update-web3", {
+          await fetch(apiUrl + "/payment-update-web3", {
             method: "POST",
             body: JSON.stringify({
               status: "success",
@@ -93,21 +124,18 @@ export const payCrypto = async ({ planid, email }) => {
       })
         .then(async (response) => {
           const data = await response.json();
-          return await fetch(
-            "https://139-59-5-56.nip.io:3443/payment-insert-web3",
-            {
-              method: "POST",
-              body: JSON.stringify({
-                mail: email,
-                planid,
-                paymentid: transactionid,
-              }),
-              headers: {
-                "Content-type": "application/json",
-                Authorization: getJwt(),
-              },
-            }
-          ).then(async (response2) => {
+          return await fetch(apiUrl + "/payment-insert-web3", {
+            method: "POST",
+            body: JSON.stringify({
+              mail: email,
+              planid,
+              paymentid: transactionid,
+            }),
+            headers: {
+              "Content-type": "application/json",
+              Authorization: getJwt(),
+            },
+          }).then(async (response2) => {
             const res = await response2.json();
             if (res.status) {
               localStorage.setItem(
@@ -144,19 +172,16 @@ export const payCrypto = async ({ planid, email }) => {
 };
 
 export const checkPhonpe = async ({ id }) => {
-  return await fetch(
-    `https://139-59-5-56.nip.io:3443/check-phonepay?txnid=${id}`,
-    {
-      method: "GET",
-      // body: JSON.stringify({
-      //   paymentid: id,
-      // }),
-      headers: {
-        "Content-type": "application/json",
-        Authorization: getJwt(),
-      },
-    }
-  )
+  return await fetch(`${apiUrl}/check-phonepay?txnid=${id}`, {
+    method: "GET",
+    // body: JSON.stringify({
+    //   paymentid: id,
+    // }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
     .then(async (res) => {
       var data = await res.json();
       //alert(JSON.stringify(data));
@@ -176,21 +201,18 @@ export const payPhonpe = async ({ planid, email }) => {
   if (planid > 0) {
     const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
 
-    const response2 = await fetch(
-      "https://139-59-5-56.nip.io:3443/payment-insert",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          mail: email,
-          paymentid: transactionid,
-          planid: planid,
-        }),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: getJwt(),
-        },
-      }
-    );
+    const response2 = await fetch(apiUrl + "/payment-insert", {
+      method: "POST",
+      body: JSON.stringify({
+        mail: email,
+        paymentid: transactionid,
+        planid: planid,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: getJwt(),
+      },
+    });
 
     const data = await response2.json();
     console.log(transactionid);
@@ -319,7 +341,7 @@ export const scanSubmit = async ({
   formData.append("version", compilerVersion);
   formData.append("company", companyName);
 
-  return await fetch("https://139-59-5-56.nip.io:3443/audits", {
+  return await fetch(apiUrl + "/audits", {
     method: "POST",
     body: formData,
     headers: {
@@ -476,7 +498,7 @@ export const getIssuesChartData = async ({ dispatch, email }) => {
 };
 
 export const getReport = async ({ id, email }) => {
-  return await fetch("https://139-59-5-56.nip.io:3443/getReport", {
+  return await fetch(apiUrl + "/getReport", {
     method: "POST",
     body: JSON.stringify({
       id: id,
@@ -499,9 +521,9 @@ export const getReport = async ({ id, email }) => {
     })
     .then((data) => {
       var report = JSON.parse(data);
-
-      report = JSON.parse(report[0].reportdata);
-
+      report = report[0].reportdata;
+      report = JSON.parse(report);
+      //console.log(report);
       var score =
         5 -
         ((Number(report.findings["high_issues"]) +
@@ -519,7 +541,7 @@ export const getReport = async ({ id, email }) => {
 };
 
 export const getScanHistoryData = async ({ userEmail, dispatch }) => {
-  return fetch("https://139-59-5-56.nip.io:3443/getHistory", {
+  return fetch(apiUrl + "/getHistory", {
     method: "POST",
     body: JSON.stringify({
       mail: userEmail,
@@ -553,7 +575,7 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
     toast.error("Invalid Email, Try again");
     return;
   }
-  fetch("https://139-59-5-56.nip.io:3443/sendOtp2", {
+  fetch(apiUrl + "/sendOtp2", {
     method: "POST",
     body: JSON.stringify({
       mail: email,
@@ -581,7 +603,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
     return;
   }
 
-  fetch("https://139-59-5-56.nip.io:3443/verifyOtp2", {
+  fetch(apiUrl + "/verifyOtp2", {
     method: "POST",
     body: JSON.stringify({
       mail: email,
@@ -667,7 +689,7 @@ export const getUser = async ({ dispatch, email }) => {
     return;
   }
 
-  return await fetch("https://139-59-5-56.nip.io:3443/getUser", {
+  return await fetch(apiUrl + "/getUser", {
     method: "POST",
     body: JSON.stringify({
       mail: localStorage.getItem("UserEmail"),
@@ -744,7 +766,7 @@ export const logout = () => {
 };
 
 export const downloadReport = async (id, user) => {
-  fetch("https://139-59-5-56.nip.io:3443/getReport", {
+  fetch(apiUrl + "/getReport", {
     method: "POST",
     body: JSON.stringify({
       id: id,

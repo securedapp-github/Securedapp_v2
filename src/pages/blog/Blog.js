@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 import MetaTags from "../../components/common/MetaTags";
+import { getBlogs } from "../../SolidityShield/functions";
 
 function Blog() {
   window.scrollTo(0, 0);
@@ -21,19 +22,26 @@ function Blog() {
   const [searchText, setSearchText] = useState("");
   const [selectedTag, setSelectedTags] = useState("");
 
-  async function getBlogs() {
-    const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
-    let data = await response.json();
-    data = data.filter((item) => item.status === 1);
-    setOriginalBlogs(data);
-    setBlogs(
-      data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
-    );
-    console.log(blogs);
-  }
+  // async function getBlogs() {
+  //   const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
+  //   let data = await response.json();
+  //   data = data.filter((item) => item.status === 1);
+  //   setOriginalBlogs(data);
+  //   setBlogs(
+  //     data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
+  //   );
+  //   console.log(blogs);
+  // }
 
   useEffect(() => {
-    getBlogs();
+    async function fetch() {
+      var data = await getBlogs();
+      setOriginalBlogs(data);
+      setBlogs(
+        data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
+      );
+    }
+    fetch();
   }, []);
 
   useEffect(() => {

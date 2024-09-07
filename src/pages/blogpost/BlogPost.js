@@ -9,6 +9,7 @@ import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
 import MetaTags from "../../components/common/MetaTags";
 import { toast } from "react-toastify";
+import { getBlogs } from "../../SolidityShield/functions";
 
 const renderContent = (blogData) => {
   const filteredBlog = blogData;
@@ -105,10 +106,8 @@ const BlogPost = () => {
   };
 
   const fetchBlogs = async () => {
-    const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
-    let data = await response.json();
-    data = data.filter((item) => item.status === 1);
-    setBlogsData(data.filter((item) => item.status === 1));
+    var data = await getBlogs();
+    setBlogsData(data);
   };
 
   const getBlog = () => {
