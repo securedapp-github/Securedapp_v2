@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import "./SectionTitle.module.css";
 
 const SectionTitle = ({ name, title, description }) => (
   <div className="section-title">

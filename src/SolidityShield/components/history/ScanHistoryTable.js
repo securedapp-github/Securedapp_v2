@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./ScanHistoryTable.module.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Image from "next/image";

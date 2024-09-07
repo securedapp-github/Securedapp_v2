@@ -43,8 +43,7 @@ const Hero = () => {
           loop={true}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           grabCursor={true}
-          className="hero-swiper"
-        >
+          className="hero-swiper">
           {images.map((image, index) => {
             return (
               <SwiperSlide key={`swiper-slide-${index}`}>

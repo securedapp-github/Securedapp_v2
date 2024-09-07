@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 import Image from "next/image";
-import "./HowItWorksCard.module.css";
 
 const HowItWorksCard = ({ image, imageAlt, title, description }) => {
   const { darkMode } = useSelector(getHomeSelector);
@@ -21,8 +20,7 @@ const HowItWorksCard = ({ image, imageAlt, title, description }) => {
       {title && <div className="how-it-works-card-title">{title}</div>}
       <div
         className="how-it-works-card-description"
-        dangerouslySetInnerHTML={{ __html: description }}
-      ></div>
+        dangerouslySetInnerHTML={{ __html: description }}></div>
     </div>
   );
 };

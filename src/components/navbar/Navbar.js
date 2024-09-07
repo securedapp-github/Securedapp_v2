@@ -10,11 +10,12 @@ import {
   setIsRequestModalOpen,
   setDarkMode,
 } from "../../redux/slices/main/homeSlice";
-import "./Navbar.module.css";
+import RequestQuoteModal from "../modal/RequestQuoteModal";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { darkMode, isLargeScreen } = useSelector(getHomeSelector);
+  const { darkMode, isLargeScreen, isRequestModalOpen } =
+    useSelector(getHomeSelector);
 
   const navigate = useRouter();
   let nextPath;
@@ -80,6 +81,7 @@ const Navbar = () => {
 
   return (
     <div className="absolute z-10 top-0 left-0 right-0">
+      {isRequestModalOpen && <RequestQuoteModal />}
       {isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}

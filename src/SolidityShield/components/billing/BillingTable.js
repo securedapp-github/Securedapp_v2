@@ -2,7 +2,6 @@ import { useState } from "react";
 import Image from "next/image";
 import ChartCard from "../overview/ChartCard";
 import { billingDummyData } from "./billingDummyData";
-import "./BillingTable.module.css";
 import Pagination from "../common/Pagination";
 
 const BillingTableStatus = ({ status }) => {

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
-import "./Pricing.module.css";
 import CustomButton from "../../components/common/CustomButton";
 import {
   faChevronLeft,

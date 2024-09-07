@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Image from "next/image";
-import "./RequestQuoteModal.css";
 import Button from "../common/Button";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -191,8 +190,7 @@ const RequestQuoteModal = () => {
               </select> */}
               <div
                 onClick={toggleDropDown}
-                className="request-quote-modal-dropdown"
-              >
+                className="request-quote-modal-dropdown">
                 <div>{selectedService}</div>
                 {dropDown && (
                   <div className="request-quote-modal-dropdown-options">
@@ -200,8 +198,7 @@ const RequestQuoteModal = () => {
                       return (
                         <div
                           onClick={() => setSelectedService(service)}
-                          className="request-quote-modal-dropdown-option-container"
-                        >
+                          className="request-quote-modal-dropdown-option-container">
                           <div className="request-quote-modal-dropdown-option">
                             {service}
                           </div>
@@ -227,8 +224,7 @@ const RequestQuoteModal = () => {
             <div className="request-quote-modal-textarea-container">
               <textarea
                 onChange={onMessageChange}
-                className="request-quote-modal-textarea"
-              ></textarea>
+                className="request-quote-modal-textarea"></textarea>
             </div>
             <div className="request-quote-modal-checkbox-container">
               <input id="request-quote-check-privacy" type="checkbox" />
@@ -238,8 +234,7 @@ const RequestQuoteModal = () => {
                   className="text-[#A4CDFF] font-bold"
                   target="_blank"
                   href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-                  rel="noreferrer"
-                >
+                  rel="noreferrer">
                   Privacy Policy
                 </a>{" "}
                 and information being used to contact me

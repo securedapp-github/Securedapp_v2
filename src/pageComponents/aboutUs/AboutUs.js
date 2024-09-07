@@ -4,7 +4,6 @@ import Link from "next/link";
 import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/Navbar";
 import teamData, { companyCulture } from "./about-us-data";
-import "./AboutUs.module.css";
 import CustomHr from "../../components/common/CustomHr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -91,9 +90,6 @@ const AboutUs = () => {
           </div>
           <div className="about-us-hero-image">
             <Image
-              layout="intrinsic"
-              width={100}
-              height={100}
               layout="intrinsic"
               width={100}
               height={100}

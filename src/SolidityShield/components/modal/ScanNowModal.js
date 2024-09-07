@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import "./ScanNowModal.module.css";
 import {
   getCommonSelector,
   setChainType,

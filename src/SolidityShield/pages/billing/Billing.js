@@ -6,7 +6,6 @@ import BillingTable from "../../components/billing/BillingTable";
 import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
-import "./Billing.module.css";
 import { getUserData } from "../../redux/auth/authSlice";
 import {
   getPaymentSelector,

@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 import Image from "next/image";
-import "./WhyChooseCard.module.css";
 
 export const WhyChooseCardIcon = ({ image, imageBackground }) => {
   const { darkMode } = useSelector(getHomeSelector);

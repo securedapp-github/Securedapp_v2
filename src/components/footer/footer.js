@@ -15,7 +15,6 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import "./Footer.module.css";
 
 const navigationItems = [
   {
@@ -226,8 +225,7 @@ const Footer = () => {
                   className="hover:cursor-pointer"
                   onClick={() =>
                     typeof window !== "undefined" && window.open(social.to)
-                  }
-                >
+                  }>
                   {social.icon}
                 </div>
               );
@@ -261,16 +259,14 @@ const Footer = () => {
           <a
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             Privacy Policy{" "}
           </a>
-          <FontAwesomeIcon size="2xs" icon={faCircle} />
+          <FontAwesomeIcon size={"2xs"} icon={faCircle} />
           <a
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             Terms & Conditions
           </a>
         </div>

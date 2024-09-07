@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import ChartCard from "./ChartCard";
-import "./IssuesChart.module.css";
 import {
   XAxis,
   YAxis,

@@ -1,5 +1,3 @@
-import "./ChartCard.module.css";
-
 const ChartCard = ({ children, className }) => {
   return (
     <div className={`sss-chart-card-container ${className}`}>

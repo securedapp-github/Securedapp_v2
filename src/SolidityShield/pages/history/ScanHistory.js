@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import "./ScanHistory.module.css";
 import {
   getHistorySelector,
   setHistoryStatusFilter,

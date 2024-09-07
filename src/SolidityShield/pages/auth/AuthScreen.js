@@ -6,7 +6,6 @@ import AuthButton from "../../components/auth/AuthButton";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
-import "./AuthScreen.module.css";
 import { sendOTP, verifyOTP, getUser } from "../../functions";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData, login } from "../../redux/auth/authSlice";

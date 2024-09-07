@@ -3,7 +3,6 @@ import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthLogos from "../../components/auth/AuthLogos";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
-import "./LoginScreen.module.css";
 
 const LoginScreen = () => {
   return (

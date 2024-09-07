@@ -8,7 +8,6 @@ import SectionTitle from "../../../components/common/SectionTitle";
 import Button from "../../../components/common/Button";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
-import "../../product/Product.module.css";
 import ProductCard from "../../../components/productService/ProductCard";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";

@@ -1,5 +1,3 @@
-import "./CustomButton.module.css";
-
 const CustomButton = ({ className, text, onClick = () => {} }) => {
   return (
     <div onClick={onClick} className="sss-custom-button-container">

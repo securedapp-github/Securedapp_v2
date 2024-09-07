@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import BlogCard from "../../components/blog/BlogCard";
 import Button from "../../components/common/Button";
-import "./BlogPost.module.css";
 import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
 import MetaTags from "../../components/common/MetaTags";

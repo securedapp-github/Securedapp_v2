@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import ChartCard from "./ChartCard";
-import "./ScanSummary.module.css";
 import {
   getOverviewSelector,
   setDateFilter,

@@ -2,7 +2,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/footer";
-import "./Authors.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { authorsData } from "./authors.data";

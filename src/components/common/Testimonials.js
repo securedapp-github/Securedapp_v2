@@ -7,7 +7,6 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Testimonials.module.css";
 
 const Testimonials = ({ reviews }) => {
   const [active, setActiveSlide] = useState(2);
@@ -30,12 +29,10 @@ const Testimonials = ({ reviews }) => {
         <div
           className={`testimonial-card-content ${
             active === id && "selected-card-content"
-          }`}
-        >
+          }`}>
           <div className="">
             <div
-              className={`testimonial-card-reviwer ${active === id && "pb-2"}`}
-            >
+              className={`testimonial-card-reviwer ${active === id && "pb-2"}`}>
               {reviewer}
             </div>
             <div className="testimonial-card-designation">{designation}</div>
@@ -107,17 +104,15 @@ const Testimonials = ({ reviews }) => {
           onClick={moveLeft}
           className={`testimonial-arrow ${
             active === 0 && "testimonial-arrow-first"
-          } hover:cursor-pointer`}
-        >
-          <FontAwesomeIcon size="" icon={faArrowLeft} />
+          } hover:cursor-pointer`}>
+          <FontAwesomeIcon icon={faArrowLeft} />
         </div>
         <div
           onClick={moveRight}
           className={`testimonial-arrow ${
             active === reviews.length - 1 && "testimonial-arrow-last"
-          } hover:cursor-pointer`}
-        >
-          <FontAwesomeIcon size="" icon={faArrowRight} />
+          } hover:cursor-pointer`}>
+          <FontAwesomeIcon icon={faArrowRight} />
         </div>
       </div>
     </div>

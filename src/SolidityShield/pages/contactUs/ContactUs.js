@@ -2,7 +2,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
 import AuthInputField from "../../components/auth/AuthInputField";
-import "./ContactUs.module.css";
 import AuthButton from "../../components/auth/AuthButton";
 
 export const AuthInputFieldContainer = ({ label, InputField }) => {

@@ -12,7 +12,6 @@ import Statitics from "./sections/Statistics";
 import { reviews, faqHeaders, faqsData } from "./home.data";
 import MetaTags from "../../components/common/MetaTags";
 import dynamic from "next/dynamic";
-import styles from "./HomePage.module.css";
 
 const Home = () => {
   if (typeof window !== "undefined") {

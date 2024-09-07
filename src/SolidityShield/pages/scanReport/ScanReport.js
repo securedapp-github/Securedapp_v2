@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import "./ScanReport.module.css";
 import { auditStats, scanReportData } from "./scanReport.data";
 import { getReport, getScanHistoryData, getUser } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";

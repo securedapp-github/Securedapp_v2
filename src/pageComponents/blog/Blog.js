@@ -5,7 +5,6 @@ import Navbar from "../../components/navbar/Navbar";
 import BlogCard from "../../components/blog/BlogCard";
 import SectionTitle from "../../components/common/SectionTitle";
 import { tags } from "./blog-data";
-import "./Blog.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,

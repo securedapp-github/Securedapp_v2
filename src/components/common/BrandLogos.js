@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import "./BrandLogos.module.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -93,13 +92,11 @@ const BrandLogos = () => {
         itemClass="carousel-item"
         customTransition="all 8s linear"
         draggable={false}
-        shouldResetAutoplay={false}
-      >
+        shouldResetAutoplay={false}>
         {brandLogos.map((brandLogo, index) => (
           <div
             key={index}
-            className="w-full flex justify-center items-center py-2"
-          >
+            className="w-full flex justify-center items-center py-2">
             <Image
               layout="intrinsic"
               width={100}

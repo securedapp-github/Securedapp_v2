@@ -8,7 +8,6 @@ import ProductCard from "../../../components/productService/ProductCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
-import "../Service.module.css";
 import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import WhyChooseCard from "../../../components/productService/WhyChooseCard";

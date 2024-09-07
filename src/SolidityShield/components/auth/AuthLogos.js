@@ -1,4 +1,3 @@
-import "./AuthLogos.module.css";
 
 const AuthLogos = ({ imagePath = "" }) => {
   return (

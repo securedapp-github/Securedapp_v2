@@ -4,7 +4,6 @@ import Footer from "../../components/footer/footer";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { authorsData } from "./authors.data";
-import "./AuthorProfile.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";

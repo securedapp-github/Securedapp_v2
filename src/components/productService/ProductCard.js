@@ -1,6 +1,5 @@
 import Button from "../common/Button";
 import Image from "next/image";
-import "./ProductCard.module.css";
 
 const ProductCard = ({
   header,

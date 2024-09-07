@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./Pagination.module.css";
 import {
   faChevronLeft,
   faChevronRight,

@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Button from "../common/Button";
-import "./BlogCard.module.css";
 import BlogTag from "./BlogTag";
 import { useRouter } from "next/router";
 
@@ -33,8 +32,7 @@ function BlogCard({ details, isMedia = false }) {
         details.url
           ? navigate.push(`/blog/${details.url}`)
           : typeof window !== "undefined" && window.open(details.link);
-      }}
-    >
+      }}>
       <div className="blog-card-header">
         {details.modifiedon ? (
           <div className="blog-card-header-date">{dateObj}</div>

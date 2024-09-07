@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import "./Sidebar.module.css";
 import {
   getCommonSelector,
   setSelectedSidebarItem,

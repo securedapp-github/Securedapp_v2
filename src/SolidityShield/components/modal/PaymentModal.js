@@ -6,7 +6,6 @@ import {
   setPaymentModal,
 } from "../../redux/dashboard/paymentSlice";
 import { useDispatch } from "react-redux";
-import "./PaymentModal.module.css";
 import { useState } from "react";
 import Image from "next/image";
 import CustomButton from "../common/CustomButton";

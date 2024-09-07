@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import IssuesChart from "../../components/overview/IssuesChart";
 import ScanSummary from "../../components/overview/ScanSummary";
-import "./Overview.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../redux/auth/authSlice";
 import { getScanHistoryData, getJwt, getUser } from "../../functions";
