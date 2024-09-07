@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import html2canvas from "html2canvas";
@@ -25,9 +26,6 @@ export async function getBlogs() {
 export const getAudits = async () => {
   return await fetch(apiUrl + "/getAudits", {
     method: "POST",
-    // body: JSON.stringify({
-    //   paymentid: id,
-    // }),
     headers: {
       "Content-type": "application/json",
       //Authorization: getJwt(),
@@ -40,7 +38,7 @@ export const getAudits = async () => {
     })
     .catch((error) => {
       console.log(error);
-      toast.error("Error getting transaction status");
+      toast.error("Error fetching audits");
     });
 };
 
@@ -221,7 +219,7 @@ export const payPhonpe = async ({ planid, email }) => {
       toast.error("Failed to proceed to payment! Try again.");
       return;
     } else {
-      window.open(data.redirect);
+      typeof window !== "undefined" && window.open(data.redirect);
     }
   } else {
     toast("Free Plan");
@@ -364,7 +362,7 @@ export const scanSubmit = async ({
       var latestScan = history.reduce((max, item) => {
         return item.id > max.id ? item : max;
       }, history[0]);
-      // window.open("/solidity-shield-scan/report/" + latestScan.id);
+      // typeof window !== 'undefined' && window.open("/solidity-shield-scan/report/" + latestScan.id);
 
       toast.success("Scan finished");
       dispatch(login({ ...user, remainingCredits: user.remainingCredits - 1 }));
@@ -509,11 +507,6 @@ export const getReport = async ({ id, email }) => {
     },
   })
     .then(async (response) => {
-      // if (PurchasePlan(0)) {
-      //   console.log("PDF generation is not available for free plan users.");
-      //   toast("PDF generation is not available for free plan users.");
-      //   return;
-      // }
       if (!response.ok) {
         toast("Invalid Network response ");
       }
@@ -521,9 +514,11 @@ export const getReport = async ({ id, email }) => {
     })
     .then((data) => {
       var report = JSON.parse(data);
+      console.log(id);
+      console.log(report);
       report = report[0].reportdata;
       report = JSON.parse(report);
-      //console.log(report);
+
       var score =
         5 -
         ((Number(report.findings["high_issues"]) +
@@ -591,7 +586,7 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
     .catch((err) => {
       console.log(err.message);
       toast("Error in sending OTP, Try again");
-      //window.location.replace("/solidity-shield-scan/auth");
+      //typeof window !== 'undefined' && window.location.replace("/solidity-shield-scan/auth");
     });
 };
 
@@ -620,7 +615,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       }
 
       toast.error("Invlaid Network Response: verify otp");
-      //window.location.replace("/solidity-shield-scan/auth");
+      //typeof window !== 'undefined' && window.location.replace("/solidity-shield-scan/auth");
     })
     .then((data) => {
       //console.log(data);
@@ -661,12 +656,14 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       );
 
       toast.success("Login Successful!");
-      window.location.replace("/solidity-shield-scan/overview");
+      typeof window !== "undefined" &&
+        window.location.replace("/solidity-shield-scan/overview");
     })
     .catch((error) => {
       console.error("Error:", error);
       toast.error("Unable to login. Please try again!");
-      window.location.replace("/solidity-shield-scan/auth");
+      typeof window !== "undefined" &&
+        window.location.replace("/solidity-shield-scan/auth");
     });
 };
 
@@ -674,7 +671,8 @@ export function getJwt() {
   const jwt = localStorage.getItem("UserJwt");
   if (!jwt) {
     toast("Please sign in with your email.");
-    window.location.replace("/solidity-shield-scan/auth");
+    typeof window !== "undefined" &&
+      window.location.replace("/solidity-shield-scan/auth");
     return;
   } else {
     return `Bearer ${jwt}`;
@@ -685,7 +683,8 @@ export const getUser = async ({ dispatch, email }) => {
   const jwt = getJwt();
   if (!jwt) {
     toast("Please sign in with your email.");
-    window.location.replace("/solidity-shield-scan/auth");
+    typeof window !== "undefined" &&
+      window.location.replace("/solidity-shield-scan/auth");
     return;
   }
 
@@ -706,7 +705,7 @@ export const getUser = async ({ dispatch, email }) => {
       }
       //console.log(response);
       toast.error("Error signin in.");
-      //window.location.replace("/solidity-shield-scan/auth");
+      //typeof window !== 'undefined' && window.location.replace("/solidity-shield-scan/auth");
       return;
     })
     .then(async (data) => {
@@ -756,13 +755,15 @@ export const getUser = async ({ dispatch, email }) => {
     .catch((error) => {
       console.error("Error:", error);
       toast.error("Unable to login. Please try again!");
-      window.location.replace("/solidity-shield-scan/auth");
+      typeof window !== "undefined" &&
+        window.location.replace("/solidity-shield-scan/auth");
     });
 };
 
 export const logout = () => {
   localStorage.removeItem("UserJwt");
-  window.location.replace("/solidity-shield-scan/auth");
+  typeof window !== "undefined" &&
+    window.location.replace("/solidity-shield-scan/auth");
 };
 
 export const downloadReport = async (id, user) => {

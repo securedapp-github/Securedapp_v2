@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import ChartCard from "./ChartCard";
-import "./IssuesChart.css";
+import "./IssuesChart.module.css";
 import {
   XAxis,
   YAxis,
@@ -70,12 +71,12 @@ const IssuesChart = () => {
     async function fetch() {
       await getIssuesChartData({
         dispatch,
-        email: auth.user.email,
+        email: localStorage.getItem("UserEmail"),
       });
       console.log(issuesData);
     }
     fetch();
-  }, []);
+  }, [!issuesData && issuesData]);
 
   // const toggleDropDown = () => {
   //   setDropDown(!dropDown);
@@ -126,7 +127,7 @@ const IssuesChart = () => {
             <div className="sss-overview-issues-card-body">
               {/* <div className="sss-overview-issues-card-chart-header">
                 <div className="sss-overview-issues-card-chart-header-text">
-                  <img
+                  <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
                     src="/assets/images/solidity-shield-scan/issues-chart-header-icon.svg"
                     alt="Issues Chart Header Icon"
                   />

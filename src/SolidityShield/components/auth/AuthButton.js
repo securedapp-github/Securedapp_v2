@@ -1,4 +1,4 @@
-import "./AuthButton.css";
+import "./AuthButton.module.css";
 
 const AuthButton = ({ children, onClick, filled = true }) => {
   return (

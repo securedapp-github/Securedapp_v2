@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Image from "next/image";
 import ChartCard from "../overview/ChartCard";
 import { billingDummyData } from "./billingDummyData";
-import "./BillingTable.css";
+import "./BillingTable.module.css";
 import Pagination from "../common/Pagination";
 
 const BillingTableStatus = ({ status }) => {
@@ -13,7 +14,8 @@ const BillingTableStatus = ({ status }) => {
           : status === "Success"
           ? "sss-billing-table-status-component-container-green"
           : "sss-billing-table-status-component-container-red"
-      }`}>
+      }`}
+    >
       <div className="sss-billing-table-status-component">{status}</div>
     </div>
   );
@@ -41,7 +43,10 @@ const BillingTable = () => {
               <div className="sss-billing-table-header">
                 <div className="sss-billing-table-header-title">Billing</div>
                 <div className="sss-billing-table-header-options">
-                  <img
+                  <Image
+                    layout="intrinsic"
+                    width={100}
+                    height={100}
                     src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                     alt="Option Icon"
                   />

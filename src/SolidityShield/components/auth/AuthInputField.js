@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./AuthInputField.css";
+import Image from "next/image";
+import "./AuthInputField.module.css";
 
 const AuthInputField = ({
   authInputType,

@@ -1,6 +1,6 @@
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const NavbarItem = ({
   to,
@@ -19,11 +19,12 @@ const NavbarItem = ({
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
     >
-      <Link to={to}>
+      <a href={to}>
         <div className="navbar-item-primary">
           <p
             onClick={() =>
               children === "Pricing" &&
+              typeof window !== "undefined" &&
               window.open("/solidity-shield-scan/pricing")
             }
           >
@@ -37,7 +38,7 @@ const NavbarItem = ({
             />
           )}
         </div>
-      </Link>
+      </a>
       {items.length > 0 && dropDown === children && (
         <div
           className={`nested-navbar ${
@@ -50,9 +51,9 @@ const NavbarItem = ({
             <div className="nested-navbar-items">
               {items.map((item) => {
                 return (
-                  <Link className="nested-navbar-item" to={item["to"]}>
+                  <a className="nested-navbar-item" href={item["to"]}>
                     <p>{item["name"]}</p>
-                  </Link>
+                  </a>
                 );
               })}
             </div>
@@ -67,12 +68,12 @@ const NavbarItem = ({
                     <div className="nested-navbar-items-services-card-col-items">
                       {item.children.map((child) => {
                         return (
-                          <Link
-                            to={child.to}
+                          <a
+                            href={child.to}
                             className="nested-navbar-items-services-card-col-item"
                           >
                             <p>{child.name}</p>
-                          </Link>
+                          </a>
                         );
                       })}
                     </div>

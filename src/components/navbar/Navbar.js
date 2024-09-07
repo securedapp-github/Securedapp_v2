@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-
-import "./Navbar.css";
+import Image from "next/image";
 import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
@@ -11,16 +10,16 @@ import {
   setIsRequestModalOpen,
   setDarkMode,
 } from "../../redux/slices/main/homeSlice";
+import "./Navbar.module.css";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const { darkMode, isLargeScreen } = useSelector(getHomeSelector);
 
-  const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   let nextPath;
 
-  const currentPath = location.pathname;
+  const currentPath = typeof window !== "undefined" && window.location.href;
 
   switch (currentPath) {
     case "/solidity-shield":
@@ -37,7 +36,7 @@ const Navbar = () => {
   }
 
   const handleNavigation = () => {
-    if (nextPath) window.open(nextPath);
+    if (nextPath) typeof window !== "undefined" && window.open(nextPath);
     else {
       dispatch(setIsRequestModalOpen(true));
     }

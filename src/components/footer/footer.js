@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faSun } from "@fortawesome/free-solid-svg-icons";
 import Button from "../common/Button";
-import "./footer.css";
 import CustomHr from "../common/CustomHr";
 import Logo from "../common/Logo";
 import {
@@ -15,7 +15,7 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+import "./Footer.module.css";
 
 const navigationItems = [
   {
@@ -224,7 +224,9 @@ const Footer = () => {
               return (
                 <div
                   className="hover:cursor-pointer"
-                  onClick={() => window.open(social.to)}
+                  onClick={() =>
+                    typeof window !== "undefined" && window.open(social.to)
+                  }
                 >
                   {social.icon}
                 </div>
@@ -243,7 +245,7 @@ const Footer = () => {
                   {navigationItem.items.map((item, index) => {
                     return (
                       <div className="footer-navigation-item-item">
-                        <Link to={item.to}>{item.name}</Link>
+                        <a href={item.to}>{item.name}</a>
                       </div>
                     );
                   })}

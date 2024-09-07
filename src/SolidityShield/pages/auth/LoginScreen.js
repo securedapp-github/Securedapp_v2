@@ -3,7 +3,7 @@ import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthLogos from "../../components/auth/AuthLogos";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
-import "./LoginScreen.css";
+import "./LoginScreen.module.css";
 
 const LoginScreen = () => {
   return (
@@ -30,7 +30,7 @@ const LoginScreen = () => {
             <AuthButton children={"Sign In"} onClick={() => {}} />
             {/* <AuthButton filled={false}>
               <div className="auth-screen-google">
-                <img
+                <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
                   src="/assets/images/solidity-shield-scan/google-logo.svg"
                   alt="Google Logo"
                 />

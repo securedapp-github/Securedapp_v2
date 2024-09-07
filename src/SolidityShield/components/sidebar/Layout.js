@@ -1,7 +1,8 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "next/router";
 import Header from "../header/Header";
 import Sidebar from "./Sidebar";
 import { useEffect } from "react";
+import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setSelectedSidebarItem } from "../../redux/commonSlice";
 

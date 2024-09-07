@@ -1,6 +1,7 @@
-import "./WhyChooseCard.css";
 import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
+import Image from "next/image";
+import "./WhyChooseCard.module.css";
 
 export const WhyChooseCardIcon = ({ image, imageBackground }) => {
   const { darkMode } = useSelector(getHomeSelector);
@@ -9,7 +10,10 @@ export const WhyChooseCardIcon = ({ image, imageBackground }) => {
       className="why-choose-card-icon"
       style={{ background: `${imageBackground}` }}
     >
-      <img
+      <Image
+        layout="intrinsic"
+        width={100}
+        height={100}
         style={{
           filter: darkMode
             ? "brightness(0) invert(1)"

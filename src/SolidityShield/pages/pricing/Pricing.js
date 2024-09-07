@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
-import "./Pricing.css";
+import "./Pricing.module.css";
 import CustomButton from "../../components/common/CustomButton";
 import {
   faChevronLeft,
@@ -8,13 +8,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   getPaymentSelector,
   setPaymentModal,
   setPlan,
 } from "../../redux/dashboard/paymentSlice";
 import { getUserData } from "../../redux/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import MetaTags from "../../../components/common/MetaTags";
 
 const PricingPlanCard = ({
@@ -36,7 +37,13 @@ const PricingPlanCard = ({
         className="sss-pricing-plan-card"
       >
         <div className="sss-pricing-card-header">
-          <img src={icon} alt="" />
+          <Image
+            layout="intrinsic"
+            width={100}
+            height={100}
+            src={icon}
+            alt=""
+          />
           <div className="sss-pricing-card-header-plan-type">{planType}</div>
         </div>
         <div className="sss-pricing-card-body">
@@ -69,17 +76,21 @@ const Pricing = () => {
   const [currentVisible, setCurrentVisible] = useState(1);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const auth = useSelector(getUserData);
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
+      setIsLargeScreen(
+        typeof window !== "undefined" && window.innerWidth >= 768
+      );
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
+    typeof window !== "undefined" &&
+      window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      typeof window !== "undefined" &&
+        window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -99,7 +110,7 @@ const Pricing = () => {
       dispatch(setPaymentModal(true));
       dispatch(setPlan(plan));
     } else {
-      navigate("/solidity-shield-scan/auth");
+      navigate.push("/solidity-shield-scan/auth");
     }
   };
 
@@ -139,7 +150,7 @@ const Pricing = () => {
                         onClick={() =>
                           detail.id > 0
                             ? openModal(detail.id)
-                            : navigate("/solidity-shield-scan/auth")
+                            : navigate.push("/solidity-shield-scan/auth")
                         }
                         id={detail.id}
                       />
@@ -188,12 +199,18 @@ const Pricing = () => {
                               }`}
                             >
                               {detail.details[feature].value === "TICK" ? (
-                                <img
+                                <Image
+                                  layout="intrinsic"
+                                  width={100}
+                                  height={100}
                                   src="/assets/images/solidity-shield-scan/billing-price-tick.svg"
                                   alt=""
                                 />
                               ) : detail.details[feature].value === "DASH" ? (
-                                <img
+                                <Image
+                                  layout="intrinsic"
+                                  width={100}
+                                  height={100}
                                   src="/assets/images/solidity-shield-scan/billing-price-dash.svg"
                                   alt=""
                                 />
@@ -202,7 +219,10 @@ const Pricing = () => {
                               )}
                               {detail.details[feature].info && (
                                 <div className="sss-pricing-plan-detail-row-info-container group">
-                                  <img
+                                  <Image
+                                    layout="intrinsic"
+                                    width={100}
+                                    height={100}
                                     src="/assets/images/solidity-shield-scan/pricing-plan-info.svg"
                                     alt=""
                                   />
@@ -235,7 +255,7 @@ const Pricing = () => {
               className={
                 "border border-tertiary px-12 py-2 rounded-xl active:bg-tertiary"
               }
-              onClick={() => navigate("/solidity-shield-scan/contact")}
+              onClick={() => navigate.push("/solidity-shield-scan/contact")}
             />
           </div>
         </div>

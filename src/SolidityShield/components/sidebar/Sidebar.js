@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "./Sidebar.css";
+import "./Sidebar.module.css";
 import {
   getCommonSelector,
   setSelectedSidebarItem,
@@ -9,7 +9,7 @@ import { setIsRequestModalOpen } from "../../redux/commonSlice.js";
 import { useDispatch } from "react-redux";
 import CustomDivider from "../../components/common/CustomDivider";
 import { sidebarItems } from "./sidebar.data.js";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import CustomButton from "../common/CustomButton.js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { getUserData } from "../../redux/auth/authSlice.js";
@@ -17,19 +17,20 @@ import { logout } from "../../functions.js";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useState } from "react";
+import Image from "next/image";
 
 const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
     useSelector(getCommonSelector);
-  const isMobile = window.innerWidth < 1024;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const totalCredits = 20;
 
   const auth = useSelector(getUserData);
 
   const selectMenuItem = (index) => {
-    navigate(sidebarItems[index].to);
+    navigate.push(sidebarItems[index].to);
     dispatch(setSelectedSidebarItem(sidebarItems[index].name));
     isMobile && dispatch(setSideBar(false));
   };
@@ -67,12 +68,18 @@ const Sidebar = () => {
         <div className="sss-sidebar">
           <div className="sss-sidebar-upper">
             <div className="sss-sidebar-header">
-              <img
+              <Image
+                layout="intrinsic"
+                width={100}
+                height={100}
                 className="sss-sidebar-header-logo"
                 src="/assets/images/securedapp-logo-light.svg"
                 alt="SecureDApp Logo"
               />
-              <img
+              <Image
+                layout="intrinsic"
+                width={100}
+                height={100}
                 onClick={() => dispatch(setSideBar(false))}
                 src="/assets/images/solidity-shield-scan/sidebar-menu.svg"
                 alt="Sidebar Toggle"
@@ -101,7 +108,13 @@ const Sidebar = () => {
                     >
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
-                          <img src={item.image} alt="" />
+                          <Image
+                            layout="intrinsic"
+                            width={100}
+                            height={100}
+                            src={item.image}
+                            alt=""
+                          />
                           <item.image
                             fill={"none"}
                             stroke={
@@ -150,7 +163,7 @@ const Sidebar = () => {
               <CustomButton
                 text={"Upgrade Now"}
                 className="w-full border border-tertiary text-black bg-[#12D576] py-2 rounded-xl active:bg-white"
-                onClick={() => navigate("/solidity-shield-scan/pricing")}
+                onClick={() => navigate.push("/solidity-shield-scan/pricing")}
               />
             </div>
           </div>

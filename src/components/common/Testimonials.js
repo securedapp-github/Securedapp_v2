@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "../../components/common/SectionTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +7,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Testimonials.css";
+import "./Testimonials.module.css";
 
 const Testimonials = ({ reviews }) => {
   const [active, setActiveSlide] = useState(2);

@@ -1,4 +1,4 @@
-import "./CustomButton.css";
+import "./CustomButton.module.css";
 
 const CustomButton = ({ className, text, onClick = () => {} }) => {
   return (

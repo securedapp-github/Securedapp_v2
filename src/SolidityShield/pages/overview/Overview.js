@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import IssuesChart from "../../components/overview/IssuesChart";
 import ScanSummary from "../../components/overview/ScanSummary";
-import "./Overview.css";
+import "./Overview.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../redux/auth/authSlice";
 import { getScanHistoryData, getJwt, getUser } from "../../functions";
@@ -12,12 +13,13 @@ import MetaTags from "../../../components/common/MetaTags";
 
 const OverviewScreen = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const auth = useSelector(getUserData);
   var scanHistory = useSelector(getScanHistory);
   const [firstTime, setFirstTime] = useState(true);
   const [history, setHistory] = useState();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const userJwt = localStorage.getItem("UserJwt");
@@ -29,16 +31,17 @@ const OverviewScreen = () => {
           dispatch,
         });
         setHistory(data);
+        setUser(auth.user);
         return;
       } else {
-        navigate("/solidity-shield-scan/auth");
+        navigate.push("/solidity-shield-scan/auth");
       }
     }
     fetch();
   }, [!history && history, !auth.user.email && auth.user]);
 
   useEffect(() => {
-    if (scanHistory.history.length > 0) setFirstTime(false);
+    if (!history) setFirstTime(false);
   }, [scanHistory.history]);
 
   return (
@@ -56,7 +59,10 @@ const OverviewScreen = () => {
         <div className="sss-overview-body">
           {firstTime ? (
             <div className="sss-overview-first-time">
-              <img
+              <Image
+                layout="intrinsic"
+                width={100}
+                height={100}
                 src="/assets/images/solidity-shield-scan/dashboard-icon.svg"
                 alt=""
               />
@@ -66,7 +72,7 @@ const OverviewScreen = () => {
                   onClick={() =>
                     auth.user.email
                       ? dispatch(setScanNowModal(true))
-                      : navigate("/solidity-shield-scan/auth")
+                      : navigate.push("/solidity-shield-scan/auth")
                   }
                   className="font-semibold underline cursor-pointer"
                 >

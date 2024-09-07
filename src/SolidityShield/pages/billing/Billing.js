@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import BillingTable from "../../components/billing/BillingTable";
 import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
-import "./Billing.css";
+import "./Billing.module.css";
 import { getUserData } from "../../redux/auth/authSlice";
 import {
   getPaymentSelector,
@@ -19,7 +20,7 @@ const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
   const auth = useSelector(getUserData);
   const [user, setUser] = useState();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -34,7 +35,7 @@ const BillingScreen = () => {
         var data = await getUser({ dispatch });
         setUser(data);
       } else {
-        navigate("/solidity-shield-scan/auth");
+        navigate.push("/solidity-shield-scan/auth");
       }
     }
     fetch();
@@ -82,14 +83,18 @@ const BillingScreen = () => {
                 <div className="sss-billing-current-button-container">
                   <div className="sss-billing-current-buttons">
                     <CustomButton
-                      onClick={() => navigate("/solidity-shield-scan/pricing")}
+                      onClick={() =>
+                        navigate.push("/solidity-shield-scan/pricing")
+                      }
                       className={
                         "px-3 py-2 rounded-xl bg-tertiary border border-black text-black active:bg-white"
                       }
                       text={"Upgrade Plan"}
                     />
                     <CustomButton
-                      onClick={() => navigate("/solidity-shield-scan/pricing")}
+                      onClick={() =>
+                        navigate.push("/solidity-shield-scan/pricing")
+                      }
                       className={
                         "px-3 py-2 rounded-xl text-black border border-tertiary bg-white active:bg-white"
                       }
@@ -118,7 +123,7 @@ const BillingScreen = () => {
                 <div className="sss-billing-payment-method">
                   <div className="sss-billing-payment-method-left">
                     <div className="sss-billing-payment-method-image">
-                      <img
+                      <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
                         className="p-1"
                         src="/assets/images/solidity-shield-scan/billing-visa.svg"
                         alt="Visa"

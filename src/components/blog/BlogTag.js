@@ -1,10 +1,11 @@
-import "./BlogTag.css";
+import "./BlogTag.module.css";
 
 const BlogTag = ({ tag, selected = false, onClick = {} }) => {
   return (
     <div
       onClick={onClick}
-      className={`blog-tag ${tag === selected && "selected-tag"}`}>
+      className={`blog-tag ${tag === selected && "selected-tag"}`}
+    >
       {tag}
     </div>
   );

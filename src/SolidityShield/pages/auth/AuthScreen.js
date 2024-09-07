@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { ToastContainer } from "react-toastify";
 import AuthButton from "../../components/auth/AuthButton";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
-import "./AuthScreen.css";
+import "./AuthScreen.module.css";
 import { sendOTP, verifyOTP, getUser } from "../../functions";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData, login } from "../../redux/auth/authSlice";
@@ -14,7 +15,7 @@ const AuthScreen = () => {
   const dispatch = useDispatch();
   const auth = useSelector(getUserData);
   const user = auth.user;
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState();
@@ -22,7 +23,7 @@ const AuthScreen = () => {
 
   useEffect(() => {
     localStorage.getItem("UserJwt") &&
-      navigate("/solidity-shield-scan/overview");
+      navigate.push("/solidity-shield-scan/overview");
     console.log(user);
   });
 
@@ -66,7 +67,7 @@ const AuthScreen = () => {
                 } else {
                   await verifyOTP({ email, otp, dispatch });
                   setButton("Send OTP");
-                  //navigate("/solidity-shield-scan/overview");
+                  //navigate.push("/solidity-shield-scan/overview");
                   console.log(user);
                 }
               }}

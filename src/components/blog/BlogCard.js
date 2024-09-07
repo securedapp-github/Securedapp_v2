@@ -1,11 +1,12 @@
 import React from "react";
+import Image from "next/image";
 import Button from "../common/Button";
-import "./BlogCard.css";
+import "./BlogCard.module.css";
 import BlogTag from "./BlogTag";
-import { Link, useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
 function BlogCard({ details, isMedia = false }) {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   var dateObj = new Date(details.modifiedon);
 
   const dateOptions = { month: "long", day: "numeric" };
@@ -30,8 +31,8 @@ function BlogCard({ details, isMedia = false }) {
       className="blog-card"
       onClick={() => {
         details.url
-          ? navigate(`/blog/${details.url}`)
-          : window.open(details.link);
+          ? navigate.push(`/blog/${details.url}`)
+          : typeof window !== "undefined" && window.open(details.link);
       }}
     >
       <div className="blog-card-header">
@@ -43,7 +44,14 @@ function BlogCard({ details, isMedia = false }) {
           ""
         )}
         <div className="blog-card-header-image-container">
-          <img className="blog-card-header-image" src={details.image} alt="" />
+          <Image
+            layout="intrinsic"
+            width={100}
+            height={100}
+            className="blog-card-header-image"
+            src={details.image}
+            alt=""
+          />
         </div>
       </div>
       <div className="blog-card-body">
@@ -61,7 +69,7 @@ function BlogCard({ details, isMedia = false }) {
             filled={true}
             blogButton={true}
             onClick={() => {
-              !isMedia && navigate(`/blog/${details.url}`);
+              !isMedia && navigate.push(`/blog/${details.url}`);
             }}
           />
         </div>

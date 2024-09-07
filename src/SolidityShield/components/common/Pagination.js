@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./Pagination.css";
+import "./Pagination.module.css";
 import {
   faChevronLeft,
   faChevronRight,
@@ -34,7 +34,8 @@ const Pagination = ({
           <div
             className="sss-pagination-button-container"
             onClick={handlePreviousPage}
-            style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}>
+            style={{ cursor: currentPage === 1 ? "not-allowed" : "pointer" }}
+          >
             <FontAwesomeIcon
               className="sss-pagination-button"
               icon={faChevronLeft}
@@ -47,7 +48,8 @@ const Pagination = ({
                 index + 1 === currentPage && "sss-pagination-current-button"
               }`}
               onClick={() => onPageChange(index + 1)}
-              style={{ cursor: "pointer" }}>
+              style={{ cursor: "pointer" }}
+            >
               <div className="sss-pagination-button">{index + 1}</div>
             </div>
           ))}
@@ -56,7 +58,8 @@ const Pagination = ({
             onClick={handleNextPage}
             style={{
               cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-            }}>
+            }}
+          >
             <FontAwesomeIcon
               className="sss-pagination-button"
               icon={faChevronRight}

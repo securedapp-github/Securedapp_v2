@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./RequestQuoteModal.css";
+import Image from "next/image";
+import "./RequestQuoteModal.module.css";
 import Button from "../../../components/common/Button";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";

@@ -1,4 +1,4 @@
-import "./CustomDivider.css";
+import "./CustomDivider.module.css";
 
 const CustomDivider = ({ classname }) => {
   return (

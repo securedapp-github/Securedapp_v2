@@ -1,6 +1,7 @@
-import "./HowItWorksCard.css";
 import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
+import Image from "next/image";
+import "./HowItWorksCard.module.css";
 
 const HowItWorksCard = ({ image, imageAlt, title, description }) => {
   const { darkMode } = useSelector(getHomeSelector);
@@ -8,7 +9,10 @@ const HowItWorksCard = ({ image, imageAlt, title, description }) => {
     <div className="how-it-works-card">
       {image && (
         <div className="how-it-works-card-image">
-          <img
+          <Image
+            layout="intrinsic"
+            width={100}
+            height={100}
             src={`/assets/images/icons/howitworks/${image}.svg`}
             alt={imageAlt}
           />

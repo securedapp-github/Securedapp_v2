@@ -1,4 +1,4 @@
-import "./ChartCard.css";
+import "./ChartCard.module.css";
 
 const ChartCard = ({ children, className }) => {
   return (

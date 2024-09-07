@@ -1,5 +1,6 @@
 import Button from "../common/Button";
-import "./ProductWhyCard.css";
+import Image from "next/image";
+import "./ProductWhyCard.module.css";
 
 const ProductWhyCard = ({
   header,
@@ -30,7 +31,9 @@ const ProductWhyCard = ({
             <div className="product-why-card-content-button">
               <Button
                 text={buttonText}
-                onClick={() => window.open(link)}
+                onClick={() =>
+                  typeof window !== "undefined" && window.open(link)
+                }
                 filled={true}
               />
             </div>
@@ -38,7 +41,13 @@ const ProductWhyCard = ({
         </div>
       </div>
       <div className="product-why-card-image">
-        <img src={image} alt={imageAlt} />
+        <Image
+          layout="intrinsic"
+          width={100}
+          height={100}
+          src={image}
+          alt={imageAlt}
+        />
       </div>
     </div>
   );

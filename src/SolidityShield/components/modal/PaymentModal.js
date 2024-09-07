@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import QRCode from "react-qr-code";
 import {
   getPaymentSelector,
   setPaymentModal,
 } from "../../redux/dashboard/paymentSlice";
 import { useDispatch } from "react-redux";
-import "./PaymentModal.css";
+import "./PaymentModal.module.css";
 import { useState } from "react";
+import Image from "next/image";
 import CustomButton from "../common/CustomButton";
 import { payPhonpe, payCrypto, payCryptoVerify } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
@@ -19,7 +20,7 @@ const PaymentModal = () => {
   const { paymentModal, selectedPlan } = useSelector(getPaymentSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const [phase, setPhase] = useState(1);
   const [web3PayDetails, setWeb3PayDetails] = useState();
 
@@ -50,7 +51,10 @@ const PaymentModal = () => {
               <div className="sss-payment-modal-body-methods">
                 <div className="sss-payment-modal-body-method">
                   <div className="sss-payment-modal-body-method-image">
-                    <img
+                    <Image
+                      layout="intrinsic"
+                      width={100}
+                      height={100}
                       src="/assets/images/solidity-shield-scan/phonepe-icon.svg"
                       alt=""
                     />
@@ -76,7 +80,10 @@ const PaymentModal = () => {
                 </div>
                 <div className="sss-payment-modal-body-method">
                   <div className="sss-payment-modal-body-method-image">
-                    <img
+                    <Image
+                      layout="intrinsic"
+                      width={100}
+                      height={100}
                       src="/assets/images/solidity-shield-scan/crypto-icon.png"
                       alt=""
                     />
@@ -167,7 +174,7 @@ const PaymentModal = () => {
                         });
                         if (data.payment_status === "success") {
                           closeModal();
-                          navigate("/solidity-shield-scan/payment");
+                          navigate.push("/solidity-shield-scan/billing");
                         }
                       }}
                     />

@@ -30,12 +30,12 @@ export const sidebarItems = [
   {
     image: PaymentsLogo,
     name: "Payment",
-    to: "payment",
+    to: "billing",
   },
   {
     image: SettingsLogo,
     name: "Settings",
-    to: "settings",
+    to: "profile",
   },
   {
     image: LogoutLogo,
