@@ -79,7 +79,7 @@ const servicesData = [
   },
   {
     id: 8,
-    title: "Crypto compliance and AML",
+    title: "Crypto compliance & AML",
     name: "Crypto compliance and AML",
     desc: "Top-tier crypto compliance consulting tailored to your unique needs. Understand the complexities of cryptocurrency regulations and get customized strategies to ensure your business adheres to all legal requirements.",
     alt: "",
@@ -87,7 +87,7 @@ const servicesData = [
   },
   {
     id: 9,
-    title: "Decentralized Identity (DID)",
+    title: "Decentralized Identity",
     name: "Decentralized Identity (DID)",
     desc: "Incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards",
     alt: "",
@@ -108,6 +108,16 @@ const servicesData = [
     desc: "DeFi is evolving rapidly compared to centralized finance systems, with new applications emerging frequently. We specialize in crafting innovative DeFi solutions tailored to your needs, whether offering or receiving financial services.",
     alt: "",
     to: "/defi-development",
+    image: "/assets/images/ServicePages/s12-hero.png",
+  },
+  {
+    id: 12,
+    title: "Levelup Academy",
+    name: "LevelUp academy",
+    desc: "SecureDApp's flagship initiative aims to foster blockchain talent and innovation across Indian universities and colleges.",
+    alt: "",
+    to: "/levelup-academy",
+    image: "/assets/images/ServicePages/s8-3.webp",
   },
 ];
 
@@ -136,7 +146,7 @@ const Services = () => {
   const PreviousArrow = () => {
     return (
       <div
-        className="services-mobile-navbar-arrow-container"
+        className="services-mobile-navbar-arrow-container hover:cursor-pointer"
         onClick={moveLeft}
       >
         <FontAwesomeIcon
@@ -151,7 +161,7 @@ const Services = () => {
   const NextArrow = () => {
     return (
       <div
-        className="services-mobile-navbar-arrow-container"
+        className="services-mobile-navbar-arrow-container hover:cursor-pointer"
         onClick={moveRight}
       >
         <FontAwesomeIcon
@@ -208,11 +218,7 @@ const Services = () => {
 
   return (
     <div className="services">
-      <SectionTitle
-        name="Services"
-        title="Services Provided by us"
-        description="Dengan wireframe kit ini, kamu dapat mengefisiensikan pekerjaanmu."
-      />
+      <SectionTitle name="Services" title="Services Provided by us" />
       <div className="services-mobile-navbar">
         <PreviousArrow />
         <Slider ref={sliderRef} className="w-full" {...slickSettings}>
@@ -249,7 +255,13 @@ const Services = () => {
         </div>
         <div className="services-content-right">
           <img
-            src={`/assets/images/ServicePages/s${selectedService + 1}-hero.png`}
+            src={
+              servicesData[selectedService].image
+                ? servicesData[selectedService].image
+                : `/assets/images/ServicePages/s${
+                    selectedService + 1
+                  }-hero.webp`
+            }
             alt={servicesData[selectedService].alt}
           />
         </div>

@@ -21,6 +21,7 @@ const NavbarSmallScreen = ({
 }) => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
   const [dropDown, setDropDown] = useState("");
+  const [servicesDropDown, setServicesDropDown] = useState("");
 
   const showSideBar = () => setSideBarOpen(true);
   const closeSideBar = () => setSideBarOpen(false);
@@ -30,6 +31,14 @@ const NavbarSmallScreen = ({
       setDropDown("");
     } else {
       setDropDown(label);
+    }
+  };
+
+  const selectServicesDropDown = (label) => {
+    if (label === servicesDropDown) {
+      setServicesDropDown("");
+    } else {
+      setServicesDropDown(label);
     }
   };
 
@@ -94,7 +103,41 @@ const NavbarSmallScreen = ({
                     {dropDown === item["label"] && (
                       <div className="nested-sidebar-items">
                         {item["items"].map((nestedItem) => {
-                          return (
+                          return nestedItem["title"] ? (
+                            <div
+                              onClick={() =>
+                                selectServicesDropDown(nestedItem["title"])
+                              }
+                              className="services-nested-sidebar-item">
+                              <div className="services-nested-sidebar-item-header">
+                                {nestedItem["title"]}
+                                <FontAwesomeIcon
+                                  icon={
+                                    servicesDropDown === nestedItem["title"]
+                                      ? faChevronUp
+                                      : faChevronDown
+                                  }
+                                  color={darkMode ? "white" : "primary"}
+                                  size="xs"
+                                />
+                              </div>
+                              {servicesDropDown === nestedItem["title"] && (
+                                <div className="services-nested-sidebar-body-items">
+                                  {nestedItem["children"].map(
+                                    (servicesItem) => {
+                                      return (
+                                        <Link
+                                          to={servicesItem.to}
+                                          className="services-nested-sidebar-body-item">
+                                          {servicesItem.name}
+                                        </Link>
+                                      );
+                                    }
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
                             <Link
                               className="nested-sidebar-item"
                               to={nestedItem["to"]}>

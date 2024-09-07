@@ -26,35 +26,35 @@ const Features = () => {
       id: 0,
       title: "Vulnerability Detection",
       desc: "Scans for over 150+ types of vulnerabilities to ensure robust security.",
-      image: "/assets/images/home-why-1.png",
+      image: "/assets/images/home/1.webp",
       icon: "shield-bright",
     },
     {
       id: 1,
       title: "Detects Unusual Deviations",
       desc: "Tracks your smart contract's activities to spot any unusual behavior or deviations that might signal potential threats.",
-      image: "/assets/images/home-why-2.png",
+      image: "/assets/images/home/2.webp",
       icon: "reload",
     },
     {
       id: 2,
       title: "Oversight of Transactions",
       desc: "Keeps a close watch on blockchain transactions to quickly flag suspicious or unauthorized actions.",
-      image: "/assets/images/home-why-3.png",
+      image: "/assets/images/home/3.webp",
       icon: "4x3-lines",
     },
     {
       id: 3,
       title: "Forensic Techniques",
       desc: "Employs specialized blockchain forensic techniques to delve deeply into transaction histories and uncover hidden connections related to fraudulent schemes.",
-      image: "/assets/images/home-why-4.png",
+      image: "/assets/images/home/4.webp",
       icon: "checklist-shield",
     },
     {
       id: 4,
       title: "Regulatory Compliance",
       desc: "Supports regulatory compliance by providing tools that streamline investigative workflows.",
-      image: "/assets/images/home-why-5.png",
+      image: "/assets/images/home/5.webp",
       icon: "atom",
     },
   ];
@@ -62,7 +62,7 @@ const Features = () => {
   return (
     <div className="features features-background">
       <SectionTitle
-        name="Why ScureDApp"
+        name="Why SecureDApp"
         title="Trust SecureDApp for Your Blockchain Security Journey"
         description="Gain actionable insights and make data-driven decisions with powerful reporting tools"
       />
@@ -94,9 +94,7 @@ const Features = () => {
                         <img
                           width={"25px"}
                           style={{
-                            filter: darkMode
-                              ? "brightness(1) invert(1)"
-                              : "brightness(1)",
+                            filter: darkMode && "invert(1)",
                             marginBottom: "10px",
                           }}
                           src={`/assets/images/icons/${feature["icon"]}.svg`}
@@ -134,7 +132,7 @@ const Features = () => {
             style={{
               maxHeight: "80%",
             }}
-            src={`/assets/images/home/home-why-${detail + 1}.png`}
+            src={`/assets/images/home/${detail + 1}.webp`}
             alt={"image"}
           ></img>
         </div>

@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,12 +19,23 @@ function CryptoComplianceAml() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Crypto Compliance: Leading KYC & AML Solutions for Business",
+          desc: "Secure your business with Crypto KYC & AML solutions. Trusted by 120+ companies for compliance, fraud prevention, and regulatory adherence.",
+          keywords:
+            "crypto compliance, AML solutions, KYC services, anti-money laundering, cryptocurrency regulation, financial compliance, secure crypto transactions",
+          image: "/assets/images/ServicePages/s9-hero.webp",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="CRYPTO COMPLIANCE & AML"
           title="Crypto KYC, and AML Solutions Under One Place"
-          image={"/assets/images/ServicePages/s9-hero.png"}
+          image={"/assets/images/ServicePages/s9-hero.webp"}
+          service={true}
         />
         <ProductCard
           header={"What Is Anti-money Laundering (AML)?"}
@@ -31,7 +43,7 @@ function CryptoComplianceAml() {
             "Anti-money laundering (AML) involves a comprehensive framework of policies, laws, and regulations to thwart financial crimes and illicit activities. Global and local regulators collaborate to enforce these measures, targeting a broad spectrum of offenses, such as corruption, tax evasion, market manipulation, illicit trade, and terrorist financing. "
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s9-1.png"}
+          image={"/assets/images/ServicePages/s9-1.webp"}
         />
         <ProductWhyCard
           header={"AML is Crucial For:"}
@@ -44,7 +56,7 @@ function CryptoComplianceAml() {
             <br/><br/>• Securing shareholder's value`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s9-2.png"}
+          image={"/assets/images/ServicePages/s9-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <ProductCard
@@ -53,7 +65,7 @@ function CryptoComplianceAml() {
             "Cryptocurrency offers a cost-effective, direct settlement process, making it an attractive option for money launderers to move illicit funds with minimal detection. This is where Anti-Money Laundering (AML) practices play a crucial role, providing necessary oversight to prevent financial crimes. AML measures to safeguard the cryptocurrency ecosystem, ensuring compliance with regulatory standards and protecting the industry's reputation.<br/><br/>In 2023 alone, crypto companies faced over $ 5.8 billion in fines due to inadequate AML programs. Effective AML practices are therefore essential for cryptocurrency exchanges, wallet providers, and other virtual asset service providers (VASPs) to comply with legal requirements, avoid penalties, and build trust.<br/><br/>By enforcing these standards, AML initiatives protect the industry and promote broader acceptance and adoption of cryptocurrencies."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s9-3.png"}
+          image={"/assets/images/ServicePages/s9-3.webp"}
         />
         <ProductWhyCard
           header={"What are Crypto Compliance and AML Services?"}
@@ -61,7 +73,7 @@ function CryptoComplianceAml() {
             "Crypto Compliance and AML (Anti-Money Laundering) services are designed to help cryptocurrency companies comply with regulatory standards. These services include establishing strong Know Your Customer (KYC) protocols, monitoring transactions, and reporting suspicious activities to the appropriate authorities. The primary aim is to prevent money laundering, terrorist financing, and other financial crimes in crypto.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s9-4.png"}
+          image={"/assets/images/ServicePages/s9-4.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>

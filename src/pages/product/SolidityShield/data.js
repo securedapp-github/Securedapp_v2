@@ -194,7 +194,7 @@ export const methodology = [
     iconBackgroundColor: "#CABDFF",
   },
   {
-    header: "Property-Based Analysis (Fuzz Tests, Invariant Testing)",
+    header: "Property-based Analysis (Fuzz Tests, Invariant Testing)",
     description:
       " • Run the execution low multiple times by generating random sequences of calls to the contract <br/><br/> • Asserts that all the invariants hold true for all scenarios.",
     icon: "dashboard",

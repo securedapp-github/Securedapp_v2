@@ -29,6 +29,9 @@ const Navbar = () => {
     case "/secure-watch":
       nextPath = "https://securewatch.securedapp.io/";
       break;
+    case "/secure-pad":
+      nextPath = "https://securepad.xyz/";
+      break;
     default:
       nextPath = null;
   }
@@ -40,25 +43,44 @@ const Navbar = () => {
     }
   };
 
+  const setModeDark = () => {
+    document.body.classList.add("dark");
+    dispatch(setDarkMode(true));
+    localStorage.theme = "dark";
+  };
+
+  const setModeLight = () => {
+    document.body.classList.remove("dark");
+    dispatch(setDarkMode(false));
+    localStorage.theme = "light";
+  };
+
   const toggleTheme = () => {
-    if (darkMode) {
-      localStorage.theme = "light";
+    if (darkMode === true) {
+      setModeLight();
     } else {
-      localStorage.theme = "dark";
+      setModeDark();
     }
-    dispatch(setDarkMode(!darkMode));
-    document.body.classList.toggle("dark");
   };
 
   useEffect(() => {
-    if (localStorage.theme === "dark") {
-      document.body.classList.add("dark");
-      dispatch(setDarkMode(true));
+    if (localStorage.theme) {
+      if (localStorage.theme === "dark") {
+        setModeDark();
+      } else if (localStorage.theme === "light") {
+        setModeLight();
+      }
+    } else {
+      if (darkMode) {
+        setModeDark();
+      } else {
+        setModeLight();
+      }
     }
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 right-0">
+    <div className="absolute z-10 top-0 left-0 right-0">
       {isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}

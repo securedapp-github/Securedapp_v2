@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,12 +19,24 @@ function Web3Security() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "Web 3.0 Security: Safeguard Crypto Assets & Blockchain Valuation",
+          desc: "Protect your crypto assets with Web 3.0 security services. Get smart contract audits, DeFi protection, and accurate blockchain asset valuation.",
+          keywords:
+            "Web 3.0 security, crypto asset protection, blockchain valuation, smart contract audit, DeFi security, crypto security audit, decentralized finance audit, blockchain asset valuation, Web 3.0 cybersecurity",
+          image: "/assets/images/ServicePages/s6-hero.webp",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="WEB 3.0 SECURITY"
           title="Real-time Prevention from Cyber Threats"
-          image={"/assets/images/ServicePages/s6-hero.png"}
+          image={"/assets/images/ServicePages/s6-hero.webp"}
+          service={true}
         />
         <ProductCard
           header={"What is Web 3.0 ?"}
@@ -64,7 +77,7 @@ function Web3Security() {
             <br/><br/>As Web 3.0 advances, a thorough risk assessment is essential to safeguard your business and unlock its full potential.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s6-2.png"}
+          image={"/assets/images/ServicePages/s6-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div className="features-section">

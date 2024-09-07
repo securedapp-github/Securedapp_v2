@@ -7,6 +7,9 @@ import Button from "../../components/common/Button";
 import "./BlogPost.css";
 import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
+import MetaTags from "../../components/common/MetaTags";
+import { toast } from "react-toastify";
+import { getBlogs } from "../../SolidityShield/functions";
 
 const renderContent = (blogData) => {
   const filteredBlog = blogData;
@@ -80,7 +83,6 @@ const getTags = (tags) => {
 };
 
 const BlogPost = () => {
-  window.scrollTo(0, 0);
   const { url } = useParams();
   const [blogDetails, setBlogDetails] = useState({
     title: "",
@@ -104,10 +106,8 @@ const BlogPost = () => {
   };
 
   const fetchBlogs = async () => {
-    const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
-    let data = await response.json();
-    data = data.filter((item) => item.status === 1);
-    setBlogsData(data.filter((item) => item.status === 1));
+    var data = await getBlogs();
+    setBlogsData(data);
   };
 
   const getBlog = () => {
@@ -138,6 +138,7 @@ const BlogPost = () => {
     setBlogDetails({
       title: blog.heading,
       preview: preview,
+      image: blog.image,
       tags: blog.tags,
       Date: dateObj,
       Publisher: {
@@ -210,12 +211,20 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post-container">
+      <MetaTags
+        data={{
+          title: blogDetails.title,
+          desc: blogDetails.Summary,
+          image: blogDetails.image,
+          keywords: blogDetails.tags,
+        }}
+      />
       <div className="blog-post">
         <div className="blog-post-header">
           <div className="blog-post-header-left">
             <div className="blog-post-header-title">
               <div className="blog-post-header-title-text">
-                Relevant Brands!
+                Smart Contract Audit
               </div>
             </div>
             <Button
@@ -227,7 +236,7 @@ const BlogPost = () => {
           <div className="blog-post-header-right">
             <div className="blog-post-header-title">
               <div className="blog-post-header-title-text">
-                Relevant Brands!
+                Runtime Monitoring
               </div>
             </div>
             <Button
@@ -269,45 +278,48 @@ const BlogPost = () => {
                 </div>
                 <div className="publisher-socials">
                   <div>Share: </div>
-                  <a target="_blank" href={``}>
+                  {/* <a target="_blank" href={``}>
                     <i className="fa-brands fa-discord" />
-                  </a>
+                  </a> */}
                   <a
                     target="_blank"
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                       blogDetails.title
-                    )}&url=${window.location.origin}${encodeURIComponent(
-                      +"/" + url
+                    )}&url=${encodeURIComponent(
+                      "https://securedapp.io/blog/" + url
                     )}`}
                   >
                     <i className="fa-brands fa-square-x-twitter" />
                   </a>
                   <a
                     target="_blank"
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${
-                      window.location.origin
-                    }${+"/" + url}`}
+                    rel="noopener noreferrer"
+                    href={`https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(
+                      blogDetails.title +
+                        " : " +
+                        "https://securedapp.io/blog/" +
+                        url
+                    )}`}
                   >
                     <i className="fa-brands fa-linkedin" />
                   </a>
                   <a
                     target="_blank"
-                    href={`https://t.me/share/url?url=${
-                      window.location.origin
-                    }${encodeURIComponent(
-                      +"/" + url
+                    href={`https://t.me/share/url?url=${encodeURIComponent(
+                      "https://securedapp.io/blog/" + url
                     )}&text=${encodeURIComponent(blogDetails.title)}`}
                   >
                     <i className="fa-brands fa-telegram" />
                   </a>
                   <i
                     target="_blank"
-                    onClick={() =>
+                    onClick={() => {
                       navigator.clipboard.writeText(
-                        window.location.origin + "/" + url
-                      )
-                    }
-                    className="fa-regular fa-link"
+                        "https://securedapp.io/blog/" + url
+                      );
+                      toast("Link copied");
+                    }}
+                    className="fa-regular fa-link hover:cursor-pointer"
                   />
                 </div>
               </div>

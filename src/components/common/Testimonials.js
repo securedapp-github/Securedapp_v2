@@ -29,10 +29,12 @@ const Testimonials = ({ reviews }) => {
         <div
           className={`testimonial-card-content ${
             active === id && "selected-card-content"
-          }`}>
+          }`}
+        >
           <div className="">
             <div
-              className={`testimonial-card-reviwer ${active === id && "pb-2"}`}>
+              className={`testimonial-card-reviwer ${active === id && "pb-2"}`}
+            >
               {reviewer}
             </div>
             <div className="testimonial-card-designation">{designation}</div>
@@ -104,14 +106,16 @@ const Testimonials = ({ reviews }) => {
           onClick={moveLeft}
           className={`testimonial-arrow ${
             active === 0 && "testimonial-arrow-first"
-          }`}>
+          } hover:cursor-pointer`}
+        >
           <FontAwesomeIcon size="" icon={faArrowLeft} />
         </div>
         <div
           onClick={moveRight}
           className={`testimonial-arrow ${
             active === reviews.length - 1 && "testimonial-arrow-last"
-          }`}>
+          } hover:cursor-pointer`}
+        >
           <FontAwesomeIcon size="" icon={faArrowRight} />
         </div>
       </div>

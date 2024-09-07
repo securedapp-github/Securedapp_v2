@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,12 +19,23 @@ function Web3KYC() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Blockchain Identity Verification for Secure KYC & Compliance",
+          desc: "Secure your business with Blockchain Identity Verification for KYC and compliance. Trusted by 120+ companies in DeFi, NFTs, and crypto exchanges.",
+          keywords:
+            "Blockchain Identity Verification, KYC, Compliance, Decentralized Finance, NFT Marketplaces, Cryptocurrency Exchanges",
+          image: "/assets/images/ServicePages/s5-hero.webp",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="WEB 3.0 KYC"
           title="Advance Blockchain Identity Verification for Modern Compliance"
-          image={"/assets/images/ServicePages/s5-hero.png"}
+          image={"/assets/images/ServicePages/s5-hero.webp"}
+          service={true}
         />
         <ProductCard
           header={"What is Web 3.0 KYC ?"}
@@ -31,7 +43,7 @@ function Web3KYC() {
             "Web3 KYC (Know Your Customer) is an advanced blockchain identity verification tool designed specifically for the decentralized Web3 ecosystem. <br/><br/>This service enables businesses to authenticate user identities, ensuring compliance with regulatory standards and mitigating risks associated with anonymous transactions in decentralized finance (DeFi) applications, NFT marketplaces, and cryptocurrency exchanges."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s5-1.png"}
+          image={"/assets/images/ServicePages/s5-1.webp"}
         />
         <div>
           <SectionTitle

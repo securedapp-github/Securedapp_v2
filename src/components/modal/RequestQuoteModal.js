@@ -23,6 +23,7 @@ const services = [
   "Decentralized Identity (DID)",
   "NFTs Development",
   "DeFi Development",
+  "LevelUp Academy",
 ];
 
 const RequestQuoteModal = () => {
@@ -105,6 +106,11 @@ const RequestQuoteModal = () => {
     ) {
       toast.error("Please fill in the details");
       return;
+    } else if (
+      document.getElementById("request-quote-check-privacy").checked === false
+    ) {
+      toast("Please accept our privacy policy to continue");
+      return;
     }
     fetch("https://139-59-5-56.nip.io:3443/contactMail", {
       method: "POST",
@@ -120,6 +126,7 @@ const RequestQuoteModal = () => {
     })
       .then((res) => {
         toast.success("Sumbitted. Will soon reach out to you!");
+        closeModal();
       })
       .catch((err) => {
         toast.error("Error in sending mail");
@@ -129,12 +136,6 @@ const RequestQuoteModal = () => {
   return (
     isRequestModalOpen && (
       <div className="request-quote-modal-container">
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          theme="dark"
-          pauseOnHover
-        />
         <div className="request-quote-modal">
           <div className="request-quote-modal-close-container">
             <i
@@ -229,7 +230,7 @@ const RequestQuoteModal = () => {
               ></textarea>
             </div>
             <div className="request-quote-modal-checkbox-container">
-              <input type="checkbox" />
+              <input id="request-quote-check-privacy" type="checkbox" />
               <div>
                 I agree with the{" "}
                 <a

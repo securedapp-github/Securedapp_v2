@@ -8,19 +8,19 @@ import "swiper/swiper-bundle.css";
 
 const images = [
   {
-    src: "/assets/images/ProductPages/ss/hero.jpg",
+    src: "/assets/images/ProductPages/ss/hero.webp",
     alt: "Solidity Shield",
     to: "/solidity-shield",
   },
   {
-    src: "/assets/images/ProductPages/sw/hero.png",
+    src: "/assets/images/ProductPages/sw/hero.webp",
     alt: "Secure Watch",
     to: "/secure-watch",
   },
   {
-    src: "/assets/images/ProductPages/sp/hero.jpg",
-    alt: "Secure Pad",
-    to: "/secure-pad",
+    src: "/assets/images/ProductPages/st/st-hero.webp",
+    alt: "Secure Trace",
+    to: "/secure-trace",
   },
 ];
 
@@ -40,7 +40,7 @@ const Hero = () => {
           slidesPerView={1}
           pagination={{ clickable: true }}
           loop={true}
-          autoplay={{ delay: 2000, disableOnInteraction: false }}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           grabCursor={true}
           className="hero-swiper"
         >
@@ -49,7 +49,7 @@ const Hero = () => {
               <SwiperSlide key={`swiper-slide-${index}`}>
                 <div className="hero-image-container">
                   <img
-                    style={{ borderRadius: "15px" }}
+                    style={{ borderRadius: "15px", maxWidth: "600px" }}
                     className="hero-image"
                     src={image.src}
                     alt={image.alt}

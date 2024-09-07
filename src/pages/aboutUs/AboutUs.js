@@ -7,6 +7,7 @@ import "./AboutUs.css";
 import CustomHr from "../../components/common/CustomHr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import MetaTags from "../../components/common/MetaTags";
 
 const TeamCard = ({ details }) => {
   return (
@@ -27,12 +28,16 @@ const TeamCard = ({ details }) => {
             {details.designation}
           </div>
           <div className="team-card-body-socials">
-            <Link to={details.linkedin}>
-              <FontAwesomeIcon size="lg" icon={faLinkedin} />
-            </Link>
-            <Link to={details.twitter}>
-              <FontAwesomeIcon size="lg" icon={faTwitter} />
-            </Link>
+            {details.linkedin && (
+              <a target="_blank" href={details.linkedin}>
+                <FontAwesomeIcon size="lg" icon={faLinkedin} />
+              </a>
+            )}
+            {details.twitter && (
+              <a target="_blank" href={details.twitter}>
+                <FontAwesomeIcon size="lg" icon={faTwitter} />
+              </a>
+            )}
           </div>
         </div>
       </div>
@@ -44,6 +49,15 @@ const AboutUs = () => {
   window.scrollTo(0, 0);
   return (
     <div className="about-us">
+      <MetaTags
+        data={{
+          title: "About SecureDApp: Leading Blockchain and Web3 Security",
+          desc: "Explore SecureDApp's journey in blockchain security. Meet our team and discover how we're securing the future of Web3 with innovative solutions.",
+          keywords:
+            "SecureDApp, blockchain security, Web3 security, decentralized applications, dApps protection, cybersecurity, blockchain innovation, Web3 solutions, SecureDApp team, blockchain pioneers",
+          image: "/assets/images/about/photo1.png",
+        }}
+      />
       <Navbar />
       <div className="about-us-hero-container">
         <div className="about-us-hero">
@@ -57,7 +71,8 @@ const AboutUs = () => {
             solutions. Having experienced the devastating effects of
             cyberattacks firsthand, they were compelled by a mission to
             safeguard digital assets and ensure the security of decentralized
-            applications (dApps) from their inception through to their expansion
+            applications (dApps) from their inception through to their
+            expansion.
           </div>
           <div className="about-us-hero-description">
             SecureDApp’s journey began with a commitment to fortify the Web3
@@ -69,7 +84,7 @@ const AboutUs = () => {
             application is shielded from potential threats.
           </div>
           <div className="about-us-hero-image">
-            <img src="/assets/images/about/1.png" alt="" />
+            <img src="/assets/images/about/photo1.png" alt="" />
           </div>
           <hr />
         </div>
@@ -80,7 +95,11 @@ const AboutUs = () => {
       <div className="about-us-company">
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
-            <img src="/assets/images/about/2.png" alt="" />
+            <img
+              style={{ maxWidth: "450px", margin: "0 auto" }}
+              src="/assets/images/about/photo2.png"
+              alt=""
+            />
           </div>
           <div className="about-us-company-eco-content-container">
             <div className="about-us-company-eco-content">
@@ -92,12 +111,12 @@ const AboutUs = () => {
                 approach that seamlessly scales across industries. Our
                 cutting-edge solutions—Solidity Shield, SecureWatch, and
                 SecureTrace—offer complete Web3 security, empowering clients
-                across various sectors to fortify their digital assets
+                across various sectors to fortify their digital assets.
                 <br />
                 <br />
                 Our state-of-the-art infrastructure and streamlined processes
                 ensure that our innovative products evolve with your needs,
-                providing unparalleled protection and peace of mind
+                providing unparalleled protection and peace of mind.
               </div>
             </div>
           </div>
@@ -140,7 +159,11 @@ const AboutUs = () => {
             </div>
           </div>
           <div className=" about-us-company-culture-image">
-            <img src="/assets/images/about/3.png" alt="" />
+            <img
+              style={{ maxWidth: "400px" }}
+              src="/assets/images/about/photo3.png"
+              alt=""
+            />
           </div>
         </div>
       </div>
@@ -152,7 +175,7 @@ const AboutUs = () => {
             future of Web3 security. This dedication, fueled by a blend of
             passion and purpose, is what motivates us to push boundaries and
             explore new horizons. At SecureDApp, we are more than a team; we are
-            a movement toward a safer and more innovative digital world
+            a movement toward a safer and more innovative digital world.
           </div>
         </div>
         <div className="about-us-team-cards">

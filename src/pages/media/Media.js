@@ -5,6 +5,13 @@ import BlogCard from "../../components/blog/BlogCard";
 import SectionTitle from "../../components/common/SectionTitle";
 import { mediaData } from "./media-data";
 import "./Blog.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import MetaTags from "../../components/common/MetaTags";
 
 function Media() {
   window.scrollTo(0, 0);
@@ -31,8 +38,29 @@ function Media() {
     window.scrollTo(0, 0);
   };
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      paginate(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
+
   return (
     <div className="blog-container">
+      <MetaTags
+        data={{
+          title: "SecureDApp in the Media: Web3 and Blockchain Coverage",
+          desc: "Explore SecureDApp's media coverage on Web3, blockchain, and security. Read interviews and articles featuring our insights on the evolving digital space.",
+          keywords:
+            "SecureDApp media, Web3 coverage, blockchain security, blockchain interviews, Web3 insights, blockchain news, SecureDApp articles, digital security trends",
+          image: "/assets/images/media/cryptotimes1.png",
+        }}
+      />
       <Navbar />
       <div className="blog">
         <SectionTitle
@@ -41,22 +69,29 @@ function Media() {
         />
         <div className="blog-cards">
           {currentItems.map((item) => (
-            <BlogCard key={item.id} details={item} />
+            <BlogCard key={item.id} details={item} isMedia={true} />
           ))}
         </div>
         <div className="blog-pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <div
-              className={`blog-pagination-item ${
-                currentPage === i + 1 && "selected-number"
-              }`}
-              key={i + 1}
-              onClick={() => paginate(i + 1)}
-              disabled={currentPage === i + 1}
+          <div className="blog-pagniation-arrow-container">
+            <button
+              className="blog-pagination-arrow"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
             >
-              {i + 1}
-            </div>
-          ))}
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+          </div>
+          <div className="blog-pagination-number">{currentPage}</div>
+          <div className="blog-pagniation-arrow-container">
+            <button
+              className="blog-pagination-arrow"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

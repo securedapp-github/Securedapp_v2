@@ -1,32 +1,797 @@
-import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 import jsPDF from "jspdf";
+import "jspdf-autotable";
+import html2canvas from "html2canvas";
 import Chart from "chart.js/auto";
+import CryptoJS from "crypto-js";
+import { toast } from "react-toastify";
+import { login } from "../SolidityShield/redux/auth/authSlice";
+import { setIssuesData } from "./redux/dashboard/issuesSlice";
+import { setScanHistory } from "./redux/scanHistory/scanHistorySlice";
+import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
+import { pricingDetails } from "./pages/pricing/pricing.data";
 
 const logo = "/assets/images/securedapp_logo.svg";
+const apiUrl = "https://139-59-5-56.nip.io:3443";
 
-const downloadReport = async (id) => {
-  fetch("https://139-59-5-56.nip.io:3443/getReport", {
+export async function getBlogs() {
+  const response = await fetch(apiUrl + "/getBlogList");
+  let data = await response.json();
+  data = data.filter((item) => item.status === 1);
+  console.log(data);
+  return data;
+}
+
+export const getAudits = async () => {
+  return await fetch(apiUrl + "/getAudits", {
+    method: "POST",
+    // body: JSON.stringify({
+    //   paymentid: id,
+    // }),
+    headers: {
+      "Content-type": "application/json",
+      //Authorization: getJwt(),
+    },
+  })
+    .then(async (res) => {
+      var data = await res.json();
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error getting transaction status");
+    });
+};
+
+export const payCryptoVerify = async ({ id, transactionId, amount }) => {
+  try {
+    return await fetch(`https://api.nowpayments.io/v1/payment/${id}`, {
+      headers: {
+        "Content-type": "application/json",
+        "X-api-key": "F2TDXCK-K0Q4N8J-JWSHQW1-P5AM1RH",
+      },
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        if (data.payment_status === "success") {
+          toast.success("Payment Successful!");
+          await fetch(apiUrl + "/payment-update-web3", {
+            method: "POST",
+            body: JSON.stringify({
+              status: "success",
+              transactionId,
+              amount,
+            }),
+            headers: {
+              "Content-type": "application/json",
+              Authorization: getJwt(),
+            },
+          }).then(async (response2) => {
+            const res = await response2.json();
+            if (res.status) {
+              toast.success("Updated your plan!");
+              return data;
+            } else {
+              toast.error("Error updating your plan!");
+              return data;
+            }
+          });
+        } else if (data.payment_status === "waiting") {
+          toast("Waiting for the payment to be done!");
+          return data;
+        } else {
+          toast.error("Payment verififcation failed!");
+          return data;
+        }
+      })
+      .catch((error) => {
+        toast.error("Error Verifying payment!");
+        console.log(error);
+      });
+  } catch (error) {
+    toast.error("Error Verifying payment!");
+    console.log(error);
+  }
+};
+
+export const payCrypto = async ({ planid, email }) => {
+  if (planid > 0) {
+    const { v4: uuidv4 } = require("uuid");
+    const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
+    var price = pricingDetails[Number(planid) + 1].pricingCard.price
+      .replace("/-", "")
+      .replace("₹", "")
+      .replace(",", "");
+    price = Number(price);
+    try {
+      return await fetch("https://api.nowpayments.io/v1/payment", {
+        method: "POST",
+        body: JSON.stringify({
+          price_amount: price,
+          price_currency: "inr",
+          pay_currency: "USDTMATIC",
+          pay_amount: price,
+          order_id: "21314",
+          order_description: "Securedapp Subscription Plan A",
+          is_fixed_rate: true,
+          is_fee_paid_by_user: false,
+        }),
+        headers: {
+          "Content-type": "application/json",
+          "X-api-key": "F2TDXCK-K0Q4N8J-JWSHQW1-P5AM1RH",
+        },
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          return await fetch(apiUrl + "/payment-insert-web3", {
+            method: "POST",
+            body: JSON.stringify({
+              mail: email,
+              planid,
+              paymentid: transactionid,
+            }),
+            headers: {
+              "Content-type": "application/json",
+              Authorization: getJwt(),
+            },
+          }).then(async (response2) => {
+            const res = await response2.json();
+            if (res.status) {
+              localStorage.setItem(
+                "latestPayment",
+                JSON.stringify({
+                  transactionId: transactionid,
+                  amount: price,
+                })
+              );
+              toast(
+                "Payment initiated successfully. Please transfer the amount & verify."
+              );
+              return {
+                ...data,
+                newTransactionId: transactionid,
+                payAmount: price,
+              };
+            } else {
+              toast.error("Error initiating the payment!");
+            }
+          });
+        })
+        .catch((error) => {
+          toast.error("Error initiating payment!");
+          console.log(error);
+        });
+    } catch (error) {
+      toast.error("Unexpected error! Try again.");
+      console.log(error);
+    }
+  } else {
+    toast("Free Plan");
+  }
+};
+
+export const checkPhonpe = async ({ id }) => {
+  return await fetch(`${apiUrl}/check-phonepay?txnid=${id}`, {
+    method: "GET",
+    // body: JSON.stringify({
+    //   paymentid: id,
+    // }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
+    .then(async (res) => {
+      var data = await res.json();
+      //alert(JSON.stringify(data));
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error getting transaction status");
+    });
+};
+
+export const payPhonpe = async ({ planid, email }) => {
+  const { v4: uuidv4 } = require("uuid");
+
+  let cost = 0;
+  if (planid > 0) {
+    const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
+
+    const response2 = await fetch(apiUrl + "/payment-insert", {
+      method: "POST",
+      body: JSON.stringify({
+        mail: email,
+        paymentid: transactionid,
+        planid: planid,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: getJwt(),
+      },
+    });
+
+    const data = await response2.json();
+    console.log(transactionid);
+
+    if (!data.status) {
+      toast.error("Failed to proceed to payment! Try again.");
+      return;
+    } else {
+      window.open(data.redirect);
+    }
+  } else {
+    toast("Free Plan");
+  }
+};
+
+export const scanSubmit = async ({
+  inputTypes,
+  companyName,
+  githubUrl,
+  etherscanUrl,
+  chain,
+  file,
+  contract,
+  user,
+  dispatch,
+}) => {
+  let result;
+  let compilerVersion;
+  const formData = new FormData();
+
+  if (user.remainingCredits < 1) {
+    toast.error("No Credit, Please Purchase a Plan to scan");
+    return;
+  }
+
+  // Validation
+  if (!inputTypes) {
+    alert("Please Select a source");
+    return;
+  }
+
+  if (!companyName) {
+    toast.error("Please enter your Company Name");
+    return;
+  }
+
+  if (!githubUrl && !file && !etherscanUrl) {
+    toast.error("Please input your smart contracts");
+    return;
+  }
+
+  // Handling GitHub URL
+  if (inputTypes.includes("Github") && githubUrl) {
+    try {
+      const { sourceCode, file: githubFile } = await githuburlfetch(githubUrl);
+      if (!sourceCode) {
+        toast.error("Failed to fetch contract source code.");
+        return;
+      }
+
+      formData.append("files", githubFile);
+
+      compilerVersion = isContractFlattened(sourceCode);
+      if (!compilerVersion) {
+        toast.error("The contract is not flattened.");
+        return;
+      }
+    } catch (error) {
+      toast.error("Error fetching GitHub URL.");
+      console.error("GitHub URL fetch error:", error);
+      return;
+    }
+  }
+
+  // Handling Etherscan URL
+  if (etherscanUrl && etherscanUrl.length > 0) {
+    try {
+      const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
+      console.log(sourceCode);
+      const blob = new Blob([sourceCode], { type: "text/plain" });
+      const etherscanFile = new File([blob], `${companyName}.sol`, {
+        type: "text/plain",
+      });
+      formData.append("files", etherscanFile);
+
+      compilerVersion = isContractFlattened(sourceCode);
+      if (!compilerVersion) {
+        alert("The contract is not flattened.");
+        return;
+      }
+      console.log("contract processed");
+    } catch (error) {
+      toast.error("Error fetching the contract");
+      console.error("Etherscan fetch error:", error);
+      return;
+    }
+  }
+
+  if (inputTypes.includes("Upload File") && file) {
+    formData.append("files", file);
+    if (!file) {
+      toast.error("Please select a file.");
+      return;
+    }
+
+    if (!contract) {
+      toast.error("No contract file uploaded.");
+      return;
+    }
+
+    if (!isFlattened(contract)) {
+      toast.error("The contract must be flattened before submission.");
+      return;
+    }
+
+    compilerVersion = detectCompilerVersion(contract);
+    if (!compilerVersion) {
+      toast.error("Could not detect the compiler version.");
+      return;
+    }
+
+    console.log(`Compiler version: ${compilerVersion}`);
+  }
+
+  formData.append("mail", user.email);
+  formData.append("version", compilerVersion);
+  formData.append("company", companyName);
+
+  return await fetch(apiUrl + "/audits", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: getJwt(),
+    },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        toast("Invalid Network Response");
+      } else {
+        return await response.text();
+      }
+    })
+    .then(async (data) => {
+      const history = await getScanHistoryData({
+        userEmail: user.email,
+        dispatch,
+      });
+
+      var latestScan = history.reduce((max, item) => {
+        return item.id > max.id ? item : max;
+      }, history[0]);
+      // window.open("/solidity-shield-scan/report/" + latestScan.id);
+
+      toast.success("Scan finished");
+      dispatch(login({ ...user, remainingCredits: user.remainingCredits - 1 }));
+      return Number(latestScan.id);
+    })
+    .catch((error) => {
+      toast("Error:", error);
+      return "error";
+    });
+};
+
+export const downloadfReportPdf = (id, user) => {
+  downloadReport(id, user);
+  // const input = document.getElementById("scan-report-" + id);
+  // if (!input) {
+  //   toast.error("Error downloading the report! Try again.");
+  //   return;
+  // } else {
+  //   toast(`Downloading Scan Report - ${id}`);
+  // }
+  // html2canvas(input)
+  //   .then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4");
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save("solidity-shield-scan-report-" + id + ".pdf");
+  //   })
+  //   .catch((error) => {
+  //     toast.error("Error downloading the report! Try again.");
+  //   });
+};
+
+export const getScanSummaryData = async ({ dispatch, email }) => {
+  var history = await getScanHistoryData({
+    userEmail: email,
+    dispatch,
+  });
+  console.log(history);
+  var latestScan = history.reduce((max, item) => {
+    return item.id > max.id ? item : max;
+  }, history[0]);
+
+  if (latestScan) {
+    latestScan = await getReport({ id: latestScan.id, email });
+    console.log(latestScan);
+    var summary = `Scanned ${latestScan.contracts} contracts, ${
+      latestScan.lines
+    } lines of code and found ${Object.values(latestScan.findings).reduce(
+      (accumulator, currentValue) => {
+        return accumulator + currentValue;
+      },
+      0
+    )} vulnerabilities`;
+    var data = latestScan.findings;
+    var score =
+      5 -
+      ((Number(data["high_issues"]) +
+        Number(data["medium_issues"]) +
+        Number(data["low_issues"])) /
+        30) *
+        5;
+
+    dispatch(
+      setScanSummary({
+        percentageValue: (score * 2).toFixed(1),
+        values: [
+          {
+            name: "Critical Issues",
+            value: data.high_issues,
+            color: "#ff6666",
+          },
+          {
+            name: "Medium Issues",
+            value: data.medium_issues,
+            color: "#ffa366",
+          },
+          { name: "Low Issues", value: data.low_issues, color: "#ffff33" },
+          {
+            name: "Optimization Issues",
+            value: data.optimization_issues,
+            color: "#d98cb3",
+          },
+          {
+            name: "Informational Issues",
+            value: data.informational_issues,
+            color: "#b3b3b3",
+          },
+        ],
+        summary,
+        id: latestScan.id,
+      })
+    );
+  }
+  //console.log(data);
+};
+
+export const getIssuesChartData = async ({ dispatch, email }) => {
+  var history = await getScanHistoryData({
+    userEmail: email,
+    dispatch,
+  });
+  // console.log(history);
+  let data = [];
+  for (let i = 0; i < history.length; i++) {
+    var scanReport = await getReport({ id: history[i].id, email });
+    data.push(scanReport.findings);
+  }
+  data = data.reduce((accumulator, currentObject) => {
+    for (let key in currentObject) {
+      if (!accumulator[key]) {
+        accumulator[key] = 0;
+      }
+      accumulator[key] += currentObject[key];
+    }
+    return accumulator;
+  }, {});
+  data = [
+    { name: "", value: 0 },
+    { name: "High Issues", value: data.high_issues },
+    { name: "Medium Issues", value: data.medium_issues },
+    { name: "Low Issues", value: data.low_issues },
+    { name: "Optimization Issues", value: data.optimization_issues },
+    { name: "Informational Issues", value: data.informational_issues },
+    { name: "", value: 0 },
+  ];
+  // console.log(data);
+  dispatch(setIssuesData(data));
+  return data;
+};
+
+export const getReport = async ({ id, email }) => {
+  return await fetch(apiUrl + "/getReport", {
     method: "POST",
     body: JSON.stringify({
       id: id,
+    }),
+    headers: {
+      //Authorization: getJwt(),
+      "Content-type": "application/json",
+    },
+  })
+    .then(async (response) => {
+      // if (PurchasePlan(0)) {
+      //   console.log("PDF generation is not available for free plan users.");
+      //   toast("PDF generation is not available for free plan users.");
+      //   return;
+      // }
+      if (!response.ok) {
+        toast("Invalid Network response ");
+      }
+      return await response.text();
+    })
+    .then((data) => {
+      var report = JSON.parse(data);
+      report = report[0].reportdata;
+      report = JSON.parse(report);
+      //console.log(report);
+      var score =
+        5 -
+        ((Number(report.findings["high_issues"]) +
+          Number(report.findings["medium_issues"]) +
+          Number(report.findings["low_issues"])) /
+          30) *
+          5;
+      report.score = (score * 2).toFixed(1) + "/10";
+
+      return report;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+export const getScanHistoryData = async ({ userEmail, dispatch }) => {
+  return fetch(apiUrl + "/getHistory", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: userEmail,
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      toast.error("Invalid Network Response. Please try again!");
+    })
+    .then((data) => {
+      // console.log(data);
+      dispatch(setScanHistory(data.sort((a, b) => b.id - a.id)));
+      // toast("setScanHitsory");
+      return data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+export const sendOTP = async ({ email, dispatch, selector }) => {
+  const user = selector;
+
+  if (email == "") {
+    toast.error("Invalid Email, Try again");
+    return;
+  }
+  fetch(apiUrl + "/sendOtp2", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: email,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      res.ok === true && toast.success("OTP Send Successfully, Check Mail");
+    })
+    .catch((err) => {
+      console.log(err.message);
+      toast("Error in sending OTP, Try again");
+      //window.location.replace("/solidity-shield-scan/auth");
+    });
+};
+
+export const verifyOTP = async ({ email, otp, dispatch }) => {
+  let jwt;
+
+  if (!otp) {
+    toast.error("Please enter the OTP");
+    return;
+  }
+
+  fetch(apiUrl + "/verifyOtp2", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: email,
+      otp: otp,
     }),
     headers: {
       "Content-type": "application/json",
     },
   })
     .then((response) => {
-      console.log(response);
+      //alert(JSON.stringify(response));
       if (response.ok) {
         return response.json();
       }
-      toast("Invalid Network response ");
+
+      toast.error("Invlaid Network Response: verify otp");
+      //window.location.replace("/solidity-shield-scan/auth");
     })
     .then((data) => {
-      // if (PurchasePlan(0)) {
-      //   console.log("PDF generation is not available for free plan users.");
-      //   toast("PDF generation is not available for free plan users.");
-      //   return;
-      // }
+      //console.log(data);
+      if (data.length == 0) {
+        toast("Wrong OTP");
+        return;
+      }
+      let userdata = data[0];
+
+      jwt = userdata.jwt;
+      localStorage.setItem("UserJwt", userdata.jwt);
+      localStorage.setItem("UserEmail", email);
+
+      let plandetail = "Free Plan";
+      if (userdata.plan == 1) {
+        plandetail = "Basic Plan";
+      }
+      if (userdata.plan == 2) {
+        plandetail = "Premium Plan";
+      }
+      if (userdata.plan == 3) {
+        plandetail = "Exclusive Plan";
+      }
+
+      dispatch(
+        login({
+          email: userdata.email,
+          credits: userdata.credit,
+          remainingCredits: userdata.rcredit,
+          plan: userdata.plan,
+          planName: plandetail,
+          planExpiry: userdata.planexpiry,
+          firstName: "First Name",
+          lastName: "Last Name",
+          jwt: jwt,
+          companyName: "Company Name",
+        })
+      );
+
+      toast.success("Login Successful!");
+      window.location.replace("/solidity-shield-scan/overview");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      toast.error("Unable to login. Please try again!");
+      window.location.replace("/solidity-shield-scan/auth");
+    });
+};
+
+export function getJwt() {
+  const jwt = localStorage.getItem("UserJwt");
+  if (!jwt) {
+    toast("Please sign in with your email.");
+    window.location.replace("/solidity-shield-scan/auth");
+    return;
+  } else {
+    return `Bearer ${jwt}`;
+  }
+}
+
+export const getUser = async ({ dispatch, email }) => {
+  const jwt = getJwt();
+  if (!jwt) {
+    toast("Please sign in with your email.");
+    window.location.replace("/solidity-shield-scan/auth");
+    return;
+  }
+
+  return await fetch(apiUrl + "/getUser", {
+    method: "POST",
+    body: JSON.stringify({
+      mail: localStorage.getItem("UserEmail"),
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        //console.log(response);
+        return response.json();
+      }
+      //console.log(response);
+      toast.error("Error signin in.");
+      //window.location.replace("/solidity-shield-scan/auth");
+      return;
+    })
+    .then(async (data) => {
+      //console.log(data);
+      if (data.length == 0) toast("Error Signing in. Try again.");
+      let userdata = data[0];
+
+      let plandetail = "Free Plan";
+      if (userdata.plan == 1) {
+        plandetail = "Basic Plan";
+      }
+      if (userdata.plan == 2) {
+        plandetail = "Premium Plan";
+      }
+      if (userdata.plan == 3) {
+        plandetail = "Exclusive Plan";
+      }
+
+      dispatch(
+        login({
+          email: userdata.email,
+          credits: userdata.credit,
+          remainingCredits: userdata.rcredit,
+          plan: userdata.plan,
+          planName: plandetail,
+          planExpiry: userdata.planexpiry,
+          firstName: "First Name",
+          lastName: "Last Name",
+          jwt: jwt,
+          companyName: "Company Name",
+        })
+      );
+      return {
+        email: userdata.email,
+        credits: userdata.credit,
+        remainingCredits: userdata.rcredit,
+        plan: userdata.plan,
+        planName: plandetail,
+        planExpiry: userdata.planexpiry,
+        firstName: "First Name",
+        lastName: "Last Name",
+        jwt: jwt,
+        companyName: "Company Name",
+      };
+      getScanHistoryData({ userEmail: email, dispatch });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      toast.error("Unable to login. Please try again!");
+      window.location.replace("/solidity-shield-scan/auth");
+    });
+};
+
+export const logout = () => {
+  localStorage.removeItem("UserJwt");
+  window.location.replace("/solidity-shield-scan/auth");
+};
+
+export const downloadReport = async (id, user) => {
+  fetch(apiUrl + "/getReport", {
+    method: "POST",
+    body: JSON.stringify({
+      id: id,
+    }),
+    headers: {
+      "Content-type": "application/json",
+      Authorization: getJwt(),
+    },
+  })
+    .then((response) => {
+      // console.log(response);
+      if (response.ok) {
+        return response.json();
+      }
+      toast.error("Invalid Network response ");
+    })
+    .then((data) => {
+      console.log(data);
+      if (user.remainingCredits === 0) {
+        console.log("Upgrade your plan to download the report");
+        toast(
+          "No credits left in your account! Please purchase a paid plan to download the report."
+        );
+        return;
+      }
       console.log(JSON.parse(data[0].reportdata));
       generatePDF(JSON.parse(data[0].reportdata));
     })
@@ -35,34 +800,7 @@ const downloadReport = async (id) => {
     });
 };
 
-const getScanHistory = async ({ userEmail }) => {
-  let result;
-  fetch("https://139-59-5-56.nip.io:3443/getHistory", {
-    method: "POST",
-    body: JSON.stringify({
-      mail: userEmail,
-    }),
-    headers: {
-      "Content-type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      toast("Invalid Network Response");
-    })
-    .then((data) => {
-      // console.log(data);
-      result = data;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  return result;
-};
-
-function generateTable(data) {
+export function generateTable(data) {
   let finding_names = [
     "high_issues",
     "medium_issues",
@@ -95,146 +833,6 @@ function generateTable(data) {
   };
 }
 
-const ScanSubmit = async ({
-  inputTypes,
-  companyName,
-  githubUrl,
-  etherscanUrl,
-  chain,
-  file,
-  contracts,
-  credit,
-  rcredit,
-  email,
-}) => {
-  let result;
-  let compilerVersion;
-  const formData = new FormData();
-
-  if (inputTypes == "") {
-    toast("Please Select a source");
-    return;
-  }
-
-  if (companyName == "") {
-    toast("Please enter your Company Name");
-    return;
-  }
-
-  // https://github.com/himang305/Breeding-NFTs/blob/main/Breeding_nft.sol
-
-  if (inputTypes.includes("github") && githubUrl) {
-    if (!githubUrl) {
-      toast("Please enter the link.");
-      return;
-    }
-    if (githubUrl) {
-      console.log(githubUrl);
-      const { sourceCode, file } = await githuburlfetch(githubUrl);
-      formData.append("files", file);
-      if (sourceCode) {
-        compilerVersion = isContractFlattened(sourceCode);
-        console.log("Compiler Version = ", compilerVersion);
-        if (compilerVersion) {
-          console.log("Compiler Version:", compilerVersion);
-        } else {
-          toast("The contract is not flattened.");
-          return;
-        }
-      } else {
-        toast("Failed to fetch contract source code.");
-        return;
-      }
-    }
-  }
-
-  if (inputTypes.includes("etherscan") && etherscanUrl) {
-    if (!etherscanUrl || !chain) {
-      toast("Invlaid Chain OR Address");
-      return;
-    } else if (etherscanUrl && chain) {
-      // console.log(contractAddress);
-      const sourceCode = await fetchContractSourceCode(etherscanUrl, chain);
-      const blob = new Blob([sourceCode], { type: "text/plain" });
-      const file = new File([blob], `${companyName}.sol`, {
-        type: "text/plain",
-      });
-      formData.append("files", file);
-
-      if (sourceCode) {
-        compilerVersion = isContractFlattened(sourceCode);
-        if (compilerVersion) {
-          console.log("Compiler Version:", compilerVersion);
-        } else {
-          alert("The contract is not flattened.");
-        }
-      } else {
-        alert("Failed to fetch contract source code.");
-      }
-    }
-  }
-
-  if (inputTypes.includes("file") && file) {
-    formData.append("files", file);
-
-    if (!file) {
-      toast.error("Please select a file.");
-      return;
-    }
-
-    if (!contracts) {
-      toast.error("No contract file uploaded.");
-      return;
-    }
-
-    if (!isFlattened(contracts)) {
-      toast.error("The contract must be flattened before submission.");
-      return;
-    }
-
-    compilerVersion = detectCompilerVersion(contracts);
-    if (!compilerVersion) {
-      toast.error("Could not detect the compiler version.");
-      return;
-    }
-
-    console.log(`Compiler version: ${compilerVersion}`);
-  }
-
-  if (rcredit < 1) {
-    toast("No Credit, Please Purchase a Plan to scan");
-    return;
-  }
-
-  formData.append("mail", email);
-  // formData.append("files", _file);
-  formData.append("version", compilerVersion);
-  formData.append("company", companyName);
-
-  // fetch('http://127.0.0.1:8000/audits', {
-  fetch("https://139-59-5-56.nip.io:3443/audits", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      toast("Invalid Network Response");
-    })
-    .then((data) => {
-      result = generateTable(data);
-      // setFile(null);
-      // console.log(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-  return result;
-  toast.success("Awesome! The AI scan is now underway");
-  return result;
-};
-
 const isFlattened = (contracts) => {
   return !/import\s+/i.test(contracts);
 };
@@ -264,7 +862,7 @@ const detectCompilerVersion = (contracts) => {
     ? contracts.join(" ")
     : contracts;
   if (typeof contractsString !== "string") {
-    toast("Invalid Contract");
+    alert("Invalid Contract");
   }
 
   const matches = contractsString.match(
@@ -312,17 +910,17 @@ const fetchContractSourceCode = async (contractAddress, _chain) => {
     if (data.status == "1" && data.result.length > 0) {
       return data.result[0].SourceCode;
     } else {
-      toast("Error fetching source code");
+      toast.error("Error fetching source code");
       return false;
     }
   } catch (error) {
-    toast("Error fetching source code");
+    toast.error("Error fetching source code");
     console.error("Error fetching contract source code:", error);
     return false;
   }
 };
 
-const githuburlfetch = async (repoUrl, companyName) => {
+export const githuburlfetch = async (repoUrl, companyName) => {
   try {
     let rawUrl = repoUrl;
     if (repoUrl.includes("/blob/")) {
@@ -332,7 +930,7 @@ const githuburlfetch = async (repoUrl, companyName) => {
 
     const response = await fetch(rawUrl);
     if (!response.ok) {
-      toast("Failed to fetch file");
+      toast.error("Failed to fetch file");
     }
     const content = await response.text();
     // console.log(content);
@@ -349,44 +947,7 @@ const githuburlfetch = async (repoUrl, companyName) => {
   }
 };
 
-const PurchasePlan = async (planid, email) => {
-  const { v4: uuidv4 } = require("uuid");
-
-  let cost = 0;
-  if (planid > 0) {
-    //setplanid(planid);
-
-    const transactionid = "Tr-" + uuidv4().toString(36).slice(-6);
-    // console.log("Txn_ID : ", transactionid);
-
-    const response2 = await fetch(
-      "https://139-59-5-56.nip.io:3443/payment-insert",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          mail: email,
-          paymentid: transactionid,
-          planid: planid,
-        }),
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
-
-    const data = await response2.json();
-    // console.log("db entry data : ", data);
-
-    if (!data.status) {
-      console.log("Failed DB payment Entry");
-      return;
-    } else {
-      window.location.replace(data.redirect);
-    }
-  }
-};
-
-function formatDate(dateString) {
+export function formatDate(dateString) {
   //..
   function getDaySuffix(day) {
     if (day >= 11 && day <= 13) {
@@ -414,16 +975,16 @@ function formatDate(dateString) {
 
   const suffix = getDaySuffix(day); // Function to get day suffix (e.g., 'th', 'st', 'nd')
 
-  return ` ${day}${suffix} ${month} ${year}`;
+  return ` ${day} ${month} ${year}`;
 }
 
-const generatePDF = async (reportData) => {
+export const generatePDF = async (reportData) => {
   try {
     console.log("Starting PDF generation");
     console.log("Report Data:", reportData);
 
     const date = formatDate(reportData.date);
-    // const logo = logo;
+    //  const logo = logo;
     const pdf = new jsPDF("p", "mm", "a4");
     const linePositionY = 25;
 
@@ -571,7 +1132,7 @@ const generatePDF = async (reportData) => {
     }
 
     // Create an array of vulnerability analysis details
-    // const vulnerabilityAnalysis = [
+    //  const vulnerabilityAnalysis = [
     //   { type: "CRITICAL", issue: "Unencrypted Sensitive Data in Session Storage", recommendation: "Store keys in environment variables and use secure methods to handle sensitive data." },
     //   { type: "CRITICAL", issue: "Weak Encryption Method", recommendation: "Use a more secure key management system and ensure encryption keys are kept secret." },
     //   { type: "MEDIUM", issue: "Insecure API Endpoints", recommendation: "Store API endpoints in environment variables and ensure they are not exposed in the client-side code." },
@@ -669,7 +1230,7 @@ const generatePDF = async (reportData) => {
       "array-by-reference: Modifying storage arrays by value rather than reference can lead to unexpected behavior or data corruption, hence posing a high risk.",
       "encode-packed-collision: This error highlights a collision in the ABI encoding process, which can result in incorrect interpretation of function calls or data manipulation, posing a high risk to contract integrity.",
       "incorrect-shift: Incorrect order of parameters in a shift instruction can lead to unintended behavior or vulnerabilities, posing a high risk.",
-      "multiple-constructors: Having multiple constructor schemes can lead to confusion or unexpected behavior during contract deployment, hence posing a high risk.",
+      "multiple- constructors: Having multiple  constructor schemes can lead to confusion or unexpected behavior during contract deployment, hence posing a high risk.",
       "name-reused: Reusing a contract's name can lead to ambiguity or confusion, posing a high risk due to potential misunderstandings or unintended interactions",
       "protected-vars: Unprotected variables can be manipulated by unauthorized parties, posing a high risk to data integrity and security.",
       "public-mappings-nested: Public mappings with nested variables can expose sensitive data to unauthorized access, posing a high risk to data privacy and integrity.",
@@ -680,7 +1241,7 @@ const generatePDF = async (reportData) => {
       "solc-version: Incorrect Solidity version is categorized as informational as it provides insights into the usage of incorrect Solidity versions within the contract, which can aid in ensuring compatibility or adherence to best practices.",
       "naming-convention: Conformity to Solidity naming conventions is categorized as informational as it provides insights into adherence to Solidity naming conventions within the contract, which can aid in code readability or maintainability.",
       "codex: While not posing a direct security risk, utilizing Codex to find vulnerabilities is a recommended practice for improving contract security. This error is categorized as high severity due to its importance in vulnerability detection.",
-      "uninitialized-fptr-cst: Uninitialized function pointer calls in constructors pose a low risk as they can lead to issues with contract initialization or unexpected behavior related to function pointer assignments.",
+      "uninitialized-fptr-cst: Uninitialized function pointer calls in  constructors pose a low risk as they can lead to issues with contract initialization or unexpected behavior related to function pointer assignments.",
       "uninitialized-state: Uninitialized state variables pose a high risk as they can lead to unpredictable behavior or vulnerabilities in the contract's logic or storage state.",
       "uninitialized-storage: Similarly, uninitialized storage variables pose a high risk as they can lead to unpredictable behavior or vulnerabilities related to the contract's storage state.",
       "unprotected-upgrade: Unprotected upgradeable contracts pose a high risk as they can be vulnerable to unauthorized modifications or upgrades, potentially leading to unexpected behavior or security breaches.",
@@ -707,13 +1268,13 @@ const generatePDF = async (reportData) => {
       "tautological-compare: Comparing a variable to itself always returns true or false, depending on comparison, posing a medium risk due to potential issues with logic or unintended consequences.",
       "tautology: Tautology or contradiction poses a medium risk as it can lead to issues with logic or unintended consequences due to redundant or contradictory statements.",
       "write-after-write: Unused write poses a medium risk as it can lead to inefficient or unnecessary operations, potentially affecting contract performance or gas usage.",
-      "boolean-cst: Misuse of Boolean constant poses a medium risk as it can lead to issues with logic or unintended consequences due to incorrect or inconsistent usage of Boolean values.",
-      "constant-function-asm: Constant functions using assembly code pose a medium risk as they can lead to issues with portability or compatibility with different EVM implementations or Solidity versions.",
-      "constant-function-state: Constant functions changing the state pose a medium risk as they can lead to unexpected or unintended changes to contract state, potentially affecting contract behavior or security.",
+      "boolean-cst: Misuse of Boolean  constant poses a medium risk as it can lead to issues with logic or unintended consequences due to incorrect or inconsistent usage of Boolean values.",
+      " constant-function-asm:  constant functions using assembly code pose a medium risk as they can lead to issues with portability or compatibility with different EVM implementations or Solidity versions.",
+      " constant-function-state:  constant functions changing the state pose a medium risk as they can lead to unexpected or unintended changes to contract state, potentially affecting contract behavior or security.",
       "divide-before-multiply: Imprecise arithmetic operations order poses a medium risk as it can lead to incorrect mathematical calculations, potentially affecting the accuracy or integrity of computations within the contract.",
       "out-of-order-retryable: Out-of-order retryable transactions pose a medium risk as they can lead to issues with transaction ordering or unexpected behavior related to transaction retries or retries",
       "reentrancy-no-eth: Reentrancy vulnerabilities (no theft of ethers) pose a medium risk as they can lead to unexpected or unintended behavior related to reentrant calls, potentially affecting contract behavior or security.",
-      "reused-constructor: Reused base constructor poses a medium risk as it can lead to issues with inheritance or unintended consequences due to multiple constructor invocations.",
+      "reused- constructor: Reused base  constructor poses a medium risk as it can lead to issues with inheritance or unintended consequences due to multiple  constructor invocations.",
       "tx-origin: Dangerous usage of tx.origin poses a medium risk as it can lead to issues with authentication or authorization, potentially enabling unauthorized access or manipulation of contract state.",
       "unchecked-lowlevel: Unchecked low-level calls pose a medium risk as they can lead to issues with gas usage or unexpected behavior related to low-level interactions with the EVM.",
       "unchecked-send: Unchecked send poses a medium risk as it can lead to issues with gas usage or unexpected behavior related to transfers of Ether or tokens.",
@@ -723,7 +1284,7 @@ const generatePDF = async (reportData) => {
       "shadowing-builtin: Built-in symbol shadowing poses a low risk as it can lead to confusion or unintended consequences due to ambiguity in variable references or function calls.",
       "shadowing-local: Local variables shadowing poses a low risk as it can lead to confusion or unintended consequences due to ambiguity in variable references or function calls.",
       "variable-scope: Local variables used prior their declaration pose a low risk as they can lead to confusion or unintended consequences due to ambiguity in variable references or function calls.",
-      "void-cst: Constructor called not implemented poses a low risk as it can lead to issues with contract initialization or unexpected behavior related to constructor execution.",
+      "void-cst:  constructor called not implemented poses a low risk as it can lead to issues with contract initialization or unexpected behavior related to  constructor execution.",
       "calls-loop: Multiple calls in a loop pose a low risk as they can lead to issues with gas usage or unexpected behavior related to multiple invocations of external contracts.",
       "events-access: Missing Events Access Control poses a low risk as it can lead to issues with event emission or unintended consequences due to unauthorized access to event data.",
       "events-maths: Missing Events Arithmetic poses a low risk as it can lead to issues with event emission or unintended consequences due to incorrect or inconsistent event data.",
@@ -735,7 +1296,7 @@ const generatePDF = async (reportData) => {
       "timestamp: Dangerous usage of block.timestamp poses a low risk as it can lead to issues with security or unexpected behavior related to timestamp-dependent logic.",
       "assembly: Assembly usage is categorized as informational as it provides insights into the usage of assembly code within the contract, which can be used for optimization or fine-tuning contract performance.",
       "assert-State-Change: Assert state change is categorized as informational as it provides insights into assertions related to state changes within the contract, which can aid in understanding contract behavior or logic.",
-      "boolean-Equal: Comparison to boolean constant is categorized as informational as it provides insights into comparisons to boolean constants within the contract, which can aid in understanding contract behavior or logic.",
+      "boolean-Equal: Comparison to boolean  constant is categorized as informational as it provides insights into comparisons to boolean  constants within the contract, which can aid in understanding contract behavior or logic.",
       "cyclomatic-complexity: Detects functions with high (> 11) cyclomatic complexity. This is categorized as informational as it provides insights into the complexity of contract functions, which can aid in code review or optimization efforts.",
       "deprecated-standards: Deprecated Solidity Standards is categorized as informational as it provides insights into the usage of deprecated Solidity standards or practices within the contract, which can aid in identifying areas for improvement or modernization.",
       "erc20-indexed: Un-indexed ERC20 event parameters is categorized as informational as it provides insights into ERC20 event parameters that are not indexed, which can aid in understanding event emission or event handling within the contract.",
@@ -751,7 +1312,7 @@ const generatePDF = async (reportData) => {
       "similar-names: Variable names are too similar is categorized as informational as it provides insights into variable naming conventions within the contract, which can aid in code readability or maintainability.",
       "too-many-digits: Conformance to numeric notation best practices is categorized as informational as it provides insights into adherence to numeric notation best practices within the contract, which can aid in code readability or maintainability.",
       "cache-array-length: Detects for loops that use length member of some storage array in their loop condition and don't modify it. This optimization is categorized as high risk as it can lead to unnecessary gas consumption or potential vulnerabilities related to array manipulation.",
-      "constable-states: State variables that could be declared constant is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to state variables that should be constant.",
+      " constable-states: State variables that could be declared  constant is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to state variables that should be  constant.",
       "external-function: Public function that could be declared external is categorized as high risk as it can lead to issues with gas usage or unexpected behavior related to function calls that could be marked as external.",
       "immutable-states: State variables that could be declared immutable is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to state variables that should be immutable.",
       "var-read-using-this: Contract reads its own variable using this is categorized as high risk as it can lead to issues with contract logic or unexpected behavior related to incorrect or inconsistent usage of this keyword.",
@@ -765,7 +1326,7 @@ const generatePDF = async (reportData) => {
       "array-by-reference Solution: Modify storage arrays by reference rather than value to ensure that changes are reflected consistently throughout the contract. Utilize proper data structures and access patterns to prevent unexpected behavior or data corruption.",
       "encode-packed-collision solution: Review the ABI encoding process and resolve any collisions to ensure that function calls are interpreted correctly. Adjust encoding methods or function signatures as necessary to avoid ambiguity and maintain contract integrity.",
       "incorrect-shift solution: Verify and correct the order of parameters in shift instructions to ensure that operations are performed as intended. Double-check bitwise operations to prevent unintended behavior that could lead to vulnerabilities.",
-      "multiple-constructors solution: Consolidate multiple constructor schemes into a single constructor to streamline contract deployment and reduce complexity. Ensure that initialization logic is clear and unambiguous to avoid confusion during contract instantiation.",
+      "multiple- constructors solution: Consolidate multiple  constructor schemes into a single  constructor to streamline contract deployment and reduce complexity. Ensure that initialization logic is clear and unambiguous to avoid confusion during contract instantiation.",
       "name-reused solution: Use unique and descriptive names for contracts to avoid ambiguity and potential conflicts. Choose names that accurately reflect the purpose and functionality of each contract to facilitate understanding and prevent unintended interactions.",
       "protected-vars solution: Implement access control mechanisms such as modifiers or visibility specifiers to protect variables from unauthorized access or manipulation. Ensure that sensitive data is only accessible to authorized parties to maintain data integrity and security.",
       "public-mappings-nested solution: Review and redesign data structures to minimize exposure of sensitive data. Consider using private or internal mappings instead of public mappings with nested variables to limit access to privileged information.",
@@ -776,9 +1337,9 @@ const generatePDF = async (reportData) => {
       "solc-version solution: Update the Solidity version to the correct one specified for the contract. Ensure that the contract is compatible with the targeted Solidity compiler version to avoid potential issues or unexpected behavior.",
       "naming-convention solution: Enforce Solidity naming conventions consistently throughout the contract codebase. Use descriptive and meaningful names for variables, functions, and contracts to enhance code readability and maintainability.",
       "codex solution: Integrate Codex for vulnerability detection and utilize its findings to address any identified issues. Regularly scan the contract codebase with Codex to improve contract security and mitigate potential vulnerabilities.",
-      "uninitialized-fptr-cst solution: Initialize function pointers properly in constructors to avoid issues with contract initialization or unexpected behavior related to function pointer assignments.",
+      "uninitialized-fptr-cst solution: Initialize function pointers properly in  constructors to avoid issues with contract initialization or unexpected behavior related to function pointer assignments.",
       "uninitialized-state solution: Ensure that all state variables are properly initialized to prevent unpredictable behavior or vulnerabilities in the contract's logic or storage state.",
-      "uninitialized-storage solution: Properly initialize storage variables to avoid unpredictable behavior or vulnerabilities related to the contract's storage state. Initialize storage variables within the contract constructor or relevant functions to ensure consistent behavior.",
+      "uninitialized-storage solution: Properly initialize storage variables to avoid unpredictable behavior or vulnerabilities related to the contract's storage state. Initialize storage variables within the contract  constructor or relevant functions to ensure consistent behavior.",
       "unprotected-upgrade solution: Implement access controls and authentication mechanisms to secure upgradeable contracts from unauthorized modifications or upgrades. Utilize techniques such as access modifiers, role-based permissions, or multi-signature schemes to enforce upgrade restrictions and maintain contract integrity.",
       "arbitrary-send-eth solution: Implement proper access controls and validation checks for functions that send Ether to arbitrary destinations. Use permission-based systems or whitelists to restrict Ether transfers to trusted addresses and prevent unauthorized withdrawals.",
       "controlled-array-length solution: Validate and sanitize input data to prevent tainted array length assignments that could lead to unintended or malicious modification of array lengths. Implement input validation checks to ensure that array length assignments are within expected bounds and do not pose security risks.",
@@ -786,9 +1347,9 @@ const generatePDF = async (reportData) => {
       "delegatecall-loop solution: Avoid using delegatecall inside loops, especially in payable functions, to prevent unintended or unexpected execution of code in external contracts. Review and refactor code to eliminate delegatecall loops and ensure that contract behavior is predictable and secure.",
       "incorrect-exp solution: Review and correct exponentiation operations to ensure accurate mathematical calculations. Use standard libraries or built-in functions for exponentiation to minimize the risk of errors and ensure computational integrity.",
       "incorrect-return solution: Verify and correct the usage of the return instruction in assembly mode to prevent unexpected behavior or vulnerabilities related to contract execution or state manipulation. Ensure that return statements are used appropriately and consistently throughout the contract codebase.",
-      "msg-value-loop solution: Refactor code to avoid using msg.value inside loops to prevent unexpected gas consumption or Ether transfers. Review and redesign contract logic to eliminate the need for msg.value inside loop constructs and ensure efficient and secure contract execution.",
+      "msg-value-loop solution: Refactor code to avoid using msg.value inside loops to prevent unexpected gas consumption or Ether transfers. Review and redesign contract logic to eliminate the need for msg.value inside loop  constructs and ensure efficient and secure contract execution.",
       "reentrancy-eth solution: Implement reentrancy guards and secure state management techniques to prevent reentrancy vulnerabilities involving the theft of Ether. Use mutex locks, state flags, or withdrawal patterns to ensure that contract funds are not susceptible to unauthorized withdrawals or manipulation.",
-      "return-leave solution: Review and correct the usage of return statements to ensure proper control flow and prevent unexpected behavior related to contract execution. Replace return statements with appropriate control flow constructs such as leave to ensure consistent and secure contract behavior.",
+      "return-leave solution: Review and correct the usage of return statements to ensure proper control flow and prevent unexpected behavior related to contract execution. Replace return statements with appropriate control flow  constructs such as leave to ensure consistent and secure contract behavior.",
       "storage-array solution: Address compiler bugs related to signed storage integer arrays to prevent unexpected or unintended behavior related to storage operations or manipulation of array data. Utilize safe storage practices and thorough testing to mitigate the risk of storage-related vulnerabilities.",
       "unchecked-transfer solution: Implement proper validation and authorization checks for token transfers to prevent unauthorized or unintended transfers of tokens. Use access controls, permission-based systems, or token whitelists to restrict token transfers to trusted addresses and prevent exploitation.",
       "weak-prng solution: Enhance random number generation mechanisms to prevent weak or predictable randomness that could enable attacks or manipulation of contract behavior or state. Utilize secure random number generation algorithms and external randomness sources to ensure cryptographic strength and unpredictability.",
@@ -803,13 +1364,13 @@ const generatePDF = async (reportData) => {
       "tautological-compare solution: Review and correct tautological comparisons to prevent issues with logic or unintended consequences. Ensure that comparisons are meaningful and accurate to avoid logic errors or vulnerabilities.",
       "tautology solution: Review and eliminate tautologies or contradictions in the contract code to ensure logical consistency and prevent unintended consequences. Refactor code to remove redundant or contradictory statements that may introduce vulnerabilities.",
       "write-after-write solution: Avoid unused write operations to prevent inefficient or unnecessary operations that could affect contract performance or gas usage. Review and refactor code to eliminate unnecessary write operations and optimize resource usage.",
-      "boolean-cst solution: Use Boolean constants correctly to ensure logical consistency and prevent issues with logic or unintended consequences. Review and correct the usage of Boolean constants to maintain code clarity and prevent logic errors.",
-      "constant-function-asm solution: Review and refactor constant functions using assembly code to ensure portability and compatibility with different EVM implementations or Solidity versions. Use standard Solidity constructs whenever possible to maintain code consistency and readability.",
-      "constant-function-state solution: Review and refactor constant functions that modify the state to ensure that state changes are handled appropriately and consistently. Consider whether state modifications are necessary in constant functions and refactor code as needed to maintain contract behavior and security.",
+      "boolean-cst solution: Use Boolean  constants correctly to ensure logical consistency and prevent issues with logic or unintended consequences. Review and correct the usage of Boolean  constants to maintain code clarity and prevent logic errors.",
+      " constant-function-asm solution: Review and refactor  constant functions using assembly code to ensure portability and compatibility with different EVM implementations or Solidity versions. Use standard Solidity  constructs whenever possible to maintain code consistency and readability.",
+      " constant-function-state solution: Review and refactor  constant functions that modify the state to ensure that state changes are handled appropriately and consistently. Consider whether state modifications are necessary in  constant functions and refactor code as needed to maintain contract behavior and security.",
       "sivide-before-multiply solution: Review and correct arithmetic operations to ensure accurate mathematical calculations. Ensure that operations are performed in the correct order to prevent issues with arithmetic precision or integrity.",
       "out-of-order-retryable solution: Handle out-of-order retryable transactions carefully to prevent issues with transaction ordering or unexpected behavior related to transaction retries. Implement proper validation checks and error handling to ensure transaction ordering is maintained correctly.",
       "reentrancy-no-eth solution: Mitigate reentrancy vulnerabilities (no theft of ethers) by carefully managing reentrant calls and ensuring that state changes are handled safely. Implement reentrancy guards and secure state management techniques to prevent unauthorized access or manipulation of contract state.",
-      "reused-constructor solution: Avoid reusing base constructors to prevent issues with inheritance or unintended consequences. Ensure that constructors are invoked correctly and only once to maintain contract integrity and prevent unexpected behavior.",
+      "reused- constructor solution: Avoid reusing base  constructors to prevent issues with inheritance or unintended consequences. Ensure that  constructors are invoked correctly and only once to maintain contract integrity and prevent unexpected behavior.",
       "tx-origin solution: Safely handle dangerous usage of tx.origin to prevent issues with authentication or authorization. Use alternative authentication mechanisms and avoid relying solely on tx.origin for access control to prevent potential security risks.",
       "unchecked-lowlevel solution: Handle unchecked low-level calls carefully to prevent issues with gas usage or unexpected behavior related to low-level interactions with the EVM. Implement proper validation checks and error handling to ensure safe and secure low-level call operations.",
       "unused-return solution: Handle unused return values appropriately to prevent inefficiencies or unnecessary complexity in contract code. Review and refactor code to eliminate unused return values and optimize resource usage where possible.",
@@ -817,7 +1378,7 @@ const generatePDF = async (reportData) => {
       "shadowing-builtin solution: Avoid built-in symbol shadowing to prevent confusion or unintended consequences. Use unique names for variables and functions to prevent ambiguity and maintain clarity in the codebase.",
       "shadowing-local solution: Prevent local variables from shadowing to avoid confusion or unintended consequences. Use unique names for local variables to maintain clarity and readability in the codebase.",
       "variable-scope solution: Ensure that local variables are declared before their use to prevent confusion or unintended consequences. Review and refactor code to maintain consistent variable scope and avoid ambiguity.",
-      "void-cst solution: Implement constructor logic as needed to prevent issues with contract initialization or unexpected behavior related to constructor execution. Ensure that all necessary initialization steps are performed correctly to maintain contract integrity and functionality.",
+      "void-cst solution: Implement  constructor logic as needed to prevent issues with contract initialization or unexpected behavior related to  constructor execution. Ensure that all necessary initialization steps are performed correctly to maintain contract integrity and functionality.",
       "calls-loop solution: Minimize the use of multiple calls inside loops to prevent issues with gas usage or unexpected behavior related to multiple invocations of external contracts. Refactor code to eliminate unnecessary calls and optimize resource usage where possible.",
       "events-access solution: Implement proper access control mechanisms for event emission to prevent unauthorized access to event data. Ensure that only authorized parties can emit events and access event data to maintain data privacy and security.",
       "events-maths solution: Handle events arithmetic carefully to prevent issues with event emission or unintended consequences. Review and correct event data calculations to ensure accuracy and consistency in event emission.",
@@ -832,12 +1393,12 @@ const generatePDF = async (reportData) => {
       "unchecked-calls solution: Handle unchecked calls carefully to prevent issues with gas usage or unexpected behavior related to external function calls. Implement proper validation checks and error handling to ensure safe and secure call operations.",
       "excessive-states solution: Reduce the number of state variables to improve contract readability, reduce complexity, and optimize gas usage. Identify and eliminate redundant or unnecessary state variables to streamline contract logic and storage.",
       "empty-blocks solution: Remove empty blocks to improve contract readability and reduce complexity. Conduct regular code reviews and refactorings to identify and eliminate unnecessary empty blocks.",
-      "const-functions solution: Use constant functions where applicable to improve contract efficiency and reduce gas usage. Identify functions that do not modify state and declare them as constant to enable compiler optimizations and improve contract performance.",
-      "assembly-overuse solution: Limit the use of assembly code to only when necessary to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use higher-level Solidity constructs whenever possible to maintain code consistency and readability.",
+      " const-functions solution: Use  constant functions where applicable to improve contract efficiency and reduce gas usage. Identify functions that do not modify state and declare them as  constant to enable compiler optimizations and improve contract performance.",
+      "assembly-overuse solution: Limit the use of assembly code to only when necessary to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use higher-level Solidity  constructs whenever possible to maintain code consistency and readability.",
       "assert-dos solution: Mitigate risks associated with excessive assert statements that could lead to denial-of-service (DoS) attacks. Use assert statements judiciously and ensure that they do not introduce vulnerabilities or performance issues.",
       "useless-statements solution: Remove unused statements to improve contract readability, reduce complexity, and optimize gas usage. Conduct regular code reviews and refactorings to identify and eliminate redundant or obsolete statements.",
       "useless-modifiers solution: Remove unused modifiers to improve contract readability, reduce complexity, and optimize gas usage. Conduct regular code reviews and refactorings to identify and eliminate redundant or obsolete modifiers.",
-      "useless-assembly solution: Eliminate unnecessary assembly code to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use standard Solidity constructs whenever possible to maintain code consistency and readability.",
+      "useless-assembly solution: Eliminate unnecessary assembly code to improve contract readability, reduce complexity, and optimize gas usage. Refactor code to use standard Solidity  constructs whenever possible to maintain code consistency and readability.",
       "unchecked-tx-origin solution: Safely handle usage of tx.origin to prevent issues with authentication or authorization. Use alternative authentication mechanisms and avoid relying solely on tx.origin for access control to prevent potential security risks.",
       "unchecked-delegatecall solution: Handle unchecked delegatecall operations carefully to prevent issues with gas usage or unexpected behavior related to delegatecall invocations. Implement proper validation checks and error handling to ensure safe and secure delegatecall operations.",
       "unused-struct-members solution: Remove unused members from structs to improve contract readability, reduce complexity, and optimize gas usage. Conduct regular code reviews and refactorings to identify and eliminate redundant or obsolete struct members",
@@ -850,7 +1411,7 @@ const generatePDF = async (reportData) => {
       "unchecked-blockhash solution: Handle blockhash operations carefully to prevent issues with gas usage or unexpected behavior related to blockhash retrieval. Implement proper validation checks and error handling to ensure safe and secure blockhash operations.",
       "unchecked-array-index solution: Implement proper bounds checking for array accesses to prevent out-of-bounds errors or vulnerabilities related to unchecked array indexing. Validate array indices before accessing array elements to ensure data integrity and contract security.",
       "self-destruct-ownership Solution: Secure self-destruct functions to prevent unauthorized contract termination or manipulation of contract ownership. Implement access controls and validation checks to ensure that self-destruct functions can only be called by authorized parties.",
-      "Return-Bomb Solution: Mitigate the risk of low-level callees consuming all callers' gas unexpectedly. Implement gas limits or constraints to prevent excessive gas consumption by low-level callees, ensuring that the contract's gas usage remains within acceptable bounds and preventing potential denial-of-service (DoS) attacks.",
+      "Return-Bomb Solution: Mitigate the risk of low-level callees consuming all callers' gas unexpectedly. Implement gas limits or  constraints to prevent excessive gas consumption by low-level callees, ensuring that the contract's gas usage remains within acceptable bounds and preventing potential denial-of-service (DoS) attacks.",
       "too-many-digits solution: Ensure adherence to numeric notation best practices by avoiding excessive digits in numerical values. Trim down the number of digits to maintain code readability and conform to standard practices, enhancing maintainability and reducing the likelihood of errors.",
       "immutable-states solution: Declare state variables as immutable where appropriate to prevent unintended modification and ensure data consistency. Immutable variables cannot be altered after initialization, enhancing contract security and reducing the risk of unintentional state changes.",
     ];
@@ -885,7 +1446,7 @@ const generatePDF = async (reportData) => {
               headString = "OPTIMIZATIONS";
               break;
           }
-          // const vulnerabilitiesData = Object.entries(reportData[index]).map(([type, locations]) => [type, locations.join(', ')]);
+          //  const vulnerabilitiesData = Object.entries(reportData[index]).map(([type, locations]) => [type, locations.join(', ')]);
           const vulnerabilitiesData = Object.entries(reportData[index]).map(
             ([type, locations]) => {
               // Remove "contracts/" prefix from each location string if present
@@ -1025,7 +1586,7 @@ const generatePDF = async (reportData) => {
       { name: reportData[5], level: "Optimizational" },
     ];
 
-    // const getCriticalLevel = (reportData) => {
+    //  const getCriticalLevel = (reportData) => {
     //   if (reportData[1]) {
     //     console.log('high');
     //     return 'High';
@@ -1049,7 +1610,7 @@ const generatePDF = async (reportData) => {
     //     return 'Unknown'; // Default case if none of the keys are present
     //   }
     // };
-    // const B = getCriticalLevel(reportData);
+    //  const B = getCriticalLevel(reportData);
 
     for (let a of arr) {
       let category = vulnerabilityCategories.find((category) =>
@@ -1251,14 +1812,4 @@ const generatePDF = async (reportData) => {
     alert(e);
     console.log("error: ", e);
   }
-};
-
-export {
-  generatePDF,
-  formatDate,
-  PurchasePlan,
-  ScanSubmit,
-  generateTable,
-  getScanHistory,
-  downloadReport,
 };

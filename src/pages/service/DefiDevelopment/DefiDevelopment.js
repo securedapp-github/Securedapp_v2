@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,12 +19,23 @@ function DefiDevelopment() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "DeFi Development: Securely Transforming Financial Services",
+          desc: "Build DeFi platforms with SecureDApp. Our solutions include smart contracts, yield farming, and token creation to securely transform financial services.",
+          keywords:
+            "DeFi development, decentralized finance, smart contracts, yield farming, DeFi platforms, blockchain finance, secure DeFi solutions, DeFi tokens, decentralized apps",
+          image: "/assets/images/ServicePages/s12-hero.png",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="DeFi DEVELOPMENT"
           title="Transforming Financial Services"
           image={"/assets/images/ServicePages/s12-hero.png"}
+          service={true}
         />
         <ProductCard
           header={"What is a Decentralized Finance (DeFi)?"}
@@ -31,7 +43,7 @@ function DefiDevelopment() {
             "Decentralized Finance (DeFi)) is an emerging financial instrument built on blockchain technology that provides financial services without intermediaries. It includes various applications such as lending, borrowing, trading, and asset management. DeFi platforms operate on a decentralized network, offering transparency, accessibility, and financial inclusion.<br/><br/> DeFi services are decentralized applications (dApps) that utilize the decentralized nature of public blockchains and the power of smart contracts to offer globally accessible financial services."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s12-1.png"}
+          image={"/assets/images/ServicePages/s12-1.webp"}
         />
         <div>
           <SectionTitle
@@ -77,7 +89,7 @@ function DefiDevelopment() {
             "At SecureDApp, we specialize in crafting innovative DeFi solutions tailored to your needs. Our recent success in building a cutting-edge DeFi exchange from scratch highlights our expertise and commitment to excellence.<br/><br/>Whether you're looking to launch a new DeFi platform or enhance an existing one, our team brings unparalleled experience in smart contract development, security, and blockchain integration.<br/><br/>By choosing SecureDApp, you're not just selecting a service provider—you're partnering with a dedicated team ready to drive your DeFi vision to success. Let us help you navigate the exciting world of decentralized finance with confidence and efficiency."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s12-2.png"}
+          image={"/assets/images/ServicePages/s12-2.webp"}
         />
         <Testimonials reviews={reviews} />
         <div>

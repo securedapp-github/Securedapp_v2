@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,12 +19,24 @@ function BlockchainForensic() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title:
+            "Blockchain Forensic: Crypto Transaction Tracing & Investigation",
+          desc: "Explore Blockchain Forensic solutions for tracing crypto transactions, ensuring compliance, and preventing fraud. Trusted by 120+ companies.",
+          keywords:
+            "Blockchain Forensics, Cryptocurrency Investigation, Crypto Transaction Tracing, Blockchain Compliance, Digital Asset Recovery, Blockchain Security Audit, Fraud Detection Blockchain, Cryptocurrency Tracing",
+          image: "/assets/images/ServicePages/s7-hero.webp",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="BLOCKCHAIN FORENSIC"
-          title="Tracing & Investigation cryptocurrency Transactions"
-          image={"/assets/images/ServicePages/s7-hero.png"}
+          title="Tracing & Investigation Cryptocurrency Transactions"
+          image={"/assets/images/ServicePages/s7-hero.webp"}
+          service={true}
         />
         <ProductCard
           header={"What is a Blockchain Forensic ?"}
@@ -31,7 +44,7 @@ function BlockchainForensic() {
             "Blockchain forensics involves examining blockchain data to investigate criminal activities such as money laundering, fraud, and terrorism financing. Using blockchain forensics tools, investigators can trace the movement of funds, detect illicit transactions, and identify suspicious behavior and individuals involved in illegal activities."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ServicePages/s7-1.png"}
+          image={"/assets/images/ServicePages/s7-1.webp"}
         />
         <ProductWhyCard
           header={"Need of Blockchain Forensic"}
@@ -40,7 +53,7 @@ function BlockchainForensic() {
             "In the Web3 ecosystem, attackers exploit vulnerabilities in code, and the absence of robust legal frameworks makes it challenging to hold them accountable.While blockchain transactions are publicly visible, malicious actors use techniques such as peel chains, mixers, and chain hopping, complicating blockchain transaction analysis and making it extremely difficult to trace stolen funds.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s7-2.png"}
+          image={"/assets/images/ServicePages/s7-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>

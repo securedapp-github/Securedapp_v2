@@ -1,10 +1,10 @@
 .brand-logos {
   background-color: #ffffff05;
-  @apply w-full;
+  @apply w-full md:px-12;
 }
 
 .brand-logos {
-  .slick-track {
+  .react-multi-carousel-track {
     @apply flex items-center justify-center gap-x-2 !important;
   }
 }

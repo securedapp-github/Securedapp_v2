@@ -9,6 +9,7 @@ import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../Service.css";
+import MetaTags from "../../../components/common/MetaTags";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import HowItWorksCard from "../../../components/productService/HowItWorksCard";
 import Benefits from "../sections/Benefits";
@@ -18,12 +19,23 @@ function RwaAudit() {
   window.scrollTo(0, 0);
   return (
     <div className="service-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "RWA Audit: Secure Your Real-World Assets on Blockchain",
+          desc: "Ensure the security of your tokenized real-world assets with RWA audits. Gain transparency, compliance, and investor confidence on the blockchain.",
+          keywords:
+            "RWA audit, real-world asset audit, blockchain asset audit, tokenized asset security, blockchain compliance, asset tokenization audit",
+          image: "/assets/images/ServicePages/s8-hero.webp",
+        }}
+      />
       <Navbar />
       <div className="service">
         <ProductServiceHero
           name="RWA AUDIT"
           title="Audit for Secure Blockchain Asset Valuation"
-          image={"/assets/images/ServicePages/s8-hero.png"}
+          image={"/assets/images/ServicePages/s8-hero.webp"}
+          service={true}
         />
         <ProductCard
           header={"What are Real-world Assets?"}
@@ -44,7 +56,7 @@ function RwaAudit() {
             <br/><br/>• Intellectual Property`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s8-2.png"}
+          image={"/assets/images/ServicePages/s8-2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div>
@@ -71,7 +83,7 @@ function RwaAudit() {
             "RWA (Real World Asset) Audit comprehensively evaluates real-world assets tokenized on a blockchain platform. It assesses the underlying asset's value, the accuracy of the token representation, and the overall security and compliance of the tokenization process.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ServicePages/s8-3.png"}
+          image={"/assets/images/ServicePages/s8-3.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         <div className="features-section">

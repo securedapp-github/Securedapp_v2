@@ -34,8 +34,8 @@ const navigationItems = [
         to: "",
       },
       {
-        name: "Secure Audit",
-        to: "/secure-audit",
+        name: "Secure Trace",
+        to: "/secure-trace",
       },
       {
         name: "Secure Pad",
@@ -48,19 +48,19 @@ const navigationItems = [
     items: [
       {
         name: "Audit",
-        to: "",
+        to: "/smart-contract-audit",
       },
       {
         name: "Security",
-        to: "",
+        to: "/web3-security",
       },
       {
         name: "Regulatory Solutions",
-        to: "",
+        to: "/crypto-compliance-aml",
       },
       {
         name: "Training & Education",
-        to: "",
+        to: "/levelup-academy",
       },
     ],
   },
@@ -70,6 +70,10 @@ const navigationItems = [
       {
         name: "About Us",
         to: "/about",
+      },
+      {
+        name: "Authors",
+        to: "/authors",
       },
       {
         name: "Media",
@@ -93,13 +97,21 @@ const navigationItems = [
         to: "/blog",
       },
       {
+        name: "Audits",
+        to: "/audits",
+      },
+      {
+        name: "Vulnerabilities",
+        to: "/solidity-shield-vulnerabilities",
+      },
+      {
         name: "Github",
         to: "https://github.com/securedapp-github",
       },
-      {
-        name: "Referral",
-        to: "",
-      },
+      // {
+      //   name: "Referral",
+      //   to: "",
+      // },
       {
         name: "Workplace Policy",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/workplace-policy",
@@ -120,17 +132,17 @@ const navigationItems = [
         name: "Whitepaper",
         to: "https://securedapp.gitbook.io/securedapp-launchpad",
       },
-      {
-        name: "Research Reports",
-        to: "",
-      },
+      // {
+      //   name: "Research Reports",
+      //   to: "",
+      // },
     ],
   },
 ];
 
 const socials = [
   {
-    to: "https://discord.com/invite/jQcd5WwhNy",
+    to: "https://discord.gg/BweY4Ze4",
     icon: <FontAwesomeIcon size="xl" icon={faDiscord} />,
   },
   {
@@ -163,9 +175,12 @@ const Footer = () => {
           }),
         })
           .then((res) => {
-            res.status
-              ? toast.success("Succesfully Subscribed!")
-              : toast.error("Unexpected error! Try again.");
+            if (res.status) {
+              toast.success("Succesfully Subscribed!");
+              setEmail("");
+            } else {
+              toast.error("Unexpected error! Try again.");
+            }
           })
           .catch((err) => {
             toast.error("Unexpected error! Try again.");
@@ -181,13 +196,14 @@ const Footer = () => {
       <div className="footer-newsletter">
         <div className="footer-newsletter-left">
           <div className="text-lg font-bold">Join our newsletter</div>
-          <div className="font-light">Keep upto date evrything SecureDapp</div>
+          <div className="font-light">Keep upto date everything SecureDapp</div>
         </div>
         <div className="footer-newsletter-right">
           <input
             className="email-input-box"
             placeholder="Enter your email"
             type="email"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Button
@@ -205,7 +221,14 @@ const Footer = () => {
           </div>
           <div className="footer-socials">
             {socials.map((social) => {
-              return <Link to={social.to}>{social.icon}</Link>;
+              return (
+                <div
+                  className="hover:cursor-pointer"
+                  onClick={() => window.open(social.to)}
+                >
+                  {social.icon}
+                </div>
+              );
             })}
           </div>
         </div>
@@ -220,13 +243,7 @@ const Footer = () => {
                   {navigationItem.items.map((item, index) => {
                     return (
                       <div className="footer-navigation-item-item">
-                        {item.to.startsWith("/") ? (
-                          <Link to={item.to}>{item.name}</Link>
-                        ) : (
-                          <Link to={item.to} target="_blank">
-                            {item.name}
-                          </Link>
-                        )}
+                        <Link to={item.to}>{item.name}</Link>
                       </div>
                     );
                   })}
@@ -249,14 +266,16 @@ const Footer = () => {
           <FontAwesomeIcon size="2xs" icon={faCircle} />
           <a
             target="_blank"
-            href="https://securedapp.gitbook.io/securedapp-launchpad/terms-and-conditions"
+            href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
             rel="noreferrer"
           >
             Terms & Conditions
           </a>
         </div>
         <div className="footer-legacy-right">
-          <div>© 2024, Secure Dapp. All rights reserved</div>
+          <div>
+            © 2024, Vettedcode Technologies India Pvt. Ltd.. All rights reserved
+          </div>
         </div>
       </div>
     </div>

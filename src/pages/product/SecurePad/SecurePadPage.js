@@ -7,6 +7,7 @@ import Button from "../../../components/common/Button";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../../product/Product.css";
+import MetaTags from "../../../components/common/MetaTags";
 import ProductCard from "../../../components/productService/ProductCard";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
@@ -17,12 +18,22 @@ function SecurePadPage() {
   window.scrollTo(0, 0);
   return (
     <div className="product-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "SecurePad: Zero-Fee Tokenization for Blockchain Security",
+          desc: "Launch, trade, and manage tokens seamlessly with SecurePad, the zero-fee platform offering secure, no-code, cross-chain blockchain services.",
+          keywords:
+            "SecurePad, blockchain security, tokenization, free token creation, no-code blockchain, cross-chain functionality, decentralized exchange, token staking, token locker, Initial DEX Offering, blockchain project, SecureDApp",
+          image: "/assets/images/ProductPages/sp/sp-hero.jpg",
+        }}
+      />
       <Navbar />
       <div className="product">
         <ProductServiceHero
           name="SECURE PAD"
           title="A platform for Cost-free Tokenization in Blockchain Security Space"
-          image={"/assets/images/ProductPages/sp/hero.jpg"}
+          image={"/assets/images/ProductPages/sp/sp-hero.jpg"}
           onClick={() => window.open("https://securepad.xyz/")}
         />
         <ProductCard
@@ -31,7 +42,7 @@ function SecurePadPage() {
             "SecurePAD stands out as a zero-fee tokenization platform, combining sturdy security with simple no-code functionality and versatile cross-chain capabilities. <br/><br/> This unique blend empowers individuals and projects to effortlessly create, trade, and manage tokens throughout their entire lifecycle, all without incurring high costs."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ProductPages/sp/1.png"}
+          image={"/assets/images/ProductPages/sp/1.webp"}
         />
         <div className="features-section">
           <SectionTitle
@@ -59,7 +70,7 @@ function SecurePadPage() {
             <br/><br/> • Serves as a governance system that empowers users to participate in the decision-making process of the platform.`,
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ProductPages/sp/2.png"}
+          image={"/assets/images/ProductPages/sp/2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         {/* <div>

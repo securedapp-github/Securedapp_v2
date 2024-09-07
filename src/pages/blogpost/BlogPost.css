@@ -81,6 +81,10 @@ h2 {
   @apply flex gap-x-4 lg:justify-center items-center;
 }
 
+.publisher-socials i:hover {
+  color: #12d576;
+}
+
 .related-blogs {
   @apply px-4 lg:px-24 pt-12;
 }

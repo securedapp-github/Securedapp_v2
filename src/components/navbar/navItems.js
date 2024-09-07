@@ -12,21 +12,40 @@ export const navItems = [
   {
     to: "",
     items: [
-      { name: "DApp Development", to: "/dapp-development" },
-      { name: "Smart Contract Audit", to: "/smart-contract-audit" },
-      { name: "Dapp Security Audit", to: "/dapp-security-audit" },
-      { name: "Token Audit", to: "/token-audit" },
-      { name: "Web3 KYC", to: "/web3-kyc" },
-      { name: "Web3 Security", to: "/web3-security" },
-      { name: "Blockchain Forensic", to: "/blockchain-forensic" },
-      { name: "RWA Audit", to: "/rwa-audit" },
-      { name: "Crypto Compliance & AML", to: "/crypto-compliance-aml" },
       {
-        name: "Decentralized Identity (DID)",
-        to: "/decentralized-identity-did",
+        title: "Audit",
+        children: [
+          { name: "Smart Contract Audit", to: "/smart-contract-audit" },
+          { name: "Dapp Security Audit", to: "/dapp-security-audit" },
+          { name: "Token Audit", to: "/token-audit" },
+          { name: "RWA Audit", to: "/rwa-audit" },
+        ],
       },
-      { name: "NFTs Development", to: "/nfts-development" },
-      { name: "DeFi Development", to: "/defi-development" },
+      {
+        title: "Security",
+        children: [
+          { name: "Web3 Security", to: "/web3-security" },
+          { name: "Web3 KYC", to: "/web3-kyc" },
+          { name: "Blockchain Forensic", to: "/blockchain-forensic" },
+        ],
+      },
+      {
+        title: "Regulatory Solutions",
+        children: [
+          { name: "Crypto Compliance & AML", to: "/crypto-compliance-aml" },
+          {
+            name: "Decentralized Identity (DID)",
+            to: "/decentralized-identity-did",
+          },
+          { name: "DApp Development", to: "/dapp-development" },
+          { name: "NFTs Development", to: "/nfts-development" },
+          { name: "DeFi Development", to: "/defi-development" },
+        ],
+      },
+      {
+        title: "Training & Education",
+        children: [{ name: "LevelUp Academy", to: "/levelup-academy" }],
+      },
     ],
     label: "Services",
   },
@@ -35,12 +54,13 @@ export const navItems = [
     items: [
       { name: "Blogs", to: "/blog" },
       { name: "About Us", to: "/about" },
+      { name: "Our Authors", to: "/authors" },
       { name: "Media", to: "/media" },
     ],
     label: "Resources",
   },
   {
-    to: "/pricing",
+    to: "",
     items: [],
     label: "Pricing",
   },

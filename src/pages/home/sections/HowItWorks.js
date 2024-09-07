@@ -32,7 +32,7 @@ const HowCard = ({ title, desc }) => {
 const HowItWorks = () => (
   <div className="how-it-works">
     <SectionTitle
-      name="How it works"
+      name="Know how"
       title="How it works"
       description="A Peek Into Our Audit Process"
     />

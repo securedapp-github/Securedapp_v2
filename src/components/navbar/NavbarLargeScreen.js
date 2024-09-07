@@ -25,7 +25,8 @@ const NavbarLargeScreen = ({
               items={item["items"]}
               dropDown={dropDown}
               setDropDown={setDropDown}
-              darkMode={darkMode}>
+              darkMode={darkMode}
+            >
               {item["label"]}
             </NavbarItem>
           );
@@ -45,7 +46,8 @@ const NavbarLargeScreen = ({
           <Button
             className="w-36"
             text="Request Quote"
-            onClick={handleNavigation}></Button>
+            onClick={handleNavigation}
+          ></Button>
         )}
       </div>
     </nav>

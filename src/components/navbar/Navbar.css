@@ -22,6 +22,25 @@
   @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
 }
 
+.nested-navbar-items-services {
+  @apply flex justify-center gap-x-6 whitespace-nowrap;
+}
+
+.nested-navbar-items-services-card-col {
+  @apply flex flex-col gap-y-5 px-4;
+}
+
+.nested-navbar-items-services-card-col-header {
+  @apply font-semibold text-lg;
+}
+
+.nested-navbar-items-services-card-col-items {
+  @apply flex flex-col gap-y-3;
+}
+
+.nested-navbar-items-services-card-col-item:hover {
+}
+
 .navbar-small-screen {
   @apply py-3 px-2 z-40 font-nunitoSans shadow-md rounded-b-xl text-secondary dark:text-primary bg-cardBackgroundLight dark:bg-cardBackgroundDark;
 }
@@ -59,4 +78,28 @@
 
 .nested-sidebar-item:hover {
   @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
+}
+
+.services-nested-sidebar-item {
+  @apply cursor-pointer;
+}
+
+.services-nested-sidebar-item-header {
+  @apply pl-6 py-1 w-full flex items-center gap-x-2;
+}
+
+.services-nested-sidebar-item-header:hover {
+  @apply border rounded bg-cardBackgroundLight dark:bg-[#FAFAFA0F] border-black dark:border-white;
+}
+
+.services-nested-sidebar-body-items {
+  @apply pl-8 py-2 flex flex-col gap-y-2;
+}
+
+.services-nested-sidebar-body-item {
+  @apply text-sm font-light;
+}
+
+.services-nested-sidebar-body-item:hover {
+  @apply underline;
 }

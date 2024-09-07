@@ -6,8 +6,14 @@ import SectionTitle from "../../components/common/SectionTitle";
 import { tags } from "./blog-data";
 import "./Blog.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faArrowRight,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
+import MetaTags from "../../components/common/MetaTags";
+import { getBlogs } from "../../SolidityShield/functions";
 
 function Blog() {
   window.scrollTo(0, 0);
@@ -16,19 +22,26 @@ function Blog() {
   const [searchText, setSearchText] = useState("");
   const [selectedTag, setSelectedTags] = useState("");
 
-  async function getBlogs() {
-    const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
-    let data = await response.json();
-    data = data.filter((item) => item.status === 1);
-    setOriginalBlogs(data);
-    setBlogs(
-      data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
-    );
-    console.log(blogs);
-  }
+  // async function getBlogs() {
+  //   const response = await fetch("https://139-59-5-56.nip.io:3443/getBlogList");
+  //   let data = await response.json();
+  //   data = data.filter((item) => item.status === 1);
+  //   setOriginalBlogs(data);
+  //   setBlogs(
+  //     data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
+  //   );
+  //   console.log(blogs);
+  // }
 
   useEffect(() => {
-    getBlogs();
+    async function fetch() {
+      var data = await getBlogs();
+      setOriginalBlogs(data);
+      setBlogs(
+        data.sort((a, b) => new Date(b.modifiedon) - new Date(a.modifiedon))
+      );
+    }
+    fetch();
   }, []);
 
   useEffect(() => {
@@ -79,8 +92,29 @@ function Blog() {
     window.scrollTo(0, 0);
   };
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      paginate(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      paginate(currentPage - 1);
+    }
+  };
+
   return (
     <div className="blog-container">
+      <MetaTags
+        data={{
+          title: "SecureDApp Blog: Top Insights on Web3, Blockchain, & DeFi",
+          desc: "Stay updated with SecureDApp’s blog on Web3, Blockchain, DeFi, and more. Explore in-depth articles on finance, legal, tokens, and smart contracts.",
+          keywords:
+            "Web3 blog, Blockchain insights, DeFi articles, smart contracts, finance blog, legal in blockchain, token regulation, supply chain blockchain",
+          image: "",
+        }}
+      />
       <Navbar />
       <div className="blog">
         <SectionTitle title="Blog" description="Read the fastest Web3 blog" />
@@ -110,23 +144,37 @@ function Blog() {
           </div>
         </div>
         <div className="blog-cards">
-          {currentItems.map((item) => (
-            <BlogCard key={item.id} details={item} />
-          ))}
+          {currentItems.length > 0 ? (
+            currentItems.map((item) => (
+              <BlogCard key={item.id} details={item} />
+            ))
+          ) : (
+            <div style={{ width: "100%", height: "300px" }}>
+              <br />
+              <p style={{ margin: "auto" }}>No Results Found</p>
+            </div>
+          )}
         </div>
         <div className="blog-pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <div
-              className={`blog-pagination-item ${
-                currentPage === i + 1 && "selected-number"
-              }`}
-              key={i + 1}
-              onClick={() => paginate(i + 1)}
-              disabled={currentPage === i + 1}
+          <div className="blog-pagniation-arrow-container">
+            <button
+              className="blog-pagination-arrow"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
             >
-              {i + 1}
-            </div>
-          ))}
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+          </div>
+          <div className="blog-pagination-number">{currentPage}</div>
+          <div className="blog-pagniation-arrow-container">
+            <button
+              className="blog-pagination-arrow"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

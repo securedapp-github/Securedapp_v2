@@ -7,6 +7,7 @@ import Button from "../../../components/common/Button";
 import FAQs from "../../../components/common/FAQs";
 import { reviews } from "../../home/home.data";
 import "../../product/Product.css";
+import MetaTags from "../../../components/common/MetaTags";
 import ProductCard from "../../../components/productService/ProductCard";
 import { FeatureCards } from "../../../components/productService/FeatureCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
@@ -17,12 +18,22 @@ function SecureWatchPage() {
   window.scrollTo(0, 0);
   return (
     <div className="product-container">
+      {" "}
+      <MetaTags
+        data={{
+          title: "Blockchain Threat Detection with Secure Watch - SecureDApp",
+          desc: "Secure Watch offers AI-driven real-time blockchain threat detection, ensuring smart contract security by identifying and mitigating vulnerabilities.",
+          keywords:
+            "blockchain threat detection, smart contract security, Secure Watch, AI-driven monitoring, blockchain security tool, unauthorized access, real-time blockchain surveillance, smart contract vulnerabilities, blockchain threat intelligence, secure watch features",
+          image: "/assets/images/ProductPages/sw/hero.webp",
+        }}
+      />
       <Navbar />
       <div className="product">
         <ProductServiceHero
           name="SECURE WATCH"
           title="Blockchain Threat Detection"
-          image={"/assets/images/ProductPages/sw/hero.png"}
+          image={"/assets/images/ProductPages/sw/hero.webp"}
           onClick={() => window.open("https://securewatch.securedapp.io")}
         />
         <ProductCard
@@ -31,7 +42,7 @@ function SecureWatchPage() {
             "SecureWatch is a cutting-edge post-deployment security monitoring and threat detection tool that leverages AI for real-time surveillance of your projects and smart contracts. It provides continuous protection by constantly monitoring on-chain transactions to identify security breaches, unauthorized access, and abnormal behavior. <br/><br/> Seamlessly integrating with your existing DevOps processes, it guarantees that security measures are consistently applied throughout development and operations.<br/><br/>Comply with needed regulations and have complete visibility and control of your Web3 environment, 24-7, safeguarding client assets and stopping illicit finance."
           }
           buttonText={"Scan now"}
-          image={"/assets/images/ProductPages/sw/1.png"}
+          image={"/assets/images/ProductPages/sw/1.webp"}
         />
         <div className="features-section">
           <SectionTitle
@@ -67,7 +78,7 @@ function SecureWatchPage() {
             "With Blockchain Threat Intelligence at its core, SecureWatch offers unmatched insights and threat detection capabilities, helping you stay ahead of emerging vulnerabilities and risks. By continuously tracking deviations from normal behavior, SecureWatch proactively identifies potential threats before they escalate.",
           ]}
           buttonText={"Get Started"}
-          image={"/assets/images/ProductPages/sw/2.png"}
+          image={"/assets/images/ProductPages/sw/2.webp"}
           imageAlt={"Product 1 Why Image"}
         />
         {/* <div>
