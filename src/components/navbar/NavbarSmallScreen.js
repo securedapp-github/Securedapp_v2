@@ -27,6 +27,10 @@ const NavbarSmallScreen = ({
   const closeSideBar = () => setSideBarOpen(false);
 
   const selectNestedNavItem = (label) => {
+    if (label === "Pricing") {
+      typeof window !== "undefined" &&
+        window.open("/solidity-shield-scan/pricing");
+    }
     if (label === dropDown) {
       setDropDown("");
     } else {

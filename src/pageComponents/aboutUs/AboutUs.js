@@ -18,7 +18,6 @@ const TeamCard = ({ details }) => {
         <div className="team-card-header">
           <div className="team-card-header-image-container">
             <img
-              layout="intrinsic"
               className="team-card-header-image"
               alt=""
               src={details.image}
@@ -90,7 +89,7 @@ const AboutUs = () => {
           </div>
           <div className="about-us-hero-image">
             <img
-              layout="intrinsic"
+              style={{ maxWidth: "90%" }}
               src="/assets/images/about/photo1.png"
               alt=""
             />
@@ -105,8 +104,7 @@ const AboutUs = () => {
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
             <img
-              layout="intrinsic"
-              style={{ maxWidth: "450px", margin: "0 auto" }}
+              style={{ maxWidth: "90%", margin: "0 auto" }}
               src="/assets/images/about/photo2.png"
               alt=""
             />
@@ -172,7 +170,7 @@ const AboutUs = () => {
           <div className=" about-us-company-culture-image">
             <img
               layout="intrinsic"
-              style={{ maxWidth: "400px" }}
+              style={{ maxWidth: "90%" }}
               src="/assets/images/about/photo3.png"
               alt=""
             />
