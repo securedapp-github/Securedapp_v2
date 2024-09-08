@@ -1,4 +1,5 @@
-"use client";
+// IMPORTANT :
+// moved everything to pages/blog/[url].js
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
