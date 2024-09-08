@@ -128,12 +128,14 @@ const NavbarSmallScreen = ({
                                   {nestedItem["children"].map(
                                     (servicesItem) => {
                                       return (
-                                        <a
-                                          to={servicesItem.to}
-                                          className="services-nested-sidebar-body-item"
-                                        >
-                                          {servicesItem.name}
-                                        </a>
+                                        servicesItem.to && (
+                                          <Link
+                                            href={servicesItem.to}
+                                            className="services-nested-sidebar-body-item"
+                                          >
+                                            {servicesItem.name}
+                                          </Link>
+                                        )
                                       );
                                     }
                                   )}
@@ -141,12 +143,14 @@ const NavbarSmallScreen = ({
                               )}
                             </div>
                           ) : (
-                            <a
-                              className="nested-sidebar-item"
-                              to={nestedItem["to"]}
-                            >
-                              {nestedItem["name"]}
-                            </a>
+                            nestedItem["to"] && (
+                              <Link
+                                className="nested-sidebar-item"
+                                href={nestedItem["to"]}
+                              >
+                                {nestedItem["name"]}
+                              </Link>
+                            )
                           );
                         })}
                       </div>

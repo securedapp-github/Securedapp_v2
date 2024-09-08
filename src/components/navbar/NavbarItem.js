@@ -21,7 +21,7 @@ const NavbarItem = ({
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
     >
-      <a href={to}>
+      <Link href={to}>
         <div className="navbar-item-primary">
           <p
             onClick={() =>
@@ -40,7 +40,7 @@ const NavbarItem = ({
             />
           )}
         </div>
-      </a>
+      </Link>
       {items.length > 0 && dropDown === children && (
         <div
           className={`nested-navbar ${
@@ -53,9 +53,11 @@ const NavbarItem = ({
             <div className="nested-navbar-items">
               {items.map((item) => {
                 return (
-                  <a className="nested-navbar-item" href={item["to"]}>
-                    <p>{item["name"]}</p>
-                  </a>
+                  item["to"] && (
+                    <Link className="nested-navbar-item" href={item["to"]}>
+                      <p>{item["name"]}</p>
+                    </Link>
+                  )
                 );
               })}
             </div>
@@ -70,12 +72,14 @@ const NavbarItem = ({
                     <div className="nested-navbar-items-services-card-col-items">
                       {item.children.map((child) => {
                         return (
-                          <a
-                            href={child.to}
-                            className="nested-navbar-items-services-card-col-item"
-                          >
-                            <p>{child.name}</p>
-                          </a>
+                          child.to && (
+                            <Link
+                              href={child.to}
+                              className="nested-navbar-items-services-card-col-item"
+                            >
+                              <p>{child.name}</p>
+                            </Link>
+                          )
                         );
                       })}
                     </div>

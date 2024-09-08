@@ -143,10 +143,9 @@ const Pricing = () => {
                         price={detail.pricingCard.price}
                         description={detail.pricingCard.description}
                         onClick={() =>
-                          // detail.id > 0
-                          //   ? openModal(detail.id)
-                          //   : navigate.push("/solidity-shield-scan/auth")
-                          openModal(detail.id)
+                          detail.id > 0
+                            ? openModal(detail.id)
+                            : navigate.push("/solidity-shield-scan/auth")
                         }
                         id={detail.id}
                       />

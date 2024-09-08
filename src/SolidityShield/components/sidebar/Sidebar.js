@@ -95,13 +95,15 @@ export const Sidebar = () => {
                       onClick={() => {
                         if (item.name === "Log Out") {
                           handleLogout();
+                        } else {
+                          selectMenuItem(index);
                         }
-                        selectMenuItem(index);
                       }}
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"
-                      }`}>
+                      }`}
+                    >
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
                           {/* <item.image

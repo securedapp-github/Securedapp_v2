@@ -32,14 +32,14 @@ const TeamCard = ({ details }) => {
           </div>
           <div className="team-card-body-socials">
             {details.linkedin && (
-              <a target="_blank" href={details.linkedin}>
+              <Link target="_blank" href={details.linkedin}>
                 <FontAwesomeIcon size="lg" icon={faLinkedin} />
-              </a>
+              </Link>
             )}
             {details.twitter && (
-              <a target="_blank" href={details.twitter}>
+              <Link target="_blank" href={details.twitter}>
                 <FontAwesomeIcon size="lg" icon={faTwitter} />
-              </a>
+              </Link>
             )}
           </div>
         </div>

@@ -53,14 +53,14 @@ const AuthorProfile = () => {
                 </div>
                 <div className="author-profile-card-socials">
                   <div className="author-profile-card-social">
-                    <a target="_blank" href={authorDetail.twitter}>
+                    <Link target="_blank" href={authorDetail.twitter}>
                       <FontAwesomeIcon icon={faTwitter} />
-                    </a>
+                    </Link>
                   </div>
                   <div className="author-profile-card-social">
-                    <a target="_blank" href={authorDetail.linkedin}>
+                    <Link target="_blank" href={authorDetail.linkedin}>
                       <FontAwesomeIcon icon={faLinkedin} />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -88,10 +88,10 @@ const AuthorProfile = () => {
               {authorDetail.expertServices.map((service) => {
                 return (
                   <div className="author-profile-footer-link">
-                    <a href={service.to}>
+                    <Link href={service.to}>
                       <FontAwesomeIcon icon={faArrowRight} />
                       {service.name}
-                    </a>
+                    </Link>
                   </div>
                 );
               })}

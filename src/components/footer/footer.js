@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faSun } from "@fortawesome/free-solid-svg-icons";
@@ -227,7 +227,8 @@ const Footer = () => {
                   className="hover:cursor-pointer"
                   onClick={() =>
                     typeof window !== "undefined" && window.open(social.to)
-                  }>
+                  }
+                >
                   {social.icon}
                 </div>
               );
@@ -245,7 +246,7 @@ const Footer = () => {
                   {navigationItem.items.map((item, index) => {
                     return (
                       <div className="footer-navigation-item-item">
-                        <a href={item.to}>{item.name}</a>
+                        <Link href={item.to}>{item.name}</Link>
                       </div>
                     );
                   })}
@@ -258,19 +259,21 @@ const Footer = () => {
       <CustomHr />
       <div className="footer-legacy">
         <div className="footer-legacy-left">
-          <a
+          <Link
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             Privacy Policy{" "}
-          </a>
+          </Link>
           <FontAwesomeIcon size={"2xs"} icon={faCircle} />
-          <a
+          <Link
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             Terms & Conditions
-          </a>
+          </Link>
         </div>
         <div className="footer-legacy-right">
           <div>

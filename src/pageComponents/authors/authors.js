@@ -30,14 +30,14 @@ const AuthorCard = ({
         </div>
         <div className="authors-card-socials">
           <div className="authors-card-social">
-            <a target="_blank" href={twitter}>
+            <Link target="_blank" href={twitter}>
               <FontAwesomeIcon icon={faTwitter} />
-            </a>
+            </Link>
           </div>
           <div className="authors-card-social">
-            <a target="_blank" href={linkedin}>
+            <Link target="_blank" href={linkedin}>
               <FontAwesomeIcon icon={faLinkedin} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

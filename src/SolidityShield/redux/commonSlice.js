@@ -1,7 +1,10 @@
+"use client";
+
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialCommonState = {
-  showSideBar: false,
+  showSideBar:
+    typeof window !== "undefined" && window.innerWidth < 840 ? false : true,
   selectedSidebarItem: "Overview",
   isRequestModalOpen: false,
   creditsRemaining: 10,

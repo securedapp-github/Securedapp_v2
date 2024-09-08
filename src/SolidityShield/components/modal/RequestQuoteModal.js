@@ -233,14 +233,14 @@ const RequestQuoteModal = () => {
               <input id="request-quote-check-privacy" type="checkbox" />
               <div>
                 I agree with the{" "}
-                <a
+                <Link
                   className="text-[#A4CDFF] font-bold"
                   target="_blank"
                   href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
                   rel="noreferrer"
                 >
                   Privacy Policy
-                </a>{" "}
+                </Link>{" "}
                 and information being used to contact me
               </div>
             </div>

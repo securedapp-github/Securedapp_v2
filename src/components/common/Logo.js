@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Logo = ({ isLeft = false, className = "" }) => {
   return (
-    <a
+    <Link
       className={`flex ${
         isLeft ? "justify-start" : "justify-center"
       } ${className}`}
@@ -21,7 +21,7 @@ const Logo = ({ isLeft = false, className = "" }) => {
         alt="logo"
         className="w-[120px] lg:w-[150px] h-auto hidden dark:block"
       />
-    </a>
+    </Link>
   );
 };
 
