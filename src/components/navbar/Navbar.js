@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect } from "react";
 import Image from "next/image";
 import NavbarLargeScreen from "./NavbarLargeScreen";
@@ -9,7 +11,9 @@ import {
   getHomeSelector,
   setIsRequestModalOpen,
   setDarkMode,
+  setIsLargeScreen,
 } from "../../redux/slices/main/homeSlice";
+import AOS from "aos";
 import RequestQuoteModal from "../modal/RequestQuoteModal";
 
 const Navbar = () => {
@@ -78,6 +82,26 @@ const Navbar = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        dispatch(setIsLargeScreen(window.innerWidth >= 1024));
+      }
+    };
+    handleResize();
+    AOS.init();
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, [dispatch]);
 
   return (
     <div className="absolute z-10 top-0 left-0 right-0">

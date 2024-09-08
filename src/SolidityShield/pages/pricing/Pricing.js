@@ -1,3 +1,5 @@
+"use client";
+
 import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
 import CustomButton from "../../components/common/CustomButton";
@@ -122,7 +124,7 @@ const Pricing = () => {
           width: "125%",
           transform: "scale(0.8)",
           transformOrigin: "top left",
-          overflowX: "hidden",
+          overflowX: "auto",
         }}
         className="sss-pricing-plans-scrollable"
       >

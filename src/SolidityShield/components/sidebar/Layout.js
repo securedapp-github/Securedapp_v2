@@ -13,7 +13,7 @@ const capitalizePath = (str) => {
     .join(" ");
 };
 
-export const MainLayout = () => {
+export const MainLayout = ({ children }) => {
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -40,16 +40,12 @@ export const MainLayout = () => {
       <Sidebar />
       <div className="sss-product-with-header">
         <Header />
-        {/* <Outlet /> */}
+        {children}
       </div>
     </div>
   );
 };
 
-export const NoSidebarLayout = () => {
-  return (
-    <div className="py-4 h-screen overflow-y-auto">
-      <Outlet />
-    </div>
-  );
+export const NoSidebarLayout = ({ children }) => {
+  return <div className="py-4 h-screen overflow-y-auto">{children}</div>;
 };

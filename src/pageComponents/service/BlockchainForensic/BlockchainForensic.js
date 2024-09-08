@@ -1,3 +1,5 @@
+"use client";
+
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
 import ProductServiceHero from "../../../components/common/ProductServiceHero";

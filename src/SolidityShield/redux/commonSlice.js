@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialCommonState = {
-  showSideBar: typeof window !== "undefined" && window.innerWidth > 1024,
+  showSideBar: false,
   selectedSidebarItem: "Overview",
   isRequestModalOpen: false,
   creditsRemaining: 10,

@@ -10,9 +10,9 @@ import paymentReducer from "../SolidityShield/redux/dashboard/paymentSlice";
 
 export const mainStore = configureStore({
   reducer: {
-    home: homeReducer,
     common: commonReducer,
     auth: authReducer,
+    home: homeReducer,
     scanSummary: scanSummaryReducer,
     issues: issuesReducer,
     history: historyReducer,

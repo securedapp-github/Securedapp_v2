@@ -1,3 +1,5 @@
+"use client";
+
 import { useSelector } from "react-redux";
 import {
   getCommonSelector,
@@ -29,7 +31,7 @@ export const Sidebar = () => {
   const auth = useSelector(getUserData);
 
   const selectMenuItem = (index) => {
-    navigate.push(sidebarItems[index].to);
+    navigate.push("/solidity-shield-scan/" + sidebarItems[index].to);
     dispatch(setSelectedSidebarItem(sidebarItems[index].name));
     isMobile && dispatch(setSideBar(false));
   };
@@ -99,19 +101,17 @@ export const Sidebar = () => {
                       className={`sss-sidebar-item-container ${
                         selectedSidebarItem === item.name &&
                         "selected-sss-sidebar-item"
-                      }`}
-                    >
+                      }`}>
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
-                          <img layout="intrinsic" src={item.image} alt="" />
-                          <item.image
+                          {/* <item.image
                             fill={"none"}
                             stroke={
                               selectedSidebarItem === item.name
                                 ? "#12D576"
                                 : "#B2ABAB"
                             }
-                          />
+                          /> */}
                         </div>
                         <div className="sss-sidebar-item-text">{item.name}</div>
                       </div>

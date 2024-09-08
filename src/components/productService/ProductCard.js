@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../common/Button";
 import Image from "next/image";
 

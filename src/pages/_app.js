@@ -69,24 +69,28 @@ import { MainLayout } from "../SolidityShield/components/sidebar/Layout";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  const isSolidityShieldScan = router.asPath.includes("/solidity-shield-scan/");
+  const isSolidityShieldScan = router.asPath.includes("/solidity-shield-scan");
+  console.log(router.asPath, isSolidityShieldScan);
   return (
     <>
-      <Provider
-        store={isSolidityShieldScan ? solidityShieldScanStore : mainStore}
-      >
+      <Provider store={mainStore}>
         <div className="bg-primary dark:bg-secondary text-secondary dark:text-primary">
-          {isSolidityShieldScan && <MainLayout />}
           <ToastContainer
             position="top-center"
             autoClose={2000}
             theme="dark"
             pauseOnHover
           />
-          <ScanNowModal />
-          <PaymentModal />
-          {<RequestQuoteModal />}
-          <Component {...pageProps} />
+          {isSolidityShieldScan && <ScanNowModal />}
+          {isSolidityShieldScan && <PaymentModal />}
+          {isSolidityShieldScan && <RequestQuoteModal />}
+          {isSolidityShieldScan ? (
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+          ) : (
+            <Component {...pageProps} />
+          )}
         </div>
       </Provider>
     </>

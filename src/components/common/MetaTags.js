@@ -10,7 +10,7 @@ const MetaTags = ({ data }) => {
         rel="stylesheet"
         href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
       />
-
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       {/* Basic Meta Tags */}
       {data && <title>{data.title}</title>}
       {data && <meta name="description" content={data.desc} />}

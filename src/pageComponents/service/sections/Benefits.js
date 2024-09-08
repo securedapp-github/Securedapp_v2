@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../../../components/common/Button";
 import BenefitsCard from "../../../components/productService/BenefitsCard";
 import { useRouter } from "next/router";
