@@ -128,7 +128,9 @@ export default function BlogPost() {
       return;
     }
 
-    var blog = blogsData.find((data) => data.url === url && data.status === 1);
+    var blog = blogsData.find(
+      (data) => data.url.replace(":", "") === url && data.status === 1
+    );
 
     if (!blog) {
       return;
@@ -218,7 +220,9 @@ export default function BlogPost() {
     );
   };
 
-  const currentBlog = fullData.find((item) => item.url === url);
+  const currentBlog = fullData.find(
+    (item) => item.url.replace(":", "") === url.replace(":", "")
+  );
 
   return (
     <div className="blog-post-container">
@@ -432,7 +436,7 @@ export default function BlogPost() {
 export async function getStaticPaths() {
   var data = await fetchBlogs();
   const paths = data.map((blog) => ({
-    params: { url: blog.url },
+    params: { url: blog.url.replace(":", "") },
   }));
 
   return {
@@ -444,7 +448,9 @@ export async function getStaticPaths() {
 // 2. Define `getStaticProps` to fetch blog data for each page
 export async function getStaticProps({ params }) {
   var data = await fetchBlogs();
-  const blog = data.find((blog) => blog.url === params.url);
+  const blog = data.find(
+    (blog) => blog.url.replace(":", "") === params.url.replace(":", "")
+  );
 
   if (!blog) {
     return {
