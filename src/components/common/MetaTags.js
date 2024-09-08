@@ -14,8 +14,15 @@ const MetaTags = ({ data }) => {
       <title>{data.title}</title>
       <meta name="author" content="SecureDapp" />
       <meta name="theme-color" content="#000000" />
-      <link rel="icon" type="image/x-icon" href="./logo.png" />
-      <link rel="apple-touch-icon" href="./logo.png" />
+      <link
+        rel="icon"
+        type="image/x-icon"
+        href="https://securedapp.io/assets/images/logo.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        href="https://securedapp.io/assets/images/logo.png"
+      />
 
       {/* Basic Meta Tags */}
       {<meta name="description" content={data.desc} />}
@@ -24,7 +31,16 @@ const MetaTags = ({ data }) => {
       {/* Open Graph Meta Tags (for social media) */}
       {<meta property="og:title" content={data.title} />}
       {<meta property="og:description" content={data.desc} />}
-      {<meta property="og:image" content={data.image} />}
+      {
+        <meta
+          property="og:image"
+          content={
+            data.image.includes("https://")
+              ? data.image
+              : "https://securedapp.io" + data.image
+          }
+        />
+      }
       {<meta property="og:url" content={url} />}
       {<meta property="og:type" content="website" />}
 
@@ -32,7 +48,16 @@ const MetaTags = ({ data }) => {
       {<meta name="twitter:card" content="summary_large_image" />}
       {<meta name="twitter:title" content={data.title} />}
       {<meta name="twitter:description" content={data.desc} />}
-      {<meta name="twitter:image" content={data.image} />}
+      {
+        <meta
+          name="twitter:image"
+          content={
+            data.image.includes("https://")
+              ? data.image
+              : "https://securedapp.io" + data.image
+          }
+        />
+      }
 
       {/* SEO Meta Tags */}
       {<meta name="robots" content="index, follow" />}

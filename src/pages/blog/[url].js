@@ -201,11 +201,16 @@ export default function BlogPost() {
         {index ? (
           <div className="card-details">
             <div className="card-title">{title}</div>
-            <ul className="card-content">
+            <div className="card-content">
               {index.slice(0, shortIndexView ? 5 : index.length).map((h) => (
-                <li onClick={() => scrollToHeading(h)}>{h}</li>
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={() => scrollToHeading(h)}
+                >
+                  {h}
+                </div>
               ))}
-            </ul>
+            </div>
             <div onClick={toggleIndexView} className="card-read-more">
               {shortIndexView ? "Read More" : "Read Less"}
             </div>
