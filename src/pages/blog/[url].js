@@ -174,12 +174,6 @@ export default function BlogPost() {
       Summary: preview,
       Content: renderContent(blog),
     });
-
-    // to ensure that whenver the content changes
-    // page should scroll to top
-    if (typeof window !== "undefined") {
-      typeof window !== "undefined" && window.scrollTo(0, 0);
-    }
   };
 
   const findRelated = () => {
