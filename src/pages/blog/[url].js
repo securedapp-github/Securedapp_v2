@@ -114,20 +114,8 @@ export default function BlogPost() {
     return <div>Loading...</div>;
   }
 
-  const [blogDetails, setBlogDetails] = useState({
-    title: "",
-    preview: "",
-    tags: "",
-    Date: "",
-    Publisher: {
-      name: "",
-      image: "",
-    },
-    Index: "",
-    Summary: "",
-    Content: [],
-  });
-  const [blogsData, setBlogsData] = useState([]);
+  const [blogDetails, setBlogDetails] = useState();
+  const [blogsData, setBlogsData] = useState();
   const [shortIndexView, setShortIndexView] = useState(true);
   const [relatedArticles, setRelated] = useState([]);
 
@@ -136,7 +124,7 @@ export default function BlogPost() {
   };
 
   const getBlog = () => {
-    if (blogsData.length === 0) {
+    if (!blogsData) {
       return;
     }
 
@@ -177,30 +165,32 @@ export default function BlogPost() {
   };
 
   const findRelated = () => {
-    const tagSet = new Set(getTags(blogDetails.tags.toLowerCase()));
+    if (blogDetails) {
+      const tagSet = new Set(getTags(blogDetails.tags.toLowerCase()));
 
-    const related = blogsData.filter((blog) => {
-      const blogTags = getTags(blog.tags.toLowerCase());
-      return (
-        blog.heading !== blogDetails.title &&
-        blogTags.some((tag) => tagSet.has(tag))
-      );
-    });
+      const related = blogsData.filter((blog) => {
+        const blogTags = getTags(blog.tags.toLowerCase());
+        return (
+          blog.heading !== blogDetails.title &&
+          blogTags.some((tag) => tagSet.has(tag))
+        );
+      });
 
-    setRelated(related);
+      setRelated(related);
+    }
   };
 
   useEffect(() => {
     fetchBlogs(setBlogsData);
-  }, [blogsData]);
+  }, [!blogsData && blogsData]);
 
   useEffect(() => {
     findRelated();
-  }, [blogDetails]);
+  }, [!blogDetails && blogDetails]);
 
   useEffect(() => {
     getBlog();
-  }, [blogsData]);
+  }, [!blogsData && blogsData]);
 
   const IndexSummaryCard = ({ title, desc, index }) => {
     return (
