@@ -6,7 +6,10 @@ const MetaTags = ({ data }) => {
   var url = "https://securedapp.io" + router.asPath;
   return (
     <Head>
-      <meta charset="utf-8" />
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
+      />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>{data.title}</title>
       <meta name="author" content="SecureDapp" />
@@ -44,11 +47,6 @@ const MetaTags = ({ data }) => {
       {/* SEO Meta Tags */}
       {<meta name="robots" content="index, follow" />}
       {<meta name="googlebot" content="index, follow" />}
-
-      <link
-        rel="stylesheet"
-        href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
-      />
     </Head>
   );
 };

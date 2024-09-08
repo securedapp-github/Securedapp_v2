@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import Button from "../../../components/common/Button";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -141,7 +141,7 @@ const RequestQuoteModal = () => {
             <i
               onClick={closeModal}
               className="fa-solid fa-xmark fa-xl request-modal-close-button"
-            />
+            ></i>
           </div>
           <div className="requeset-quote-modal-header">
             Tell us about your Projects

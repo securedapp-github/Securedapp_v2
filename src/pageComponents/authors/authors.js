@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Link from "next/link";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

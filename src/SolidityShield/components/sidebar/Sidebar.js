@@ -106,14 +106,14 @@ export const Sidebar = () => {
                     >
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
-                          {/* <item.image
+                          <item.image
                             fill={"none"}
                             stroke={
                               selectedSidebarItem === item.name
                                 ? "#12D576"
                                 : "#B2ABAB"
                             }
-                          /> */}
+                          />
                         </div>
                         <div className="sss-sidebar-item-text">{item.name}</div>
                       </div>

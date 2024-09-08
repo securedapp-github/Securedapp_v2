@@ -4,13 +4,12 @@ import Link from "next/link";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/footer";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { authorsData } from "./authors.data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+import MetaTags from "../../components/common/MetaTags";
 
 const AuthorProfile = () => {
   if (typeof window !== "undefined") {
@@ -19,18 +18,28 @@ const AuthorProfile = () => {
   const router = useRouter();
 
   const { url } = router.query;
+
   const [authorDetail, setAuthorDetail] = useState(
-    authorsData.filter((author) => author.to === url)[0]
+    authorsData.filter((author) => author.to === router.asPath.split("/")[1])[0]
   );
 
   useEffect(() => {
-    const authorFound = authorsData.filter((author) => author.to === url);
-    setAuthorDetail(authorFound[0]);
-    console.log(authorFound);
-  }, [authorDetail]);
+    const filterAuthor = authorsData.filter((author) => author.to === url);
+
+    setAuthorDetail(filterAuthor[0]);
+  }, [authorDetail, url]);
 
   return (
     <div className="author-profile-container">
+      {authorDetail && (
+        <MetaTags
+          data={{
+            title: authorDetail.name + " : SecureDapp Author",
+            desc: authorDetail.details[0].info,
+            image: authorDetail.image,
+          }}
+        />
+      )}
       <Navbar />
       <div className="author-profile">
         {authorDetail && (

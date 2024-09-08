@@ -92,13 +92,7 @@ const ScanReport = ({ downloadId }) => {
         dispatch,
       });
       setHistory(scanHistory.history);
-      var latestScan = scanHistory.history.reduce((max, item) => {
-        return max && item.id > max.id ? item : max;
-      }, history[0]);
-      if (
-        auth.user.remainingCredits === 0 &&
-        Number(latestScan.id) !== Number(id)
-      ) {
+      if (auth.user.remainingCredits === 0 && scanHistory.history.length > 1) {
         !downloadId && toast("Upgrade to view the report");
         !downloadId && navigate.push("/solidity-shield-scan/overview");
       }

@@ -235,7 +235,7 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-      <div className="sss-pricing-plan-footer">
+      <div style={{ marginTop: "-200px" }} className="sss-pricing-plan-footer">
         <div className="sss-pricing-plan-footer-buttons">
           <div className="text-center">Get a custom Plan</div>
           <div className="sas-pricing-plan-footer-button-container">

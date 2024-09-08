@@ -29,12 +29,12 @@ export const sidebarItems = [
   // },
   {
     image: PaymentsLogo,
-    name: "Payment",
+    name: "Billing",
     to: "billing",
   },
   {
     image: SettingsLogo,
-    name: "Settings",
+    name: "Profile",
     to: "profile",
   },
   {

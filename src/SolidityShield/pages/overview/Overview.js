@@ -45,12 +45,6 @@ const OverviewScreen = () => {
 
   return (
     <div className="sss-overview-screen-container">
-      <MetaTags
-        data={{
-          title: "Solidity Shield Scan",
-          desc: "Get your smart contracts audited here by SecureDapps's Solidity Shield with AI scanning.",
-        }}
-      />
       <div className="sss-overview-screen">
         <div className="sss-overview-header">
           <div className="">Dashboard</div>

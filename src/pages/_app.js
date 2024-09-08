@@ -66,11 +66,15 @@ import PaymentModal from "../SolidityShield/components/modal/PaymentModal";
 import RequestQuoteModal from "../SolidityShield/components/modal/RequestQuoteModal";
 import { useRouter } from "next/router";
 import { MainLayout } from "../SolidityShield/components/sidebar/Layout";
+import MetaTags from "../components/common/MetaTags";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  const isSolidityShieldScan = router.asPath.includes("/solidity-shield-scan");
-  console.log(router.asPath, isSolidityShieldScan);
+  const isSolidityShieldScan =
+    router.asPath.includes("/solidity-shield-scan") &&
+    router.asPath !== "/solidity-shield-scan/auth" &&
+    router.asPath !== "/solidity-shield-scan/contact";
+
   return (
     <>
       <Provider store={mainStore}>
@@ -86,6 +90,12 @@ function MyApp({ Component, pageProps }) {
           {isSolidityShieldScan && <RequestQuoteModal />}
           {isSolidityShieldScan ? (
             <MainLayout>
+              <MetaTags
+                data={{
+                  title: "Solidity Shield Scan",
+                  desc: "Get your smart contracts audited here by SecureDapps's Solidity Shield with AI scanning.",
+                }}
+              />
               <Component {...pageProps} />
             </MainLayout>
           ) : (
