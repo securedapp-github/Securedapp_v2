@@ -6,10 +6,8 @@ export const BenefitsCardIcon = ({ img, imgAlt = "" }) => {
   const { darkMode } = useSelector(getHomeSelector);
   return (
     <div className="benefits-card-icon">
-      <Image
+      <img
         layout="intrinsic"
-        width={100}
-        height={100}
         style={{
           filter: darkMode
             ? "brightness(0) invert(1)"

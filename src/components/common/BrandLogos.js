@@ -92,15 +92,15 @@ const BrandLogos = () => {
         itemClass="carousel-item"
         customTransition="all 8s linear"
         draggable={false}
-        shouldResetAutoplay={false}>
+        shouldResetAutoplay={false}
+      >
         {brandLogos.map((brandLogo, index) => (
           <div
             key={index}
-            className="w-full flex justify-center items-center py-2">
-            <Image
+            className="w-full flex justify-center items-center py-2"
+          >
+            <img
               layout="intrinsic"
-              width={100}
-              height={100}
               src={brandLogo.src}
               alt={brandLogo.alt}
               className="w-[150px] lg:w-[200px]"

@@ -1,6 +1,6 @@
-import { Outlet, useLocation } from "next/router";
+import { useRouter } from "next/router";
 import Header from "../header/Header";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
@@ -14,13 +14,13 @@ const capitalizePath = (str) => {
 };
 
 export const MainLayout = () => {
-  const location = useLocation();
+  const router = useRouter();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (location.pathname) {
-      const pathName = location.pathname.split("/")[2];
+    if (router.asPath) {
+      const pathName = router.asPath.split("/")[2];
       if (pathName) {
         if (pathName === "vulnerability-scans" || pathName === "scan-report") {
           dispatch(setSelectedSidebarItem("Vulnerability Scans"));
@@ -33,14 +33,14 @@ export const MainLayout = () => {
         }
       }
     }
-  }, [location]);
+  }, [router.asPath]);
 
   return (
     <div className="sss-product">
       <Sidebar />
       <div className="sss-product-with-header">
         <Header />
-        <Outlet />
+        {/* <Outlet /> */}
       </div>
     </div>
   );

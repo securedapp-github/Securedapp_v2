@@ -15,10 +15,8 @@ const TeamCard = ({ details }) => {
       <div className="team-card">
         <div className="team-card-header">
           <div className="team-card-header-image-container">
-            <Image
+            <img
               layout="intrinsic"
-              width={100}
-              height={100}
               className="team-card-header-image"
               alt=""
               src={details.image}
@@ -89,10 +87,8 @@ const AboutUs = () => {
             application is shielded from potential threats.
           </div>
           <div className="about-us-hero-image">
-            <Image
+            <img
               layout="intrinsic"
-              width={100}
-              height={100}
               src="/assets/images/about/photo1.png"
               alt=""
             />
@@ -106,10 +102,8 @@ const AboutUs = () => {
       <div className="about-us-company">
         <div className="about-us-company-eco">
           <div className="about-us-company-eco-image">
-            <Image
+            <img
               layout="intrinsic"
-              width={100}
-              height={100}
               style={{ maxWidth: "450px", margin: "0 auto" }}
               src="/assets/images/about/photo2.png"
               alt=""
@@ -160,10 +154,8 @@ const AboutUs = () => {
                   return (
                     <div className="about-us-company-culture-content-point">
                       <div>
-                        <Image
+                        <img
                           layout="intrinsic"
-                          width={100}
-                          height={100}
                           src="/assets/images/green-tick.svg"
                           alt="green tick"
                         />
@@ -176,10 +168,8 @@ const AboutUs = () => {
             </div>
           </div>
           <div className=" about-us-company-culture-image">
-            <Image
+            <img
               layout="intrinsic"
-              width={100}
-              height={100}
               style={{ maxWidth: "400px" }}
               src="/assets/images/about/photo3.png"
               alt=""

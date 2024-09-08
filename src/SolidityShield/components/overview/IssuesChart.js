@@ -126,7 +126,7 @@ const IssuesChart = () => {
             <div className="sss-overview-issues-card-body">
               {/* <div className="sss-overview-issues-card-chart-header">
                 <div className="sss-overview-issues-card-chart-header-text">
-                  <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+                  <img layout="intrinsic"   layout="intrinsic"   
                     src="/assets/images/solidity-shield-scan/issues-chart-header-icon.svg"
                     alt="Issues Chart Header Icon"
                   />

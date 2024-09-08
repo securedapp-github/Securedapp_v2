@@ -19,13 +19,7 @@ const AuthorCard = ({
     <div className="authors-card-container">
       <div className="authors-card">
         <div className="authors-card-image">
-          <Image
-            layout="intrinsic"
-            width={100}
-            height={100}
-            src={image}
-            alt={name}
-          />
+          <img layout="intrinsic" src={image} alt={name} />
         </div>
         <div className="authors-card-name">{name}</div>
         <div className="authors-card-details">

@@ -5,19 +5,15 @@ const SectionTitle = ({ name, title, description }) => (
   <div className="section-title">
     {name !== undefined && (
       <div className="flex justify-center items-center space-x-3">
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           className="section-title-icon-image"
           src="/assets/images/stroke-left.svg"
           alt="stroke left"
         />
         <div className="section-title-icon-label">{name}</div>
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           className="section-title-icon-image"
           src="/assets/images/stroke-right.svg"
           alt="stroke right"

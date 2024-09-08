@@ -255,10 +255,8 @@ const Services = () => {
           </div>
         </div>
         <div className="services-content-right">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             src={
               servicesData[selectedService].image
                 ? servicesData[selectedService].image

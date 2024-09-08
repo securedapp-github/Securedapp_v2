@@ -8,35 +8,27 @@ const CTA = () => {
   return (
     <div className="cta-section">
       <div className="cta-section-grid">
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           className="hidden dark:block"
           src="/assets/images/cta-upper-grid-dark.svg"
           alt="cta-upper-grid"
         />
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           className="block dark:hidden"
           src="/assets/images/cta-upper-grid-light.svg"
           alt="cta-upper-grid"
         />
         <div className="cta-section-grid-patch">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             className="hidden dark:block"
             src="/assets/images/cta-upper-patch-dark.svg"
             alt="cta-upper-grid"
           />
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             className="block dark:hidden"
             src="/assets/images/cta-upper-patch-light.svg"
             alt="cta-upper-grid"
@@ -65,35 +57,27 @@ const CTA = () => {
         />
       </div>
       <div className="cta-section-grid">
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           className="hidden dark:block relative z-0"
           src="/assets/images/cta-lower-grid-dark.svg"
           alt="cta-lower-grid"
         />
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           className="block dark:hidden"
           src="/assets/images/cta-lower-grid-light.svg"
           alt="cta-lower-grid"
         />
         <div className="cta-section-grid-patch">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             className="hidden dark:block"
             src="/assets/images/cta-lower-patch-dark.svg"
             alt="cta-lower-grid"
           />
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             className="block dark:hidden"
             src="/assets/images/cta-lower-patch-light.svg"
             alt="cta-lower-grid"

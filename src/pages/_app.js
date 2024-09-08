@@ -1,6 +1,7 @@
 import { Provider } from "react-redux";
 import { mainStore } from "../redux/store";
 import "../styles/globals.css";
+import { ToastContainer } from "react-toastify";
 
 import "../components/common/ProductServiceHero.css";
 import "../components/common/BrandLogos.css";
@@ -58,13 +59,33 @@ import "../SolidityShield/components/auth/AuthInputField.css";
 import "../components/productService/ProductWhyCard.css";
 import "../pageComponents/authors/AuthorProfile.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import Head from "next/head";
+
+import { solidityShieldScanStore } from "../SolidityShield/redux/store";
+import ScanNowModal from "../SolidityShield/components/modal/ScanNowModal";
+import PaymentModal from "../SolidityShield/components/modal/PaymentModal";
+import RequestQuoteModal from "../SolidityShield/components/modal/RequestQuoteModal";
+import { useRouter } from "next/router";
+import { MainLayout } from "../SolidityShield/components/sidebar/Layout";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const isSolidityShieldScan = router.asPath.includes("/solidity-shield-scan/");
   return (
     <>
-      <Provider store={mainStore}>
+      <Provider
+        store={isSolidityShieldScan ? solidityShieldScanStore : mainStore}
+      >
         <div className="bg-primary dark:bg-secondary text-secondary dark:text-primary">
+          {isSolidityShieldScan && <MainLayout />}
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            theme="dark"
+            pauseOnHover
+          />
+          <ScanNowModal />
+          <PaymentModal />
+          {<RequestQuoteModal />}
           <Component {...pageProps} />
         </div>
       </Provider>

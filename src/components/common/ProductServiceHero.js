@@ -31,12 +31,14 @@ const ProductServiceHero = ({
           flexDirection: service && isOnWeb && "row",
           margin: service && isOnWeb && "50px 0 100px 0",
         }}
-        className="product-service-hero">
+        className="product-service-hero"
+      >
         <div
           style={{
             width: service && isOnWeb && "45%",
           }}
-          className="hero-header">
+          className="hero-header"
+        >
           {!service && isOnWeb && (
             <div className="hero-header-title">{name}</div>
           )}
@@ -47,20 +49,23 @@ const ProductServiceHero = ({
               flexWrap: service && isOnWeb && "wrap",
               flexDirection: service && isOnWeb && "column",
             }}
-            className="hero-header-content">
+            className="hero-header-content"
+          >
             {service && isOnWeb && (
               <div
                 style={{
                   width: "100%",
                   marginLeft: "20px",
                 }}
-                className="hero-header-title">
+                className="hero-header-title"
+              >
                 {name}
               </div>
             )}
             <div
               style={{ width: service && isOnWeb && "100%" }}
-              className="hero-header-left">
+              className="hero-header-left"
+            >
               {title}
             </div>
             {!service ? <div className="hero-header-line"></div> : <br></br>}
@@ -93,11 +98,10 @@ const ProductServiceHero = ({
         </div>
         <div
           style={{ width: service && isOnWeb && "50%" }}
-          className="hero-image-container">
-          <Image
+          className="hero-image-container"
+        >
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             style={{
               borderRadius: "15px",
               width: service && isOnWeb && "100%",

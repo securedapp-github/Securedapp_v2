@@ -9,10 +9,8 @@ export const WhyChooseCardIcon = ({ image, imageBackground }) => {
       className="why-choose-card-icon"
       style={{ background: `${imageBackground}` }}
     >
-      <Image
+      <img
         layout="intrinsic"
-        width={100}
-        height={100}
         style={{
           filter: darkMode
             ? "brightness(0) invert(1)"

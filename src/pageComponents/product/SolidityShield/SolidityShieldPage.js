@@ -107,7 +107,7 @@ function SolidityShieldPage() {
               );
             })}
             {/* <div className="how-it-works-section-end-image">
-              <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+              <img layout="intrinsic"   layout="intrinsic"   
                 src="/assets/images/product-1-how-it-works-1-end.svg"
                 alt="product 1 how it works end"
               />

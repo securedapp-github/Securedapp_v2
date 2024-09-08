@@ -37,7 +37,7 @@ const Header = () => {
           {/* <div className="sss-header-search-container">
             <div className="sss-header-search">
               <div className="sss-header-search-icon">
-                <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+                <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/search-icon.svg"
                   alt="Search Icon"
                 />
@@ -55,10 +55,8 @@ const Header = () => {
           </div>
         </div>
         <div className="sss-header-center">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             className="w-1/3"
             src="/assets/images/securedapp-logo-light.svg"
             alt=""
@@ -66,7 +64,7 @@ const Header = () => {
         </div>
         <div className="sss-header-right">
           {/* <div className="sss-header-right-calendar">
-            <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+            <img layout="intrinsic"   layout="intrinsic"   
               src="/assets/images/solidity-shield-scan/header-calendar.svg"
               alt="Calendar Logo"
             />
@@ -79,7 +77,7 @@ const Header = () => {
             </div>
           </div>
           <div className="sss-header-right-notifications">
-            <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+            <img layout="intrinsic"   layout="intrinsic"   
               src="/assets/images/solidity-shield-scan/header-notif.svg"
               alt="Notification Logo"
             />

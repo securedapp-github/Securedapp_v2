@@ -36,13 +36,7 @@ const PricingPlanCard = ({
         className="sss-pricing-plan-card"
       >
         <div className="sss-pricing-card-header">
-          <Image
-            layout="intrinsic"
-            width={100}
-            height={100}
-            src={icon}
-            alt=""
-          />
+          <img layout="intrinsic" src={icon} alt="" />
           <div className="sss-pricing-card-header-plan-type">{planType}</div>
         </div>
         <div className="sss-pricing-card-body">
@@ -105,7 +99,7 @@ const Pricing = () => {
   const dispatch = useDispatch();
 
   const openModal = (plan) => {
-    if (auth.user.email) {
+    if (localStorage.getItem("UserEmail")) {
       dispatch(setPaymentModal(true));
       dispatch(setPlan(plan));
     } else {
@@ -147,9 +141,10 @@ const Pricing = () => {
                         price={detail.pricingCard.price}
                         description={detail.pricingCard.description}
                         onClick={() =>
-                          detail.id > 0
-                            ? openModal(detail.id)
-                            : navigate.push("/solidity-shield-scan/auth")
+                          // detail.id > 0
+                          //   ? openModal(detail.id)
+                          //   : navigate.push("/solidity-shield-scan/auth")
+                          openModal(detail.id)
                         }
                         id={detail.id}
                       />
@@ -198,18 +193,14 @@ const Pricing = () => {
                               }`}
                             >
                               {detail.details[feature].value === "TICK" ? (
-                                <Image
+                                <img
                                   layout="intrinsic"
-                                  width={100}
-                                  height={100}
                                   src="/assets/images/solidity-shield-scan/billing-price-tick.svg"
                                   alt=""
                                 />
                               ) : detail.details[feature].value === "DASH" ? (
-                                <Image
+                                <img
                                   layout="intrinsic"
-                                  width={100}
-                                  height={100}
                                   src="/assets/images/solidity-shield-scan/billing-price-dash.svg"
                                   alt=""
                                 />
@@ -218,10 +209,8 @@ const Pricing = () => {
                               )}
                               {detail.details[feature].info && (
                                 <div className="sss-pricing-plan-detail-row-info-container group">
-                                  <Image
+                                  <img
                                     layout="intrinsic"
-                                    width={100}
-                                    height={100}
                                     src="/assets/images/solidity-shield-scan/pricing-plan-info.svg"
                                     alt=""
                                   />

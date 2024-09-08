@@ -128,10 +128,8 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                       className="sss-history-table-options-container"
                     >
                       <div className="sss-history-table-options">
-                        <Image
+                        <img
                           layout="intrinsic"
-                          width={100}
-                          height={100}
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                           alt="Option Icon"
                         />

@@ -32,7 +32,8 @@ function BlogCard({ details, isMedia = false }) {
         details.url
           ? navigate.push(`/blog/${details.url}`)
           : typeof window !== "undefined" && window.open(details.link);
-      }}>
+      }}
+    >
       <div className="blog-card-header">
         {details.modifiedon ? (
           <div className="blog-card-header-date">{dateObj}</div>
@@ -42,10 +43,8 @@ function BlogCard({ details, isMedia = false }) {
           ""
         )}
         <div className="blog-card-header-image-container">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             className="blog-card-header-image"
             src={details.image}
             alt=""

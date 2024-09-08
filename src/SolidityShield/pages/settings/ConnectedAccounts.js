@@ -13,13 +13,9 @@ const AccountCard = ({
     <div className="sss-settings-account-card-container">
       <div className="sss-settings-account-card">
         <div className="sss-settings-account-card-left">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             layout="intrinsic"
-            width={100}
-            height={100}
             src={logo}
             alt={accountType}
           />
@@ -61,10 +57,8 @@ const ConnectedAccounts = () => {
       <div className="sss-settings-connected-accounts">
         <div className="sss-settings-connected-accounts-box">
           <div className="sss-settings-connected-accounts-box-icon">
-            <Image
+            <img
               layout="intrinsic"
-              width={100}
-              height={100}
               src="/assets/images/solidity-shield-scan/connected-accounts-verified.svg"
               alt=""
             />

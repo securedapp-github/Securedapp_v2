@@ -122,7 +122,7 @@ const BillingScreen = () => {
                 <div className="sss-billing-payment-method">
                   <div className="sss-billing-payment-method-left">
                     <div className="sss-billing-payment-method-image">
-                      <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+                      <img layout="intrinsic"   layout="intrinsic"   
                         className="p-1"
                         src="/assets/images/solidity-shield-scan/billing-visa.svg"
                         alt="Visa"

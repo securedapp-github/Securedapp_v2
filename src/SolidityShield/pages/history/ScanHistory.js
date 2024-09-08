@@ -59,7 +59,7 @@ const ScanHistory = () => {
           <div className="sss-scan-history-header-right">
             <div className="sss-scan-history-header-button">
               <div className="sss-scan-history-header-button-icon">
-                {/* <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+                {/* <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/history-filter.svg"
                   alt="Filter Icon"
                 /> */}
@@ -71,7 +71,7 @@ const ScanHistory = () => {
             </div>
             {/* <div className="sss-scan-history-header-button">
               <div className="sss-scan-history-header-button-icon">
-                <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+                <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/history-export.svg"
                   alt="Export Icon"
                 />

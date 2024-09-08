@@ -292,10 +292,8 @@ const BlogPost = () => {
                 <div className="publisher-profile">
                   <div className="publisher-image">
                     {blogDetails.Publisher.image && (
-                      <Image
+                      <img
                         layout="intrinsic"
-                        width={100}
-                        height={100}
                         src={blogDetails.Publisher.image}
                       />
                     )}
@@ -378,10 +376,8 @@ const BlogPost = () => {
                               __html: text.replace(imageRegex, ""),
                             }}
                           />
-                          <Image
+                          <img
                             layout="intrinsic"
-                            width={100}
-                            height={100}
                             style={{
                               marginTop: 60,
                               marginBottom: 60,

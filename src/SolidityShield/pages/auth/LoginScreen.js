@@ -29,7 +29,7 @@ const LoginScreen = () => {
             <AuthButton children={"Sign In"} onClick={() => {}} />
             {/* <AuthButton filled={false}>
               <div className="auth-screen-google">
-                <Image layout="intrinsic" width={100} height={100} layout="intrinsic" width={100} height={100} 
+                <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/google-logo.svg"
                   alt="Google Logo"
                 />

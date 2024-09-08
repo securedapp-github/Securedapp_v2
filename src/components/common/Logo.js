@@ -9,18 +9,14 @@ const Logo = ({ isLeft = false, className = "" }) => {
       } ${className}`}
       href="/"
     >
-      <Image
+      <img
         layout="intrinsic"
-        width={100}
-        height={100}
         src="/assets/images/securedapp-logo-light.svg"
         alt="logo"
         className="w-[120px] lg:w-[150px] h-auto dark:hidden"
       />
-      <Image
+      <img
         layout="intrinsic"
-        width={100}
-        height={100}
         src="/assets/images/securedapp-logo-dark.svg"
         alt="logo"
         className="w-[120px] lg:w-[150px] h-auto hidden dark:block"

@@ -40,13 +40,7 @@ const ProductWhyCard = ({
         </div>
       </div>
       <div className="product-why-card-image">
-        <Image
-          layout="intrinsic"
-          width={100}
-          height={100}
-          src={image}
-          alt={imageAlt}
-        />
+        <img layout="intrinsic" src={image} alt={imageAlt} />
       </div>
     </div>
   );

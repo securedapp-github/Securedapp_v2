@@ -92,7 +92,7 @@ const Features = () => {
                     )}
                     {detail === feature["id"] && (
                       <div style={{ width: "100%" }}>
-                        <Image
+                        <img
                           width={25}
                           height={25}
                           style={{
@@ -101,7 +101,7 @@ const Features = () => {
                           }}
                           src={`/assets/images/icons/${feature["icon"]}.svg`}
                           alt="icon"
-                        ></Image>
+                        ></img>
                         <div className="feature-card-title">{`${feature["title"]}:`}</div>
                         <div className="feature-card-desc">
                           {feature["desc"]}
@@ -130,16 +130,14 @@ const Features = () => {
               <div className="last-bar ecommerce-bar"></div>
             </div>
           </div> */}
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             style={{
               maxHeight: "80%",
             }}
             src={`/assets/images/home/${detail + 1}.webp`}
             alt={"image"}
-          ></Image>
+          ></img>
         </div>
       </div>
     </div>

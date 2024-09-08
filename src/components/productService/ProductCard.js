@@ -12,13 +12,7 @@ const ProductCard = ({
   return (
     <div className="product-card">
       <div className="product-card-image">
-        <Image
-          layout="intrinsic"
-          width={100}
-          height={100}
-          src={image}
-          alt={imageAlt}
-        />
+        <img layout="intrinsic" src={image} alt={imageAlt} />
       </div>
       <div className="product-card-content">
         <div className="product-card-content-header">{header}</div>

@@ -58,10 +58,8 @@ const OverviewScreen = () => {
         <div className="sss-overview-body">
           {firstTime ? (
             <div className="sss-overview-first-time">
-              <Image
+              <img
                 layout="intrinsic"
-                width={100}
-                height={100}
                 src="/assets/images/solidity-shield-scan/dashboard-icon.svg"
                 alt=""
               />

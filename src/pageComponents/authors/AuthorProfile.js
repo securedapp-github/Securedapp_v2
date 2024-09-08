@@ -36,10 +36,8 @@ const AuthorProfile = () => {
             <div className="author-profile-body-image">
               <div className="author-profile-card">
                 <div className="author-profile-card-image">
-                  <Image
+                  <img
                     layout="intrinsic"
-                    width={100}
-                    height={100}
                     src={authorDetail.image}
                     alt={authorDetail.name}
                   />

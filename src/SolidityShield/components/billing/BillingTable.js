@@ -42,10 +42,8 @@ const BillingTable = () => {
               <div className="sss-billing-table-header">
                 <div className="sss-billing-table-header-title">Billing</div>
                 <div className="sss-billing-table-header-options">
-                  <Image
+                  <img
                     layout="intrinsic"
-                    width={100}
-                    height={100}
                     src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                     alt="Option Icon"
                   />

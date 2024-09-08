@@ -18,7 +18,7 @@ import withReactContent from "sweetalert2-react-content";
 import { useState } from "react";
 import Image from "next/image";
 
-const Sidebar = () => {
+export const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
     useSelector(getCommonSelector);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
@@ -67,18 +67,14 @@ const Sidebar = () => {
         <div className="sss-sidebar">
           <div className="sss-sidebar-upper">
             <div className="sss-sidebar-header">
-              <Image
+              <img
                 layout="intrinsic"
-                width={100}
-                height={100}
                 className="sss-sidebar-header-logo"
                 src="/assets/images/securedapp-logo-light.svg"
                 alt="SecureDApp Logo"
               />
-              <Image
+              <img
                 layout="intrinsic"
-                width={100}
-                height={100}
                 onClick={() => dispatch(setSideBar(false))}
                 src="/assets/images/solidity-shield-scan/sidebar-menu.svg"
                 alt="Sidebar Toggle"
@@ -107,13 +103,7 @@ const Sidebar = () => {
                     >
                       <div className="sss-sidebar-item">
                         <div className="sss-sidebar-item-logo">
-                          <Image
-                            layout="intrinsic"
-                            width={100}
-                            height={100}
-                            src={item.image}
-                            alt=""
-                          />
+                          <img layout="intrinsic" src={item.image} alt="" />
                           <item.image
                             fill={"none"}
                             stroke={
@@ -171,5 +161,3 @@ const Sidebar = () => {
     )
   );
 };
-
-export default Sidebar;

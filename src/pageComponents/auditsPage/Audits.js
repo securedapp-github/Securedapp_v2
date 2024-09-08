@@ -32,7 +32,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
         <defs>
           <linearGradient
             id={"circularGradient"}
-            gradientTransform={gradientTransform}>
+            gradientTransform={gradientTransform}
+          >
             <stop offset="0%" stopColor={"#12D576"} />
             <stop offset="100%" stopColor={"#6BFFB7"} />
           </linearGradient>
@@ -48,7 +49,8 @@ const GradientCircularProgressbar = ({ value, text }) => {
           strokeLinecap: "butt",
           trailColor: "#F0F0F0",
           pathColor: "url(#circularGradient)",
-        })}>
+        })}
+      >
         <div className="audits-page-body-progress-value-container">
           <div className="audits-page-body-progress-value">{text}</div>
         </div>
@@ -61,7 +63,8 @@ const FigureComponent = ({ value, text, color }) => {
   return (
     <div
       style={{ border: `2px solid #C6C7F833` }}
-      className="audits-page-body-figure-component-container">
+      className="audits-page-body-figure-component-container"
+    >
       <div className="audits-page-body-figure-component">
         <div className="audits-page-body-figure-component-figure">{value}</div>
         <div className="audits-page-body-figure-component-text">{text}</div>
@@ -82,7 +85,8 @@ const AuditsPageCard = ({ headers, details, children }) => {
                   index === 0
                     ? "min-w-[150px] sm:min-w-[250px] md:min-w-[350px]"
                     : ""
-                }`}>
+                }`}
+              >
                 {header}
               </div>
             );
@@ -143,14 +147,14 @@ const AuditsPage = () => {
         onClick={() => {
           fetch(data.id);
           navigate.push(`/audits/${data.id}`);
-        }}>
+        }}
+      >
         <div>
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             style={{ marginRight: "12px", maxWidth: "90px" }}
-            src={data.image}></Image>
+            src={data.image}
+          ></img>
         </div>
         <div style={{ margin: "auto", width: "100%", textAlign: "left" }}>
           <p style={{ fontSize: "18px" }}>{data.company}</p>
@@ -308,12 +312,11 @@ const AuditsPage = () => {
               {currentAudit && (
                 <div
                   style={{ marginBottom: "15px" }}
-                  className="audits-page-body-logo">
+                  className="audits-page-body-logo"
+                >
                   <div className="audits-page-body-logo-image">
-                    <Image
+                    <img
                       layout="intrinsic"
-                      width={100}
-                      height={100}
                       src={currentAudit.image}
                       alt="img"
                     />
@@ -351,7 +354,8 @@ const AuditsPage = () => {
                         flexWrap: "wrap",
                         justifyContent: "center",
                       }}
-                      className="audits-page-card-body-chart-right">
+                      className="audits-page-card-body-chart-right"
+                    >
                       {report.findings.map((data) => {
                         return (
                           <FigureComponent
@@ -379,7 +383,8 @@ const AuditsPage = () => {
                       <button
                         className="blog-pagination-arrow"
                         onClick={handlePreviousPage}
-                        disabled={currentPage === 1}>
+                        disabled={currentPage === 1}
+                      >
                         <FontAwesomeIcon icon={faArrowLeft} />
                       </button>
                     </div>
@@ -388,7 +393,8 @@ const AuditsPage = () => {
                       <button
                         className="blog-pagination-arrow"
                         onClick={handleNextPage}
-                        disabled={currentPage === totalPages}>
+                        disabled={currentPage === totalPages}
+                      >
                         <FontAwesomeIcon icon={faArrowRight} />
                       </button>
                     </div>

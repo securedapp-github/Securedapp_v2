@@ -50,10 +50,8 @@ const PaymentModal = () => {
               <div className="sss-payment-modal-body-methods">
                 <div className="sss-payment-modal-body-method">
                   <div className="sss-payment-modal-body-method-image">
-                    <Image
+                    <img
                       layout="intrinsic"
-                      width={100}
-                      height={100}
                       src="/assets/images/solidity-shield-scan/phonepe-icon.svg"
                       alt=""
                     />
@@ -79,10 +77,8 @@ const PaymentModal = () => {
                 </div>
                 <div className="sss-payment-modal-body-method">
                   <div className="sss-payment-modal-body-method-image">
-                    <Image
+                    <img
                       layout="intrinsic"
-                      width={100}
-                      height={100}
                       src="/assets/images/solidity-shield-scan/crypto-icon.png"
                       alt=""
                     />

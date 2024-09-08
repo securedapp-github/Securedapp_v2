@@ -8,10 +8,8 @@ const HowItWorksCard = ({ image, imageAlt, title, description }) => {
     <div className="how-it-works-card">
       {image && (
         <div className="how-it-works-card-image">
-          <Image
+          <img
             layout="intrinsic"
-            width={100}
-            height={100}
             src={`/assets/images/icons/howitworks/${image}.svg`}
             alt={imageAlt}
           />
@@ -20,7 +18,8 @@ const HowItWorksCard = ({ image, imageAlt, title, description }) => {
       {title && <div className="how-it-works-card-title">{title}</div>}
       <div
         className="how-it-works-card-description"
-        dangerouslySetInnerHTML={{ __html: description }}></div>
+        dangerouslySetInnerHTML={{ __html: description }}
+      ></div>
     </div>
   );
 };

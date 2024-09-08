@@ -69,10 +69,8 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
         />
       </div>
       <div className="solution-card-image">
-        <Image
+        <img
           layout="intrinsic"
-          width={100}
-          height={100}
           style={{ borderRadius: "25px 15px 0 0" }}
           src={image}
           alt="solution#"
