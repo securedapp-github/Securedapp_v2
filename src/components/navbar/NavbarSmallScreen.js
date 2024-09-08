@@ -68,9 +68,9 @@ const NavbarSmallScreen = ({
               <div className="flex space-x-3 items-center">
                 <button onClick={toggleTheme}>
                   {darkMode ? (
-                    <i class="fa-regular fa-brightness"></i>
+                    <i className="fa-regular fa-brightness"></i>
                   ) : (
-                    <i class="fa-regular fa-moon"></i>
+                    <i className="fa-regular fa-moon"></i>
                   )}
                 </button>
                 <FontAwesomeIcon
