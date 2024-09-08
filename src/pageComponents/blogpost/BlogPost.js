@@ -23,6 +23,8 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { blogsData as fullData } from "../blog/blog-data";
+import { usePathname } from "next/navigation";
 
 const renderContent = (blogData) => {
   const filteredBlog = blogData;
@@ -103,7 +105,8 @@ const getTags = (tags) => {
 
 const BlogPost = () => {
   const router = useRouter();
-  const { url } = router.query;
+  var { url } = router.query;
+
   const [blogDetails, setBlogDetails] = useState({
     title: "",
     preview: "",
@@ -229,17 +232,21 @@ const BlogPost = () => {
     );
   };
 
+  const currentBlog = fullData.find((item) => item.url === url);
+
   return (
-    blogDetails && (
-      <div className="blog-post-container">
+    <div className="blog-post-container">
+      {currentBlog && (
         <MetaTags
           data={{
-            title: blogDetails.title,
-            desc: blogDetails.Summary,
-            image: blogDetails.image,
-            keywords: blogDetails.tags,
+            title: currentBlog.heading,
+            desc: `Read an interesting blog from SecureDapp on "${currentBlog.heading}"`,
+            image: currentBlog.image,
+            keywords: currentBlog.tags + ", " + currentBlog.category,
           }}
         />
+      )}
+      {blogDetails && (
         <div className="blog-post">
           <div className="blog-post-header">
             <div className="blog-post-header-left">
@@ -429,9 +436,9 @@ const BlogPost = () => {
             )}
           </div>
         </div>
-        <Footer />
-      </div>
-    )
+      )}
+      <Footer />
+    </div>
   );
 };
 

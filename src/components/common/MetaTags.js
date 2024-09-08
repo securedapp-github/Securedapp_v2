@@ -24,12 +24,7 @@ const MetaTags = ({ data }) => {
       {/* Open Graph Meta Tags (for social media) */}
       {<meta property="og:title" content={data.title} />}
       {<meta property="og:description" content={data.desc} />}
-      {
-        <meta
-          property="og:image"
-          content={"https://securedapp.io" + data.image}
-        />
-      }
+      {<meta property="og:image" content={data.image} />}
       {<meta property="og:url" content={url} />}
       {<meta property="og:type" content="website" />}
 
@@ -37,12 +32,7 @@ const MetaTags = ({ data }) => {
       {<meta name="twitter:card" content="summary_large_image" />}
       {<meta name="twitter:title" content={data.title} />}
       {<meta name="twitter:description" content={data.desc} />}
-      {
-        <meta
-          name="twitter:image"
-          content={"https://securedapp.io" + data.image}
-        />
-      }
+      {<meta name="twitter:image" content={data.image} />}
 
       {/* SEO Meta Tags */}
       {<meta name="robots" content="index, follow" />}
