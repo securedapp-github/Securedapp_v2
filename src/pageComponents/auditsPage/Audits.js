@@ -151,7 +151,7 @@ const AuditsPage = () => {
         className="audit-card"
         onClick={() => {
           fetch(data.id);
-          navigate.push(`/audits/${data.id}`);
+          navigate.push(`/audits?id=${data.id}`);
         }}
       >
         <div>
