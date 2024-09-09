@@ -119,12 +119,15 @@ const AuditsPageCard = ({ headers, details, children }) => {
 };
 
 const AuditsPage = () => {
+  let url;
   if (typeof window !== "undefined") {
     typeof window !== "undefined" && window.scrollTo(0, 0);
+    url = window.location.href;
   }
 
   const navigate = useRouter();
-  var { id } = navigate.query;
+  var { id2 } = navigate.query;
+  var id = url && url.split("?id=")[1];
 
   const [auditsData, setData] = useState([]);
   const [audits, setAudits] = useState([]);

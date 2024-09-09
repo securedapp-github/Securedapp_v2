@@ -158,7 +158,7 @@ const ScanNowModal = () => {
     });
     if (typeof res === "number") {
       closeModal();
-      navigate.push(`/solidity-shield-scan/report/${res}`);
+      navigate.push(`/solidity-shield-scan/report?id=${res}`);
       setGithub();
       setContractUrl();
       setFile();

@@ -7,8 +7,14 @@ import { checkPhonpe } from "../../functions";
 
 const TxStatus = () => {
   const router = useRouter();
-  const { id } = router.query;
   const [status, setStatus] = useState();
+
+  let url;
+  if (typeof window !== "undefined") {
+    typeof window !== "undefined" && window.scrollTo(0, 0);
+    url = window.location.href;
+  }
+  var id = url && url.split("?id=")[1];
 
   useEffect(() => {
     async function fetch() {

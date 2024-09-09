@@ -1,4 +1,4 @@
-import ScanReport from "../../../SolidityShield/pages/scanReport/ScanReport";
+import ScanReport from "../../SolidityShield/pages/scanReport/ScanReport";
 
 export default function Index() {
   return (

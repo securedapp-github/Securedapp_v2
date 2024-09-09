@@ -364,7 +364,7 @@ export const scanSubmit = async ({
       var latestScan = history.reduce((max, item) => {
         return item.id > max.id ? item : max;
       }, history[0]);
-      // typeof window !== 'undefined' && window.open("/solidity-shield-scan/report/" + latestScan.id);
+      // typeof window !== 'undefined' && window.open("/solidity-shield-scan/report?id=" + latestScan.id);
 
       toast.success("Scan finished");
       dispatch(login({ ...user, remainingCredits: user.remainingCredits - 1 }));

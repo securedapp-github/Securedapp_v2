@@ -112,7 +112,9 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     </div>
                     <div className="sss-history-table-report-link-container">
                       <div className="sss-history-table-report-link">
-                        <Link href={"/solidity-shield-scan/report/" + data.id}>
+                        <Link
+                          href={"/solidity-shield-scan/report?id=" + data.id}
+                        >
                           {"Report - " + data.id}
                         </Link>
                       </div>
@@ -143,7 +145,9 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                         >
                           <div className="sss-history-table-options-dropdown-item">
                             <Link
-                              href={"/solidity-shield-scan/report/" + data.id}
+                              href={
+                                "/solidity-shield-scan/report?id=" + data.id
+                              }
                             >
                               View
                             </Link>

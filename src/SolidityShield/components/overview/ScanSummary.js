@@ -162,7 +162,7 @@ const ScanSummary = () => {
                     }
                     onClick={() =>
                       navigate.push(
-                        `/solidity-shield-scan/report/${
+                        `/solidity-shield-scan/report?id=${
                           scanHistory.history.reduce((max, item) => {
                             return item.id > max.id ? item : max;
                           }, scanHistory.history[0]).id

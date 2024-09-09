@@ -77,7 +77,13 @@ const ScanReport = ({ downloadId }) => {
   const [data, setData] = useState();
   const dispatch = useDispatch();
   const navigate = useRouter();
-  var { id } = navigate.query;
+
+  let url;
+  if (typeof window !== "undefined") {
+    typeof window !== "undefined" && window.scrollTo(0, 0);
+    url = window.location.href;
+  }
+  var id = url && url.split("?id=")[1];
   if (!id) {
     id = 0;
   }
@@ -92,7 +98,11 @@ const ScanReport = ({ downloadId }) => {
         dispatch,
       });
       setHistory(scanHistory.history);
-      if (auth.user.remainingCredits === 0 && scanHistory.history.length > 1) {
+      if (
+        auth.user.remainingCredits === 0 &&
+        (scanHistory.history.length > 1 ||
+          Number(scanHistory.history[0].id) !== Number(id))
+      ) {
         !downloadId && toast("Upgrade to view the report");
         !downloadId && navigate.push("/solidity-shield-scan/overview");
       }

@@ -1,4 +1,4 @@
-import TxStatus from "../../../SolidityShield/pages/txStatus/txStatus";
+import TxStatus from "../../SolidityShield/pages/txStatus/txStatus";
 
 export default function Index() {
   return (
