@@ -131,7 +131,7 @@ const AuditsPage = () => {
 
   const [auditsData, setData] = useState([]);
   const [audits, setAudits] = useState([]);
-  const [currentAudit, setCurrentAudit] = useState({});
+  const [currentAudit, setCurrentAudit] = useState();
   const [report, setReport] = useState();
 
   const AuditCard = ({ data }) => {
@@ -231,27 +231,26 @@ const AuditsPage = () => {
         })
       : setReport();
     console.log(data);
-
-    var current = auditsData.filter((item) => Number(item.id) === Number(e));
-    setCurrentAudit(current[0]);
+    var current = auditsData.find((item) => Number(item.id) === Number(id));
+    setCurrentAudit(current);
   }
 
   useEffect(() => {
-    if (id > 0) {
-      fetch(id);
-    }
     async function getData() {
       var res = await getAudits();
       setData(res);
       setAudits(res);
-      var current = auditsData.filter((item) => Number(item.id) === Number(id));
-      setCurrentAudit(current[0]);
+      var current = res.find((item) => Number(item.id) === Number(id));
+      setCurrentAudit(current);
     }
     getData();
+    if (id > 0) {
+      fetch(id);
+    }
     if (!report) {
       //navigate.push("/audits");
     }
-  }, [!audits && audits, !currentAudit && currentAudit]);
+  }, [!audits && audits, !currentAudit && currentAudit, !report && report]);
 
   function search(searchVal) {
     navigate.push("/audits");
