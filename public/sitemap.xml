@@ -1,59 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
-		<!--	created with www.mysitemapgenerator.com	-->
-		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-	<loc>https://securedapp.io/</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>0.6</priority>
+<loc>https://securedapp.io/</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/about-us</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/solidity-shield</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/smart-contract-scanner-solidity-shield</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/secure-watch</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/securepad.netlify.app</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/secure-trace</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/token-launchpad-Securepad</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/secure-pad</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/smart-contract-development</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/smart-contract-audit</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/dapp-security-audit</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/dapp-security-audit</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/dapp-development</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/token-audit</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/tokenomics-design</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/rwa-audit</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/contact-us</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/web3-security</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
 </url>
 <url>
-	<loc>https://securedapp.io/blog</loc>
-	<lastmod>2023-10-11T12:54:56+01:00</lastmod>
-	<priority>1.0</priority>
+<loc>https://securedapp.io/web3-kyc</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/blockchain-forensic</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/crypto-compliance-aml</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/decentralized-identity-did</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/dapp-development</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/defi-development</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/levelup-academy</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/nfts-development</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/solidity-shield-scan/pricing</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/solidity-shield-scan</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/solidity-shield-vulnerabilities</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/audits</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://securedapp.io/blog</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://securedapp.io/about</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://securedapp.io/media</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://securedapp.io/authors</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://securedapp.io/solidity-shield-scan/contact</loc>
+<lastmod>2024-09-10</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
 </url>
 </urlset>
