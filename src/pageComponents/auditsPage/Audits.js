@@ -291,7 +291,14 @@ const AuditsPage = () => {
   return (
     <div className="audits-page-container">
       <Navbar />
-      {/* <MetaTags data={{ title: "ttt", desc: "ddd", keywords: "kkk" }} /> */}
+      <MetaTags
+        data={{
+          title: "Secure Your Blockchain & DApps: Audits by SecureDApp ",
+          desc: "Go beyond smart contracts! SecureDApp offers comprehensive blockchain security audits for your DApps & projects. Build trust & security.",
+          keywords:
+            "blockchain security audits, smart contract audits, DApp security, blockchain security, smart contract security, security audit, code audit",
+        }}
+      />
       <div className="audits-page">
         <div className="audits-page-header">
           <div className="audits-page-header-title">Audits</div>
