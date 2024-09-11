@@ -1,8 +1,10 @@
+"use client";
+
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import CustomButton from "../common/CustomButton";
-import "./Header.css";
 import { toast } from "react-toastify";
 import {
   getCommonSelector,
@@ -20,7 +22,7 @@ const Header = () => {
   const { showSideBar, scanNowModal } = useSelector(getCommonSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   return (
     <div className="sss-header-container">
@@ -37,7 +39,7 @@ const Header = () => {
           {/* <div className="sss-header-search-container">
             <div className="sss-header-search">
               <div className="sss-header-search-icon">
-                <img
+                <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/search-icon.svg"
                   alt="Search Icon"
                 />
@@ -49,12 +51,14 @@ const Header = () => {
             </div>
           </div> */}
           <div>
-            {window.width > 1024 &&
+            {typeof window !== "undefined" &&
+              window.width > 1024 &&
               "Solidity Shield to protect the heart of your Web3 project"}
           </div>
         </div>
         <div className="sss-header-center">
           <img
+            layout="intrinsic"
             className="w-1/3"
             src="/assets/images/securedapp-logo-light.svg"
             alt=""
@@ -62,7 +66,7 @@ const Header = () => {
         </div>
         <div className="sss-header-right">
           {/* <div className="sss-header-right-calendar">
-            <img
+            <img layout="intrinsic"   layout="intrinsic"   
               src="/assets/images/solidity-shield-scan/header-calendar.svg"
               alt="Calendar Logo"
             />
@@ -75,7 +79,7 @@ const Header = () => {
             </div>
           </div>
           <div className="sss-header-right-notifications">
-            <img
+            <img layout="intrinsic"   layout="intrinsic"   
               src="/assets/images/solidity-shield-scan/header-notif.svg"
               alt="Notification Logo"
             />
@@ -85,7 +89,7 @@ const Header = () => {
               onClick={() =>
                 auth.user.email
                   ? dispatch(setScanNowModal(true))
-                  : navigate("/solidity-shield-scan/auth")
+                  : navigate.push("/solidity-shield-scan/auth")
               }
               className={
                 "w-[100px] sm:w-[125px] px-1 sm:px-3 py-1 sm:py-2 rounded-xl bg-tertiary text-black active:bg-white active:border active:border-tertiary active:text-black"

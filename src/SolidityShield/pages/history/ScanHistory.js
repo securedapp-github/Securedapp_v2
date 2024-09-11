@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import "./ScanHistory.css";
 import {
   getHistorySelector,
   setHistoryStatusFilter,
@@ -13,6 +13,7 @@ import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { scanHistoryDummyData } from "./scanHistory.data";
 import Pagination from "../../components/common/Pagination";
 import { getUserData } from "../../redux/auth/authSlice";
+import { setLoader } from "../../redux/commonSlice";
 
 const scanHistoryStatusFilter = ["Succeeded", "Failed", "Inprogress", "All"];
 
@@ -22,7 +23,7 @@ const ScanHistory = () => {
   var scanHistory = useSelector(getScanHistory);
   const [history, setHistory] = useState(scanHistory.history);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   async function fetch() {
     await getScanHistoryData({
@@ -35,11 +36,13 @@ const ScanHistory = () => {
 
   useEffect(() => {
     async function fetch() {
+      dispatch(setLoader(true));
       var data = await getScanHistoryData({
         userEmail: auth.user.email,
         dispatch,
       });
       setHistory(data);
+      dispatch(setLoader(false));
       //alert(history.length);
     }
     const userJwt = getJwt();
@@ -47,7 +50,7 @@ const ScanHistory = () => {
       getUser({ dispatch });
       fetch();
     } else {
-      navigate("/solidity-shield-scan/auth");
+      navigate.push("/solidity-shield-scan/auth");
     }
   }, [history.length === 0 && history]);
 
@@ -59,7 +62,7 @@ const ScanHistory = () => {
           <div className="sss-scan-history-header-right">
             <div className="sss-scan-history-header-button">
               <div className="sss-scan-history-header-button-icon">
-                {/* <img
+                {/* <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/history-filter.svg"
                   alt="Filter Icon"
                 /> */}
@@ -71,7 +74,7 @@ const ScanHistory = () => {
             </div>
             {/* <div className="sss-scan-history-header-button">
               <div className="sss-scan-history-header-button-icon">
-                <img
+                <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/history-export.svg"
                   alt="Export Icon"
                 />

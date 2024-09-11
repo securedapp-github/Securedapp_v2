@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import AuthButton from "../../components/auth/AuthButton";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
 import { checkPhonpe } from "../../functions";
 
 const TxStatus = () => {
-  const { id } = useParams();
-  const [status, setStatus] = useState(false);
+  const router = useRouter();
+  const [status, setStatus] = useState();
+
+  let url;
+  if (typeof window !== "undefined") {
+    typeof window !== "undefined" && window.scrollTo(0, 0);
+    url = window.location.href;
+  }
+  var id = url && url.split("?id=")[1];
 
   useEffect(() => {
     async function fetch() {
       const data = await checkPhonpe({ id });
-      data.success && setStatus(true);
+      data.success ? setStatus(true) : setStatus(false);
     }
     fetch();
-  }, [status]);
+  }, [!status && status]);
 
   return (
     <div className="auth-screen-container">

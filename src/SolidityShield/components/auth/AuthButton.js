@@ -1,5 +1,3 @@
-import "./AuthButton.css";
-
 const AuthButton = ({ children, onClick, filled = true }) => {
   return (
     <div className="auth-button-container">

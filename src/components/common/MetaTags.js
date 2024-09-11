@@ -1,101 +1,77 @@
-import { useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { useRouter } from "next/router";
+import Head from "next/head";
 
 const MetaTags = ({ data }) => {
-  useEffect(() => {
-    // all meta tags in reverse order...
-    var meta = "meta";
-    //pinterest-rich-pin
-    const metaPininterest = document.createElement("meta");
-    metaPininterest.name = "pinterest-rich-pin";
-    metaPininterest.content = "true";
-    document.head.prepend(metaPininterest);
-    //og:image:height
-    const metaOgImageHeight = document.createElement("meta");
-    metaOgImageHeight.name = "og:image:height";
-    metaOgImageHeight.content = "630";
-    document.head.prepend(metaOgImageHeight);
-    //og:image:width
-    const metaOgImageWidth = document.createElement("meta");
-    metaOgImageWidth.name = "og:image:width";
-    metaOgImageWidth.content = "1200";
-    document.head.prepend(metaOgImageWidth);
-    //twitter:card
-    const metaTwittercard = document.createElement("meta");
-    metaTwittercard.name = "twitter:card";
-    metaTwittercard.content = "summary_large_image";
-    document.head.prepend(metaTwittercard);
-    //twitter:image
-    const metaTwitterImage = document.createElement("meta");
-    metaTwitterImage.name = "twitter:image";
-    metaTwitterImage.content = data.image;
-    document.head.prepend(metaTwitterImage);
-    //twitter:description
-    const metaTwitterDescription = document.createElement("meta");
-    metaTwitterDescription.name = "twitter:description";
-    metaTwitterDescription.content = data.desc;
-    document.head.prepend(metaTwitterDescription);
-    //twitter:title
-    const metaTwitterTitle = document.createElement("meta");
-    metaTwitterTitle.name = "twitter:title";
-    metaTwitterTitle.content = data.title;
-    document.head.prepend(metaTwitterTitle);
-    //og:url
-    const metaOgUrl = document.createElement("meta");
-    metaOgUrl.name = "og:url";
-    metaOgUrl.content = window.location.href;
-    document.head.prepend(metaOgUrl);
-    //og:locale
-    const metaOgLocale = document.createElement("meta");
-    metaOgLocale.name = "og:locale";
-    metaOgLocale.content = "en_IN";
-    document.head.prepend(metaOgLocale);
-    //og:site_name
-    const metaOgSitename = document.createElement("meta");
-    metaOgSitename.name = "og:site_name";
-    metaOgSitename.content = "SecureDapp";
-    document.head.prepend(metaOgSitename);
-    //og:type
-    const metaOgType = document.createElement("meta");
-    metaOgType.name = "og:type";
-    metaOgType.content = "website";
-    document.head.prepend(metaOgType);
-    //og:image
-    const metaOgImage = document.createElement("meta");
-    metaOgImage.name = "og:image";
-    metaOgImage.content = data.image;
-    document.head.prepend(metaOgImage);
-    //og:description
-    const metaOgDesc = document.createElement("meta");
-    metaOgDesc.name = "og:description";
-    metaOgDesc.content = data.desc;
-    document.head.prepend(metaOgDesc);
-    //og:title
-    const metaOgTitle = document.createElement("meta");
-    metaOgTitle.name = "og:title";
-    metaOgTitle.content = data.title;
-    document.head.prepend(metaOgTitle);
-    //author
-    const metaAuthor = document.createElement("meta");
-    metaAuthor.name = "author";
-    metaAuthor.content = "SecureDapp";
-    document.head.prepend(metaAuthor);
-    //keywords
-    const metaKeywords = document.createElement("meta");
-    metaKeywords.name = "keywords";
-    metaKeywords.content = data.keywords;
-    document.head.prepend(metaKeywords);
-    //desc
-    const metaDescription = document.createElement("meta");
-    metaDescription.name = "description";
-    metaDescription.content = data.desc;
-    document.head.prepend(metaDescription);
-    //title
-    const title = document.createElement("title");
-    title.textContent = `${data.title}`;
-    document.head.prepend(title);
-  }, []);
-  return <Helmet></Helmet>;
+  const router = useRouter();
+  var url = "https://securedapp.io" + router.asPath;
+  return (
+    <Head>
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>{data.title}</title>
+      <meta name="author" content="SecureDapp" />
+      <meta name="theme-color" content="#000000" />
+      <link
+        rel="icon"
+        type="image/x-icon"
+        href="https://securedapp.io/assets/images/logo.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        href="https://securedapp.io/assets/images/logo.png"
+      />
+
+      {/* Basic Meta Tags */}
+      {<meta name="description" content={data.desc} />}
+      {<meta name="keywords" content={data.keywords} />}
+
+      {/* Open Graph Meta Tags (for social media) */}
+      {<meta property="og:title" content={data.title} />}
+      {<meta property="og:description" content={data.desc} />}
+      {data.image && (
+        <meta
+          property="og:image"
+          content={
+            data.image.includes("https://")
+              ? data.image
+              : "https://securedapp.io" + data.image
+          }
+        />
+      )}
+      {<meta property="og:url" content={url} />}
+      {<meta property="og:type" content="website" />}
+
+      {/* Twitter Meta Tags */}
+      {<meta name="twitter:card" content="summary_large_image" />}
+      {<meta name="twitter:title" content={data.title} />}
+      {<meta name="twitter:description" content={data.desc} />}
+      {data.image && (
+        <meta
+          name="twitter:image"
+          content={
+            data.image.includes("https://")
+              ? data.image
+              : "https://securedapp.io" + data.image
+          }
+        />
+      )}
+
+      {/* SEO Meta Tags */}
+      {<meta name="robots" content="index, follow" />}
+      {<meta name="googlebot" content="index, follow" />}
+
+      {/* Google Fonts */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&family=Outfit:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"
+      />
+    </Head>
+  );
 };
 
 export default MetaTags;

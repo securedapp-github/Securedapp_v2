@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../../components/common/CustomButton";
 import { getUserData } from "../../redux/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { getUser, getJwt } from "../../functions";
+import { setLoader } from "../../redux/commonSlice";
 
 const ProfileScreenField = ({ label, children }) => {
   return (
@@ -36,7 +38,7 @@ const ProfileScreenInputTextField = ({
 };
 
 const ProfileScreen = () => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const dispatch = useDispatch();
 
   const auth = useSelector(getUserData);
@@ -45,12 +47,15 @@ const ProfileScreen = () => {
   useEffect(() => {
     //alert(auth.user.plan);
     async function fetch() {
+      dispatch(setLoader(true));
       const userJwt = getJwt();
       if (userJwt) {
         var data = await getUser({ dispatch });
         setUser(data);
+        dispatch(setLoader(false));
       } else {
-        navigate("/solidity-shield-scan/auth");
+        navigate.push("/solidity-shield-scan/auth");
+        dispatch(setLoader(false));
       }
     }
     fetch();

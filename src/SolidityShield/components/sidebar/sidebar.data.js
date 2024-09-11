@@ -1,10 +1,10 @@
-import { ReactComponent as HistoryLogo } from "./images/sidebar-history.svg";
-import { ReactComponent as LogoutLogo } from "./images/sidebar-logout.svg";
-import { ReactComponent as OverviewLogo } from "./images/sidebar-overview.svg";
-import { ReactComponent as SettingsLogo } from "./images/sidebar-settings.svg";
-import { ReactComponent as VulnerabilityLogo } from "./images/sidebar-vulnerability.svg";
-import { ReactComponent as PaymentsLogo } from "./images/sidebar-payment.svg";
-import { ReactComponent as AuditCertificateLogo } from "./images/sidebar-audit-certificate.svg";
+import HistoryLogo from "./images/sidebar-history.svg";
+import LogoutLogo from "./images/sidebar-logout.svg";
+import OverviewLogo from "./images/sidebar-overview.svg";
+import SettingsLogo from "./images/sidebar-settings.svg";
+import VulnerabilityLogo from "./images/sidebar-vulnerability.svg";
+import PaymentsLogo from "./images/sidebar-payment.svg";
+import AuditCertificateLogo from "./images/sidebar-audit-certificate.svg";
 
 export const sidebarItems = [
   {
@@ -29,13 +29,13 @@ export const sidebarItems = [
   // },
   {
     image: PaymentsLogo,
-    name: "Payment",
-    to: "payment",
+    name: "Billing",
+    to: "billing",
   },
   {
     image: SettingsLogo,
-    name: "Settings",
-    to: "settings",
+    name: "Profile",
+    to: "profile",
   },
   {
     image: LogoutLogo,

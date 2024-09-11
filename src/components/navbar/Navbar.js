@@ -1,26 +1,30 @@
-import React, { useEffect } from "react";
+"use client";
 
-import "./Navbar.css";
+import React, { useEffect } from "react";
+import Image from "next/image";
 import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
   getHomeSelector,
   setIsRequestModalOpen,
   setDarkMode,
+  setIsLargeScreen,
 } from "../../redux/slices/main/homeSlice";
+import AOS from "aos";
+import RequestQuoteModal from "../modal/RequestQuoteModal";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const { darkMode, isLargeScreen } = useSelector(getHomeSelector);
+  const { darkMode, isLargeScreen, isRequestModalOpen } =
+    useSelector(getHomeSelector);
 
-  const location = useLocation();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   let nextPath;
 
-  const currentPath = location.pathname;
+  const currentPath = typeof window !== "undefined" && window.location.href;
 
   switch (currentPath) {
     case "/solidity-shield":
@@ -37,7 +41,7 @@ const Navbar = () => {
   }
 
   const handleNavigation = () => {
-    if (nextPath) window.open(nextPath);
+    if (nextPath) typeof window !== "undefined" && window.open(nextPath);
     else {
       dispatch(setIsRequestModalOpen(true));
     }
@@ -79,8 +83,29 @@ const Navbar = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        dispatch(setIsLargeScreen(window.innerWidth >= 1024));
+      }
+    };
+    handleResize();
+    AOS.init();
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
+  }, [dispatch]);
+
   return (
     <div className="absolute z-10 top-0 left-0 right-0">
+      {isRequestModalOpen && <RequestQuoteModal />}
       {isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}

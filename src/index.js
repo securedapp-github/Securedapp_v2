@@ -1,11 +1,12 @@
 import React from "react";
+import Image from "next/image";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import { Provider } from "react-redux";
 import { mainStore } from "./redux/store";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "next/router";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import Image from "next/image";
+import { Routes, Route } from "next/router";
 import AuthScreen from "./pages/auth/AuthScreen";
 import LoginScreen from "./pages/auth/LoginScreen";
 import ContactUs from "./pages/contactUs/ContactUs";

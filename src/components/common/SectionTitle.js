@@ -1,17 +1,19 @@
 import React from "react";
-import "./SectionTitle.css";
+import Image from "next/image";
 
 const SectionTitle = ({ name, title, description }) => (
   <div className="section-title">
     {name !== undefined && (
       <div className="flex justify-center items-center space-x-3">
         <img
+          layout="intrinsic"
           className="section-title-icon-image"
           src="/assets/images/stroke-left.svg"
           alt="stroke left"
         />
         <div className="section-title-icon-label">{name}</div>
         <img
+          layout="intrinsic"
           className="section-title-icon-image"
           src="/assets/images/stroke-right.svg"
           alt="stroke right"

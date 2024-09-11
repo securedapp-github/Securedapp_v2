@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import Logo from "../common/Logo";
 import { navItems } from "./navItems";
 import Button from "../common/Button";
@@ -27,6 +27,10 @@ const NavbarSmallScreen = ({
   const closeSideBar = () => setSideBarOpen(false);
 
   const selectNestedNavItem = (label) => {
+    if (label === "Pricing") {
+      typeof window !== "undefined" &&
+        window.open("/solidity-shield-scan/pricing");
+    }
     if (label === dropDown) {
       setDropDown("");
     } else {
@@ -64,9 +68,9 @@ const NavbarSmallScreen = ({
               <div className="flex space-x-3 items-center">
                 <button onClick={toggleTheme}>
                   {darkMode ? (
-                    <i class="fa-regular fa-brightness"></i>
+                    <i className="fa-regular fa-brightness"></i>
                   ) : (
-                    <i class="fa-regular fa-moon"></i>
+                    <i className="fa-regular fa-moon"></i>
                   )}
                 </button>
                 <FontAwesomeIcon
@@ -84,7 +88,8 @@ const NavbarSmallScreen = ({
                   <div>
                     <div
                       className="sidebar-item"
-                      onClick={() => selectNestedNavItem(item["label"])}>
+                      onClick={() => selectNestedNavItem(item["label"])}
+                    >
                       <p className="sidebar-item-label">{item["label"]}</p>
                       {item["items"].length > 0 && (
                         <div>
@@ -108,7 +113,8 @@ const NavbarSmallScreen = ({
                               onClick={() =>
                                 selectServicesDropDown(nestedItem["title"])
                               }
-                              className="services-nested-sidebar-item">
+                              className="services-nested-sidebar-item"
+                            >
                               <div className="services-nested-sidebar-item-header">
                                 {nestedItem["title"]}
                                 <FontAwesomeIcon
@@ -126,11 +132,14 @@ const NavbarSmallScreen = ({
                                   {nestedItem["children"].map(
                                     (servicesItem) => {
                                       return (
-                                        <Link
-                                          to={servicesItem.to}
-                                          className="services-nested-sidebar-body-item">
-                                          {servicesItem.name}
-                                        </Link>
+                                        servicesItem.to && (
+                                          <Link
+                                            href={servicesItem.to}
+                                            className="services-nested-sidebar-body-item"
+                                          >
+                                            {servicesItem.name}
+                                          </Link>
+                                        )
                                       );
                                     }
                                   )}
@@ -138,11 +147,14 @@ const NavbarSmallScreen = ({
                               )}
                             </div>
                           ) : (
-                            <Link
-                              className="nested-sidebar-item"
-                              to={nestedItem["to"]}>
-                              {nestedItem["name"]}
-                            </Link>
+                            nestedItem["to"] && (
+                              <Link
+                                className="nested-sidebar-item"
+                                href={nestedItem["to"]}
+                              >
+                                {nestedItem["name"]}
+                              </Link>
+                            )
                           );
                         })}
                       </div>
@@ -157,7 +169,8 @@ const NavbarSmallScreen = ({
               ) : (
                 <Button
                   text="Request Quote"
-                  onClick={handleNavigation}></Button>
+                  onClick={handleNavigation}
+                ></Button>
               )}
             </div>
           </div>

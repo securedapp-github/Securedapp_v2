@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useState } from "react";
+import Link from "next/link";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle, faSun } from "@fortawesome/free-solid-svg-icons";
 import Button from "../common/Button";
-import "./footer.css";
 import CustomHr from "../common/CustomHr";
 import Logo from "../common/Logo";
 import {
@@ -15,7 +17,6 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
 
 const navigationItems = [
   {
@@ -224,7 +225,9 @@ const Footer = () => {
               return (
                 <div
                   className="hover:cursor-pointer"
-                  onClick={() => window.open(social.to)}
+                  onClick={() =>
+                    typeof window !== "undefined" && window.open(social.to)
+                  }
                 >
                   {social.icon}
                 </div>
@@ -243,7 +246,7 @@ const Footer = () => {
                   {navigationItem.items.map((item, index) => {
                     return (
                       <div className="footer-navigation-item-item">
-                        <Link to={item.to}>{item.name}</Link>
+                        <Link href={item.to}>{item.name}</Link>
                       </div>
                     );
                   })}
@@ -256,21 +259,21 @@ const Footer = () => {
       <CustomHr />
       <div className="footer-legacy">
         <div className="footer-legacy-left">
-          <a
+          <Link
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
             rel="noreferrer"
           >
             Privacy Policy{" "}
-          </a>
-          <FontAwesomeIcon size="2xs" icon={faCircle} />
-          <a
+          </Link>
+          <FontAwesomeIcon size={"2xs"} icon={faCircle} />
+          <Link
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
             rel="noreferrer"
           >
             Terms & Conditions
-          </a>
+          </Link>
         </div>
         <div className="footer-legacy-right">
           <div>

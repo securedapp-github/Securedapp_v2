@@ -1,6 +1,7 @@
+"use client";
+
 import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
-import "./Pricing.css";
 import CustomButton from "../../components/common/CustomButton";
 import {
   faChevronLeft,
@@ -8,13 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import {
   getPaymentSelector,
   setPaymentModal,
   setPlan,
 } from "../../redux/dashboard/paymentSlice";
 import { getUserData } from "../../redux/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import MetaTags from "../../../components/common/MetaTags";
 
 const PricingPlanCard = ({
@@ -36,7 +38,7 @@ const PricingPlanCard = ({
         className="sss-pricing-plan-card"
       >
         <div className="sss-pricing-card-header">
-          <img src={icon} alt="" />
+          <img layout="intrinsic" src={icon} alt="" />
           <div className="sss-pricing-card-header-plan-type">{planType}</div>
         </div>
         <div className="sss-pricing-card-body">
@@ -56,7 +58,7 @@ const PricingPlanCard = ({
             {auth.user.plan === 0 && auth.user.plan === id ? (
               ""
             ) : (
-              <i class="fa-solid fa-arrow-right"></i>
+              <i className="fa-solid fa-arrow-right"></i>
             )}
           </button>
         </div>
@@ -69,17 +71,21 @@ const Pricing = () => {
   const [currentVisible, setCurrentVisible] = useState(1);
   const [isLargeScreen, setIsLargeScreen] = useState(true);
   const auth = useSelector(getUserData);
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
+      setIsLargeScreen(
+        typeof window !== "undefined" && window.innerWidth >= 768
+      );
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
+    typeof window !== "undefined" &&
+      window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      typeof window !== "undefined" &&
+        window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -95,11 +101,11 @@ const Pricing = () => {
   const dispatch = useDispatch();
 
   const openModal = (plan) => {
-    if (auth.user.email) {
+    if (localStorage.getItem("UserEmail")) {
       dispatch(setPaymentModal(true));
       dispatch(setPlan(plan));
     } else {
-      navigate("/solidity-shield-scan/auth");
+      navigate.push("/solidity-shield-scan/auth");
     }
   };
 
@@ -118,7 +124,7 @@ const Pricing = () => {
           width: "125%",
           transform: "scale(0.8)",
           transformOrigin: "top left",
-          overflowX: "hidden",
+          overflowX: "auto",
         }}
         className="sss-pricing-plans-scrollable"
       >
@@ -139,7 +145,7 @@ const Pricing = () => {
                         onClick={() =>
                           detail.id > 0
                             ? openModal(detail.id)
-                            : navigate("/solidity-shield-scan/auth")
+                            : navigate.push("/solidity-shield-scan/auth")
                         }
                         id={detail.id}
                       />
@@ -189,11 +195,13 @@ const Pricing = () => {
                             >
                               {detail.details[feature].value === "TICK" ? (
                                 <img
+                                  layout="intrinsic"
                                   src="/assets/images/solidity-shield-scan/billing-price-tick.svg"
                                   alt=""
                                 />
                               ) : detail.details[feature].value === "DASH" ? (
                                 <img
+                                  layout="intrinsic"
                                   src="/assets/images/solidity-shield-scan/billing-price-dash.svg"
                                   alt=""
                                 />
@@ -203,6 +211,7 @@ const Pricing = () => {
                               {detail.details[feature].info && (
                                 <div className="sss-pricing-plan-detail-row-info-container group">
                                   <img
+                                    layout="intrinsic"
                                     src="/assets/images/solidity-shield-scan/pricing-plan-info.svg"
                                     alt=""
                                   />
@@ -226,7 +235,7 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-      <div className="sss-pricing-plan-footer">
+      <div style={{ marginTop: "-200px" }} className="sss-pricing-plan-footer">
         <div className="sss-pricing-plan-footer-buttons">
           <div className="text-center">Get a custom Plan</div>
           <div className="sas-pricing-plan-footer-button-container">
@@ -235,7 +244,7 @@ const Pricing = () => {
               className={
                 "border border-tertiary px-12 py-2 rounded-xl active:bg-tertiary"
               }
-              onClick={() => navigate("/solidity-shield-scan/contact")}
+              onClick={() => navigate.push("/solidity-shield-scan/contact")}
             />
           </div>
         </div>

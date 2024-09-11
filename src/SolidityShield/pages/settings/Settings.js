@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Settings.css";
+import Image from "next/image";
 import ProfileScreen from "./ProfileScreen";
 import ConnectedAccounts from "./ConnectedAccounts";
 import Notifications from "./Notifications";

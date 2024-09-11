@@ -1,4 +1,3 @@
-import "./AuthCard.css";
 import AuthCardFooter from "./AuthCardFooter";
 
 const AuthCard = ({ children, footer = false, isLogin = false }) => {

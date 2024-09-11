@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import "./ScanReport.css";
 import { auditStats, scanReportData } from "./scanReport.data";
-import { getReport, getScanHistoryData } from "../../functions";
+import { getReport, getScanHistoryData, getUser } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 import { toast } from "react-toastify";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
+import { setLoader } from "../../redux/commonSlice";
 
 const ScanReportBar = ({ type, number, color, width = "100%" }) => {
   return (
@@ -75,34 +77,45 @@ const ScanReport = ({ downloadId }) => {
   const [history, setHistory] = useState(scanHistory.history);
   const [data, setData] = useState();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  var { id } = useParams();
-  if (!id) {
-    id = downloadId;
-  }
+  const navigate = useRouter();
 
-  if (!id && !downloadId) {
-    id = 1;
+  let url;
+  if (typeof window !== "undefined") {
+    typeof window !== "undefined" && window.scrollTo(0, 0);
+    url = window.location.href;
+  }
+  var id = url && url.split("?id=")[1];
+  if (!id) {
+    id = 0;
   }
 
   useEffect(() => {
     async function fetch() {
-      !auth.user.email && navigate("/solidity-shield-scan/auth");
-      await getScanHistoryData({ userEmail: auth.user.email, dispatch });
+      dispatch(setLoader(true));
+      await getUser({ dispatch });
+      !localStorage.getItem("UserEmail") &&
+        navigate.push("/solidity-shield-scan/auth");
+      await getScanHistoryData({
+        userEmail: localStorage.getItem("UserEmail"),
+        dispatch,
+      });
       setHistory(scanHistory.history);
-      var latestScan = scanHistory.history.reduce((max, item) => {
-        return item.id > max.id ? item : max;
-      }, history[0]);
-      if (auth.user.plan == 0 && Number(latestScan.id) != Number(id)) {
+      if (
+        auth.user.remainingCredits === 0 &&
+        (scanHistory.history.length > 1 ||
+          Number(scanHistory.history[0].id) !== Number(id))
+      ) {
         !downloadId && toast("Upgrade to view the report");
-        !downloadId && navigate("/solidity-shield-scan/overview");
+        !downloadId && navigate.push("/solidity-shield-scan/overview");
       }
+      //alert(id);
       const report = await getReport({ id: id, email: auth.user.email });
       setData(report);
       console.log(report);
+      dispatch(setLoader(false));
     }
     fetch();
-  }, [history]);
+  }, [!history && history, !data && data, !auth.user.email && auth.user]);
 
   return (
     <div id={`scan-report-${id}`} className="sss-scan-report-screen-container">
@@ -251,7 +264,7 @@ const ScanReport = ({ downloadId }) => {
                       style={{ textDecoration: "underline" }}
                       className="sss-scan-report-body-audit-stats-table-row-value"
                     >
-                      <Link to={"/solidity-shield-scan/contact"}>
+                      <Link href={"/solidity-shield-scan/contact"}>
                         Request Manual Audit
                       </Link>
                     </div>

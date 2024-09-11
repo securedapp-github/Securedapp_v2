@@ -1,3 +1,5 @@
+"use client";
+
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
