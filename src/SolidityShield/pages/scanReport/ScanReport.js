@@ -8,6 +8,7 @@ import { getReport, getScanHistoryData, getUser } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 import { toast } from "react-toastify";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
+import { setLoader } from "../../redux/commonSlice";
 
 const ScanReportBar = ({ type, number, color, width = "100%" }) => {
   return (
@@ -90,6 +91,7 @@ const ScanReport = ({ downloadId }) => {
 
   useEffect(() => {
     async function fetch() {
+      dispatch(setLoader(true));
       await getUser({ dispatch });
       !localStorage.getItem("UserEmail") &&
         navigate.push("/solidity-shield-scan/auth");
@@ -110,6 +112,7 @@ const ScanReport = ({ downloadId }) => {
       const report = await getReport({ id: id, email: auth.user.email });
       setData(report);
       console.log(report);
+      dispatch(setLoader(false));
     }
     fetch();
   }, [!history && history, !data && data, !auth.user.email && auth.user]);

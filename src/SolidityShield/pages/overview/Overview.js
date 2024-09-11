@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../redux/auth/authSlice";
 import { getScanHistoryData, getJwt, getUser } from "../../functions";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
-import { setScanNowModal } from "../../redux/commonSlice";
+import { setScanNowModal, setLoader } from "../../redux/commonSlice";
 import MetaTags from "../../../components/common/MetaTags";
 
 const OverviewScreen = () => {
@@ -23,6 +23,7 @@ const OverviewScreen = () => {
   useEffect(() => {
     const userJwt = localStorage.getItem("UserJwt");
     async function fetch() {
+      dispatch(setLoader(true));
       if (userJwt) {
         await getUser({ dispatch });
         var data = await getScanHistoryData({
@@ -31,8 +32,10 @@ const OverviewScreen = () => {
         });
         setHistory(data);
         setUser(auth.user);
+        dispatch(setLoader(false));
         return;
       } else {
+        dispatch(setLoader(false));
         navigate.push("/solidity-shield-scan/auth");
       }
     }

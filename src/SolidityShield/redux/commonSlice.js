@@ -9,6 +9,7 @@ const initialCommonState = {
   isRequestModalOpen: false,
   creditsRemaining: 10,
   scanNowModal: false,
+  isLoading: false,
   sourceType: "Github",
   chainType: "Ethereum Mainnet",
 };
@@ -32,6 +33,9 @@ const commonSlice = createSlice({
     setScanNowModal(state, action) {
       state.scanNowModal = action.payload;
     },
+    setLoader(state, action) {
+      state.isLoading = action.payload;
+    },
     setSourceType(state, action) {
       state.sourceType = action.payload;
     },
@@ -51,6 +55,7 @@ export const {
   setSelectedSidebarItem,
   setCreditsRemaining,
   setScanNowModal,
+  setLoader,
   setSourceType,
   setChainType,
   setIsRequestModalOpen,

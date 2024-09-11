@@ -14,6 +14,7 @@ import {
 import { useDispatch } from "react-redux";
 import { pricingDetails } from "../pricing/pricing.data";
 import { getUser, getJwt } from "../../functions";
+import { setLoader } from "../../redux/commonSlice";
 
 const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
@@ -29,12 +30,15 @@ const BillingScreen = () => {
   useEffect(() => {
     //alert(auth.user.plan);
     async function fetch() {
+      dispatch(setLoader(true));
       const userJwt = getJwt();
       if (userJwt) {
         var data = await getUser({ dispatch });
         setUser(data);
+        dispatch(setLoader(false));
       } else {
         navigate.push("/solidity-shield-scan/auth");
+        dispatch(setLoader(false));
       }
     }
     fetch();

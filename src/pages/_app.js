@@ -67,6 +67,7 @@ import RequestQuoteModal from "../SolidityShield/components/modal/RequestQuoteMo
 import { useRouter } from "next/router";
 import { MainLayout } from "../SolidityShield/components/sidebar/Layout";
 import MetaTags from "../components/common/MetaTags";
+import Loader from "../SolidityShield/components/common/Loader";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -96,6 +97,7 @@ function MyApp({ Component, pageProps }) {
                   desc: "Get your smart contracts audited here by SecureDapps's Solidity Shield with AI scanning.",
                 }}
               />
+              {isSolidityShieldScan && <Loader />}
               <Component {...pageProps} />
             </MainLayout>
           ) : (
