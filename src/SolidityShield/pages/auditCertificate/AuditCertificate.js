@@ -1,6 +1,6 @@
 import { useState } from "react";
+import Image from "next/image";
 import CustomButton from "../../components/common/CustomButton";
-import "./AuditCertificate.css";
 
 const AuditCertificate = () => {
   const [isAuditCertificate, setIsAuditCertificate] = useState(false);

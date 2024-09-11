@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import BillingTable from "../../components/billing/BillingTable";
 import CustomButton from "../../components/common/CustomButton";
 import Pagination from "../../components/common/Pagination";
 import ChartCard from "../../components/overview/ChartCard";
-import "./Billing.css";
 import { getUserData } from "../../redux/auth/authSlice";
 import {
   getPaymentSelector,
@@ -14,12 +14,13 @@ import {
 import { useDispatch } from "react-redux";
 import { pricingDetails } from "../pricing/pricing.data";
 import { getUser, getJwt } from "../../functions";
+import { setLoader } from "../../redux/commonSlice";
 
 const BillingScreen = () => {
   const { paymentModal } = useSelector(getPaymentSelector);
   const auth = useSelector(getUserData);
   const [user, setUser] = useState();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -29,12 +30,15 @@ const BillingScreen = () => {
   useEffect(() => {
     //alert(auth.user.plan);
     async function fetch() {
+      dispatch(setLoader(true));
       const userJwt = getJwt();
       if (userJwt) {
         var data = await getUser({ dispatch });
         setUser(data);
+        dispatch(setLoader(false));
       } else {
-        navigate("/solidity-shield-scan/auth");
+        navigate.push("/solidity-shield-scan/auth");
+        dispatch(setLoader(false));
       }
     }
     fetch();
@@ -82,14 +86,18 @@ const BillingScreen = () => {
                 <div className="sss-billing-current-button-container">
                   <div className="sss-billing-current-buttons">
                     <CustomButton
-                      onClick={() => navigate("/solidity-shield-scan/pricing")}
+                      onClick={() =>
+                        navigate.push("/solidity-shield-scan/pricing")
+                      }
                       className={
                         "px-3 py-2 rounded-xl bg-tertiary border border-black text-black active:bg-white"
                       }
                       text={"Upgrade Plan"}
                     />
                     <CustomButton
-                      onClick={() => navigate("/solidity-shield-scan/pricing")}
+                      onClick={() =>
+                        navigate.push("/solidity-shield-scan/pricing")
+                      }
                       className={
                         "px-3 py-2 rounded-xl text-black border border-tertiary bg-white active:bg-white"
                       }
@@ -118,7 +126,7 @@ const BillingScreen = () => {
                 <div className="sss-billing-payment-method">
                   <div className="sss-billing-payment-method-left">
                     <div className="sss-billing-payment-method-image">
-                      <img
+                      <img layout="intrinsic"   layout="intrinsic"   
                         className="p-1"
                         src="/assets/images/solidity-shield-scan/billing-visa.svg"
                         alt="Visa"

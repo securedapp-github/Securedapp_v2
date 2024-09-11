@@ -1,27 +1,29 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import IssuesChart from "../../components/overview/IssuesChart";
 import ScanSummary from "../../components/overview/ScanSummary";
-import "./Overview.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../../redux/auth/authSlice";
 import { getScanHistoryData, getJwt, getUser } from "../../functions";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
-import { setScanNowModal } from "../../redux/commonSlice";
+import { setScanNowModal, setLoader } from "../../redux/commonSlice";
 import MetaTags from "../../../components/common/MetaTags";
 
 const OverviewScreen = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const auth = useSelector(getUserData);
   var scanHistory = useSelector(getScanHistory);
   const [firstTime, setFirstTime] = useState(true);
   const [history, setHistory] = useState();
+  const [user, setUser] = useState();
 
   useEffect(() => {
     const userJwt = localStorage.getItem("UserJwt");
     async function fetch() {
+      dispatch(setLoader(true));
       if (userJwt) {
         await getUser({ dispatch });
         var data = await getScanHistoryData({
@@ -29,26 +31,23 @@ const OverviewScreen = () => {
           dispatch,
         });
         setHistory(data);
+        setUser(auth.user);
+        dispatch(setLoader(false));
         return;
       } else {
-        navigate("/solidity-shield-scan/auth");
+        dispatch(setLoader(false));
+        navigate.push("/solidity-shield-scan/auth");
       }
     }
     fetch();
   }, [!history && history, !auth.user.email && auth.user]);
 
   useEffect(() => {
-    if (scanHistory.history.length > 0) setFirstTime(false);
+    if (!history) setFirstTime(false);
   }, [scanHistory.history]);
 
   return (
     <div className="sss-overview-screen-container">
-      <MetaTags
-        data={{
-          title: "Solidity Shield Scan",
-          desc: "Get your smart contracts audited here by SecureDapps's Solidity Shield with AI scanning.",
-        }}
-      />
       <div className="sss-overview-screen">
         <div className="sss-overview-header">
           <div className="">Dashboard</div>
@@ -57,6 +56,7 @@ const OverviewScreen = () => {
           {firstTime ? (
             <div className="sss-overview-first-time">
               <img
+                layout="intrinsic"
                 src="/assets/images/solidity-shield-scan/dashboard-icon.svg"
                 alt=""
               />
@@ -66,7 +66,7 @@ const OverviewScreen = () => {
                   onClick={() =>
                     auth.user.email
                       ? dispatch(setScanNowModal(true))
-                      : navigate("/solidity-shield-scan/auth")
+                      : navigate.push("/solidity-shield-scan/auth")
                   }
                   className="font-semibold underline cursor-pointer"
                 >

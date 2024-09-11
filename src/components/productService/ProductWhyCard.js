@@ -1,5 +1,7 @@
+"use client";
+
 import Button from "../common/Button";
-import "./ProductWhyCard.css";
+import Image from "next/image";
 
 const ProductWhyCard = ({
   header,
@@ -30,7 +32,9 @@ const ProductWhyCard = ({
             <div className="product-why-card-content-button">
               <Button
                 text={buttonText}
-                onClick={() => window.open(link)}
+                onClick={() =>
+                  typeof window !== "undefined" && window.open(link)
+                }
                 filled={true}
               />
             </div>
@@ -38,7 +42,7 @@ const ProductWhyCard = ({
         </div>
       </div>
       <div className="product-why-card-image">
-        <img src={image} alt={imageAlt} />
+        <img layout="intrinsic" src={image} alt={imageAlt} />
       </div>
     </div>
   );

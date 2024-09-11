@@ -1,3 +1,11 @@
+.sss-product {
+  @apply w-full min-h-screen md:flex;
+}
+
+.sss-product-with-header {
+  @apply w-full bg-[#FAFAFA] h-screen overflow-y-scroll;
+}
+
 .sss-sidebar-container {
   @apply z-40 fixed md:relative h-screen w-2/3 sm:w-2/4 md:max-w-[20%] border-r border-[#E5EAEF] shadow-lg bg-white;
 }

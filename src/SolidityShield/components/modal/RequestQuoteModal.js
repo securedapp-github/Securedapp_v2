@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./RequestQuoteModal.css";
+import Link from "next/link";
 import Button from "../../../components/common/Button";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -141,7 +141,7 @@ const RequestQuoteModal = () => {
             <i
               onClick={closeModal}
               className="fa-solid fa-xmark fa-xl request-modal-close-button"
-            />
+            ></i>
           </div>
           <div className="requeset-quote-modal-header">
             Tell us about your Projects
@@ -233,14 +233,14 @@ const RequestQuoteModal = () => {
               <input id="request-quote-check-privacy" type="checkbox" />
               <div>
                 I agree with the{" "}
-                <a
+                <Link
                   className="text-[#A4CDFF] font-bold"
                   target="_blank"
                   href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
                   rel="noreferrer"
                 >
                   Privacy Policy
-                </a>{" "}
+                </Link>{" "}
                 and information being used to contact me
               </div>
             </div>

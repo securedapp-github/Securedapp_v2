@@ -1,5 +1,7 @@
+"use client";
+
 import Button from "../common/Button";
-import "./ProductCard.css";
+import Image from "next/image";
 
 const ProductCard = ({
   header,
@@ -12,7 +14,7 @@ const ProductCard = ({
   return (
     <div className="product-card">
       <div className="product-card-image">
-        <img src={image} alt={imageAlt} />
+        <img layout="intrinsic" src={image} alt={imageAlt} />
       </div>
       <div className="product-card-content">
         <div className="product-card-content-header">{header}</div>
@@ -24,7 +26,7 @@ const ProductCard = ({
           <div className="product-card-content-button">
             <Button
               text={buttonText}
-              onClick={() => window.open(link)}
+              onClick={() => typeof window !== "undefined" && window.open(link)}
               filled={true}
             />
           </div>

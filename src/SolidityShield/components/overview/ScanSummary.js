@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import ChartCard from "./ChartCard";
-import "./ScanSummary.css";
 import {
   getOverviewSelector,
   setDateFilter,
@@ -73,14 +73,20 @@ const ScanSummary = () => {
   const { dateFilter, scanSummary } = useSelector(getOverviewSelector);
   const scanHistory = useSelector(getScanHistory);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const auth = useSelector(getUserData);
 
   useEffect(() => {
-    getScanSummaryData({ email: auth.user.email, dispatch });
-    console.log(scanSummary.values);
-  }, []);
+    const fetch = async () => {
+      await getScanSummaryData({
+        email: localStorage.getItem("UserEmail"),
+        dispatch,
+      });
+      console.log(scanSummary);
+    };
+    fetch();
+  }, [!scanSummary && scanSummary]);
 
   return (
     <div className="flex-1 w-full">
@@ -155,8 +161,8 @@ const ScanSummary = () => {
                       "bg-[#12D576] rounded-3xl text-[#ffffff] py-3 w-[150px] active:bg-white active:border active:border-tertiary active:text-black"
                     }
                     onClick={() =>
-                      navigate(
-                        `/solidity-shield-scan/report/${
+                      navigate.push(
+                        `/solidity-shield-scan/report?id=${
                           scanHistory.history.reduce((max, item) => {
                             return item.id > max.id ? item : max;
                           }, scanHistory.history[0]).id

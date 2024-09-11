@@ -3,7 +3,6 @@ import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthLogos from "../../components/auth/AuthLogos";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
-import "./LoginScreen.css";
 
 const RegisterScreen = () => {
   return (
@@ -39,7 +38,7 @@ const RegisterScreen = () => {
             <AuthButton children={"Sign Up"} onClick={() => {}} />
             {/* <AuthButton filled={false}>
               <div className="auth-screen-google">
-                <img
+                <img layout="intrinsic"   layout="intrinsic"   
                   src="/assets/images/solidity-shield-scan/google-logo.svg"
                   alt="Google Logo"
                 />

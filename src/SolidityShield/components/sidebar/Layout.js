@@ -1,7 +1,8 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { useRouter } from "next/router";
 import Header from "../header/Header";
-import Sidebar from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 import { useEffect } from "react";
+import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { setSelectedSidebarItem } from "../../redux/commonSlice";
 
@@ -12,14 +13,14 @@ const capitalizePath = (str) => {
     .join(" ");
 };
 
-export const MainLayout = () => {
-  const location = useLocation();
+export const MainLayout = ({ children }) => {
+  const router = useRouter();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (location.pathname) {
-      const pathName = location.pathname.split("/")[2];
+    if (router.asPath) {
+      const pathName = router.asPath.split("/")[2];
       if (pathName) {
         if (pathName === "vulnerability-scans" || pathName === "scan-report") {
           dispatch(setSelectedSidebarItem("Vulnerability Scans"));
@@ -32,23 +33,19 @@ export const MainLayout = () => {
         }
       }
     }
-  }, [location]);
+  }, [router.asPath]);
 
   return (
     <div className="sss-product">
       <Sidebar />
       <div className="sss-product-with-header">
         <Header />
-        <Outlet />
+        {children}
       </div>
     </div>
   );
 };
 
-export const NoSidebarLayout = () => {
-  return (
-    <div className="py-4 h-screen overflow-y-auto">
-      <Outlet />
-    </div>
-  );
+export const NoSidebarLayout = ({ children }) => {
+  return <div className="py-4 h-screen overflow-y-auto">{children}</div>;
 };

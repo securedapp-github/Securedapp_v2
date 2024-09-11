@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import CustomButton from "../../components/common/CustomButton";
 
 const emailNotificationsQuestions = [
@@ -58,7 +59,8 @@ const Notifications = () => {
           title={"Email Notifications"}
           description={
             "When you're busy or not online, Substance can send you email notifications for any new direct messages or mentions of your name."
-          }></NotificationSection>
+          }
+        ></NotificationSection>
         <NotificationSection title={"Send me email notifications:"}>
           <div className="sss-settings-notifications-email-notif-selections">
             {emailNotificationsQuestions.map((question) => {
@@ -82,7 +84,8 @@ const Notifications = () => {
           title={"Email News & Updates"}
           description={
             "From time to time, we'd like to send you emails with interesting news about Cuboid and your workspace. You can choose which of these updates you'd like to receive :"
-          }>
+          }
+        >
           <div className="sss-settings-notifications-email-news">
             {emailNews.map((news) => {
               return (
@@ -100,7 +103,8 @@ const Notifications = () => {
           title={"Sign-in Notifications"}
           description={
             "These emails help keep your Substance account secure. If you haven't already, you should also enable two-factor authentication."
-          }>
+          }
+        >
           <div className="sss-settings-notifications-sign-in">
             {signInNotifs.map((notif) => {
               return (

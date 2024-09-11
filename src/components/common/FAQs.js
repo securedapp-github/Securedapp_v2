@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "./SectionTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

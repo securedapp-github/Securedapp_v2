@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import CustomButton from "../../components/common/CustomButton";
 
 const AccountCard = ({
@@ -12,7 +13,12 @@ const AccountCard = ({
     <div className="sss-settings-account-card-container">
       <div className="sss-settings-account-card">
         <div className="sss-settings-account-card-left">
-          <img src={logo} alt={accountType} />
+          <img
+            layout="intrinsic"
+            layout="intrinsic"
+            src={logo}
+            alt={accountType}
+          />
           <div className="sss-settings-account-card-left-details">
             <div className="sss-settings-account-card-left-details-title">
               {accountType}
@@ -27,7 +33,8 @@ const AccountCard = ({
             className={`w-14 h-8 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
               toggleValue ? "bg-tertiary" : "bg-gray-300"
             }`}
-            onClick={handleToggle}>
+            onClick={handleToggle}
+          >
             <div
               className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ${
                 toggleValue ? "translate-x-6" : "translate-x-0"
@@ -51,6 +58,7 @@ const ConnectedAccounts = () => {
         <div className="sss-settings-connected-accounts-box">
           <div className="sss-settings-connected-accounts-box-icon">
             <img
+              layout="intrinsic"
               src="/assets/images/solidity-shield-scan/connected-accounts-verified.svg"
               alt=""
             />

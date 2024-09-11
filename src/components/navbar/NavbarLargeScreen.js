@@ -35,9 +35,9 @@ const NavbarLargeScreen = ({
       <div className="flex space-x-4 items-center">
         <button onClick={toggleTheme}>
           {darkMode ? (
-            <i class="fa-regular fa-brightness fa-lg"></i>
+            <i className="fa-regular fa-brightness fa-lg"></i>
           ) : (
-            <i class="fa-regular fa-moon fa-lg"></i>
+            <i className="fa-regular fa-moon fa-lg"></i>
           )}
         </button>
         {nextPath !== undefined && nextPath !== null ? (

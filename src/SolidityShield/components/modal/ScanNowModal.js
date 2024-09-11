@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import "./ScanNowModal.css";
 import {
   getCommonSelector,
   setChainType,
@@ -8,7 +7,8 @@ import {
 } from "../../redux/commonSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -93,7 +93,7 @@ const ScanNowModal = () => {
     useSelector(getCommonSelector);
   const auth = useSelector(getUserData);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const [dropDown, setDropDown] = useState(false);
 
   const [company, setCompany] = useState();
@@ -158,7 +158,7 @@ const ScanNowModal = () => {
     });
     if (typeof res === "number") {
       closeModal();
-      navigate(`/solidity-shield-scan/report/${res}`);
+      navigate.push(`/solidity-shield-scan/report?id=${res}`);
       setGithub();
       setContractUrl();
       setFile();

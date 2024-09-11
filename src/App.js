@@ -5,9 +5,10 @@ import {
   Route,
   BrowserRouter as Router,
   useLocation,
-} from "react-router-dom";
+} from "next/router";
 import Home from "./pages/home/HomePage";
 import { useEffect } from "react";
+import Image from "next/image";
 import Product from "./pages/product/Product";
 import SolidityShieldPage from "./pages/product/SolidityShield/SolidityShieldPage";
 import SecureWatchPage from "./pages/product/SecureWatch/SecureWatchPage";
@@ -53,14 +54,20 @@ function App() {
 
   useEffect(() => {
     const handleResize = () => {
-      dispatch(setIsLargeScreen(window.innerWidth >= 1024));
+      dispatch(
+        setIsLargeScreen(
+          typeof window !== "undefined" && window.innerWidth >= 1024
+        )
+      );
     };
     handleResize();
     AOS.init();
-    window.addEventListener("resize", handleResize);
+    typeof window !== "undefined" &&
+      window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      typeof window !== "undefined" &&
+        window.removeEventListener("resize", handleResize);
     };
   }, []);
 

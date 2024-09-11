@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { toast } from "react-toastify";
 import AuthInputField from "../../components/auth/AuthInputField";
-import "./ContactUs.css";
 import AuthButton from "../../components/auth/AuthButton";
 
 export const AuthInputFieldContainer = ({ label, InputField }) => {
@@ -57,7 +56,7 @@ const ContactUs = () => {
 
   return (
     <div className="contact-us-container">
-      <div className="contact-us">
+      <div style={{ marginTop: "30px" }} className="contact-us">
         <div className="contact-us-header">
           <div className="contact-us-header-label">Contact Us</div>
           <div className="contact-us-header-title">Get in Touch</div>
@@ -123,7 +122,7 @@ const ContactUs = () => {
             <div className="contact-us-body-privacy-message">
               You agree to our friendly
               <Link
-                to={
+                href={
                   "https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
                 }
                 className="contact-us-body-privacy-link"
@@ -132,7 +131,10 @@ const ContactUs = () => {
               </Link>
             </div>
           </div>
-          <div className="contact-us-body-button">
+          <div
+            style={{ marginBottom: "20px" }}
+            className="contact-us-body-button"
+          >
             <AuthButton onClick={sendMail} filled={true}>
               Send Message
             </AuthButton>

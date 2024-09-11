@@ -1,5 +1,3 @@
-import "./BlogTag.css";
-
 const BlogTag = ({ tag, selected = false, onClick = {} }) => {
   return (
     <div

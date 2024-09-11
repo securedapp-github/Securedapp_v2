@@ -1,4 +1,3 @@
-import "./AuthScreenHeader.css";
 
 const AuthScrenHeader = ({ title, description }) => {
   return (

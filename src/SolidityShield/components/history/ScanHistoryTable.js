@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./ScanHistoryTable.css";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Image from "next/image";
 import Pagination from "../common/Pagination";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { formatDate, downloadfReportPdf } from "../../functions";
 import ScanReport from "../../pages/scanReport/ScanReport";
 import { toast } from "react-toastify";
@@ -19,7 +19,8 @@ const StatusTypeComponent = ({ status }) => {
           : status === "Failed"
           ? "sss-history-status-type-component-container-red"
           : "sss-history-status-type-component-container-yellow"
-      }`}>
+      }`}
+    >
       <div className="sss-history-status-type-component">
         <FontAwesomeIcon
           icon={
@@ -111,7 +112,9 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     </div>
                     <div className="sss-history-table-report-link-container">
                       <div className="sss-history-table-report-link">
-                        <Link to={"/solidity-shield-scan/report/" + data.id}>
+                        <Link
+                          href={"/solidity-shield-scan/report?id=" + data.id}
+                        >
                           {"Report - " + data.id}
                         </Link>
                       </div>
@@ -124,9 +127,11 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     <div
                       onMouseEnter={() => setHoveredRowIndex(index)}
                       onMouseLeave={() => setHoveredRowIndex(null)}
-                      className="sss-history-table-options-container">
+                      className="sss-history-table-options-container"
+                    >
                       <div className="sss-history-table-options">
                         <img
+                          layout="intrinsic"
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                           alt="Option Icon"
                         />
@@ -136,10 +141,14 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                           className={`sss-history-table-options-dropdown ${
                             hoveredRowIndex === paginatedData.length - 1 &&
                             "bottom-0"
-                          }`}>
+                          }`}
+                        >
                           <div className="sss-history-table-options-dropdown-item">
                             <Link
-                              to={"/solidity-shield-scan/report/" + data.id}>
+                              href={
+                                "/solidity-shield-scan/report?id=" + data.id
+                              }
+                            >
                               View
                             </Link>
                           </div>
@@ -147,7 +156,8 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                             onClick={() => {
                               downloadfReportPdf(data.id, auth.user);
                             }}
-                            className="sss-history-table-options-dropdown-item">
+                            className="sss-history-table-options-dropdown-item"
+                          >
                             Download
                           </div>
                           {/* scan report start */}
