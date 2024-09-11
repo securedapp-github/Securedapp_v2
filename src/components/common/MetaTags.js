@@ -71,18 +71,18 @@ const MetaTags = ({ data }) => {
         rel="stylesheet"
       />
       <script>
-        {`{
+        {`
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag("js", new Date());
 
-    gtag("config", "G-GXZX7PXY8D");}`}
+    gtag("config", "G-GXZX7PXY8D");`}
       </script>
 
       <script type="application/ld+json">
-        {`{
+        {`
       "@context": "https://schema.org/",
       "@type": "Organization",
       "@id": "#Organization",
@@ -106,21 +106,21 @@ const MetaTags = ({ data }) => {
         "https://www.linkedin.com/company/securedapp/",
         "https://x.com/secure_dapp"
       ]
-    }`}
+    `}
       </script>
 
       <script type="application/ld+json">
-        {`{
+        {`
       "@context": "https://schema.org/",
       "@type": "WebPage",
       "@id": "#WebPage",
       "url": "https://securedapp.io/",
       "name": "securedapp.io"
-    }`}
+    `}
       </script>
 
       <script type="application/ld+json">
-        {`{
+        {`
       "@context": "https://schema.org/",
       "@type": "FAQPage",
       "mainEntity": [
@@ -141,7 +141,7 @@ const MetaTags = ({ data }) => {
           }
         }
       ]
-    }`}
+    `}
       </script>
     </Head>
   );
