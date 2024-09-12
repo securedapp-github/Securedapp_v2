@@ -292,7 +292,7 @@ const BlogPost = () => {
                     return <BlogTag tag={tag} onClick={() => {}} />;
                   })}
                 </div>
-                <div className="body-header-title">{blogDetails.title}</div>
+                <h1 className="body-header-title">{blogDetails.title}</h1>
                 {/* <p>{blogDetails.preview}</p> */}
               </div>
               <div className="py-6">

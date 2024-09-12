@@ -65,9 +65,9 @@ const AboutUs = () => {
       <Navbar />
       <div className="about-us-hero-container">
         <div className="about-us-hero">
-          <div className="about-us-hero-title">
+          <h1 className="about-us-hero-title">
             Our Story : From Vision to Reality
-          </div>
+          </h1>
           <div className="about-us-hero-description">
             SecureDApp emerged from a united vision to secure the future of
             Web3. Founded by two dedicated innovators from India, the company

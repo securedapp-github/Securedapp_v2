@@ -64,12 +64,12 @@ const ProductServiceHero = ({
                 {name}
               </div>
             )}
-            <div
+            <h1
               style={{ width: service && isOnWeb && "100%" }}
               className="hero-header-left"
             >
               {title}
-            </div>
+            </h1>
             {!service ? <div className="hero-header-line"></div> : <br></br>}
             <div className="hero-header-right">
               <div className="hero-header-right-stars">

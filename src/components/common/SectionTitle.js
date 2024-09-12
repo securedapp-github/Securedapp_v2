@@ -20,7 +20,7 @@ const SectionTitle = ({ name, title, description }) => (
         />
       </div>
     )}
-    <div className="section-title-header">{title}</div>
+    <h2 className="section-title-header">{title}</h2>
     <div className="section-title-description">{description}</div>
   </div>
 );
