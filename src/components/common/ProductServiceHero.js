@@ -13,6 +13,7 @@ import {
   setIsRequestModalOpen,
   setDarkMode,
 } from "../../redux/slices/main/homeSlice";
+import { useRouter } from "next/router";
 
 const ProductServiceHero = ({
   name,
@@ -24,6 +25,7 @@ const ProductServiceHero = ({
   isSecureTrace = false,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const isOnWeb = typeof window !== "undefined" && window.innerWidth > 1024;
   return (
     <div className="product-service-hero-container">
@@ -110,7 +112,7 @@ const ProductServiceHero = ({
             }}
             className="hero-image"
             src={image}
-            alt="Product Service Hero"
+            alt={router.asPath.replace("/", "")}
           />
         </div>
       </div>

@@ -19,7 +19,7 @@ const TeamCard = ({ details }) => {
           <div className="team-card-header-image-container">
             <img
               className="team-card-header-image"
-              alt=""
+              alt="about-us"
               src={details.image}
             />
           </div>
@@ -91,7 +91,7 @@ const AboutUs = () => {
             <img
               style={{ maxWidth: "90%" }}
               src="/assets/images/about/photo1.png"
-              alt=""
+              alt="about-us"
             />
           </div>
           <hr />
@@ -106,7 +106,7 @@ const AboutUs = () => {
             <img
               style={{ maxWidth: "90%", margin: "0 auto" }}
               src="/assets/images/about/photo2.png"
-              alt=""
+              alt="about-us"
             />
           </div>
           <div className="about-us-company-eco-content-container">
@@ -172,7 +172,7 @@ const AboutUs = () => {
               layout="intrinsic"
               style={{ maxWidth: "90%" }}
               src="/assets/images/about/photo3.png"
-              alt=""
+              alt="about-us"
             />
           </div>
         </div>

@@ -306,6 +306,7 @@ const BlogPost = () => {
                         <img
                           layout="intrinsic"
                           src={blogDetails.Publisher.image}
+                          alt="publisher"
                         />
                       )}
                     </div>
@@ -396,7 +397,7 @@ const BlogPost = () => {
                                 paddingRight: 38,
                               }}
                               src={img.src}
-                              alt={img.alt}
+                              alt={"blog-post-img"}
                             />
                           </React.Fragment>
                         );

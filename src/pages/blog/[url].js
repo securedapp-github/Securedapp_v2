@@ -300,6 +300,7 @@ export default function BlogPost() {
                         <img
                           layout="intrinsic"
                           src={blogDetails.Publisher.image}
+                          alt={blogDetails.Publisher.name}
                         />
                       )}
                     </div>
