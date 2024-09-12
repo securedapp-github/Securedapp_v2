@@ -20,7 +20,11 @@ const SectionTitle = ({ name, title, description }) => (
         />
       </div>
     )}
-    <h2 className="section-title-header">{title}</h2>
+    {title === "Frequently Asked Questions" ? (
+      <h3 className="section-title-header">{title}</h3>
+    ) : (
+      <h2 className="section-title-header">{title}</h2>
+    )}
     <div className="section-title-description">{description}</div>
   </div>
 );
