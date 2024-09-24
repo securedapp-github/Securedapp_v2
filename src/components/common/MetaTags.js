@@ -25,7 +25,7 @@ const MetaTags = ({ data }) => {
         "235, 2nd and 3rd Floor, 13th Cross Road, Indira Nagar 2nd Stage, Hoysala Nagar Bengaluru",
       addressLocality: "Bengaluru",
       addressRegion: "KARNATAKA",
-      addressCountry: "India",
+      addressCountry: "IN",
       postalCode: "560038",
     },
     sameAs: [
