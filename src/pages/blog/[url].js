@@ -226,18 +226,22 @@ export default function BlogPost() {
   };
 
   const currentBlog = fullData.find(
-    (item) => item.url.replace(":", "") === url.replace(":", "")
+    (item) =>
+      item.url.replace(":", "").replace("(", "").replace(")", "") ===
+      url.replace(":", "").replace("(", "").replace(")", "")
   );
+
+  console.log(currentBlog);
 
   return (
     <div className="blog-post-container">
-      {currentBlog && (
+      {blogDetails && (
         <MetaTags
           data={{
-            title: currentBlog.heading,
-            desc: `Read an interesting blog from SecureDapp on "${currentBlog.heading}"`,
-            image: currentBlog.image,
-            keywords: currentBlog.tags + ", " + currentBlog.category,
+            title: blogDetails.title,
+            desc: `Read an interesting blog from SecureDapp on "${blogDetails.preview}"`,
+            image: blogDetails.image,
+            keywords: blogDetails.tags,
           }}
         />
       )}

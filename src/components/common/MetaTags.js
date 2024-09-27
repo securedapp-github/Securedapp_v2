@@ -1,12 +1,44 @@
 "use client";
 
-import { useRouter } from "next/router";
-import Head from "next/head";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { usePathname } from "next/navigation";
 
 const MetaTags = ({ data }) => {
-  const router = useRouter();
-  var url = "https://securedapp.io" + router.asPath;
+  const path = usePathname();
+  var url = "https://securedapp.io" + path;
+
+  const metadata = [
+    {
+      title: "Blockchain Security & Smart Contract Audits | SecureDApp.io",
+      desc: "SecureDApp offers blockchain security, smart contract audits, DApp development, and compliance services. Protect your digital assets today.",
+      keywords:
+        "blockchain security, smart contract audits, DApp development, compliance solutions, Layer 1 and Layer 2 chains, Ethereum security, Algorand security, Solana audits, Aptos blockchain, Hyperledger auditing, Binance Smart Chain security, DeFi protocol audits, NFT security, DAO audits, digital asset protection, non-custodial wallet security, custodial wallet protection, blockchain platform security, intellectual property protection, vulnerability detection blockchain",
+      image: "/assets/images/ProductPages/ss/hero.webp",
+      path: "/",
+    },
+    {
+      title: "SecurePad: Zero-Fee Tokenization for Blockchain Security",
+      desc: "Launch, trade, and manage tokens seamlessly with SecurePad, the zero-fee platform offering secure, no-code, cross-chain blockchain services.",
+      keywords:
+        "SecurePad, blockchain security, tokenization, free token creation, no-code blockchain, cross-chain functionality, decentralized exchange, token staking, token locker, Initial DEX Offering, blockchain project, SecureDApp",
+      image: "/assets/images/ProductPages/sp/sp-hero.jpg",
+      path: "/secure-pad",
+    },
+    {
+      title: "SecureTrace: AI-Powered Blockchain Forensics & Compliance",
+      desc: "SecureTrace simplifies blockchain investigations with AI-driven tools. Trace transactions, enhance security, and ensure compliance with comprehensive analysis.",
+      keywords:
+        "SecureTrace, blockchain forensics, AI-powered investigation, blockchain compliance, transaction tracing, forensic analysis, SecureDApp, blockchain security, AI in blockchain, digital asset recovery",
+      image: "/assets/images/ProductPages/st/st-hero.webp",
+    },
+    {
+      title: "Blockchain Threat Detection with Secure Watch - SecureDApp",
+      desc: "Secure Watch offers AI-driven real-time blockchain threat detection, ensuring smart contract security by identifying and mitigating vulnerabilities.",
+      keywords:
+        "blockchain threat detection, smart contract security, Secure Watch, AI-driven monitoring, blockchain security tool, unauthorized access, real-time blockchain surveillance, smart contract vulnerabilities, blockchain threat intelligence, secure watch features",
+      image: "/assets/images/ProductPages/sw/hero.webp",
+    },
+  ];
 
   const orgSchema = {
     "@context": "https://schema.org/",
@@ -70,10 +102,6 @@ const MetaTags = ({ data }) => {
   return (
     <html>
       <head>
-        <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
-        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{data.title}</title>
         <meta name="author" content="SecureDapp" />
@@ -126,6 +154,11 @@ const MetaTags = ({ data }) => {
         {/* SEO Meta Tags */}
         {<meta name="robots" content="index, follow" />}
         {<meta name="googlebot" content="index, follow" />}
+
+        <link
+          rel="stylesheet"
+          href="https://site-assets.fontawesome.com/releases/v6.6.0/css/all.css"
+        />
 
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
