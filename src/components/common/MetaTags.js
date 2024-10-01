@@ -77,7 +77,7 @@ const MetaTags = ({ data }) => {
         name: "What is SecureDApp ? ",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "SecureDApp is a leading blockchain security firm specializing in smart contract audits, decentralized application (DApp) development, and comprehensive compliance solutions. We help businesses secure their blockchain operations, ensuring their projects are safe, reliable, and aligned with industry standards",
+          text: "SecureDApp is a leading blockchain security firm specializing in smart contract audits, decentralized application (DApp) development, and comprehensive compliance solutions. We help businesses secure their blockchain operations, ensuring their projects are safe, reliable, and aligned with industry standards.",
         },
       },
       {
