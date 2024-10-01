@@ -3,7 +3,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const SectionTitle = ({ name, title, description }) => {
-  const isSpecial = useRouter().asPath.includes("blog" || "media");
+  const isSpecial =
+    useRouter().asPath.includes("blog") || useRouter().asPath.includes("media");
   return (
     <div className="section-title">
       {name !== undefined && (
@@ -23,16 +24,14 @@ const SectionTitle = ({ name, title, description }) => {
           />
         </div>
       )}
-      {title === "Frequently Asked Questions" ? (
+      {isSpecial ? (
+        <h1 className="section-title-header">{title}</h1>
+      ) : title === "Frequently Asked Questions" ? (
         <h3 className="section-title-header">{title}</h3>
       ) : (
         <h2 className="section-title-header">{title}</h2>
       )}
-      {isSpecial ? (
-        <h1 className="section-title-description">{description}</h1>
-      ) : (
-        <div className="section-title-description">{description}</div>
-      )}
+      <div className="section-title-description">{description}</div>
     </div>
   );
 };
