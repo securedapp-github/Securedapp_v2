@@ -251,7 +251,6 @@ const ScanPage: React.FC = () => {
             </div>
         </div>
       </div>
-
       <div className='flex justify-center mt-20'>
         <div className='flex justify-center border border-green-500 hover:scale-105 transform transition duration-150 ease-in-out rounded-3xl w-4/12 shadow-2xl shadow-green-800 backdrop:opacity-15'>
           <button className='text-3xl text-green-500 px-6 py-5' id='poppins-bold'>
