@@ -264,7 +264,6 @@ const ScanPage: React.FC = () => {
   );
 };
 
-// Helper function to get score description
 const getScoreDescription = (score: number): string => {
   if (score >= 80) return 'EXCELLENT';
   if (score >= 60) return 'GOOD';
