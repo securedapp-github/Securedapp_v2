@@ -201,8 +201,6 @@ const Hero = (props: Props) => {
       if (sourceCode) {
         const lineCount = sourceCode.split('\n').length;
         console.log(`Number of lines of code: ${lineCount}`);
-
-        // Extract compiler version and contract name
         const compilerVersion = extractCompilerVersion(sourceCode);
         let extractedContractName = contractName;
 
@@ -228,7 +226,6 @@ const Hero = (props: Props) => {
         };
         console.log(jsonData);
         
-
         if (selectedSource === "contract_address") {
           if (!selectedBlockchain) {
             throw new Error("Please select a blockchain.");
