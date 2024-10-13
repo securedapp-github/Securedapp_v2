@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'; // Use Link from next/link
 import Image from 'next/image'; // Next.js Image component
@@ -6,6 +8,11 @@ import 'react-circular-progressbar/dist/styles.css';
 import binanceImg from '../assets/chains/ethereum.png';
 import { ClipLoader } from 'react-spinners';
 
+type Vulnerability = {
+  type: string;
+  reason: string;
+};
+
 type ScanData = {
   id: number;
   blockchain: string;
@@ -13,7 +20,25 @@ type ScanData = {
   contractName: string;
   contractAddress: string;
   securityScore: number;
-  vulnerabilities: { type: string; reason: string }[];
+  vulnerabilities: Vulnerability[];
+};
+
+type ApiResponse = {
+  scans: {
+    id: number;
+    company_name: string;
+    contract_name: string;
+    source_code: string;
+    blockchain: string;
+    address: string;
+    compiler_version: string;
+    score: string;
+    vulnerabilities: Vulnerability[];
+    created_at: string;
+  }[];
+  totalPages: number;
+  currentPage: number;
+  totalScans: number;
 };
 
 const Scanned = () => {
@@ -28,34 +53,39 @@ const Scanned = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://localhost:8000/getscansAE', {
+        const response = await fetch('https://139-59-5-56.nip.io:3443/getscansAE', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ page }),
         });
+        console.log('Fetch Response:', response);
 
         if (!response.ok) {
           throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
         }
 
-        const result = await response.json();
-        console.log(result);
-        
-        const formattedData: ScanData[] = result.map((scan: { id: any; blockchain: any; company_name: string; contract_name: string; address: any; score: string; vulnerabilities: any; }) => ({
-          id: scan.id,
-          blockchain: scan.blockchain,
-          companyName: scan.company_name.trim(),
-          contractName: scan.contract_name.trim(),
-          contractAddress: scan.address || '',
-          securityScore: parseFloat(scan.score) || 0,
-          vulnerabilities: scan.vulnerabilities || [],
-        }));
+        const result: ApiResponse = await response.json();
+        console.log('API Result:', result);
 
-        setData(formattedData); 
-        console.log(result.totalPages);
-        
+        const formattedData: ScanData[] = result.scans.map((scan) => {
+          // Calculate number of lines in source_code
+          const lineCount = scan.source_code.split('\n').length;
+          console.log(`Scan ID ${scan.id}: Number of lines of code: ${lineCount}`);
+
+          return {
+            id: scan.id,
+            blockchain: scan.blockchain,
+            companyName: scan.company_name.trim(),
+            contractName: scan.contract_name.trim(),
+            contractAddress: scan.address || '',
+            securityScore: parseFloat(scan.score) || 0,
+            vulnerabilities: scan.vulnerabilities || [],
+          };
+        });
+
+        setData(formattedData);
         setTotalPages(result.totalPages || 1);
       } catch (error: any) {
         setError(error.message || 'An unexpected error occurred');
@@ -73,17 +103,17 @@ const Scanned = () => {
       </div>
       <div className="overflow-x-auto lg:mx-20 mx-5 my-10">
         {loading ? (
-           <div className="flex justify-center items-center">
-           <ClipLoader color="#1E90FF" size={50} />
-           {/* Alternatively, use a simple CSS spinner */}
-           {/* <div className="spinner"></div> */}
-         </div>
+          <div className="flex justify-center items-center">
+            <ClipLoader color="#1E90FF" size={50} />
+            {/* Alternatively, use a simple CSS spinner */}
+            {/* <div className="spinner"></div> */}
+          </div>
         ) : error ? (
           <p className="text-center text-red-500">Error: {error}</p>
         ) : data.length === 0 ? (
           <p className='text-center'>No scans available.</p>
         ) : (
-          <table className="min-w-full  text-left table-auto">
+          <table className="min-w-full text-left table-auto">
             <thead className='text-white text-xl'>
               <tr>
                 <th className='p-3 text-center'>Blockchain</th>
@@ -95,8 +125,8 @@ const Scanned = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item, index) => (
-                <tr key={index} className='border-b'>
+              {data.map((item) => (
+                <tr key={item.id} className='border-b'>
                   <td className='p-3 flex justify-center items-center'>
                     <Image
                       className='h-10 w-10'
@@ -146,14 +176,18 @@ const Scanned = () => {
         <button
           disabled={page === 1}
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 ${
+            page === 1 ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
         >
           Previous
         </button>
         <button
           disabled={page === totalPages}
           onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+            page === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
         >
           Next
         </button>
