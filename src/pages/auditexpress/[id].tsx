@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; // Correct usage for dynamic routing in Next.js
 import axios from 'axios';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import VulnerabilityPieChart from './utils/VulnerabilityPieChart';
 import 'react-circular-progressbar/dist/styles.css';
 import { FaArrowLeft } from 'react-icons/fa';
 import Navbar from '../../components/navbar/Navbar';
@@ -147,36 +148,35 @@ const ScanPage: React.FC = () => {
   }
 
   return (
-    <div className="container bg-custom-bg mx-auto p-5 bg-[#011A3B] text-white rounded-lg shadow-lg">
+    <div className="container mx-auto p-4 bg-[#011A3B] text-white min-h-screen flex flex-col">
       <Navbar />
       <button
-        className='flex items-center mt-20 text-blue-400 font-bold text-xl mb-5'
+        className='flex items-center mt-5 text-blue-400 font-bold text-xl mb-5 sm:mt-10'
         onClick={() => router.back()}
       >
         <FaArrowLeft className="mr-2" />
         Back
       </button>
-      <div className='flex justify-between mx-10'>
-        <div>
+      <div className='flex flex-col md:flex-row justify-between mx-4 sm:mx-10 lg:mx-20'>
+        <div className="mb-4 md:mb-0">
           <button>
-            <span className='text-2xl' id='poppins-semibold'>{scanDetails.address}</span>
+            <span className='text-xl sm:text-2xl' id='poppins-semibold'>{scanDetails.address}</span>
           </button>
           <p>
-            <span className="text-lg text-gray-400" id='poppins-medium'>{scanDetails.blockchain}</span>
+            <span className="text-md sm:text-lg text-gray-400" id='poppins-medium'>{scanDetails.blockchain}</span>
           </p>
         </div>
-        <div>
-          <button className='text-green-500 underline text-2xl'>View on Blockscout</button>
+        <div className="flex justify-end">
+          <button className='text-green-500 underline text-xl sm:text-2xl'>View on Blockscout</button>
         </div>
       </div>
 
-      <div className='flex justify-between mx-20 my-10'>
-        <div className='border border-gray-50 w-80 h-24 flex justify-between px-10 rounded-full'>
-          <div className='flex justify-center items-center'>
-            <div>
-              <p className='text-2xl' id='poppins-medium'>Security Score</p>
-              <p className='text-2xl' id='poppins-medium'>{scanDetails.score}/100</p>
-            </div>
+      <div className='flex flex-col md:flex-row justify-between mx-4 sm:mx-10 lg:mx-20 my-5 sm:my-10 space-y-5 md:space-y-0'>
+        {/* Security Score */}
+        <div className='border border-gray-50 w-full md:w-1/3 lg:w-1/4 h-24 flex justify-between px-4 sm:px-10 rounded-full'>
+          <div className='flex flex-col justify-center'>
+            <p className='text-lg sm:text-2xl' id='poppins-medium'>Security Score</p>
+            <p className='text-lg sm:text-2xl' id='poppins-medium'>{scanDetails.score}/100</p>
           </div>
           <div className='flex items-center'>
             <motion.div
@@ -185,7 +185,7 @@ const ScanPage: React.FC = () => {
               onUpdate={(latest: any) => setScore(latest.value)} 
             >
               <CircularProgressbar 
-                className='w-10 h-10' 
+                className='w-10 h-10 sm:w-12 sm:h-12' 
                 value={score} 
                 maxValue={100} 
                 styles={buildStyles({ 
@@ -198,16 +198,15 @@ const ScanPage: React.FC = () => {
             </motion.div>
           </div>
         </div>
-        <div className='border border-gray-50 w-80 h-24 flex justify-between px-10 rounded-full'>
-          <div className='flex justify-center items-center'>
-            <div>
-              <p className='text-2xl' id='poppins-medium'>Scan duration</p>
-              <p className='text-2xl' id='poppins-medium'>3 secs</p>
-            </div>
+        {/* Scan Duration */}
+        <div className='border border-gray-50 w-full md:w-1/3 lg:w-1/4 h-24 flex justify-between px-4 sm:px-10 rounded-full'>
+          <div className='flex flex-col justify-center'>
+            <p className='text-lg sm:text-2xl' id='poppins-medium'>Scan duration</p>
+            <p className='text-lg sm:text-2xl' id='poppins-medium'>3 secs</p>
           </div>
           <div className='flex items-center'>
             <CircularProgressbar 
-              className='w-10 h-10' 
+              className='w-10 h-10 sm:w-12 sm:h-12' 
               value={score} 
               maxValue={100} 
               styles={buildStyles({ 
@@ -219,27 +218,28 @@ const ScanPage: React.FC = () => {
             />
           </div>
         </div>
-        <div className='border border-gray-50 w-80 h-24 flex justify-between px-10 rounded-full'>
-          <div className='flex justify-center items-center'>
-            <div>
-              <p className='text-2xl' id='poppins-medium'>Lines of code</p>
-              <p className='text-2xl' id='poppins-medium'>{lineCount}</p>
-            </div>
+        {/* Lines of Code */}
+        <div className='border border-gray-50 w-full md:w-1/3 lg:w-1/4 h-24 flex justify-between px-4 sm:px-10 rounded-full'>
+          <div className='flex flex-col justify-center'>
+            <p className='text-lg sm:text-2xl' id='poppins-medium'>Lines of code</p>
+            <p className='text-lg sm:text-2xl' id='poppins-medium'>{lineCount}</p>
           </div>
         </div>
       </div>
 
-      <div className='flex justify-center items-center'>
-        <div className='border border-gray-50 mx-32 flex justify-between px-10 rounded-full'>
-          <div className='flex items-center my-4' id='poppins-semibold'>
+      {/* Security Score Description */}
+      <div className='flex justify-center items-center my-5 sm:my-10 px-4 sm:px-10'>
+        <div className='border border-gray-50 w-full lg:w-10/12 flex flex-col lg:flex-row justify-between px-4 sm:px-10 py-0 rounded-full'>
+          <div className='flex justify-center items-center mb-4 lg:mb-0' id='poppins-semibold'>
             <CircularProgressbar 
-              className='w-32 bg-white rounded-full' 
+              className='md:w-60 md:h-60 w-40 h-40 text-white rounded-full' 
               text={`${scanDetails.score}%`} 
               value={scanDetails.score} 
               maxValue={100} 
-              styles={buildStyles({ 
+              styles={buildStyles({
+                height: '100%', 
                 pathColor: '#12D576', 
-                textColor: '#000000', 
+                textColor: '#ffffff', 
                 backgroundColor:"#ffffff", 
                 trailColor: '#d6d6d6', 
                 textSize: '20px' 
@@ -247,9 +247,11 @@ const ScanPage: React.FC = () => {
             />
           </div>
           <div className='flex justify-center items-center'>
-            <div className='ml-20'>
-              <p className='text-2xl my-2' id='poppins-semibold'>Your Security Score is {getScoreDescription(score)}</p>
-              <p className='text-xl my-2' id='poppins-medium'>
+            <div className='ml-0 lg:ml-10 text-center lg:text-left'>
+              <p className='text-xl sm:text-2xl my-2' id='poppins-semibold'>
+                Your Security Score is {getScoreDescription(score)}
+              </p>
+              <p className='text-md sm:text-lg my-2' id='poppins-medium'>
                 The SolidityScan score is calculated based on lines of code and weights assigned to each issue depending on the severity and confidence. 
                 To improve your score, view the detailed result and leverage the remediation solutions provided.
               </p>
@@ -258,63 +260,63 @@ const ScanPage: React.FC = () => {
         </div>
       </div>
 
-      <div className='border-dashed border border-gray-50 mx-32 my-10 py-6 flex justify-between px-10 rounded-full'>
-        <div className='flex gap-10 items-center'>
-          <div>
-            <Image src={scan} height={0} width={0} alt="scan"/>
+      {/* Audit Report Verification */}
+      <div className='border-dashed border border-gray-50 mx-4 sm:mx-10 lg:mx-32 my-5 sm:my-10 py-6 flex flex-col sm:flex-row justify-between px-4 sm:px-10 rounded-full'>
+        <div className='flex gap-4 sm:gap-10 items-center'>
+          <div className='flex-shrink-0'>
+            <Image src={scan} height={64} width={64} alt="scan" className="rounded-full" />
           </div>
-          <div className='w-8/12'>
-            <p className='text-xl' id='poppins-regular'>
+          <div className='w-full sm:w-8/12'>
+            <p className='text-md sm:text-xl' id='poppins-regular'>
               This audit report has not been verified by the SolidityScan team. To learn more about our published reports. 
-              <button id='poppins-semibold'>click here</button>
+              <button className='text-blue-400 underline ml-1' id='poppins-semibold'>click here</button>
             </p>
           </div>
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-10 items-center mx-40'>
-        <div className='space-y-8 my-3' id='poppins-semibold'>
-          <div className='border border-gray-100 hover:border-green-500 cursor-default px-7 py-7 w-80 rounded-full'>
-            <p className='text-2xl text-center'>Critical : {scanDetails.vulnerability_count.critical} </p>
+      {/* Vulnerability Counts and Pie Chart */}
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-center mx-4 sm:mx-10 lg:mx-40 my-5 sm:my-10'>
+        {/* Left Column */}
+        <div className='space-y-4 lg:space-y-8' id='poppins-semibold'>
+          <div className='border border-gray-100 hover:border-green-500 cursor-default px-4 sm:px-7 py-4 sm:py-7 w-full rounded-full'>
+            <p className='text-lg sm:text-2xl text-center'>Critical: {scanDetails.vulnerability_count.critical}</p>
           </div>
-          <div className='border border-gray-100 hover:border-green-500 cursor-default px-7 py-7 w-80 rounded-full'>
-            <p className='text-2xl text-center'>High : {scanDetails.vulnerability_count.high} </p>
+          <div className='border border-gray-100 hover:border-green-500 cursor-default px-4 sm:px-7 py-4 sm:py-7 w-full rounded-full'>
+            <p className='text-lg sm:text-2xl text-center'>High: {scanDetails.vulnerability_count.high}</p>
           </div>
-          <div className='border border-gray-100 hover:border-green-500 cursor-default px-7 py-7 w-80 rounded-full'>
-            <p className='text-2xl text-center'>Medium : {scanDetails.vulnerability_count.medium} </p>
+          <div className='border border-gray-100 hover:border-green-500 cursor-default px-4 sm:px-7 py-4 sm:py-7 w-full rounded-full'>
+            <p className='text-lg sm:text-2xl text-center'>Medium: {scanDetails.vulnerability_count.medium}</p>
           </div>
         </div>
-        <div>
-          <CircularProgressbar 
-            maxValue={100} 
-            className='h-80 w-80' 
-            counterClockwise={true} 
-            value={score}
-            styles={buildStyles({
-              pathColor: '#1E90FF',
-              trailColor: '#d6d6d6',
-            })}
-          />
+        {/* Center Column - Pie Chart */}
+        <div className='flex justify-center'>
+          <VulnerabilityPieChart scanDetails={scanDetails}/>
         </div>
-        <div className='space-y-8 my-3' id='poppins-semibold'>
-          <div className='border border-gray-100 hover:border-green-500 cursor-default px-7 py-7 w-80 rounded-full'>
-            <p className='text-2xl text-center'>Low : {scanDetails.vulnerability_count.low} </p>
+        {/* Right Column */}
+        <div className='space-y-4 lg:space-y-8' id='poppins-semibold'>
+          <div className='border border-gray-100 hover:border-green-500 cursor-default px-4 sm:px-7 py-4 sm:py-7 w-full rounded-full'>
+            <p className='text-lg sm:text-2xl text-center'>Low: {scanDetails.vulnerability_count.low}</p>
           </div>
-          <div className='border border-gray-100 hover:border-green-500 cursor-default px-7 py-7 w-80 rounded-full'>
-            <p className='text-2xl text-center'>Informational : {scanDetails.vulnerability_count.informational} </p>
+          <div className='border border-gray-100 hover:border-green-500 cursor-default px-4 sm:px-7 py-4 sm:py-7 w-full rounded-full'>
+            <p className='text-lg sm:text-2xl text-center'>Informational: {scanDetails.vulnerability_count.informational}</p>
           </div>
-          <div className='border border-gray-100 hover:border-green-500 cursor-default px-7 py-7 w-80 rounded-full'>
-            <p className='text-2xl text-center'>Gas : {scanDetails.vulnerability_count.gas} </p>
+          <div className='border border-gray-100 hover:border-green-500 cursor-default px-4 sm:px-7 py-4 sm:py-7 w-full rounded-full'>
+            <p className='text-lg sm:text-2xl text-center'>Gas: {scanDetails.vulnerability_count.gas}</p>
           </div>
         </div>
       </div>
-      <div className='flex justify-center mt-20'>
-        <div className='flex justify-center border border-green-500 hover:scale-105 transform transition duration-150 ease-in-out rounded-3xl w-4/12 shadow-2xl shadow-green-800 backdrop:opacity-15'>
-          <button className='text-3xl text-green-500 px-6 py-5' id='poppins-bold'>
+
+      {/* View Audit Report PDF Button */}
+      <div className='flex justify-center my-5 sm:my-10 px-4 sm:px-10'>
+        <div className='flex justify-center border border-green-500 hover:scale-105 transform transition duration-150 ease-in-out rounded-3xl w-full sm:w-8/12 lg:w-4/12 shadow-2xl shadow-green-800 backdrop:opacity-15'>
+          <button className='text-xl sm:text-3xl text-green-500 px-4 sm:px-6 py-3 sm:py-5' id='poppins-bold'>
             View Audit Report PDF
           </button>
         </div>
       </div>
+
+      {/* Sales and Footer */}
       <Sales/>
       <Footer/>
     </div>
