@@ -150,14 +150,14 @@ const ScanPage: React.FC = () => {
   return (
     <div className="container mx-auto p-4 bg-[#011A3B] text-white min-h-screen flex flex-col">
       <Navbar />
-      <button
+      {/* <button
         className='flex items-center mt-5 text-blue-400 font-bold text-xl mb-5 sm:mt-10'
         onClick={() => router.back()}
       >
         <FaArrowLeft className="mr-2" />
         Back
-      </button>
-      <div className='flex flex-col md:flex-row justify-between mx-4 sm:mx-10 lg:mx-20'>
+      </button> */}
+      <div className='flex flex-col md:flex-row justify-between mx-4 sm:mx-10 lg:mx-20 mt-24'>
         <div className="mb-4 md:mb-0">
           <button>
             <span className='text-xl sm:text-2xl' id='poppins-semibold'>{scanDetails.address}</span>
@@ -228,8 +228,8 @@ const ScanPage: React.FC = () => {
       </div>
 
       {/* Security Score Description */}
-      <div className='flex justify-center items-center my-5 sm:my-10 px-4 sm:px-10'>
-        <div className='border border-gray-50 w-full lg:w-10/12 flex flex-col lg:flex-row justify-between px-4 sm:px-10 py-0 rounded-full'>
+      <div className='md:flex justify-center items-center md:my-0 my-10 px-4 sm:px-10'>
+        <div className='md:border md:border-gray-50 w-full lg:w-10/12 md:flex md:flex-col lg:flex-row justify-between px-4 sm:px-10 py-0 md:rounded-full rounded-lg'>
           <div className='flex justify-center items-center mb-4 lg:mb-0' id='poppins-semibold'>
             <CircularProgressbar 
               className='md:w-60 md:h-60 w-40 h-40 text-white rounded-full' 
@@ -261,7 +261,7 @@ const ScanPage: React.FC = () => {
       </div>
 
       {/* Audit Report Verification */}
-      <div className='border-dashed border border-gray-50 mx-4 sm:mx-10 lg:mx-32 my-5 sm:my-10 py-6 flex flex-col sm:flex-row justify-between px-4 sm:px-10 rounded-full'>
+      <div className='md:border-dashed md:border border-gray-50 mx-4 sm:mx-10 lg:mx-32 my-5 sm:my-10 py-6 flex flex-col sm:flex-row justify-between px-4 sm:px-10 rounded-full'>
         <div className='flex gap-4 sm:gap-10 items-center'>
           <div className='flex-shrink-0'>
             <Image src={scan} height={64} width={64} alt="scan" className="rounded-full" />

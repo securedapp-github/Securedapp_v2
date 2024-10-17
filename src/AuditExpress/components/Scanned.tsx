@@ -2,11 +2,43 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link'; // Use Link from next/link
-import Image from 'next/image'; // Next.js Image component
+import Image, { StaticImageData } from 'next/image'; // Next.js Image component
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import binanceImg from '../assets/chains/ethereum.png';
 import { ClipLoader } from 'react-spinners';
+
+// Import blockchain logos
+import ethereum from '../assets/chains/ethereum.png';
+import BNB from '../assets/chains/binance.png';
+import Avalanche from '../assets/chains/avalanche.png';
+import Arbitrum from '../assets/chains/arbitrum.png';
+import Optimism from '../assets/chains/optimism.png';
+import Gnosis from '../assets/chains/gnosis.png';
+import Boba from '../assets/chains/boba.png';
+import Base from '../assets/chains/base.png';
+import Linea from '../assets/chains/lineascan.png';
+import Astar from '../assets/chains/astar.png';
+import Celo from '../assets/chains/celo.png';
+import fire from '../assets/chains/firechain_light.png';
+import Polygon from '../assets/chains/polygon.png';
+
+// Mapping of blockchain names to their logos
+const blockchainLogos: { [key: string]: StaticImageData } = {
+  Ethereum: ethereum,
+  Binance: BNB,
+  Avalanche: Avalanche,
+  Arbitrum: Arbitrum,
+  Optimism: Optimism,
+  Gnosis: Gnosis,
+  Boba: Boba,
+  Base: Base,
+  Linea: Linea,
+  Astar: Astar,
+  Celo: Celo,
+  FireChain: fire,
+  Polygon: Polygon,
+  // Add more blockchains as needed
+};
 
 type Vulnerability = {
   type: string;
@@ -105,8 +137,6 @@ const Scanned = () => {
         {loading ? (
           <div className="flex justify-center items-center">
             <ClipLoader color="#1E90FF" size={50} />
-            {/* Alternatively, use a simple CSS spinner */}
-            {/* <div className="spinner"></div> */}
           </div>
         ) : error ? (
           <p className="text-center text-red-500">Error: {error}</p>
@@ -128,13 +158,19 @@ const Scanned = () => {
               {data.map((item) => (
                 <tr key={item.id} className='border-b'>
                   <td className='p-3 flex justify-center items-center'>
-                    <Image
-                      className='h-10 w-10'
-                      src={binanceImg}
-                      alt={`${item.blockchain} logo`}
-                      width={40}
-                      height={40}
-                    />
+                    {blockchainLogos[item.blockchain] ? (
+                      <Image
+                        className='h-10 w-10'
+                        src={blockchainLogos[item.blockchain]}
+                        alt={`${item.blockchain} logo`}
+                        width={40}
+                        height={40}
+                      />
+                    ) : (
+                      <div className='h-10 w-10 bg-gray-300 flex justify-center items-center'>
+                        <span className='text-gray-600'>N/A</span>
+                      </div>
+                    )}
                     <h1 className='ml-2 text-center'>{item.blockchain}</h1>
                   </td>
                   <td className='p-3 text-center'>{item.companyName}</td>
