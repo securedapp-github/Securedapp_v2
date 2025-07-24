@@ -59,8 +59,9 @@
     "dev": "next dev",
     "dev:algoshield": "cd AlgoShield/frontend/algorand-scanner-ui && npm run dev",
     "build": "next build && npm run setup",
-    "setup": "cd AlgoShield && ./install.sh",
-    "start": "next start"
+    "setup": "pip install -r AlgoShield/requirements.txt && cd AlgoShield && ./install.sh && npm install",
+    "start": "next start",
+    "prebuild": "pip install -r AlgoShield/requirements.txt"
   },
   "eslintConfig": {
     "extends": [
