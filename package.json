@@ -2,6 +2,9 @@
   "name": "securedapp-website",
   "version": "0.1.0",
   "private": true,
+   "engines": {
+    "node": "18.18.0"
+  },
   "proxy": "https://api.nowpayments.io",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
@@ -61,7 +64,8 @@
     "build": "next build && npm run setup",
     "setup": "pip install -r AlgoShield/requirements.txt && cd AlgoShield && ./install.sh && npm install",
     "start": "next start",
-    "prebuild": "pip install -r AlgoShield/requirements.txt"
+    "prebuild": "pip install -r AlgoShield/requirements.txt",
+    "preinstall": "nvm use || echo 'Please run `nvm install` to match the required Node version.'"
   },
   "eslintConfig": {
     "extends": [
