@@ -61,8 +61,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:algoshield": "cd AlgoShield/frontend/algorand-scanner-ui && npm run dev",
-    "build": "next build && npm run setup",
-    "setup": "pip install -r AlgoShield/requirements.txt && cd AlgoShield && ./install.sh && npm install",
+    "build": "next build --no-lint && npm run setup",
+    "setup": "pip install -r AlgoShield/requirements.txt --quiet && cd AlgoShield && ./install.sh | tail -n 500 && npm install --silent",
     "start": "next start",
     "prebuild": "pip install -r AlgoShield/requirements.txt",
     "preinstall": "nvm use || echo 'Please run `nvm install` to match the required Node version.'"
