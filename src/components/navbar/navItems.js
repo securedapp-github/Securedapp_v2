@@ -4,11 +4,17 @@ export const navItems = [
     items: [
       { name: "AlgoShield", to: "/algoshield-product" },
       { name: "Solidity Shield", to: "/solidity-shield" },
-      { name: "Secure Watch", to: "/secure-watch" },
-      { name: "Secure Trace", to: "/secure-trace" },
-      { name: "Secure Pad", to: "/secure-pad" },
+      { name: "Secure Watch", to: "/real-time-blockchain-threat-monitoring" },
+      { name: "Secure CMS (Consent)", to: "/secure-cms" },
       { name: "Audit Express", to: "/auditexpress/home" },
+      { name: "Secure Trace", to: "/blockchain-forensic-investigation-tool" },
+      { name: "Secure Pad", to: "/secure-pad" },
+      { name: "PQC Suite", to: "/pqc" },
       { name: "SecureX-ID", to: "/web3-kyc" },
+      {
+        name: "SecureX DID",
+        to: "/self-sovereign-identity-enterprises",
+      },
     ],
     label: "Product",
   },
@@ -37,11 +43,16 @@ export const navItems = [
           { name: "Crypto Compliance & AML", to: "/crypto-compliance-aml" },
           {
             name: "Decentralized Identity (DID)",
-            to: "/decentralized-identity-did",
+            to: "/self-sovereign-identity-enterprises",
           },
           { name: "DApp Development", to: "/dapp-development" },
           { name: "NFTs Development", to: "/nfts-development" },
           { name: "DeFi Development", to: "/defi-development" },
+          {
+            name: "SOX Compliance",
+            to: "/sox-compliance-sarbanes-oxley-compliance-audit",
+          },
+          { name: "ITGC Compliance", to: "/itgc-audit-services" },
         ],
       },
       {
@@ -54,10 +65,11 @@ export const navItems = [
   {
     to: "",
     items: [
-      { name: "Blogs", to: "/blog" },
+      { name: "Blogs", to: "https://blog.securedapp.io", external: true },
       { name: "About Us", to: "/about" },
       { name: "Our Authors", to: "/authors" },
       { name: "Media", to: "/media" },
+      { name: "White Papers", to: "/white-paper" },
     ],
     label: "Resources",
   },

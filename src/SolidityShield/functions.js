@@ -16,7 +16,8 @@ import { setCouponCode } from "./redux/dashboard/paymentSlice";
 import { pricingDetails } from "./pages/pricing/pricing.data";
 
 const logo = "/assets/images/securedapp_logo.svg";
-const apiUrl = "https://139-59-5-56.nip.io:3443";
+const apiUrl =
+  process.env.NEXT_PUBLIC_API_BASE ?? "https://139-59-5-56.nip.io:3443";
 
 export async function checkCoupon(code, disptach) {
   const response = await fetch(
@@ -43,7 +44,7 @@ export async function getBlogs() {
   const response = await fetch(apiUrl + "/getBlogList");
   let data = await response.json();
   data = data.filter((item) => item.status === 1);
-  console.log(data);
+  // console.log(data);
   return data;
 }
 
@@ -57,11 +58,11 @@ export const getAudits = async () => {
   })
     .then(async (res) => {
       var data = await res.json();
-      console.log(data);
+      // console.log(data);
       return data;
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       toast.error("Error fetching audits");
     });
 };
@@ -127,35 +128,14 @@ export const payCrypto = async ({ planid, email, couponCode }) => {
       .replace(",", "");
     price = Number(price);
     try {
-      // First, insert the Web3 payment
-      const data = await fetch(apiUrl + "/payment-insert-web3", {
-        method: "POST",
-        body: JSON.stringify({
-          mail: email,
-          planid,
-          paymentid: transactionid,
-          couponCode,
-        }),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: getJwt(),
-        },
-      });
 
-      const result = await data.json();
-
-      if (!result.status) {
-        toast.error("Error initiating the USDT payment!");
-        return;
-      }
-
-      // If Web3 insertion is successful, proceed with NowPayments
-      const nowPaymentsResponse = await fetch(
+       // Entry with NowPayments
+       const nowPaymentsResponse = await fetch(
         "https://api.nowpayments.io/v1/payment",
         {
           method: "POST",
           body: JSON.stringify({
-            price_amount: result.inrPlanCost,
+            price_amount: Number(price),
             price_currency: "inr",
             pay_currency: "USDTMATIC",
             pay_amount: price,
@@ -173,6 +153,31 @@ export const payCrypto = async ({ planid, email, couponCode }) => {
 
       const nowPaymentsData = await nowPaymentsResponse.json();
 
+
+      // insert the Web3 payment
+      const data = await fetch(apiUrl + "/payment-insert-web3", {
+        method: "POST",
+        body: JSON.stringify({
+          mail: email,
+          planid,
+          paymentid: transactionid,
+          txn_id: nowPaymentsData.payment_id,
+          couponCode,
+        }),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: getJwt(),
+        },
+      });
+
+      const result = await data.json();
+
+      if (!result.status) {
+        toast.error("Error initiating the USDT payment!");
+        return;
+      }
+
+     
       localStorage.setItem(
         "latestPayment",
         JSON.stringify({
@@ -244,7 +249,7 @@ export const payPhonpe = async ({ planid, email, couponCode }) => {
     });
 
     const data = await response2.json();
-    console.log(transactionid);
+    // console.log(transactionid);
 
     if (!data.status) {
       toast.error("Failed to proceed to payment! Try again.");
@@ -334,7 +339,7 @@ export const scanSubmit = async ({
         return;
       }
 
-      console.log(sourceCode);
+      // console.log(sourceCode);
 
       const blob = new Blob([sourceCode], { type: "text/plain" });
       const etherscanFile = new File([blob], `${companyName}.sol`, {
@@ -505,34 +510,39 @@ export const downloadfReportPdf = (id, user) => {
 };
 
 export const getScanSummaryData = async ({ dispatch, email }) => {
-  var history = await getScanHistoryData({
+  const history = await getScanHistoryData({
     userEmail: email,
     dispatch,
   });
-  console.log(history);
-  var latestScan = history.reduce((max, item) => {
+  if (!Array.isArray(history) || !history.length) {
+    return;
+  }
+
+  const latestScanSummary = history.reduce((max, item) => {
     return item.id > max.id ? item : max;
   }, history[0]);
 
-  if (latestScan) {
-    latestScan = await getReport({ id: latestScan.id, email });
-    console.log(latestScan);
-    var summary = `Scanned ${latestScan.contracts} contracts, ${
-      latestScan.lines
-    } lines of code and found ${Object.values(latestScan.findings).reduce(
-      (accumulator, currentValue) => {
-        return accumulator + currentValue;
-      },
-      0
-    )} vulnerabilities`;
-    var data = latestScan.findings;
-    var score =
+  if (latestScanSummary) {
+    const latestScan = await getReport({ id: latestScanSummary.id, email });
+    if (!latestScan) {
+      return;
+    }
+
+    const summary = `Scanned ${latestScan.contracts} contracts, ${latestScan.lines
+      } lines of code and found ${Object.values(latestScan.findings || {}).reduce(
+        (accumulator, currentValue) => {
+          return accumulator + currentValue;
+        },
+        0
+      )} vulnerabilities`;
+    const data = latestScan.findings || {};
+    const score =
       5 -
       ((Number(data["high_issues"]) +
         Number(data["medium_issues"]) +
         Number(data["low_issues"])) /
         30) *
-        5;
+      5;
 
     dispatch(
       setScanSummary({
@@ -561,7 +571,7 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
           },
         ],
         summary,
-        id: latestScan.id,
+        id: latestScanSummary.id,
       })
     );
   }
@@ -569,17 +579,27 @@ export const getScanSummaryData = async ({ dispatch, email }) => {
 };
 
 export const getIssuesChartData = async ({ dispatch, email }) => {
-  var history = await getScanHistoryData({
+  const history = await getScanHistoryData({
     userEmail: email,
     dispatch,
   });
-  // console.log(history);
-  let data = [];
-  for (let i = 0; i < history.length; i++) {
-    var scanReport = await getReport({ id: history[i].id, email });
-    data.push(scanReport.findings);
+  if (!Array.isArray(history) || !history.length) {
+    return;
   }
-  data = data.reduce((accumulator, currentObject) => {
+
+  const aggregated = [];
+  for (let i = 0; i < history.length; i++) {
+    const scanReport = await getReport({ id: history[i].id, email });
+    if (scanReport?.findings) {
+      aggregated.push(scanReport.findings);
+    }
+  }
+
+  if (!aggregated.length) {
+    return;
+  }
+
+  let data = aggregated.reduce((accumulator, currentObject) => {
     for (let key in currentObject) {
       if (!accumulator[key]) {
         accumulator[key] = 0;
@@ -590,59 +610,77 @@ export const getIssuesChartData = async ({ dispatch, email }) => {
   }, {});
   data = [
     { name: "", value: 0 },
-    { name: "High Issues", value: data.high_issues },
-    { name: "Medium Issues", value: data.medium_issues },
-    { name: "Low Issues", value: data.low_issues },
-    { name: "Optimization Issues", value: data.optimization_issues },
-    { name: "Informational Issues", value: data.informational_issues },
+    { name: "High Issues", value: data.high_issues || 0 },
+    { name: "Medium Issues", value: data.medium_issues || 0 },
+    { name: "Low Issues", value: data.low_issues || 0 },
+    { name: "Optimization Issues", value: data.optimization_issues || 0 },
+    { name: "Informational Issues", value: data.informational_issues || 0 },
     { name: "", value: 0 },
   ];
-  // console.log(data);
+
   dispatch(setIssuesData(data));
   return data;
 };
 
 export const getReport = async ({ id, email }) => {
+  const jwt = getJwt();
+  if (!jwt) {
+    return null;
+  }
+
   return await fetch(apiUrl + "/getReport", {
     method: "POST",
     body: JSON.stringify({
-      id: id,
+      id,
     }),
     headers: {
-      //Authorization: getJwt(),
       "Content-type": "application/json",
+      Authorization: jwt,
     },
   })
     .then(async (response) => {
-      if (!response.ok) {
-        toast("Invalid Network response ");
+      if (response.status === 401 || response.status === 403) {
+        localStorage.removeItem("UserJwtToken");
       }
-      return await response.text();
+      if (!response.ok) {
+        throw new Error("Failed to fetch report");
+      }
+      return response.json();
     })
     .then((data) => {
-      var report = JSON.parse(data);
-      console.log(id);
-      console.log(report);
-      report = report[0].reportdata;
-      report = JSON.parse(report);
+      if (!Array.isArray(data) || !data.length) {
+        return null;
+      }
 
-      var score =
+      const row = data[0];
+      if (!row?.reportdata) {
+        return null;
+      }
+
+      const report = JSON.parse(row.reportdata);
+      const score =
         5 -
-        ((Number(report.findings["high_issues"]) +
-          Number(report.findings["medium_issues"]) +
-          Number(report.findings["low_issues"])) /
+        ((Number(report.findings?.["high_issues"] || 0) +
+          Number(report.findings?.["medium_issues"] || 0) +
+          Number(report.findings?.["low_issues"] || 0)) /
           30) *
-          5;
+        5;
       report.score = (score * 2).toFixed(1) + "/10";
-
       return report;
     })
     .catch((error) => {
-      console.error("Error:", error);
+      console.error("Error fetching report:", error);
+      toast.error("Unable to fetch report. Please log in again.");
+      return null;
     });
 };
 
 export const getScanHistoryData = async ({ userEmail, dispatch }) => {
+  const jwt = getJwt();
+  if (!jwt) {
+    return [];
+  }
+
   return fetch(apiUrl + "/getHistory", {
     method: "POST",
     body: JSON.stringify({
@@ -650,7 +688,7 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
     }),
     headers: {
       "Content-type": "application/json",
-      Authorization: getJwt(),
+      Authorization: jwt,
     },
   })
     .then((response) => {
@@ -660,13 +698,13 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
       toast.error("Invalid Network Response. Please try again!");
     })
     .then((data) => {
-      // console.log(data);
+      if (!data) return [];
       dispatch(setScanHistory(data.sort((a, b) => b.id - a.id)));
-      // toast("setScanHitsory");
       return data;
     })
     .catch((error) => {
       console.error("Error:", error);
+      return [];
     });
 };
 
@@ -721,19 +759,41 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
         return response.json();
       }
 
-      toast.error("Invlaid Network Response: verify otp");
+      toast.error("Invalid Network Response: verify otp");
       //typeof window !== 'undefined' && window.location.replace("/solidity-shield-scan/auth");
     })
     .then((data) => {
-      //console.log(data);
-      if (data.length == 0) {
-        toast("Wrong OTP");
+      if (!data) {
+        toast.error("No response from server");
         return;
       }
-      let userdata = data[0];
 
-      jwt = userdata.jwt;
-      localStorage.setItem("UserJwtToken", userdata.jwt);
+      let userdata = null;
+      let jwtToken = null;
+
+      if (Array.isArray(data)) {
+        if (!data.length) {
+          toast("Wrong OTP");
+          return;
+        }
+        userdata = data[0];
+        jwtToken = userdata?.jwt ?? null;
+      } else {
+        if (!data.success) {
+          toast.error(data.error || "Invalid or expired OTP");
+          return;
+        }
+        userdata = data.user;
+        jwtToken = data.jwt;
+      }
+
+      if (!userdata || !jwtToken) {
+        toast.error("Unable to login. Please try again!");
+        return;
+      }
+
+      jwt = jwtToken;
+      localStorage.setItem("UserJwtToken", jwtToken);
       localStorage.setItem("UserEmail", email);
 
       let plandetail = "Free Plan";
@@ -757,7 +817,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
           planExpiry: userdata.planexpiry,
           firstName: "First Name",
           lastName: "Last Name",
-          jwt: jwt,
+          jwt: jwtToken,
           companyName: "Company Name",
         })
       );
@@ -774,25 +834,22 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
     });
 };
 
-export function getJwt() {
+export function getJwt(options = {}) {
+  if (typeof window === "undefined") return null;
   const jwt = localStorage.getItem("UserJwtToken");
   if (!jwt) {
-    toast("Please sign in with your email.");
-    typeof window !== "undefined" &&
-      window.location.replace("/solidity-shield-scan/auth");
-    return;
-  } else {
-    return `Bearer ${jwt}`;
+    if (options?.notify) {
+      toast("Please sign in with your email.");
+    }
+    return null;
   }
+  return `Bearer ${jwt}`;
 }
 
 export const getUser = async ({ dispatch, email }) => {
   const jwt = getJwt();
   if (!jwt) {
-    toast("Please sign in with your email.");
-    typeof window !== "undefined" &&
-      window.location.replace("/solidity-shield-scan/auth");
-    return;
+    return null;
   }
 
   return await fetch(apiUrl + "/getUser", {
@@ -802,7 +859,7 @@ export const getUser = async ({ dispatch, email }) => {
     }),
     headers: {
       "Content-type": "application/json",
-      Authorization: getJwt(),
+      Authorization: jwt,
     },
   })
     .then((response) => {
@@ -819,8 +876,10 @@ export const getUser = async ({ dispatch, email }) => {
       return;
     })
     .then(async (data) => {
-      //console.log(data);
-      if (data.length == 0) toast("Error Signing in. Try again.");
+      if (!data || !Array.isArray(data) || data.length === 0) {
+        toast.error("Error Signing in. Try again.");
+        return null;
+      }
       let userdata = data[0];
 
       let plandetail = "Free Plan";
@@ -860,13 +919,10 @@ export const getUser = async ({ dispatch, email }) => {
         jwt: jwt,
         companyName: "Company Name",
       };
-      getScanHistoryData({ userEmail: email, dispatch });
     })
     .catch((error) => {
       console.error("Error:", error);
       toast.error("Unable to login. Please try again!");
-      typeof window !== "undefined" &&
-        window.location.replace("/solidity-shield-scan/auth");
     });
 };
 
@@ -926,7 +982,7 @@ export function generateTable(data) {
       Number(data.findings[finding_names[1]]) +
       Number(data.findings[finding_names[2]])) /
       30) *
-      5;
+    5;
 
   return {
     critical: data.findings[finding_names[0]],
@@ -1019,31 +1075,51 @@ const fetchContractDetails = async (contractAddress, _chain) => {
       16: "https://api.zksync.io/api", // ZkSync Era
       17: "https://api.scrollscan.com/api", // Scroll
       18: "https://api.xdcscan.com/api", // XDC Network
+      19: "https://pacific-info.manta.network/api", // Manta Pacific
+      20: "https://explorer.soniclabs.com/api", // Sonic Labs
+      21: "https://gscan.xyz/api", // GChain
+      22: "https://explorer.mainnet.zetachain.com/api", // ZetaChain
+      23: "https://xexplorer.neo.org/api", // Neo X
+      24: "https://astar.subscan.io/api", // Astar
+      25: "https://soneium.blockscout.com/api", // Soneium
+      26: "https://explorer.katanarpc.com/api", // Katana
+      27: "https://explorer.hemi.xyz/api", // Hemi
+      28: "https://explorer.mintchain.io/api", // MintChain
+      29: "https://scan.coredao.org/api",
     };
 
-
     const api_list = {
-       0: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       1: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       2: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       3: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       4: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       5: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       6: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       7: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       8: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       9: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       10: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       11: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       12: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       13: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       14: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       15: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       16: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       17: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
-       18: "C8U4QX17IFZMP1Z94NNVV9P5QSTX9456BC",
-     };
- 
+      0: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      1: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      2: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      3: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      4: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      5: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      6: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      7: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      8: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      9: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      10: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      11: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      12: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      13: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      14: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      15: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      16: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      17: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      18: "C8U4QX17IFZMP1Z94NNVV9P5QSTX9456BC",
+      19: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      20: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      21: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      22: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      23: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      24: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      25: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      26: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      27: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      28: "EAU935QMPKGR1Y59GDWE34DUPCN8X77GPE",
+      29: "63ff9ae2141e4f2981f4fcc844b266e4",
+    };
 
     const apiUrl = `${chain_list[_chain]}?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${api_list[_chain]}`;
 

@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   BrowserRouter as Router,
-  useLocation,
 } from "next/router";
 import Home from "./pages/home/HomePage";
 import { useEffect } from "react";
@@ -20,6 +19,8 @@ import SmartContractAudit from "./pages/service/SmartContractAudit/SmartContract
 import DappSecurityAudit from "./pages/service/DappSecurityAudit/DappSecurityAudit";
 import TokenAudit from "./pages/service/TokenAudit/TokenAudit";
 import Web3KYC from "./pages/service/Web3KYC/Web3KYC";
+import SoxCompliance from "./pages/service/SoxCompliance/SoxCompliance.js";
+import ITGCService from "./pages/service/ITGC/ITGCService";
 import Web3Security from "./pages/service/Web3Security/Web3Security";
 import BlockchainForensic from "./pages/service/BlockchainForensic/BlockchainForensic";
 import RwaAudit from "./pages/service/RwaAudit/RwaAudit";
@@ -32,6 +33,7 @@ import Blog from "./pages/blog/Blog";
 import BlogPost from "./pages/blogpost/BlogPost";
 import Media from "./pages/media/Media";
 import AboutUs from "./pages/aboutUs/AboutUs";
+import WhitePaper from "./pages/white-paper";
 import RequestQuoteModal from "./components/modal/RequestQuoteModal";
 import SolidityShield from "./SolidityShield/index";
 import { useDispatch } from "react-redux";
@@ -95,8 +97,8 @@ function App() {
         <Route path="/" index element={<Home />} />
         <Route path="product" element={<Product />} />
         <Route path="solidity-shield" element={<SolidityShieldPage />} />
-        <Route path="secure-watch" element={<SecureWatchPage />} />
-        <Route path="secure-trace" element={<SecureTracePage />} />
+        <Route path="real-time-blockchain-threat-monitoring" element={<SecureWatchPage />} />
+        <Route path="blockchain-forensic-investigation-tool" element={<SecureTracePage />} />
         <Route path="secure-pad" element={<SecurePadPage />} />
         <Route path="service" element={<Service />} />
         <Route path="dapp-development" element={<DappDevelopment />} />
@@ -107,14 +109,16 @@ function App() {
         <Route path="web3-security" element={<Web3Security />} />
         <Route path="blockchain-forensic" element={<BlockchainForensic />} />
         <Route path="rwa-audit" element={<RwaAudit />} />
+        <Route path="itgc-audit-services" element={<ITGCService />} />
         <Route path="crypto-compliance-aml" element={<CryptoComplianceAml />} />
         <Route
-          path="decentralized-identity-did"
+          path="self-sovereign-identity-enterprises"
           element={<DecentralizedIdentity />}
         />
         <Route path="nfts-development" element={<NftsDvelopment />} />
         <Route path="defi-development" element={<DefiDevelopment />} />
         <Route path="levelup-academy" element={<LevelUpAcademy />} />
+        <Route path="sox-compliance-sarbanes-oxley-compliance-audit" element={<SoxCompliance />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:url" element={<BlogPost />} />
         <Route path="media" element={<Media />} />
@@ -127,6 +131,7 @@ function App() {
           path="solidity-shield-vulnerabilities"
           element={<VulnerabilityInfo />}
         />
+        <Route path="white-paper" element={<WhitePaper />} />
         <Route path="solidity-shield-scan/*" element={<SolidityShield />} />
       </Routes>
     </div>
