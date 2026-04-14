@@ -15,15 +15,18 @@ const nextConfig = {
         fs: false,
       };
     }
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
     return config;
   },
 
-  output: "export", // Outputs a Single-Page Application (SPA).
-  distDir: "./build", // Changes the build output directory to `./build`.
+  // output: "export", // Outputs a Single-Page Application (SPA).
+  // distDir: "./build", // Changes the build output directory to `./build`.
   // NOTE: Removed static export so that Next.js API Routes are enabled for the chatbot backend.
-  images: {
-    unoptimized: true,
-  },
 
   // NOTE: This works for LOCAL DEV. For Production (Netlify/Export), these are ignored and 'netlify.toml' is used.
   async headers() {
