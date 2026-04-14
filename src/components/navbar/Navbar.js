@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
@@ -22,7 +22,6 @@ const Navbar = () => {
     useSelector(getHomeSelector);
 
   const navigate = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
   let nextPath;
 
   const currentPath = navigate.asPath;
@@ -80,7 +79,6 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    setIsMounted(true);
     if (localStorage.theme) {
       if (localStorage.theme === "dark") {
         setModeDark();
@@ -116,13 +114,13 @@ const Navbar = () => {
     };
   }, [dispatch]);
 
-  const buttonText = currentPath === "/" || currentPath?.includes("/quantum-vault") ? "Request Quote" : "Login";
+  const buttonText = currentPath === "/" ? "Request Quote" : "Login";
 
   return (
     <div className="absolute z-[999] w-full top-0 left-0 right-0 pointer-events-none">
       <div className="pointer-events-auto relative">
       {isRequestModalOpen && <RequestQuoteModal />}
-      {!isMounted || isLargeScreen ? (
+      {isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}
           nextPath={nextPath}
