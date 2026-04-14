@@ -57,14 +57,12 @@ const Navbar = () => {
   };
 
   const setModeDark = () => {
-    document.documentElement.classList.add("dark");
     document.body.classList.add("dark");
     dispatch(setDarkMode(true));
     localStorage.theme = "dark";
   };
 
   const setModeLight = () => {
-    document.documentElement.classList.remove("dark");
     document.body.classList.remove("dark");
     dispatch(setDarkMode(false));
     localStorage.theme = "light";
@@ -114,11 +112,9 @@ const Navbar = () => {
     };
   }, [dispatch]);
 
-  const buttonText = currentPath === "/" ? "Request Quote" : "Login";
-
   return (
     <div className="absolute z-[999] w-full top-0 left-0 right-0 pointer-events-none">
-      <div className="pointer-events-auto relative">
+      <div className="pointer-events-auto">
       {isRequestModalOpen && <RequestQuoteModal />}
       {isLargeScreen ? (
         <NavbarLargeScreen
@@ -126,8 +122,6 @@ const Navbar = () => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
-          buttonText={buttonText}
-          isMainPage={true}
         />
       ) : (
         <NavbarSmallScreen
@@ -135,8 +129,6 @@ const Navbar = () => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
-          buttonText={buttonText}
-          isMainPage={true}
         />
       )}
       </div>
