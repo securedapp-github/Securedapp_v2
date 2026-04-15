@@ -17,7 +17,6 @@ module.exports = {
         sideBarColorLight: "#FFFFFF",
         background: "var(--background)",
         foreground: "var(--foreground)",
-        accent: "var(--accent)",
       },
       fontFamily: {
         nunitoSans: ["Nunito Sans", "sans-serif"],
