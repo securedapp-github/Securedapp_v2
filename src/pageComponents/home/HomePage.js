@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useEffect } from "react";
 import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/Navbar";
 import CTA from "./sections/CTA";
@@ -19,9 +18,9 @@ import BrandLogos from "../../components/common/BrandLogos";
 import BookMeetCta from "../../components/common/bookMeetCta";
 
 const Home = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  if (typeof window !== "undefined") {
+    typeof window !== "undefined" && window.scrollTo(0, 0);
+  }
   return (
     <div id="home">
       <MetaTags
