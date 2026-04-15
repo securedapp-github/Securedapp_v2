@@ -27,8 +27,8 @@ module.exports = {
       },
       backgroundImage: {
         'custom-bg': "url('../../src/AuditExpress/assets/grid.png')",
-        'grid-bg': "url('../../src/AuditExpress/assets/CTA.png')", 
-        'griddark-bg': "url('../../src/AuditExpress/assets/CTA.jpg')", 
+        'grid-bg': "url('../../src/AuditExpress/assets/CTA.png')",
+        'griddark-bg': "url('../../src/AuditExpress/assets/CTA.jpg')",
       },
     },
   },
