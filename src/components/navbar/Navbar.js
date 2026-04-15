@@ -28,7 +28,7 @@ const Navbar = () => {
 
   switch (currentPath) {
     case "/solidity-shield":
-      nextPath = "/solidity-shield-scan/auth";
+      nextPath = "/solidity-shield-scan";
       break;
     case "/real-time-blockchain-threat-monitoring":
       nextPath = "https://securewatch.securedapp.io/";
@@ -50,13 +50,8 @@ const Navbar = () => {
   }
 
   const handleNavigation = () => {
-    if (nextPath) {
-      if (nextPath.startsWith("http")) {
-        window.open(nextPath, "_blank");
-      } else {
-        navigate.push(nextPath);
-      }
-    } else {
+    if (nextPath) typeof window !== "undefined" && window.open(nextPath);
+    else {
       dispatch(setIsRequestModalOpen(true));
     }
   };
