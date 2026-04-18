@@ -3,6 +3,8 @@ import {
   faChevronDown,
   faChevronUp,
   faClose,
+  faMoon,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -13,7 +15,9 @@ import Button from "../common/Button";
 
 const NavbarSmallScreen = ({
   handleNavigation,
+  nextPath,
   darkMode,
+  toggleTheme,
   buttonText,
 }) => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
@@ -63,6 +67,13 @@ const NavbarSmallScreen = ({
             <div className="sidebar-header">
               <Logo isLeft={true} forceDark={true} />
               <div className="flex space-x-3 items-center">
+                <button onClick={toggleTheme}>
+                  {darkMode ? (
+                    <i className="fa-regular fa-brightness"></i>
+                  ) : (
+                    <i className="fa-regular fa-moon"></i>
+                  )}
+                </button>
                 <FontAwesomeIcon
                   icon={faClose}
                   color={darkMode ? "white" : "black"}
