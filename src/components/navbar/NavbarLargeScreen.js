@@ -3,6 +3,8 @@ import { navItems } from "./navItems";
 import { useState } from "react";
 import Button from "../common/Button";
 import Logo from "../common/Logo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 const NavbarLargeScreen = ({
   handleNavigation,
@@ -38,11 +40,11 @@ const NavbarLargeScreen = ({
       </div>
       <div className="flex space-x-4 items-center">
         <button onClick={toggleTheme}>
-          {darkMode ? (
-            <i className="fa-regular fa-brightness fa-lg"></i>
-          ) : (
-            <i className="fa-regular fa-moon fa-lg"></i>
-          )}
+          <FontAwesomeIcon
+            icon={darkMode ? faMoon : faSun}
+            color={darkMode ? "white" : "black"}
+            size="lg"
+          />
         </button>
         <Button className="w-36" text={buttonText || "Login"} onClick={handleNavigation} />
       </div>
