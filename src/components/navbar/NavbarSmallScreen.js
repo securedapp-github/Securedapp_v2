@@ -18,6 +18,7 @@ const NavbarSmallScreen = ({
   nextPath,
   darkMode,
   toggleTheme,
+  buttonText,
 }) => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
   const [dropDown, setDropDown] = useState("");
@@ -167,7 +168,7 @@ const NavbarSmallScreen = ({
               })}
             </nav>
             <div className="w-full text-center py-3 px-2">
-              <Button text="Login" onClick={handleNavigation} />
+              <Button text={buttonText || "Login"} onClick={handleNavigation} />
             </div>
           </div>
         </div>

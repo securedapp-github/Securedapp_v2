@@ -9,6 +9,7 @@ const NavbarLargeScreen = ({
   nextPath,
   darkMode,
   toggleTheme,
+  buttonText,
 }) => {
   const [dropDown, setDropDown] = useState("");
 
@@ -36,7 +37,7 @@ const NavbarLargeScreen = ({
         })}
       </div>
       <div className="flex space-x-4 items-center">
-        <Button className="w-36" text="Login" onClick={handleNavigation} />
+        <Button className="w-36" text={buttonText || "Login"} onClick={handleNavigation} />
       </div>
     </nav>
   );

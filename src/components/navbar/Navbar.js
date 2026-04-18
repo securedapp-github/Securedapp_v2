@@ -127,6 +127,7 @@ const Navbar = () => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
+          buttonText={buttonText}
         />
       ) : (
         <NavbarSmallScreen
@@ -134,6 +135,7 @@ const Navbar = () => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
+          buttonText={buttonText}
         />
       )}
       </div>
