@@ -71,14 +71,6 @@ const Navbar = () => {
     localStorage.theme = "light";
   };
 
-  const toggleTheme = () => {
-    if (darkMode === true) {
-      setModeLight();
-    } else {
-      setModeDark();
-    }
-  };
-
   useEffect(() => {
     if (localStorage.theme) {
       if (localStorage.theme === "dark") {
@@ -124,17 +116,13 @@ const Navbar = () => {
       {isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}
-          nextPath={nextPath}
           darkMode={darkMode}
-          toggleTheme={toggleTheme}
           buttonText={buttonText}
         />
       ) : (
         <NavbarSmallScreen
           handleNavigation={handleNavigation}
-          nextPath={nextPath}
           darkMode={darkMode}
-          toggleTheme={toggleTheme}
           buttonText={buttonText}
         />
       )}

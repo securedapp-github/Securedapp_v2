@@ -6,9 +6,7 @@ import Logo from "../common/Logo";
 
 const NavbarLargeScreen = ({
   handleNavigation,
-  nextPath,
   darkMode,
-  toggleTheme,
   buttonText,
 }) => {
   const [dropDown, setDropDown] = useState("");

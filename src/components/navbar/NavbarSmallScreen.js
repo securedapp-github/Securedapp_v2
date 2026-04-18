@@ -3,8 +3,6 @@ import {
   faChevronDown,
   faChevronUp,
   faClose,
-  faMoon,
-  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -15,9 +13,7 @@ import Button from "../common/Button";
 
 const NavbarSmallScreen = ({
   handleNavigation,
-  nextPath,
   darkMode,
-  toggleTheme,
   buttonText,
 }) => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
