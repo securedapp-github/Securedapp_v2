@@ -53,7 +53,7 @@ const NavbarSmallScreen = ({
         <div className="absolute left-3 cursor-pointer" onClick={showSideBar}>
           <FontAwesomeIcon
             icon={faBars}
-            color={darkMode ? "white" : "black"}
+            color="white"
             size="lg"
           />
         </div>
@@ -70,13 +70,13 @@ const NavbarSmallScreen = ({
                 <button onClick={toggleTheme}>
                   <FontAwesomeIcon
                     icon={darkMode ? faMoon : faSun}
-                    color={darkMode ? "white" : "black"}
+                    color="white"
                     size="lg"
                   />
                 </button>
                 <FontAwesomeIcon
                   icon={faClose}
-                  color={darkMode ? "white" : "black"}
+                  color="white"
                   size="lg"
                   className="cursor-pointer"
                   onClick={closeSideBar}
