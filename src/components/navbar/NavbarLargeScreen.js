@@ -46,7 +46,7 @@ const NavbarLargeScreen = ({
             size="lg"
           />
         </button>
-        <Button className="w-36" text={buttonText || "Login"} onClick={handleNavigation} />
+        <Button className="w-36 text-secondary dark:text-primary" text={buttonText || "Login"} onClick={handleNavigation} />
       </div>
     </nav>
   );

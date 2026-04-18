@@ -175,7 +175,7 @@ const NavbarSmallScreen = ({
               })}
             </nav>
             <div className="w-full text-center py-3 px-2">
-              <Button text={buttonText || "Login"} onClick={handleNavigation} />
+              <Button className="text-white" text={buttonText || "Login"} onClick={handleNavigation} />
             </div>
           </div>
         </div>
