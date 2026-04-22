@@ -45,7 +45,7 @@ const Header = () => {
           ) : (
             !isMobile && (
               <div>
-                "Solidity Shield to protect the heart of your Web3 project"
+                <span className="text-tertiary">Solidity Shield</span> to protect the heart of your <span className="text-tertiary">Web3</span> project
               </div>
             )
           )}

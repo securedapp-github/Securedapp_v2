@@ -35,7 +35,7 @@
 }
 
 .sss-pricing-container {
-  @apply font-poppins h-screen;
+  @apply font-poppins h-screen text-secondary;
 }
 
 .sss-pricing-plans-scrollable {

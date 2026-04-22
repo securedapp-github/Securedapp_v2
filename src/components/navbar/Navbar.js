@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import NavbarLargeScreen from "./NavbarLargeScreen";
 import NavbarSmallScreen from "./NavbarSmallScreen";
@@ -22,13 +22,14 @@ const Navbar = () => {
     useSelector(getHomeSelector);
 
   const navigate = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   let nextPath;
 
   const currentPath = navigate.asPath;
 
   switch (currentPath) {
     case "/solidity-shield":
-      nextPath = "/solidity-shield-scan";
+      nextPath = "/solidity-shield-scan/auth";
       break;
     case "/real-time-blockchain-threat-monitoring":
       nextPath = "https://securewatch.securedapp.io/";
@@ -50,19 +51,26 @@ const Navbar = () => {
   }
 
   const handleNavigation = () => {
-    if (nextPath) typeof window !== "undefined" && window.open(nextPath);
-    else {
+    if (nextPath) {
+      if (nextPath.startsWith("http")) {
+        typeof window !== "undefined" && window.open(nextPath, "_blank");
+      } else {
+        typeof window !== "undefined" && window.open(nextPath, "_self");
+      }
+    } else {
       dispatch(setIsRequestModalOpen(true));
     }
   };
 
   const setModeDark = () => {
+    document.documentElement.classList.add("dark");
     document.body.classList.add("dark");
     dispatch(setDarkMode(true));
     localStorage.theme = "dark";
   };
 
   const setModeLight = () => {
+    document.documentElement.classList.remove("dark");
     document.body.classList.remove("dark");
     dispatch(setDarkMode(false));
     localStorage.theme = "light";
@@ -77,6 +85,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    setIsMounted(true);
     if (localStorage.theme) {
       if (localStorage.theme === "dark") {
         setModeDark();
@@ -112,16 +121,20 @@ const Navbar = () => {
     };
   }, [dispatch]);
 
+  const buttonText = currentPath === "/" || currentPath?.includes("/quantum-vault") ? "Request Quote" : "Login";
+
   return (
     <div className="absolute z-[999] w-full top-0 left-0 right-0 pointer-events-none">
-      <div className="pointer-events-auto">
+      <div className="pointer-events-auto relative">
       {isRequestModalOpen && <RequestQuoteModal />}
-      {isLargeScreen ? (
+      {!isMounted || isLargeScreen ? (
         <NavbarLargeScreen
           handleNavigation={handleNavigation}
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
+          buttonText={buttonText}
+          isMainPage={true}
         />
       ) : (
         <NavbarSmallScreen
@@ -129,6 +142,8 @@ const Navbar = () => {
           nextPath={nextPath}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
+          buttonText={buttonText}
+          isMainPage={true}
         />
       )}
       </div>

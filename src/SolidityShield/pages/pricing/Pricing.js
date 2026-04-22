@@ -20,6 +20,7 @@ import { useRouter } from "next/router";
 import MetaTags from "../../../components/common/MetaTags";
 import Footer from "../../components/common/Footer";
 import { setLoader } from "../../redux/commonSlice";
+import { getUser } from "../../functions";
 
 const PricingPlanCard = ({
   icon,
@@ -34,7 +35,7 @@ const PricingPlanCard = ({
     <div className="sss-pricing-plan-card-container">
       <div
         style={{
-          border: auth.user.plan === id && "2px solid black",
+          border: auth?.user?.plan === id && "2px solid black",
           borderRadius: "10px",
         }}
         className="sss-pricing-plan-card"
@@ -51,13 +52,13 @@ const PricingPlanCard = ({
         <div onClick={onClick} className="sss-pricing-card-button-container">
           <button className="sss-pricing-card-button">
             <div className="">
-              {auth.user.plan === id && auth.user.plan > 0
+              {auth?.user?.plan === id && auth?.user?.plan > 0
                 ? "Renew Plan"
-                : auth.user.plan === 0 && auth.user.plan === id
+                : auth?.user?.plan === 0 && auth?.user?.plan === id
                 ? "Free Plan"
                 : "Get Started"}
             </div>
-            {auth.user.plan === 0 && auth.user.plan === id ? (
+            {auth?.user?.plan === 0 && auth?.user?.plan === id ? (
               ""
             ) : (
               <i className="fa-solid fa-arrow-right"></i>
@@ -124,7 +125,7 @@ const Pricing = () => {
         dispatch(setLoader(false));
       }
     }
-    if (!user) {
+    if (!user || Object.keys(user).length === 0) {
       fetchUserData();
     }
   }, [user, dispatch, navigate]);
@@ -139,16 +140,8 @@ const Pricing = () => {
             "Solidity Shield Scan, smart contract audits, vulnerability checks, secure audits, Solidity security, blockchain security, contract vulnerability scan, smart contract security",
         }}
       />
-      <div
-        style={{
-          width: "125%",
-          transform: "scale(0.8)",
-          transformOrigin: "top left",
-          overflowX: "auto",
-        }}
-        className="sss-pricing-plans-scrollable"
-      >
-        <div className="sss-pricing-plans">
+      <div className="sss-pricing-plans-scrollable w-full overflow-x-auto">
+        <div className="sss-pricing-plans max-w-[1200px] mx-auto">
           <div className="sss-pricing-plan-headers">
             <div className="sss-pricing-plan-headers-cards">
               <div className="sss-pricing-plan-headers-card-container"></div>
@@ -169,7 +162,7 @@ const Pricing = () => {
                         }
                         id={detail.id}
                       />
-                      <div className="sss-pricing-card-changer-buttons">
+                      <div className="sss-pricing-card-changer-buttons text-secondary">
                         <div
                           onClick={previousPricingCard}
                           className="sss-pricing-card-changer-button-container"
@@ -226,7 +219,7 @@ const Pricing = () => {
                                   alt="-"
                                 />
                               ) : (
-                                detail.details[feature].value
+                                <span dangerouslySetInnerHTML={{ __html: detail.details[feature].value }} />
                               )}
                               {detail.details[feature].info && (
                                 <div className="sss-pricing-plan-detail-row-info-container group">
@@ -236,8 +229,8 @@ const Pricing = () => {
                                     alt="i"
                                   />
                                   <div className="sss-pricing-plan-detail-row-info">
-                                    <div className="font-semibold">
-                                      {detail.details[feature].value}
+                                    <div className="font-semibold text-secondary">
+                                      <span dangerouslySetInnerHTML={{ __html: detail.details[feature].value }} />
                                     </div>
                                     {detail.details[feature].info}
                                   </div>
@@ -255,21 +248,21 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "-200px" }} className="sss-pricing-plan-footer">
-        <div className="sss-pricing-plan-footer-buttons">
-          <div className="text-center">Get a custom Plan</div>
+      <div className="sss-pricing-plan-footer mt-10">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-8">
+          <div className="text-lg font-medium text-secondary">Get a custom Plan</div>
           <div className="sas-pricing-plan-footer-button-container">
             <CustomButton
               text={"Contact Us"}
               className={
-                "border border-tertiary px-12 py-2 rounded-xl active:bg-tertiary"
+                "border border-[#AEE2F2] text-secondary px-8 py-2 rounded-xl hover:bg-tertiary transition-colors"
               }
               onClick={() => navigate.push("/solidity-shield-scan/contact")}
             />
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };
