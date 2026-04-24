@@ -17,7 +17,6 @@ const nextConfig = {
   },
 
   // output: "export", // Outputs a Single-Page Application (SPA).
-  distDir: "./build", // Changes the build output directory to `./build`.
   // NOTE: Removed static export so that Next.js API Routes are enabled for the chatbot backend.
   images: {
     unoptimized: true,
