@@ -46,6 +46,9 @@ const Navbar = () => {
     case "/web3-kyc":
       nextPath = "/web3-kyc";
       break;
+    case "/secure-cms":
+      nextPath = "https://cms-app.securedapp.io/";
+      break;
     default:
       nextPath = null;
   }
@@ -121,7 +124,9 @@ const Navbar = () => {
     };
   }, [dispatch]);
 
-  const buttonText = currentPath === "/" || currentPath?.includes("/quantum-vault") ? "Request Quote" : "Login";
+  const buttonText = 
+    currentPath?.includes("/secure-cms") ? "Try it now" : 
+    (currentPath === "/" || currentPath?.includes("/quantum-vault") ? "Request Quote" : "Login");
 
   return (
     <div className="absolute z-[999] w-full top-0 left-0 right-0 pointer-events-none">
