@@ -2,7 +2,7 @@ import React from 'react';
 import SectionHeader from '../common/SectionHeader';
 import { featuresData } from '../../pageComponents/product/QuantumVault/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShieldAlt, faSyncAlt, faUsers, faLock, faCloud, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faShieldAlt, faSyncAlt, faUsers, faLock, faCloud, faFileAlt, faKey } from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = {
   shield: faShieldAlt,
@@ -10,7 +10,8 @@ const iconMap = {
   users: faUsers,
   lock: faLock,
   cloud: faCloud,
-  file: faFileAlt
+  file: faFileAlt,
+  key: faKey
 };
 
 const FeaturesSection = () => {
@@ -20,7 +21,7 @@ const FeaturesSection = () => {
         <div className="flex flex-col items-center mb-10 md:mb-12">
           <SectionHeader 
             label={featuresData.tag} 
-            title={<>Key Features of <span className="text-[#00ff88]">Quantum Vault HSM Platform</span></>} 
+            title={featuresData.title} 
           />
         </div>
         

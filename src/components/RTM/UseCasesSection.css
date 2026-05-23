@@ -67,7 +67,7 @@
         grid-template-columns: 1fr;
     }
 }
-\n
+
 @media (max-width: 768px) {
     .rtm-ucs-container {
         padding: 60px 15px !important;

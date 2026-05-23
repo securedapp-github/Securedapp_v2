@@ -1,7 +1,9 @@
+import React from 'react';
+
 export const heroData = {
   tag: "ENTERPRISE KEY SECURITY",
-  title: "PQC-enabled HSM-Based Key Management Solutions for Enterprise-Grade Security",
-  description: "In today’s digital landscape, encryption is only as strong as the protection of its keys. HSM-Based Key Management Solutions ensure that your most sensitive cryptographic keys are never exposed, stolen, or misused. Quantum Vault delivers Enterprise HSM Key Management powered by tamper-resistant hardware security modules (HSMs), giving organisations complete control over key generation, storage, and lifecycle management. With increasing regulatory pressure and rising data breaches caused by poor key handling, enterprises need a hardware-backed, compliance-ready key management system that eliminates risk at the root. Whether securing cloud infrastructure, financial systems, or sensitive enterprise data, Quantum Vault ensures maximum security, control, and trust.",
+  title: <>Enterprise HSM <span className="text-[#00ff88]">Key Management</span> Platform</>,
+  description: "Quantum Vault provides FIPS 140-2 certified, hardware-backed cryptographic protection and automated lifecycle management. Engineered for post-quantum readiness, it secures your most critical cryptographic keys within tamper-resistant environments, completely eliminating software-layer vulnerability and external exposure.",
   primaryCta: "Get a Free Security Consultation",
   secondaryCta: "See How It Works →",
   badges: ["FIPS 140-2", "ISO 27001", "PCI-DSS Ready", "Enterprise-Grade Security"],
@@ -18,23 +20,10 @@ export const aiDefinitionData = {
 
 export const risksData = {
   tag: "THREATS",
-  title: "The Growing Risks of Poor Key Management",
-  description: "Cryptographic keys are the foundation of digital security—but they are also the most targeted asset in modern cyberattacks.",
-  risks: [
-    { title: "Over 80% of data breaches involve compromised credentials or keys", icon: "warning" },
-    { title: "Software-based key storage exposes sensitive assets", icon: "warning" },
-    { title: "Insider misuse of keys leads to major security incidents", icon: "warning" },
-    { title: "Mismanaged keys break encryption integrity completely", icon: "warning" }
-  ],
-  criticalRisksTitle: "Without Enterprise HSM Key Management, organisations face critical risks:",
-  criticalRisks: [
-    { text: "Key exposure through memory or application vulnerabilities", icon: "key" },
-    { text: "Unauthorised access due to weak access controls", icon: "lock" },
-    { text: "Lack of visibility into key usage and lifecycle", icon: "eye" },
-    { text: "Failure to meet compliance requirements", icon: "shield" }
-  ],
-  footerNote: "Modern regulations such as NIST, PCI-DSS, GDPR, and ISO 27001 demand strong key protection mechanisms.",
-  footerHighlight: "Without HSM-based solutions, encryption becomes a false sense of security."
+  title: <>Critical Flaws in <span className="text-[#00ff88]">Software-Defined Security</span></>,
+  description: "While traditional encryption standardizes data defense, storing keys within standard software environments, application memory, or cloud runtimes exposes them to advanced memory scraping and internal exploit vectors.",
+  riskFactorTitle: "Enterprise Risk Factor",
+  riskFactorText: "Attackers bypass complex algorithmic math by targeting exposed keys directly. Software-only key management leaves organizations vulnerable to credential escalation and systemic compliance failures."
 };
 
 export const challengesData = {
@@ -53,8 +42,9 @@ export const challengesData = {
 
 export const whatIsHSMData = {
   tag: "PROTECTION",
-  title: <>What Is <span className="text-[#00ff88]">HSM-Based Key Management?</span></>,
-  description: "HSM-Based Key Management is the process of generating, storing, using, and managing cryptographic keys inside secure hardware devices called Hardware Security Modules (HSMs), ensuring keys remain protected from unauthorized access or extraction.",
+  title: <>Architecture: <span className="text-[#00ff88]">HSM-Backed vs. Software Keys</span></>,
+  description: "Enterprise HSM key management isolates the execution boundary of every cryptographic key lifecycle process, including generation, distribution, rotation, and revocation, inside dedicated physical hardware security modules.",
+  description2: "Unlike cloud software stores, keys are generated via hardware-based random number generators (TRNG) and cannot be extracted in plaintext format, even under administrative compromise.",
   comparisonLabel: "Unlike software-based systems, HSMs provide:",
   comparisonCards: [
     { title: "Physical and logical protection of keys", icon: "shield" },
@@ -81,22 +71,17 @@ export const whatIsHSMData = {
 
 export const whyNowData = {
   tag: "WHY NOW",
-  title: <>Why Enterprise HSM Key Management Is <span className="text-[#00ff88]">No Longer Optional</span></>,
+  title: <>Post-Quantum Cryptography & <span className="text-[#00ff88]">Evolving Regulatory Mandates</span></>,
   cards: [
     { 
-      title: "The Cost of Key Compromise", 
-      desc: "A single compromised key can expose entire systems, leading to data breaches, financial loss, and reputational damage.", 
-      icon: "dollar" 
+      title: "Mitigation of \"Harvest Now, Decrypt Later\" Attacks", 
+      desc: "Adversaries routinely intercept and archive encrypted enterprise traffic with the intent to decrypt it once cryptanalytically relevant quantum computers (CRQCs) emerge. Quantum Vault mitigates this vector by applying hybrid classical-quantum wrappers immediately.", 
+      icon: "lock" 
     },
     { 
-      title: "Compliance Requirements Are Increasing", 
-      desc: "Global standards such as: NIST SP 800-57, PCI-DSS, GDPR, ISO 27001 require secure key storage and lifecycle management.", 
-      icon: "file" 
-    },
-    { 
-      title: "Software-Based Key Management Is Not Enough", 
-      desc: "Traditional key storage systems cannot provide: Hardware-level isolation, Protection from insider threats, Tamper resistance.", 
-      icon: "software" 
+      title: "Alignment with India's National Digital Frameworks", 
+      desc: "With tightening oversight from local regulators, including the Reserve Bank of India (RBI), financial institutions and digital platforms require strict cryptographic sovereignty and proven audit trails.", 
+      icon: "shield" 
     }
   ],
   footer: "Only HSM-Based Key Management Solutions deliver true enterprise-grade protection."
@@ -104,26 +89,23 @@ export const whyNowData = {
 
 export const processData = {
   tag: "PROCESS",
-  title: "How PQC-Enabled HSM-Based Key Management Solutions Work",
+  title: <>Structural <span className="text-[#00ff88]">Security Workflow</span></>,
   steps: [
-    { title: "Step 1—Secure Key Generation Inside HSM", desc: "Keys are generated within FIPS-certified HSM hardware, ensuring zero exposure.", icon: "key" },
-    { title: "Step 2—Hardware-Protected Key Storage", desc: "Keys are stored in tamper-resistant environments, preventing extraction.", icon: "box" },
-    { title: "Step 3—Policy-Based Access Control", desc: "Access is managed using role-based permissions and authentication controls.", icon: "shield" },
-    { title: "Step 4—Key Lifecycle Management", desc: "Keys are securely rotated, revoked, and managed throughout their lifecycle.", icon: "refresh" }
+    { title: "Hardware Ingestion", desc: "Cryptographic keys are minted directly inside the HSM using FIPS-validated hardware entropy.", icon: "key" },
+    { title: "Tamper-Responsive Storage", desc: "Keys live strictly inside hardware limits. Physical breach indicators prompt automated self-protection and cryptographic erasure.", icon: "box" },
+    { title: "Cryptographic Access Boundaries", desc: "Enforces rigid role-based access control (RBAC), multi-party approval (m-of-n authentication), and segregated duties.", icon: "shield" },
+    { title: "Automated Lifecycles", desc: "Continuous hands-free rotation, expiration enforcement, and instant revocation to eliminate manual configuration drift.", icon: "refresh" }
   ],
-  howTo: "HSM-based key management works by generating keys within secure hardware, storing them in tamper-resistant environments, enforcing strict access policies, and managing the full lifecycle, including rotation, expiration, and revocation."
+  howTo: "PQC-enabled HSM key management secures the entire cryptographic lifecycle, from generation to rotation, strictly inside hardware boundaries."
 };
 
 export const featuresData = {
   tag: "FEATURES",
-  title: "Key Features of Quantum Vault HSM Platform",
+  title: <>Platform <span className="text-[#00ff88]">Capabilities</span></>,
   cards: [
-    { title: "Hardware-Level Key Protection", desc: "Keys remain inside HSM boundaries and are never exposed externally.", icon: "shield" },
-    { title: "Centralised Key Lifecycle Management", desc: "Manage key creation, rotation, expiration, and revocation from one platform.", icon: "refresh" },
-    { title: "Role-Based Access Control (RBAC)", desc: "Control who can access and use keys with granular permissions.", icon: "users" },
-    { title: "Secure Cryptographic Operations", desc: "Perform encryption, decryption, and signing within secure hardware.", icon: "lock" },
-    { title: "Multi-Cloud & Hybrid Integration", desc: "Integrates seamlessly with AWS, Azure, GCP, and on-prem systems.", icon: "cloud" },
-    { title: "Compliance-Ready Architecture", desc: "Designed to meet FIPS 140-2, PCI-DSS, GDPR, and ISO 27001 requirements.", icon: "file" }
+    { title: "Crypto Agility", desc: "Decoupled algorithmic logic allows seamless transitions to NIST-approved algorithms like ML-KEM (FIPS 203) and ML-DSA (FIPS 204) without codebase overhauls.", icon: "refresh" },
+    { title: "Bring Your Own Key (BYOK)", desc: "Retain complete root-of-trust sovereignty over keys integrated into commercial cloud platforms (AWS, Azure, Google Cloud).", icon: "key" },
+    { title: "Web3 & Transaction Infrastructure", desc: "Enterprise-grade wallet protection, validator key custody, and tamper-proof multi-signature execution for blockchain nodes.", icon: "cloud" }
   ]
 };
 
@@ -153,14 +135,12 @@ export const protectionData = {
 
 export const industriesData = {
   tag: "INDUSTRIES",
-  title: "Industries We Protect",
+  title: <>Specialized <span className="text-[#00ff88]">Sector Implementations</span></>,
   description: "SecureDApp provides hardware-backed key management solutions tailored to the specific security and compliance needs of critical industries.",
   industries: [
-    { title: "Financial Institutions & Banks", desc: "Secure transactions and protect sensitive financial data.", icon: "university" },
-    { title: "Cloud & SaaS Providers", desc: "Ensure encryption and key control across cloud environments.", icon: "cloud" },
-    { title: "Healthcare Systems", desc: "Protect patient data and meet compliance requirements.", icon: "heartbeat" },
-    { title: "Government & Defense", desc: "Secure classified and mission-critical information.", icon: "shield" },
-    { title: "Enterprise IT Infrastructure", desc: "Protect internal systems, applications, and communications.", icon: "server" }
+    { title: "BFSI & Fintech", desc: "Protects high-throughput UPI payment signing infrastructure, settlement APIs, and customer validation tokens.", icon: "university" },
+    { title: "SaaS & Cloud Provider Infrastructures", desc: "Centralizes tenant encryption control across fragmented multi-cloud nodes.", icon: "cloud" },
+    { title: "Defense & Government Infrastructure", desc: "Provides isolated root-of-trust architectures conforming to critical national data localization policies.", icon: "shield" }
   ]
 };
 
@@ -178,12 +158,11 @@ export const processFlowData = {
 
 export const technologyData = {
   tag: "TECHNOLOGY",
-  title: "Technology Powering Quantum Vault",
+  title: <>Technical <span className="text-[#00ff88]">Protocols & Integrations</span></>,
+  description: "Quantum Vault drops directly into modern enterprise ecosystems using industry-standard programmatic interfaces:",
   cards: [
-    { title: "FIPS 140-2 Certified HSM Infrastructure", desc: "Hardware-level security that meets the highest global standards.", icon: "shield" },
-    { title: "Secure Key Management Architecture", desc: "Designed for scalability and high availability in enterprise environments.", icon: "key" },
-    { title: "Multi-Cloud Deployment Support", desc: "Works seamlessly across AWS, Azure, GCP, and hybrid infrastructures.", icon: "cloud" },
-    { title: "Enterprise Integration (SIEM, IAM, APIs)", desc: "Easily connects with your existing security and identity ecosystem.", icon: "plug" }
+    { title: "Standard Protocol APIs", desc: "Native compliance with KMIP, PKCS#11, and secure RESTful webhooks.", icon: "plug" },
+    { title: "SIEM & IAM Interoperability", desc: "Delivers structured cryptographic telemetry directly to your Security Operations Center (SOC) for deterministic auditing.", icon: "shield" }
   ],
   standardsTitle: "Cryptographic Standards and Algorithms Supported",
   standardsDesc: "Quantum Vault supports industry-standard cryptographic algorithms required for secure enterprise operations.",
@@ -199,40 +178,23 @@ export const technologyData = {
 
 export const caseStudiesData = {
   tag: "CASE STUDIES",
+  title: <>Validated Enterprise <span className="text-[#00ff88]">Deployment Outcomes</span></>,
   studies: [
     {
-      title: "Case Study—Strengthening Security with HSM-Based Key Management Solutions",
-      challenge: "A financial services organization was using a mix of cloud-native and application-level key storage mechanisms across its infrastructure. While encryption was implemented, the keys were stored in software environments with inconsistent access controls.",
-      approach: "Quantum Vault implemented HSM-Based Key Management Solutions to standardize and secure cryptographic key handling across the organization.",
-      steps: [
-        "Migrating high-sensitivity keys into HSM-backed infrastructure",
-        "Enforcing strict role-based access control policies",
-        "Automating key lifecycle processes including rotation and revocation",
-        "Establishing centralized visibility into key usage and audit logs"
-      ],
+      title: "Case Study: Global Banking Infrastructure Consolidation",
+      challenge: "A highly-distributed financial institution faced audit failures due to inconsistent key management applications across legacy departments.",
+      approach: "Standardized on Quantum Vault hardware security modules.",
       outcomes: [
-        "Reduced unnecessary access to sensitive cryptographic keys",
-        "Improved audit readiness with centralized control and logging",
-        "Achieved consistent key lifecycle management across systems",
-        "Strengthened compliance alignment with industry standards"
+        "Consolidated cryptographic silos, automated historical key rotations, and reduced critical access paths by over 70%."
       ],
       cta: "Explore HSM-Based Key Management Solutions \u2192"
     },
     {
-      title: "Case Study—Scaling Enterprise HSM Key Management Across Multi-Cloud Environments",
-      challenge: "A SaaS company operating across AWS and Azure experienced rapid growth, resulting in fragmented key management practices. Different teams managed encryption keys independently, leading to inconsistent security controls.",
-      approach: "Quantum Vault deployed a centralized Enterprise HSM Key Management platform to unify key control across multi-cloud environments.",
-      steps: [
-        "Centralizing key storage using HSM-backed infrastructure",
-        "Standardizing access control policies across cloud platforms",
-        "Integrating with existing cloud services through secure APIs",
-        "Automating key lifecycle management processes"
-      ],
+      title: "Case Study: Multi-Cloud SaaS Optimization",
+      challenge: "Rapid enterprise cloud scaling across AWS and Azure led to fragmented cloud native KMS management rules.",
+      approach: "Deployed centralized Quantum Vault BYOK framework.",
       outcomes: [
-        "Improved visibility into key usage and ownership",
-        "Reduced duplication and inconsistency across systems",
-        "Simplified compliance reporting through centralized management",
-        "Enhanced control over key lifecycle and access policies"
+        "Single-pane policy visibility reached 100%, simplifying multi-cloud vendor compliance tracking."
       ],
       cta: "See How Enterprise HSM Key Management Works \u2192"
     }
@@ -241,7 +203,7 @@ export const caseStudiesData = {
 
 export const comparisonData = {
   tag: "COMPARISON",
-  title: "How Quantum Vault Compares",
+  title: <>Comparative <span className="text-[#00ff88]">Architecture Assessment</span></>,
   rows: [
     { feature: "Hardware Security", vault: "check", software: "x", manual: "x" },
     { feature: "Key Lifecycle Management", vault: "check", software: "warning", manual: "x" },
@@ -252,12 +214,12 @@ export const comparisonData = {
 
 export const benefitsData = {
   tag: "BENEFITS",
-  title: "Benefits of HSM-Based Key Management Solutions",
+  title: <>Key <span className="text-[#00ff88]">Advantages</span></>,
   benefits: [
-    { title: "Prevent Data Breaches at the Root", desc: "Protect keys to secure all encrypted data.", icon: "shield" },
-    { title: "Ensure Regulatory Compliance", desc: "Meet global security standards with ease.", icon: "file-alt" },
-    { title: "Protect Business Reputation", desc: "Avoid trust loss caused by security failures.", icon: "building" },
-    { title: "Reduce Security Risks", desc: "Minimize exposure and operational vulnerabilities.", icon: "exclamation-triangle" }
+    { title: "Zero-Trust Hardware Boundaries", desc: "Complete key isolation from memory or application layers.", icon: "shield" },
+    { title: "Quantum-Resistant Infrastructure", desc: "Day-one integration for post-quantum cryptographic (PQC) standards.", icon: "lock" },
+    { title: "Unified Multi-Cloud Governance", desc: "Centralized visibility across AWS, Azure, GCP, and on-prem architectures.", icon: "cloud" },
+    { title: "Rapid Enterprise Deployment", desc: "Production-ready implementation structures deployable within 24 hours.", icon: "clock" }
   ]
 };
 
@@ -325,20 +287,185 @@ export const faqData = {
   tag: "FAQ",
   title: "Frequently Asked Questions",
   faqs: [
-    { q: "What is HSM-based key management?", a: "HSM-based key management uses hardware security modules to securely generate, store, and manage cryptographic keys within tamper-resistant environments." },
-    { q: "How does enterprise HSM key management work?", a: "It works by generating keys inside secure hardware, enforcing access controls, and managing key lifecycle processes such as rotation and revocation." },
-    { q: "Why is HSM better than software key management?", a: "HSMs provide hardware-level security, preventing key extraction and ensuring stronger protection than software-based systems." },
-    { q: "What industries need HSM key management?", a: "Industries such as banking, cloud computing, healthcare, and government require HSM-based key protection." },
-    { q: "Is HSM required for compliance?", a: "Yes, standards like PCI-DSS, GDPR, and NIST recommend or require secure hardware-based key management." },
-    { q: "What is the role of Hardware Security Modules (HSMs) in key management?", a: "Hardware Security Modules (HSMs) play a critical role in key management by providing a secure, tamper-resistant environment for generating, storing, and using cryptographic keys. They ensure that keys never leave the hardware boundary and protect against unauthorized access, making them essential for enterprise-grade encryption and security." },
-    { q: "How does HSM-based key management improve encryption security?", a: "HSM-based key management improves encryption security by isolating cryptographic keys within secure hardware, preventing exposure through software vulnerabilities. It ensures all encryption, decryption, and signing operations occur inside the HSM, significantly reducing the risk of key theft and strengthening overall data protection." },
-    { q: "What is key lifecycle management in HSM systems?", a: "Key lifecycle management refers to the complete process of managing cryptographic keys, including generation, distribution, usage, rotation, expiration, and revocation. In HSM-based systems, this lifecycle is securely controlled within hardware, ensuring keys remain protected throughout their entire lifespan." },
-    { q: "Can HSM-based key management support multi-cloud environments?", a: "Yes, enterprise HSM key management solutions are designed to support multi-cloud and hybrid environments. They integrate with major cloud providers like AWS, Azure, and Google Cloud, allowing organizations to maintain centralized control over encryption keys across distributed infrastructures." },
-    { q: "What compliance standards require HSM-based key management?", a: "Several global compliance standards recommend or require HSM-based key management, including PCI-DSS, GDPR, ISO 27001, and NIST guidelines. These regulations emphasize secure key storage, access control, and auditability, which HSMs are specifically designed to provide." },
-    { q: "What is the difference between HSM and KMS (Key Management Service)?", a: "An HSM is a physical hardware device that provides tamper-resistant key storage and cryptographic processing, while a Key Management Service (KMS) is typically a software or cloud-based system for managing keys. HSMs offer higher security assurance by ensuring keys are never exposed outside secure hardware environments." },
-    { q: "How are cryptographic keys protected inside an HSM?", a: "Cryptographic keys inside an HSM are protected using hardware-level encryption, secure memory, and tamper-detection mechanisms. If unauthorized access is attempted, the HSM can automatically erase keys to prevent compromise, ensuring maximum security against both physical and logical attacks." },
-    { q: "What types of keys can be managed using HSM-based solutions?", a: "HSM-based key management solutions can manage various types of cryptographic keys, including symmetric keys (AES), asymmetric keys (RSA, ECC), TLS/SSL keys, API keys, and digital signing keys. This flexibility makes them suitable for enterprise, cloud, and financial applications." },
-    { q: "How does HSM-based key management support digital signatures?", a: "HSM-based key management enables secure digital signatures by storing private signing keys in the HSM and performing signing operations within the hardware. This ensures the integrity and authenticity of transactions, documents, and communications without exposing sensitive keys." },
-    { q: "Is HSM-based key management scalable for large enterprises?", a: "Yes, enterprise HSM key management solutions are designed for scalability, supporting thousands of keys and high transaction volumes. They can be deployed across multiple environments and integrated with enterprise systems, making them ideal for large-scale operations and growing infrastructure." }
+    {
+      q: "What is HSM key management?",
+      a: "HSM key management is the process of generating, storing, controlling, rotating, and protecting cryptographic keys using Hardware Security Modules, commonly called HSMs. Instead of storing sensitive encryption keys inside software environments where they can potentially be exposed, HSM-based systems keep those keys inside tamper-resistant hardware designed specifically for secure cryptographic operations. In modern enterprises, HSM key management plays a critical role in protecting financial systems, cloud infrastructure, APIs, digital identities, blockchain platforms, and encrypted customer data."
+    },
+    {
+      q: "What is HSM in key management?",
+      a: "In key management, an HSM acts as the secure hardware layer responsible for handling cryptographic keys and sensitive cryptographic operations. It securely generates encryption keys, stores them within protected hardware boundaries, and performs operations such as encryption, decryption, digital signing, and authentication without exposing private keys externally. HSMs are widely used in enterprise environments where high-assurance security and compliance are required."
+    },
+    {
+      q: "What is the meaning of HSM management?",
+      a: "HSM management refers to the administration and governance of Hardware Security Modules across an organization's infrastructure. This includes controlling user access, managing cryptographic policies, monitoring audit logs, rotating keys, handling firmware updates, and ensuring compliance with security standards. Effective HSM management helps organizations maintain visibility, consistency, and operational control over their cryptographic environment."
+    },
+    {
+      q: "Is HSM a software or hardware?",
+      a: "An HSM is a hardware-based security device. Unlike software-only key management systems, HSMs are physical cryptographic modules designed to securely generate, store, and use encryption keys inside tamper-resistant hardware. Even when organizations use cloud-based HSM services, the underlying infrastructure still relies on dedicated secure hardware operated by the provider."
+    },
+    {
+      q: "What are the 5 key principles of security?",
+      a: "The five key principles of information security are confidentiality, integrity, availability, authentication, and non-repudiation. Together, these principles ensure that sensitive information remains protected from unauthorized access, remains accurate and trustworthy, stays accessible when needed, verifies user identities correctly, and provides accountability for digital actions and transactions."
+    },
+    {
+      q: "What are the 4 types of hardware security modules?",
+      a: "The most common types of Hardware Security Modules include network-attached HSMs, PCIe-based HSMs, USB or portable HSMs, and cloud HSMs. Network-attached HSMs are typically used in enterprise data centers, PCIe HSMs are installed directly into servers, portable HSMs are often used for smaller-scale or developer-focused environments, and cloud HSMs provide scalable hardware-backed cryptographic services through cloud providers."
+    },
+    {
+      q: "Are HSMs still relevant today?",
+      a: "HSMs are more relevant today than ever before. As organizations move toward cloud-native infrastructure, digital payments, remote access systems, blockchain applications, and AI-driven ecosystems, cryptographic key protection has become increasingly critical. Modern cyberattacks rarely attempt to break encryption directly. Instead, attackers target the encryption keys themselves. HSMs help prevent this by isolating keys inside secure hardware environments with strict access controls and tamper resistance."
+    },
+    {
+      q: "What is enterprise key management?",
+      a: "Enterprise key management refers to the centralized management of cryptographic keys across an organization's infrastructure, applications, cloud platforms, and security systems. It involves securely generating, distributing, rotating, revoking, and monitoring encryption keys throughout their lifecycle. Enterprise key management helps organizations maintain consistent security policies, simplify compliance, and reduce the risks associated with fragmented or poorly managed cryptographic environments."
+    },
+    {
+      q: "What is KMS and HSM in security?",
+      a: "A KMS, or Key Management System, is the software or service layer responsible for managing encryption keys operationally, while an HSM provides the secure hardware foundation used to protect those keys. In many enterprise environments, the KMS handles governance, automation, and policy management, while the HSM ensures cryptographic keys remain protected inside tamper-resistant hardware."
+    },
+    {
+      q: "How does enterprise key management (EKM) work?",
+      a: "Enterprise key management works by centralizing control over cryptographic keys and enforcing security policies consistently across systems and environments. Keys are securely generated, assigned to applications or workloads, protected using access controls, rotated periodically, and monitored through audit logging systems. In mature environments, HSMs are often integrated into the architecture to provide hardware-backed protection for highly sensitive keys."
+    },
+    {
+      q: "What is CKMS used for?",
+      a: "CKMS stands for Cryptographic Key Management System. It is used to manage the complete lifecycle of cryptographic keys, including generation, storage, rotation, revocation, backup, and auditing. Organizations use CKMS platforms to simplify encryption governance and ensure secure key handling across cloud infrastructure, enterprise applications, databases, and security systems."
+    },
+    {
+      q: "What is an enterprise key?",
+      a: "An enterprise key is a cryptographic key used within enterprise environments to secure sensitive systems, communications, applications, or data. Examples include database encryption keys, TLS private keys, API signing keys, blockchain wallet keys, and digital certificate keys. Because these keys often protect critical infrastructure and sensitive information, securing them properly is extremely important."
+    },
+    {
+      q: "What are the essential features of an enterprise-grade key management system?",
+      a: "An enterprise-grade key management system should provide centralized governance, strong access control, audit logging, automated lifecycle management, multi-cloud integration, compliance support, disaster recovery capabilities, and HSM integration for hardware-backed protection. Large organizations also require scalability, API connectivity, and visibility into how cryptographic keys are being used across different systems and environments."
+    },
+    {
+      q: "Are HSM and TPM the same?",
+      a: "No, HSMs and TPMs are not the same thing. A TPM, or Trusted Platform Module, is typically designed to secure a single endpoint device such as a laptop or server. An HSM, on the other hand, is built for enterprise-scale cryptographic security and centralized key management. While both involve hardware-backed security, HSMs provide significantly stronger governance, scalability, and cryptographic capabilities."
+    },
+    {
+      q: "Is TPM a type of HSM?",
+      a: "TPMs and HSMs belong to the broader category of hardware-based security technologies, but they serve different purposes. TPMs are lightweight hardware modules primarily focused on endpoint security and device integrity, while HSMs are specialized enterprise-grade cryptographic systems designed for high-security environments and centralized key protection."
+    },
+    {
+      q: "What is the difference between HSM and TPM?",
+      a: "The main difference between an HSM and a TPM is scale and purpose. TPMs are embedded security chips used to protect individual devices, operating systems, and local credentials. HSMs are dedicated cryptographic platforms designed to secure enterprise encryption keys, digital signatures, payment systems, cloud infrastructure, and large-scale cryptographic operations. HSMs also provide stronger tamper resistance and advanced governance features."
+    },
+    {
+      q: "What else is TPM called?",
+      a: "TPM stands for Trusted Platform Module. It is also sometimes referred to as a hardware security chip or a hardware root of trust because it establishes device-level trust and integrity within computing systems."
+    },
+    {
+      q: "What are the 8 pillars of TPM?",
+      a: "This question typically refers to Total Productive Maintenance rather than cybersecurity. The eight pillars include Autonomous Maintenance, Planned Maintenance, Quality Maintenance, Focused Improvement, Early Equipment Management, Training and Education, Safety and Environment, and Office TPM."
+    },
+    {
+      q: "What is the purpose of an HSM?",
+      a: "The primary purpose of an HSM is to securely protect cryptographic keys and perform sensitive cryptographic operations within tamper-resistant hardware. HSMs help organizations reduce the risk of key theft, improve encryption security, support compliance requirements, and strengthen trust across digital systems and transactions."
+    },
+    {
+      q: "What is HSM in DevOps?",
+      a: "In DevOps environments, HSMs are often used to secure sensitive cryptographic operations such as code signing, certificate management, API authentication, CI/CD pipeline security, and secret protection. By integrating HSMs into DevOps workflows, organizations reduce the risk of exposed credentials and strengthen software supply chain security."
+    },
+    {
+      q: "How do hardware security modules enhance data encryption for large organisations?",
+      a: "Hardware Security Modules enhance enterprise encryption by protecting cryptographic keys inside secure hardware environments instead of software-based storage. This significantly reduces the risk of key theft through malware, insider misuse, memory exposure, or application vulnerabilities. HSMs also improve governance, access control, auditing, and compliance for organizations operating across complex cloud and hybrid infrastructures."
+    },
+    {
+      q: "What is HSM key management used for in blockchain and Web3?",
+      a: "In blockchain and Web3 ecosystems, HSM key management is commonly used for secure wallet custody, blockchain transaction signing, validator security, institutional asset protection, and digital identity management. Since blockchain private keys directly control digital assets, HSMs provide an additional layer of protection by isolating keys within tamper-resistant hardware."
+    },
+    {
+      q: "What is PQC-enabled HSM key management?",
+      a: "PQC-enabled HSM key management refers to Hardware Security Module infrastructure designed to support post-quantum cryptography. These systems are built to help organizations transition toward quantum-resistant cryptographic algorithms while maintaining secure key management practices. As concerns around future quantum computing threats grow, PQC-enabled HSM platforms are becoming increasingly important for long-term cryptographic resilience."
+    },
+    {
+      q: "What is the Harvest Now Decrypt Later attack and how does HSM prevent it?",
+      a: "Harvest Now Decrypt Later refers to the strategy where attackers collect encrypted data today with the intention of decrypting it later using future quantum computing capabilities. While HSMs alone do not stop quantum attacks, PQC-enabled HSM infrastructure helps organizations prepare for quantum-resistant cryptography and maintain stronger control over cryptographic keys during the transition to post-quantum security models."
+    },
+    {
+      q: "What is crypto agility in HSM key management?",
+      a: "Crypto agility refers to the ability to quickly adapt cryptographic algorithms, standards, and policies without requiring major infrastructure redesigns. In HSM key management, crypto agility is essential because organizations may need to migrate from traditional algorithms like RSA and ECC toward newer post-quantum standards as the cybersecurity landscape evolves."
+    },
+    {
+      q: "Which NIST post-quantum algorithms should an HSM support?",
+      a: "Modern enterprise HSM platforms are increasingly expected to support post-quantum cryptographic algorithms standardized or selected by NIST, including ML-KEM, ML-DSA, and SLH-DSA. Support for these algorithms helps organizations prepare for the future impact of quantum computing on cryptographic security."
+    },
+    {
+      q: "What compliance standards are critical for HSM-based key management in banking?",
+      a: "Banking and financial institutions typically require HSM-based key management systems to align with standards such as PCI-DSS, FIPS 140-2 or FIPS 140-3, ISO 27001, NIST guidelines, PCI PIN Security Requirements, and regional regulatory expectations. These standards emphasize strong encryption governance, secure key handling, auditability, and operational resilience."
+    },
+    {
+      q: "What are the top providers of enterprise HSM key management services in India?",
+      a: "Several global and regional providers operate in the Indian enterprise HSM market, including Thales, Entrust, Utimaco, IBM, Futurex, AWS CloudHSM, Azure Managed HSM, and Google Cloud HSM. Indian cybersecurity and blockchain security companies are also increasingly building HSM-integrated and post-quantum-ready key management solutions tailored for local enterprise and regulatory requirements."
+    },
+    {
+      q: "Which providers offer managed HSM services for cloud environments?",
+      a: "Major cloud providers offering managed HSM services include AWS CloudHSM, Azure Managed HSM, Google Cloud HSM, and IBM Cloud HSM. These services allow organizations to use hardware-backed cryptographic protection without managing physical HSM infrastructure directly."
+    },
+    {
+      q: "What HSM compliance requirements must Indian banks meet under RBI guidelines?",
+      a: "Indian banks are expected to maintain strong cryptographic governance, secure encryption practices, access controls, audit logging, payment security protections, and operational resilience under RBI cybersecurity expectations. In many cases, banks also need to align with PCI-DSS and payment-related security requirements alongside internal governance standards."
+    },
+    {
+      q: "What are the best enterprise HSM solutions for secure key management?",
+      a: "The best enterprise HSM solution depends on the organization's infrastructure, compliance requirements, cloud strategy, scalability needs, and cryptographic workloads. Leading HSM platforms today focus on strong hardware protection, centralized governance, multi-cloud integration, crypto agility, blockchain compatibility, and post-quantum readiness."
+    },
+    {
+      q: "How to choose an HSM-based key management system for large organisations?",
+      a: "Organizations choosing an HSM-based key management system should evaluate factors such as scalability, compliance support, integration capabilities, cloud compatibility, audit visibility, lifecycle automation, disaster recovery, crypto agility, and future readiness for post-quantum cryptography. The ideal solution should align with both operational requirements and long-term security strategy."
+    },
+    {
+      q: "Compare different deployment models for secure key management infrastructure",
+      a: "Secure key management infrastructure can be deployed using on-prem HSMs, cloud HSMs, hybrid models, or managed HSM services. On-prem deployments offer maximum control and customization, while cloud HSMs provide scalability and operational simplicity. Hybrid models are increasingly popular because many enterprises operate across both cloud and on-prem environments simultaneously."
+    },
+    {
+      q: "What are the benefits of using hardware security modules for enterprise key management?",
+      a: "Hardware Security Modules provide stronger cryptographic protection by isolating keys inside tamper-resistant hardware environments. They reduce key exposure risks, strengthen compliance, improve auditability, support secure cryptographic operations, centralize governance, and help organizations maintain trust across digital systems. As encryption becomes increasingly central to enterprise infrastructure, HSMs have become a foundational component of modern cybersecurity architecture."
+    }
+  ]
+};
+
+export const learningPlanData = {
+  tag: "GUIDE",
+  title: <>Mastering <span className="text-[#00ff88]">HSM Key Management</span></>,
+  description: "Explore our comprehensive 6-phase guide to understanding and implementing enterprise-grade Hardware Security Module (HSM) architecture.",
+  phases: [
+    {
+      phase: "Phase 1",
+      title: "Foundations of Security",
+      desc: "Understand the core principles of enterprise security, the 5 key principles (confidentiality, integrity, availability, authentication, non-repudiation), and how enterprise key management systems function.",
+      topics: ["5 key security principles", "Enterprise key management overview", "Role of an enterprise key", "CKMS essentials"]
+    },
+    {
+      phase: "Phase 2",
+      title: "Intro to Hardware Security Modules",
+      desc: "Define what an HSM is, whether it's software or hardware, its primary purpose in key management, and the four main types of HSMs deployed today.",
+      topics: ["What is HSM key management?", "HSM vs Software", "4 types of HSMs", "Relevance of HSMs today"]
+    },
+    {
+      phase: "Phase 3",
+      title: "HSM vs KMS vs TPM",
+      desc: "Understand where HSMs fit into the broader security ecosystem compared to Key Management Systems (KMS) and Trusted Platform Modules (TPM).",
+      topics: ["KMS vs HSM", "HSM vs TPM differences", "What is a TPM?"]
+    },
+    {
+      phase: "Phase 4",
+      title: "Modern HSM Applications",
+      desc: "Learn how large organizations use HSMs today across modern architectures, including DevOps, Web3, and Blockchain environments.",
+      topics: ["HSM in DevOps", "Blockchain and Web3 usage", "Enhancing data encryption"]
+    },
+    {
+      phase: "Phase 5",
+      title: "Post-Quantum Cryptography",
+      desc: "Prepare for future threats like \"Harvest Now, Decrypt Later\" attacks. Learn about Post-Quantum Cryptography (PQC), crypto agility, and NIST post-quantum algorithms.",
+      topics: ["PQC-enabled HSMs", "Harvest Now, Decrypt Later", "Crypto agility", "NIST PQC algorithms"]
+    },
+    {
+      phase: "Phase 6",
+      title: "Compliance & Deployment",
+      desc: "Navigate real-world deployment, regional regulations (like RBI guidelines in India), deployment models (Cloud vs On-Prem), and how to choose the right provider.",
+      topics: ["Banking compliance standards", "RBI guidelines", "Managed cloud HSMs", "Choosing an HSM system"]
+    }
   ]
 };

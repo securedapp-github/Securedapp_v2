@@ -25,11 +25,16 @@ const TechnologySection = () => {
         <div className="flex flex-col items-center mb-10 md:mb-12">
           <SectionHeader 
             label={technologyData.tag} 
-            title={<>Technology Powering <span className="text-[#00ff88]">Quantum Vault</span></>} 
+            title={technologyData.title} 
           />
+          {technologyData.description && (
+            <p className="mt-4 text-lg text-secondary/70 dark:text-[#a0a5b1] text-center max-w-3xl">
+              {technologyData.description}
+            </p>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto mb-16">
           {technologyData.cards.map((item, idx) => (
             <div 
               key={idx} 
@@ -41,7 +46,7 @@ const TechnologySection = () => {
               <h3 className="text-xl font-bold text-secondary dark:text-white mb-4 group-hover:text-[#00ff88] transition-colors">
                 {item.title}
               </h3>
-              <p className="text-secondary/70 dark:text-[#a0a5b1] leading-relaxed text-[0.85rem]">
+              <p className="text-secondary/70 dark:text-[#a0a5b1] leading-relaxed text-[0.95rem]">
                 {item.desc}
               </p>
             </div>

@@ -18,7 +18,7 @@ const ProcessSection = () => {
         <div className="flex flex-col items-center mb-12 md:mb-16">
           <SectionHeader 
             label={processData.tag} 
-            title={<>How PQC-Enabled HSM-Based Key Management <span className="text-[#00ff88]">Solutions Work</span></>} 
+            title={processData.title} 
           />
         </div>
         
@@ -42,7 +42,7 @@ const ProcessSection = () => {
                 <FontAwesomeIcon icon={faShieldAlt} className="text-2xl" />
             </div>
             <p className="text-lg md:text-xl leading-relaxed text-secondary/80 dark:text-[#a0a5b1]">
-                <span className="text-[#00ff88] font-black mr-2 uppercase tracking-widest">AI HowTo:</span>
+                <span className="text-[#00ff88] font-black mr-2 uppercase tracking-widest">Workflow Focus:</span>
                 {processData.howTo}
             </p>
           </div>

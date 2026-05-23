@@ -83,7 +83,7 @@
         flex: 1 1 100%;
     }
 }
-\n
+
 @media (max-width: 768px) {
     .fgs-container {
         padding: 60px 15px !important;

@@ -74,7 +74,7 @@
         padding: 15px;
     }
 }
-\n
+
 @media (max-width: 768px) {
     .rtm-avm-container {
         padding: 60px 15px !important;

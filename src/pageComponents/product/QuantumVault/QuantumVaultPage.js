@@ -26,6 +26,7 @@ import IntegrationSection from "../../../components/QuantumVault/IntegrationSect
 import PricingSection from "../../../components/QuantumVault/PricingSection";
 import SecureTodaySection from "../../../components/QuantumVault/SecureTodaySection";
 import FAQSection from "../../../components/QuantumVault/FAQSection";
+import LearningPlanSection from "../../../components/QuantumVault/LearningPlanSection";
 
 function QuantumVaultPage() {
   useEffect(() => {
@@ -67,6 +68,7 @@ function QuantumVaultPage() {
         <IntegrationSection />
         <PricingSection />
         <SecureTodaySection />
+        <LearningPlanSection />
         <FAQSection />
       </div>
       <Footer />

@@ -59,7 +59,7 @@
     font-size: 1.05rem;
     font-weight: 500;
 }
-\n
+
 @media (max-width: 768px) {
     .rtm-bcb-container {
         padding: 60px 15px !important;

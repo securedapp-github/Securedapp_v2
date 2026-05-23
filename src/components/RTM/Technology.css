@@ -70,7 +70,7 @@
         grid-template-columns: 1fr;
     }
 }
-\n
+
 @media (max-width: 768px) {
     .rtm-tech-container {
         padding: 60px 15px !important;

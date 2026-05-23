@@ -22,10 +22,15 @@ const WhatIsHSMSection = () => {
         
         {/* Main Definition Block */}
         <div className="mt-12 w-full max-w-5xl group">
-          <div className="bg-white dark:bg-[#1e3255] border border-secondary/10 dark:border-white/5 rounded-[20px] p-10 md:p-12 text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#00ff88]/30 hover:shadow-[0_15px_40px_rgba(0,255,136,0.1)]">
+          <div className="bg-white dark:bg-[#1e3255] border border-secondary/10 dark:border-white/5 rounded-[20px] p-10 md:p-12 text-center shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-[#00ff88]/30 hover:shadow-[0_15px_40px_rgba(0,255,136,0.1)] space-y-6">
             <p className="text-xl md:text-2xl text-secondary dark:text-white leading-relaxed font-bold italic">
               {whatIsHSMData.description}
             </p>
+            {whatIsHSMData.description2 && (
+              <p className="text-base md:text-lg text-secondary/80 dark:text-[#a0a5b1] leading-relaxed">
+                {whatIsHSMData.description2}
+              </p>
+            )}
           </div>
         </div>
 

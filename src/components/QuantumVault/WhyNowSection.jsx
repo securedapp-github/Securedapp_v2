@@ -2,12 +2,11 @@ import React from 'react';
 import SectionHeader from '../common/SectionHeader';
 import { whyNowData } from '../../pageComponents/product/QuantumVault/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDollarSign, faFileAlt, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = {
-  dollar: faDollarSign,
-  file: faFileAlt,
-  software: faShieldAlt
+  lock: faLock,
+  shield: faShieldAlt
 };
 
 const WhyNowSection = () => {
@@ -19,7 +18,7 @@ const WhyNowSection = () => {
                     title={whyNowData.title} 
                 />
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-12 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-12 w-full max-w-5xl">
                     {whyNowData.cards.map((card, idx) => (
                         <div key={idx} className="bg-white dark:bg-[#1e3255] border border-secondary/10 dark:border-white/5 rounded-[20px] p-8 flex flex-col group transition-all duration-300 hover:-translate-y-2 hover:border-[#00ff88]/30 hover:shadow-[0_15px_40px_rgba(0,255,136,0.1)]">
                             <div className="w-12 h-12 rounded-xl bg-secondary/5 dark:bg-white/5 flex items-center justify-center text-[#00ff88] mb-6 group-hover:scale-110 transition-transform">

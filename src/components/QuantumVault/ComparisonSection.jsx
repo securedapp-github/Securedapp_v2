@@ -20,7 +20,7 @@ const ComparisonSection = () => {
                 <div className="flex flex-col items-center mb-12 md:mb-16">
                     <SectionHeader 
                         label={comparisonData.tag} 
-                        title={<>How Quantum Vault <span className="text-[#00ff88]">Compares</span></>} 
+                        title={comparisonData.title} 
                     />
                 </div>
 

@@ -4,16 +4,16 @@ import { benefitsData } from '../../pageComponents/product/QuantumVault/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faShieldAlt, 
-  faFileAlt, 
-  faBuilding, 
-  faExclamationTriangle 
+  faLock, 
+  faCloud, 
+  faClock 
 } from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = {
   shield: faShieldAlt,
-  'file-alt': faFileAlt,
-  building: faBuilding,
-  'exclamation-triangle': faExclamationTriangle
+  lock: faLock,
+  cloud: faCloud,
+  clock: faClock
 };
 
 const BenefitsSection = () => {
@@ -23,7 +23,7 @@ const BenefitsSection = () => {
         <div className="flex flex-col items-center mb-12 md:mb-16">
           <SectionHeader 
             label={benefitsData.tag} 
-            title={<>Benefits of <span className="text-[#00ff88]">HSM-Based Key Management Solutions</span></>} 
+            title={benefitsData.title} 
           />
         </div>
 

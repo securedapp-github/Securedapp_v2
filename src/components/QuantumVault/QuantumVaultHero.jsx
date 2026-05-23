@@ -16,11 +16,11 @@ const QuantumVaultHero = () => {
         <div className="w-full lg:w-1/2">
           <p className="text-[#00ff88] font-bold tracking-wider mb-4 uppercase text-sm md:text-base">{heroData.tag}</p>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-secondary dark:text-white">
-            PQC-enabled <span className="text-[#00ff88]">HSM-Based</span> Key Management Solutions
+            {heroData.title}
           </h1>
           <div className="space-y-4 text-secondary/80 dark:text-[#a0a5b1] text-base md:text-lg leading-relaxed mb-8">
             <p>
-              Quantum Vault delivers Enterprise HSM Key Management powered by tamper-resistant hardware security modules (HSMs), giving organisations complete control over key generation, storage, and lifecycle management.
+              {heroData.description}
             </p>
           </div>
 
