@@ -125,6 +125,35 @@ const findDomainSuggestion = (domain) => {
 // In-page WhatsApp-style chat widget with LLM streaming via /api/chat
 const ASSISTANT_NAME = "SecureDApp Team";
 
+const FieldIcons = {
+  name: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </svg>
+  ),
+  email: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
+  ),
+  phone: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  ),
+  company: (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
+      <line x1="9" y1="22" x2="9" y2="16" />
+      <line x1="15" y1="22" x2="15" y2="16" />
+      <line x1="9" y1="16" x2="15" y2="16" />
+      <path d="M8 6h2v2H8V6zm4 0h2v2h-2V6zm-4 4h2v2H8v-2zm4 0h2v2h-2v-2z" />
+    </svg>
+  ),
+};
+
 const ChatWidget = ({
   bottomOffset = 96,
   rightOffset = 20,
@@ -157,6 +186,7 @@ const ChatWidget = ({
   const [guidedFlowStep, setGuidedFlowStep] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
   const [globalError, setGlobalError] = useState("");
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const listRef = useRef(null);
 
   useEffect(() => {
@@ -393,16 +423,17 @@ const ChatWidget = ({
         : "min(380px, 94vw)",
       height: `min(${desired}, calc(100vh - ${currentBottom + topMargin}px))`,
       background:
-        "linear-gradient(200deg, rgba(3,11,26,0.96) 0%, rgba(4,24,54,0.92) 55%, rgba(7,39,78,0.88) 100%)",
+        "radial-gradient(circle at 90% 10%, rgba(0, 242, 254, 0.08) 0%, transparent 50%), linear-gradient(180deg, rgba(4, 13, 33, 0.96) 0%, rgba(9, 30, 62, 0.94) 100%)",
       borderRadius: isMobile ? "22px 22px 0 22px" : "26px",
       boxShadow:
-        "0 28px 80px rgba(1,9,25,0.78), 0 0 0 1px rgba(14,97,185,0.25)",
-      border: "1px solid rgba(27,92,152,0.35)",
+        "0 24px 64px rgba(1, 6, 18, 0.72), 0 0 0 1px rgba(255, 255, 255, 0.06) inset",
+      border: "1px solid rgba(255, 255, 255, 0.08)",
       overflow: "hidden",
-      backdropFilter: "blur(14px)",
+      backdropFilter: "blur(20px)",
       display: open ? "flex" : "none",
       flexDirection: "column",
       pointerEvents: "auto",
+      transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
     };
   }, [
     open,
@@ -415,8 +446,8 @@ const ChatWidget = ({
 
   const headerStyles = {
     padding: isMobile ? "16px 18px" : "18px 20px",
-    background: "rgba(3,15,34,0.92)",
-    borderBottom: "1px solid rgba(37,148,255,0.2)",
+    background: "rgba(3,11,26,0.94)",
+    borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -685,6 +716,7 @@ const ChatWidget = ({
         {showForm ? (
           <form
             onSubmit={handleFormSubmit}
+            className="premium-form-step"
             style={{ padding: isMobile ? 18 : 22, display: "grid", gap: 16 }}
             aria-label="User Information"
           >
@@ -700,42 +732,71 @@ const ChatWidget = ({
 
             <div style={{ display: "grid", gap: 10 }}>
               <label
-                style={{ color: "#8ea5c7", fontSize: 13, letterSpacing: 0.25 }}
+                style={{
+                  color: "#8ea5c7",
+                  fontSize: 11,
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                }}
                 htmlFor={`chat-form-${fieldOrder[formStep]?.key}`}
               >
                 {fieldOrder[formStep]?.label}
               </label>
-              <input
-                id={`chat-form-${fieldOrder[formStep]?.key}`}
-                value={formData[fieldOrder[formStep]?.key] ?? ""}
-                onChange={(e) => {
-                  clearFieldError(fieldOrder[formStep]?.key);
-                  setGlobalError("");
-                  setFormData((s) => ({
-                    ...s,
-                    [fieldOrder[formStep]?.key]: e.target.value,
-                  }));
-                }}
-                placeholder={fieldOrder[formStep]?.placeholder}
-                aria-label={fieldOrder[formStep]?.label}
-                inputMode={
-                  fieldOrder[formStep]?.key === "phone"
-                    ? "tel"
-                    : fieldOrder[formStep]?.key === "email"
-                      ? "email"
-                      : "text"
-                }
-                style={{
-                  padding: "13px 16px",
-                  borderRadius: 14,
-                  border: "1px solid rgba(41,124,220,0.35)",
-                  background: "rgba(5,19,44,0.82)",
-                  color: "#f8fafc",
-                  boxShadow: "0 16px 44px rgba(5,29,62,0.3)",
-                  transition: "border 0.2s ease, box-shadow 0.2s ease",
-                }}
-                autoFocus
-              />
+              <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
+                <span
+                  style={{
+                    position: "absolute",
+                    left: 14,
+                    color: isInputFocused ? "#00f2fe" : "#8ea5c7",
+                    transition: "color 0.2s ease",
+                    display: "flex",
+                    alignItems: "center",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {FieldIcons[fieldOrder[formStep]?.key]}
+                </span>
+                <input
+                  id={`chat-form-${fieldOrder[formStep]?.key}`}
+                  value={formData[fieldOrder[formStep]?.key] ?? ""}
+                  onChange={(e) => {
+                    clearFieldError(fieldOrder[formStep]?.key);
+                    setGlobalError("");
+                    setFormData((s) => ({
+                      ...s,
+                      [fieldOrder[formStep]?.key]: e.target.value,
+                    }));
+                  }}
+                  onFocus={() => setIsInputFocused(true)}
+                  onBlur={() => setIsInputFocused(false)}
+                  placeholder={fieldOrder[formStep]?.placeholder}
+                  aria-label={fieldOrder[formStep]?.label}
+                  inputMode={
+                    fieldOrder[formStep]?.key === "phone"
+                      ? "tel"
+                      : fieldOrder[formStep]?.key === "email"
+                        ? "email"
+                        : "text"
+                  }
+                  style={{
+                    width: "100%",
+                    padding: "13px 16px 13px 44px",
+                    borderRadius: 14,
+                    border: isInputFocused
+                      ? "1px solid rgba(0, 242, 254, 0.5)"
+                      : "1px solid rgba(255, 255, 255, 0.08)",
+                    background: "rgba(5, 19, 44, 0.6)",
+                    color: "#f8fafc",
+                    boxShadow: isInputFocused
+                      ? "0 0 16px rgba(0, 242, 254, 0.15)"
+                      : "0 16px 44px rgba(5,29,62,0.3)",
+                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+                    outline: "none",
+                  }}
+                  autoFocus
+                />
+              </div>
               {fieldErrors[fieldOrder[formStep]?.key] && (
                 <div
                   role="alert"
@@ -768,17 +829,15 @@ const ChatWidget = ({
                 disabled={formStep === 0 || savingInfo}
                 style={{
                   flex: 1,
-                  background:
-                    formStep === 0
-                      ? "rgba(11,26,54,0.7)"
-                      : "rgba(10,33,70,0.55)",
-                  color: formStep === 0 ? "#637598" : "#dceafe",
-                  border: "1px solid rgba(47,86,148,0.38)",
-                  borderRadius: 16,
-                  padding: "11px 14px",
+                  background: "rgba(255, 255, 255, 0.03)",
+                  color: formStep === 0 ? "rgba(255,255,255,0.25)" : "#dceafe",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  borderRadius: 14,
+                  padding: "12px 14px",
                   fontWeight: 600,
+                  fontSize: 14,
                   cursor: formStep === 0 ? "not-allowed" : "pointer",
-                  transition: "transform 0.2s ease, border 0.2s ease",
+                  transition: "all 0.2s ease",
                 }}
               >
                 Back
@@ -790,18 +849,19 @@ const ChatWidget = ({
                   flex: 1,
                   background: savingInfo
                     ? "rgba(18,121,102,0.9)"
-                    : "linear-gradient(135deg, #31e0c0 0%, #1f78ff 100%)",
+                    : "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
                   opacity: savingInfo ? 0.7 : 1,
-                  color: "#041225",
+                  color: "#030a1c",
                   border: "none",
-                  borderRadius: 16,
+                  borderRadius: 14,
                   padding: "12px 16px",
                   fontWeight: 700,
+                  fontSize: 14,
                   cursor: savingInfo ? "wait" : "pointer",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                  transition: "all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)",
                   boxShadow: savingInfo
                     ? "none"
-                    : "0 16px 36px rgba(21,152,203,0.35)",
+                    : "0 8px 24px rgba(0, 242, 254, 0.2)",
                 }}
               >
                 {formStep < fieldOrder.length - 1
@@ -880,6 +940,13 @@ const ChatWidget = ({
               @keyframes typingDot {
                 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
                 40% { opacity: 1; transform: translateY(-2px); }
+              }
+              @keyframes slideFadeIn {
+                from { opacity: 0; transform: translateY(8px); }
+                to { opacity: 1; transform: translateY(0); }
+              }
+              .premium-form-step {
+                animation: slideFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
               }
             `}</style>
           </div>
