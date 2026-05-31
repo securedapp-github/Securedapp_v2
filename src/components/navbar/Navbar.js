@@ -28,25 +28,25 @@ const Navbar = () => {
   const currentPath = navigate.asPath;
 
   switch (currentPath) {
-    case "/solidity-shield":
+    case "/blockchain-security/smart-contract-security-audit":
       nextPath = "/solidity-shield-scan/auth";
       break;
     case "/real-time-blockchain-threat-monitoring":
       nextPath = "https://securewatch.securedapp.io/";
       break;
-    case "/blockchain-forensic-investigation-tool":
+    case "/ai-blockchain-investigation-platform":
       nextPath = "https://securetrace.securedapp.io/";
       break;
-    case "/secure-pad":
+    case "/tokenization-platform":
       nextPath = "https://securepad.xyz/";
       break;
-    case "/auditexpress/home":
-      nextPath = "/auditexpress/home";
+    case "/audit-express":
+      nextPath = "/audit-express";
       break;
-    case "/web3-kyc":
-      nextPath = "/web3-kyc";
+    case "/web3-identity-and-aml-compliance-platform":
+      nextPath = "/web3-identity-and-aml-compliance-platform";
       break;
-    case "/secure-cms":
+    case "/dpdp-compliance-platform":
       nextPath = "https://cms-app.securedapp.io/";
       break;
     default:
@@ -125,8 +125,8 @@ const Navbar = () => {
   }, [dispatch]);
 
   const buttonText = 
-    currentPath?.includes("/secure-cms") ? "Try it now" : 
-    (currentPath === "/" || currentPath?.includes("/quantum-vault") ? "Request Quote" : "Login");
+    currentPath?.includes("/dpdp-compliance-platform") ? "Try it now" : 
+    (currentPath === "/" || currentPath?.includes("/enterprise-hsm-key-management-platform") ? "Request Quote" : "Login");
 
   return (
     <div className="absolute z-[999] w-full top-0 left-0 right-0 pointer-events-none">

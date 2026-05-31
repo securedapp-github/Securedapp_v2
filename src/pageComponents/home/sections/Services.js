@@ -20,7 +20,7 @@ const servicesData = [
     name: "DApp Development Service",
     desc: "Focus on blockchain application development, from building applications from the ground up to providing consultancy and ongoing support. Our no-code platform ensures your decentralized applications are secure, efficient, and transformative for your business",
     alt: "",
-    to: "/dapp-development",
+    to: "/web3-dapp-development-company",
   },
   {
     id: 1,
@@ -36,7 +36,7 @@ const servicesData = [
     name: "DApp Security Audit",
     desc: "DApps are becoming increasingly prevalent, but developers often neglect crucial security aspects during development. We focus on robust decentralized application security measures to secure them from potential threats, vulnerabilities, and data breaches.",
     alt: "",
-    to: "/dapp-security-audit",
+    to: "/dapp-smart-contract-security-audit-platform",
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const servicesData = [
     name: "Token Audit",
     desc: "Token audits are crucial for technical robustness and regulatory compliance. With a token audit, protect your assets and investors from threats like DDoS attacks, reentrancy, overflows, and flash loan exploits.",
     alt: "",
-    to: "/token-audit",
+    to: "/token-smart-contract-audit",
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const servicesData = [
     name: "Web 3.0 KYC",
     desc: "As we approach a new digital era, it's essential to reimagine KYC for Web 3.0. Decentralized KYC solutions empower users by giving them control over their data",
     alt: "",
-    to: "/web3-kyc",
+    to: "/web3-identity-and-aml-compliance-platform",
   },
   {
     id: 5,
@@ -68,7 +68,7 @@ const servicesData = [
     name: "Blockchain Forensics",
     desc: "Using our blockchain forensics tools, investigators can trace the movement of funds, detect illicit transactions, and identify suspicious behavior and individuals involved in illegal activities",
     alt: "",
-    to: "/blockchain-forensic",
+    to: "/blockchain-intelligence-and-forensic-platform",
   },
   {
     id: 7,
@@ -76,7 +76,7 @@ const servicesData = [
     name: "RWA Audit",
     desc: "Now is the time for early adopters and forward-thinking investors to explore the real-world asset tokenization audit for better transparency and liquidity and seize the unique business opportunity from the ground up.",
     alt: "",
-    to: "/rwa-audit",
+    to: "/rwa-smart-contract-audit",
   },
   {
     id: 8,
@@ -84,7 +84,7 @@ const servicesData = [
     name: "Crypto compliance and AML",
     desc: "Top-tier crypto compliance consulting tailored to your unique needs. Understand the complexities of cryptocurrency regulations and get customized strategies to ensure your business adheres to all legal requirements.",
     alt: "",
-    to: "/crypto-compliance-aml",
+    to: "/crypto-aml-compliance-platform",
   },
   {
     id: 9,
@@ -92,7 +92,7 @@ const servicesData = [
     name: "Decentralized Identity (DID)",
     desc: "Incorporate advanced cryptographic techniques and decentralized protocols to deliver highly secure, tamper-proof digital identity solutions while ensuring compliance with the latest security standards",
     alt: "",
-    to: "/self-sovereign-identity-enterprises",
+    to: "/self-sovereign-identity",
   },
   {
     id: 10,
@@ -100,7 +100,7 @@ const servicesData = [
     name: "SecureX DID",
     desc: "Decentralized identifier (DID) infrastructure that lets enterprises issue and manage verifiable credentials with Web3-grade security while keeping user data sovereign.",
     alt: "",
-    to: "/self-sovereign-identity-enterprises",
+    to: "/self-sovereign-identity",
     image: "/assets/images/ServicePages/s5-hero.webp",
   },
   {
@@ -109,7 +109,7 @@ const servicesData = [
     name: "NFT Development",
     desc: "Offering top-notch NFT development services has significantly impacted the blockchain world, with applications in digital art, gaming, and more.",
     alt: "",
-    to: "/nfts-development",
+    to: "/nft-marketplace-development-company",
   },
   {
     id: 12,
@@ -117,7 +117,7 @@ const servicesData = [
     name: "DeFi Development",
     desc: "DeFi is evolving rapidly compared to centralized finance systems, with new applications emerging frequently. We specialize in crafting innovative DeFi solutions tailored to your needs, whether offering or receiving financial services.",
     alt: "",
-    to: "/defi-development",
+    to: "/defi-development-company",
     image: "/assets/images/ServicePages/s12-hero.png",
   },
   {
@@ -126,7 +126,7 @@ const servicesData = [
     name: "LevelUp academy",
     desc: "SecureDApp's flagship initiative aims to foster blockchain talent and innovation across Indian universities and colleges.",
     alt: "",
-    to: "/levelup-academy",
+    to: "/blockchain-web3-training-academy",
     image: "/assets/images/ServicePages/s8-3.webp",
   },
 ];

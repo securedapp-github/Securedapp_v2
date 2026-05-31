@@ -27,19 +27,19 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "NFTs development",
-        to: "/nfts-development",
+        to: "/nft-marketplace-development-company",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -47,7 +47,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -79,19 +79,19 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "NFTs development",
-        to: "/nfts-development",
+        to: "/nft-marketplace-development-company",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -99,7 +99,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -131,19 +131,19 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "NFTs development",
-        to: "/nfts-development",
+        to: "/nft-marketplace-development-company",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -151,7 +151,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -183,15 +183,15 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/crypto-compliance-aml",
+        to: "/crypto-aml-compliance-platform",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -199,7 +199,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/blockchain-forensic",
+        to: "/blockchain-intelligence-and-forensic-platform",
       },
     ],
   },
@@ -231,19 +231,19 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "NFTs development",
-        to: "/nfts-development",
+        to: "/nft-marketplace-development-company",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -251,7 +251,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -283,19 +283,19 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "NFTs development",
-        to: "/nfts-development",
+        to: "/nft-marketplace-development-company",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -303,7 +303,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -339,11 +339,11 @@ export const authorsData = [
       },
       {
         name: "Token Audit",
-        to: "/token-audit",
+        to: "/token-smart-contract-audit",
       },
       {
         name: "Blockchain Forensic",
-        to: "/blockchain-forensic",
+        to: "/blockchain-intelligence-and-forensic-platform",
       },
       {
         name: "Web3 Security",
@@ -351,11 +351,11 @@ export const authorsData = [
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Decentralized Identity",
-        to: "/self-sovereign-identity-enterprises",
+        to: "/self-sovereign-identity",
       },
     ],
   },
@@ -387,15 +387,15 @@ export const authorsData = [
     expertServices: [
       {
         name: "Crypto Compliance AML",
-        to: "/crypto-compliance-aml",
+        to: "/crypto-aml-compliance-platform",
       },
       {
         name: "Token Audit",
-        to: "/token-audit",
+        to: "/token-smart-contract-audit",
       },
       {
         name: "Blockchain Forensic",
-        to: "/blockchain-forensic",
+        to: "/blockchain-intelligence-and-forensic-platform",
       },
       {
         name: "Web3 Security",
@@ -403,11 +403,11 @@ export const authorsData = [
       },
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -439,19 +439,19 @@ export const authorsData = [
     expertServices: [
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "NFTs development",
-        to: "/nfts-development",
+        to: "/nft-marketplace-development-company",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Web3 Security",
@@ -459,7 +459,7 @@ export const authorsData = [
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },
@@ -495,11 +495,11 @@ export const authorsData = [
       },
       {
         name: "Token Audit",
-        to: "/token-audit",
+        to: "/token-smart-contract-audit",
       },
       {
         name: "Blockchain Forensic",
-        to: "/blockchain-forensic",
+        to: "/blockchain-intelligence-and-forensic-platform",
       },
       {
         name: "Web3 Security",
@@ -507,11 +507,11 @@ export const authorsData = [
       },
       {
         name: "Dapp Security",
-        to: "/dapp-security-audit",
+        to: "/dapp-smart-contract-security-audit-platform",
       },
       {
         name: "Decentralized Identity",
-        to: "/self-sovereign-identity-enterprises",
+        to: "/self-sovereign-identity",
       },
     ],
   },
@@ -547,23 +547,23 @@ export const authorsData = [
       },
       {
         name: "Token Audit",
-        to: "/token-audit",
+        to: "/token-smart-contract-audit",
       },
       {
         name: "Blockchain Forensic",
-        to: "/blockchain-forensic",
+        to: "/blockchain-intelligence-and-forensic-platform",
       },
       {
         name: "Web3 KYC",
-        to: "/web3-kyc",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
       {
         name: "Dapp Development",
-        to: "/dapp-development",
+        to: "/web3-dapp-development-company",
       },
       {
         name: "DeFi Development",
-        to: "/defi-development",
+        to: "/defi-development-company",
       },
     ],
   },

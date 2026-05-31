@@ -24,7 +24,7 @@ const navigationItems = [
     items: [
       {
         name: "Solidity Shield Scan",
-        to: "/solidity-shield",
+        to: "/blockchain-security/smart-contract-security-audit",
       },
       {
         name: "Secure Watch",
@@ -32,27 +32,27 @@ const navigationItems = [
       },
       {
         name: "Secure CMS (Consent)",
-        to: "/secure-cms",
+        to: "/dpdp-compliance-platform",
       },
       {
         name: "Audit Express",
-        to: "/auditexpress/home",
+        to: "/audit-express",
       },
       {
         name: "Secure Trace",
-        to: "/blockchain-forensic-investigation-tool",
+        to: "/ai-blockchain-investigation-platform",
       },
       {
         name: "Secure Pad",
-        to: "/secure-pad",
+        to: "/tokenization-platform",
       },
       {
         name: "PQC Suite",
-        to: "/pqc",
+        to: "/post-quantum-cryptography-platform",
       },
       {
         name: "Quantum Vault",
-        to: "/quantum-vault",
+        to: "/enterprise-hsm-key-management-platform",
       },
     ],
   },

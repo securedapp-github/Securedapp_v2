@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../../AuditExpress/pages/Home';
+import Home from '../AuditExpress/pages/Home';
 
 const home = () => {
   return (
