@@ -1,4 +1,4 @@
-import SolidityShieldPage from "../pageComponents/product/SolidityShield/SolidityShieldPage";
+import SolidityShieldPage from "../../pageComponents/product/SolidityShield/SolidityShieldPage";
 
 export default function Index() {
   return (

@@ -12,7 +12,7 @@ const solutions = [
       "Customizable security audits",
       "Enhanced developer workflow",
     ],
-    to: "/solidity-shield",
+    to: "/blockchain-security/smart-contract-security-audit",
     image: "/assets/images/ProductPages/ss/hero.webp",
   },
   {
@@ -32,7 +32,7 @@ const solutions = [
       "Analyzes transaction data",
       "Supports regulatory compliance",
     ],
-    to: "/blockchain-forensic-investigation-tool",
+    to: "/ai-blockchain-investigation-platform",
     image: "/assets/images/ProductPages/st/st-hero.webp",
   },
   {
@@ -42,7 +42,7 @@ const solutions = [
       "Unified policy engine for global privacy regulations",
       "Audit-ready proof of opt-ins across every channel",
     ],
-    to: "/secure-cms",
+    to: "/dpdp-compliance-platform",
     image: "/assets/images/ProductPages/ss/hero.webp",
   },
   {
@@ -52,7 +52,7 @@ const solutions = [
       "Enhancing versatility by allowing projects to deploy tokens across multiple blockchains",
       "Decentralized exchange for seamless token trading",
     ],
-    to: "/secure-pad",
+    to: "/tokenization-platform",
     image: "/assets/images/ProductPages/sp/sp-hero.jpg",
   },
 ];
