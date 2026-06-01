@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import BrandLogos from "../../../components/common/BrandLogos";
@@ -54,6 +54,10 @@ const Hero = () => {
                     className="hero-image"
                     src={image.src}
                     alt={image.alt}
+                    width={600}
+                    height={400}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchpriority={index === 0 ? "high" : "low"}
                   />
                 </div>
                 <div className="pt-8 md:pt-6 lg:pt-4 pb-12 md:pb-8 lg:pb-12">

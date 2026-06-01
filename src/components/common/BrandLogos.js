@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -147,6 +147,9 @@ const BrandLogos = ({ type = "brands" }) => {
                 src={brandLogo.src}
                 alt={brandLogo.alt}
                 className="w-auto max-h-[50px]"
+                loading="lazy"
+                width={120}
+                height={50}
               />
             </div>
           )

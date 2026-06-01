@@ -19,7 +19,14 @@ const nextConfig = {
   // output: "export", // Outputs a Single-Page Application (SPA).
   // NOTE: Removed static export so that Next.js API Routes are enabled for the chatbot backend.
   images: {
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 86400,
+    remotePatterns: [
+      { protocol: "https", hostname: "securedapp.io" },
+      { protocol: "https", hostname: "securedapp-v2.vercel.app" },
+    ],
   },
 
   // NOTE: This works for LOCAL DEV. For Production (Netlify/Export), these are ignored and 'netlify.toml' is used.

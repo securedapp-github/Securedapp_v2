@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -112,6 +112,10 @@ const ProductServiceHero = ({
             className="hero-image"
             src={image}
             alt={router.asPath.replace("/", "")}
+            width={700}
+            height={450}
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
       </div>
