@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "./Footer.css";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   const partners = [
@@ -27,11 +27,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="sss-footer">
+    <footer className={styles.footer}>
       {partners.map((partner) => (
-        <div key={partner.alt} className="sss-footer-partner">
-          <p className="sss-footer-label">{partner.label}</p>
-          <div className="sss-footer-logo-wrap">
+        <div key={partner.alt} className={styles.partner}>
+          <p className={styles.label}>{partner.label}</p>
+          <div className={styles.logoWrap}>
             <Image
               src={partner.src}
               alt={partner.alt}

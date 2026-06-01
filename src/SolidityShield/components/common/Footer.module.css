@@ -1,6 +1,6 @@
-/* ── SolidityShield Footer ──────────────────────────────────── */
+/* ── SolidityShield Footer (CSS Module) ─────────────────────── */
 
-.sss-footer {
+.footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -15,7 +15,7 @@
 }
 
 /* Each partner block */
-.sss-footer-partner {
+.partner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +27,7 @@
 }
 
 /* Label text */
-.sss-footer-label {
+.label {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.4px;
@@ -35,10 +35,11 @@
   color: #6b7280;
   text-align: center;
   white-space: nowrap;
+  margin: 0;
 }
 
-/* Logo wrapper — fixed size box so no layout shift */
-.sss-footer-logo-wrap {
+/* Logo wrapper — fixed size prevents layout shift */
+.logoWrap {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,13 +49,13 @@
 
 /* ── Mobile: stack vertically on very small screens ─────────── */
 @media (max-width: 360px) {
-  .sss-footer {
+  .footer {
     flex-direction: column;
     gap: 12px;
     padding: 16px;
   }
 
-  .sss-footer-partner {
+  .partner {
     flex-direction: row;
     max-width: 100%;
     gap: 12px;
@@ -64,11 +65,11 @@
     justify-content: flex-start;
   }
 
-  .sss-footer-partner:last-child {
+  .partner:last-child {
     border-bottom: none;
   }
 
-  .sss-footer-label {
+  .label {
     font-size: 12px;
     text-align: left;
   }
