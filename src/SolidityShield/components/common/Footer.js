@@ -5,8 +5,8 @@ const Footer = () => {
   const partners = [
     {
       label: "Technology Partner",
-      src: "/assets/images/solidity-shield-scan/casper-icon.png",
-      alt: "Casper Network",
+      src: "/assets/images/solidity-shield-scan/C3ihub.png",
+      alt: "C3iHub",
       width: 48,
       height: 48,
     },
