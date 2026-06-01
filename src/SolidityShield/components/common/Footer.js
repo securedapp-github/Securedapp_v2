@@ -1,46 +1,49 @@
-const Footer = ({ classname }) => {
+import Image from "next/image";
+import "./Footer.css";
+
+const Footer = () => {
+  const partners = [
+    {
+      label: "Technology Partner",
+      src: "/assets/images/solidity-shield-scan/casper-icon.png",
+      alt: "Casper Network",
+      width: 48,
+      height: 48,
+    },
+    {
+      label: "Sandbox",
+      src: "/assets/images/solidity-shield-scan/ifsca-icon.png",
+      alt: "IFSCA",
+      width: 56,
+      height: 56,
+    },
+    {
+      label: "Payments Partner",
+      src: "/assets/images/solidity-shield-scan/phonepe-icon.svg",
+      alt: "PhonePe",
+      width: 40,
+      height: 40,
+    },
+  ];
+
   return (
-    <div
-      style={{
-        marginTop: "20px",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        textAlign: "center",
-        background: "white",
-        boxShadow: "0px 2px 4px 0px rgba(62, 73, 84, 0.04)",
-        borderRadius: "18px",
-      }}
-      className="product-footer"
-    >
-      <div style={{ padding: "12px" }}>
-        <p className="text-secondary opacity-60 text-sm mb-2">Technology partner</p>
-        <img
-          src="/assets/images/solidity-shield-scan/casper-icon.png"
-          alt="Casper"
-          width="50px"
-          style={{ margin: "0 auto" }}
-        />
-      </div>
-      <div style={{ padding: "12px" }}>
-        <p className="text-secondary opacity-60 text-sm mb-2">Sandbox</p>
-        <img
-          src="/assets/images/solidity-shield-scan/ifsca-icon.png"
-          alt="IFSCA"
-          width="50px"
-          style={{ margin: "0 auto" }}
-        />
-      </div>
-      <div style={{ padding: "12px" }}>
-        <p className="text-secondary opacity-60 text-sm mb-2">Payments partner</p>
-        <img
-          src="/assets/images/solidity-shield-scan/phonepe-icon.svg"
-          alt="PhonePe"
-          width="37px"
-          style={{ margin: "0 auto" }}
-        />
-      </div>
-    </div>
+    <footer className="sss-footer">
+      {partners.map((partner) => (
+        <div key={partner.alt} className="sss-footer-partner">
+          <p className="sss-footer-label">{partner.label}</p>
+          <div className="sss-footer-logo-wrap">
+            <Image
+              src={partner.src}
+              alt={partner.alt}
+              width={partner.width}
+              height={partner.height}
+              loading="lazy"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+        </div>
+      ))}
+    </footer>
   );
 };
 
