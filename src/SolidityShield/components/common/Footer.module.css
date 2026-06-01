@@ -1,76 +1,104 @@
 /* ── SolidityShield Footer (CSS Module) ─────────────────────── */
 
+/* Always a horizontal row — mobile, tablet, desktop */
 .footer {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   width: 100%;
   margin-top: 20px;
-  padding: 16px 12px;
+  padding: 12px 8px;
   background: #ffffff;
   border-radius: 18px;
   box-shadow: 0px 2px 8px 0px rgba(62, 73, 84, 0.08);
+  gap: 0;
 }
 
-/* Each partner block */
+/* Divider between partners */
+.partner + .partner {
+  border-left: 1px solid #e8f0f8;
+}
+
+/* Each partner block — equal width columns */
 .partner {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 10px 16px;
-  flex: 1 1 80px;
-  min-width: 80px;
-  max-width: 130px;
+  padding: 8px 12px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
-/* Label text */
+/* Label text — shrinks gracefully on small screens */
 .label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.4px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   text-transform: uppercase;
   color: #6b7280;
   text-align: center;
-  white-space: nowrap;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
-/* Logo wrapper — fixed size prevents layout shift */
+/* Logo wrapper — consistent size on all screens */
 .logoWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 40px;
+  width: 44px;
+  height: 36px;
+  flex-shrink: 0;
 }
 
-/* ── Mobile: stack vertically on very small screens ─────────── */
-@media (max-width: 360px) {
+/* ── Tablet (md: 768px+) — more breathing room ───────────────── */
+@media (min-width: 768px) {
   .footer {
-    flex-direction: column;
-    gap: 12px;
-    padding: 16px;
+    padding: 14px 24px;
+    border-radius: 20px;
+    gap: 0;
   }
 
   .partner {
-    flex-direction: row;
-    max-width: 100%;
-    gap: 12px;
-    padding: 8px 12px;
-    border-bottom: 1px solid #f0f4f8;
-    width: 100%;
-    justify-content: flex-start;
+    padding: 10px 24px;
+    gap: 8px;
   }
 
-  .partner:last-child {
-    border-bottom: none;
+  .label {
+    font-size: 11px;
+  }
+
+  .logoWrap {
+    width: 52px;
+    height: 44px;
+  }
+}
+
+/* ── Desktop (lg: 1024px+) — full size ──────────────────────── */
+@media (min-width: 1024px) {
+  .footer {
+    padding: 16px 32px;
+  }
+
+  .partner {
+    padding: 12px 32px;
+    gap: 10px;
   }
 
   .label {
     font-size: 12px;
-    text-align: left;
+    letter-spacing: 0.5px;
+  }
+
+  .logoWrap {
+    width: 60px;
+    height: 48px;
   }
 }
