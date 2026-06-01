@@ -16,16 +16,16 @@ const Footer = ({ classname }) => {
       <div style={{ padding: "12px" }}>
         <p className="text-secondary opacity-60 text-sm mb-2">Technology partner</p>
         <img
-          src="/assets/images/solidity-shield-scan/casper-icon.svg"
+          src="/assets/images/solidity-shield-scan/casper-icon.png"
           alt="Casper"
-          width="40px"
+          width="50px"
           style={{ margin: "0 auto" }}
         />
       </div>
       <div style={{ padding: "12px" }}>
         <p className="text-secondary opacity-60 text-sm mb-2">Sandbox</p>
         <img
-          src="/assets/images/solidity-shield-scan/ifsca-icon.svg"
+          src="/assets/images/solidity-shield-scan/ifsca-icon.png"
           alt="IFSCA"
           width="50px"
           style={{ margin: "0 auto" }}
