@@ -419,7 +419,7 @@ const ChatWidget = ({
     const desired = isMobile ? mobileTarget : "520px";
     return {
       width: isMobile
-        ? `calc(100vw - ${sidePadding * 2}px)`
+        ? `calc(100% - ${sidePadding * 2}px)`
         : "min(380px, 94vw)",
       height: `min(${desired}, calc(100vh - ${currentBottom + topMargin}px))`,
       background:

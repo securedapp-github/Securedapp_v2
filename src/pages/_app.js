@@ -1,7 +1,8 @@
 import { Provider } from "react-redux";
 import { mainStore } from "../redux/store";
 import "../styles/globals.css";
-import { ToastContainer } from "react-toastify";
+import dynamic from "next/dynamic";
+const ToastContainer = dynamic(() => import("react-toastify").then((mod) => mod.ToastContainer), { ssr: false });
 import "../components/chat/ChatWidget.css";
 import "react-chat-elements/dist/main.css";
 
@@ -128,7 +129,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={mainStore}>
-      <div className="bg-primary dark:bg-secondary text-secondary dark:text-primary min-h-screen relative">
+      <div className="bg-primary dark:bg-secondary text-secondary dark:text-primary min-h-screen relative overflow-x-hidden">
         {isClient && (
           <ToastContainer
             position="top-center"
