@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/router";
 import {
@@ -165,7 +165,6 @@ const AuditsPage = () => {
       >
         <div>
           <img
-            layout="intrinsic"
             style={{ marginRight: "12px", maxWidth: "90px" }}
             src={convertGitHubUrl(data.image)}
             alt={data.company}
@@ -337,7 +336,6 @@ const AuditsPage = () => {
                 >
                   <div className="audits-page-body-logo-image">
                     <img
-                      layout="intrinsic"
                       src={convertGitHubUrl(currentAudit.image)}
                       alt={currentAudit.company}
                       style={{ maxWidth: "90px" }}

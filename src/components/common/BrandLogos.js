@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -144,7 +144,6 @@ const BrandLogos = ({ type = "brands" }) => {
               className="w-full flex justify-center items-center py-2"
             >
               <img
-                layout="intrinsic"
                 src={brandLogo.src}
                 alt={brandLogo.alt}
                 className="w-auto max-h-[50px]"

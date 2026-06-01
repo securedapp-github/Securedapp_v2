@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useSelector } from "react-redux";
 import {
@@ -70,13 +70,11 @@ export const Sidebar = () => {
           <div className="sss-sidebar-upper">
             <div className="sss-sidebar-header">
               <img
-                layout="intrinsic"
                 className="sss-sidebar-header-logo"
                 src="/assets/images/securedapp-logo-light.svg"
                 alt="SecureDApp Logo"
               />
               <img
-                layout="intrinsic"
                 onClick={() => dispatch(setSideBar(false))}
                 src="/assets/images/solidity-shield-scan/sidebar-menu.svg"
                 alt="Sidebar Toggle"

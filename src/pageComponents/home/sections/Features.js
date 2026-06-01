@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
@@ -131,7 +131,6 @@ const Features = () => {
             </div>
           </div> */}
           <img
-            layout="intrinsic"
             style={{
               maxHeight: "80%",
             }}

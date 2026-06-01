@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Navbar from "../../components/navbar/Navbar";
@@ -48,7 +48,6 @@ const AuthorProfile = () => {
               <div className="author-profile-card">
                 <div className="author-profile-card-image">
                   <img
-                    layout="intrinsic"
                     src={authorDetail.image}
                     alt={authorDetail.name}
                   />

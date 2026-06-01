@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import BlogTag from "../blog/BlogTag";
 
 function WhitePaperCard({ details }) {
@@ -72,7 +72,6 @@ function WhitePaperCard({ details }) {
         <div className="blog-card-header">
           <div className="blog-card-header-image-container">
             <img
-              layout="intrinsic"
               className="blog-card-header-image"
               src={details.image}
               alt={details.heading}

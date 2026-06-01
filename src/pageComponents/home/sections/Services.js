@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+﻿import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -272,7 +272,6 @@ const Services = () => {
         </div>
         <div className="services-content-right">
           <img
-            layout="intrinsic"
             src={
               servicesData[selectedService].image
                 ? servicesData[selectedService].image

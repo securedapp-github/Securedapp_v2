@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import SectionTitle from "../../../components/common/SectionTitle";
@@ -79,7 +79,6 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
       </div>
       <div className="solution-card-image">
         <img
-          layout="intrinsic"
           style={{ borderRadius: "25px 15px 0 0" }}
           src={image}
           alt={title}

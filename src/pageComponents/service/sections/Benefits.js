@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Button from "../../../components/common/Button";
 import BenefitsCard from "../../../components/productService/BenefitsCard";
@@ -38,7 +38,7 @@ const Benefits = ({ benefitsData, title, subTitle, button, img, link }) => {
           })}
         </div>
         <div className="benefits-body-image">
-          <img layout="intrinsic" src={img} alt={"image"} />
+          <img src={img} alt={"image"} />
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-// IMPORTANT :
+﻿// IMPORTANT :
 // moved everything to pages/blog/[url].js
 
 import React, { useEffect, useState } from "react";
@@ -303,7 +303,6 @@ const BlogPost = () => {
                     <div className="publisher-image">
                       {blogDetails.Publisher.image && (
                         <img
-                          layout="intrinsic"
                           src={blogDetails.Publisher.image}
                           alt="publisher"
                         />
@@ -388,7 +387,6 @@ const BlogPost = () => {
                               }}
                             />
                             <img
-                              layout="intrinsic"
                               style={{
                                 marginTop: 60,
                                 marginBottom: 60,

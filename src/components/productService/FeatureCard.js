@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
@@ -14,7 +14,6 @@ export const FeatureIcon = ({ icon, iconBackgroundColor, variant }) => {
         style={{ background: `${iconBackgroundColor}` }}
       >
         <img
-          layout="intrinsic"
           style={{
             filter: darkMode && "invert(1)",
           }}

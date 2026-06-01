@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -24,7 +24,6 @@ const AuthorCard = ({
           <img
             style={{ borderRadius: "50%" }}
             width="150px"
-            layout="intrinsic"
             src={image}
             alt={name}
           />

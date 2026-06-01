@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+﻿import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import QRCode from "react-qr-code";
 import {
@@ -91,7 +91,6 @@ const PaymentModal = () => {
                   {!isLargeScreen && (
                     <div className="sss-payment-modal-body-method-image">
                       <img
-                        layout="intrinsic"
                         src="/assets/images/solidity-shield-scan/phonepe-icon.svg"
                         alt="Phonpe"
                         style={{ maxHeight: "80px" }}
@@ -124,7 +123,6 @@ const PaymentModal = () => {
                   {!isLargeScreen && (
                     <div className="sss-payment-modal-body-method-image">
                       <img
-                        layout="intrinsic"
                         src="/assets/images/solidity-shield-scan/crypto-icon.png"
                         alt="USDT"
                       />

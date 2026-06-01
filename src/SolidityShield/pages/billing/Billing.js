@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -127,7 +127,7 @@ const BillingScreen = () => {
                 <div className="sss-billing-payment-method">
                   <div className="sss-billing-payment-method-left">
                     <div className="sss-billing-payment-method-image">
-                      <img layout="intrinsic"   layout="intrinsic"   
+                      <img   
                         className="p-1"
                         src="/assets/images/solidity-shield-scan/billing-visa.svg"
                         alt="Visa"

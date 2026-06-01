@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -105,7 +105,6 @@ const ProductServiceHero = ({
           className="hero-image-container"
         >
           <img
-            layout="intrinsic"
             style={{
               borderRadius: "15px",
               width: service && isOnWeb && "100%",

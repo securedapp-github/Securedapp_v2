@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRef, useState } from "react";
 import Image from "next/image";
@@ -52,7 +52,7 @@ const Header = () => {
           {/* <div className="sss-header-search-container">
             <div className="sss-header-search">
               <div className="sss-header-search-icon">
-                <img layout="intrinsic"   layout="intrinsic"   
+                <img   
                   src="/assets/images/solidity-shield-scan/search-icon.svg"
                   alt="Search Icon"
                 />
@@ -66,7 +66,6 @@ const Header = () => {
         </div>
         <div className="sss-header-center">
           <img
-            layout="intrinsic"
             className="w-1/3"
             src="/assets/images/securedapp-logo-light.svg"
             alt="SecureDapp"
@@ -74,7 +73,7 @@ const Header = () => {
         </div>
         <div className="sss-header-right">
           {/* <div className="sss-header-right-calendar">
-            <img layout="intrinsic"   layout="intrinsic"   
+            <img   
               src="/assets/images/solidity-shield-scan/header-calendar.svg"
               alt="Calendar Logo"
             />
@@ -87,7 +86,7 @@ const Header = () => {
             </div>
           </div>
           <div className="sss-header-right-notifications">
-            <img layout="intrinsic"   layout="intrinsic"   
+            <img   
               src="/assets/images/solidity-shield-scan/header-notif.svg"
               alt="Notification Logo"
             />

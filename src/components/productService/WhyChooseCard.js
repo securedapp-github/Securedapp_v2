@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+﻿import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -12,7 +12,6 @@ export const WhyChooseCardIcon = ({ image, imageBackground }) => {
       style={{ background: `${imageBackground}` }}
     >
       <img
-        layout="intrinsic"
         style={{
           filter: darkMode
             ? "brightness(0) invert(1)"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import Image from "next/image";
 import ChartCard from "../overview/ChartCard";
 import { billingDummyData } from "./billingDummyData";
@@ -43,7 +43,6 @@ const BillingTable = () => {
                 <div className="sss-billing-table-header-title">Billing</div>
                 <div className="sss-billing-table-header-options">
                   <img
-                    layout="intrinsic"
                     src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                     alt="Option Icon"
                   />

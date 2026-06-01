@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
@@ -40,10 +40,10 @@ const PricingPlanCard = ({
         }}
         className="sss-pricing-plan-card"
       >
-        <div className="sss-pricing-card-header">
-          <img layout="intrinsic" src={icon} alt="icon" />
-          <div className="sss-pricing-card-header-plan-type">{planType}</div>
-        </div>
+         <div className="sss-pricing-card-header">
+           <Image src={icon} alt="icon" width={21} height={20} />
+           <div className="sss-pricing-card-header-plan-type">{planType}</div>
+         </div>
         <div className="sss-pricing-card-body">
           <div className="sss-pricing-card-body-price">{price}</div>
           <div className="">{"/month"}</div>
@@ -206,29 +206,32 @@ const Pricing = () => {
                                 "sss-pricing-plan-detail-row-value-first"
                               }`}
                             >
-                              {detail.details[feature].value === "TICK" ? (
-                                <img
-                                  layout="intrinsic"
-                                  src="/assets/images/solidity-shield-scan/billing-price-tick.svg"
-                                  alt="tick"
-                                />
-                              ) : detail.details[feature].value === "DASH" ? (
-                                <img
-                                  layout="intrinsic"
-                                  src="/assets/images/solidity-shield-scan/billing-price-dash.svg"
-                                  alt="-"
-                                />
-                              ) : (
-                                <span dangerouslySetInnerHTML={{ __html: detail.details[feature].value }} />
-                              )}
+                               {detail.details[feature].value === "TICK" ? (
+                                 <Image
+                                   src="/assets/images/solidity-shield-scan/billing-price-tick.svg"
+                                   alt="tick"
+                                   width={24}
+                                   height={25}
+                                 />
+                               ) : detail.details[feature].value === "DASH" ? (
+                                 <Image
+                                   src="/assets/images/solidity-shield-scan/billing-price-dash.svg"
+                                   alt="-"
+                                   width={24}
+                                   height={25}
+                                 />
+                               ) : (
+                                 <span dangerouslySetInnerHTML={{ __html: detail.details[feature].value }} />
+                               )}
                               {detail.details[feature].info && (
-                                <div className="sss-pricing-plan-detail-row-info-container group">
-                                  <img
-                                    layout="intrinsic"
-                                    src="/assets/images/solidity-shield-scan/pricing-plan-info.svg"
-                                    alt="i"
-                                  />
-                                  <div className="sss-pricing-plan-detail-row-info">
+                                     <div className="sss-pricing-plan-detail-row-info-container group">
+                                   <Image
+                                     src="/assets/images/solidity-shield-scan/pricing-plan-info.svg"
+                                     alt="i"
+                                     width={18}
+                                     height={19}
+                                   />
+                                   <div className="sss-pricing-plan-detail-row-info">
                                     <div className="font-semibold text-secondary">
                                       <span dangerouslySetInnerHTML={{ __html: detail.details[feature].value }} />
                                     </div>

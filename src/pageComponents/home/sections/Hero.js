@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import BrandLogos from "../../../components/common/BrandLogos";
@@ -50,7 +50,6 @@ const Hero = () => {
               <SwiperSlide key={`swiper-slide-${index}`}>
                 <div className="hero-image-container">
                   <img
-                    layout="intrinsic"
                     style={{ borderRadius: "15px", maxWidth: "600px" }}
                     className="hero-image"
                     src={image.src}

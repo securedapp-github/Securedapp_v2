@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import ChartCard from "./ChartCard";
@@ -126,7 +126,7 @@ const IssuesChart = () => {
             <div className="sss-overview-issues-card-body">
               {/* <div className="sss-overview-issues-card-chart-header">
                 <div className="sss-overview-issues-card-chart-header-text">
-                  <img layout="intrinsic"   layout="intrinsic"   
+                  <img   
                     src="/assets/images/solidity-shield-scan/issues-chart-header-icon.svg"
                     alt="Issues Chart Header Icon"
                   />
