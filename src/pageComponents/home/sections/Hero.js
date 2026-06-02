@@ -49,15 +49,14 @@ const Hero = () => {
             return (
               <SwiperSlide key={`swiper-slide-${index}`}>
                 <div className="hero-image-container">
-                  <img
+                  <Image
                     style={{ borderRadius: "15px", maxWidth: "600px" }}
                     className="hero-image"
                     src={image.src}
                     alt={image.alt}
                     width={600}
                     height={400}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchpriority={index === 0 ? "high" : "low"}
+                    priority={index === 0}
                   />
                 </div>
                 <div className="pt-8 md:pt-6 lg:pt-4 pb-12 md:pb-8 lg:pb-12">

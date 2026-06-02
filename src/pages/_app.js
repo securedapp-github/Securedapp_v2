@@ -2,6 +2,32 @@ import { Provider } from "react-redux";
 import { mainStore } from "../redux/store";
 import "../styles/globals.css";
 import dynamic from "next/dynamic";
+import { Nunito_Sans, Outfit, Playfair_Display, Poppins } from "next/font/google";
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nunito-sans",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-outfit",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-playfair-display",
+});
+
+const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-poppins",
+});
 const ToastContainer = dynamic(() => import("react-toastify").then((mod) => mod.ToastContainer), { ssr: false });
 import "../components/chat/ChatWidget.css";
 import "react-chat-elements/dist/main.css";
@@ -93,9 +119,9 @@ import "../components/RTM/RequestDemoModal.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
 import { solidityShieldScanStore } from "../SolidityShield/redux/store";
-import ScanNowModal from "../SolidityShield/components/modal/ScanNowModal";
-import PaymentModal from "../SolidityShield/components/modal/PaymentModal";
-import RequestQuoteModal from "../SolidityShield/components/modal/RequestQuoteModal";
+const ScanNowModal = dynamic(() => import("../SolidityShield/components/modal/ScanNowModal"), { ssr: false });
+const PaymentModal = dynamic(() => import("../SolidityShield/components/modal/PaymentModal"), { ssr: false });
+const RequestQuoteModal = dynamic(() => import("../SolidityShield/components/modal/RequestQuoteModal"), { ssr: false });
 import { useRouter } from "next/router";
 import { MainLayout } from "../SolidityShield/components/sidebar/Layout";
 import MetaTags from "../components/common/MetaTags";
@@ -129,7 +155,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={mainStore}>
-      <div className="bg-primary dark:bg-secondary text-secondary dark:text-primary min-h-screen relative overflow-x-hidden">
+      <div className={`bg-primary dark:bg-secondary text-secondary dark:text-primary min-h-screen relative overflow-x-hidden ${nunitoSans.variable} ${outfit.variable} ${playfairDisplay.variable} ${poppins.variable}`}>
         {isClient && (
           <ToastContainer
             position="top-center"
