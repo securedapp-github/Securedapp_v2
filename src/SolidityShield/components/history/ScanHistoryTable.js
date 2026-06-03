@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+﻿import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Image from "next/image";
@@ -131,7 +131,6 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
                     >
                       <div className="sss-history-table-options">
                         <img
-                          layout="intrinsic"
                           src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
                           alt="Option Icon"
                         />

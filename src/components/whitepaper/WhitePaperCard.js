@@ -72,7 +72,6 @@ function WhitePaperCard({ details }) {
         <div className="blog-card-header">
           <div className="blog-card-header-image-container">
             <img
-              layout="intrinsic"
               className="blog-card-header-image"
               src={details.image}
               alt={details.heading}
@@ -132,7 +131,7 @@ function WhitePaperCard({ details }) {
                 position: "fixed",
                 top: 0,
                 left: 0,
-                width: "100vw",
+                width: "100%",
                 height: "100vh",
                 background: "rgba(0,0,0,0.4)",
                 display: "flex",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import Image from "next/image";
 import CustomButton from "../../components/common/CustomButton";
 
@@ -13,7 +13,7 @@ const AccountCard = ({
     <div className="sss-settings-account-card-container">
       <div className="sss-settings-account-card">
         <div className="sss-settings-account-card-left">
-          <img layout="intrinsic" src={logo} alt={accountType} />
+          <img src={logo} alt={accountType} />
           <div className="sss-settings-account-card-left-details">
             <div className="sss-settings-account-card-left-details-title">
               {accountType}
@@ -53,7 +53,6 @@ const ConnectedAccounts = () => {
         <div className="sss-settings-connected-accounts-box">
           <div className="sss-settings-connected-accounts-box-icon">
             <img
-              layout="intrinsic"
               src="/assets/images/solidity-shield-scan/connected-accounts-verified.svg"
               alt="verified"
             />

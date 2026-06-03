@@ -105,7 +105,6 @@ const ProductServiceHero = ({
           className="hero-image-container"
         >
           <img
-            layout="intrinsic"
             style={{
               borderRadius: "15px",
               width: service && isOnWeb && "100%",
@@ -113,6 +112,10 @@ const ProductServiceHero = ({
             className="hero-image"
             src={image}
             alt={router.asPath.replace("/", "")}
+            width={700}
+            height={450}
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState } from 'react';
 import styles from './SecureWatchPage.module.css';
 
@@ -131,7 +131,7 @@ function SecureWatchPage() {
             );
           })}
           <div className="how-it-works-section-end-image">
-            <img layout="intrinsic"   layout="intrinsic"   
+            <img   
               src="/assets/images/product-1-how-it-works-1-end.svg"
               alt="product 1 how it works end"
             />

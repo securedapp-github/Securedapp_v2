@@ -404,7 +404,6 @@ export default function BlogPost({ blog }) {
                     >
                       {blogDetails.Publisher.image && (
                         <img
-                          layout="intrinsic"
                           src={blogDetails.Publisher.image}
                           alt={blogDetails.Publisher.name}
                         />
@@ -490,7 +489,6 @@ export default function BlogPost({ blog }) {
                               }}
                             />
                             <img
-                              layout="intrinsic"
                               style={{
                                 marginTop: 60,
                                 marginBottom: 60,

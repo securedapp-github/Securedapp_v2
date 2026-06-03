@@ -20,10 +20,10 @@ module.exports = {
         accent: "var(--accent)",
       },
       fontFamily: {
-        nunitoSans: ["Nunito Sans", "sans-serif"],
-        outfit: ["Outfit", "sans-serif"],
-        playFairDisplay: ["Playfair Display", "serif"],
-        poppins: ["Poppins", "sans-serif"],
+        nunitoSans: ["var(--font-nunito-sans)", "sans-serif"],
+        outfit: ["var(--font-outfit)", "sans-serif"],
+        playFairDisplay: ["var(--font-playfair-display)", "serif"],
+        poppins: ["var(--font-poppins)", "sans-serif"],
       },
       backgroundImage: {
         'custom-bg': "url('../../src/AuditExpress/assets/grid.png')",

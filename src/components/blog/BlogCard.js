@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -42,7 +42,6 @@ function BlogCard({ details, isMedia = false }) {
         )}
         <div className="blog-card-header-image-container">
           <img
-            layout="intrinsic"
             className="blog-card-header-image"
             src={details.image}
             alt={details.heading}

@@ -1,4 +1,4 @@
-import AuthButton from "../../components/auth/AuthButton";
+﻿import AuthButton from "../../components/auth/AuthButton";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthLogos from "../../components/auth/AuthLogos";
@@ -29,7 +29,7 @@ const LoginScreen = () => {
             <AuthButton children={"Sign In"} onClick={() => {}} />
             {/* <AuthButton filled={false}>
               <div className="auth-screen-google">
-                <img layout="intrinsic"   layout="intrinsic"   
+                <img   
                   src="/assets/images/solidity-shield-scan/google-logo.svg"
                   alt="Google Logo"
                 />

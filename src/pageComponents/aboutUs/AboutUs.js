@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -155,7 +155,6 @@ const AboutUs = () => {
                     <div className="about-us-company-culture-content-point">
                       <div>
                         <img
-                          layout="intrinsic"
                           src="/assets/images/green-tick.svg"
                           alt="green tick"
                         />
@@ -169,7 +168,6 @@ const AboutUs = () => {
           </div>
           <div className=" about-us-company-culture-image">
             <img
-              layout="intrinsic"
               style={{ maxWidth: "90%" }}
               src="/assets/images/about/photo3.png"
               alt="about-us"

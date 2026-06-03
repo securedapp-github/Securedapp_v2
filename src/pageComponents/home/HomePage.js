@@ -3,20 +3,21 @@
 import React, { useEffect } from "react";
 import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/Navbar";
+import dynamic from "next/dynamic";
 import CTA from "./sections/CTA";
-import FAQs from "../../components/common/FAQs";
 import Hero from "./sections/Hero";
 import HowItWorks from "./sections/HowItWorks";
 import Services from "./sections/Services";
-import Solutions from "./sections/solutions";
-import Testimonials from "../../components/common/Testimonials";
 import Features from "./sections/Features";
 import Statitics from "./sections/Statistics";
 import { reviews, faqHeaders, faqsData } from "./home.data";
 import MetaTags from "../../components/common/MetaTags";
-import dynamic from "next/dynamic";
-import BrandLogos from "../../components/common/BrandLogos";
-import BookMeetCta from "../../components/common/bookMeetCta";
+
+const FAQs = dynamic(() => import("../../components/common/FAQs"), { ssr: true });
+const Testimonials = dynamic(() => import("../../components/common/Testimonials"), { ssr: true });
+const Solutions = dynamic(() => import("./sections/solutions"), { ssr: true });
+const BrandLogos = dynamic(() => import("../../components/common/BrandLogos"), { ssr: true });
+const BookMeetCta = dynamic(() => import("../../components/common/bookMeetCta"), { ssr: true });
 
 const Home = () => {
   useEffect(() => {

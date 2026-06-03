@@ -296,7 +296,7 @@
   @apply relative mt-12 px-10 lg:px-48 lg:mt-20 flex flex-col text-center space-y-6 lg:space-y-8 justify-center items-center overflow-hidden;
 }
 .cta-section-grid {
-  @apply relative w-screen flex justify-center items-center;
+  @apply relative w-full flex justify-center items-center;
 }
 
 .cta-section-grid-patch {

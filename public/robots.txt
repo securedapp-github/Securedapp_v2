@@ -1,3 +1,364 @@
-# https://www.robotstxt.org/robotstxt.html
+# SecureDApp.io robots.txt - Blockchain Security & Compliance Platform Optimization
+# Updated: 2026-04-29
+# Target Markets: India (DPDP/RBI compliance), Global (Web3 security, smart contract audits)
+# Keywords Focus: Blockchain security, smart contract audit, DPDP compliance, crypto AML, Web3 security
+
+# ==========================================
+# SECTION 1: DEFAULT CRAWL RULES
+# ==========================================
+
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /api/internal/
+Disallow: /dashboard/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /assets/uploads/private/
+Disallow: /audit-submit/
+Disallow: /client-portal/
+Disallow: /internal-audit/
+Disallow: /security-reports/private/
+Disallow: /compliance-data/
+Disallow: /?*sort=
+Disallow: /?*filter=
+Disallow: /search?
+Disallow: /results?
+Disallow: /.git/
+Disallow: /.env
+Disallow: /.htaccess
+Disallow: /node_modules/
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*?msclkid=
+Disallow: /*?utm_source=
+Disallow: /*?utm_medium=
+Disallow: /*?utm_campaign=
+Disallow: /*?utm_content=
+Disallow: /*?utm_term=
+Disallow: /*?ref=
+Disallow: /*?affiliate=
+Disallow: /*?contact=
+Disallow: /api/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+
+# Allow important resource files
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+Allow: /*.gif$
+Allow: /*.ico$
+Allow: /manifest.json
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /rss.xml
+Allow: /feed.xml
+
+# Blockchain Security Content (Allow all for indexing)
+Allow: /*smart-contract*
+Allow: /*blockchain*
+Allow: /*audit*
+Allow: /*compliance*
+Allow: /*web3*
+Allow: /*security*
+Allow: /*dpdp*
+Allow: /*crypto*
+Allow: /white-paper
+Allow: /audits
+
+# Blog content (Allow for full indexing)
+Allow: /blog.securedapp.io/
+Allow: /blog/
+
+Crawl-delay: 1
+Request-rate: 30/1m
+
+# ==========================================
+# SECTION 2: GOOGLE SEARCH BOT RULES
+# ==========================================
+
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/internal/
+Disallow: /dashboard/
+Disallow: /client-portal/
+Disallow: /compliance-data/
+Disallow: /?*sort=
+Disallow: /search?
+Crawl-delay: 0
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+
+# Google Mobile Bot
+User-agent: Googlebot-Mobile
+Allow: /
+Crawl-delay: 0
+
+# Google News Bot
+User-agent: Googlebot-News
+Allow: /
+Allow: /blog/
+Allow: /audits
+
+# ==========================================
+# SECTION 3: MICROSOFT & BING CRAWLERS
+# ==========================================
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /api/internal/
+Disallow: /dashboard/
+Disallow: /client-portal/
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# ==========================================
+# SECTION 4: AI & LLM CRAWLERS - ALLOWED
+# ==========================================
+
+# OpenAI (GPT-4, ChatGPT) - Allow for blockchain security training
+User-agent: GPTBot
+Allow: /
+Allow: /smart-contract-audit
+Allow: /blockchain-security
+Allow: /dpdp-compliance-platform
+Allow: /crypto-aml-compliance-platform
+Allow: /web3-security
+Allow: /audits
+
+# Anthropic (Claude)
+User-agent: Claude-Web
+Allow: /
+Disallow: /admin/
+Disallow: /api/internal/
+
+# Google AI Crawler (Bard, Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Meta AI Bot
+User-agent: facebookexternalhit
+Allow: /
+
+# Apple Siri Bot
+User-agent: Applebot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft Copilot
+User-agent: CCBot
+Allow: /
+
+# Internet Archive Wayback Machine
+User-agent: ia_archiver
+Allow: /
+
+# ==========================================
+# SECTION 5: SOCIAL MEDIA CRAWLERS
+# ==========================================
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: linkedinbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+User-agent: Telegram
+Allow: /
+
+# Discord Bot
+User-agent: Discord
+Allow: /
+
+# ==========================================
+# SECTION 6: SECONDARY SEARCH ENGINES
+# ==========================================
+
+User-agent: DuckDuckGo
+Allow: /
+Crawl-delay: 1
+
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baidu
+Allow: /
+Crawl-delay: 2
+
+# ==========================================
+# SECTION 7: ANALYTICS & MONITORING BOTS
+# ==========================================
+
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 1
+
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: SemrushBot-SA
+Allow: /
+
+User-agent: BLEXBot
+Allow: /
+
+User-agent: SEMrushBot-FAST
+Allow: /
+
+# ==========================================
+# SECTION 8: BLOCKCHAIN & SECURITY CRAWLERS
+# ==========================================
+
+# Blockchain verification crawlers
+User-agent: BlockchainBot
+Allow: /
+Allow: /audits
+Allow: /white-paper
+
+# Cryptocurrency/DeFi security crawlers
+User-agent: CryptoBot
+Allow: /
+Allow: /smart-contract-audit
+Allow: /defi-development-company
+
+# Web3 security crawlers
+User-agent: Web3Bot
+Allow: /
+Allow: /web3-security
+Allow: /web3-identity-and-aml-compliance-platform
+
+# ==========================================
+# SECTION 9: SECURITY & THREAT CRAWLERS
+# ==========================================
+
+User-agent: curl
+Allow: /
+
+User-agent: wget
+Allow: /
+
+# Block known bad bots and scrapers
+User-agent: Antelope
+User-agent: Cogentbot
+User-agent: Floodgaugebot
+User-agent: Heritrix
+User-agent: MIIxpc
+User-agent: Nikto
+User-agent: Nmap
+User-agent: ScanAlert
+User-agent: Shodan
+User-agent: Spam
+User-agent: SQLmap
+User-agent: ZmEu
+User-agent: WhatWebCrawler
+User-agent: WebScan
+Disallow: /
+
+# ==========================================
+# SECTION 10: SITEMAPS & FEEDS
+# ==========================================
+
+Sitemap: https://securedapp.io/sitemap.xml
+Sitemap: https://blog.securedapp.io/post-sitemap.xml
+Sitemap: http://securedapp.io/ai.txt
+Sitemap: http://securedapp.io/llms.txt
+
+# RSS/Atom Feeds
+Sitemap: https://blog.securedapp.io/feed.xml
+
+# ==========================================
+# SECTION 11: SERVICE-SPECIFIC RULES
+# ==========================================
+# SecureDApp targets blockchain security & compliance
+
+# Smart Contract Audit Content (High Priority)
+Allow: /smart-contract*
+Allow: /audit*
+Allow: /dapp-security*
+Allow: /token-audit*
+Allow: /rwa-audit*
+
+# Compliance Content (High Priority)
+Allow: /dpdp*
+Allow: /crypto-aml*
+Allow: /sox-compliance*
+Allow: /itgc-audit*
+Allow: /web3-identity*
+
+# Advanced Services (Medium Priority)
+Allow: /blockchain-intelligence*
+Allow: /real-time-blockchain-threat*
+Allow: /ai-blockchain-investigation*
+Allow: /post-quantum-cryptography*
+Allow: /self-sovereign-identity*
+
+# Development Services (Medium Priority)
+Allow: /web3-dapp-development*
+Allow: /nft-marketplace-development*
+Allow: /defi-development*
+
+# ==========================================
+# SECTION 12: ANTI-SPAM & SECURITY
+# ==========================================
+
+# Prevent automated form submission
+Disallow: /contact-submit/
+Disallow: /audit-request-submit/
+Disallow: /consultation-submit/
+Disallow: /demo-submit/
+
+# Block CAPTCHA/verification pages
+Disallow: /verify/
+Disallow: /captcha/
+
+# ==========================================
+# SECTION 13: RATE LIMITING
+# ==========================================
+
+# Default crawl rate
+User-agent: *
+Request-rate: 1/1s
+
+# Fast crawlers can crawl faster
+User-agent: Googlebot
+Request-rate: 0
+
+User-agent: Bingbot
+Request-rate: 0.5/1s
+
+User-agent: AhrefsBot
+Request-rate: 1/5s
+

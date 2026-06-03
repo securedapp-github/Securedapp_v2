@@ -157,6 +157,7 @@ const socials = [
   {
     to: "https://discord.com/invite/pqDC8ddnYQ",
     icon: <FontAwesomeIcon size="xl" icon={faDiscord} />,
+    label: "SecureDApp on Discord",
   },
   {
     to: "https://x.com/secure_dapp",
@@ -174,14 +175,17 @@ const socials = [
       />
     </svg>
     ,
+    label: "SecureDApp on X (Twitter)",
   },
   {
     to: "https://www.linkedin.com/company/securedapp/",
     icon: <FontAwesomeIcon size="xl" icon={faLinkedin} />,
+    label: "SecureDApp on LinkedIn",
   },
   {
     to: "https://telegram.me/securedappcommunity",
     icon: <FontAwesomeIcon size="xl" icon={faTelegram} />,
+    label: "SecureDApp on Telegram",
   },
 ];
 
@@ -231,6 +235,7 @@ const Footer = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            aria-label="Email address for newsletter subscription"
           />
           <Button
             text={"Subscribe"}
@@ -246,16 +251,18 @@ const Footer = () => {
             <Logo isLeft={true} />
           </div>
           <div className="footer-socials">
-            {socials.map((social) => {
+            {socials.map((social, index) => {
               return (
-                <div
-                  className="hover:cursor-pointer"
-                  onClick={() =>
-                    typeof window !== "undefined" && window.open(social.to)
-                  }
+                <a
+                  key={`footer-social-${index}`}
+                  href={social.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="hover:cursor-pointer hover:opacity-80 transition-opacity"
                 >
                   {social.icon}
-                </div>
+                </a>
               );
             })}
           </div>

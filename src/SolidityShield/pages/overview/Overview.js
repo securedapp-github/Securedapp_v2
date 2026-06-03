@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import IssuesChart from "../../components/overview/IssuesChart";
@@ -57,7 +57,6 @@ const OverviewScreen = () => {
           {firstTime ? (
             <div className="sss-overview-first-time">
               <img
-                layout="intrinsic"
                 src="/assets/images/solidity-shield-scan/dashboard-icon.svg"
                 alt=""
               />

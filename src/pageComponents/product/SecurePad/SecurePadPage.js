@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
@@ -100,7 +100,7 @@ function SecurePadPage() {
               );
             })}
             <div className="how-it-works-section-end-image">
-              <img layout="intrinsic"   layout="intrinsic"   
+              <img   
                 src="/assets/images/product-1-how-it-works-1-end.svg"
                 alt="product 1 how it works end"
               />

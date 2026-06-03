@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+﻿import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";
 import Image from "next/image";
 
@@ -9,7 +9,6 @@ const HowItWorksCard = ({ image, imageAlt, title, description }) => {
       {image && (
         <div className="how-it-works-card-image">
           <img
-            layout="intrinsic"
             src={`/assets/images/icons/howitworks/${image}.svg`}
             alt={"icon"}
           />

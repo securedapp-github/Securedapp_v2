@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -10,14 +10,12 @@ const SectionTitle = ({ name, title, description }) => {
       {name !== undefined && (
         <div className="flex justify-center items-center space-x-3">
           <img
-            layout="intrinsic"
             className="section-title-icon-image"
             src="/assets/images/stroke-left.svg"
             alt="stroke left"
           />
           <div className="section-title-icon-label">{name}</div>
           <img
-            layout="intrinsic"
             className="section-title-icon-image"
             src="/assets/images/stroke-right.svg"
             alt="stroke right"
