@@ -30,10 +30,6 @@ const NavbarSmallScreen = ({
   const closeSideBar = () => setSideBarOpen(false);
 
   const selectNestedNavItem = (label) => {
-    if (label === "Pricing") {
-      typeof window !== "undefined" &&
-        window.open("/solidity-shield-scan/pricing");
-    }
     if (label === dropDown) {
       setDropDown("");
     } else {
@@ -52,13 +48,17 @@ const NavbarSmallScreen = ({
   return (
     <div className="navbar-small-screen relative pb-2 pt-2">
       <div className="flex items-center justify-between relative px-2 mb-2">
-        <div className="absolute left-3 cursor-pointer mt-1" onClick={showSideBar}>
+        <button
+          className="absolute left-3 cursor-pointer mt-1"
+          onClick={showSideBar}
+          aria-label="Open menu"
+        >
           <FontAwesomeIcon
             icon={faBars}
             color={darkMode ? "white" : "black"}
             size="lg"
           />
-        </div>
+        </button>
         <div className="mx-auto">
           <Logo />
         </div>
@@ -74,25 +74,29 @@ const NavbarSmallScreen = ({
             <div className="sidebar-header">
               <Logo isLeft={true} />
               <div className="flex space-x-3 items-center">
-                <FontAwesomeIcon
-                  icon={faClose}
-                  color={darkMode ? "white" : "black"}
-                  size="lg"
-                  className="cursor-pointer"
+                <button
                   onClick={closeSideBar}
-                />
+                  aria-label="Close menu"
+                  className="cursor-pointer"
+                >
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    color={darkMode ? "white" : "black"}
+                    size="lg"
+                  />
+                </button>
               </div>
             </div>
-            <nav className="sidebar-items">
+            <nav className="sidebar-items" style={{ overflowY: "auto", maxHeight: "calc(100vh - 140px)", WebkitOverflowScrolling: "touch" }}>
               {navItems.map((item) => {
                 return (
                   <div>
-                    <div
-                      className="sidebar-item"
-                      onClick={() => selectNestedNavItem(item["label"])}
-                    >
-                      <p className="sidebar-item-label">{item["label"]}</p>
-                      {item["items"].length > 0 && (
+                    {item["items"].length > 0 ? (
+                      <div
+                        className="sidebar-item"
+                        onClick={() => selectNestedNavItem(item["label"])}
+                      >
+                        <p className="sidebar-item-label">{item["label"]}</p>
                         <div>
                           <FontAwesomeIcon
                             icon={
@@ -104,8 +108,16 @@ const NavbarSmallScreen = ({
                             size="xs"
                           />
                         </div>
-                      )}
-                    </div>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item["to"]}
+                        className="sidebar-item"
+                        onClick={closeSideBar}
+                      >
+                        <p className="sidebar-item-label">{item["label"]}</p>
+                      </Link>
+                    )}
                     {dropDown === item["label"] && (
                       <div className="nested-sidebar-items">
                         {item["items"].map((nestedItem) => {

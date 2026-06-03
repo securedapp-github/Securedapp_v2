@@ -66,11 +66,11 @@ import {
               <div className="sidebar-header">
                 <Logo isLeft={true} />
                 <div className="flex space-x-3 items-center">
-                  <button onClick={toggleTheme}>
+                  <button onClick={toggleTheme} aria-label="Toggle Theme">
                     {darkMode ? (
-                      <i className="fa-regular fa-brightness"></i>
+                      <FontAwesomeIcon icon={faSun} />
                     ) : (
-                      <i className="fa-regular fa-moon"></i>
+                      <FontAwesomeIcon icon={faMoon} />
                     )}
                   </button>
                   <FontAwesomeIcon

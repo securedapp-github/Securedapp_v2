@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -10,34 +10,46 @@ const CTA = () => {
   return (
     <div className="cta-section">
       <div className="cta-section-grid">
-        <img
+        <Image
           className="hidden dark:block"
           src="/assets/images/cta-upper-grid-dark.svg"
-          alt="cta-upper-grid"
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={320}
         />
-        <img
+        <Image
           className="block dark:hidden"
           src="/assets/images/cta-upper-grid-light.svg"
-          alt="cta-upper-grid"
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={320}
         />
         <div className="cta-section-grid-patch">
-          <img
+          <Image
             className="hidden dark:block"
             src="/assets/images/cta-upper-patch-dark.svg"
-            alt="cta-upper-grid"
+            alt=""
+            aria-hidden="true"
+            width={400}
+            height={400}
           />
-          <img
+          <Image
             className="block dark:hidden"
             src="/assets/images/cta-upper-patch-light.svg"
-            alt="cta-upper-grid"
+            alt=""
+            aria-hidden="true"
+            width={400}
+            height={400}
           />
         </div>
       </div>
       <div className="cta-title">Take your security to the next level</div>
       <div className="cta-desc">
-        Ready to transform your sales process and boost your performance? Join
-        the hundreds of businesses already benefiting from our powerful sales
-        analytics dashboard.
+        Ready to secure your blockchain project? Join the hundreds of businesses
+        already trusting SecureDApp for comprehensive smart contract audits,
+        real-time threat monitoring, and end-to-end blockchain security.
       </div>
       <div style={{ padding: "20px 0 60px 0" }} className="cta-section-buttons">
         {/* <Button
@@ -55,26 +67,38 @@ const CTA = () => {
         />
       </div>
       <div className="cta-section-grid">
-        <img
+        <Image
           className="hidden dark:block relative z-0"
           src="/assets/images/cta-lower-grid-dark.svg"
-          alt="cta-lower-grid"
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={320}
         />
-        <img
+        <Image
           className="block dark:hidden"
           src="/assets/images/cta-lower-grid-light.svg"
-          alt="cta-lower-grid"
+          alt=""
+          aria-hidden="true"
+          width={1920}
+          height={320}
         />
         <div className="cta-section-grid-patch">
-          <img
+          <Image
             className="hidden dark:block"
             src="/assets/images/cta-lower-patch-dark.svg"
-            alt="cta-lower-grid"
+            alt=""
+            aria-hidden="true"
+            width={400}
+            height={400}
           />
-          <img
+          <Image
             className="block dark:hidden"
             src="/assets/images/cta-lower-patch-light.svg"
-            alt="cta-lower-grid"
+            alt=""
+            aria-hidden="true"
+            width={400}
+            height={400}
           />
         </div>
       </div>

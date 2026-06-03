@@ -1,4 +1,4 @@
-﻿import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import QRCode from "react-qr-code";
 import {
@@ -18,7 +18,7 @@ import {
 } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCopy, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { pricingDetails } from "../../pages/pricing/pricing.data";
 
@@ -75,10 +75,13 @@ const PaymentModal = () => {
               )}
             </div>
             <div className="sss-payment-modal-close-container">
-              <i
+              <button
                 onClick={closeModal}
-                className="fa-solid fa-xmark fa-xl cursor-pointer"
-              />
+                aria-label="Close"
+                className="flex items-center justify-center cursor-pointer"
+              >
+                <FontAwesomeIcon icon={faXmark} size="xl" />
+              </button>
             </div>
           </div>
           <div className="sss-payment-modal-body">

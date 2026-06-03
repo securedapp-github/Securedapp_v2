@@ -33,6 +33,24 @@
   @apply w-10 lg:w-16 border border-[#A4CDFF] dark:border-[#A4CDFF4D] bg-[#D2E6FF4D] dark:bg-[#A4CDFF66];
 }
 
+.hero-swiper .swiper-button-next,
+.hero-swiper .swiper-button-prev {
+  color: #0052cc;
+  transform: scale(0.65);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.hero-swiper .swiper-button-next:hover,
+.hero-swiper .swiper-button-prev:hover {
+  opacity: 1;
+}
+
+:is(.dark) .hero-swiper .swiper-button-next,
+:is(.dark) .hero-swiper .swiper-button-prev {
+  color: #A4CDFF;
+}
+
 .statistics {
   @apply font-nunitoSans text-secondary dark:text-primary py-6 px-4 lg:px-10 lg:py-8;
 }

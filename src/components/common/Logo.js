@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 
 const Logo = ({ isLeft = false, className = "", forceDark = false }) => {
@@ -9,14 +9,20 @@ const Logo = ({ isLeft = false, className = "", forceDark = false }) => {
       } ${className}`}
       href="/"
     >
-      <img
+      <Image
         src="/assets/images/securedapp-logo-light.svg"
         alt="logo"
+        width={150}
+        height={40}
+        priority
         className={`w-[120px] lg:w-[150px] h-auto ${forceDark ? "hidden" : "dark:hidden"}`}
       />
-      <img
+      <Image
         src="/assets/images/securedapp-logo-dark.svg"
         alt="logo"
+        width={150}
+        height={40}
+        priority
         className={`w-[120px] lg:w-[150px] h-auto ${forceDark ? "block" : "hidden dark:block"}`}
       />
     </Link>

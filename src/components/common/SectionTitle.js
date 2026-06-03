@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -12,13 +12,15 @@ const SectionTitle = ({ name, title, description }) => {
           <img
             className="section-title-icon-image"
             src="/assets/images/stroke-left.svg"
-            alt="stroke left"
+            alt=""
+            aria-hidden="true"
           />
           <div className="section-title-icon-label">{name}</div>
           <img
             className="section-title-icon-image"
             src="/assets/images/stroke-right.svg"
-            alt="stroke right"
+            alt=""
+            aria-hidden="true"
           />
         </div>
       )}

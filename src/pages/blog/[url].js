@@ -23,6 +23,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { blogsData as fullData } from "../../pageComponents/blog/blog-data";
 import { authorsData } from "../../pageComponents/authors/authors.data";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 
 const isLargeScreen = typeof window !== "undefined" && window.innerWidth > 960;
 
@@ -450,16 +451,18 @@ export default function BlogPost({ blog }) {
                     >
                       <FontAwesomeIcon size="xl" icon={faTelegram} />
                     </Link>
-                    <i
-                      target="_blank"
+                    <button
                       onClick={() => {
                         navigator.clipboard.writeText(
                           "https://blog.securedapp.io/" + url
                         );
                         toast("Link copied");
                       }}
-                      className="fa-regular fa-link hover:cursor-pointer"
-                    />
+                      aria-label="Copy link"
+                      className="hover:cursor-pointer flex items-center justify-center"
+                    >
+                      <FontAwesomeIcon size="xl" icon={faLink} />
+                    </button>
                   </div>
                 </div>
                 <div>{blogDetails.Intro}</div>

@@ -16,8 +16,8 @@ import MetaTags from "../../components/common/MetaTags";
 const FAQs = dynamic(() => import("../../components/common/FAQs"), { ssr: true });
 const Testimonials = dynamic(() => import("../../components/common/Testimonials"), { ssr: true });
 const Solutions = dynamic(() => import("./sections/solutions"), { ssr: true });
-const BrandLogos = dynamic(() => import("../../components/common/BrandLogos"), { ssr: true });
-const BookMeetCta = dynamic(() => import("../../components/common/bookMeetCta"), { ssr: true });
+const BrandLogos = dynamic(() => import("../../components/common/BrandLogos"), { ssr: false });
+const BookMeetCta = dynamic(() => import("../../components/common/bookMeetCta"), { ssr: false });
 
 const Home = () => {
   useEffect(() => {
@@ -35,6 +35,7 @@ const Home = () => {
         }}
       />
       <Navbar />
+      <main id="main-content" role="main">
       <Hero />
       <Statitics />
       <Features />
@@ -46,6 +47,7 @@ const Home = () => {
       <BrandLogos type="chains" />
       <FAQs faqHeaders={faqHeaders} faqsData={faqsData} />
       <CTA />
+      </main>
       <Footer />
       <BookMeetCta />
     </div>

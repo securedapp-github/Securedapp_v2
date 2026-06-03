@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -203,6 +203,7 @@ const Services = () => {
     lazyLoad: "progressive",
     slidesToScroll: 1,
     speed: 500,
+    infinite: false,
     swipeToSlide: true,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,
@@ -271,7 +272,7 @@ const Services = () => {
           </div>
         </div>
         <div className="services-content-right">
-          <img
+          <Image
             src={
               servicesData[selectedService].image
                 ? servicesData[selectedService].image
@@ -279,6 +280,9 @@ const Services = () => {
                 }-hero.webp`
             }
             alt={servicesData[selectedService].name}
+            width={600}
+            height={400}
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
       </div>

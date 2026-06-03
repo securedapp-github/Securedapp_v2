@@ -37,7 +37,7 @@ const Statitics = () => {
           unit=""
           number={2400}
           postNumber={"+"}
-          subtitle={"Vulnerability detected"}
+          subtitle={"Vulnerabilities Detected"}
         />
         <StatisticsCard
           unit="$"

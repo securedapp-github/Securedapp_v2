@@ -278,7 +278,13 @@ const Footer = () => {
                   {navigationItem.items.map((item, index) => {
                     return (
                       <div className="footer-navigation-item-item">
-                        <Link href={item.to}>{item.name}</Link>
+                        {item.to.startsWith("http") ? (
+                          <a href={item.to} target="_blank" rel="noopener noreferrer">
+                            {item.name}
+                          </a>
+                        ) : (
+                          <Link href={item.to}>{item.name}</Link>
+                        )}
                       </div>
                     );
                   })}

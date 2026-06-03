@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useDispatch, useSelector } from "react-redux";
 import { pricingDetails } from "./pricing.data";
@@ -6,6 +6,7 @@ import CustomButton from "../../components/common/CustomButton";
 import {
   faChevronLeft,
   faChevronRight,
+  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
@@ -61,7 +62,7 @@ const PricingPlanCard = ({
             {auth?.user?.plan === 0 && auth?.user?.plan === id ? (
               ""
             ) : (
-              <i className="fa-solid fa-arrow-right"></i>
+              <FontAwesomeIcon icon={faArrowRight} />
             )}
           </button>
         </div>
