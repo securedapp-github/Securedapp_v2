@@ -7,7 +7,8 @@ import React, { useEffect, useState } from "react";
 const MetaTags = ({ data }) => {
   const router = useRouter();
   const baseUrl = "https://securedapp.io";
-  const url = data.url || (baseUrl + (router.asPath === "/" ? "" : router.asPath));
+  const isHomePage = router.pathname === "/" || router.asPath.split('?')[0].split('#')[0] === "/";
+  const url = data.url || (baseUrl + (isHomePage ? "" : router.asPath));
 
   const path = router.asPath;
   var fullPath = "https://securedapp.io" + path;
@@ -144,7 +145,7 @@ const MetaTags = ({ data }) => {
       {<meta property="og:description" content={data.desc} />}
       <meta property="og:image" content={imageUrl} />
       {<meta property="og:url" content={url} />}
-      {<meta property="og:type" content="article" />}
+      {<meta property="og:type" content={data.ogType || (isHomePage ? "website" : "article")} />}
 
       {/* Twitter Meta Tags */}
       {<meta name="twitter:card" content="summary_large_image" />}

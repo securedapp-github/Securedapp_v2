@@ -157,10 +157,13 @@ const RequestQuoteModal = () => {
       <div className="request-quote-modal-container">
         <div className="request-quote-modal">
           <div className="request-quote-modal-close-container">
-            <IoClose
+            <button
               onClick={closeModal}
-              className="fa-solid fa-xmark fa-xl request-modal-close-button"
-            />
+              aria-label="Close"
+              className="request-modal-close-button flex items-center justify-center cursor-pointer"
+            >
+              <IoClose size={24} />
+            </button>
           </div>
           <div className="requeset-quote-modal-header">
             Tell us about your Projects

@@ -156,6 +156,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={mainStore}>
       <div className={`bg-primary dark:bg-secondary text-secondary dark:text-primary min-h-screen relative overflow-x-hidden ${nunitoSans.variable} ${outfit.variable} ${playfairDisplay.variable} ${poppins.variable}`}>
+        <a href="#main-content" className="skip-nav-link">Skip to main content</a>
         {isClient && (
           <ToastContainer
             position="top-center"

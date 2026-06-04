@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "../../../components/common/SectionTitle";
@@ -26,7 +26,7 @@ const Features = () => {
     {
       id: 0,
       title: "Vulnerability Detection",
-      desc: "Scans for over 150+ types of vulnerabilities to ensure robust security.",
+      desc: "Scans for over 150+ vulnerability types across smart contracts to ensure robust security.",
       image: "/assets/images/home/1.webp",
       icon: "shield-bright",
     },
@@ -100,7 +100,7 @@ const Features = () => {
                             marginBottom: "10px",
                           }}
                           src={`/assets/images/icons/${feature["icon"]}.svg`}
-                          alt="icon"
+                          alt={`${feature["title"]} icon`}
                         ></img>
                         <div className="feature-card-title">{`${feature["title"]}:`}</div>
                         <div className="feature-card-desc">
@@ -130,13 +130,17 @@ const Features = () => {
               <div className="last-bar ecommerce-bar"></div>
             </div>
           </div> */}
-          <img
+          <Image
             style={{
               maxHeight: "80%",
+              width: "100%",
+              height: "auto",
             }}
             src={`/assets/images/home/${detail + 1}.webp`}
-            alt={"image"}
-          ></img>
+            alt={featureData[detail]?.title || "Security feature illustration"}
+            width={550}
+            height={400}
+          />
         </div>
       </div>
     </div>

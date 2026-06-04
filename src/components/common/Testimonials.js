@@ -47,7 +47,7 @@ const Testimonials = ({ reviews }) => {
     centerMode: true,
     arrows: false,
     slidesToShow: 3,
-    infinite: true,
+    infinite: false,
     cssEase: "linear",
     slidesToScroll: 1,
     speed: 500,

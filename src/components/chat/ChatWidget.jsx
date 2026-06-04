@@ -415,10 +415,15 @@ const ChatWidget = ({
     const topMargin = isMobile ? mobileTopReserve : desktopTopReserve;
     const viewportHeight =
       typeof window !== "undefined" ? window.innerHeight : 900;
+    const viewportWidth =
+      typeof window !== "undefined" ? window.innerWidth : 400;
+    const isSmallScreen = isMobile && viewportWidth <= 375;
     const mobileTarget = viewportHeight <= 640 ? "74vh" : "72vh";
     const desired = isMobile ? mobileTarget : "520px";
     return {
-      width: isMobile
+      width: isSmallScreen
+        ? "calc(100% - 24px)"
+        : isMobile
         ? `calc(100% - ${sidePadding * 2}px)`
         : "min(380px, 94vw)",
       height: `min(${desired}, calc(100vh - ${currentBottom + topMargin}px))`,

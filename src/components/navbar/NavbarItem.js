@@ -28,14 +28,6 @@ const NavbarItem = ({
       <Link href={to} className="h-full flex items-center">
         <div className="py-4 flex space-x-2 items-center cursor-pointer">
           <p
-            onClick={() => {
-              if (
-                children === "Pricing" &&
-                typeof window !== "undefined"
-              ) {
-                window.open("/solidity-shield-scan/pricing");
-              }
-            }}
             className={`transition-colors duration-200 font-medium ${isVisible ? "text-[#0052cc] dark:text-[#00d2ff]" : "text-secondary dark:text-primary"}`}
           >
             {children}

@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import SectionTitle from "../../../components/common/SectionTitle";
@@ -78,10 +78,12 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
         />
       </div>
       <div className="solution-card-image">
-        <img
-          style={{ borderRadius: "25px 15px 0 0" }}
+        <Image
+          style={{ borderRadius: "25px 15px 0 0", width: "100%", height: "auto" }}
           src={image}
           alt={title}
+          width={500}
+          height={350}
         />
       </div>
     </div>

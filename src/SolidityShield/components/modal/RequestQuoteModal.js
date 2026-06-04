@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import Button from "../../../components/common/Button";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import {
@@ -150,10 +152,13 @@ const RequestQuoteModal = () => {
       <div className="request-quote-modal-container">
         <div className="request-quote-modal">
           <div className="request-quote-modal-close-container">
-            <i
+            <button
               onClick={closeModal}
-              className="fa-solid fa-xmark fa-xl request-modal-close-button"
-            ></i>
+              aria-label="Close"
+              className="request-modal-close-button flex items-center justify-center cursor-pointer"
+            >
+              <FontAwesomeIcon icon={faXmark} size="xl" />
+            </button>
           </div>
           <div className="requeset-quote-modal-header">
             Tell us about your Projects

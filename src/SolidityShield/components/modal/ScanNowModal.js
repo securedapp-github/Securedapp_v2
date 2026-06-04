@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { faChevronDown, faL } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CustomButton from "../common/CustomButton";
 import FileUpload from "../common/FileUpload";
@@ -212,10 +212,13 @@ const ScanNowModal = () => {
           <div className="scan-now-modal-header">
             <div className="scan-now-modal-header-title">Scan Now</div>
             <div className="scan-now-modal-close-container">
-              <i
-                onClick={!isScanning && closeModal}
-                className="fa-solid fa-xmark fa-xl cursor-pointer"
-              />
+              <button
+                onClick={!isScanning ? closeModal : undefined}
+                aria-label="Close"
+                className="flex items-center justify-center cursor-pointer"
+              >
+                <FontAwesomeIcon icon={faXmark} size="xl" />
+              </button>
             </div>
           </div>
           <div className="scan-now-modal-body">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import BrandLogos from "../../../components/common/BrandLogos";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Button from "../../../components/common/Button";
 import "swiper/swiper-bundle.css";
 
@@ -36,10 +36,11 @@ const Hero = () => {
           journey
         </p>
         <Swiper
-          modules={[Autoplay, Pagination]}
+          modules={[Autoplay, Pagination, Navigation]}
           spaceBetween={50}
           slidesPerView={1}
           pagination={{ clickable: true }}
+          navigation={true}
           loop={true}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           grabCursor={true}
