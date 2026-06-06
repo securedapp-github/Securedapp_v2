@@ -3,6 +3,7 @@ import { mainStore } from "../redux/store";
 import "../styles/globals.css";
 import dynamic from "next/dynamic";
 import { Nunito_Sans, Outfit, Playfair_Display, Poppins } from "next/font/google";
+import Script from "next/script";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -186,6 +187,18 @@ function MyApp({ Component, pageProps }) {
         ) : (
           <Component {...pageProps} />
         )}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-1BLEGKR4PP`}
+          strategy="lazyOnload"
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1BLEGKR4PP', { page_path: window.location.pathname });
+          `}
+        </Script>
       </div>
     </Provider>
   );

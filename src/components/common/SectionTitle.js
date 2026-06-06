@@ -14,6 +14,8 @@ const SectionTitle = ({ name, title, description }) => {
             src="/assets/images/stroke-left.svg"
             alt=""
             aria-hidden="true"
+            width={114}
+            height={7}
           />
           <div className="section-title-icon-label">{name}</div>
           <img
@@ -21,6 +23,8 @@ const SectionTitle = ({ name, title, description }) => {
             src="/assets/images/stroke-right.svg"
             alt=""
             aria-hidden="true"
+            width={114}
+            height={7}
           />
         </div>
       )}

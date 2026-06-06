@@ -143,11 +143,10 @@ const BrandLogos = ({ type = "brands" }) => {
               key={index}
               className="w-full flex justify-center items-center py-2"
             >
-              <img
+              <Image
                 src={brandLogo.src}
                 alt={brandLogo.alt}
                 className="w-auto max-h-[50px]"
-                loading="lazy"
                 width={120}
                 height={50}
               />
