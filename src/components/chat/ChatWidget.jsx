@@ -13,53 +13,8 @@ const CHATBOT_API_BASE = RAW_CHATBOT_API.endsWith("/")
   ? RAW_CHATBOT_API.slice(0, -1)
   : RAW_CHATBOT_API;
 
-const CRM_INQUIRY_URL = (
-  process.env.NEXT_PUBLIC_CRM_PUBLIC_INQUIRY_URL ?? ""
-).trim();
-
-const SERVICE_OFFERINGS = [
-  "Dapp Development",
-  "Smart Contract Audit",
-  "Dapp Security Audit",
-  "Token Audit",
-  "Web3 KYC",
-  "Web3 Security",
-  "Blockchain Forensic",
-  "RWA Audit",
-  "Crypto Compliance & AMI",
-  "Decentralized Identify (DID)",
-  "NFTs Development",
-  "DeFi Development",
-  "LevelUp Academy",
-];
-const DEFAULT_SERVICE_OFFERING = SERVICE_OFFERINGS[0];
-
 const USER_INFO_STORAGE_KEY = "chatUserInfo";
 const SESSION_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
-
-const buildCrmPayload = ({ name, email, phone, company }) => ({
-  fullName: name,
-  accountCompany: company || "Not specified",
-  mobile: phone,
-  email,
-  serviceOffering: DEFAULT_SERVICE_OFFERING,
-  message: "Lead captured via SecureBot chatbot form.",
-  agreePrivacy: true,
-  subscribeUpdates: false,
-});
-
-const submitCrmInquiry = async (lead) => {
-  if (!CRM_INQUIRY_URL) return;
-  const crmPayload = buildCrmPayload(lead);
-  const response = await fetch(CRM_INQUIRY_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(crmPayload),
-  });
-  if (!response.ok) {
-    throw new Error(`CRM submission failed: HTTP ${response.status}`);
-  }
-};
 
 const COMMON_EMAIL_DOMAINS = [
   "gmail.com",
@@ -191,7 +146,6 @@ const ChatWidget = ({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
     // Always clear previous session to ensure fresh start every visit
     try {
       localStorage.removeItem(USER_INFO_STORAGE_KEY);
@@ -236,8 +190,8 @@ const ChatWidget = ({
     { key: "phone", label: "Phone", placeholder: "Enter your phone number" },
     {
       key: "company",
-      label: "Company",
-      placeholder: "Enter your company name",
+      label: "Project Details",
+      placeholder: "Describe your project or company",
     },
   ];
 
@@ -310,11 +264,7 @@ const ChatWidget = ({
         company: company.trim(),
       };
 
-      const endpoint = CHATBOT_API_BASE
-        ? `${CHATBOT_API_BASE}/chatbot/form-submit`
-        : "/api/form-submit";
-
-      const res = await fetch(endpoint, {
+      const res = await fetch("/api/form-submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -323,16 +273,6 @@ const ChatWidget = ({
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data?.error || `Failed to submit: HTTP ${res.status}`);
-      }
-
-      try {
-        await submitCrmInquiry(payload);
-      } catch (crmError) {
-        console.error("CRM submission error", crmError);
-        throw new Error(
-          crmError?.message ||
-          "Details saved but CRM update failed. Please try again in a moment."
-        );
       }
 
       localStorage.setItem(
@@ -395,7 +335,7 @@ const ChatWidget = ({
     const mobileBottom = (mobileBottomOffset ?? bottomOffset + 24) + safeInset;
     return {
       position: "fixed",
-      right: isMobile ? "12px" : `${rightOffset}px`,
+      right: isMobile ? "16px" : `${rightOffset}px`,
       bottom: isMobile ? `${mobileBottom}px` : `${bottomOffset}px`,
       zIndex: 9999,
       display: "flex",
@@ -409,10 +349,15 @@ const ChatWidget = ({
 
   const panelStyles = useMemo(() => {
     const sidePadding = isMobile ? 8 : 0;
+    const size = isMobile ? 56 : 68;
     const currentBottom = isMobile
       ? mobileBottomOffset ?? bottomOffset + 24
       : bottomOffset;
     const topMargin = isMobile ? mobileTopReserve : desktopTopReserve;
+    
+    // Account for launcher button size and gap (12px) in the bottom spacing
+    const panelBottomOffset = currentBottom + size + 12;
+
     const viewportHeight =
       typeof window !== "undefined" ? window.innerHeight : 900;
     const viewportWidth =
@@ -425,20 +370,21 @@ const ChatWidget = ({
         ? "calc(100% - 24px)"
         : isMobile
         ? `calc(100% - ${sidePadding * 2}px)`
-        : "min(380px, 94vw)",
-      height: `min(${desired}, calc(100vh - ${currentBottom + topMargin}px))`,
+        : "min(420px, 94vw)",
+      height: `min(${desired}, calc(100vh - ${panelBottomOffset + topMargin}px))`,
       background:
-        "radial-gradient(circle at 90% 10%, rgba(0, 242, 254, 0.08) 0%, transparent 50%), linear-gradient(180deg, rgba(4, 13, 33, 0.96) 0%, rgba(9, 30, 62, 0.94) 100%)",
-      borderRadius: isMobile ? "22px 22px 0 22px" : "26px",
+        "radial-gradient(circle at 90% 10%, rgba(0, 229, 255, 0.08) 0%, transparent 50%), linear-gradient(180deg, #031225 0%, #020b18 100%)",
+      borderRadius: isMobile ? "22px 22px 0 22px" : "24px",
       boxShadow:
-        "0 24px 64px rgba(1, 6, 18, 0.72), 0 0 0 1px rgba(255, 255, 255, 0.06) inset",
-      border: "1px solid rgba(255, 255, 255, 0.08)",
+        "0 24px 64px rgba(1, 6, 18, 0.72), 0 0 0 1px rgba(255, 255, 255, 0.06) inset, 0 0 40px rgba(0, 229, 255, 0.05)",
+      border: "1px solid rgba(0, 229, 255, 0.15)",
       overflow: "hidden",
-      backdropFilter: "blur(20px)",
+      backdropFilter: "blur(24px)",
       display: open ? "flex" : "none",
       flexDirection: "column",
       pointerEvents: "auto",
       transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+      animation: open ? "slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards" : "none",
     };
   }, [
     open,
@@ -450,15 +396,15 @@ const ChatWidget = ({
   ]);
 
   const headerStyles = {
-    padding: isMobile ? "16px 18px" : "18px 20px",
-    background: "rgba(3,11,26,0.94)",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+    padding: isMobile ? "18px 20px" : "20px 24px",
+    background: "rgba(8, 22, 45, 0.85)",
+    borderBottom: "1.5px solid rgba(0, 229, 255, 0.12)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    color: "#f8fafc",
-    minHeight: 58,
-    backdropFilter: "blur(16px)",
+    color: "#ffffff",
+    minHeight: 64,
+    backdropFilter: "blur(24px)",
   };
 
   const inputBarStyles = {
@@ -655,7 +601,62 @@ const ChatWidget = ({
 
   return (
     <div style={containerStyles} aria-live="polite">
+      <style>{`
+        @keyframes ping {
+          0% { transform: scale(1); opacity: 1; }
+          70%, 100% { transform: scale(2.2); opacity: 0; }
+        }
+        @keyframes pulseProgress {
+          0%, 100% { opacity: 0.65; }
+          50% { opacity: 1; }
+        }
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          20%, 60% { transform: translateX(-4px); }
+          40%, 80% { transform: translateX(4px); }
+        }
+        @keyframes slideUpFade {
+          from {
+            opacity: 0;
+            transform: translateY(16px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .btn-hover-gradient:hover {
+          transform: scale(1.02);
+          box-shadow: 0 10px 24px rgba(0, 229, 255, 0.4) !important;
+        }
+        .btn-active-scale:active {
+          transform: scale(0.97) !important;
+        }
+        .ghost-btn-style {
+          border: 1.5px solid rgba(255, 255, 255, 0.08) !important;
+          color: #94a3b8 !important;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .ghost-btn-style:hover {
+          background: rgba(255, 255, 255, 0.05) !important;
+          color: #ffffff !important;
+          border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+        .close-btn-style {
+          color: #94a3b8;
+          transition: color 0.2s ease;
+        }
+        .close-btn-style:hover {
+          color: #ffffff;
+        }
+      `}</style>
+
       <div style={panelStyles} role="dialog" aria-label="SecureDApp chat">
+        {/* Header Section */}
         <div style={headerStyles}>
           <div
             style={{
@@ -667,16 +668,63 @@ const ChatWidget = ({
               overflow: "hidden",
             }}
           >
-            <span
-              style={{
-                width: 14,
-                height: 14,
-                borderRadius: 7,
-                background: "#2ce6c2",
-                boxShadow: "0 0 16px rgba(44,230,194,0.55)",
-                display: "inline-block",
-              }}
-            />
+            {/* Custom Glowing Brand Avatar */}
+            <div style={{ position: "relative", flexShrink: 0 }}>
+              <div
+                style={{
+                  width: 42,
+                  height: 42,
+                  borderRadius: "50%",
+                  background: "rgba(0, 229, 255, 0.08)",
+                  border: "1.5px solid rgba(0, 229, 255, 0.25)",
+                  display: "grid",
+                  placeItems: "center",
+                  boxShadow: "0 0 12px rgba(0, 229, 255, 0.1) inset",
+                }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#00E5FF"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              {/* Pulsing Active Indicator */}
+              <span
+                style={{
+                  position: "absolute",
+                  bottom: -1,
+                  right: -1,
+                  width: 12,
+                  height: 12,
+                  borderRadius: "50%",
+                  background: "#00FF99",
+                  border: "2px solid #031225",
+                  boxShadow: "0 0 8px rgba(0, 255, 153, 0.6)",
+                }}
+              >
+                <span
+                  style={{
+                    position: "absolute",
+                    top: -2,
+                    left: -2,
+                    right: -2,
+                    bottom: -2,
+                    borderRadius: "50%",
+                    border: "2px solid #00FF99",
+                    opacity: 0.8,
+                    animation: "ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite",
+                  }}
+                />
+              </span>
+            </div>
+
             <div style={{ minWidth: 0 }}>
               <strong
                 style={{
@@ -686,7 +734,10 @@ const ChatWidget = ({
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   lineHeight: 1.25,
-                  fontSize: isMobile ? 16 : 19,
+                  fontSize: isMobile ? 16 : 18,
+                  fontWeight: 800,
+                  letterSpacing: "-0.02em",
+                  color: "#ffffff",
                 }}
               >
                 {ASSISTANT_NAME}
@@ -694,404 +745,665 @@ const ChatWidget = ({
               <span
                 style={{
                   display: "block",
-                  color: "#9ab6d8",
-                  fontSize: 12,
-                  letterSpacing: 0.2,
+                  color: "#94a3b8",
+                  fontSize: 11,
+                  fontWeight: 500,
                 }}
               >
                 Blockchain security assistant
               </span>
             </div>
           </div>
+          
+          {/* Clean Thin Close Button */}
           <button
             onClick={() => setOpen(false)}
             aria-label="Close chat"
             style={{
               background: "transparent",
-              color: "#fff",
               border: "none",
               cursor: "pointer",
-              fontSize: 18,
+              padding: 4,
+              display: "grid",
+              placeItems: "center",
             }}
+            className="close-btn-style"
           >
-            ×
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           </button>
         </div>
 
+        {/* Lead-Capture or Chat Content */}
         {showForm ? (
-          <form
-            onSubmit={handleFormSubmit}
-            className="premium-form-step"
-            style={{ padding: isMobile ? 18 : 22, display: "grid", gap: 16 }}
-            aria-label="User Information"
-          >
-            <div
-              style={{
-                color: "#e2e8f0",
-                fontWeight: 600,
-                fontSize: isMobile ? 15 : 16,
-              }}
-            >
-              Let us know how to reach you
-            </div>
-
-            <div style={{ display: "grid", gap: 10 }}>
-              <label
+          (() => {
+            const currentField = fieldOrder[formStep];
+            const hasValue = !!(formData[currentField?.key] ?? "").trim();
+            const isFloating = isInputFocused || hasValue;
+            
+            return (
+              <form
+                onSubmit={handleFormSubmit}
+                className="premium-form-step"
                 style={{
-                  color: "#8ea5c7",
-                  fontSize: 11,
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
+                  padding: isMobile ? "20px 18px" : "28px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                  overflowY: "auto",
                 }}
-                htmlFor={`chat-form-${fieldOrder[formStep]?.key}`}
+                aria-label="User Information"
               >
-                {fieldOrder[formStep]?.label}
-              </label>
-              <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-                <span
-                  style={{
-                    position: "absolute",
-                    left: 14,
-                    color: isInputFocused ? "#00f2fe" : "#8ea5c7",
-                    transition: "color 0.2s ease",
-                    display: "flex",
-                    alignItems: "center",
-                    pointerEvents: "none",
-                  }}
-                >
-                  {FieldIcons[fieldOrder[formStep]?.key]}
-                </span>
-                <input
-                  id={`chat-form-${fieldOrder[formStep]?.key}`}
-                  value={formData[fieldOrder[formStep]?.key] ?? ""}
-                  onChange={(e) => {
-                    clearFieldError(fieldOrder[formStep]?.key);
-                    setGlobalError("");
-                    setFormData((s) => ({
-                      ...s,
-                      [fieldOrder[formStep]?.key]: e.target.value,
-                    }));
-                  }}
-                  onFocus={() => setIsInputFocused(true)}
-                  onBlur={() => setIsInputFocused(false)}
-                  placeholder={fieldOrder[formStep]?.placeholder}
-                  aria-label={fieldOrder[formStep]?.label}
-                  inputMode={
-                    fieldOrder[formStep]?.key === "phone"
-                      ? "tel"
-                      : fieldOrder[formStep]?.key === "email"
-                        ? "email"
-                        : "text"
-                  }
-                  style={{
-                    width: "100%",
-                    padding: "13px 16px 13px 44px",
-                    borderRadius: 14,
-                    border: isInputFocused
-                      ? "1px solid rgba(0, 242, 254, 0.5)"
-                      : "1px solid rgba(255, 255, 255, 0.08)",
-                    background: "rgba(5, 19, 44, 0.6)",
-                    color: "#f8fafc",
-                    boxShadow: isInputFocused
-                      ? "0 0 16px rgba(0, 242, 254, 0.15)"
-                      : "0 16px 44px rgba(5,29,62,0.3)",
-                    transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
-                    outline: "none",
-                  }}
-                  autoFocus
-                />
-              </div>
-              {fieldErrors[fieldOrder[formStep]?.key] && (
-                <div
-                  role="alert"
-                  aria-live="assertive"
-                  style={{
-                    color: "#f87171",
-                    fontSize: 12,
-                    lineHeight: 1.4,
-                    background: "rgba(248, 113, 113, 0.12)",
-                    border: "1px solid rgba(248, 113, 113, 0.35)",
-                    borderRadius: 12,
-                    padding: "8px 12px",
-                  }}
-                >
-                  {fieldErrors[fieldOrder[formStep]?.key]}
+                {/* Multi-step progress indicator */}
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: 8,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 10,
+                        fontWeight: 800,
+                        color: "#00E5FF",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      Step {formStep + 1} of 4
+                    </span>
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        color: "#64748b",
+                      }}
+                    >
+                      {currentField?.label}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 6,
+                      height: 4,
+                      background: "rgba(255, 255, 255, 0.03)",
+                      borderRadius: 2,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {[0, 1, 2, 3].map((step) => {
+                      const isActive = formStep === step;
+                      const isCompleted = formStep > step;
+                      return (
+                        <div
+                          key={`step-indicator-${step}`}
+                          style={{
+                            flex: 1,
+                            height: "100%",
+                            borderRadius: 2,
+                            background: isCompleted
+                              ? "#00FF99"
+                              : isActive
+                              ? "linear-gradient(90deg, #00E5FF 0%, #4F9DFF 100%)"
+                              : "rgba(255, 255, 255, 0.06)",
+                            boxShadow: isActive ? "0 0 8px rgba(0, 229, 255, 0.4)" : "none",
+                            transition: "all 0.4s ease",
+                            animation: isActive ? "pulseProgress 1.6s ease-in-out infinite" : "none",
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
-              )}
+
+                <div
+                  style={{
+                    color: "#e2e8f0",
+                    fontWeight: 700,
+                    fontSize: isMobile ? 15 : 17,
+                    letterSpacing: "-0.01em",
+                    marginBottom: 2,
+                  }}
+                >
+                  Let us know how to reach you
+                </div>
+
+                {/* Input with Floating Label and perfect left icon alignment */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                  <div
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      alignItems: "center",
+                      height: 56,
+                      width: "100%",
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: "absolute",
+                        left: 16,
+                        color: fieldErrors[currentField?.key]
+                          ? "#f87171"
+                          : isInputFocused
+                          ? "#00E5FF"
+                          : "#64748b",
+                        transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+                        display: "flex",
+                        alignItems: "center",
+                        pointerEvents: "none",
+                        zIndex: 10,
+                      }}
+                    >
+                      {FieldIcons[currentField?.key]}
+                    </span>
+                    
+                    <input
+                      id={`chat-form-${currentField?.key}`}
+                      value={formData[currentField?.key] ?? ""}
+                      onChange={(e) => {
+                        clearFieldError(currentField?.key);
+                        setGlobalError("");
+                        setFormData((s) => ({
+                          ...s,
+                          [currentField?.key]: e.target.value,
+                        }));
+                      }}
+                      onFocus={() => setIsInputFocused(true)}
+                      onBlur={() => setIsInputFocused(false)}
+                      aria-label={currentField?.label}
+                      inputMode={
+                        currentField?.key === "phone"
+                          ? "tel"
+                          : currentField?.key === "email"
+                          ? "email"
+                          : "text"
+                      }
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        padding: isFloating ? "22px 16px 6px 48px" : "16px 16px 16px 48px",
+                        borderRadius: 14,
+                        border: fieldErrors[currentField?.key]
+                          ? "1.5px solid rgba(239, 68, 68, 0.5)"
+                          : isInputFocused
+                          ? "1.5px solid rgba(0, 229, 255, 0.5)"
+                          : "1.5px solid rgba(255, 255, 255, 0.08)",
+                        background: "rgba(8, 22, 45, 0.6)",
+                        color: "#ffffff",
+                        boxShadow: fieldErrors[currentField?.key]
+                          ? "0 0 16px rgba(239, 68, 68, 0.12)"
+                          : isInputFocused
+                          ? "0 0 16px rgba(0, 229, 255, 0.16)"
+                          : "none",
+                        transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+                        outline: "none",
+                        fontSize: 15,
+                        fontFamily: "inherit",
+                      }}
+                      autoFocus
+                    />
+                    
+                    <label
+                      htmlFor={`chat-form-${currentField?.key}`}
+                      style={{
+                        position: "absolute",
+                        left: 48,
+                        top: isFloating ? 8 : 18,
+                        fontSize: isFloating ? 10 : 14,
+                        color: fieldErrors[currentField?.key]
+                          ? "#f87171"
+                          : isInputFocused
+                          ? "#00E5FF"
+                          : "#94a3b8",
+                        fontWeight: isFloating ? 700 : 500,
+                        textTransform: isFloating ? "uppercase" : "none",
+                        letterSpacing: isFloating ? "0.08em" : "normal",
+                        transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+                        pointerEvents: "none",
+                        zIndex: 10,
+                      }}
+                    >
+                      {currentField?.label}
+                    </label>
+                  </div>
+
+                  {/* Shaker Validation alert box */}
+                  {fieldErrors[currentField?.key] && (
+                    <div
+                      role="alert"
+                      aria-live="assertive"
+                      style={{
+                        color: "#f87171",
+                        fontSize: 12,
+                        lineHeight: 1.4,
+                        background: "rgba(239, 68, 68, 0.08)",
+                        border: "1px solid rgba(239, 68, 68, 0.25)",
+                        borderRadius: 10,
+                        padding: "8px 12px",
+                        marginTop: 2,
+                        animation: "shake 0.4s ease-in-out",
+                      }}
+                    >
+                      {fieldErrors[currentField?.key]}
+                    </div>
+                  )}
+                </div>
+
+                {globalError && (
+                  <div
+                    role="alert"
+                    aria-live="assertive"
+                    style={{
+                      color: "#f87171",
+                      fontSize: 12,
+                      lineHeight: 1.4,
+                      background: "rgba(239, 68, 68, 0.08)",
+                      border: "1px solid rgba(239, 68, 68, 0.25)",
+                      borderRadius: 10,
+                      padding: "8px 12px",
+                    }}
+                  >
+                    {globalError}
+                  </div>
+                )}
+
+                {/* Form Buttons */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 12,
+                    marginTop: 8,
+                  }}
+                >
+                  {formStep > 0 && (
+                    <button
+                      type="button"
+                      onClick={retreatStep}
+                      disabled={savingInfo}
+                      style={{
+                        flex: 1,
+                        background: "transparent",
+                        borderRadius: 12,
+                        height: 48,
+                        fontWeight: 600,
+                        fontSize: 14,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 6,
+                      }}
+                      className="ghost-btn-style btn-active-scale"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12" />
+                        <polyline points="12 19 5 12 12 5" />
+                      </svg>
+                      Back
+                    </button>
+                  )}
+                  
+                  <button
+                    type="submit"
+                    disabled={savingInfo}
+                    style={{
+                      flex: 2,
+                      background: savingInfo
+                        ? "rgba(18,121,102,0.8)"
+                        : "linear-gradient(135deg, #00E5FF 0%, #4F9DFF 100%)",
+                      color: "#020813",
+                      border: "none",
+                      borderRadius: 12,
+                      height: 48,
+                      fontWeight: 700,
+                      fontSize: 14,
+                      cursor: savingInfo ? "wait" : "pointer",
+                      transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+                      boxShadow: savingInfo ? "none" : "0 8px 20px rgba(0, 229, 255, 0.25)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: 6,
+                    }}
+                    className="btn-hover-gradient btn-active-scale"
+                  >
+                    {savingInfo ? (
+                      <>
+                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style={{ animation: "spin 1s linear infinite" }}>
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Submitting...
+                      </>
+                    ) : formStep < fieldOrder.length - 1 ? (
+                      <>
+                        Next
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </>
+                    ) : (
+                      <>
+                        Start Chat
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Trust and security badges */}
+                <div
+                  style={{
+                    marginTop: 8,
+                    paddingTop: 16,
+                    borderTop: "1.5px solid rgba(255, 255, 255, 0.04)",
+                    display: "grid",
+                    gap: 10,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      fontSize: 11,
+                      color: "#64748b",
+                      fontWeight: 500,
+                    }}
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#00E5FF"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <span>🔒 Your information is secure and encrypted</span>
+                  </div>
+                  
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      fontSize: 11,
+                      color: "#64748b",
+                      fontWeight: 500,
+                    }}
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#00FF99"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <span>⚡ Average response time: <strong>&lt; 1 hour</strong></span>
+                  </div>
+                  
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 10,
+                      fontSize: 11,
+                      color: "#64748b",
+                      fontWeight: 500,
+                    }}
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#4F9DFF"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                    <span>100% confidential consultation</span>
+                  </div>
+                </div>
+              </form>
+            );
+          })()
+        ) : (
+          <>
+            <div
+              ref={listRef}
+              className="cipher-scroll"
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: "auto",
+                background: "transparent",
+                padding: isMobile ? "8px" : "12px",
+              }}
+            >
+              <MessageList
+                className="message-list"
+                lockable={true}
+                toBottomHeight={"100%"}
+                dataSource={messages}
+                aria-label="Conversation"
+              />
             </div>
+
+            {typing && (
+              <div
+                style={{
+                  padding: "8px 16px",
+                  fontSize: 12,
+                  opacity: 0.85,
+                  color: "#cbd5e1",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
+                <div style={{ display: "flex", gap: 4 }}>
+                  <div
+                    style={{
+                      width: 6,
+                      height: 6,
+                      background: "#5ca4ff",
+                      borderRadius: "50%",
+                      animation: "typingDot 1.4s infinite ease-in-out",
+                    }}
+                  />
+                  <div
+                    style={{
+                      width: 6,
+                      height: 6,
+                      background: "#5ca4ff",
+                      borderRadius: "50%",
+                      animation: "typingDot 1.4s infinite ease-in-out 0.2s",
+                    }}
+                  />
+                  <div
+                    style={{
+                      width: 6,
+                      height: 6,
+                      background: "#5ca4ff",
+                      borderRadius: "50%",
+                      animation: "typingDot 1.4s infinite ease-in-out 0.4s",
+                    }}
+                  />
+                </div>
+                {ASSISTANT_NAME} is typing…
+                <style>{`
+                  @keyframes typingDot {
+                    0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
+                    40% { opacity: 1; transform: translateY(-2px); }
+                  }
+                `}</style>
+              </div>
+            )}
 
             <div
               style={{
+                padding: "6px 10px",
                 display: "flex",
-                justifyContent: "space-between",
-                gap: 12,
+                flexWrap: "wrap",
+                gap: 6,
+                overflowX: "auto",
               }}
             >
-              <button
-                type="button"
-                onClick={retreatStep}
-                disabled={formStep === 0 || savingInfo}
-                style={{
-                  flex: 1,
-                  background: "rgba(255, 255, 255, 0.03)",
-                  color: formStep === 0 ? "rgba(255,255,255,0.25)" : "#dceafe",
-                  border: "1px solid rgba(255, 255, 255, 0.08)",
-                  borderRadius: 14,
-                  padding: "12px 14px",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  cursor: formStep === 0 ? "not-allowed" : "pointer",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                Back
-              </button>
-              <button
-                type="submit"
-                disabled={savingInfo}
-                style={{
-                  flex: 1,
-                  background: savingInfo
-                    ? "rgba(18,121,102,0.9)"
-                    : "linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)",
-                  opacity: savingInfo ? 0.7 : 1,
-                  color: "#030a1c",
-                  border: "none",
-                  borderRadius: 14,
-                  padding: "12px 16px",
-                  fontWeight: 700,
-                  fontSize: 14,
-                  cursor: savingInfo ? "wait" : "pointer",
-                  transition: "all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)",
-                  boxShadow: savingInfo
-                    ? "none"
-                    : "0 8px 24px rgba(0, 242, 254, 0.2)",
-                }}
-              >
-                {formStep < fieldOrder.length - 1
-                  ? "Next"
-                  : savingInfo
-                    ? "Saving..."
-                    : "Start Chat"}
-              </button>
+              {guidedFlowStep && guidedFlow[guidedFlowStep]?.options
+                ? guidedFlow[guidedFlowStep].options.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => handleGuidedFlowReply(option)}
+                    style={{
+                      background: "rgba(59,130,246,0.18)",
+                      color: "#e2e8f0",
+                      border: "1px solid rgba(148,163,184,0.15)",
+                      borderRadius: 16,
+                      padding: "6px 12px",
+                      fontSize: 12,
+                      letterSpacing: 0.2,
+                      cursor: "pointer",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                ))
+                : quickReplies.map((q) => (
+                  <button
+                    key={q.id}
+                    onClick={() => handleQuickReply(q.id)}
+                    disabled={!!guidedFlowStep}
+                    style={{
+                      background: !!guidedFlowStep
+                        ? "rgba(15,23,42,0.6)"
+                        : "rgba(59,130,246,0.18)",
+                      color: "#e2e8f0",
+                      border: "1px solid rgba(148,163,184,0.15)",
+                      borderRadius: 16,
+                      padding: "6px 12px",
+                      fontSize: 12,
+                      letterSpacing: 0.2,
+                      cursor: !!guidedFlowStep ? "not-allowed" : "pointer",
+                      opacity: !!guidedFlowStep ? 0.55 : 1,
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    {q.label}
+                  </button>
+                ))}
             </div>
-          </form>
-        ) : (
-          <div
-            ref={listRef}
-            className="cipher-scroll"
-            style={{
-              flex: 1,
-              minHeight: 0,
-              overflowY: "auto",
-              background: "transparent",
-              padding: isMobile ? "8px" : "12px",
-            }}
-          >
-            <MessageList
-              className="message-list"
-              lockable={true}
-              toBottomHeight={"100%"}
-              dataSource={messages}
-              aria-label="Conversation"
-            />
-          </div>
-        )}
 
-        {typing && (
-          <div
-            style={{
-              padding: "8px 16px",
-              fontSize: 12,
-              opacity: 0.85,
-              color: "#cbd5e1",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-          >
-            <div style={{ display: "flex", gap: 4 }}>
+            {globalError && (
               <div
+                role="alert"
+                aria-live="assertive"
                 style={{
-                  width: 6,
-                  height: 6,
-                  background: "#5ca4ff",
-                  borderRadius: "50%",
-                  animation: "typingDot 1.4s infinite ease-in-out",
-                }}
-              />
-              <div
-                style={{
-                  width: 6,
-                  height: 6,
-                  background: "#5ca4ff",
-                  borderRadius: "50%",
-                  animation: "typingDot 1.4s infinite ease-in-out 0.2s",
-                }}
-              />
-              <div
-                style={{
-                  width: 6,
-                  height: 6,
-                  background: "#5ca4ff",
-                  borderRadius: "50%",
-                  animation: "typingDot 1.4s infinite ease-in-out 0.4s",
-                }}
-              />
-            </div>
-            {ASSISTANT_NAME} is typing…
-            <style>{`
-              @keyframes typingDot {
-                0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
-                40% { opacity: 1; transform: translateY(-2px); }
-              }
-              @keyframes slideFadeIn {
-                from { opacity: 0; transform: translateY(8px); }
-                to { opacity: 1; transform: translateY(0); }
-              }
-              .premium-form-step {
-                animation: slideFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-              }
-            `}</style>
-          </div>
-        )}
-
-        <div
-          style={{
-            padding: "6px 10px",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 6,
-            overflowX: "auto",
-            opacity: showForm ? 0.5 : 1,
-          }}
-        >
-          {guidedFlowStep && guidedFlow[guidedFlowStep]?.options
-            ? guidedFlow[guidedFlowStep].options.map((option) => (
-              <button
-                key={option.id}
-                onClick={() => handleGuidedFlowReply(option)}
-                style={{
-                  background: "rgba(59,130,246,0.18)",
-                  color: "#e2e8f0",
-                  border: "1px solid rgba(148,163,184,0.15)",
-                  borderRadius: 16,
-                  padding: "6px 12px",
+                  color: "#f87171",
                   fontSize: 12,
-                  letterSpacing: 0.2,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
+                  lineHeight: 1.4,
+                  background: "rgba(248, 113, 113, 0.12)",
+                  border: "1px solid rgba(248, 113, 113, 0.35)",
+                  borderRadius: 12,
+                  padding: "8px 12px",
+                  margin: "6px 16px",
                 }}
               >
-                {option.label}
-              </button>
-            ))
-            : quickReplies.map((q) => (
+                {globalError}
+              </div>
+            )}
+
+            <div style={inputBarStyles}>
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
+                placeholder={
+                  guidedFlowStep ? "Select an option above" : "Type your message…"
+                }
+                aria-label="Type your message"
+                style={{
+                  flex: 1,
+                  background: "rgba(4,18,42,0.84)",
+                  color: "#f8fafc",
+                  border: "1px solid rgba(55,122,228,0.3)",
+                  borderRadius: 16,
+                  padding: "13px 18px",
+                  outline: "none",
+                  transition: "border 0.2s ease, box-shadow 0.2s ease",
+                  boxShadow: "0 18px 42px rgba(4,26,56,0.4)",
+                }}
+                disabled={!!guidedFlowStep}
+              />
               <button
-                key={q.id}
-                onClick={() => handleQuickReply(q.id)}
-                disabled={showForm || !!guidedFlowStep}
+                onClick={handleSend}
+                disabled={!!guidedFlowStep || !input.trim()}
                 style={{
                   background:
-                    showForm || !!guidedFlowStep
-                      ? "rgba(15,23,42,0.6)"
-                      : "rgba(59,130,246,0.18)",
-                  color: "#e2e8f0",
-                  border: "1px solid rgba(148,163,184,0.15)",
+                    input.trim() && !guidedFlowStep
+                      ? "linear-gradient(135deg, #30e0be 0%, #1e8fff 100%)"
+                      : "rgba(4,18,42,0.7)",
+                  color:
+                    input.trim() && !guidedFlowStep
+                      ? "#021530"
+                      : "#9fb4d2",
+                  border: "none",
                   borderRadius: 16,
-                  padding: "6px 12px",
-                  fontSize: 12,
-                  letterSpacing: 0.2,
+                  padding: "12px 20px",
+                  fontWeight: 700,
                   cursor:
-                    showForm || !!guidedFlowStep ? "not-allowed" : "pointer",
-                  opacity: showForm || !!guidedFlowStep ? 0.55 : 1,
-                  transition: "all 0.2s ease",
+                    input.trim() && !guidedFlowStep
+                      ? "pointer"
+                      : "not-allowed",
+                  transition: "opacity 0.2s ease, transform 0.2s ease",
                 }}
+                aria-disabled={!input.trim() || !!guidedFlowStep}
               >
-                {q.label}
+                Send
               </button>
-            ))}
-        </div>
-
-        {globalError && (
-          <div
-            role="alert"
-            aria-live="assertive"
-            style={{
-              color: "#f87171",
-              fontSize: 12,
-              lineHeight: 1.4,
-              background: "rgba(248, 113, 113, 0.12)",
-              border: "1px solid rgba(248, 113, 113, 0.35)",
-              borderRadius: 12,
-              padding: "8px 12px",
-              margin: "6px 16px",
-            }}
-          >
-            {globalError}
-          </div>
+            </div>
+          </>
         )}
-
-        <div
-          style={{
-            ...inputBarStyles,
-            opacity: showForm || !!guidedFlowStep ? 0.6 : 1,
-          }}
-        >
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-            placeholder={
-              guidedFlowStep ? "Select an option above" : "Type your message…"
-            }
-            aria-label="Type your message"
-            style={{
-              flex: 1,
-              background: "rgba(4,18,42,0.84)",
-              color: "#f8fafc",
-              border: "1px solid rgba(55,122,228,0.3)",
-              borderRadius: 16,
-              padding: "13px 18px",
-              outline: "none",
-              transition: "border 0.2s ease, box-shadow 0.2s ease",
-              boxShadow: showForm ? "none" : "0 18px 42px rgba(4,26,56,0.4)",
-            }}
-            disabled={showForm || !!guidedFlowStep}
-          />
-          <button
-            onClick={handleSend}
-            disabled={showForm || !!guidedFlowStep}
-            style={{
-              background:
-                !showForm && input.trim() && !guidedFlowStep
-                  ? "linear-gradient(135deg, #30e0be 0%, #1e8fff 100%)"
-                  : "rgba(4,18,42,0.7)",
-              color:
-                !showForm && input.trim() && !guidedFlowStep
-                  ? "#021530"
-                  : "#9fb4d2",
-              border: "none",
-              borderRadius: 16,
-              padding: "12px 20px",
-              fontWeight: 700,
-              cursor:
-                !showForm && input.trim() && !guidedFlowStep
-                  ? "pointer"
-                  : "not-allowed",
-              transition: "opacity 0.2s ease, transform 0.2s ease",
-            }}
-            aria-disabled={showForm || !input.trim() || !!guidedFlowStep}
-          >
-            Send
-          </button>
-        </div>
       </div>
 
       {(() => {
@@ -1109,54 +1421,68 @@ const ChatWidget = ({
           cursor: "pointer",
           boxShadow:
             "0 10px 24px rgba(16, 185, 129, 0.35), 0 0 0 2px rgba(255,255,255,0.08) inset",
+          transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         };
         return (
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close chat" : "Open chat"}
-            style={{ ...dynamicLauncherStyles, pointerEvents: "auto" }}
-            title={open ? "Close chat" : "Chat with SecureDApp"}
-          >
-            {open ? (
-              // Close icon (high contrast)
-              <svg
-                width={isMobile ? 20 : 22}
-                height={isMobile ? 20 : 22}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                style={{ filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.35))" }}
+          <div style={{ position: "relative", pointerEvents: "auto" }} className="group">
+            <button
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close chat" : "Open chat"}
+              style={dynamicLauncherStyles}
+              className="hover:scale-110 hover:-translate-y-0.5 hover:shadow-[0_15px_30px_rgba(16,185,129,0.5),_0_0_0_2px_rgba(255,255,255,0.15)_inset]"
+              title={open ? "Close chat" : "Chat with SecureDApp"}
+            >
+              {open ? (
+                // Close icon (high contrast)
+                <svg
+                  width={isMobile ? 20 : 22}
+                  height={isMobile ? 20 : 22}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  style={{ filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.35))" }}
+                >
+                  <path
+                    d="M6 6l12 12M18 6L6 18"
+                    stroke="#ffffff"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                // Shield icon (solid white strokes for visibility)
+                <svg
+                  width={isMobile ? 26 : 30}
+                  height={isMobile ? 26 : 30}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  style={{ filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.35))" }}
+                >
+                  <path
+                    d="M12 3l6 2v5c0 5-3.4 8.6-6 9.8C9.4 18.6 6 15 6 10V5l6-2z"
+                    fill="#ffffff"
+                  />
+                  <path
+                    d="M9.5 11.5l2 2 3.5-3.5"
+                    fill="none"
+                    stroke="#0b1222"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </button>
+            {!open && (
+              <div
+                className="absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 scale-95 pointer-events-none transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 bg-[#030b1a] text-slate-100 text-xs font-semibold py-2 px-3.5 rounded-xl border border-sky-500/30 shadow-2xl whitespace-nowrap"
+                style={{
+                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(14, 165, 233, 0.1)",
+                }}
               >
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="#ffffff"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                />
-              </svg>
-            ) : (
-              // Shield icon (solid white strokes for visibility)
-              <svg
-                width={isMobile ? 26 : 30}
-                height={isMobile ? 26 : 30}
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                style={{ filter: "drop-shadow(0 1px 1px rgba(0,0,0,0.35))" }}
-              >
-                <path
-                  d="M12 3l6 2v5c0 5-3.4 8.6-6 9.8C9.4 18.6 6 15 6 10V5l6-2z"
-                  fill="#ffffff"
-                />
-                <path
-                  d="M9.5 11.5l2 2 3.5-3.5"
-                  fill="none"
-                  stroke="#0b1222"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                Chat with Security AI
+              </div>
             )}
-          </button>
+          </div>
         );
       })()}
     </div>

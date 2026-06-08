@@ -120,6 +120,25 @@ const MetaTags = ({ data }) => {
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>{data.title}</title>
+      
+      {/* Resource Hints to pre-resolve domains */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+      {/* Hero Image Preload for LCP Improvement on Homepage */}
+      {isHomePage && (
+        <link
+          rel="preload"
+          href="/assets/images/ProductPages/ss/hero.webp"
+          as="image"
+          type="image/webp"
+        />
+      )}
+
       <meta name="author" content="SecureDapp" />
       <meta name="theme-color" content="#000000" />
 

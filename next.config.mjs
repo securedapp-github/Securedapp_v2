@@ -155,6 +155,37 @@ const nextConfig = {
         destination: "/solidity-smart-contract-vulnerabilities",
         permanent: true,
       },
+      // 301 Redirects for GSC URL Issues
+      {
+        source: "/blog/%20ai-smart-contract-audits-defi-security",
+        destination: "/blog/ai-smart-contract-audits-defi-security",
+        permanent: true,
+      },
+      {
+        source: "/blog/%C2%A0ai-smart-contract-audits-defi-security",
+        destination: "/blog/ai-smart-contract-audits-defi-security",
+        permanent: true,
+      },
+      {
+        source: "/blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash%20",
+        destination: "/blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash",
+        permanent: true,
+      },
+      {
+        source: "/blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash%C2%A0",
+        destination: "/blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash",
+        permanent: true,
+      },
+      {
+        source: "/our-services",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/our-services/",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };
