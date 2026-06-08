@@ -47,14 +47,13 @@ import "../components/productService/ProductWhyCard.css";
 import "../pageComponents/home/HomePage.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
-import { solidityShieldScanStore } from "../SolidityShield/redux/store";
 const ScanNowModal = dynamic(() => import("../SolidityShield/components/modal/ScanNowModal"), { ssr: false });
 const PaymentModal = dynamic(() => import("../SolidityShield/components/modal/PaymentModal"), { ssr: false });
 const RequestQuoteModal = dynamic(() => import("../SolidityShield/components/modal/RequestQuoteModal"), { ssr: false });
 import { useRouter } from "next/router";
-import { MainLayout } from "../SolidityShield/components/sidebar/Layout";
+const MainLayout = dynamic(() => import("../SolidityShield/components/sidebar/Layout").then((mod) => mod.MainLayout), { ssr: false });
 import MetaTags from "../components/common/MetaTags";
-import Loader from "../SolidityShield/components/common/Loader";
+const Loader = dynamic(() => import("../SolidityShield/components/common/Loader"), { ssr: false });
 import { useEffect, useState } from "react";
 import { setTheme } from "../redux/slices/themeSlice";
 
