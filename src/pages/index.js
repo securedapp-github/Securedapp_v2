@@ -43,7 +43,7 @@ export default function Index() {
     <div className="bg-primary dark:bg-secondary text-secondary dark:text-primary">
       <Home />
       {showChat && (
-        <ChatWidget bottomOffset={100} rightOffset={16} mobileBottomOffset={160} />
+        <ChatWidget bottomOffset={108} rightOffset={24} mobileBottomOffset={84} />
       )}
     </div>
   );

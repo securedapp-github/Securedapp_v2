@@ -138,7 +138,7 @@ export default function BlogPost({ blog }) {
     }
 
     var blog = blogsData.find(
-      (data) => data.url.replace(":", "") === url && data.status === 1
+      (data) => data.url.trim().replace(":", "") === url && data.status === 1
     );
 
     if (!blog) {
@@ -238,7 +238,7 @@ export default function BlogPost({ blog }) {
       // Find blogs that share the same key term
       const related = blogsData.filter((blog) => {
         // Skip the current blog and unpublished blogs
-        if (blog.url.replace(":", "") === url || blog.status !== 1)
+        if (blog.url.trim().replace(":", "") === url || blog.status !== 1)
           return false;
 
         // Get the blog's category
@@ -301,7 +301,7 @@ export default function BlogPost({ blog }) {
 
   const currentBlog = fullData.find(
     (item) =>
-      item.url.replace(":", "").replace("(", "").replace(")", "") ===
+      item.url.trim().replace(":", "").replace("(", "").replace(")", "") ===
       url.replace(":", "").replace("(", "").replace(")", "")
   );
 
@@ -335,7 +335,7 @@ export default function BlogPost({ blog }) {
                   : `https://securedapp.io${blog.image}`
                 : "https://securedapp-v2.vercel.app/assets/images/Home.png",
             keywords: blog.prim_keys || blog.tags,
-            url: `https://blog.securedapp.io/${blog.url.replace(":", "")}`,
+            url: `https://blog.securedapp.io/${blog.url.trim().replace(":", "")}`,
             // Additional meta fields for enhanced SEO
             relatedKeywords: blog.rela_keys,
           }}
@@ -589,7 +589,7 @@ export async function getStaticPaths() {
   try {
     var data = await fetchBlogs();
     const paths = data.map((blog) => ({
-      params: { url: blog.url.replace(":", "") },
+      params: { url: blog.url.trim().replace(":", "") },
     }));
 
     return {
@@ -607,7 +607,7 @@ export async function getStaticProps({ params }) {
   try {
     var data = await fetchBlogs();
     const blog = data.find(
-      (blog) => blog.url.replace(":", "") === params.url.replace(":", "")
+      (blog) => blog.url.trim().replace(":", "") === params.url.replace(":", "")
     );
 
     if (!blog) {

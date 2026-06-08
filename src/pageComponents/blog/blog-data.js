@@ -283,7 +283,7 @@ const blogsData = [
     image:
       "https://i.ibb.co/FqYFDd3/Whats-App-Image-2024-02-01-at-2-20-39-PM-2.jpg",
     category: "smart contracts audit",
-    url: " ai-smart-contract-audits-defi-security",
+    url: "ai-smart-contract-audits-defi-security",
   },
   {
     id: 24,
@@ -793,7 +793,7 @@ const blogsData = [
     status: 1,
     image: "https://i.ibb.co/Nry3wbN/3d-rendering-blockchain-technology.jpg",
     category: "blockchain",
-    url: "managing-supply-chain-with-implementation-of-blockchain-blog-by-akash ",
+    url: "managing-supply-chain-with-implementation-of-blockchain-blog-by-akash",
   },
   {
     id: 58,

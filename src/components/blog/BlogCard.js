@@ -31,7 +31,7 @@ function BlogCard({ details, isMedia = false }) {
     <div
       className="blog-card"
       onClick={() => {
-        details.url && navigate.push(`/blog/${details.url.replace(":", "")}`);
+        details.url && navigate.push(`/blog/${details.url.trim().replace(":", "")}`);
       }}
     >
       <div className="blog-card-header">
@@ -74,7 +74,7 @@ function BlogCard({ details, isMedia = false }) {
               filled={true}
               blogButton={true}
               onClick={() => {
-                navigate.push(`/blog/${details.url}`);
+                navigate.push(`/blog/${details.url.trim()}`);
               }}
             />
           )}

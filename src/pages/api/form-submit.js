@@ -57,6 +57,49 @@ const validateBody = (body) => {
   return sanitized;
 };
 
+const submitChatbotBackend = async (formData) => {
+  const rawApi = process.env.NEXT_PUBLIC_CHATBOT_API || process.env.NEXT_PUBLIC_API_BASE || "";
+  const chatbotApiBase = rawApi.endsWith("/") ? rawApi.slice(0, -1) : rawApi;
+  if (!chatbotApiBase) return;
+
+  const response = await fetch(`${chatbotApiBase}/chatbot/form-submit`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => ({}));
+    throw new Error(data?.error || `Failed to submit to chatbot: HTTP ${response.status}`);
+  }
+};
+
+const submitCrmInquiry = async (formData) => {
+  const url = process.env.NEXT_PUBLIC_CRM_PUBLIC_INQUIRY_URL;
+  if (!url) return;
+
+  const payload = {
+    fullName: formData.name,
+    accountCompany: formData.company || "Not specified",
+    mobile: formData.phone,
+    email: formData.email,
+    serviceOffering: "Dapp Development",
+    message: "Lead captured via SecureBot chatbot form.",
+    agreePrivacy: true,
+    subscribeUpdates: false,
+  };
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`CRM submission failed: HTTP ${response.status}`);
+  }
+};
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -83,6 +126,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    // 1. Submit to Google Sheets
     const sheets = getSheetsClient();
     const spreadsheetId = process.env.GOOGLE_SHEET_ID;
     const sheetName = process.env.GOOGLE_WORKSHEET_NAME || "Sheet1";
@@ -102,12 +146,17 @@ export default async function handler(req, res) {
       },
     });
 
+    // 2. Submit to Chatbot Backend
+    await submitChatbotBackend(formData);
+
+    // 3. Submit to CRM
+    await submitCrmInquiry(formData);
+
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error("/api/form-submit error", err);
     return res.status(500).json({
-      error: "Failed to record submission",
-      details: process.env.NODE_ENV === "development" ? err.message : undefined,
+      error: err.message || "Failed to record submission",
     });
   }
 }
