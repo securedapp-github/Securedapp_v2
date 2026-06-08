@@ -149,6 +149,8 @@ const BrandLogos = ({ type = "brands" }) => {
                 className="w-auto max-h-[50px]"
                 width={120}
                 height={50}
+                loading="lazy"
+                sizes="(max-width: 768px) 33vw, 20vw"
               />
             </div>
           )

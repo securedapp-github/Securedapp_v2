@@ -280,8 +280,10 @@ const Services = () => {
                 }-hero.webp`
             }
             alt={servicesData[selectedService].name}
-            width={600}
-            height={400}
+            width={1200}
+            height={800}
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
             style={{ width: "100%", height: "auto" }}
           />
         </div>

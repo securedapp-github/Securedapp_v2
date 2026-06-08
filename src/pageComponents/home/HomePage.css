@@ -1,8 +1,6 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
-#home {
-}
 
 .hero {
   @apply bg-grid h-full text-center pt-28 lg:pt-28 w-full font-nunitoSans text-secondary dark:text-primary;
@@ -17,13 +15,17 @@
 
 .hero-image-container {
   @apply flex justify-center;
+  min-height: 250px;
+}
+@media (min-width: 768px) {
+  .hero-image-container {
+    min-height: 400px;
+  }
 }
 .hero-image {
   @apply w-11/12 lg:w-3/5;
 }
 
-.hero-swiper {
-}
 .swiper-pagination-bullet {
   @apply inline-block w-6 h-2 lg:w-8 lg:h-3 border border-black dark:border-white rounded-full bg-[#D2E6FF66] dark:bg-[#D2E6FF29];
   transition: width 0.3s ease;
@@ -223,8 +225,6 @@
   @apply border-b-2 bg-[#91F6C533] border-[#12D576] opacity-100;
 }
 
-.services-mobile-navbar-arrow-container {
-}
 .services-mobile-navbar-arrow {
   @apply text-secondary dark:text-primary;
 }
@@ -243,8 +243,6 @@
   @apply pb-8 font-light;
 }
 
-.services-content-left-button {
-}
 
 .services-content-right {
   @apply flex-1;
@@ -277,8 +275,6 @@
   @apply border-b-2 bg-[#91F6C533] border-[#12D576] opacity-100;
 }
 
-.faq-mobile-navbar-arrow-container {
-}
 .faq-mobile-navbar-arrow {
   @apply text-secondary dark:text-primary;
 }

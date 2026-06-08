@@ -15,7 +15,7 @@ const Logo = ({ isLeft = false, className = "", forceDark = false }) => {
         width={150}
         height={40}
         priority
-        className={`w-[120px] lg:w-[150px] h-auto ${forceDark ? "hidden" : "dark:hidden"}`}
+        className={`w-[120px] lg:w-[150px] h-[32px] lg:h-[40px] ${forceDark ? "hidden" : "dark:hidden"}`}
       />
       <Image
         src="/assets/images/securedapp-logo-dark.svg"
@@ -23,7 +23,7 @@ const Logo = ({ isLeft = false, className = "", forceDark = false }) => {
         width={150}
         height={40}
         priority
-        className={`w-[120px] lg:w-[150px] h-auto ${forceDark ? "block" : "hidden dark:block"}`}
+        className={`w-[120px] lg:w-[150px] h-[32px] lg:h-[40px] ${forceDark ? "block" : "hidden dark:block"}`}
       />
     </Link>
   );

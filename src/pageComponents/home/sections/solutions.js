@@ -53,7 +53,7 @@ const solutions = [
       "Decentralized exchange for seamless token trading",
     ],
     to: "/tokenization-platform",
-    image: "/assets/images/ProductPages/sp/sp-hero.jpg",
+    image: "/assets/images/ProductPages/sp/sp-hero.webp",
   },
 ];
 
@@ -82,8 +82,10 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
           style={{ borderRadius: "25px 15px 0 0", width: "100%", height: "auto" }}
           src={image}
           alt={title}
-          width={500}
-          height={350}
+          width={1080}
+          height={756}
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
     </div>
