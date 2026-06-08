@@ -147,10 +147,18 @@ export default async function handler(req, res) {
     });
 
     // 2. Submit to Chatbot Backend
-    await submitChatbotBackend(formData);
+    try {
+      await submitChatbotBackend(formData);
+    } catch (chatbotErr) {
+      console.error("Chatbot submission failed, continuing:", chatbotErr);
+    }
 
     // 3. Submit to CRM
-    await submitCrmInquiry(formData);
+    try {
+      await submitCrmInquiry(formData);
+    } catch (crmErr) {
+      console.error("CRM submission failed, continuing:", crmErr);
+    }
 
     return res.status(200).json({ success: true });
   } catch (err) {
