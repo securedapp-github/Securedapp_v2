@@ -90,6 +90,7 @@ const Testimonials = ({ reviews }) => {
           {reviews.map((review) => {
             return (
               <Testimonial
+                key={review.id}
                 id={review.id}
                 reviewText={review.testimonial}
                 reviewer={review.name}
