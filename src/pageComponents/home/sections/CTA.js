@@ -3,45 +3,42 @@
 import React from "react";
 import Image from "next/image";
 import Button from "../../../components/common/Button";
-import { useRouter, Link } from "next/router";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const CTA = () => {
   const navigate = useRouter();
+  const theme = useSelector((state) => state.theme?.mode ?? "light");
+  const isDark = theme === "dark";
+
+  const gridSvg = isDark ? "/assets/images/cta-upper-grid-dark.svg" : "/assets/images/cta-upper-grid-light.svg";
+  const gridPatchSvg = isDark ? "/assets/images/cta-upper-patch-dark.svg" : "/assets/images/cta-upper-patch-light.svg";
+  const lowerGridSvg = isDark ? "/assets/images/cta-lower-grid-dark.svg" : "/assets/images/cta-lower-grid-light.svg";
+  const lowerPatchSvg = isDark ? "/assets/images/cta-lower-patch-dark.svg" : "/assets/images/cta-lower-patch-light.svg";
+
+  const imgProps = {
+    alt: "",
+    "aria-hidden": "true",
+    loading: "lazy",
+  };
+
   return (
     <div className="cta-section">
       <div className="cta-section-grid">
         <Image
-          className="hidden dark:block"
-          src="/assets/images/cta-upper-grid-dark.svg"
-          alt=""
-          aria-hidden="true"
+          {...imgProps}
+          src={gridSvg}
           width={1920}
           height={320}
-        />
-        <Image
-          className="block dark:hidden"
-          src="/assets/images/cta-upper-grid-light.svg"
-          alt=""
-          aria-hidden="true"
-          width={1920}
-          height={320}
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div className="cta-section-grid-patch">
           <Image
-            className="hidden dark:block"
-            src="/assets/images/cta-upper-patch-dark.svg"
-            alt=""
-            aria-hidden="true"
+            {...imgProps}
+            src={gridPatchSvg}
             width={400}
             height={400}
-          />
-          <Image
-            className="block dark:hidden"
-            src="/assets/images/cta-upper-patch-light.svg"
-            alt=""
-            aria-hidden="true"
-            width={400}
-            height={400}
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>
@@ -52,11 +49,6 @@ const CTA = () => {
         real-time threat monitoring, and end-to-end blockchain security.
       </div>
       <div style={{ padding: "20px 0 60px 0" }} className="cta-section-buttons">
-        {/* <Button
-          className="cta-section-button w-72"
-          text={"Sign Up"}
-          filled={true}
-        /> */}
         <Button
           className="cta-section-button w-72"
           text={"Schedule a Demo"}
@@ -68,37 +60,20 @@ const CTA = () => {
       </div>
       <div className="cta-section-grid">
         <Image
-          className="hidden dark:block relative z-0"
-          src="/assets/images/cta-lower-grid-dark.svg"
-          alt=""
-          aria-hidden="true"
+          {...imgProps}
+          className="relative z-0"
+          src={lowerGridSvg}
           width={1920}
           height={320}
-        />
-        <Image
-          className="block dark:hidden"
-          src="/assets/images/cta-lower-grid-light.svg"
-          alt=""
-          aria-hidden="true"
-          width={1920}
-          height={320}
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
         <div className="cta-section-grid-patch">
           <Image
-            className="hidden dark:block"
-            src="/assets/images/cta-lower-patch-dark.svg"
-            alt=""
-            aria-hidden="true"
+            {...imgProps}
+            src={lowerPatchSvg}
             width={400}
             height={400}
-          />
-          <Image
-            className="block dark:hidden"
-            src="/assets/images/cta-lower-patch-light.svg"
-            alt=""
-            aria-hidden="true"
-            width={400}
-            height={400}
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>

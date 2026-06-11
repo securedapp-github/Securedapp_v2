@@ -58,7 +58,9 @@ const Hero = () => {
                     width={600}
                     height={400}
                     priority={index === 0}
-                    sizes="(max-width: 768px) 100vw, 600px"
+                    fetchPriority={index === 0 ? "high" : undefined}
+                    loading={index === 0 ? undefined : "lazy"}
+                    sizes="(max-width: 600px) 100vw, 600px"
                   />
                 </div>
                 <div className="pt-8 md:pt-6 lg:pt-4 pb-12 md:pb-8 lg:pb-12">

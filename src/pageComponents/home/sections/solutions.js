@@ -43,7 +43,7 @@ const solutions = [
       "Audit-ready proof of opt-ins across every channel",
     ],
     to: "/dpdp-compliance-platform",
-    image: "/assets/images/ProductPages/ss/hero.webp",
+    image: "/assets/images/ProductPages/sp/sp-hero.webp",
   },
   {
     title: "SecurePad",
@@ -53,7 +53,7 @@ const solutions = [
       "Decentralized exchange for seamless token trading",
     ],
     to: "/tokenization-platform",
-    image: "/assets/images/ProductPages/sp/sp-hero.jpg",
+    image: "/assets/images/ProductPages/sp/sp-hero.webp",
   },
 ];
 
@@ -67,8 +67,8 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
       <div className="solution-card-content">
         <div className="solution-card-title">{title}</div>
         <ul className="solution-card-list">
-          {items.map((item) => {
-            return <li className="solution-card-list-item">{item}</li>;
+          {items.map((item, i) => {
+            return <li key={`item-${i}`} className="solution-card-list-item">{item}</li>;
           })}
         </ul>
         <Button
@@ -82,8 +82,10 @@ const Solution = ({ title, items = [], to, image, isImageLeft = false }) => {
           style={{ borderRadius: "25px 15px 0 0", width: "100%", height: "auto" }}
           src={image}
           alt={title}
-          width={500}
-          height={350}
+          width={1080}
+          height={756}
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 560px"
         />
       </div>
     </div>
@@ -97,6 +99,7 @@ const Solutions = () => (
       {solutions.map((solution, index) => {
         return (
           <Solution
+            key={`sol-${index}`}
             title={solution.title}
             items={solution.items}
             to={solution.to}

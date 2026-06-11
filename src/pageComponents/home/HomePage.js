@@ -4,19 +4,19 @@ import React, { useEffect } from "react";
 import Footer from "../../components/footer/footer";
 import Navbar from "../../components/navbar/Navbar";
 import dynamic from "next/dynamic";
-import CTA from "./sections/CTA";
 import Hero from "./sections/Hero";
-import HowItWorks from "./sections/HowItWorks";
-import Services from "./sections/Services";
-import Features from "./sections/Features";
-import Statitics from "./sections/Statistics";
 import { reviews, faqHeaders, faqsData } from "./home.data";
 import MetaTags from "../../components/common/MetaTags";
 
-const FAQs = dynamic(() => import("../../components/common/FAQs"), { ssr: true });
-const Testimonials = dynamic(() => import("../../components/common/Testimonials"), { ssr: true });
-const Solutions = dynamic(() => import("./sections/solutions"), { ssr: true });
+const Statitics = dynamic(() => import("./sections/Statistics"), { ssr: false });
+const Features = dynamic(() => import("./sections/Features"), { ssr: false });
+const Solutions = dynamic(() => import("./sections/solutions"), { ssr: false });
+const HowItWorks = dynamic(() => import("./sections/HowItWorks"), { ssr: false });
+const Services = dynamic(() => import("./sections/Services"), { ssr: false });
+const Testimonials = dynamic(() => import("../../components/common/Testimonials"), { ssr: false });
 const BrandLogos = dynamic(() => import("../../components/common/BrandLogos"), { ssr: false });
+const FAQs = dynamic(() => import("../../components/common/FAQs"), { ssr: false });
+const CTA = dynamic(() => import("./sections/CTA"), { ssr: false });
 const BookMeetCta = dynamic(() => import("../../components/common/bookMeetCta"), { ssr: false });
 
 const Home = () => {

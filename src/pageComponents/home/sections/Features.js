@@ -140,6 +140,8 @@ const Features = () => {
             alt={featureData[detail]?.title || "Security feature illustration"}
             width={550}
             height={400}
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>

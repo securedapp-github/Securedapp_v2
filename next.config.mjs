@@ -1,3 +1,5 @@
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -18,20 +20,29 @@ const nextConfig = {
 
   // output: "export", // Outputs a Single-Page Application (SPA).
   // NOTE: Removed static export so that Next.js API Routes are enabled for the chatbot backend.
+  compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    deviceSizes: [390, 640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 86400,
+    minimumCacheTTL: 2592000,
     remotePatterns: [
       { protocol: "https", hostname: "securedapp.io" },
       { protocol: "https", hostname: "securedapp-v2.vercel.app" },
     ],
   },
+  experimental: {
+    optimizeCss: false,
+    scrollRestoration: true,
+  },
 
   // NOTE: This works for LOCAL DEV. For Production (Netlify/Export), these are ignored and 'netlify.toml' is used.
   async headers() {
     return [
+      {
+        source: '/:all*(svg|jpg|webp|avif|png|woff2)',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
       {
         source: "/(.*)",
         headers: [
@@ -190,4 +201,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const analyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+export default analyzer(nextConfig);

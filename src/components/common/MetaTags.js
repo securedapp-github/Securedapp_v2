@@ -136,6 +136,7 @@ const MetaTags = ({ data }) => {
           href="/assets/images/ProductPages/ss/hero.webp"
           as="image"
           type="image/webp"
+          fetchpriority="high"
         />
       )}
 
