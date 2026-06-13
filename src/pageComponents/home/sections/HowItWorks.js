@@ -39,7 +39,7 @@ const HowItWorks = () => (
     />
     <div className="how-cards">
       {hows.map((how) => {
-        return <HowCard title={how.title} desc={how.desc} />;
+        return <HowCard key={how.title} title={how.title} desc={how.desc} />;
       })}
     </div>
   </div>

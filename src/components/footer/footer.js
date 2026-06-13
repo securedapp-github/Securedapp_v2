@@ -270,14 +270,14 @@ const Footer = () => {
         <div className="footer-about-right">
           {navigationItems.map((navigationItem, navigationIndex) => {
             return (
-              <div className="footer-navigation-item">
+              <div key={navigationItem.title} className="footer-navigation-item">
                 <div className="footer-navigation-item-title">
                   {navigationItem.title}
                 </div>
                 <div className="footer-navigation-item-items">
                   {navigationItem.items.map((item, index) => {
                     return (
-                      <div className="footer-navigation-item-item">
+                      <div key={`${navigationItem.title}-${item.name}`} className="footer-navigation-item-item">
                         {item.to.startsWith("http") ? (
                           <a href={item.to} target="_blank" rel="noopener noreferrer">
                             {item.name}

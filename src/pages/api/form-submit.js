@@ -76,18 +76,23 @@ const submitChatbotBackend = async (formData) => {
 
 const submitCrmInquiry = async (formData) => {
   const url = process.env.NEXT_PUBLIC_CRM_PUBLIC_INQUIRY_URL;
-  if (!url) return;
+  if (!url) {
+    console.warn("NEXT_PUBLIC_CRM_PUBLIC_INQUIRY_URL is not configured. Skipping CRM submission.");
+    return;
+  }
 
   const payload = {
     fullName: formData.name,
     accountCompany: formData.company || "Not specified",
     mobile: formData.phone,
     email: formData.email,
-    serviceOffering: "Dapp Development",
-    message: "Lead captured via SecureBot chatbot form.",
+    serviceOffering: formData.serviceOffering || "Dapp Development",
+    message: formData.message || "Lead captured via SecureBot chatbot form.",
     agreePrivacy: true,
-    subscribeUpdates: false,
+    subscribeUpdates: formData.subscribeUpdates ?? false,
   };
+
+  console.log("[CRM] Submitting to:", url, "| Payload:", JSON.stringify(payload));
 
   const response = await fetch(url, {
     method: "POST",
@@ -95,8 +100,11 @@ const submitCrmInquiry = async (formData) => {
     body: JSON.stringify(payload),
   });
 
+  const responseText = await response.text();
+  console.log(`[CRM] Response: HTTP ${response.status}`, responseText);
+
   if (!response.ok) {
-    throw new Error(`CRM submission failed: HTTP ${response.status}`);
+    throw new Error(`CRM submission failed: HTTP ${response.status} — ${responseText}`);
   }
 };
 
