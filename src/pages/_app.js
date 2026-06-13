@@ -40,6 +40,7 @@ import "../components/common/SectionTitle.css";
 import "../components/common/Testimonials.css";
 import "../components/footer/Footer.css";
 import "../components/navbar/Navbar.css";
+import "../components/modal/RequestQuoteModal.css";
 import "../components/productService/BenefitsCard.css";
 import "../components/productService/FeatureCard.css";
 import "../components/productService/ProductCard.css";
