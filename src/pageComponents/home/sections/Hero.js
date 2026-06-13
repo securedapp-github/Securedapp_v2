@@ -58,8 +58,8 @@ const Hero = () => {
                     width={600}
                     height={400}
                     priority={index === 0}
-                    fetchPriority={index === 0 ? "high" : undefined}
-                    loading={index === 0 ? undefined : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "low"}
+                    loading={index === 0 ? "eager" : "lazy"}
                     sizes="(max-width: 600px) 100vw, 600px"
                   />
                 </div>

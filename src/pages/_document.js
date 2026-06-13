@@ -6,9 +6,19 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        {/* ── Font preconnects (only 2 needed for Google Fonts) ── */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+        {/* ── Preload LCP hero image to reduce LCP time ── */}
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/images/ProductPages/ss/hero.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+
         {/* ── Dark mode flicker prevention ────────────────────── */}
         <script
           dangerouslySetInnerHTML={{

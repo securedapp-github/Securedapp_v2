@@ -21,13 +21,15 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-playfair-display",
+  preload: false, // Decorative font, not needed for LCP
 });
 
 const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
   display: "swap",
   variable: "--font-poppins",
+  preload: false, // Poppins is not the primary font, don't preload
 });
 const ToastContainer = dynamic(() => import("react-toastify").then((mod) => mod.ToastContainer), { ssr: false });
 
