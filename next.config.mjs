@@ -32,7 +32,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizeCss: false,
+    optimizeCss: true,
     scrollRestoration: true,
   },
 

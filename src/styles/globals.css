@@ -40,7 +40,16 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: inherit;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Only transition background-color — color transitions are non-composited and hurt PageSpeed */
+  transition: background-color 0.3s ease;
+}
+
+/* GPU acceleration hint for animated elements */
+.swiper-wrapper,
+.swiper-slide {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .App {

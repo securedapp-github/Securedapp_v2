@@ -1,6 +1,6 @@
 export const navItems = [
   {
-    to: "",
+    to: "#product",
     items: [
       { name: "Solidity Shield", to: "/blockchain-security/smart-contract-security-audit" },
       { name: "Secure CMS (Consent)", to: "/dpdp-compliance-platform" },
@@ -19,7 +19,7 @@ export const navItems = [
     label: "Product",
   },
   {
-    to: "",
+    to: "#services",
     items: [
       {
         title: "Audit",
@@ -63,7 +63,7 @@ export const navItems = [
     label: "Services",
   },
   {
-    to: "",
+    to: "#resources",
     items: [
       { name: "Blogs", to: "https://blog.securedapp.io", external: true },
       { name: "Our Authors", to: "/authors" },

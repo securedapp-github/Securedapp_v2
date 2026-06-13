@@ -138,6 +138,7 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
           {faqHeaders.map((header, index) => {
             return (
               <div
+                key={`faq-header-${index}`}
                 onClick={() => setTopic(index)}
                 className={`faq-navbar-item ${
                   topic === index && "faq-navbar-item-selected"
@@ -157,6 +158,7 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
                 {faqHeaders.map((header, index) => {
                   return (
                     <div
+                      key={`faq-mobile-header-${index}`}
                       onClick={() => setTopic(index)}
                       className={`faq-mobile-navbar-item ${
                         index === topic && "selected-mobile-navbar"
@@ -174,6 +176,7 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
               {faqHeaders.map((header, index) => {
                 return (
                   <div
+                    key={`faq-fallback-header-${index}`}
                     onClick={() => setTopic(index)}
                     className={`faq-mobile-navbar-item ${
                       index === topic && "selected-mobile-navbar"
@@ -191,11 +194,12 @@ const FAQs = ({ faqHeaders = [], faqsData }) => {
   {faqsData[topic].map((faq, index) => {
     return (
       <Faq
+        key={`faq-item-${topic}-${index}`}
         isActive={detail === index}
         onClick={() => toggleDetail(index)}
         question={faq.q}
         answer={faq.a}
-        faq={faq}  // Add this line to pass the entire faq object
+        faq={faq}
       />
     );
   })}

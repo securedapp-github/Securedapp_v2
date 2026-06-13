@@ -73,7 +73,7 @@ const Features = () => {
             {featureData.map((feature) => {
               const isSelected = detail === feature.id;
               return (
-                <div className="feature-cards-container">
+                <div key={feature.id} className="feature-cards-container">
                   <div
                     className={`vertical-scroll ${
                       isSelected && "vertical-scroll-selected"

@@ -117,32 +117,41 @@ const RequestQuoteModal = () => {
 
     const subscribeUpdates = document.getElementById("request-quote-check-subscribe")?.checked || false;
 
-    fetch("https://crm-be.securedapp.io/api/public/project-inquiry", {
+    const crmUrl = process.env.NEXT_PUBLIC_CRM_PUBLIC_INQUIRY_URL || "https://crm-be.securedapp.io/api/public/project-inquiry";
+    const crmPayload = {
+      fullName: name,
+      accountCompany: "Not specified",
+      mobile: mobile,
+      email: email,
+      serviceOffering: service,
+      message: description || "",
+      agreePrivacy: true,
+      subscribeUpdates: subscribeUpdates,
+    };
+
+    console.log("[CRM] Submitting to:", crmUrl, "| Payload:", JSON.stringify(crmPayload));
+
+    fetch(crmUrl, {
       method: "POST",
-      body: JSON.stringify({
-        fullName: name,
-        mobile: mobile,
-        email: email,
-        serviceOffering: service,
-        message: description || "",
-        agreePrivacy: true,
-        subscribeUpdates: subscribeUpdates,
-      }),
+      body: JSON.stringify(crmPayload),
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
     })
-      .then((res) => {
+      .then(async (res) => {
+        const responseText = await res.text();
+        console.log(`[CRM] Response: HTTP ${res.status}`, responseText);
         if (res.ok) {
           toast.success("Submitted. Will soon reach out to you!");
           closeModal();
         } else {
-          return res.json().then(data => {
-            throw new Error(data.error || "Failed to submit inquiry");
-          });
+          let errMsg = "Failed to submit inquiry";
+          try { errMsg = JSON.parse(responseText)?.error || errMsg; } catch {}
+          throw new Error(errMsg);
         }
       })
       .catch((err) => {
+        console.error("[CRM] Submission error:", err);
         toast.error(err.message || "Error in sending inquiry");
       });
   };
