@@ -48,6 +48,7 @@ import "../components/productService/WhyChooseCard.css";
 import "../components/productService/ProductWhyCard.css";
 import "../pageComponents/home/HomePage.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import "../components/RTM/SecureWatchHero.css";
 
 const ScanNowModal = dynamic(() => import("../SolidityShield/components/modal/ScanNowModal"), { ssr: false });
 const PaymentModal = dynamic(() => import("../SolidityShield/components/modal/PaymentModal"), { ssr: false });
@@ -177,7 +178,7 @@ function MyApp({ Component, pageProps }) {
       import("../SolidityShield/components/auth/AuthInputField.css");
     }
     
-    if (path.startsWith("/real-time-blockchain-threat-monitoring")) {
+    if (path.startsWith("/real-time-blockchain-threat-monitoring") || path.startsWith("/blockchain-security")) {
       import("../components/RTM/RTMOverview.css");
       import("../components/RTM/RTMThreats.css");
       import("../components/RTM/RTMMonitoring.css");
@@ -203,7 +204,6 @@ function MyApp({ Component, pageProps }) {
       import("../components/RTM/FeaturesGridSection.css");
       import("../components/RTM/HowItWorksSection.css");
       import("../components/RTM/UseCasesSection.css");
-      import("../components/RTM/SecureWatchHero.css");
       import("../components/RTM/EulerCaseStudySection.css");
       import("../components/RTM/SecureWatchNavbar.css");
       import("../components/RTM/RequestDemoModal.css");
