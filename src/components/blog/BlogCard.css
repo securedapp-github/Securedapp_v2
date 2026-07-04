@@ -10,7 +10,7 @@
 }
 
 .blog-card-header-image-container {
-  @apply h-full w-full flex justify-center items-center overflow-hidden;
+  @apply h-full w-full flex justify-center items-center overflow-hidden relative;
 }
 .blog-card-header-image {
   @apply flex-shrink-0 object-cover min-h-full min-w-full;

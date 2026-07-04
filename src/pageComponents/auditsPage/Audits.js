@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRouter } from "next/router";
 import {
@@ -9,10 +9,10 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/footer";
 import { dummyData } from "./audits.data";
 import {
-  getAudits,
   getReport,
   getScanHistoryData,
 } from "../../SolidityShield/functions";
+import { getAudits } from "../../utils/api";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "../../components/common/Button";

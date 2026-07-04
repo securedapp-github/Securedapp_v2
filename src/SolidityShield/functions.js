@@ -40,32 +40,7 @@ export async function checkCoupon(code, disptach) {
   }
 }
 
-export async function getBlogs() {
-  const response = await fetch(apiUrl + "/getBlogList");
-  let data = await response.json();
-  data = data.filter((item) => item.status === 1);
-  // console.log(data);
-  return data;
-}
 
-export const getAudits = async () => {
-  return await fetch(apiUrl + "/getAudits", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-      //Authorization: getJwt(),
-    },
-  })
-    .then(async (res) => {
-      var data = await res.json();
-      // console.log(data);
-      return data;
-    })
-    .catch((error) => {
-      // console.log(error);
-      toast.error("Error fetching audits");
-    });
-};
 
 export const payCryptoVerify = async ({ id, transactionId, amount }) => {
   try {

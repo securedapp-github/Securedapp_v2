@@ -15,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import BlogTag from "../../components/blog/BlogTag";
 import MetaTags from "../../components/common/MetaTags";
-import { getBlogs } from "../../SolidityShield/functions";
+import { getBlogs } from "../../utils/api";
 import { useRouter } from "next/router";
 
 function Blog({ category }) {
