@@ -6,9 +6,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* ── Font preconnects (only 2 needed for Google Fonts) ── */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* ── Preload LCP hero image to reduce LCP time ── */}
         <link

@@ -13,3 +13,47 @@
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
     X-XSS-Protection = "0"
     Server = "Securewatch"
+
+# Cache static JS/CSS chunks forever (immutable hashed filenames)
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache logo and media assets for a day
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+# Subdomain Blog Redirects
+[[redirects]]
+  from = "https://blog.securedapp.io/wp-admin/*"
+  to = "https://securedapp.io/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/wp-content/*"
+  to = "https://securedapp.io/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/wp-json/*"
+  to = "https://securedapp.io/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/*"
+  to = "https://securedapp.io/blog/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://blog.securedapp.io/*"
+  to = "https://securedapp.io/blog/:splat"
+  status = 301
+  force = true
+

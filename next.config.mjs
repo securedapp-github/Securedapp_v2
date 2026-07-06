@@ -34,6 +34,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
+    optimizePackageImports: ["react-icons", "@fortawesome/free-solid-svg-icons", "@fortawesome/free-brands-svg-icons"],
   },
 
   // NOTE: This works for LOCAL DEV. For Production (Netlify/Export), these are ignored and 'netlify.toml' is used.
@@ -195,6 +196,74 @@ const nextConfig = {
       {
         source: "/our-services/",
         destination: "/",
+        permanent: true,
+      },
+      // Legacy main-domain page redirects
+      {
+        source: "/decentralized-identity-did",
+        destination: "/self-sovereign-identity",
+        permanent: true,
+      },
+      {
+        source: "/secure-watch",
+        destination: "/real-time-blockchain-threat-monitoring",
+        permanent: true,
+      },
+      {
+        source: "/secure-trace",
+        destination: "/ai-blockchain-investigation-platform",
+        permanent: true,
+      },
+      {
+        source: "/smart-contract-development",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/project/data-security-on-blockchain",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/smart-contracts-the-heart-of-defi",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      // Broken client links
+      {
+        source: "/blog/\\[url\\]",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/undefined",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/tok",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/securepad.netlify.app",
+        destination: "/tokenization-platform",
+        permanent: true,
+      },
+      {
+        source: "/blog/comprehensive-guide\\:-safely-and-effectively-investing-in-cryptocurrency",
+        destination: "/blog",
+        permanent: true,
+      },
+      // WordPress feeds
+      {
+        source: "/comments/feed",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/introduction-to-zkevm-and-its-applications/feed",
+        destination: "/blog",
         permanent: true,
       },
     ];

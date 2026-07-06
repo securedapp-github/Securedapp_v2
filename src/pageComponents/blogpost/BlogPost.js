@@ -1,4 +1,4 @@
-﻿// IMPORTANT :
+// IMPORTANT :
 // moved everything to pages/blog/[url].js
 
 import React, { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
 import MetaTags from "../../components/common/MetaTags";
 import { toast } from "react-toastify";
-import { getBlogs } from "../../SolidityShield/functions";
+import { getBlogs } from "../../utils/api";
 import {
   faDiscord,
   faFacebook,

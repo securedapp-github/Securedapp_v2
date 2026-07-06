@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import BlogTag from "../blog/BlogTag";
 
 function WhitePaperCard({ details }) {
@@ -71,12 +72,16 @@ function WhitePaperCard({ details }) {
       >
         <div className="blog-card-header">
           <div className="blog-card-header-image-container">
-            <img
-              className="blog-card-header-image"
-              src={details.image}
-              alt={details.heading}
-              style={{ width: "100%", height: "220px", objectFit: "cover" }}
-            />
+            {details.image && (
+              <Image
+                className="blog-card-header-image"
+                src={details.image}
+                alt={details.heading}
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                style={{ objectFit: "cover" }}
+              />
+            )}
           </div>
         </div>
         <div className="blog-card-body">

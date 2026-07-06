@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -41,11 +41,16 @@ function BlogCard({ details, isMedia = false }) {
           ""
         )}
         <div className="blog-card-header-image-container">
-          <img
-            className="blog-card-header-image"
-            src={details.image}
-            alt={details.heading}
-          />
+          {details.image && (
+            <Image
+              className="blog-card-header-image"
+              src={details.image}
+              alt={details.heading}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
+            />
+          )}
         </div>
       </div>
       <div className="blog-card-body">

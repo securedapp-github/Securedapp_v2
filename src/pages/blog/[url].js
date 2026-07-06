@@ -10,7 +10,7 @@ import BlogTag from "../../components/blog/BlogTag";
 import CustomHr from "../../components/common/CustomHr";
 import MetaTags from "../../components/common/MetaTags";
 import { toast } from "react-toastify";
-import { getBlogs } from "../../SolidityShield/functions";
+import { getBlogs } from "../../utils/api";
 import {
   faDiscord,
   faFacebook,
@@ -138,7 +138,7 @@ export default function BlogPost({ blog }) {
     }
 
     var blog = blogsData.find(
-      (data) => data.url.trim().replace(":", "") === url && data.status === 1
+      (data) => data.url.trim().replace(":", "").toLowerCase() === url.toLowerCase() && data.status === 1
     );
 
     if (!blog) {
@@ -238,7 +238,7 @@ export default function BlogPost({ blog }) {
       // Find blogs that share the same key term
       const related = blogsData.filter((blog) => {
         // Skip the current blog and unpublished blogs
-        if (blog.url.trim().replace(":", "") === url || blog.status !== 1)
+        if (blog.url.trim().replace(":", "").toLowerCase() === url.toLowerCase() || blog.status !== 1)
           return false;
 
         // Get the blog's category
@@ -404,9 +404,12 @@ export default function BlogPost({ blog }) {
                       className="publisher-image"
                     >
                       {blogDetails.Publisher.image && (
-                        <img
+                        <Image
                           src={blogDetails.Publisher.image}
                           alt={blogDetails.Publisher.name}
+                          width={64}
+                          height={64}
+                          style={{ borderRadius: "50%", objectFit: "cover" }}
                         />
                       )}
                     </div>
@@ -594,11 +597,11 @@ export async function getStaticPaths() {
 
     return {
       paths, // Pre-rendered blog URLs
-      fallback: false, // Enable fallback for other URLs
+      fallback: "blocking", // Enable fallback for other URLs
     };
   } catch (err) {
     console.error("Error fetching blog list:", err);
-    return { paths: [], fallback: false }; // no blogs, but build won’t crash
+    return { paths: [], fallback: "blocking" }; // no blogs, but build won’t crash
   }
 }
 
@@ -607,7 +610,7 @@ export async function getStaticProps({ params }) {
   try {
     var data = await fetchBlogs();
     const blog = data.find(
-      (blog) => blog.url.trim().replace(":", "") === params.url.replace(":", "")
+      (blog) => blog.url.trim().replace(":", "").toLowerCase() === params.url.replace(":", "").toLowerCase()
     );
 
     if (!blog) {

@@ -109,7 +109,7 @@ export const authorsData = [
     name: "Nikhil Prasad Singh",
     designation: "Legal Associate, B.A., LL.B. (Hons.)",
     twitter: "https://x.com/metalelric31011?t=xuPtj1rrOJuP4Af13f6LiA&s=08",
-    linkedin: "www.linkedin.com/in/nikhil-prasad-singh",
+    linkedin: "https://www.linkedin.com/in/nikhil-prasad-singh",
     details: [
       {
         title: "Experience",
