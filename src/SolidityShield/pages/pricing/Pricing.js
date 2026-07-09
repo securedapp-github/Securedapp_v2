@@ -135,12 +135,16 @@ const Pricing = () => {
     <div className="sss-pricing-container">
       <MetaTags
         data={{
-          title: "Solidity Shield Scan: Secure Audits & Vulnerability Checks",
+          title: "Solidity Shield Pricing — Smart Contract Audit Plans | SecureDApp",
           desc: "Explore Solidity Shield’s pricing for blockchain security. Compare features and choose the plan that fits your needs with SecureDApp’s solutions.",
           keywords:
-            "Solidity Shield Scan, smart contract audits, vulnerability checks, secure audits, Solidity security, blockchain security, contract vulnerability scan, smart contract security",
+            "solidity shield pricing, smart contract audit cost, blockchain security plans, SecureDApp",
+          url: "https://securedapp.io/solidity-shield-scan/pricing",
         }}
       />
+      <h1 className="text-4xl text-center pb-7 pt-10 font-bold dark:text-white text-black">
+        Solidity Shield — Plans & Pricing
+      </h1>
       <div className="sss-pricing-plans-scrollable w-full overflow-x-auto">
         <div className="sss-pricing-plans max-w-[1200px] mx-auto">
           <div className="sss-pricing-plan-headers">

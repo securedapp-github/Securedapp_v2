@@ -279,7 +279,7 @@ const Footer = () => {
                     return (
                       <div key={`${navigationItem.title}-${item.name}`} className="footer-navigation-item-item">
                         {item.to.startsWith("http") ? (
-                          <a href={item.to} target="_blank" rel="noopener noreferrer">
+                          <a href={item.to} target="_blank" rel="nofollow noopener noreferrer">
                             {item.name}
                           </a>
                         ) : (

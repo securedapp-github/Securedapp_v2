@@ -91,7 +91,7 @@ function WhitePaperCard({ details }) {
                 <BlogTag tag={tag} key={tag} onClick={() => {}} />
               ))}
           </div>
-          <div className="blog-card-body-header">{details.heading}</div>
+          <h2 className="blog-card-body-header">{details.heading}</h2>
           <div className="blog-card-body-preview">{preview}</div>
           <button
             className="blog-card-download"

@@ -31,10 +31,10 @@ const Hero = () => {
     <div className="hero flex flex-col justify-between">
       <div>
         <h1 className="hero-title">Comprehensive Blockchain Security</h1>
-        <p className="hero-subtitle">
+        <h2 className="hero-subtitle">
           97% of Blockchain hacks are preventable. Securing your blockchain
           journey
-        </p>
+        </h2>
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           spaceBetween={50}

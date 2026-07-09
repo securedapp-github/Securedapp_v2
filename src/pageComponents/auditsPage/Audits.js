@@ -310,10 +310,10 @@ const AuditsPage = () => {
       />
       <div className="audits-page">
         <div className="audits-page-header">
-          <div className="audits-page-header-title">Audits</div>
-          <h1 className="audits-page-header-description">
+          <h1 className="audits-page-header-title">Audits</h1>
+          <h2 className="audits-page-header-description">
             Audits done by SecureDapp
-          </h1>
+          </h2>
         </div>
 
         <div className="audits-page-body">
