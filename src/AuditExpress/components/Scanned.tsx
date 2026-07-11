@@ -148,12 +148,12 @@ const Scanned = () => {
   return (
     <div>
       <div>
-        <h1
+        <h2
           className="text-4xl text-center pb-7 text-white lg:mt-20 mt-14"
           id="poppins-semibold"
         >
           Recent Scanned Contracts
-        </h1>
+        </h2>
       </div>
       <div className="overflow-x-auto lg:mx-20 mx-5 my-10">
         {loading ? (

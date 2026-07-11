@@ -60,7 +60,7 @@ function BlogCard({ details, isMedia = false }) {
               return <BlogTag tag={tag} onClick={() => {}} />;
             })}
         </div>
-        <div className="blog-card-body-header">{details.heading}</div>
+        <h2 className="blog-card-body-header">{details.heading}</h2>
         <div className="blog-card-body-preview">{preview}</div>
         <div className="search-input-box">
           {isMedia ? (

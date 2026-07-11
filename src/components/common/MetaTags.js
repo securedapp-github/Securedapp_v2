@@ -170,8 +170,6 @@ const MetaTags = ({ data }) => {
       <meta name="twitter:image" content={imageUrl} />
 
       {/* SEO Meta Tags */}
-      {<meta name="robots" content="index, follow" />}
-      {<meta name="googlebot" content="index, follow" />}
 
       {/* Canonical & structured data */}
       <link rel="canonical" href={url} />

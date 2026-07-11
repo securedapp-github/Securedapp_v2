@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -36,7 +36,7 @@ const AuthorCard = ({
         <div style={{ height: "auto" }} className="authors-card-socials">
           {twitter ? (
             <div className="authors-card-social">
-              <Link target="_blank" href={twitter}>
+              <Link target="_blank" rel="noopener noreferrer" href={twitter}>
                 <FontAwesomeIcon icon={faTwitter} />
               </Link>
             </div>
@@ -47,7 +47,7 @@ const AuthorCard = ({
           )}
           {linkedin ? (
             <div className="authors-card-social">
-              <Link target="_blank" href={linkedin}></Link>
+              <Link target="_blank" rel="noopener noreferrer" href={linkedin}></Link>
               <FontAwesomeIcon icon={faLinkedin} />
             </div>
           ) : (

@@ -27,7 +27,7 @@ const StrokeRight = () => (
 
 const SectionTitle = ({ name, title, description }) => {
   const isSpecial =
-    useRouter().asPath.includes("blog") || useRouter().asPath.includes("media");
+    useRouter().asPath.includes("blog") || useRouter().asPath.includes("media") || useRouter().asPath.includes("white-paper");
   return (
     <div className="section-title">
       {name !== undefined && (
@@ -39,8 +39,6 @@ const SectionTitle = ({ name, title, description }) => {
       )}
       {isSpecial ? (
         <h1 className="section-title-header">{title}</h1>
-      ) : title === "Frequently Asked Questions" ? (
-        <h3 className="section-title-header">{title}</h3>
       ) : (
         <h2 className="section-title-header">{title}</h2>
       )}
