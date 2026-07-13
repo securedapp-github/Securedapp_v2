@@ -42,11 +42,11 @@ const renderContent = (blogData) => {
     // Replace links with anchor tags and add color attribute
     modifiedText = modifiedText.replace(
       /<([^|]+)\|([^>]+)>/g,
-      '<a target="_blank" href="$2" style="color: #12D576">$1</a>'
+      '<a target="_blank" rel="nofollow noopener noreferrer" href="$2" style="color: #12D576">$1</a>'
     );
     modifiedText = modifiedText.replace(
       /&lt;([^|]+)\|([^&]+)&gt;/g,
-      '<a target="_blank" href="$2" style="color: #12D576">$1</a>'
+      '<a target="_blank" rel="nofollow noopener noreferrer" href="$2" style="color: #12D576">$1</a>'
     );
 
     // Replace '/n/' with line breaks
@@ -426,6 +426,7 @@ export default function BlogPost({ blog }) {
                   </Link> */}
                     <Link
                       target="_blank"
+                      rel="noopener noreferrer"
                       href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                         blogDetails.title
                       )}&url=${encodeURIComponent(
@@ -448,6 +449,7 @@ export default function BlogPost({ blog }) {
                     </Link>
                     <Link
                       target="_blank"
+                      rel="noopener noreferrer"
                       href={`https://t.me/share/url?url=${encodeURIComponent(
                         "https://blog.securedapp.io/" + url
                       )}&text=${encodeURIComponent(blogDetails.title)}`}

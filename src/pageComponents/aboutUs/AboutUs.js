@@ -31,12 +31,12 @@ const TeamCard = ({ details }) => {
           </div>
           <div className="team-card-body-socials">
             {details.linkedin && (
-              <Link target="_blank" rel="noopener noreferrer" href={details.linkedin}>
+              <Link target="_blank" rel="nofollow noopener noreferrer" href={details.linkedin}>
                 <FontAwesomeIcon size="lg" icon={faLinkedin} />
               </Link>
             )}
             {details.twitter && (
-              <Link target="_blank" rel="noopener noreferrer" href={details.twitter}>
+              <Link target="_blank" rel="nofollow noopener noreferrer" href={details.twitter}>
                 <FontAwesomeIcon size="lg" icon={faTwitter} />
               </Link>
             )}
@@ -111,9 +111,9 @@ const AboutUs = () => {
           </div>
           <div className="about-us-company-eco-content-container">
             <div className="about-us-company-eco-content">
-              <div className="about-us-company-eco-content-header">
+              <h2 className="about-us-company-eco-content-header">
                 Creating an Effective Work Ecosystem
-              </div>
+              </h2>
               <div>
                 At SecureDApp, we tackle every challenge with a product-centric
                 approach that seamlessly scales across industries. Our
@@ -133,9 +133,9 @@ const AboutUs = () => {
           <div className="about-us-company-culture-content-container">
             <div className="about-us-company-culture-content">
               <div className="about-us-company-culture-content-title">
-                <div className="about-us-company-culture-content-title-top">
+                <h2 className="about-us-company-culture-content-title-top">
                   Building a Vibrant Culture
-                </div>
+                </h2>
                 {/* <div className="about-us-company-culture-content-title-bottom">
                   Culture Company's
                 </div> */}
@@ -177,7 +177,7 @@ const AboutUs = () => {
       </div>
       <div className="about-us-team">
         <div className="about-us-team-header">
-          <div className="about-us-team-header-title">Our Team</div>
+          <h2 className="about-us-team-header-title">Our Team</h2>
           <div className="about-us-team-header-description">
             Together, we are energized and inspired, dedicated to shaping the
             future of Web3 security. This dedication, fueled by a blend of

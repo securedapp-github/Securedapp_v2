@@ -36,7 +36,7 @@ const AuthorCard = ({
         <div style={{ height: "auto" }} className="authors-card-socials">
           {twitter ? (
             <div className="authors-card-social">
-              <Link target="_blank" rel="noopener noreferrer" href={twitter}>
+              <Link target="_blank" rel="nofollow noopener noreferrer" href={twitter}>
                 <FontAwesomeIcon icon={faTwitter} />
               </Link>
             </div>
@@ -47,8 +47,9 @@ const AuthorCard = ({
           )}
           {linkedin ? (
             <div className="authors-card-social">
-              <Link target="_blank" rel="noopener noreferrer" href={linkedin}></Link>
-              <FontAwesomeIcon icon={faLinkedin} />
+              <Link target="_blank" rel="nofollow noopener noreferrer" href={linkedin}>
+                <FontAwesomeIcon icon={faLinkedin} />
+              </Link>
             </div>
           ) : (
             <div className="authors-card-social">
@@ -87,6 +88,7 @@ const Authors = () => {
           </div>
         </div>
         <div className="authors-body">
+          <h2 className="text-2xl font-bold text-center mb-8" style={{ paddingBottom: '30px', color: 'white' }}>Blockchain Security Writers</h2>
           <div className="authors-body-authors-cards">
             {authorsData.map((author) => {
               return (

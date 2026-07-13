@@ -8,6 +8,7 @@ import Footer from "../components/footer/footer";
 import { FaGithub, FaFileUpload } from "react-icons/fa";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
+import Head from "next/head";
 
 // Import blockchain images
 import ethereum from "./assets/chains/ethereum.png";
@@ -144,6 +145,9 @@ const ScanPage = ({ scanId, resultData }) => {
 
   return (
     <div className="mx-0 md:mx-auto p-4 dark:bg-[#001938] text-black dark:text-white min-h-screen overflow-x-hidden">
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <Navbar />
 
       <div className="lg:pt-32 pt-32 font-poppins-regular" id="poppins">

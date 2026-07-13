@@ -94,7 +94,7 @@ const BlockchainSelection: React.FC<BlockchainSelectionProps> = ({ blockchainNam
 
         {/* Right section with blockchain details and select buttons */}
         <div className="w-full md:w-3/4 pl-6">
-          <h1 className="text-2xl font-bold text-white mb-4">{selectedBlockchain}</h1>
+          <h2 className="text-2xl font-bold text-white mb-4">{selectedBlockchain}</h2>
 
           {/* Display the dynamic description of the selected blockchain */}
           <p className="text-white mb-6">

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import Navbar from "../../components/navbar/Navbar";
@@ -62,14 +62,14 @@ const AuthorProfile = () => {
                 <div className="author-profile-card-socials">
                   <div className="author-profile-card-social">
                     {authorDetail.twitter && (
-                      <Link target="_blank" href={authorDetail.twitter}>
+                      <Link target="_blank" rel="nofollow noopener noreferrer" href={authorDetail.twitter}>
                         <FontAwesomeIcon icon={faTwitter} />
                       </Link>
                     )}
                   </div>
                   <div className="author-profile-card-social">
                     {authorDetail.linkedin && (
-                      <Link target="_blank" href={authorDetail.linkedin}>
+                      <Link target="_blank" rel="nofollow noopener noreferrer" href={authorDetail.linkedin}>
                         <FontAwesomeIcon icon={faLinkedin} />
                       </Link>
                     )}

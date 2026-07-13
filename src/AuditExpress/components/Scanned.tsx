@@ -207,9 +207,9 @@ const Scanned = () => {
 
                       {/* Text Container */}
                       <div className="flex flex-col justify-center">
-                        <h1 className="text-base font-semibold text-left">
+                        <h3 className="text-base font-semibold text-left">
                           {item.blockchain}
-                        </h1>
+                        </h3>
                       </div>
                     </td>
 
