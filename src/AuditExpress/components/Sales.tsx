@@ -12,9 +12,9 @@ const Sales = (props: Props) => {
     <div>
       <div className="bg-grid-bg min-h-screen bg-no-repeat bg-center dark:text-white text-black flex items-center justify-center">
         <div className="text-center dark:text-white">
-          <h1 className="lg:text-4xl text-2xl px-10" id="poppins-semibold">
+          <h2 className="lg:text-4xl text-2xl px-10" id="poppins-semibold">
             Take Your Project Security to the next level, Today!
-          </h1>
+          </h2>
           <div className="flex justify-center py-6">
             <p className="text-lg lg:w-6/12 px-10">
             Take your project security to the next level today! Protect your smart contracts with Audit Express. Integrate now for a rapid security assessment and boost your project's security and user confidence

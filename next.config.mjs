@@ -4,6 +4,7 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 const nextConfig = {
   reactStrictMode: true,
   turbopack: {},
+  trailingSlash: false, // Globally 301-redirects /path/ → /path (fixes trailing-slash crawl errors)
   poweredByHeader: false,
   transpilePackages: ["react-icons"],
   typescript: {
@@ -263,6 +264,30 @@ const nextConfig = {
       },
       {
         source: "/introduction-to-zkevm-and-its-applications/feed",
+        destination: "/blog",
+        permanent: true,
+      },
+      // Crawl-found broken URL fixes (2026-08)
+      // LinkedIn URL accidentally used as a site path
+      {
+        source: "/www.linkedin.com/in/:profile*",
+        destination: "https://www.linkedin.com/in/:profile*",
+        permanent: true,
+      },
+      {
+        source: "/authors/www.linkedin.com/in/:profile*",
+        destination: "https://www.linkedin.com/in/:profile*",
+        permanent: true,
+      },
+      // Blog post that only exists on blog.securedapp.io — redirect main-domain URL to subdomain
+      {
+        source: "/blog/how-much-does-smart-contract-audit-cost",
+        destination: "https://blog.securedapp.io/how-much-does-smart-contract-audit-cost",
+        permanent: true,
+      },
+      // Capital-letter blog slug that has no matching DB entry
+      {
+        source: "/blog/Staying-up-to-date-on-the-latest-aml-and-kyc-regulations-for-crypto-businesses",
         destination: "/blog",
         permanent: true,
       },

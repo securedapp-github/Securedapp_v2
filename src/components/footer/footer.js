@@ -257,7 +257,7 @@ const Footer = () => {
                   key={`footer-social-${index}`}
                   href={social.to}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   aria-label={social.label}
                   className="hover:cursor-pointer hover:opacity-80 transition-opacity"
                 >
@@ -300,7 +300,7 @@ const Footer = () => {
           <Link
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-            rel="noreferrer"
+            rel="nofollow noopener noreferrer"
           >
             Privacy Policy{" "}
           </Link>
@@ -308,7 +308,7 @@ const Footer = () => {
           <Link
             target="_blank"
             href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
-            rel="noreferrer"
+            rel="nofollow noopener noreferrer"
           >
             Terms & Conditions
           </Link>

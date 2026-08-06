@@ -49,9 +49,9 @@ const Works = () => {
         <div className='flex justify-center space-x-5 items-center'>
           <Image src={left} className='h-2 w-full' alt='left' height={0} width={0} />
           <div>
-            <h1 className='text-xs bg-[#3a3688] text-white px-3 py-1 rounded-full text-center text-nowrap' id='poppins-extralight'>
+            <span className='text-xs bg-[#3a3688] text-white px-3 py-1 rounded-full text-center text-nowrap' id='poppins-extralight'>
               How it works
-            </h1>
+            </span>
           </div>
           <Image src={right} className='h-2 w-full' alt='right' height={0} width={0} />
         </div>
@@ -59,9 +59,9 @@ const Works = () => {
 
       {/* Subtitle Section */}
       <div className='py-10 flex justify-center overflow-x-hidden'>
-        <h1 className='text-center text-white lg:text-4xl text-2xl lg:w-6/12' id='poppins-regular'>
+        <h2 className='text-center text-white lg:text-4xl text-2xl lg:w-6/12' id='poppins-regular'>
           How Audit Express Strengthens Smart Contract Security Audit
-        </h1>
+        </h2>
       </div>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-5 py-10 text-white' id='poppins-regular'>
         {cardData.map((card, index) => (

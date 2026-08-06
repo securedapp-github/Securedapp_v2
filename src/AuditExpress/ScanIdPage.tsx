@@ -45,6 +45,7 @@ import { useDispatch } from "react-redux";
 import { setIsRequestModalOpen } from "../redux/slices/main/homeSlice";
 import Navbar from "./components/Navbar";
 import MetaTags from "../components/common/MetaTags";
+import Head from "next/head";
 
 // Updated Type Definitions
 type Vulnerability = {
@@ -412,6 +413,9 @@ const ScanPage: React.FC<{ id: any }> = ({ id }) => {
 
     return (
       <div className="container mx-auto p-4 dark:bg-[#001938] text-white min-h-screen flex flex-col">
+        <Head>
+          <meta name="robots" content="noindex, nofollow" />
+        </Head>
         <MetaTags
           data={{
             title: "SecureDApp : Audit Express Report",

@@ -50,14 +50,14 @@ export default function AuthorProfile({ authorDetail }) {
                 <div className="author-profile-card-socials">
                   {authorDetail.twitter && (
                     <div className="author-profile-card-social">
-                      <Link target="_blank" href={authorDetail.twitter}>
+                      <Link target="_blank" rel="nofollow noopener noreferrer" href={authorDetail.twitter}>
                         <FontAwesomeIcon icon={faTwitter} />
                       </Link>
                     </div>
                   )}
                   {authorDetail.linkedin && (
                     <div className="author-profile-card-social">
-                      <Link target="_blank" href={authorDetail.linkedin}>
+                      <Link target="_blank" rel="nofollow noopener noreferrer" href={authorDetail.linkedin}>
                         <FontAwesomeIcon icon={faLinkedin} />
                       </Link>
                     </div>
