@@ -1,55 +1,61 @@
-﻿import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheck,
+  faSpinner,
+  faXmark,
+  faFileCode,
+  faDownload,
+  faExternalLinkAlt,
+  faShieldHalved,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import Image from "next/image";
 import Pagination from "../common/Pagination";
 import Link from "next/link";
 import { formatDate, downloadfReportPdf } from "../../functions";
-import ScanReport from "../../pages/scanReport/ScanReport";
-import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../../redux/auth/authSlice";
+import { setScanNowModal } from "../../redux/commonSlice";
+import { useRouter } from "next/router";
 
-const StatusTypeComponent = ({ status }) => {
+const scanHistoryStatusFilter = ["All", "Succeeded", "Failed", "Inprogress"];
+
+const StatusBadge = ({ status }) => {
+  const isSuccess = status === "Succeeded";
+  const isFailed = status === "Failed";
+
   return (
-    <div
-      className={`sss-history-status-type-component-container ${
-        status === "Succeeded"
-          ? "sss-history-status-type-component-container-green"
-          : status === "Failed"
-          ? "sss-history-status-type-component-container-red"
-          : "sss-history-status-type-component-container-yellow"
+    <span
+      className={`px-3 py-1 text-xs font-bold rounded-full inline-flex items-center gap-1.5 border ${
+        isSuccess
+          ? "bg-[#22C55E]/10 text-[#22C55E] border-[#22C55E]/30"
+          : isFailed
+          ? "bg-red-500/10 text-red-400 border-red-500/30"
+          : "bg-amber-500/10 text-amber-400 border-amber-500/30"
       }`}
     >
-      <div className="sss-history-status-type-component">
-        <FontAwesomeIcon
-          icon={
-            status === "Succeeded"
-              ? faCheck
-              : status === "Failed"
-              ? faXmark
-              : faSpinner
-          }
-        />
-        <div className="">{status}</div>
-      </div>
-    </div>
+      <FontAwesomeIcon
+        icon={isSuccess ? faCheck : isFailed ? faXmark : faSpinner}
+        className={`text-xs ${!isSuccess && !isFailed ? "animate-spin" : ""}`}
+      />
+      {status || "Completed"}
+    </span>
   );
 };
 
-const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
-  const [hoveredRowIndex, setHoveredRowIndex] = useState(false);
-  const [downloadId, setDownload] = useState();
+const ScanHistoryTable = ({ scanHistoryData = [], statusFilter, onFilterChange }) => {
   const auth = useSelector(getUserData);
+  const dispatch = useDispatch();
+  const navigate = useRouter();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 8;
 
-  const filteredData = scanHistoryData.filter(
+  const filteredData = (scanHistoryData || []).filter(
     (data) => data.status === statusFilter || statusFilter === "All"
   );
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
 
   const paginatedData = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
@@ -57,141 +63,139 @@ const ScanHistoryTable = ({ scanHistoryData, statusFilter }) => {
   );
 
   return (
-    <div className="sss-history-table-container">
-      <div className="sss-history-table-scrollable">
-        <div className="sss-history-table">
-          <div className="sss-history-table-header">
-            {/* <div className="sss-history-table-checkbox-container">
-              <div className="sss-history-table-checkbox-header sss-history-table-header-item">
-                <input type="checkbox" />
-              </div>
-            </div> */}
-            <div className="sss-history-table-report-id-container">
-              <div className="sss-history-table-header-report-id sss-history-table-header-item">
-                REPORT ID
-              </div>
-            </div>
-            <div className="sss-history-table-date-container">
-              <div className="sss-history-header-table-date sss-history-table-header-item">
-                DATE
-              </div>
-            </div>
-            <div className="sss-history-table-report-link-container">
-              <div className="sss-history-table-header-report-link sss-history-table-header-item">
-                REPORT LINK
-              </div>
-            </div>
-            {/* <div className="sss-history-table-status-container">
-              <div className="sss-history-table-header-status sss-history-table-header-item">
-                STATUS
-              </div>
-            </div> */}
-            <div className="sss-history-table-options-container">
-              <div className="sss-history-table-header-options sss-history-table-header-item"></div>
-            </div>
-          </div>
-          <div className="sss-history-table-body">
-            {paginatedData.map((data, index) => {
-              return (
-                (data.status !== statusFilter || statusFilter === "All") && (
-                  <div className="sss-history-table-row">
-                    {/* <div className="sss-history-table-checkbox-container">
-                      <div className="sss-history-table-checkbox">
-                        <input type="checkbox" />
-                      </div>
-                    </div> */}
-                    <div className="sss-history-table-report-id-container">
-                      <div className="sss-history-table-report-id">
-                        {data.id}
-                      </div>
-                    </div>
-                    <div className="sss-history-table-date-container">
-                      <div className="sss-history-table-date">
-                        {formatDate(data.date)}
-                      </div>
-                    </div>
-                    <div className="sss-history-table-report-link-container">
-                      <div className="sss-history-table-report-link">
-                        <Link
-                          href={"/solidity-shield-scan/report?id=" + data.id}
-                        >
-                          {"Report - " + data.id}
-                        </Link>
-                      </div>
-                    </div>
-                    {/* <div className="sss-history-table-status-container">
-                      <div className="sss-history-table-status">
-                        {<StatusTypeComponent status={data.status} />}
-                      </div>
-                    </div> */}
-                    <div
-                      onMouseEnter={() => setHoveredRowIndex(index)}
-                      onMouseLeave={() => setHoveredRowIndex(null)}
-                      className="sss-history-table-options-container"
-                    >
-                      <div className="sss-history-table-options">
-                        <img
-                          src="/assets/images/solidity-shield-scan/scan-history-table-option.svg"
-                          alt="Option Icon"
-                        />
-                      </div>
-                      {hoveredRowIndex === index && (
-                        <div
-                          className={`sss-history-table-options-dropdown ${
-                            hoveredRowIndex === paginatedData.length - 1 &&
-                            "bottom-0"
-                          }`}
-                        >
-                          <div className="sss-history-table-options-dropdown-item">
-                            <Link
-                              href={
-                                "/solidity-shield-scan/report?id=" + data.id
-                              }
-                            >
-                              View
-                            </Link>
-                          </div>
-                          <div
-                            onClick={() => {
-                              downloadfReportPdf(data.id, auth.user);
-                            }}
-                            className="sss-history-table-options-dropdown-item"
-                          >
-                            Download
-                          </div>
-                          {/* scan report start */}
-                          {/* <div
-                            style={{
-                              textAlign: "left",
-                              opacity: "0",
-                              position: "absolute",
-                              left: "-9999px",
-                              top: "-9999px",
-                              width: "auto",
-                              height: "auto",
-                              overflow: "hidden",
-                            }}
-                          >
-                            <ScanReport downloadId={data.id} />
-                          </div> */}
-                          {/* scan report end */}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )
-              );
-            })}
-          </div>
+    <div className="bg-[var(--sss-color-card)] border border-[var(--sss-color-border)] rounded-2xl shadow-xl overflow-hidden flex flex-col">
+      {/* Table Toolbar */}
+      <div className="p-4 sm:p-5 border-b border-[var(--sss-color-border)] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[var(--sss-color-card)]">
+        {/* Status Filter Segmented Control */}
+        <div className="flex items-center gap-1 p-1 bg-[var(--sss-color-input-bg)] border border-[var(--sss-color-input-border)] rounded-xl w-full sm:w-auto">
+          {scanHistoryStatusFilter.map((filter) => {
+            const isActive = filter === (statusFilter || "All");
+            return (
+              <button
+                key={filter}
+                onClick={() => {
+                  if (onFilterChange) onFilterChange(filter);
+                  setCurrentPage(1);
+                }}
+                className={`flex-1 sm:flex-none px-4 py-1.5 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                  isActive
+                    ? "bg-[#22C55E] text-[#0A1120] font-bold shadow-md"
+                    : "text-[var(--sss-color-muted)] hover:text-[var(--sss-color-primary)] hover:bg-[var(--sss-color-card)]"
+                }`}
+              >
+                {filter}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Counter Badge */}
+        <div className="text-xs font-semibold text-[var(--sss-color-muted)]">
+          Total Audits:{" "}
+          <span className="text-[#22C55E] font-bold">{filteredData.length}</span>
         </div>
       </div>
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-        totalLength={filteredData.length}
-      />
+
+      {/* Table Content */}
+      <div className="w-full overflow-x-auto">
+        {paginatedData.length > 0 ? (
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="border-b border-[var(--sss-color-border)] bg-[var(--sss-color-input-bg)]/40 text-[11px] font-bold uppercase tracking-wider text-[var(--sss-color-muted)]">
+                <th className="py-3.5 px-6">Report ID</th>
+                <th className="py-3.5 px-6">Date</th>
+                <th className="py-3.5 px-6">Status</th>
+                <th className="py-3.5 px-6">Report Link</th>
+                <th className="py-3.5 px-6 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--sss-color-border)]">
+              {paginatedData.map((data, idx) => (
+                <tr
+                  key={data.id || idx}
+                  className="hover:bg-[var(--sss-color-input-bg)]/50 transition-colors"
+                >
+                  <td className="py-4 px-6 font-bold text-sm text-[var(--sss-color-primary)]">
+                    <div className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faFileCode} className="text-[#22C55E] text-xs" />
+                      <span>#{data.id}</span>
+                    </div>
+                  </td>
+                  <td className="py-4 px-6 text-xs text-[var(--sss-color-muted)] font-medium">
+                    {formatDate(data.date)}
+                  </td>
+                  <td className="py-4 px-6">
+                    <StatusBadge status={data.status} />
+                  </td>
+                  <td className="py-4 px-6 text-xs">
+                    <Link
+                      href={`/solidity-shield-scan/report?id=${data.id}`}
+                      className="text-[#22C55E] font-bold hover:underline flex items-center gap-1.5"
+                    >
+                      <span>Report #{data.id}</span>
+                      <FontAwesomeIcon icon={faExternalLinkAlt} className="text-[10px]" />
+                    </Link>
+                  </td>
+                  <td className="py-4 px-6 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      <Link
+                        href={`/solidity-shield-scan/report?id=${data.id}`}
+                        className="px-3 py-1.5 text-xs font-bold rounded-lg bg-[var(--sss-color-input-bg)] border border-[var(--sss-color-input-border)] text-[var(--sss-color-primary)] hover:border-[#22C55E] hover:text-[#22C55E] transition-all"
+                      >
+                        View
+                      </Link>
+                      <button
+                        onClick={() => downloadfReportPdf(data.id, auth?.user)}
+                        className="px-3 py-1.5 text-xs font-bold rounded-lg bg-[#22C55E]/10 border border-[#22C55E]/30 text-[#22C55E] hover:bg-[#22C55E] hover:text-[#0A1120] transition-all cursor-pointer flex items-center gap-1"
+                      >
+                        <FontAwesomeIcon icon={faDownload} className="text-[11px]" /> PDF
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          /* Clean Centered Empty State */
+          <div className="p-12 sm:p-16 flex flex-col items-center justify-center text-center gap-4">
+            <div className="w-16 h-16 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/30 flex items-center justify-center text-[#22C55E] shadow-inner">
+              <FontAwesomeIcon icon={faShieldHalved} className="text-2xl" />
+            </div>
+            <div className="max-w-sm">
+              <h3 className="text-lg font-bold text-[var(--sss-color-primary)]">
+                No Scan History Found
+              </h3>
+              <p className="text-xs text-[var(--sss-color-muted)] mt-1 leading-relaxed">
+                You haven't run any smart contract audits yet. Start your first scan now to detect security vulnerabilities.
+              </p>
+            </div>
+            <button
+              onClick={() =>
+                auth?.user?.email
+                  ? dispatch(setScanNowModal(true))
+                  : navigate.push("/solidity-shield-scan/auth")
+              }
+              className="mt-2 px-6 py-2.5 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold text-xs hover:bg-[#16a34a] transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-[#22C55E]/10"
+            >
+              <FontAwesomeIcon icon={faPlus} className="text-xs" /> Scan Now
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Pagination Footer */}
+      {filteredData.length > 0 && (
+        <div className="p-4 border-t border-[var(--sss-color-border)] bg-[var(--sss-color-card)]">
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+            totalLength={filteredData.length}
+          />
+        </div>
+      )}
     </div>
   );
 };

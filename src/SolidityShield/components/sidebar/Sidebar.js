@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useSelector } from "react-redux";
 import {
@@ -14,11 +14,12 @@ import { useRouter } from "next/router";
 import CustomButton from "../common/CustomButton.js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { getUserData } from "../../redux/auth/authSlice.js";
-import { logout } from "../../functions.js";
+import { logout, getJwt } from "../../functions.js";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const Sidebar = () => {
   const { showSideBar, selectedSidebarItem, creditsRemaining } =
@@ -28,11 +29,31 @@ export const Sidebar = () => {
   const navigate = useRouter();
   const totalCredits = 20;
 
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    const handleThemeSync = () => {
+      if (typeof window !== "undefined") {
+        const savedTheme = localStorage.getItem("theme");
+        setDarkMode(savedTheme ? savedTheme === "dark" : true);
+      }
+    };
+    handleThemeSync();
+    window.addEventListener("storage", handleThemeSync);
+    return () => window.removeEventListener("storage", handleThemeSync);
+  }, []);
+
   const auth = useSelector(getUserData);
 
   const selectMenuItem = (index) => {
-    navigate.push("/solidity-shield-scan/" + sidebarItems[index].to);
-    dispatch(setSelectedSidebarItem(sidebarItems[index].name));
+    const item = sidebarItems[index];
+    const jwt = getJwt();
+    if (item?.to !== "pricing" && !jwt) {
+      navigate.push("/solidity-shield-scan/auth");
+      return;
+    }
+    navigate.push("/solidity-shield-scan/" + item.to);
+    dispatch(setSelectedSidebarItem(item.name));
     isMobile && dispatch(setSideBar(false));
   };
 
@@ -68,12 +89,14 @@ export const Sidebar = () => {
       <div className="sss-sidebar-container">
         <div className="sss-sidebar">
           <div className="sss-sidebar-upper">
-            <div className="sss-sidebar-header">
-              <img
-                className="sss-sidebar-header-logo"
-                src="/assets/images/securedapp-logo-light.svg"
-                alt="SecureDApp Logo"
-              />
+            <div className="sss-sidebar-header flex items-center justify-between px-4">
+              <Link href="/" title="Go to SecureDApp Home" className="cursor-pointer flex items-center">
+                <img
+                  className="sss-sidebar-header-logo w-full max-w-[145px] sm:max-w-[155px] h-auto"
+                  src={darkMode ? "/assets/images/securedapp-logo-dark.svg" : "/assets/images/securedapp-logo-light.svg"}
+                  alt="SecureDApp Logo"
+                />
+              </Link>
               <img
                 onClick={() => dispatch(setSideBar(false))}
                 src="/assets/images/solidity-shield-scan/sidebar-menu.svg"
@@ -108,8 +131,8 @@ export const Sidebar = () => {
                             fill={"none"}
                             stroke={
                               selectedSidebarItem === item.name
-                                ? "#12D576"
-                                : "#B2ABAB"
+                                ? "#22C55E"
+                                : "#8B93A7"
                             }
                           />
                         </div>
@@ -123,39 +146,68 @@ export const Sidebar = () => {
                 <CustomButton
                   onClick={handleRequest}
                   className={
-                    "w-full border border-tertiary text-black bg-[#12D576] py-2 rounded-xl active:bg-white"
+                    "w-full border border-tertiary text-[#0A1120] font-bold bg-[#12D576] hover:bg-[#16a34a] py-2 rounded-xl active:bg-[#16a34a] transition-colors cursor-pointer"
                   }
                   text={"Request Manual Audit"}
                 />
               </div>
             </div>
           </div>
-          <div className="sss-sidebar-lower">
-            <div className="sss-sidebar-credits-card">
-              <div className="">Remaining Credits</div>
-              <div className="sss-sidebar-credits-container">
-                <div className="">
+          <div className="sss-sidebar-lower p-3">
+            <div className="sss-sidebar-credits-card bg-[var(--sss-color-card)] border border-[var(--sss-color-border)] p-4 rounded-xl flex flex-col gap-3 shadow-sm">
+              <div className="flex items-center justify-between gap-2">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-[var(--sss-color-muted)]">
+                  Remaining Credits
+                </div>
+                <span className="px-2 py-0.5 text-[10px] font-bold bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 rounded-full shrink-0">
+                  {auth?.user?.plan === 1
+                    ? "Plus Plan"
+                    : auth?.user?.plan === 2
+                    ? "Premium Plan"
+                    : "Free Tier"}
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <div className="w-full">
                   <ProgressBar
                     completed={
-                      ((auth.user.credits - auth.user.remainingCredits) /
-                        auth.user.credits) *
-                      100
+                      auth?.user?.credits != null &&
+                      auth?.user?.remainingCredits != null &&
+                      auth?.user?.credits > 0
+                        ? Math.max(
+                            0,
+                            Math.min(
+                              100,
+                              (auth.user.remainingCredits / auth.user.credits) * 100
+                            )
+                          )
+                        : 100
                     }
-                    height={"10px"}
-                    bgColor="#12D576"
+                    height={"7px"}
+                    bgColor="#22C55E"
                     isLabelVisible={false}
-                    baseBgColor="#CDCDCD"
+                    baseBgColor="var(--sss-color-input-border)"
                   />
                 </div>
-                <div className="sss-sidebar-credits-text">
-                  {auth.user.remainingCredits}/{auth.user.credits}
+                <div className="flex items-center justify-between text-xs font-bold text-[var(--sss-color-primary)] mt-0.5">
+                  <span className="text-[var(--sss-color-muted)] font-normal text-[11px]">
+                    Scans Available
+                  </span>
+                  <span>
+                    {auth?.user?.credits != null && auth?.user?.remainingCredits != null
+                      ? `${auth.user.remainingCredits} / ${auth.user.credits}`
+                      : "20 / 20"}
+                  </span>
                 </div>
               </div>
-              <CustomButton
-                text={"Upgrade Now"}
-                className="w-full border border-tertiary text-black bg-[#12D576] py-2 rounded-xl active:bg-white"
+
+              <button
                 onClick={() => navigate.push("/solidity-shield-scan/pricing")}
-              />
+                className="w-full mt-1 py-2 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold text-xs hover:bg-[#16a34a] active:bg-[#16a34a] transition-all cursor-pointer shadow-sm flex items-center justify-center gap-1"
+              >
+                <span>Upgrade Now</span>
+              </button>
             </div>
           </div>
         </div>

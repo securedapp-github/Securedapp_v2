@@ -1,0 +1,202 @@
+/* ============================================================
+   Solidity Shield Scoped Theme System (Dark & Light Modes)
+   Applies ONLY to Solidity Shield Pages: Overview, History, Billing, Profile
+   ============================================================ */
+
+/* Dark Mode (Default) */
+:root,
+body.dark,
+html.dark {
+  --sss-color-bg: #0A1120;
+  --sss-color-grid: #131B2E;
+  --sss-color-card: #0F1729;
+  --sss-color-border: #1E293B;
+  --sss-color-primary: #FFFFFF;
+  --sss-color-muted: #8B93A7;
+  --sss-color-accent: #22C55E;
+  --sss-color-accent-hover: #16A34A;
+  --sss-color-input-bg: #131B2E;
+  --sss-color-input-border: #2A3548;
+  --sss-color-input-placeholder: #5B6478;
+  --sss-color-badge-alert: #EF4444;
+  --sss-grid-pattern: rgba(19, 27, 46, 0.5);
+}
+
+/* Light Mode */
+body.light,
+html.light,
+html:not(.dark) body:not(.dark) {
+  --sss-color-bg: #F8FAFC;
+  --sss-color-grid: #E2E8F0;
+  --sss-color-card: #FFFFFF;
+  --sss-color-border: #CBD5E1;
+  --sss-color-primary: #0F172A;
+  --sss-color-muted: #475569;
+  --sss-color-accent: #16A34A;
+  --sss-color-accent-hover: #15803D;
+  --sss-color-input-bg: #F1F5F9;
+  --sss-color-input-border: #CBD5E1;
+  --sss-color-input-placeholder: #94A3B8;
+  --sss-color-badge-alert: #EF4444;
+  --sss-grid-pattern: rgba(203, 213, 225, 0.4);
+}
+
+/* Container Scoping */
+.solidity-shield-container,
+.sss-product,
+.sss-product-with-header,
+.sss-sidebar-container,
+.sss-header-container,
+.sss-overview-screen-container,
+.sss-scan-history-container,
+.sss-billing-screen-container,
+.sss-settings-screen-container,
+.sss-settings-body-profile-container,
+.sss-pricing-container {
+  background-color: var(--sss-color-bg) !important;
+  background-image: 
+    linear-gradient(to right, var(--sss-grid-pattern) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sss-grid-pattern) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  color: var(--sss-color-primary) !important;
+}
+
+.sss-header {
+  background-color: var(--sss-color-bg) !important;
+}
+
+/* Sidebar */
+.sss-sidebar {
+  background-color: var(--sss-color-bg) !important;
+  border-right: 1px solid var(--sss-color-border) !important;
+}
+
+.selected-sss-sidebar-item {
+  background-color: var(--sss-color-grid) !important;
+  border-left: 3px solid var(--sss-color-accent) !important;
+}
+
+.selected-sss-sidebar-item .sss-sidebar-item-text {
+  color: var(--sss-color-accent) !important;
+  font-weight: 600 !important;
+}
+
+.sss-sidebar-item-text {
+  color: var(--sss-color-muted) !important;
+}
+
+/* Cards & Panels */
+.sss-overview-first-time,
+.sss-overview-issues-card,
+.sss-overview-scan-summary,
+.sss-history-table-container,
+.sss-billing-current-container,
+.sss-settings-screen-field-container,
+.chart-card-container,
+.sss-sidebar-lower,
+.sss-sidebar-credits-card {
+  background-color: var(--sss-color-card) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  border-radius: 12px !important;
+  color: var(--sss-color-primary) !important;
+}
+
+/* Form Inputs (Profile Screen) */
+.sss-settings-screen-input-text-field {
+  background-color: var(--sss-color-input-bg) !important;
+  border: 1px solid var(--sss-color-input-border) !important;
+  color: var(--sss-color-primary) !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  width: 100% !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.sss-settings-screen-input-text-field::placeholder {
+  color: var(--sss-color-input-placeholder) !important;
+}
+
+.sss-settings-screen-input-text-field:focus {
+  border-color: var(--sss-color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2) !important;
+  outline: none !important;
+}
+
+.sss-settings-screen-field-label {
+  color: var(--sss-color-primary) !important;
+  font-weight: 600 !important;
+  margin-bottom: 6px !important;
+}
+
+/* Deep Light Theme Class Overrides */
+body.light .bg-\[\#0A1120\],
+body.light .bg-\[\#0F1729\],
+body.light .bg-\[\#131B2E\],
+body.light .bg-\[\#1E293B\],
+html:not(.dark) .bg-\[\#0A1120\],
+html:not(.dark) .bg-\[\#0F1729\],
+html:not(.dark) .bg-\[\#131B2E\],
+html:not(.dark) .bg-\[\#1E293B\] {
+  background-color: var(--sss-color-card) !important;
+  color: var(--sss-color-primary) !important;
+}
+
+body.light .bg-\[\#0B132B\],
+body.light .bg-\[\#0B132B\]\/50,
+body.light .bg-\[\#0B132B\]\/60,
+body.light .bg-\[\#0B132B\]\/80,
+body.light .bg-\[\#0B132B\]\/90,
+html:not(.dark) .bg-\[\#0B132B\],
+html:not(.dark) .bg-\[\#0B132B\]\/50,
+html:not(.dark) .bg-\[\#0B132B\]\/60,
+html:not(.dark) .bg-\[\#0B132B\]\/80,
+html:not(.dark) .bg-\[\#0B132B\]\/90 {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+body.light .text-white,
+body.light .text-\[\#FFFFFF\],
+html:not(.dark) .text-white,
+html:not(.dark) .text-\[\#FFFFFF\] {
+  color: #0F172A !important;
+}
+
+body.light .text-\[\#8B93A7\],
+body.light .text-\[\#94A3B8\],
+body.light .text-\[\#969BA0\],
+body.light .text-\[\#5B6478\],
+html:not(.dark) .text-\[\#8B93A7\],
+html:not(.dark) .text-\[\#94A3B8\],
+html:not(.dark) .text-\[\#969BA0\],
+html:not(.dark) .text-\[\#5B6478\] {
+  color: #475569 !important;
+}
+
+body.light .border-\[\#1E293B\],
+body.light .border-\[\#2A3548\],
+html:not(.dark) .border-\[\#1E293B\],
+html:not(.dark) .border-\[\#2A3548\] {
+  border-color: #CBD5E1 !important;
+}
+
+body.light .sss-sidebar-item-container:hover,
+html:not(.dark) .sss-sidebar-item-container:hover {
+  background-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+body.light .selected-sss-sidebar-item,
+html:not(.dark) .selected-sss-sidebar-item {
+  background-color: #E2E8F0 !important;
+  border-left-color: #16A34A !important;
+}
+
+body.light .sss-sidebar-credits-card,
+html:not(.dark) .sss-sidebar-credits-card {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+

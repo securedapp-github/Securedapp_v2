@@ -1,20 +1,19 @@
 .auth-card-container {
+  @apply w-full max-w-md mx-auto;
 }
 
 .auth-card {
-  @apply p-2 md:p-8 rounded-2xl bg-white flex flex-col gap-y-6;
-  box-shadow: 0px 3px 11px 0px rgba(0, 0, 0, 0.06),
-    0px 10px 15px 0px rgba(0, 0, 0, 0.03);
+  @apply p-6 md:p-8 rounded-2xl bg-[#0F1729] text-white border border-[#1E293B] flex flex-col gap-y-6 shadow-2xl;
 }
 
 .auth-card-footer {
-  @apply text-sm flex gap-x-1 items-center justify-center;
+  @apply text-sm flex gap-x-1 items-center justify-center pt-2 border-t border-[#1E293B];
 }
 
 .auth-card-footer-question {
-  @apply text-[#71717A];
+  @apply text-[#8B93A7];
 }
 
 .auth-card-footer-answer {
-  @apply text-tertiary font-semibold;
+  @apply text-[#22C55E] font-semibold hover:underline cursor-pointer;
 }

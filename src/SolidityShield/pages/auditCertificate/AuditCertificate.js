@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { getJwt } from "../../functions";
 import CustomButton from "../../components/common/CustomButton";
 
 const AuditCertificate = () => {
   const [isAuditCertificate, setIsAuditCertificate] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !getJwt()) {
+      router.push("/solidity-shield-scan/auth");
+    }
+  }, [router]);
 
   return (
     <div className="audit-certificate-container">

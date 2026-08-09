@@ -1,9 +1,9 @@
 .sss-header-container {
-  @apply w-full text-secondary;
+  @apply w-full text-white bg-[#0A1120];
 }
 
 .sss-header {
-  @apply py-4 px-4 sm:px-8 flex justify-between items-center;
+  @apply py-4 px-4 sm:px-8 flex justify-between items-center bg-[#0A1120];
 }
 
 .sss-header-left {
@@ -15,18 +15,19 @@
 }
 
 .sss-header-sidebar-opener {
-  @apply cursor-pointer text-[#B2ABAB];
+  @apply cursor-pointer text-[#8B93A7] hover:text-white transition-colors;
 }
+
 .sss-header-search-container {
   @apply w-full hidden md:block;
 }
 
 .sss-header-search {
-  @apply w-5/6 font-light flex py-2 px-3 gap-x-3 items-center justify-start border border-[#F5F5F5] bg-white rounded-3xl shadow-sm;
+  @apply w-5/6 font-light flex py-2 px-3 gap-x-3 items-center justify-start border border-[#1E293B] bg-[#131B2E] text-white rounded-3xl shadow-sm;
 }
 
 .sss-header-search-input {
-  @apply w-full;
+  @apply w-full bg-transparent text-white placeholder-[#5B6478];
 }
 
 .sss-header-search-input:focus {
@@ -38,9 +39,9 @@
 }
 
 .sss-header-right-calendar {
-  @apply hidden md:flex items-center justify-center gap-x-2 text-[#404040];
+  @apply hidden md:flex items-center justify-center gap-x-2 text-[#8B93A7];
 }
 
 .sss-header-right-notifications {
-  @apply hidden md:block border rounded-full p-3 flex items-center justify-center;
+  @apply hidden md:flex border border-[#1E293B] rounded-full p-3 items-center justify-center text-[#8B93A7] hover:text-white bg-[#0F1729];
 }

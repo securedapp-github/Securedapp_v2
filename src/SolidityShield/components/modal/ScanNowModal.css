@@ -1,34 +1,30 @@
-.scan-now-modal-field-container {
-}
-
 .scan-now-modal-field {
   @apply flex flex-col gap-y-2;
 }
 
 .scan-now-modal-field-label {
-  @apply text-sm font-semibold;
+  @apply text-sm font-semibold text-white;
 }
 
 .scan-now-modal-field-children {
   @apply w-full;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 }
 
 .scan-now-modal-container {
-  @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-50;
+  @apply fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm;
   z-index: 100;
 }
 
 .scan-now-modal {
-  @apply px-4 py-6 m-2 lg:m-0 bg-primary dark:bg-secondary rounded-lg shadow-xl w-full lg:w-5/12 flex flex-col items-center gap-y-8 border border-[#A4CDFF];
+  @apply px-6 py-6 m-2 lg:m-0 bg-[#0F1729] text-white rounded-2xl shadow-2xl w-full lg:w-5/12 flex flex-col items-center gap-y-6 border border-[#1E293B];
 }
 
 .scan-now-modal-header {
-  @apply w-full flex justify-between items-center;
+  @apply w-full flex justify-between items-center pb-2 border-b border-[#1E293B];
 }
 
 .scan-now-modal-header-title {
-  @apply w-full font-bold text-xl;
+  @apply w-full font-bold text-xl text-white;
 }
 
 .scan-now-modal-close-container {
@@ -36,7 +32,7 @@
 }
 
 .scan-now-modal-close-button {
-  @apply cursor-pointer;
+  @apply cursor-pointer text-[#8B93A7] hover:text-white transition-colors;
 }
 
 .scan-now-modal-body {
@@ -44,7 +40,7 @@
 }
 
 .scan-now-modal-body-dropdown {
-  @apply relative cursor-pointer py-3 px-4 rounded-lg border w-full;
+  @apply relative cursor-pointer py-3 px-4 rounded-xl border border-[#1E293B] bg-[#131B2E] text-white w-full;
 }
 
 .scan-now-modal-body-dropdown-content {
@@ -52,15 +48,15 @@
 }
 
 .scan-now-modal-body-dropdown-options {
-  @apply shadow-md w-full z-50 absolute bg-white left-0 border rounded-lg;
+  @apply shadow-xl w-full z-50 absolute bg-[#0F1729] text-white left-0 top-full mt-2 border border-[#1E293B] rounded-xl overflow-hidden;
 }
 
 .scan-now-modal-body-dropdown-option-container:hover {
-  @apply border rounded-lg;
+  @apply bg-[#131B2E];
 }
 
 .scan-now-modal-body-dropdown-option {
-  @apply py-1 lg:py-2 px-4;
+  @apply py-2 px-4 text-white text-sm;
 }
 
 .scan-now-modal-body-items {
@@ -72,11 +68,11 @@
 }
 
 .scan-now-modal-input-text-field {
-  @apply py-3 px-4 rounded-lg border w-full;
+  @apply py-3 px-4 rounded-xl border border-[#1E293B] bg-[#131B2E] text-white placeholder-[#5B6478] w-full focus:outline-none focus:border-[#22C55E];
 }
 
 .scan-now-modal-fotter {
-  @apply w-full flex justify-between items-center;
+  @apply w-full flex justify-between items-center pt-2 border-t border-[#1E293B];
 }
 
 .scan-now-modal-footer-button {

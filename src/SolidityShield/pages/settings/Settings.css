@@ -1,11 +1,9 @@
-.sss-settings-screen-field-container {
-}
-
 .sss-settings-screen-field {
   @apply flex flex-col gap-y-3;
 }
 
 .sss-settings-screen-field-label {
+  @apply text-white font-semibold text-sm;
 }
 
 .sss-settings-screen-field-children {
@@ -17,18 +15,15 @@
 }
 
 .sss-settings-screen-input-text-field {
-  @apply py-3 px-4 rounded-lg border w-full;
+  @apply py-3 px-4 rounded-xl border border-[#1E293B] bg-[#131B2E] text-white placeholder-[#5B6478] w-full focus:outline-none focus:border-[#22C55E];
 }
 
 .sss-settings-screen-container {
-  @apply h-full py-4 px-2 lg:px-8 font-poppins;
-}
-
-.sss-settings-screen {
+  @apply h-full py-4 px-2 lg:px-8 font-poppins bg-[#0A1120] text-white min-h-screen;
 }
 
 .sss-settings-header {
-  @apply font-semibold text-4xl;
+  @apply font-semibold text-3xl text-white;
 }
 
 .sss-settings-body {
@@ -40,23 +35,23 @@
 }
 
 .sss-settings-body-header-filter-container {
-  @apply flex gap-x-5 font-light text-sm;
+  @apply flex gap-x-5 font-light text-sm text-[#8B93A7];
 }
 
 .sss-settings-body-header-filter {
-  @apply cursor-pointer flex flex-col gap-y-2;
+  @apply cursor-pointer flex flex-col gap-y-2 hover:text-white transition-colors;
 }
 
 .sss-settings-body-header-filter-selected {
-  @apply font-normal;
+  @apply font-semibold text-[#22C55E];
 }
 
 .sss-settings-body-header-filter-under {
-  @apply w-full h-[1px] bg-[#E5EAEF];
+  @apply w-full h-[1px] bg-[#1E293B];
 }
 
 .sss-settings-body-header-filter-under-selected {
-  @apply h-[2px] bg-black;
+  @apply h-[2px] bg-[#22C55E];
 }
 
 .sss-settings-body-main {
@@ -66,7 +61,7 @@
 /* -------------- */
 /* Profile Screen */
 .sss-settings-body-profile-container {
-  @apply flex flex-col gap-y-8;
+  @apply flex flex-col gap-y-8 bg-[#0F1729] border border-[#1E293B] rounded-2xl p-6 md:p-8 text-white shadow-xl;
 }
 
 .sss-settings-body-profile-fields-row {
@@ -78,7 +73,7 @@
 }
 
 .sss-settings-body-profile-checkbox {
-  @apply flex gap-x-4 text-[#809FB8] font-light;
+  @apply flex gap-x-4 text-[#8B93A7] font-light;
 }
 
 .sss-settings-body-profile-button {
@@ -89,11 +84,11 @@
 /* -------------- */
 /* Connected Accounts */
 .sss-settings-account-card-container {
-  @apply border-b;
+  @apply border-b border-[#1E293B];
 }
 
 .sss-settings-account-card {
-  @apply py-8 px-2 flex justify-between items-center w-full;
+  @apply py-6 px-2 flex justify-between items-center w-full;
 }
 
 .sss-settings-account-card-left {
@@ -105,23 +100,23 @@
 }
 
 .sss-settings-account-card-left-details-title {
-  @apply font-semibold;
+  @apply font-semibold text-white;
 }
 
 .sss-settings-account-card-left-details-desc {
-  @apply text-[#898989] font-light text-sm md:text-base;
+  @apply text-[#8B93A7] font-light text-sm md:text-base;
 }
 
 .sss-settings-connected-accounts-container {
-  @apply bg-white rounded-lg shadow-lg;
+  @apply bg-[#0F1729] border border-[#1E293B] rounded-2xl p-6 text-white shadow-xl;
 }
 
 .sss-settings-connected-accounts {
-  @apply p-6;
+  @apply p-2 md:p-4;
 }
 
 .sss-settings-connected-accounts-box {
-  @apply bg-[#F9F9F9] p-6 flex flex-col md:flex-row items-start gap-y-2 md:gap-x-3 md:gap-y-0 rounded-lg;
+  @apply bg-[#131B2E] border border-[#1E293B] p-6 flex flex-col md:flex-row items-start gap-y-2 md:gap-x-3 md:gap-y-0 rounded-xl text-white;
 }
 
 .sss-settings-connected-accounts-box-icon {
@@ -133,11 +128,11 @@
 }
 
 .sss-settings-connected-accounts-box-content-title {
-  @apply text-lg;
+  @apply text-lg font-bold text-white;
 }
 
 .sss-settings-connected-accounts-box-content-description {
-  @apply font-light text-sm;
+  @apply font-light text-sm text-[#8B93A7];
 }
 
 .sss-settings-connected-accounts-socials {
@@ -145,7 +140,7 @@
 }
 
 .sss-settings-connected-accounts-footer {
-  @apply pt-4;
+  @apply pt-4 border-t border-[#1E293B];
 }
 
 .sss-settings-connected-accounts-footer-buttons {
@@ -156,31 +151,28 @@
 
 /* -------------- */
 /* Notifications */
-.sss-notifications-section-container {
-}
-
 .sss-notifications-section {
   @apply flex flex-col gap-y-3;
 }
 
 .sss-notifications-section-title {
-  @apply text-lg font-semibold;
+  @apply text-lg font-semibold text-white;
 }
 
 .sss-notifications-section-description {
-  @apply w-full md:w-8/12 font-light text-sm text-[#5A5A5A];
+  @apply w-full md:w-8/12 font-light text-sm text-[#8B93A7];
 }
 
 .sss-notifications-section-children {
-  @apply text-sm font-light;
+  @apply text-sm font-light text-white;
 }
 
 .sss-settings-notifications-container {
-  @apply bg-white rounded-lg shadow-lg;
+  @apply bg-[#0F1729] border border-[#1E293B] rounded-2xl p-6 text-white shadow-xl;
 }
 
 .sss-settings-notifications {
-  @apply p-6 flex flex-col gap-y-8;
+  @apply p-2 md:p-4 flex flex-col gap-y-8;
 }
 
 .sss-settings-notifications-email-notif-selections {
@@ -188,7 +180,7 @@
 }
 
 .sss-settings-notifications-email-notif-selection {
-  @apply flex gap-x-3 items-center;
+  @apply flex gap-x-3 items-center text-white;
 }
 
 .sss-settings-notifications-email-news {
@@ -196,7 +188,7 @@
 }
 
 .sss-settings-notifications-email-news-row {
-  @apply flex gap-x-3 items-center;
+  @apply flex gap-x-3 items-center text-white;
 }
 
 .sss-settings-notifications-sign-in {
@@ -208,11 +200,9 @@
 }
 
 .sss-settings-notifs-sign-in-row-detail-container-title {
-  @apply text-base font-normal;
+  @apply text-base font-medium text-white;
 }
 
 .sss-settings-notifs-sign-in-row-detail-container-desc {
-  @apply text-[#5A5A5A];
+  @apply text-[#8B93A7];
 }
-
-/* -------------- */

@@ -62,7 +62,7 @@ export const pricingDetails = [
     pricingCard: {
       icon: "/assets/images/solidity-shield-scan/free-pricing-plan.svg",
       planType: "Free",
-      price: "₹ 0/-",
+      price: "₹ 0",
       description: "Explore our straightforward pricing for standard services.",
     },
     details: {
@@ -71,7 +71,7 @@ export const pricingDetails = [
         info: null,
       },
       run: {
-        value: "All Supper Spotter",
+        value: "All Super Spotters",
         info: null,
       },
       auditScore: {
@@ -130,11 +130,11 @@ export const pricingDetails = [
     },
     details: {
       numberOfScans: {
-        value: "6 Scan",
+        value: "6 Scans",
         info: null,
       },
       run: {
-        value: "All Supper Spotter",
+        value: "All Super Spotters",
         info: null,
       },
       auditScore: {
@@ -189,15 +189,15 @@ export const pricingDetails = [
       icon: "/assets/images/solidity-shield-scan/premium-pricing-plan.svg",
       planType: "Premium",
       price: "₹ 29999",
-      description: "Enjoy advanced features & exclusive access privacy.",
+      description: "Enjoy advanced features & exclusive access, built for teams shipping production-grade contracts.",
     },
     details: {
       numberOfScans: {
-        value: "24 Scan",
+        value: "24 Scans",
         info: null,
       },
       run: {
-        value: "All Supper Spotter",
+        value: "All Super Spotters",
         info: null,
       },
       auditScore: {

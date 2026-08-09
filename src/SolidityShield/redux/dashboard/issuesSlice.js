@@ -2,13 +2,7 @@ import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialIssuesState = {
   dateFilter: "Today",
-  issuesData: [
-    { name: "Issue1", value: 10 },
-    { name: "Issue2", value: 8 },
-    { name: "Issue3", value: 0 },
-    { name: "Issue4", value: 11 },
-    { name: "Issue5", value: 15 },
-  ],
+  issuesData: [],
 };
 
 const issuesSlice = createSlice({

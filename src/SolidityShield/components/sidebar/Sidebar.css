@@ -1,17 +1,17 @@
 .sss-product {
-  @apply w-full min-h-screen md:flex;
+  @apply w-full min-h-screen md:flex bg-[#0A1120];
 }
 
 .sss-product-with-header {
-  @apply w-full bg-[#FAFAFA] h-screen overflow-y-scroll;
+  @apply w-full bg-[#0A1120] h-screen overflow-y-scroll;
 }
 
 .sss-sidebar-container {
-  @apply z-40 fixed md:relative h-screen w-2/3 sm:w-2/4 md:max-w-[20%] border-r border-[#E5EAEF] shadow-lg bg-white text-secondary;
+  @apply z-40 fixed md:relative h-screen w-2/3 sm:w-2/4 md:max-w-[20%] border-r border-[#1E293B] shadow-lg bg-[#0A1120] text-white;
 }
 
 .sss-sidebar {
-  @apply py-4 font-poppins h-full bg-white flex flex-col justify-between;
+  @apply py-4 font-poppins h-full bg-[#0A1120] flex flex-col justify-between;
 }
 
 .sss-sidebar-header {
@@ -19,7 +19,7 @@
 }
 
 .sss-sidebar-header-logo {
-  @apply w-7/12;
+  @apply w-full max-w-[145px] sm:max-w-[155px] h-auto object-contain;
 }
 
 .ss-body {
@@ -27,7 +27,7 @@
 }
 
 .sss-body-header {
-  @apply py-6 px-4 text-[#737373];
+  @apply py-6 px-4 text-[#8B93A7];
 }
 
 .sss-body-navigation {
@@ -35,15 +35,15 @@
 }
 
 .sss-sidebar-item-container {
-  @apply w-full text-[#B2ABAB];
+  @apply w-full text-[#8B93A7];
 }
 
 .selected-sss-sidebar-item {
-  @apply text-[#12D576];
+  @apply text-[#22C55E] bg-[#131B2E];
 }
 
 .sss-sidebar-item-container:hover {
-  @apply bg-[#F8F9FA] cursor-pointer;
+  @apply bg-[#131B2E] cursor-pointer text-white;
 }
 
 .sss-sidebar-item {
@@ -55,11 +55,11 @@
 }
 
 .sss-sidebar-lower {
-  @apply mx-4 bg-[#FAFAFA] rounded-xl;
+  @apply w-full;
 }
 
 .sss-sidebar-credits-card {
-  @apply w-full p-4 flex flex-col gap-y-6;
+  @apply w-full flex flex-col gap-y-3;
 }
 
 .sss-sidebar-credits-container {
@@ -67,5 +67,5 @@
 }
 
 .sss-sidebar-credits-text {
-  @apply w-full flex justify-end text-sm;
+  @apply w-full flex justify-end text-sm text-[#8B93A7];
 }

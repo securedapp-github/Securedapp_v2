@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import IssuesChart from "../../components/overview/IssuesChart";
@@ -26,13 +26,21 @@ const OverviewScreen = () => {
     async function fetch() {
       dispatch(setLoader(true));
       if (userJwt) {
-        await getUser({ dispatch });
-        var data = await getScanHistoryData({
-          userEmail: localStorage.getItem("UserEmail"),
-          dispatch,
-        });
-        setHistory(data);
-        setUser(auth.user);
+        try {
+          await getUser({ dispatch });
+        } catch (error) {
+          console.warn("Overview: getUser network error, using cached data:", error.message);
+        }
+        try {
+          var data = await getScanHistoryData({
+            userEmail: localStorage.getItem("UserEmail"),
+            dispatch,
+          });
+          setHistory(data);
+        } catch (error) {
+          console.warn("Overview: getScanHistoryData network error:", error.message);
+        }
+        setUser(auth?.user);
         dispatch(setLoader(false));
         return;
       } else {
@@ -41,17 +49,17 @@ const OverviewScreen = () => {
       }
     }
     fetch();
-  }, [!history && history, !auth.user.email && auth.user]);
+  }, [!history && history, !auth?.user?.email && auth?.user]);
 
   useEffect(() => {
     if (!history) setFirstTime(false);
-  }, [scanHistory.history]);
+  }, [scanHistory?.history]);
 
   return (
     <div className="sss-overview-screen-container">
       <div className="sss-overview-screen">
-        <div className="sss-overview-header">
-          <div className="">Dashboard</div>
+        <div className="sss-overview-header flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-[#FFFFFF]">Dashboard</h1>
         </div>
         <div className="sss-overview-body">
           {firstTime ? (
@@ -64,7 +72,7 @@ const OverviewScreen = () => {
                 Start your scan here or choose plan{" "}
                 <span
                   onClick={() =>
-                    auth.user.email
+                    auth?.user?.email
                       ? dispatch(setScanNowModal(true))
                       : navigate.push("/solidity-shield-scan/auth")
                   }
@@ -77,7 +85,7 @@ const OverviewScreen = () => {
           ) : (
             <div className="sss-overview-top-cards">
               <ScanSummary
-                firstTime={auth.user.credits === auth.user.remainingCredits}
+                firstTime={auth?.user?.credits === auth?.user?.remainingCredits}
               />
               <IssuesChart />
             </div>
