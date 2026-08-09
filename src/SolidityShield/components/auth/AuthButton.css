@@ -1,6 +1,7 @@
 .auth-button-container {
+  @apply w-full;
 }
 
 .auth-button {
-  @apply rounded-lg w-full p-4 font-semibold;
+  @apply rounded-xl w-full p-3.5 sm:p-4 font-semibold text-slate-950 bg-[#12D576] hover:bg-[#10c46c] active:scale-[0.99] transition-all duration-200 shadow-lg shadow-[#12D576]/25 hover:shadow-xl hover:shadow-[#12D576]/40 cursor-pointer text-sm sm:text-base flex items-center justify-center gap-2;
 }

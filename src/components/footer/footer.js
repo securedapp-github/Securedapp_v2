@@ -98,7 +98,7 @@ const navigationItems = [
       },
       {
         name: "Contact Us",
-        to: "https://securedapp.gitbook.io/securedapp-launchpad/contact-us",
+        to: "/contact",
       },
     ],
   },

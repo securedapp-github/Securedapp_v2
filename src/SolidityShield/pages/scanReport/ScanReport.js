@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { auditStats, scanReportData } from "./scanReport.data";
-import { getReport, getScanHistoryData, getUser } from "../../functions";
+import { getReport, getScanHistoryData, getUser, getJwt } from "../../functions";
 import { getUserData } from "../../redux/auth/authSlice";
 import { toast } from "react-toastify";
 import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
@@ -92,10 +92,17 @@ const ScanReport = ({ downloadId }) => {
 
   useEffect(() => {
     async function fetch() {
-      dispatch(setLoader(true));
-      await getUser({ dispatch });
-      !localStorage.getItem("UserEmail") &&
+      const userJwt = getJwt();
+      if (!userJwt) {
         navigate.push("/solidity-shield-scan/auth");
+        return;
+      }
+      dispatch(setLoader(true));
+      try {
+        await getUser({ dispatch });
+      } catch (error) {
+        console.warn("ScanReport: getUser error", error);
+      }
       await getScanHistoryData({
         userEmail: localStorage.getItem("UserEmail"),
         dispatch,

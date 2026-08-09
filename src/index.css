@@ -71,3 +71,92 @@
 .product-container.font-outfit :where(h1, h2, h3, h4, h5, h6, p, span, div, li, a, button) {
   font-family: 'Outfit', sans-serif !important;
 }
+
+/* ==========================================
+   Solidity Shield Dark Navy Theme System
+   ========================================== */
+.sss-sidebar-container,
+.sss-header-container,
+.sss-overview-screen-container,
+.sss-scan-history-container,
+.sss-billing-screen-container,
+.sss-profile-screen-container {
+  background-color: #0A1120 !important;
+  background-image: 
+    linear-gradient(to right, rgba(19, 27, 46, 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(19, 27, 46, 0.5) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  color: #FFFFFF !important;
+}
+
+.sss-sidebar {
+  background-color: #0A1120 !important;
+  border-right: 1px solid #1E293B !important;
+}
+
+.selected-sss-sidebar-item {
+  background-color: #131B2E !important;
+  border-left: 3px solid #22C55E !important;
+  color: #22C55E !important;
+}
+
+.selected-sss-sidebar-item .sss-sidebar-item-text {
+  color: #22C55E !important;
+  font-weight: 600 !important;
+}
+
+.sss-sidebar-item-text {
+  color: #8B93A7 !important;
+}
+
+.sss-overview-first-time,
+.sss-overview-issues-card,
+.sss-overview-scan-summary,
+.sss-history-table-container,
+.sss-billing-current-container,
+.sss-profile-card,
+.chart-card-container {
+  background-color: #0F1729 !important;
+  border: 1px solid #1E293B !important;
+  border-radius: 12px !important;
+  color: #FFFFFF !important;
+}
+
+.sss-history-table-header {
+  background-color: #131B2E !important;
+  color: #8B93A7 !important;
+  border-bottom: 1px solid #1E293B !important;
+}
+
+.sss-history-table-row {
+  background-color: #0F1729 !important;
+  border-bottom: 1px solid #1E293B !important;
+  color: #FFFFFF !important;
+}
+
+.sss-history-table-row:hover {
+  background-color: #131B2E !important;
+}
+
+.sss-pagination-button-container {
+  background-color: #131B2E !important;
+  border: 1px solid #1E293B !important;
+  color: #8B93A7 !important;
+}
+
+.sss-pagination-current-button {
+  background-color: #22C55E !important;
+  color: #0A1120 !important;
+  font-weight: bold !important;
+}
+
+input, select, textarea {
+  background-color: #131B2E !important;
+  border: 1px solid #2A3548 !important;
+  color: #FFFFFF !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #5B6478 !important;
+}
+

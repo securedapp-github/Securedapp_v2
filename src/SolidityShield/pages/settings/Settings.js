@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { getJwt } from "../../functions";
 import ProfileScreen from "./ProfileScreen";
 import ConnectedAccounts from "./ConnectedAccounts";
 import Notifications from "./Notifications";
@@ -9,12 +11,19 @@ const settingsTypes = ["Profile", "Connected Accounts", "Notifications"];
 
 const Settings = () => {
   const [settingsType, setSettingsType] = useState(settingsTypes[0]);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && !getJwt()) {
+      router.push("/solidity-shield-scan/auth");
+    }
+  }, [router]);
 
   return (
     <div className="sss-settings-screen-container">
       <div className="sss-settings-screen">
-        <div className="sss-settings-header">
-          <div className="">Settings</div>
+        <div className="sss-settings-header flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-[#FFFFFF] relative z-10">Settings</h1>
         </div>
         <div className="sss-settings-body">
           <div className="sss-settings-body-header">

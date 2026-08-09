@@ -1,6 +1,7 @@
 import { Provider } from "react-redux";
 import { mainStore } from "../redux/store";
 import "../styles/globals.css";
+import "../SolidityShield/solidityShieldTheme.css";
 import dynamic from "next/dynamic";
 import { Nunito_Sans, Outfit, Playfair_Display, Poppins } from "next/font/google";
 import Script from "next/script";
@@ -50,6 +51,9 @@ import "../components/productService/ProductWhyCard.css";
 import "../pageComponents/home/HomePage.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../components/RTM/SecureWatchHero.css";
+import "../SolidityShield/pages/contactUs/ContactUs.css";
+import "../SolidityShield/components/auth/AuthInputField.css";
+import "../SolidityShield/components/auth/AuthButton.css";
 
 const ScanNowModal = dynamic(() => import("../SolidityShield/components/modal/ScanNowModal"), { ssr: false });
 const PaymentModal = dynamic(() => import("../SolidityShield/components/modal/PaymentModal"), { ssr: false });

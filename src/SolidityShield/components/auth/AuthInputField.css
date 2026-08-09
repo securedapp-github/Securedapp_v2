@@ -1,11 +1,12 @@
 .auth-input-field-container {
-  @apply flex flex-col items-end gap-y-1;
+  @apply flex flex-col items-start gap-y-1 w-full;
 }
 
 .auth-input-field {
-  @apply p-4 border border-[#E4E4E7] rounded-lg w-full text-black;
+  @apply p-3.5 sm:p-4 border border-slate-300 dark:border-slate-700/80 rounded-xl w-full bg-white dark:bg-[#031B34] text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#12D576]/50 focus:border-[#12D576] transition-all duration-200 text-sm placeholder-slate-400 dark:placeholder-slate-500 shadow-sm;
 }
 
 .auth-input-field-error {
-  @apply text-sm text-[#EA7A9A];
+  @apply text-xs text-[#EA7A9A] mt-1 font-medium;
 }
+

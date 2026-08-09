@@ -10,15 +10,17 @@
   width: 100%;
   margin-top: 20px;
   padding: 12px 8px;
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0px 2px 8px 0px rgba(62, 73, 84, 0.08);
+  background: var(--sss-color-card, #0F1729);
+  border: 1px solid var(--sss-color-border, #1E293B);
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.08);
   gap: 0;
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 /* Divider between partners */
 .partner + .partner {
-  border-left: 1px solid #e8f0f8;
+  border-left: 1px solid var(--sss-color-border, #1E293B);
 }
 
 /* Each partner block — equal width columns */
@@ -39,7 +41,7 @@
   font-weight: 600;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-  color: #6b7280;
+  color: var(--sss-color-muted, #8B93A7);
   text-align: center;
   margin: 0;
   white-space: nowrap;

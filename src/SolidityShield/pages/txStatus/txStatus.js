@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import AuthButton from "../../components/auth/AuthButton";
 import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
-import { checkPhonpe } from "../../functions";
+import { checkPhonpe, getJwt } from "../../functions";
 
 const TxStatus = () => {
   const router = useRouter();
@@ -18,11 +18,15 @@ const TxStatus = () => {
 
   useEffect(() => {
     async function fetch() {
+      if (!getJwt()) {
+        router.push("/solidity-shield-scan/auth");
+        return;
+      }
       const data = await checkPhonpe({ id });
       data.success ? setStatus(true) : setStatus(false);
     }
     fetch();
-  }, [!status && status]);
+  }, [!status && status, router]);
 
   return (
     <div className="auth-screen-container">

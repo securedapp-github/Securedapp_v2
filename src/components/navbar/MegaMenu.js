@@ -45,18 +45,9 @@ const MegaMenu = ({ items, label, isVisible, onMouseEnter, onMouseLeave }) => {
         ) : (
           // Flat layout for Products and Resources
           <div
-            className={`grid gap-x-16 gap-y-3 min-w-[350px] ${
-              items.length > 4 ? "grid-flow-col" : "grid-flow-row"
+            className={`grid gap-x-12 gap-y-3 min-w-[320px] ${
+              items.length > 4 ? "grid-cols-2" : "grid-cols-1"
             }`}
-            style={
-              items.length > 4
-                ? {
-                    gridTemplateRows: `repeat(${Math.ceil(
-                      items.length / 2
-                    )}, minmax(0, 1fr))`,
-                  }
-                : {}
-            }
           >
             {items.map((item, idx) => (
               <Link

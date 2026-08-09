@@ -30,7 +30,8 @@ const AnalyseModal: React.FC<ModalProps> = ({ isOpen, onClose, scanId }) => {
         setLoading(true);
         setError(null);
         try {
-          const response = await axios.post('http://localhost:8000/getScanByIdAE', {
+          const baseUrl = process.env.NEXT_PUBLIC_API_BASE || 'https://139-59-5-56.nip.io:3443';
+          const response = await axios.post(`${baseUrl}/getScanByIdAE`, {
             id: scanId,
           });
 

@@ -8,22 +8,25 @@ const Loader = () => {
     isLoading && (
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          background: "white",
+          width: "100vw",
+          height: "100vh",
+          top: 0,
+          left: 0,
+          background: "#0A1120",
           position: "fixed",
-          zIndex: "1000",
+          zIndex: "9999",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#FFFFFF",
+          fontSize: "1.25rem",
+          fontWeight: 600,
         }}
       >
-        <p
-          style={{
-            position: "relative",
-            top: "40%",
-            left: "38%",
-          }}
-        >
-          Loading...
-        </p>
+        <div className="flex items-center gap-3">
+          <span className="w-4 h-4 border-2 border-[#22C55E] border-t-transparent rounded-full animate-spin"></span>
+          <span>Loading...</span>
+        </div>
       </div>
     )
   );
