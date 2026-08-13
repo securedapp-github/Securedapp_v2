@@ -272,7 +272,7 @@ const ScanReport = ({ downloadId }) => {
                       style={{ textDecoration: "underline" }}
                       className="sss-scan-report-body-audit-stats-table-row-value"
                     >
-                      <Link href={"/solidity-shield-scan/contact"}>
+                      <Link href={"/solidity-shield-scan/support"}>
                         Request Manual Audit
                       </Link>
                     </div>

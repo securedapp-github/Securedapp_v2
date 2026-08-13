@@ -6,9 +6,9 @@ export default function Contact() {
     <>
       <MetaTags
         data={{
-          title: "Contact Us: Leading Blockchain and Web3 Security | SecureDApp",
-          desc: "Get in touch with SecureDApp team for blockchain security audits, smart contract audits, and customer support.",
-          keywords: "Contact SecureDApp, Web3 security support, smart contract audit contact",
+          title: "Support Desk & Inquiries | SecureDApp",
+          desc: "Need assistance with smart contract audits, security scans, or account inquiries? Submit a ticket to our 24/7 security support desk.",
+          keywords: "Contact SecureDApp, Web3 security support, smart contract audit contact, support desk",
         }}
       />
       <ContactUs />

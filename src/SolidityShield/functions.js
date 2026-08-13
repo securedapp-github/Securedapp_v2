@@ -1,12 +1,8 @@
 "use client";
 
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import jsPDF from "jspdf";
-import "jspdf-autotable";
-import html2canvas from "html2canvas";
+import autoTable from "jspdf-autotable";
 import Chart from "chart.js/auto";
-import CryptoJS from "crypto-js";
 import { toast } from "react-toastify";
 import { login } from "../SolidityShield/redux/auth/authSlice";
 import { setIssuesData } from "./redux/dashboard/issuesSlice";
@@ -15,9 +11,46 @@ import { setScanSummary } from "./redux/dashboard/scanSummarySlice";
 import { setCouponCode } from "./redux/dashboard/paymentSlice";
 import { pricingDetails } from "./pages/pricing/pricing.data";
 
+const callAutoTable = (pdfDoc, options) => {
+  if (typeof pdfDoc?.autoTable === "function") {
+    pdfDoc.autoTable(options);
+  } else if (typeof autoTable === "function") {
+    autoTable(pdfDoc, options);
+  }
+};
+
+const getAutoTableFinalY = (pdfDoc, fallback = 100) => {
+  return (
+    pdfDoc?.lastAutoTable?.finalY ??
+    pdfDoc?.previousAutoTable?.finalY ??
+    fallback
+  );
+};
+
 const logo = "/assets/images/securedapp_logo.svg";
 const apiUrl =
   process.env.NEXT_PUBLIC_API_BASE ?? "https://139-59-5-56.nip.io:3443";
+
+
+
+const safeAddImageToPdf = (pdf, imageSource, format, x, y, w, h) => {
+  if (!imageSource || typeof window === "undefined") {
+    return false;
+  }
+
+  const safeSource = String(imageSource).trim();
+  if (!safeSource || safeSource.endsWith(".svg")) {
+    return false;
+  }
+
+  try {
+    pdf.addImage(safeSource, format, x, y, w, h);
+    return true;
+  } catch (error) {
+    console.warn("Skipping PDF image export:", error);
+    return false;
+  }
+};
 
 export async function checkCoupon(code, disptach) {
   const response = await fetch(
@@ -462,26 +495,7 @@ export const scanSubmit = async ({
 };
 
 export const downloadfReportPdf = (id, user) => {
-  downloadReport(id, user);
-  // const input = document.getElementById("scan-report-" + id);
-  // if (!input) {
-  //   toast.error("Error downloading the report! Try again.");
-  //   return;
-  // } else {
-  //   toast(`Downloading Scan Report - ${id}`);
-  // }
-  // html2canvas(input)
-  //   .then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF("p", "mm", "a4");
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = pdf.internal.pageSize.getHeight();
-  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-  //     pdf.save("solidity-shield-scan-report-" + id + ".pdf");
-  //   })
-  //   .catch((error) => {
-  //     toast.error("Error downloading the report! Try again.");
-  //   });
+  return downloadReport(id, user);
 };
 
 export const getScanSummaryData = async ({ dispatch, email }) => {
@@ -599,15 +613,13 @@ export const getIssuesChartData = async ({ dispatch, email }) => {
 
 export const getReport = async ({ id, email }) => {
   const jwt = getJwt();
-  if (!jwt) {
+  if (!jwt || !id) {
     return null;
   }
 
   return await fetch(apiUrl + "/getReport", {
     method: "POST",
-    body: JSON.stringify({
-      id,
-    }),
+    body: JSON.stringify({ id }),
     headers: {
       "Content-type": "application/json",
       Authorization: jwt,
@@ -618,20 +630,16 @@ export const getReport = async ({ id, email }) => {
         localStorage.removeItem("UserJwtToken");
       }
       if (!response.ok) {
-        throw new Error("Failed to fetch report");
+        return null;
       }
       return response.json();
     })
     .then((data) => {
-      if (!Array.isArray(data) || !data.length) {
+      if (!Array.isArray(data) || !data.length || !data[0]?.reportdata) {
         return null;
       }
 
       const row = data[0];
-      if (!row?.reportdata) {
-        return null;
-      }
-
       const report = JSON.parse(row.reportdata);
       const score =
         5 -
@@ -645,14 +653,15 @@ export const getReport = async ({ id, email }) => {
     })
     .catch((error) => {
       console.error("Error fetching report:", error);
-      toast.error("Unable to fetch report. Please log in again.");
       return null;
     });
 };
 
 export const getScanHistoryData = async ({ userEmail, dispatch }) => {
   const jwt = getJwt();
+
   if (!jwt) {
+    dispatch?.(setScanHistory([]));
     return [];
   }
 
@@ -670,15 +679,17 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
       if (response.ok) {
         return response.json();
       }
-      toast.error("Invalid Network Response. Please try again!");
+      throw new Error("Invalid Network Response");
     })
     .then((data) => {
-      if (!data) return [];
-      dispatch(setScanHistory(data.sort((a, b) => b.id - a.id)));
-      return data;
+      let history = Array.isArray(data) ? [...data] : [];
+      history.sort((a, b) => Number(b.id) - Number(a.id));
+      dispatch?.(setScanHistory(history));
+      return history;
     })
     .catch((error) => {
       console.error("Error:", error);
+      dispatch?.(setScanHistory([]));
       return [];
     });
 };
@@ -908,38 +919,45 @@ export const logout = () => {
 };
 
 export const downloadReport = async (id, user) => {
-  fetch(apiUrl + "/getReport", {
-    method: "POST",
-    body: JSON.stringify({
-      id: id,
-    }),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: getJwt(),
-    },
-  })
-    .then((response) => {
-      // console.log(response);
-      if (response.ok) {
-        return response.json();
-      }
-      toast.error("Invalid Network response ");
-    })
-    .then((data) => {
-      console.log(data);
-      if (user.remainingCredits === 0) {
-        console.log("Upgrade your plan to download the report");
-        toast(
-          "No credits left in your account! Please purchase a paid plan to download the report."
-        );
-        return;
-      }
-      console.log(JSON.parse(data[0].reportdata));
-      generatePDF(JSON.parse(data[0].reportdata));
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+  try {
+    const jwt = getJwt();
+    if (!jwt) {
+      toast.error("Please sign in to download reports.");
+      return;
+    }
+
+    const response = await fetch(apiUrl + "/getReport", {
+      method: "POST",
+      body: JSON.stringify({ id }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: jwt,
+      },
     });
+
+    if (!response || !response.ok) {
+      toast.error("Failed to fetch report from server.");
+      return;
+    }
+
+    const data = await response.json();
+    if (!Array.isArray(data) || !data.length || !data[0]?.reportdata) {
+      toast.error("Report data not found.");
+      return;
+    }
+
+    const reportData = JSON.parse(data[0].reportdata);
+    if (!reportData) {
+      toast.error("Invalid report content.");
+      return;
+    }
+
+    toast.success("Downloading report PDF...");
+    await generatePDF(reportData);
+  } catch (error) {
+    console.error("Error downloading report:", error);
+    toast.error("Unable to download report. Please try again.");
+  }
 };
 
 export function generateTable(data) {
@@ -1143,28 +1161,58 @@ const fetchContractDetails = async (contractAddress, _chain) => {
 
 export const githuburlfetch = async (repoUrl, companyName) => {
   try {
-    let rawUrl = repoUrl;
-    if (repoUrl.includes("/blob/")) {
-      rawUrl = repoUrl.replace("github.com", "raw.githubusercontent.com");
-      rawUrl = rawUrl.replace("/blob/", "/");
+    if (!repoUrl || typeof repoUrl !== "string") {
+      throw new Error("GitHub URL is missing.");
+    }
+
+    const trimmedUrl = repoUrl.trim();
+    const githubHost = "github.com";
+    const rawHost = "raw.githubusercontent.com";
+
+    let rawUrl = trimmedUrl;
+
+    if (trimmedUrl.includes("raw.githubusercontent.com")) {
+      rawUrl = trimmedUrl;
+    } else if (trimmedUrl.includes(`${githubHost}/blob/`)) {
+      rawUrl = trimmedUrl
+        .replace(`https://${githubHost}`, `https://${rawHost}`)
+        .replace("/blob/", "/")
+        .split("?")[0];
+    } else if (trimmedUrl.includes(`${githubHost}/tree/`)) {
+      rawUrl = trimmedUrl
+        .replace(`https://${githubHost}`, `https://${rawHost}`)
+        .replace("/tree/", "/")
+        .split("?")[0];
+    } else if (trimmedUrl.includes(`${githubHost}/`)) {
+      rawUrl = trimmedUrl
+        .replace(`https://${githubHost}`, `https://${rawHost}`)
+        .split("?")[0];
+    }
+
+    if (!rawUrl.includes(rawHost) && !rawUrl.includes("raw.githubusercontent.com")) {
+      throw new Error("Unsupported GitHub URL format.");
     }
 
     const response = await fetch(rawUrl);
     if (!response.ok) {
-      toast.error("Failed to fetch file");
+      throw new Error(`Failed to fetch file from GitHub (${response.status}).`);
     }
-    const content = await response.text();
-    // console.log(content);
 
+    const content = await response.text();
+    if (!content || !content.trim()) {
+      throw new Error("Fetched GitHub file is empty.");
+    }
+
+    const safeName = (companyName || "contract").replace(/\s+/g, "_") || "contract";
     const blob = new Blob([content], { type: "text/plain" });
-    const file = new File([blob], `${companyName}.sol`, {
+    const file = new File([blob], `${safeName}.sol`, {
       type: "text/plain",
     });
-    const sourceCode = content;
-    return { sourceCode, file };
+
+    return { sourceCode: content, file };
   } catch (error) {
     console.error("Error fetching content:", error);
-    return null;
+    throw error;
   }
 };
 
@@ -1201,13 +1249,18 @@ export function formatDate(dateString) {
 
 export const generatePDF = async (reportData) => {
   try {
-    console.log("Starting PDF generation");
-    console.log("Report Data:", reportData);
+    if (!reportData || typeof reportData !== "object") {
+      throw new Error("No report data provided for PDF generation");
+    }
 
-    const date = formatDate(reportData.date);
-    //  const logo = logo;
+    const pdfFindings = reportData.findings || {};
+    const ercs = Array.isArray(reportData.ercs) ? reportData.ercs : [];
+    const date = formatDate(reportData.date || new Date().toISOString());
     const pdf = new jsPDF("p", "mm", "a4");
     const linePositionY = 25;
+
+    const safeAddImage = (imageSource, format, x, y, w, h) =>
+      safeAddImageToPdf(pdf, imageSource, format, x, y, w, h);
 
     // Set background color on the left side (red)
     pdf.setFillColor(4, 170, 109);
@@ -1246,7 +1299,7 @@ export const generatePDF = async (reportData) => {
     pdf.setFontSize(12);
     pdf.text(date, 170, 140);
     pdf.setFontSize(50);
-    pdf.addImage(logo, "JPEG", 89, 108, 15, 15);
+    safeAddImage(logo, "PNG", 89, 108, 15, 15);
     pdf.text("SecureDApp", 105, 120);
     pdf.line(50, 0, 50, 300);
 
@@ -1288,10 +1341,10 @@ export const generatePDF = async (reportData) => {
       ["Contracts", reportData.contracts],
       ["Lines", reportData.lines],
       ["Assembly Lines", reportData.assembly_lines],
-      ["ERCs", reportData.ercs.join(", ")],
+      ["ERCs", ercs.join(", ")],
     ];
 
-    pdf.autoTable({
+    callAutoTable(pdf, {
       startY: 45,
       head: [["Executive Summary", ""]], // Empty header row
       body: headers,
@@ -1306,7 +1359,7 @@ export const generatePDF = async (reportData) => {
 
     // Add "Findings" data table
     const findingsHeaders = [["Audit Findings", "Count"]];
-    const findingsData = Object.entries(reportData.findings)
+    const findingsData = Object.entries(pdfFindings)
       .map(([key, value]) => {
         let lowerKey = key.toLowerCase();
 
@@ -1322,7 +1375,7 @@ export const generatePDF = async (reportData) => {
           lowerKey = "OPTIMIZATIONS";
         }
 
-        return [lowerKey, value];
+        return [lowerKey, Number(value) || 0];
       })
       .reverse();
     console.log(findingsData);
@@ -1365,8 +1418,8 @@ export const generatePDF = async (reportData) => {
     //   { type: "OPTIMIZATIONS", issue: "Unoptimized Component Rendering", recommendation: "Conditionally render components to optimize performance." },
     // ];
 
-    pdf.autoTable({
-      startY: pdf.lastAutoTable.finalY + 30,
+    callAutoTable(pdf, {
+      startY: getAutoTableFinalY(pdf, 100) + 30,
       head: findingsHeaders,
       body: findingsData,
       styles: { fillColor: [211, 211, 211] },
@@ -1384,33 +1437,33 @@ export const generatePDF = async (reportData) => {
     canvas.height = 400;
 
     const labels = findingsData.map((item) => item[0]);
-    const data = findingsData.map((item) => item[1]);
-    // console.log(labels);
-    // console.log(data);
+    const chartValues = findingsData.map((item) => item[1]);
     const ctx = canvas.getContext("2d");
-    const chartData = {
-      labels: labels, // Using the first column of findingData's item[0] ['CRITICAL', 'MEDIUM', 'LOW', 'INFORMATIONAL', 'OPTIMIZATIONS'] as labels
-      datasets: [
-        {
-          label: "Count",
-          data: data, // Using the second column of findingsData item[1] [0, 0, 1, 30, 1] as data
-          backgroundColor: "rgb(4, 170, 109)",
-          borderColor: "rgb(75, 192, 192, 1)",
-          borderWidth: 1,
-        },
-      ],
-    };
 
-    new Chart(ctx, {
-      type: "bar",
-      data: chartData,
-    });
-    // Convert canvas to image
-    const chartImage = canvas.toDataURL("images/jpeg");
-    pdf.addImage(chartImage, "JPEG", 70, 150, 40, 100);
-    //end for graph
+    if (ctx) {
+      const chartData = {
+        labels: labels,
+        datasets: [
+          {
+            label: "Count",
+            data: chartValues,
+            backgroundColor: "rgb(4, 170, 109)",
+            borderColor: "rgb(75, 192, 192, 1)",
+            borderWidth: 1,
+          },
+        ],
+      };
 
-    pdf.addImage(logo, "JPEG", 10, 11, 10, 10);
+      new Chart(ctx, {
+        type: "bar",
+        data: chartData,
+      });
+
+      const chartImage = canvas.toDataURL("image/png");
+      safeAddImage(chartImage, "PNG", 70, 150, 40, 100);
+    }
+
+    safeAddImage(logo, "PNG", 10, 11, 10, 10);
 
     pdf.text(date, 170, 20);
     pdf.setDrawColor(0, 128, 0);
@@ -1636,8 +1689,6 @@ export const generatePDF = async (reportData) => {
       "too-many-digits solution: Ensure adherence to numeric notation best practices by avoiding excessive digits in numerical values. Trim down the number of digits to maintain code readability and conform to standard practices, enhancing maintainability and reducing the likelihood of errors.",
       "immutable-states solution: Declare state variables as immutable where appropriate to prevent unintended modification and ensure data consistency. Immutable variables cannot be altered after initialization, enhancing contract security and reducing the risk of unintentional state changes.",
     ];
-    let t;
-
     //   Object.keys(reportData.findings).map((finding) => {
     //     arr.push(finding);
     //     // if (reportData[finding]) {
@@ -1649,24 +1700,6 @@ export const generatePDF = async (reportData) => {
       pdf.addPage();
       [1, 2, 3, 4, 5].map((index) => {
         if (reportData[index] && Object.keys(reportData[index]).length > 0) {
-          let headString = "";
-          switch (index) {
-            case 1:
-              headString = "CRITICAL";
-              break;
-            case 2:
-              headString = "MEDIUM";
-              break;
-            case 3:
-              headString = "LOW";
-              break;
-            case 4:
-              headString = "INFORMATIONAL";
-              break;
-            case 5:
-              headString = "OPTIMIZATIONS";
-              break;
-          }
           //  const vulnerabilitiesData = Object.entries(reportData[index]).map(([type, locations]) => [type, locations.join(', ')]);
           const vulnerabilitiesData = Object.entries(reportData[index]).map(
             ([type, locations]) => {
@@ -1689,7 +1722,7 @@ export const generatePDF = async (reportData) => {
           //   styles: { fillColor: [211, 211, 211] },
           //   headStyles: { fillColor: [4, 170, 109] },
           // });
-          startY = pdf.previousAutoTable.finalY + 10;
+          startY = getAutoTableFinalY(pdf, startY) + 10;
         }
       });
 
@@ -1714,20 +1747,16 @@ export const generatePDF = async (reportData) => {
       // console.log(arr, "Vulnerabilities Found");
       // console.log(Vularr, "Description");
       // console.log(solution, "Recomended Solution");
-      t = solution;
+      let t = solution;
       Vularr.map((sa1) => {
         sa1.push("High");
       });
     }
 
-    let xcod = 15,
-      ycod = 55;
-
     // Function to handle text wrapping
     const handleTextWrapping = (text, maxWidth, x, y) => {
       let words = text.split(" ");
       let line = "";
-      let boldFont = "bold"; // Font weight for bold
 
       for (let i = 0; i < words.length; i++) {
         let testLine = line + words[i] + " ";
@@ -1756,8 +1785,8 @@ export const generatePDF = async (reportData) => {
       const restOfWords = words.slice(1).join(" ");
       return capitalizedFirstWord + " " + restOfWords;
     }
-    const findings = reportData.findings;
-    console.log(findings);
+    const reportFindings = reportData.findings || {};
+    console.log(reportFindings);
 
     // Determine the critical level based on findings
     // let criticalLevel = "low";
@@ -1771,7 +1800,7 @@ export const generatePDF = async (reportData) => {
     // console.log(criticalLevel);
 
     // Categorize findings into categories
-    const categorizeFindings = (findings) => {
+    const categorizeFindings = (findingsMap) => {
       const categories = [];
 
       // Define levels based on findings
@@ -1784,19 +1813,19 @@ export const generatePDF = async (reportData) => {
       };
 
       // Iterate through findings keys
-      for (let key in findings) {
+      for (let key in findingsMap) {
         let lowerKey = key.toLowerCase();
         let category = levels[lowerKey];
 
         if (category) {
-          categories.push([category, findings[key]]);
+          categories.push([category, findingsMap[key]]);
         }
       }
 
       return categories;
     };
 
-    const categorizedFindings = categorizeFindings(findings);
+    const categorizedFindings = categorizeFindings(reportFindings);
     console.log(categorizedFindings);
 
     const vulnerabilityCategories = [
@@ -1849,7 +1878,7 @@ export const generatePDF = async (reportData) => {
         if (arr1[0].includes(a)) {
           arr1[0] = removeDashAndCapitalizeFirstWord(arr1[0]);
 
-          pdf.autoTable({
+          callAutoTable(pdf, {
             startY: 35,
             head: [["Vulnerability Found", "Critical Level"]], // Empty header row
             body: [p],
@@ -1889,7 +1918,7 @@ export const generatePDF = async (reportData) => {
         }
       });
 
-      pdf.addImage(logo, "JPEG", 10, 11, 10, 10);
+      safeAddImage(logo, "PNG", 10, 11, 10, 10);
       pdf.setFontSize(13);
       pdf.setFont("times", "bold");
       pdf.text("SecureDApp", 21, 19);
@@ -1957,7 +1986,7 @@ export const generatePDF = async (reportData) => {
       ],
     ];
 
-    pdf.autoTable({
+    callAutoTable(pdf, {
       head: [["Topic", "Description"]],
       body: disclaimerData,
       startY: 40,
@@ -1970,7 +1999,7 @@ export const generatePDF = async (reportData) => {
 
     pdf.setFontSize(18);
     pdf.setFont("times", "bold"); // Set font to bold
-    pdf.text("Contact Us", 82, pdf.previousAutoTable.finalY + 20);
+    pdf.text("Contact Us", 82, getAutoTableFinalY(pdf, 100) + 20);
 
     const contactData = [
       ["Email", "hello@securedapp.in"],
@@ -1983,15 +2012,15 @@ export const generatePDF = async (reportData) => {
       ["Business Hours", "Monday to Friday, 9 AM - 6 PM IST"],
     ];
 
-    pdf.autoTable({
+    callAutoTable(pdf, {
       head: [["", ""]],
       body: contactData,
-      startY: pdf.previousAutoTable.finalY + 25,
+      startY: getAutoTableFinalY(pdf, 150) + 25,
       styles: { fillColor: [211, 211, 211] },
       headStyles: { fillColor: [4, 170, 109] },
     });
 
-    pdf.addImage(logo, "JPEG", 10, 11, 10, 10);
+    safeAddImage(logo, "PNG", 10, 11, 10, 10);
     pdf.setFontSize(13);
     pdf.setFont("times", "bold");
     pdf.text("SecureDApp", 21, 19);
@@ -2024,13 +2053,12 @@ export const generatePDF = async (reportData) => {
     );
     pdf.text("hello@securedapp.in", 10, 290, null, null, "left");
     pdf.save("Securedapp_SolidityShield_Report.pdf");
+    toast.success("Report downloaded successfully.");
     console.log("PDF generation completed");
     console.log(pdf);
     return pdf;
-    alert("downloaded");
-    // console.log(24);
   } catch (e) {
-    alert(e);
-    console.log("error: ", e);
+    console.error("error: ", e);
+    toast.error("Unable to download report. Please try again.");
   }
 };

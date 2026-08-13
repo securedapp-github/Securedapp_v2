@@ -225,10 +225,10 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="https://securedapp.gitbook.io/securedapp-launchpad/contact-us"
+                    href="/support"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
-                    Contact Us
+                    Support
                   </Link>
                 </li>
               </ul>

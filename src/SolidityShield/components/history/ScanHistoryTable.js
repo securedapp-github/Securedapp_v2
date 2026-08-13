@@ -132,7 +132,7 @@ const ScanHistoryTable = ({ scanHistoryData = [], statusFilter, onFilterChange }
                       href={`/solidity-shield-scan/report?id=${data.id}`}
                       className="text-[#22C55E] font-bold hover:underline flex items-center gap-1.5"
                     >
-                      <span>Report #{data.id}</span>
+                      <span>{`Report #${data.id}`}</span>
                       <FontAwesomeIcon icon={faExternalLinkAlt} className="text-[10px]" />
                     </Link>
                   </td>
