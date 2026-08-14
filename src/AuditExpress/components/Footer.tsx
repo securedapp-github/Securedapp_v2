@@ -225,7 +225,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/contact"
+                    href="https://securedapp.gitbook.io/securedapp-launchpad/contact-us"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
                     Contact Us
