@@ -225,10 +225,10 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="/support"
+                    href="/contact"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
-                    Support
+                    Contact Us
                   </Link>
                 </li>
               </ul>
