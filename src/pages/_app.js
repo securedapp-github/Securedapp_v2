@@ -34,9 +34,10 @@ const poppins = Poppins({
 });
 const ToastContainer = dynamic(() => import("react-toastify").then((mod) => mod.ToastContainer), { ssr: false });
 
-/* ── Critical layout & Home page stylesheets (loaded synchronously to prevent FOUC) ── */
+/* ── Static stylesheets for all pages to prevent FOUC / CSS load delay ── */
 import "../components/common/ProductServiceHero.css";
 import "../components/common/BrandLogos.css";
+import "react-multi-carousel/lib/styles.css";
 import "../components/common/SectionTitle.css";
 import "../components/common/Testimonials.css";
 import "../components/footer/Footer.css";
@@ -51,9 +52,82 @@ import "../components/productService/ProductWhyCard.css";
 import "../pageComponents/home/HomePage.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../components/RTM/SecureWatchHero.css";
-import "../SolidityShield/pages/contactUs/ContactUs.css";
+import "../components/chat/ChatWidget.css";
+import "react-chat-elements/dist/main.css";
+import "../pageComponents/aboutUs/AboutUs.css";
+import "../pageComponents/auditsPage/Audits.css";
+import "../pageComponents/authors/Authors.css";
+import "../pageComponents/authors/AuthorProfile.css";
+import "../pageComponents/blog/Blog.css";
+import "../pageComponents/blogpost/BlogPost.css";
+import "../pageComponents/media/Blog.css";
+import "../components/blog/BlogTag.css";
+import "../components/blog/BlogCard.css";
+import "../pageComponents/product/Product.css";
+import "../pageComponents/service/Service.css";
+import "../pageComponents/vulnerability/Vulnerability.css";
+
+/* ── SolidityShield Styles ── */
+import "../SolidityShield/components/auth/AuthScreenHeader.css";
 import "../SolidityShield/components/auth/AuthInputField.css";
 import "../SolidityShield/components/auth/AuthButton.css";
+import "../SolidityShield/components/auth/AuthLogos.css";
+import "../SolidityShield/components/auth/AuthCard.css";
+import "../SolidityShield/components/common/CustomButton.css";
+import "../SolidityShield/components/common/CustomDivider.css";
+import "../SolidityShield/components/common/Pagination.css";
+import "../SolidityShield/components/overview/ScanSummary.css";
+import "../SolidityShield/components/overview/IssuesChart.css";
+import "../SolidityShield/components/overview/ChartCard.css";
+import "../SolidityShield/components/sidebar/Sidebar.css";
+import "../SolidityShield/components/header/Header.css";
+import "../SolidityShield/components/billing/BillingTable.css";
+import "../SolidityShield/components/history/ScanHistoryTable.css";
+import "../SolidityShield/components/modal/ScanNowModal.css";
+import "../SolidityShield/components/modal/PaymentModal.css";
+import "../SolidityShield/components/modal/RequestQuoteModal.css";
+import "../SolidityShield/pages/contactUs/ContactUs.css";
+import "../SolidityShield/pages/vulnerabilityScan/VulnerabilityScan.css";
+import "../SolidityShield/pages/settings/Settings.css";
+import "../SolidityShield/pages/history/ScanHistory.css";
+import "../SolidityShield/pages/auditCertificate/AuditCertificate.css";
+import "../SolidityShield/pages/overview/Overview.css";
+import "../SolidityShield/pages/scanReport/ScanReport.css";
+import "../SolidityShield/pages/billing/Billing.css";
+import "../SolidityShield/pages/pricing/Pricing.css";
+import "../SolidityShield/pages/auth/LoginScreen.css";
+import "../SolidityShield/pages/auth/AuthScreen.css";
+
+/* ── RTM / SecureWatch Styles ── */
+import "../components/RTM/RTMOverview.css";
+import "../components/RTM/RTMThreats.css";
+import "../components/RTM/RTMMonitoring.css";
+import "../components/RTM/RTMHowItWorks.css";
+import "../components/RTM/RTMFeatures.css";
+import "../components/RTM/RTMUseCases.css";
+import "../components/RTM/RTMBenefits.css";
+import "../components/RTM/RTMPlans.css";
+import "../components/RTM/RTMFAQ.css";
+import "../components/RTM/RTMCaseStudy.css";
+import "../components/RTM/RTMTechnology.css";
+import "../components/RTM/HowItWorks.css";
+import "../components/RTM/UseCases.css";
+import "../components/RTM/Benefits.css";
+import "../components/RTM/Technology.css";
+import "../components/RTM/ContinuousBenefits.css";
+import "../components/RTM/ClientsSay.css";
+import "../components/RTM/MonitoringPlans.css";
+import "../components/RTM/SecureWatchFAQ.css";
+import "../components/RTM/SecureWatchCTA.css";
+import "../components/RTM/SecureWatchOverviewSection.css";
+import "../components/RTM/WhatIsSection.css";
+import "../components/RTM/FeaturesGridSection.css";
+import "../components/RTM/HowItWorksSection.css";
+import "../components/RTM/UseCasesSection.css";
+import "../components/RTM/EulerCaseStudySection.css";
+import "../components/RTM/AuditsVsMonitoringSection.css";
+import "../components/RTM/SecureWatchNavbar.css";
+import "../components/RTM/RequestDemoModal.css";
 
 const ScanNowModal = dynamic(() => import("../SolidityShield/components/modal/ScanNowModal"), { ssr: false });
 const PaymentModal = dynamic(() => import("../SolidityShield/components/modal/PaymentModal"), { ssr: false });
@@ -62,8 +136,7 @@ import { useRouter } from "next/router";
 const MainLayout = dynamic(() => import("../SolidityShield/components/sidebar/Layout").then((mod) => mod.MainLayout), { ssr: false });
 import MetaTags from "../components/common/MetaTags";
 const Loader = dynamic(() => import("../SolidityShield/components/common/Loader"), { ssr: false });
-import { useEffect, useState } from "react";
-import { setTheme } from "../redux/slices/themeSlice";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -71,16 +144,8 @@ function MyApp({ Component, pageProps }) {
     router.asPath.includes("/solidity-shield-scan") &&
     router.asPath !== "/solidity-shield-scan/auth" &&
     router.asPath !== "/solidity-shield-scan/contact";
-  const [isClient, setIsClient] = useState(false);
-  const isMainPage = router.pathname === "/";
 
   useEffect(() => {
-    setIsClient(true);
-    
-    // Dynamically load chat widget styling on component mount
-    import("../components/chat/ChatWidget.css");
-    import("react-chat-elements/dist/main.css");
-
     // Theme synchronization is now handled primarily by the Navbar component 
     // using localStorage. This effect ensures the initial mount matches.
     const savedTheme = localStorage.getItem("theme");
@@ -91,143 +156,19 @@ function MyApp({ Component, pageProps }) {
       document.documentElement.classList.remove("dark");
       document.body.classList.remove("dark");
     }
-
-    // Dynamic loading of page-specific stylesheets to eliminate render-blocking CSS
-    const path = router.pathname;
-
-    if (path.includes("/about")) {
-      import("../pageComponents/aboutUs/AboutUs.css");
-    }
-    if (path.includes("/audits")) {
-      import("../pageComponents/auditsPage/Audits.css");
-    }
-    if (path.includes("/authors")) {
-      import("../pageComponents/authors/Authors.css");
-      import("../pageComponents/authors/AuthorProfile.css");
-    }
-    if (path.includes("/blog") || path.includes("/media") || path.includes("/white-paper")) {
-      import("../pageComponents/blog/Blog.css");
-      import("../pageComponents/blogpost/BlogPost.css");
-      import("../pageComponents/media/Blog.css");
-      import("../components/blog/BlogTag.css");
-      import("../components/blog/BlogCard.css");
-    }
-    
-    const isProductPage = [
-      "/ai-blockchain-investigation-platform",
-      "/blockchain-intelligence-and-forensic-platform",
-      "/dpdp-compliance-platform",
-      "/enterprise-hsm-key-management-platform",
-      "/post-quantum-cryptography-platform",
-      "/self-sovereign-identity",
-      "/tokenization-platform",
-      "/white-paper",
-    ].some((p) => path.startsWith(p));
-    
-    if (isProductPage) {
-      import("../pageComponents/product/Product.css");
-    }
-
-    const isServicePage = [
-      "/audit-express",
-      "/blockchain-web3-training-academy",
-      "/crypto-aml-compliance-platform",
-      "/dapp-smart-contract-security-audit-platform",
-      "/defi-development-company",
-      "/itgc-audit-and-compliance-services",
-      "/nft-marketplace-development-company",
-      "/rwa-smart-contract-audit",
-      "/smart-contract-audit",
-      "/solidity-smart-contract-vulnerabilities",
-      "/sox-compliance-audit-platform",
-      "/token-smart-contract-audit",
-      "/web3-dapp-development-company",
-      "/web3-identity-and-aml-compliance-platform",
-      "/web3-security"
-    ].some((p) => path.startsWith(p));
-    
-    if (isServicePage) {
-      import("../pageComponents/service/Service.css");
-    }
-
-    if (path.startsWith("/solidity-shield-scan")) {
-      import("../pageComponents/vulnerability/Vulnerability.css");
-      import("../SolidityShield/components/auth/AuthScreenHeader.css");
-      import("../SolidityShield/components/common/CustomButton.css");
-      import("../SolidityShield/components/overview/ScanSummary.css");
-      import("../SolidityShield/pages/contactUs/ContactUs.css");
-      import("../SolidityShield/pages/vulnerabilityScan/VulnerabilityScan.css");
-      import("../SolidityShield/pages/settings/Settings.css");
-      import("../SolidityShield/pages/history/ScanHistory.css");
-      import("../SolidityShield/pages/auditCertificate/AuditCertificate.css");
-      import("../SolidityShield/pages/overview/Overview.css");
-      import("../SolidityShield/pages/scanReport/ScanReport.css");
-      import("../SolidityShield/components/common/CustomDivider.css");
-      import("../SolidityShield/pages/billing/Billing.css");
-      import("../SolidityShield/pages/pricing/Pricing.css");
-      import("../SolidityShield/components/modal/ScanNowModal.css");
-      import("../SolidityShield/components/overview/IssuesChart.css");
-      import("../SolidityShield/pages/auth/LoginScreen.css");
-      import("../SolidityShield/pages/auth/AuthScreen.css");
-      import("../SolidityShield/components/overview/ChartCard.css");
-      import("../SolidityShield/components/sidebar/Sidebar.css");
-      import("../SolidityShield/components/header/Header.css");
-      import("../SolidityShield/components/billing/BillingTable.css");
-      import("../SolidityShield/components/common/Pagination.css");
-      import("../SolidityShield/components/modal/RequestQuoteModal.css");
-      import("../SolidityShield/components/history/ScanHistoryTable.css");
-      import("../SolidityShield/components/auth/AuthButton.css");
-      import("../SolidityShield/components/auth/AuthLogos.css");
-      import("../SolidityShield/components/modal/PaymentModal.css");
-      import("../SolidityShield/components/auth/AuthCard.css");
-      import("../SolidityShield/components/auth/AuthInputField.css");
-    }
-    
-    if (path.startsWith("/real-time-blockchain-threat-monitoring") || path.startsWith("/blockchain-security")) {
-      import("../components/RTM/RTMOverview.css");
-      import("../components/RTM/RTMThreats.css");
-      import("../components/RTM/RTMMonitoring.css");
-      import("../components/RTM/RTMHowItWorks.css");
-      import("../components/RTM/RTMFeatures.css");
-      import("../components/RTM/RTMUseCases.css");
-      import("../components/RTM/RTMBenefits.css");
-      import("../components/RTM/RTMPlans.css");
-      import("../components/RTM/RTMFAQ.css");
-      import("../components/RTM/RTMCaseStudy.css");
-      import("../components/RTM/RTMTechnology.css");
-      import("../components/RTM/HowItWorks.css");
-      import("../components/RTM/UseCases.css");
-      import("../components/RTM/Benefits.css");
-      import("../components/RTM/Technology.css");
-      import("../components/RTM/ContinuousBenefits.css");
-      import("../components/RTM/ClientsSay.css");
-      import("../components/RTM/MonitoringPlans.css");
-      import("../components/RTM/SecureWatchFAQ.css");
-      import("../components/RTM/SecureWatchCTA.css");
-      import("../components/RTM/SecureWatchOverviewSection.css");
-      import("../components/RTM/WhatIsSection.css");
-      import("../components/RTM/FeaturesGridSection.css");
-      import("../components/RTM/HowItWorksSection.css");
-      import("../components/RTM/UseCasesSection.css");
-      import("../components/RTM/EulerCaseStudySection.css");
-      import("../components/RTM/SecureWatchNavbar.css");
-      import("../components/RTM/RequestDemoModal.css");
-    }
   }, [router.pathname]);
 
   return (
     <Provider store={mainStore}>
       <div className={`bg-primary dark:bg-secondary text-secondary dark:text-primary min-h-screen relative overflow-x-hidden ${nunitoSans.variable} ${outfit.variable} ${playfairDisplay.variable} ${poppins.variable}`}>
         <a href="#main-content" className="skip-nav-link">Skip to main content</a>
-        {isClient && (
-          <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            theme="dark"
-            pauseOnHover
-          />
-        )}
-        {isClient && isSolidityShieldScan && (
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          theme="dark"
+          pauseOnHover
+        />
+        {isSolidityShieldScan && (
           <>
             <ScanNowModal />
             <PaymentModal />
@@ -242,7 +183,7 @@ function MyApp({ Component, pageProps }) {
                 desc: "Get your smart contracts audited here by SecureDapps's Solidity Shield with AI scanning.",
               }}
             />
-            {isClient && <Loader />}
+            <Loader />
             <Component {...pageProps} />
           </MainLayout>
         ) : (

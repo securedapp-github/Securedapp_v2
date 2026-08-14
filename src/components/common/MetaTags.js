@@ -125,17 +125,6 @@ const MetaTags = ({ data }) => {
       <link rel="preconnect" href="https://www.googletagmanager.com" />
       <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-      {/* Hero Image Preload for LCP Improvement on Homepage */}
-      {isHomePage && (
-        <link
-          rel="preload"
-          href="/assets/images/ProductPages/ss/hero.webp"
-          as="image"
-          type="image/webp"
-          fetchpriority="high"
-        />
-      )}
-
       <meta name="author" content="SecureDapp" />
       <meta name="theme-color" content="#000000" />
 

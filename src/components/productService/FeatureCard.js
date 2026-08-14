@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useSelector } from "react-redux";
 import { getHomeSelector } from "../../redux/slices/main/homeSlice";

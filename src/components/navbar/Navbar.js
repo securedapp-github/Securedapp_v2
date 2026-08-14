@@ -132,7 +132,7 @@ const Navbar = () => {
     <div className="absolute z-[999] w-full top-0 left-0 right-0 pointer-events-none">
       <div className="pointer-events-auto relative">
       {isRequestModalOpen && <RequestQuoteModal />}
-      {!isMounted || isLargeScreen ? (
+      <div className="hidden lg:block">
         <NavbarLargeScreen
           handleNavigation={handleNavigation}
           nextPath={nextPath}
@@ -141,7 +141,8 @@ const Navbar = () => {
           buttonText={buttonText}
           isMainPage={true}
         />
-      ) : (
+      </div>
+      <div className="block lg:hidden">
         <NavbarSmallScreen
           handleNavigation={handleNavigation}
           nextPath={nextPath}
@@ -150,7 +151,7 @@ const Navbar = () => {
           buttonText={buttonText}
           isMainPage={true}
         />
-      )}
+      </div>
       </div>
     </div>
   );

@@ -69,11 +69,11 @@ const navigationItems = [
       },
       {
         name: "Regulatory Solutions",
-        to: "/crypto-compliance-aml",
+        to: "/crypto-aml-compliance-platform",
       },
       {
         name: "Training & Education",
-        to: "/levelup-academy",
+        to: "/blockchain-web3-training-academy",
       },
     ],
   },
@@ -115,7 +115,7 @@ const navigationItems = [
       },
       {
         name: "Vulnerabilities",
-        to: "/solidity-shield-vulnerabilities",
+        to: "/solidity-smart-contract-vulnerabilities",
       },
       {
         name: "Github",
