@@ -6,7 +6,7 @@ import {
   getHistorySelector,
   setHistoryStatusFilter,
 } from "../../redux/dashboard/historySlice";
-import { getScanHistory } from "../../redux/scanHistory/scanHistorySlice";
+import { getScanHistory, setScanHistory } from "../../redux/scanHistory/scanHistorySlice";
 import { getScanHistoryData, getUser, getJwt } from "../../functions";
 import ScanHistoryTable from "../../components/history/ScanHistoryTable";
 import { getUserData } from "../../redux/auth/authSlice";
@@ -18,8 +18,8 @@ import { faRotateRight, faShieldHalved } from "@fortawesome/free-solid-svg-icons
 const ScanHistory = () => {
   const { statusFilter } = useSelector(getHistorySelector);
   const auth = useSelector(getUserData);
-  var scanHistory = useSelector(getScanHistory);
-  const [history, setHistory] = useState(scanHistory?.history || []);
+  var reduxScanHistory = useSelector(getScanHistory);
+  const [history, setHistory] = useState(reduxScanHistory?.history || []);
   const dispatch = useDispatch();
   const navigate = useRouter();
 
@@ -33,6 +33,7 @@ const ScanHistory = () => {
       setHistory(data || []);
     } catch (e) {
       console.warn(e);
+      setHistory([]);
     } finally {
       dispatch(setLoader(false));
     }
@@ -56,14 +57,22 @@ const ScanHistory = () => {
           setHistory(data || []);
         } catch (error) {
           console.warn("ScanHistory: getScanHistoryData network error:", error.message);
+          setHistory([]);
         }
         dispatch(setLoader(false));
       } else {
-        navigate.push("/solidity-shield-scan/auth");
+        setHistory([]);
+        dispatch(setLoader(false));
       }
     }
     fetch();
   }, []);
+
+  useEffect(() => {
+    if (reduxScanHistory?.history && reduxScanHistory.history.length > 0) {
+      setHistory(reduxScanHistory.history);
+    }
+  }, [reduxScanHistory?.history]);
 
   return (
     <div className="sss-scan-history-container min-h-screen p-4 md:p-8 font-poppins">
@@ -84,12 +93,14 @@ const ScanHistory = () => {
             </div>
           </div>
 
-          <button
-            onClick={handleReload}
-            className="self-start sm:self-auto px-4 py-2 text-xs font-bold rounded-xl bg-[var(--sss-color-card)] border border-[var(--sss-color-border)] text-[var(--sss-color-primary)] hover:border-[#22C55E] hover:text-[#22C55E] transition-all flex items-center gap-2 cursor-pointer shadow-sm"
-          >
-            <FontAwesomeIcon icon={faRotateRight} className="text-xs" /> Reload History
-          </button>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <button
+              onClick={handleReload}
+              className="px-4 py-2 text-xs font-bold rounded-xl bg-[var(--sss-color-card)] border border-[var(--sss-color-border)] text-[var(--sss-color-primary)] hover:border-[#22C55E] hover:text-[#22C55E] transition-all flex items-center gap-2 cursor-pointer shadow-sm"
+            >
+              <FontAwesomeIcon icon={faRotateRight} className="text-xs" /> Reload History
+            </button>
+          </div>
         </div>
 
         {/* Unified Table Component */}

@@ -8,16 +8,16 @@ import Hero from "./sections/Hero";
 import { reviews, faqHeaders, faqsData } from "./home.data";
 import MetaTags from "../../components/common/MetaTags";
 
-const Statitics = dynamic(() => import("./sections/Statistics"), { ssr: false });
-const Features = dynamic(() => import("./sections/Features"), { ssr: false });
-const Solutions = dynamic(() => import("./sections/solutions"), { ssr: false });
-const HowItWorks = dynamic(() => import("./sections/HowItWorks"), { ssr: false });
-const Services = dynamic(() => import("./sections/Services"), { ssr: false });
-const Testimonials = dynamic(() => import("../../components/common/Testimonials"), { ssr: false });
-const BrandLogos = dynamic(() => import("../../components/common/BrandLogos"), { ssr: false });
-const FAQs = dynamic(() => import("../../components/common/FAQs"), { ssr: false });
-const CTA = dynamic(() => import("./sections/CTA"), { ssr: false });
-const BookMeetCta = dynamic(() => import("../../components/common/bookMeetCta"), { ssr: false });
+import Statitics from "./sections/Statistics";
+import Features from "./sections/Features";
+import Solutions from "./sections/solutions";
+import HowItWorks from "./sections/HowItWorks";
+import Services from "./sections/Services";
+import Testimonials from "../../components/common/Testimonials";
+import BrandLogos from "../../components/common/BrandLogos";
+import FAQs from "../../components/common/FAQs";
+import CTA from "./sections/CTA";
+import BookMeetCta from "../../components/common/bookMeetCta";
 
 const Home = () => {
   useEffect(() => {

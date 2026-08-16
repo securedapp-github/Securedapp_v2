@@ -297,11 +297,11 @@ const Pricing = () => {
           </div>
           <div className="sas-pricing-plan-footer-button-container flex-shrink-0">
             <CustomButton
-              text={"Contact Us"}
+              text={"Support"}
               className={
                 "border border-[#22C55E] text-[#22C55E] bg-transparent hover:bg-[#22C55E] hover:text-[#0A1120] font-bold px-8 py-2.5 rounded-xl transition-colors cursor-pointer"
               }
-              onClick={() => navigate.push("/solidity-shield-scan/contact")}
+              onClick={() => navigate.push("/solidity-shield-scan/support")}
             />
           </div>
         </div>

@@ -20,9 +20,103 @@ export const AuthInputFieldContainer = ({ label, InputField, htmlFor }) => {
 const ContactUs = () => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [countryCode, setCountryCode] = useState("+91");
   const [email, setEmail] = useState("");
+  const [service, setService] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  const COUNTRY_CODES = [
+    { code: "+91", country: "India" },
+    { code: "+1", country: "United States / Canada" },
+    { code: "+44", country: "United Kingdom" },
+    { code: "+971", country: "UAE" },
+    { code: "+61", country: "Australia" },
+    { code: "+49", country: "Germany" },
+    { code: "+33", country: "France" },
+    { code: "+81", country: "Japan" },
+    { code: "+65", country: "Singapore" },
+    { code: "+86", country: "China" },
+    { code: "+7", country: "Russia" },
+    { code: "+92", country: "Pakistan" },
+    { code: "+94", country: "Sri Lanka" },
+    { code: "+880", country: "Bangladesh" },
+    { code: "+977", country: "Nepal" },
+    { code: "+966", country: "Saudi Arabia" },
+    { code: "+82", country: "South Korea" },
+    { code: "+39", country: "Italy" },
+    { code: "+34", country: "Spain" },
+    { code: "+55", country: "Brazil" },
+    { code: "+52", country: "Mexico" },
+    { code: "+27", country: "South Africa" },
+    { code: "+63", country: "Philippines" },
+    { code: "+62", country: "Indonesia" },
+    { code: "+60", country: "Malaysia" },
+    { code: "+64", country: "New Zealand" },
+    { code: "+31", country: "Netherlands" },
+    { code: "+32", country: "Belgium" },
+    { code: "+41", country: "Switzerland" },
+    { code: "+46", country: "Sweden" },
+    { code: "+47", country: "Norway" },
+    { code: "+48", country: "Poland" },
+    { code: "+43", country: "Austria" },
+    { code: "+351", country: "Portugal" },
+    { code: "+372", country: "Estonia" },
+    { code: "+36", country: "Hungary" },
+    { code: "+380", country: "Ukraine" },
+    { code: "+20", country: "Egypt" },
+    { code: "+254", country: "Kenya" },
+    { code: "+234", country: "Nigeria" },
+    { code: "+57", country: "Colombia" },
+    { code: "+56", country: "Chile" },
+    { code: "+54", country: "Argentina" },
+    { code: "+90", country: "Turkey" },
+    { code: "+972", country: "Israel" },
+    { code: "+853", country: "Macau" },
+    { code: "+852", country: "Hong Kong" },
+    { code: "+886", country: "Taiwan" }
+  ];
+
+  const SERVICE_GROUPS = [
+    {
+      label: "Products",
+      options: [
+        "Solidity Shield",
+        "Secure CMS (Consent)",
+        "Secure Trace",
+        "PQC Suite",
+        "SecureX DID",
+        "Secure Watch",
+        "Audit Express",
+        "Secure Pad",
+        "SecureX-ID",
+        "Quantum Vault"
+      ]
+    },
+    {
+      label: "Services",
+      options: [
+        "Smart Contract Audit",
+        "Dapp Security Audit",
+        "Token Audit",
+        "RWA Audit",
+        "Web3 Security",
+        "Blockchain Forensic",
+        "Crypto Compliance & AML",
+        "Decentralized Identity (DID)",
+        "DApp Development",
+        "NFT Development",
+        "DeFi Development",
+        "SOX Compliance",
+        "ITGC Compliance",
+        "LevelUp Academy"
+      ]
+    },
+    {
+      label: "General",
+      options: ["General Inquiry"]
+    }
+  ];
 
   const sendMail = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
@@ -31,6 +125,7 @@ const ContactUs = () => {
       name.trim().length === 0 ||
       email.trim().length === 0 ||
       number.trim().length === 0 ||
+      service.trim().length === 0 ||
       message.trim().length < 3
     ) {
       toast.error("Please fill in all details");
@@ -53,21 +148,23 @@ const ContactUs = () => {
         description: message,
         name: name,
         email: email,
-        phone: number,
-        category: 'Other',
+        phone: `${countryCode} ${number}`.trim(),
+        category: 'Support',
         priority: 'Medium',
         metadata: {
-          page: 'Main Website Contact Page'
+          page: 'Securedapp Support & Help Desk',
+          serviceOfInterest: service
         }
       });
-      toast.success("Message received! Our security team will reach out shortly.");
+      toast.success("Support ticket submitted! Our 24/7 security desk will respond shortly.");
       setName("");
       setEmail("");
       setNumber("");
+      setService("");
       setMessage("");
     } catch (err) {
-      console.error("Error submitting contact form:", err);
-      toast.error("Error sending message. Please try again or email support@securedapp.io");
+      console.error("Error submitting support ticket:", err);
+      toast.error("Error submitting ticket. Please try again or email support@securedapp.io");
     } finally {
       setSubmitting(false);
     }
@@ -83,39 +180,39 @@ const ContactUs = () => {
 
         <div className="contact-us">
           <header className="contact-us-header">
-            <span className="contact-us-header-label">Contact Us</span>
-            <h1 className="contact-us-header-title">Get in Touch</h1>
+            <span className="contact-us-header-label">24/7 Security Support Desk</span>
+            <h1 className="contact-us-header-title">Get Support & Submit Tickets</h1>
             <p className="contact-us-header-description">
-              Have questions about smart contract audits, security tooling, or custom enterprise solutions? We'd love to help.
+              Need assistance with smart contract audits, security scans, or account inquiries? Submit a ticket directly to our 24/7 security support desk.
             </p>
           </header>
 
           {/* Trust Badges */}
-          <div className="contact-us-trust-grid" role="region" aria-label="Support Highlights">
+          <div className="contact-us-trust-grid" role="region" aria-label="Support Desk Highlights">
             <div className="contact-us-trust-card">
               <div className="contact-us-trust-icon">
                 <ShieldCheck className="w-5 h-5 text-[#12D576]" />
               </div>
-              <span className="contact-us-trust-title">Security Audits</span>
-              <span className="contact-us-trust-subtitle">Dedicated Engineer Review</span>
+              <span className="contact-us-trust-title">Engineer Support</span>
+              <span className="contact-us-trust-subtitle">Direct Technical Assistance</span>
             </div>
             <div className="contact-us-trust-card">
               <div className="contact-us-trust-icon">
                 <Zap className="w-5 h-5 text-[#12D576]" />
               </div>
               <span className="contact-us-trust-title">Rapid Response</span>
-              <span className="contact-us-trust-subtitle">Direct Ticket Ingestion</span>
+              <span className="contact-us-trust-subtitle">24/7 Ticket Ingestion</span>
             </div>
             <div className="contact-us-trust-card">
               <div className="contact-us-trust-icon">
                 <Mail className="w-5 h-5 text-[#12D576]" />
               </div>
-              <span className="contact-us-trust-title">Web3 Support</span>
-              <span className="contact-us-trust-subtitle">24/7 Security Desk</span>
+              <span className="contact-us-trust-title">Enterprise SLA</span>
+              <span className="contact-us-trust-subtitle">Priority Incident Desk</span>
             </div>
           </div>
 
-          <form onSubmit={sendMail} className="contact-us-body" aria-label="Contact Form">
+          <form onSubmit={sendMail} className="contact-us-body" aria-label="Support Ticket Form">
             <div className="contact-us-body-name">
               <AuthInputFieldContainer
                 label="Full Name"
@@ -155,17 +252,54 @@ const ContactUs = () => {
                   label="Phone Number"
                   htmlFor="contact-phone"
                   InputField={
-                    <AuthInputField
-                      id="contact-phone"
-                      authInputType="tel"
-                      placeholder="+1 (555) 000-0000"
-                      value={number}
-                      onChange={setNumber}
-                      required
-                    />
+                    <div className="contact-us-body-number-field">
+                      <select
+                        id="contact-country-code"
+                        value={countryCode}
+                        onChange={(e) => setCountryCode(e.target.value)}
+                        className="contact-us-body-country-select"
+                        aria-label="Country code"
+                      >
+                        {COUNTRY_CODES.map((c) => (
+                          <option key={`${c.code}-${c.country}`} value={c.code}>
+                            {c.code} {c.country}
+                          </option>
+                        ))}
+                      </select>
+                      <AuthInputField
+                        id="contact-phone"
+                        authInputType="tel"
+                        placeholder="98765 43210"
+                        value={number}
+                        onChange={setNumber}
+                        required
+                      />
+                    </div>
                   }
                 />
               </div>
+            </div>
+
+            <div className="contact-us-body-service">
+              <label htmlFor="contact-service" className="auth-input-field-div-label">
+                Service of Interest <span className="text-[#12D576]">*</span>
+              </label>
+              <select
+                id="contact-service"
+                value={service}
+                onChange={(e) => setService(e.target.value)}
+                className="contact-us-body-service-select"
+                required
+              >
+                <option value="">Select a service...</option>
+                {SERVICE_GROUPS.map((group) => (
+                  <optgroup key={group.label} label={group.label}>
+                    {group.options.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
             </div>
 
             <div className="contact-us-body-message">
@@ -209,10 +343,10 @@ const ContactUs = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Sending Message...
+                    Submitting Ticket...
                   </span>
                 ) : (
-                  "Send Message"
+                  "Submit Ticket"
                 )}
               </AuthButton>
             </div>

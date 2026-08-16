@@ -1,3 +1,8 @@
+/* ================================================================
+   ContactUs — Premium form styles
+   ================================================================ */
+
+/* ── Label ─────────────────────────────────────────────────────── */
 .auth-input-field-div {
   @apply w-full flex flex-col gap-y-1.5;
 }
@@ -6,41 +11,53 @@
   @apply text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-semibold tracking-wide mb-0.5;
 }
 
+/* ── Page Layout ────────────────────────────────────────────────── */
 .contact-us-container {
-  @apply font-poppins min-h-screen flex flex-col justify-center items-center pt-28 lg:pt-36 pb-16 px-4 sm:px-6 lg:px-8 bg-grid relative overflow-hidden;
+  @apply font-poppins min-h-screen flex flex-col justify-center items-center
+    pt-28 lg:pt-36 pb-16 px-4 sm:px-6 lg:px-8
+    bg-grid relative overflow-hidden;
 }
 
 .contact-us {
   @apply w-full max-w-2xl flex flex-col gap-y-6 items-center justify-center mx-auto relative z-10;
 }
 
+/* ── Page Header ────────────────────────────────────────────────── */
 .contact-us-header {
   @apply flex flex-col items-center gap-y-3 text-center max-w-xl;
 }
 
 .contact-us-header-label {
-  @apply text-[#12D576] font-semibold text-xs sm:text-sm tracking-wider uppercase bg-[#12D576]/10 px-3.5 py-1 rounded-full border border-[#12D576]/20 shadow-sm;
+  @apply text-[#12D576] font-semibold text-xs sm:text-sm tracking-wider uppercase
+    bg-[#12D576]/10 px-3.5 py-1 rounded-full border border-[#12D576]/20 shadow-sm;
 }
 
 .contact-us-header-title {
-  @apply text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight;
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold
+    text-slate-900 dark:text-white tracking-tight leading-tight;
 }
 
 .contact-us-header-description {
   @apply text-slate-600 dark:text-slate-300 font-normal text-sm sm:text-base leading-relaxed;
 }
 
-/* UI/UX Pro Max Trust Cards */
+/* ── Trust Cards ────────────────────────────────────────────────── */
 .contact-us-trust-grid {
   @apply grid grid-cols-1 sm:grid-cols-3 gap-4 w-full my-2;
 }
 
 .contact-us-trust-card {
-  @apply p-4 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#001938]/80 backdrop-blur-xl flex flex-col items-center text-center gap-y-1.5 transition-all duration-200 hover:border-[#12D576]/40 hover:shadow-lg hover:shadow-[#12D576]/10;
+  @apply p-4 sm:p-5 rounded-2xl
+    border border-slate-200/80 dark:border-slate-800/80
+    bg-white/80 dark:bg-[#001938]/80 backdrop-blur-xl
+    flex flex-col items-center text-center gap-y-1.5
+    transition-all duration-200
+    hover:border-[#12D576]/40 hover:shadow-lg hover:shadow-[#12D576]/10;
 }
 
 .contact-us-trust-icon {
-  @apply w-10 h-10 rounded-xl bg-[#12D576]/10 text-[#12D576] flex items-center justify-center text-lg mb-1 shadow-inner;
+  @apply w-10 h-10 rounded-xl bg-[#12D576]/10 text-[#12D576]
+    flex items-center justify-center text-lg mb-1 shadow-inner;
 }
 
 .contact-us-trust-title {
@@ -51,10 +68,16 @@
   @apply text-[11px] sm:text-xs text-slate-500 dark:text-slate-400;
 }
 
+/* ── Form Card ──────────────────────────────────────────────────── */
 .contact-us-body {
-  @apply pt-6 sm:pt-8 w-full flex flex-col gap-y-6 bg-white/80 dark:bg-[#001938]/80 backdrop-blur-xl p-6 sm:p-10 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xl shadow-slate-900/10 dark:shadow-black/60;
+  @apply pt-6 sm:pt-8 w-full flex flex-col gap-y-5
+    bg-white/80 dark:bg-[#001938]/80 backdrop-blur-xl
+    p-6 sm:p-10 rounded-3xl
+    border border-slate-200/80 dark:border-slate-800/80
+    shadow-2xl shadow-slate-900/10 dark:shadow-black/60;
 }
 
+/* ── Field wrappers ─────────────────────────────────────────────── */
 .contact-us-body-name {
   @apply flex flex-col sm:flex-row gap-y-4 sm:gap-x-4 justify-center items-center w-full;
 }
@@ -64,16 +87,93 @@
   @apply w-full;
 }
 
+/* ── Phone field (country code + number) ───────────────────────── */
+.contact-us-body-number-field {
+  @apply w-full flex gap-2 items-stretch;
+}
+
+.contact-us-body-country-select {
+  @apply h-full px-3 py-3.5 sm:py-4
+    border border-slate-300 dark:border-slate-700/80
+    rounded-xl
+    bg-white dark:bg-[#031B34]
+    text-slate-900 dark:text-white
+    focus:outline-none focus:ring-2 focus:ring-[#12D576]/50 focus:border-[#12D576]
+    transition-all duration-200 text-sm shadow-sm cursor-pointer
+    /* fixed width so it doesn't squash */
+    w-[140px] sm:w-[160px] shrink-0;
+
+  /* custom green chevron */
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2312D576' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.contact-us-body-country-select option {
+  @apply bg-white dark:bg-[#031B34] text-slate-900 dark:text-white;
+}
+
+/* ── Service of Interest select ─────────────────────────────────── */
+.contact-us-body-service {
+  @apply w-full flex flex-col gap-y-1.5;
+}
+
+.contact-us-body-service-select {
+  @apply px-4 py-3.5 sm:py-4
+    border border-slate-300 dark:border-slate-700/80
+    rounded-xl
+    bg-white dark:bg-[#031B34]
+    text-slate-900 dark:text-white
+    w-full
+    focus:outline-none focus:ring-2 focus:ring-[#12D576]/50 focus:border-[#12D576]
+    transition-all duration-200 text-sm shadow-sm cursor-pointer;
+
+  /* custom green chevron arrow */
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2312D576' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+.contact-us-body-service-select option {
+  @apply bg-white dark:bg-[#031B34] text-slate-900 dark:text-white;
+}
+
+.contact-us-body-service-select optgroup {
+  @apply font-semibold;
+  color: #12D576;
+  background-color: #031B34;
+}
+
+.contact-us-body-service-select:invalid,
+.contact-us-body-service-select option[value=""] {
+  @apply text-slate-400 dark:text-slate-500;
+}
+
+/* ── Message textarea ───────────────────────────────────────────── */
 .contact-us-body-message {
   @apply w-full flex flex-col gap-y-1.5;
 }
 
 .contact-us-body-message-textarea {
-  @apply p-3.5 sm:p-4 border border-slate-300 dark:border-slate-700/80 bg-white dark:bg-[#031B34] text-slate-900 dark:text-white rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-[#12D576]/50 focus:border-[#12D576] transition-all duration-200 text-sm placeholder-slate-400 dark:placeholder-slate-500 min-h-[130px] resize-y shadow-sm;
+  @apply p-3.5 sm:p-4
+    border border-slate-300 dark:border-slate-700/80
+    bg-white dark:bg-[#031B34]
+    text-slate-900 dark:text-white
+    rounded-xl w-full
+    focus:outline-none focus:ring-2 focus:ring-[#12D576]/50 focus:border-[#12D576]
+    transition-all duration-200 text-sm
+    placeholder-slate-400 dark:placeholder-slate-500
+    min-h-[130px] resize-y shadow-sm;
 }
 
+/* ── Privacy checkbox row ───────────────────────────────────────── */
 .contact-us-body-privacy {
-  @apply flex items-center gap-x-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pt-1;
+  @apply flex items-center gap-x-2.5 text-xs sm:text-sm
+    text-slate-600 dark:text-slate-300 pt-1;
 }
 
 .contact-us-body-privacy-message {
@@ -81,9 +181,11 @@
 }
 
 .contact-us-body-privacy-link {
-  @apply font-semibold underline text-[#12D576] hover:text-[#10b965] transition-colors underline-offset-4;
+  @apply font-semibold underline text-[#12D576]
+    hover:text-[#10b965] transition-colors underline-offset-4;
 }
 
+/* ── Submit button wrapper ──────────────────────────────────────── */
 .contact-us-body-button {
-  @apply w-full mt-2;
+  @apply w-full mt-1;
 }

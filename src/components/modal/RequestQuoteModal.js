@@ -151,7 +151,7 @@ const RequestQuoteModal = () => {
           closeModal();
         } else {
           let errMsg = "Failed to submit inquiry";
-          try { errMsg = JSON.parse(responseText)?.error || errMsg; } catch {}
+          try { errMsg = JSON.parse(responseText)?.error || errMsg; } catch { }
           throw new Error(errMsg);
         }
       })

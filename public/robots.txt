@@ -293,8 +293,7 @@ Disallow: /
 
 Sitemap: https://securedapp.io/sitemap.xml
 Sitemap: https://blog.securedapp.io/post-sitemap.xml
-Sitemap: http://securedapp.io/ai.txt
-Sitemap: http://securedapp.io/llms.txt
+
 
 # RSS/Atom Feeds
 Sitemap: https://blog.securedapp.io/feed.xml
