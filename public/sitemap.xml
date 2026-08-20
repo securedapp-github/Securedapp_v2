@@ -183,10 +183,18 @@
 
   <!-- BLOG & CONTENT HUB -->
   <url>
-    <loc>https://blog.securedapp.io/</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://securedapp.io/blog</loc>
+    <lastmod>2026-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+  </url>
+
+  <!-- CONTACT PAGE -->
+  <url>
+    <loc>https://securedapp.io/contact</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
   </url>
 
   <!-- OTHER PAGES (0.75-0.60) -->

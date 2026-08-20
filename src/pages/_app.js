@@ -143,7 +143,8 @@ function MyApp({ Component, pageProps }) {
   const isSolidityShieldScan =
     router.asPath.includes("/solidity-shield-scan") &&
     router.asPath !== "/solidity-shield-scan/auth" &&
-    router.asPath !== "/solidity-shield-scan/contact";
+    router.asPath !== "/solidity-shield-scan/contact" &&
+    router.asPath !== "/solidity-shield-scan/support";
 
   useEffect(() => {
     // Theme synchronization is now handled primarily by the Navbar component 

@@ -6,16 +6,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-
-        {/* ── Preload LCP hero image to reduce LCP time ── */}
-        <link
-          rel="preload"
-          as="image"
-          href="/assets/images/ProductPages/ss/hero.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
-
         {/* ── Dark mode flicker prevention ────────────────────── */}
         <script
           dangerouslySetInnerHTML={{
