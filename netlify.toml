@@ -26,7 +26,62 @@
   [headers.values]
     Cache-Control = "public, max-age=86400, must-revalidate"
 
-# Subdomain Blog Redirects
+# Specific Subdomain Blog Redirects (Must be before wildcard)
+[[redirects]]
+  from = "https://blog.securedapp.io/how-tokenization-can-make-rwa"
+  to = "https://securedapp.io/tokenization-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/how-much-does-smart-contract-audit-cost"
+  to = "https://securedapp.io/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid/*"
+  to = "https://securedapp.io/nft-marketplace-development-company"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid"
+  to = "https://securedapp.io/nft-marketplace-development-company"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/blockchain-security"
+  to = "https://securedapp.io/web3-security"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/how-to-choose-right-smart-contract-auditor"
+  to = "https://securedapp.io/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/what-is-smart-contract-audit"
+  to = "https://securedapp.io/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/markets-in-crypto-assets-regulations-affect-blockchain-security"
+  to = "https://securedapp.io/crypto-aml-compliance-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://blog.securedapp.io/blockchain_technology_v1"
+  to = "https://securedapp.io/blog/blockchain_technology_v1"
+  status = 301
+  force = true
+
+# Subdomain WordPress Directory Redirects
 [[redirects]]
   from = "https://blog.securedapp.io/wp-admin/*"
   to = "https://securedapp.io/blog"
@@ -56,4 +111,240 @@
   to = "https://securedapp.io/blog/:splat"
   status = 301
   force = true
+
+# Main Domain 301 Permanent Redirects
+[[redirects]]
+  from = "/contact-us"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact-us/"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/career"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/career/"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/careers"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/careers/"
+  to = "/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/smart-contract-scanner-solidity-shield"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/smart-contract-scanner-solidity-shield/"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/solidity-shield"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the-global-landscape-of-smart-contract-audits"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/the-global-landscape-of-smart-contract-audits/*"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/exploring-the-adoption-of-smart-contracts-in-different-regions-and-sectors"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/exploring-the-adoption-of-smart-contracts-in-different-regions-and-sectors/*"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/introduction-to-zkevm-and-its-applications"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/introduction-to-zkevm-and-its-applications/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/smart-contracts-the-heart-of-defi"
+  to = "/defi-development-company"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/smart-contracts-the-heart-of-defi/*"
+  to = "/defi-development-company"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/project/*"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/defi"
+  to = "/defi-development-company"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/ico"
+  to = "/tokenization-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tag/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comments/feed"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/comments/feed/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/feed"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/feed/*"
+  to = "/blog"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/www.linkedin.com/in/*"
+  to = "https://www.linkedin.com/in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/authors/www.linkedin.com/in/*"
+  to = "https://www.linkedin.com/in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-much-does-smart-contract-audit-cost"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/security-concerns-in-web3-and-securedapp"
+  to = "/blog/security-concerns-in-web3-and-securedapp's-solution"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/how-tokenization-can-make-rwa"
+  to = "/tokenization-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-tokenization-can-make-rwa"
+  to = "/tokenization-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid"
+  to = "/nft-marketplace-development-company"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/blockchain-security"
+  to = "/web3-security"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/how-to-choose-right-smart-contract-auditor"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/what-is-smart-contract-audit"
+  to = "/blockchain-security/smart-contract-security-audit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/markets-in-crypto-assets-regulations-affect-blockchain-security"
+  to = "/crypto-aml-compliance-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/Staying-up-to-date-on-the-latest-aml-and-kyc-regulations-for-crypto-businesses"
+  to = "/crypto-aml-compliance-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/tok"
+  to = "/tokenization-platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/securepad.netlify.app"
+  to = "/tokenization-platform"
+  status = 301
+  force = true
+
 

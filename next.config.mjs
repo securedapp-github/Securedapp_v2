@@ -199,6 +199,50 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Contact & Careers
+      {
+        source: "/contact-us",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/contact-us/",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/career",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/career/",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/careers",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/careers/",
+        destination: "/about",
+        permanent: true,
+      },
+
+      // Solidity Shield / Scanner aliases
+      {
+        source: "/smart-contract-scanner-solidity-shield",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/smart-contract-scanner-solidity-shield/",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+
       // Legacy main-domain page redirects
       {
         source: "/decentralized-identity-did",
@@ -221,18 +265,156 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/the-global-landscape-of-smart-contract-audits",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/the-global-landscape-of-smart-contract-audits/",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/exploring-the-adoption-of-smart-contracts-in-different-regions-and-sectors",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/exploring-the-adoption-of-smart-contracts-in-different-regions-and-sectors/",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/introduction-to-zkevm-and-its-applications",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/introduction-to-zkevm-and-its-applications/",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/smart-contracts-the-heart-of-defi",
+        destination: "/defi-development-company",
+        permanent: true,
+      },
+      {
+        source: "/smart-contracts-the-heart-of-defi/",
+        destination: "/defi-development-company",
+        permanent: true,
+      },
+      {
         source: "/project/data-security-on-blockchain",
         destination: "/blockchain-security/smart-contract-security-audit",
         permanent: true,
       },
       {
-        source: "/smart-contracts-the-heart-of-defi",
+        source: "/project/data-security-on-blockchain/",
         destination: "/blockchain-security/smart-contract-security-audit",
         permanent: true,
       },
-      // Broken client links
+      {
+        source: "/project/:path*",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+
+      // WordPress taxonomy tags
+      {
+        source: "/tag/defi",
+        destination: "/defi-development-company",
+        permanent: true,
+      },
+      {
+        source: "/tag/defi/",
+        destination: "/defi-development-company",
+        permanent: true,
+      },
+      {
+        source: "/tag/ico",
+        destination: "/tokenization-platform",
+        permanent: true,
+      },
+      {
+        source: "/tag/ico/",
+        destination: "/tokenization-platform",
+        permanent: true,
+      },
+      {
+        source: "/tag/estonia",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/tag/estonia/",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/tag/:path*",
+        destination: "/blog",
+        permanent: true,
+      },
+
+      // Broken client & blog links
+      {
+        source: "/how-tokenization-can-make-rwa",
+        destination: "/tokenization-platform",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-tokenization-can-make-rwa",
+        destination: "/tokenization-platform",
+        permanent: true,
+      },
+      {
+        source: "/blog/security-concerns-in-web3-and-securedapp",
+        destination: "/blog/security-concerns-in-web3-and-securedapp's-solution",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid",
+        destination: "/nft-marketplace-development-company",
+        permanent: true,
+      },
+      {
+        source: "/blog/blockchain-security",
+        destination: "/web3-security",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-to-choose-right-smart-contract-auditor",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/blog/what-is-smart-contract-audit",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/blog/markets-in-crypto-assets-regulations-affect-blockchain-security",
+        destination: "/crypto-aml-compliance-platform",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-much-does-smart-contract-audit-cost",
+        destination: "/blockchain-security/smart-contract-security-audit",
+        permanent: true,
+      },
+      {
+        source: "/blog/Staying-up-to-date-on-the-latest-aml-and-kyc-regulations-for-crypto-businesses",
+        destination: "/crypto-aml-compliance-platform",
+        permanent: true,
+      },
       {
         source: "/blog/\\[url\\]",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/blog/%5Burl%5D",
         destination: "/blog",
         permanent: true,
       },
@@ -243,7 +425,7 @@ const nextConfig = {
       },
       {
         source: "/blog/tok",
-        destination: "/blog",
+        destination: "/tokenization-platform",
         permanent: true,
       },
       {
@@ -256,9 +438,20 @@ const nextConfig = {
         destination: "/blog",
         permanent: true,
       },
+      {
+        source: "/blog/comprehensive-guide%3A-safely-and-effectively-investing-in-cryptocurrency",
+        destination: "/blog",
+        permanent: true,
+      },
+
       // WordPress feeds
       {
         source: "/comments/feed",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/comments/feed/",
         destination: "/blog",
         permanent: true,
       },
@@ -267,7 +460,22 @@ const nextConfig = {
         destination: "/blog",
         permanent: true,
       },
-      // Crawl-found broken URL fixes (2026-08)
+      {
+        source: "/introduction-to-zkevm-and-its-applications/feed/",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/feed",
+        destination: "/blog",
+        permanent: true,
+      },
+      {
+        source: "/feed/:path*",
+        destination: "/blog",
+        permanent: true,
+      },
+
       // LinkedIn URL accidentally used as a site path
       {
         source: "/www.linkedin.com/in/:profile*",
@@ -277,18 +485,6 @@ const nextConfig = {
       {
         source: "/authors/www.linkedin.com/in/:profile*",
         destination: "https://www.linkedin.com/in/:profile*",
-        permanent: true,
-      },
-      // Blog post that only exists on blog.securedapp.io — redirect main-domain URL to subdomain
-      {
-        source: "/blog/how-much-does-smart-contract-audit-cost",
-        destination: "https://blog.securedapp.io/how-much-does-smart-contract-audit-cost",
-        permanent: true,
-      },
-      // Capital-letter blog slug that has no matching DB entry
-      {
-        source: "/blog/Staying-up-to-date-on-the-latest-aml-and-kyc-regulations-for-crypto-businesses",
-        destination: "/blog",
         permanent: true,
       },
     ];

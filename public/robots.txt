@@ -292,11 +292,6 @@ Disallow: /
 # ==========================================
 
 Sitemap: https://securedapp.io/sitemap.xml
-Sitemap: https://blog.securedapp.io/post-sitemap.xml
-
-
-# RSS/Atom Feeds
-Sitemap: https://blog.securedapp.io/feed.xml
 
 # ==========================================
 # SECTION 11: SERVICE-SPECIFIC RULES

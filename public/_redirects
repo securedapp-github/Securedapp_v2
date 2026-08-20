@@ -1,6 +1,100 @@
-/blog/%20ai-smart-contract-audits-defi-security                       /blog/ai-smart-contract-audits-defi-security 301!
-/blog/%C2%A0ai-smart-contract-audits-defi-security                    /blog/ai-smart-contract-audits-defi-security 301!
+# Specific Subdomain Blog Redirects
+https://blog.securedapp.io/how-tokenization-can-make-rwa           https://securedapp.io/tokenization-platform 301!
+https://blog.securedapp.io/how-much-does-smart-contract-audit-cost https://securedapp.io/blockchain-security/smart-contract-security-audit 301!
+https://blog.securedapp.io/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid/* https://securedapp.io/nft-marketplace-development-company 301!
+https://blog.securedapp.io/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid https://securedapp.io/nft-marketplace-development-company 301!
+https://blog.securedapp.io/blockchain-security                     https://securedapp.io/web3-security 301!
+https://blog.securedapp.io/how-to-choose-right-smart-contract-auditor https://securedapp.io/blockchain-security/smart-contract-security-audit 301!
+https://blog.securedapp.io/what-is-smart-contract-audit            https://securedapp.io/blockchain-security/smart-contract-security-audit 301!
+https://blog.securedapp.io/markets-in-crypto-assets-regulations-affect-blockchain-security https://securedapp.io/crypto-aml-compliance-platform 301!
+https://blog.securedapp.io/blockchain_technology_v1                https://securedapp.io/blog/blockchain_technology_v1 301!
+
+# Subdomain WordPress Directory Redirects
+https://blog.securedapp.io/wp-admin/*                              https://securedapp.io/blog 301!
+https://blog.securedapp.io/wp-content/*                            https://securedapp.io/blog 301!
+https://blog.securedapp.io/wp-json/*                               https://securedapp.io/blog 301!
+https://blog.securedapp.io/*                                       https://securedapp.io/blog/:splat 301!
+http://blog.securedapp.io/*                                        https://securedapp.io/blog/:splat 301!
+
+# GSC URL Encoding & Whitespace Issues
+/blog/%20ai-smart-contract-audits-defi-security                    /blog/ai-smart-contract-audits-defi-security 301!
+/blog/%C2%A0ai-smart-contract-audits-defi-security                 /blog/ai-smart-contract-audits-defi-security 301!
 /blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash%20   /blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash 301!
 /blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash%C2%A0  /blog/managing-supply-chain-with-implementation-of-blockchain-blog-by-akash 301!
-/our-services                                                         / 301!
-/our-services/                                                        / 301!
+/our-services                                                      / 301!
+/our-services/                                                     / 301!
+
+# Contact & Careers
+/contact-us                                                        /contact 301!
+/contact-us/                                                       /contact 301!
+/career                                                            /about 301!
+/career/                                                           /about 301!
+/careers                                                           /about 301!
+/careers/                                                          /about 301!
+
+# Solidity Shield & Renamed Products
+/smart-contract-scanner-solidity-shield                            /blockchain-security/smart-contract-security-audit 301!
+/smart-contract-scanner-solidity-shield/                           /blockchain-security/smart-contract-security-audit 301!
+/solidity-shield                                                   /blockchain-security/smart-contract-security-audit 301!
+/secure-cms                                                        /dpdp-compliance-platform 301!
+/blockchain-forensic-investigation-tool                            /ai-blockchain-investigation-platform 301!
+/pqc                                                               /post-quantum-cryptography-platform 301!
+/self-sovereign-identity-enterprises                               /self-sovereign-identity 301!
+/decentralized-identity-did                                        /self-sovereign-identity 301!
+/auditexpress/home                                                 /audit-express 301!
+/secure-pad                                                        /tokenization-platform 301!
+/web3-kyc                                                          /web3-identity-and-aml-compliance-platform 301!
+/quantum-vault                                                     /enterprise-hsm-key-management-platform 301!
+/dapp-security-audit                                               /dapp-smart-contract-security-audit-platform 301!
+/token-audit                                                       /token-smart-contract-audit 301!
+/rwa-audit                                                         /rwa-smart-contract-audit 301!
+/blockchain-forensic                                               /blockchain-intelligence-and-forensic-platform 301!
+/crypto-compliance-aml                                             /crypto-aml-compliance-platform 301!
+/dapp-development                                                  /web3-dapp-development-company 301!
+/nfts-development                                                  /nft-marketplace-development-company 301!
+/defi-development                                                  /defi-development-company 301!
+/sox-compliance-sarbanes-oxley-compliance-audit                     /sox-compliance-audit-platform 301!
+/itgc-audit-services                                               /itgc-audit-and-compliance-services 301!
+/levelup-academy                                                   /blockchain-web3-training-academy 301!
+/solidity-shield-vulnerabilities                                   /solidity-smart-contract-vulnerabilities 301!
+/secure-watch                                                      /real-time-blockchain-threat-monitoring 301!
+/secure-trace                                                      /ai-blockchain-investigation-platform 301!
+/smart-contract-development                                        /blockchain-security/smart-contract-security-audit 301!
+
+# WordPress Legacy Posts & Custom Types
+/the-global-landscape-of-smart-contract-audits                     /blockchain-security/smart-contract-security-audit 301!
+/the-global-landscape-of-smart-contract-audits/*                   /blockchain-security/smart-contract-security-audit 301!
+/exploring-the-adoption-of-smart-contracts-in-different-regions-and-sectors /blockchain-security/smart-contract-security-audit 301!
+/exploring-the-adoption-of-smart-contracts-in-different-regions-and-sectors/* /blockchain-security/smart-contract-security-audit 301!
+/introduction-to-zkevm-and-its-applications                        /blog 301!
+/introduction-to-zkevm-and-its-applications/*                      /blog 301!
+/smart-contracts-the-heart-of-defi                                 /defi-development-company 301!
+/smart-contracts-the-heart-of-defi/*                               /defi-development-company 301!
+/project/*                                                         /blockchain-security/smart-contract-security-audit 301!
+
+# Taxonomy Tags & RSS Feeds
+/tag/defi                                                          /defi-development-company 301!
+/tag/ico                                                           /tokenization-platform 301!
+/tag/*                                                             /blog 301!
+/comments/feed                                                     /blog 301!
+/comments/feed/*                                                   /blog 301!
+/feed                                                              /blog 301!
+/feed/*                                                            /blog 301!
+
+# Relative LinkedIn Links
+/www.linkedin.com/in/*                                             https://www.linkedin.com/in/:splat 301!
+/authors/www.linkedin.com/in/*                                     https://www.linkedin.com/in/:splat 301!
+
+# Broken Blog URLs
+/how-tokenization-can-make-rwa                                     /tokenization-platform 301!
+/blog/how-tokenization-can-make-rwa                                /tokenization-platform 301!
+/blog/how-much-does-smart-contract-audit-cost                      /blockchain-security/smart-contract-security-audit 301!
+/blog/security-concerns-in-web3-and-securedapp                     /blog/security-concerns-in-web3-and-securedapp's-solution 301!
+/blog/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid /nft-marketplace-development-company 301!
+/blog/blockchain-security                                          /web3-security 301!
+/blog/how-to-choose-right-smart-contract-auditor                   /blockchain-security/smart-contract-security-audit 301!
+/blog/what-is-smart-contract-audit                                 /blockchain-security/smart-contract-security-audit 301!
+/blog/markets-in-crypto-assets-regulations-affect-blockchain-security /crypto-aml-compliance-platform 301!
+/blog/Staying-up-to-date-on-the-latest-aml-and-kyc-regulations-for-crypto-businesses /crypto-aml-compliance-platform 301!
+/blog/tok                                                          /tokenization-platform 301!
+/blog/securepad.netlify.app                                        /tokenization-platform 301!
