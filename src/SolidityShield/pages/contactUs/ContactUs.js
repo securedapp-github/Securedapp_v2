@@ -81,16 +81,16 @@ const ContactUs = () => {
     {
       label: "Products",
       options: [
-        "Solidity Shield",
-        "Secure CMS (Consent)",
-        "Secure Trace",
-        "PQC Suite",
-        "SecureX DID",
-        "Secure Watch",
-        "Audit Express",
-        "Secure Pad",
+        "SolidityShield",
+        "SecureCMS",
+        "SecureTrace",
+        "PQCSuite",
+        "SecureX-DID",
+        "SecureWatch",
+        "AuditExpress",
+        "SecurePad",
         "SecureX-ID",
-        "Quantum Vault"
+        "QuantumVault"
       ]
     },
     {

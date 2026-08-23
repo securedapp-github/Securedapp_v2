@@ -109,7 +109,7 @@ const Footer = () => {
                     href="https://securedapp.io/solidity-shield"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
-                    Solidity Shield Scan
+                    SolidityShield
                   </Link>
                 </li>
                 <li>
@@ -117,28 +117,28 @@ const Footer = () => {
                     href="/real-time-blockchain-threat-monitoring"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
-                    Secure Watch
+                    SecureWatch
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500">
-                    Audit Express
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/blockchain-forensic-investigation-tool"
-                    className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
-                  >
-                    Secure Trace
+                  <Link href="/audit-express" className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500">
+                    AuditExpress
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="https://securedapp.io/secure-pad"
+                    href="/ai-blockchain-investigation-platform"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
-                    Secure Pad
+                    SecureTrace
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/tokenization-platform"
+                    className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
+                  >
+                    SecurePad
                   </Link>
                 </li>
               </ul>
