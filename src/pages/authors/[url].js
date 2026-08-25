@@ -15,7 +15,15 @@ export default function AuthorProfile({ authorDetail }) {
   }
   const router = useRouter();
 
-  const { to } = router.query;
+  // `[url].js` file → query param is `url`, not `to`
+  const { url: to } = router.query;
+
+  // Guard: if getStaticProps somehow passes no authorDetail, show nothing
+  // (Next.js will have already returned HTTP 404 for unknown slugs via
+  // fallback: false + notFound: true in getStaticProps)
+  if (!authorDetail) {
+    return null;
+  }
 
   return (
     <div className="author-profile-container">
