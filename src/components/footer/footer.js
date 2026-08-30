@@ -35,6 +35,10 @@ const navigationItems = [
         to: "/dpdp-compliance-platform",
       },
       {
+        name: "CookieHub",
+        to: "/cookie-hub",
+      },
+      {
         name: "AuditExpress",
         to: "/audit-express",
       },
@@ -133,6 +137,14 @@ const navigationItems = [
       //   name: "Referral",
       //   to: "",
       // },
+      {
+        name: "SecureCMS Privacy Policy",
+        to: "/securecms/privacy-policy",
+      },
+      {
+        name: "SecureCMS Terms of Service",
+        to: "/securecms/terms-of-service",
+      },
       {
         name: "Workplace Policy",
         to: "https://securedapp.gitbook.io/securedapp-launchpad/workplace-policy",
@@ -306,19 +318,15 @@ const Footer = () => {
       <div className="footer-legacy">
         <div className="footer-legacy-left">
           <Link
-            target="_blank"
-            href="https://securedapp.gitbook.io/securedapp-launchpad/privacy-policy-securedapp"
-            rel="nofollow noopener noreferrer"
+            href="/securecms/privacy-policy"
           >
-            Privacy Policy{" "}
+            Privacy Policy
           </Link>
           <FontAwesomeIcon size={"2xs"} icon={faCircle} />
           <Link
-            target="_blank"
-            href="https://securedapp.gitbook.io/securedapp-launchpad/disclaimer-and-risk-securedapp"
-            rel="nofollow noopener noreferrer"
+            href="/securecms/terms-of-service"
           >
-            Terms & Conditions
+            Terms of Service
           </Link>
         </div>
         <div className="footer-legacy-right">

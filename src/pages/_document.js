@@ -4,7 +4,7 @@ const GA_MEASUREMENT_ID = "G-1BLEGKR4PP";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" suppressHydrationWarning>
       <Head>
         {/* ── Dark mode flicker prevention ────────────────────── */}
         <script
@@ -21,7 +21,7 @@ export default function Document() {
           }}
         />
       </Head>
-      <body>
+      <body suppressHydrationWarning>
         <Main />
         <NextScript />
       </body>

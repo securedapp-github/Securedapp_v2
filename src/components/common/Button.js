@@ -11,6 +11,7 @@ const Button = ({
     : "hover:bg-tertiary hover:text-secondary";
   return (
     <button
+      suppressHydrationWarning
       className={`px-2 py-1 whitespace-nowrap lg:px-4 lg:py-2 border-2 border-tertiary ${
         blogButton ? "rounded" : "rounded-lg"
       } ${hoverClassName} ${className}`}

@@ -11,12 +11,10 @@ export const FeatureIcon = ({ icon, iconBackgroundColor, variant }) => {
         className={`feature-icon ${
           variant === "key-capabilities" ? "feature-icon--key" : ""
         }`}
-        style={{ background: `${iconBackgroundColor}` }}
+        style={iconBackgroundColor ? { background: iconBackgroundColor } : undefined}
       >
         <img
-          style={{
-            filter: darkMode && "invert(1)",
-          }}
+          style={darkMode ? { filter: "invert(1)" } : undefined}
           src={`/assets/images/icons/${icon}.svg`}
           alt="icon"
         ></img>
