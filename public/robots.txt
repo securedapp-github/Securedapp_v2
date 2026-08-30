@@ -1,7 +1,11 @@
 # SecureDApp.io robots.txt - Blockchain Security & Compliance Platform Optimization
-# Updated: 2026-04-29
+# Updated: 2026-08-25
 # Target Markets: India (DPDP/RBI compliance), Global (Web3 security, smart contract audits)
 # Keywords Focus: Blockchain security, smart contract audit, DPDP compliance, crypto AML, Web3 security
+#
+# NOTE: cms-datadiscovery-be.securedapp.io is an internal API subdomain and should
+# NOT be crawled. It does not serve public content and has no robots.txt of its own.
+# Ensure your hosting/CDN returns HTTP 403 or 404 for all crawler requests to that subdomain.
 
 # ==========================================
 # SECTION 1: DEFAULT CRAWL RULES
@@ -43,6 +47,7 @@ Disallow: /*?contact=
 Disallow: /api/
 Disallow: /wp-admin/
 Disallow: /wp-login.php
+Disallow: /wp-content/uploads/
 
 # Allow important resource files
 Allow: /*.css$

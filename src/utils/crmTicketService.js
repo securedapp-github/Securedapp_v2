@@ -14,8 +14,8 @@ export const sendTicketToCRM = async ({
   externalUserId, 
   metadata = {} 
 }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_CRM_TICKET_API_URL || 'http://localhost:5000/api/tickets/external';
-  const apiKey = process.env.NEXT_PUBLIC_CRM_TICKET_API_KEY || 'crm_ext_secret_123';
+  const apiUrl = process.env.NEXT_PUBLIC_CRM_TICKET_API_URL || 'https://crm-be.securedapp.io/api/tickets/external';
+  const apiKey = process.env.NEXT_PUBLIC_CRM_TICKET_API_KEY || 'd96ff637d709b86868769df331296f7243801323e4017d46409d2f79a446c9e4';
 
   let extraDetails = [];
   if (phone) extraDetails.push(`Phone: ${phone}`);
@@ -60,3 +60,4 @@ export const sendTicketToCRM = async ({
 
   return data;
 };
+

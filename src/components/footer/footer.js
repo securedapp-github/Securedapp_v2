@@ -23,36 +23,44 @@ const navigationItems = [
     title: "Product",
     items: [
       {
-        name: "Solidity Shield Scan",
+        name: "SolidityShield",
         to: "/blockchain-security/smart-contract-security-audit",
       },
       {
-        name: "Secure Watch",
+        name: "SecureWatch",
         to: "/real-time-blockchain-threat-monitoring",
       },
       {
-        name: "Secure CMS (Consent)",
+        name: "SecureCMS",
         to: "/dpdp-compliance-platform",
       },
       {
-        name: "Audit Express",
+        name: "AuditExpress",
         to: "/audit-express",
       },
       {
-        name: "Secure Trace",
+        name: "SecureTrace",
         to: "/ai-blockchain-investigation-platform",
       },
       {
-        name: "Secure Pad",
+        name: "SecurePad",
         to: "/tokenization-platform",
       },
       {
-        name: "PQC Suite",
+        name: "PQCSuite",
         to: "/post-quantum-cryptography-platform",
       },
       {
-        name: "Quantum Vault",
+        name: "QuantumVault",
         to: "/enterprise-hsm-key-management-platform",
+      },
+      {
+        name: "SecureX-DID",
+        to: "/self-sovereign-identity",
+      },
+      {
+        name: "SecureX-ID",
+        to: "/web3-identity-and-aml-compliance-platform",
       },
     ],
   },

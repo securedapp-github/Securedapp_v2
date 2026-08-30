@@ -119,6 +119,8 @@ export const fetchBlogs = async (setBlogsData) => {
 export default function BlogPost({ blog }) {
   const router = useRouter();
   var { url } = router.query;
+
+  // fallback: false means isFallback will never be true, but guard anyway
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
@@ -127,6 +129,7 @@ export default function BlogPost({ blog }) {
   const [blogsData, setBlogsData] = useState();
   const [shortIndexView, setShortIndexView] = useState(true);
   const [relatedArticles, setRelated] = useState([]);
+  const [notFound, setNotFound] = useState(false);
 
   const toggleIndexView = () => {
     setShortIndexView(!shortIndexView);
@@ -142,6 +145,8 @@ export default function BlogPost({ blog }) {
     );
 
     if (!blog) {
+      // Data loaded but slug not found → trigger client-side 404
+      setNotFound(true);
       return;
     }
 
@@ -268,6 +273,13 @@ export default function BlogPost({ blog }) {
     getBlog();
   }, [!blogsData && blogsData]);
 
+  // Client-side 404 guard: redirect to /404 when slug has no match in CMS
+  useEffect(() => {
+    if (notFound) {
+      router.replace("/404");
+    }
+  }, [notFound]);
+
   const IndexSummaryCard = ({ title, desc, index }) => {
     return (
       <div className="index-summary-card">
@@ -311,6 +323,19 @@ export default function BlogPost({ blog }) {
   function getMetaDescription(content) {
     if (!content) return "";
     return content.replace(/\[|\]|\*|\n|\//g, " ").slice(0, 150);
+  }
+
+  // Render noindex + empty shell while client-side 404 redirect fires
+  if (notFound) {
+    return (
+      <>
+        {/* Prevent indexing of the 404 shell during the redirect */}
+        <head>
+          <meta name="robots" content="noindex, nofollow" />
+          <title>404 - Page Not Found | SecureDapp</title>
+        </head>
+      </>
+    );
   }
 
   return (
@@ -593,17 +618,23 @@ export default function BlogPost({ blog }) {
 export async function getStaticPaths() {
   try {
     var data = await fetchBlogs();
-    const paths = data.map((blog) => ({
+    // Only include published blogs (status === 1)
+    const published = data.filter((blog) => blog.status === 1);
+    const paths = published.map((blog) => ({
       params: { url: blog.url.trim().replace(":", "") },
     }));
 
     return {
       paths, // Pre-rendered blog URLs
-      fallback: "blocking", // Enable fallback for other URLs
+      // fallback: false → any slug NOT in `paths` gets a real HTTP 404,
+      // not a 200 soft-404. This is the primary fix for the SEO bug.
+      fallback: false,
     };
   } catch (err) {
     console.error("Error fetching blog list:", err);
-    return { paths: [], fallback: "blocking" }; // no blogs, but build won’t crash
+    // On build-time fetch failure, return empty paths + false so unknown
+    // slugs still 404 rather than silently render blog homepage.
+    return { paths: [], fallback: false };
   }
 }
 
