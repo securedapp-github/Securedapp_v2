@@ -5,6 +5,7 @@ export const navItems = [
       { name: "SolidityShield", to: "/blockchain-security/smart-contract-security-audit" },
       { name: "SecureCMS", to: "/dpdp-compliance-platform" },
       { name: "SecureTrace", to: "/ai-blockchain-investigation-platform" },
+      { name: "CookieHub", to: "/cookie-hub" },
       { name: "PQCSuite", to: "/post-quantum-cryptography-platform" },
       {
         name: "SecureX-DID",
@@ -69,6 +70,7 @@ export const navItems = [
       { name: "Our Authors", to: "/authors" },
       { name: "White Papers", to: "/white-paper" },
       { name: "About Us", to: "/about" },
+      { name: "Careers", to: "/careers" },
       { name: "Media", to: "/media" },
       { name: "Support", to: "/support" },
     ],

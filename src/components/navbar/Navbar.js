@@ -49,6 +49,9 @@ const Navbar = () => {
     case "/dpdp-compliance-platform":
       nextPath = "https://cms-app.securedapp.io/";
       break;
+    case "/cookie-hub":
+      nextPath = "https://cookie-app.securedapp.io/";
+      break;
     default:
       nextPath = null;
   }

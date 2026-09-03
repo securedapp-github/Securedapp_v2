@@ -33,7 +33,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizeCss: true,
+    optimizeCss: process.env.NODE_ENV === 'production',
     scrollRestoration: true,
     optimizePackageImports: ["react-icons", "@fortawesome/free-solid-svg-icons", "@fortawesome/free-brands-svg-icons"],
   },
@@ -212,22 +212,12 @@ const nextConfig = {
       },
       {
         source: "/career",
-        destination: "/about",
+        destination: "/careers",
         permanent: true,
       },
       {
         source: "/career/",
-        destination: "/about",
-        permanent: true,
-      },
-      {
-        source: "/careers",
-        destination: "/about",
-        permanent: true,
-      },
-      {
-        source: "/careers/",
-        destination: "/about",
+        destination: "/careers",
         permanent: true,
       },
 

@@ -24,10 +24,7 @@ const homeSlice = createSlice({
   },
 });
 
-export const getHomeSelector = createSelector(
-  (state) => state.home,
-  (state) => state
-);
+export const getHomeSelector = (state) => state.home;
 
 export const { setIsLargeScreen, setIsRequestModalOpen, setDarkMode } =
   homeSlice.actions;

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
 import ProductServiceHero from "../../../components/common/ProductServiceHero";
@@ -450,6 +451,68 @@ function SecureCMSPage() {
 
         {/* Section 7: Industries */}
         <IndustrySectors industries={industryList} />
+
+        {/* Section 8: Legal & Regulatory Documentation */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
+          <SectionTitle
+            name={"Legal & Compliance"}
+            title={"Official DPDP Governance & Policy Documents"}
+            description={
+              "Complete transparency under India's Digital Personal Data Protection Act, 2023 and DPDP Rules, 2025."
+            }
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            <Link
+              href="/securecms/privacy-policy"
+              className="p-8 rounded-2xl bg-white dark:bg-cardBackgroundDark border border-gray-200 dark:border-cardBorderColorDark hover:border-tertiary dark:hover:border-tertiary transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="p-3 rounded-xl bg-tertiary/10 text-tertiary">
+                    <ShieldCheck className="w-6 h-6" />
+                  </span>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-tertiary/20 text-tertiary">
+                    DPDP Act 2023 Aligned
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-secondary dark:text-white mb-2 group-hover:text-tertiary transition-colors">
+                  SecureCMS Privacy Policy
+                </h3>
+                <p className="text-sm text-labelGray dark:text-gray-400 leading-relaxed mb-6">
+                  Comprehensive 23-section policy detailing data roles (Data Processor vs Data Fiduciary), cryptographic hashing, consent receipt records, and data principal rights.
+                </p>
+              </div>
+              <div className="flex items-center text-sm font-semibold text-tertiary group-hover:translate-x-1 transition-transform">
+                Read Full Privacy Policy &rarr;
+              </div>
+            </Link>
+
+            <Link
+              href="/securecms/terms-of-service"
+              className="p-8 rounded-2xl bg-white dark:bg-cardBackgroundDark border border-gray-200 dark:border-cardBorderColorDark hover:border-tertiary dark:hover:border-tertiary transition-all group flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="p-3 rounded-xl bg-blue-500/10 text-blue-500">
+                    <Lock className="w-6 h-6" />
+                  </span>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400">
+                    Enterprise Terms (India)
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-secondary dark:text-white mb-2 group-hover:text-blue-400 transition-colors">
+                  SecureCMS Terms of Service
+                </h3>
+                <p className="text-sm text-labelGray dark:text-gray-400 leading-relaxed mb-6">
+                  Commercial SaaS terms governing consent management, cookie categorization, dynamic script blocking, API/SDK quotas, DPA terms, and limitation of liability.
+                </p>
+              </div>
+              <div className="flex items-center text-sm font-semibold text-blue-400 group-hover:translate-x-1 transition-transform">
+                Read Full Terms of Service &rarr;
+              </div>
+            </Link>
+          </div>
+        </div>
 
         <div className="mt-20 custom-securecms-faq">
           <FAQs faqsData={faqsData} />
