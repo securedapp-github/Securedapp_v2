@@ -57,6 +57,7 @@ import "../components/RTM/SecureWatchHero.css";
 import "../components/chat/ChatWidget.css";
 import "react-chat-elements/dist/main.css";
 import "../pageComponents/aboutUs/AboutUs.css";
+import "../pageComponents/careers/Careers.css";
 import "../pageComponents/auditsPage/Audits.css";
 import "../pageComponents/authors/Authors.css";
 import "../pageComponents/authors/AuthorProfile.css";

@@ -70,6 +70,7 @@ export const navItems = [
       { name: "Our Authors", to: "/authors" },
       { name: "White Papers", to: "/white-paper" },
       { name: "About Us", to: "/about" },
+      { name: "Careers", to: "/careers" },
       { name: "Media", to: "/media" },
       { name: "Support", to: "/support" },
     ],

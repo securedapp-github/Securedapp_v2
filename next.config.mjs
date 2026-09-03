@@ -212,22 +212,12 @@ const nextConfig = {
       },
       {
         source: "/career",
-        destination: "/about",
+        destination: "/careers",
         permanent: true,
       },
       {
         source: "/career/",
-        destination: "/about",
-        permanent: true,
-      },
-      {
-        source: "/careers",
-        destination: "/about",
-        permanent: true,
-      },
-      {
-        source: "/careers/",
-        destination: "/about",
+        destination: "/careers",
         permanent: true,
       },
 

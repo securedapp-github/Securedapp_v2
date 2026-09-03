@@ -1,0 +1,132 @@
+/* SecureDApp Careers Page — UI/UX Pro Max Design System */
+
+.careers-page {
+  min-height: 100vh;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+/* Offset for smooth scrolling with fixed navbar */
+#open-roles,
+#culture-and-values,
+#hiring-roadmap,
+#talent-pool,
+#faq {
+  scroll-margin-top: 90px;
+}
+
+/* Ambient Cybernetic Grid Background */
+.careers-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+}
+
+.dark .careers-grid-bg {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+}
+
+/* Glassmorphism Cards */
+.pro-glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .pro-glass-card {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.pro-glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-2px);
+}
+
+.dark .pro-glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 14px 36px -10px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Shimmer Button Effect */
+@keyframes buttonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: buttonShimmer 3s infinite;
+}
+
+/* Smooth Accordion Drawer */
+@keyframes drawerExpand {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-drawer {
+  animation: drawerExpand 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulsing Badge Glow */
+@keyframes neonGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+  }
+}
+
+.neon-glow {
+  animation: neonGlow 2.5s infinite ease-in-out;
+}
+
+/* Gradient Text Presets */
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Horizontal Roadmap Line */
+.roadmap-line-glow {
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
