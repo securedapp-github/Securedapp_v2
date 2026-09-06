@@ -149,11 +149,12 @@ const ContactUs = () => {
         name: name,
         email: email,
         phone: `${countryCode} ${number}`.trim(),
-        category: 'Support',
+        category: 'Other',
         priority: 'Medium',
         metadata: {
           page: 'Securedapp Support & Help Desk',
-          serviceOfInterest: service
+          serviceOfInterest: service,
+          inquiryType: 'Support'
         }
       });
       toast.success("Support ticket submitted! Our 24/7 security desk will respond shortly.");
