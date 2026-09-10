@@ -6,6 +6,18 @@ export default function Document() {
   return (
     <Html lang="en" suppressHydrationWarning>
       <Head>
+        {/* ── Performance: Preconnect & Preload ───────────────── */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/images/ProductPages/ss/hero.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+
         {/* ── Dark mode flicker prevention ────────────────────── */}
         <script
           dangerouslySetInnerHTML={{

@@ -69,6 +69,7 @@ import "../components/blog/BlogCard.css";
 import "../pageComponents/product/Product.css";
 import "../pageComponents/service/Service.css";
 import "../pageComponents/vulnerability/Vulnerability.css";
+import "../styles/dpdp.css";
 
 /* ── SolidityShield Styles ── */
 import "../SolidityShield/components/auth/AuthScreenHeader.css";

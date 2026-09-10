@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import BrandLogos from "../../../components/common/BrandLogos";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import dynamic from "next/dynamic";
 import Button from "../../../components/common/Button";
-import "swiper/swiper-bundle.css";
+
+const BrandLogos = dynamic(() => import("../../../components/common/BrandLogos"), {
+  ssr: true,
+});
 
 const images = [
   {
@@ -25,13 +26,40 @@ const images = [
   },
 ];
 
+const HeroSwiper = dynamic(() => import("./HeroSwiper"), {
+  ssr: false,
+  loading: () => (
+    <div className="hero-swiper">
+      <div className="hero-image-container">
+        <Image
+          style={{
+            borderRadius: "15px",
+            maxWidth: "600px",
+            aspectRatio: "3 / 2",
+            width: "100%",
+            height: "auto",
+          }}
+          className="hero-image"
+          src={images[0].src}
+          alt={images[0].alt}
+          width={600}
+          height={400}
+          priority={true}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          sizes="(max-width: 600px) 100vw, 600px"
+        />
+      </div>
+      <div className="pt-8 md:pt-6 lg:pt-4 pb-12 md:pb-8 lg:pb-12">
+        <Button text={"Read More"} filled={true} />
+      </div>
+    </div>
+  ),
+});
+
 const Hero = () => {
   const navigate = useRouter();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <div className="hero flex flex-col justify-between">
@@ -41,69 +69,7 @@ const Hero = () => {
           97% of Blockchain hacks are preventable. Securing your blockchain
           journey
         </h2>
-        {mounted ? (
-          <Swiper
-            modules={[Autoplay, Pagination, Navigation]}
-            spaceBetween={50}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-            navigation={true}
-            loop={true}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            grabCursor={true}
-            className="hero-swiper"
-          >
-            {images.map((image, index) => {
-              return (
-                <SwiperSlide key={`swiper-slide-${index}`}>
-                  <div className="hero-image-container">
-                    <Image
-                      style={{ borderRadius: "15px", maxWidth: "600px" }}
-                      className="hero-image"
-                      src={image.src}
-                      alt={image.alt}
-                      width={600}
-                      height={400}
-                      priority={index === 0}
-                      fetchPriority={index === 0 ? "high" : "low"}
-                      loading={index === 0 ? "eager" : "lazy"}
-                      sizes="(max-width: 600px) 100vw, 600px"
-                    />
-                  </div>
-                  <div className="pt-8 md:pt-6 lg:pt-4 pb-12 md:pb-8 lg:pb-12">
-                    <Button
-                      onClick={() => navigate.push(image.to)}
-                      text={"Read More"}
-                      filled={true}
-                    />
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        ) : (
-          <div className="hero-swiper">
-            <div className="hero-image-container">
-              <Image
-                style={{ borderRadius: "15px", maxWidth: "600px" }}
-                className="hero-image"
-                src={images[0].src}
-                alt={images[0].alt}
-                width={600}
-                height={400}
-                priority={true}
-                sizes="(max-width: 600px) 100vw, 600px"
-              />
-            </div>
-            <div className="pt-8 md:pt-6 lg:pt-4 pb-12 md:pb-8 lg:pb-12">
-              <Button
-                onClick={() => navigate.push(images[0].to)}
-                text={"Read More"}
-                filled={true}
-              />
-            </div>
-          </div>
-        )}
+        <HeroSwiper images={images} onNavigate={(to) => navigate.push(to)} />
       </div>
       <br />
       <br />

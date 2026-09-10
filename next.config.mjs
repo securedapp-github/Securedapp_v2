@@ -32,10 +32,20 @@ const nextConfig = {
       { protocol: "https", hostname: "securedapp-v2.vercel.app" },
     ],
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+  },
   experimental: {
-    optimizeCss: process.env.NODE_ENV === 'production',
+    optimizeCss: false,
     scrollRestoration: true,
-    optimizePackageImports: ["react-icons", "@fortawesome/free-solid-svg-icons", "@fortawesome/free-brands-svg-icons"],
+    optimizePackageImports: [
+      "react-icons",
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/free-brands-svg-icons",
+      "lucide-react",
+      "swiper",
+      "react-slick",
+    ],
   },
 
   // NOTE: This works for LOCAL DEV. For Production (Netlify/Export), these are ignored and 'netlify.toml' is used.

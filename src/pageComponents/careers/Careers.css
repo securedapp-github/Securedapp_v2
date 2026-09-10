@@ -1,9 +1,25 @@
-/* SecureDApp Careers Page — UI/UX Pro Max Design System */
+/* SecureDApp Careers Page — Main Website Harmonized Design System */
 
 .careers-page {
   min-height: 100vh;
   position: relative;
   scroll-behavior: smooth;
+  font-family: var(--font-nunito-sans), sans-serif;
+}
+
+.careers-page h1,
+.careers-page h2,
+.careers-page h3,
+.careers-page .font-outfit {
+  font-family: var(--font-outfit), sans-serif !important;
+}
+
+.careers-page p,
+.careers-page span,
+.careers-page button,
+.careers-page input,
+.careers-page li {
+  font-family: var(--font-nunito-sans), sans-serif;
 }
 
 /* Offset for smooth scrolling with fixed navbar */
@@ -15,47 +31,47 @@
   scroll-margin-top: 90px;
 }
 
-/* Ambient Cybernetic Grid Background */
+/* Main Website Matching Grid Background */
 .careers-grid-bg {
-  background-size: 40px 40px;
+  background-size: 80px 80px;
   background-image: 
-    linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 25, 56, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 25, 56, 0.035) 1px, transparent 1px);
 }
 
 .dark .careers-grid-bg {
-  background-size: 40px 40px;
+  background-size: 80px 80px;
   background-image: 
-    linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(210, 230, 255, 0.039) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(210, 230, 255, 0.039) 1px, transparent 1px);
 }
 
-/* Glassmorphism Cards */
+/* Glassmorphism Cards Matching Main Site */
 .pro-glass-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(164, 205, 255, 0.35);
+  box-shadow: 0 4px 20px -2px rgba(0, 25, 56, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark .pro-glass-card {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(3, 27, 52, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(210, 230, 255, 0.18);
+  box-shadow: 0 10px 30px -10px rgba(0, 15, 35, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .pro-glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: rgba(18, 213, 118, 0.45);
   transform: translateY(-2px);
 }
 
 .dark .pro-glass-card:hover {
-  border-color: rgba(16, 185, 129, 0.4);
-  box-shadow: 0 14px 36px -10px rgba(16, 185, 129, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(18, 213, 118, 0.5);
+  box-shadow: 0 14px 36px -10px rgba(18, 213, 118, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Shimmer Button Effect */
@@ -98,10 +114,10 @@
 /* Pulsing Badge Glow */
 @keyframes neonGlow {
   0%, 100% {
-    box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 12px rgba(18, 213, 118, 0.25);
   }
   50% {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+    box-shadow: 0 0 20px rgba(18, 213, 118, 0.5);
   }
 }
 
@@ -111,14 +127,14 @@
 
 /* Gradient Text Presets */
 .text-gradient-emerald {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #06b6d4 100%);
+  background: linear-gradient(135deg, #12D576 0%, #00ff88 45%, #00d2ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #10b981 100%);
+  background: linear-gradient(135deg, #00d2ff 0%, #12D576 60%, #00ff88 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -126,7 +142,7 @@
 
 /* Custom Horizontal Roadmap Line */
 .roadmap-line-glow {
-  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+  background: linear-gradient(90deg, #12D576 0%, #00d2ff 50%, #3b82f6 100%);
+  box-shadow: 0 0 12px rgba(18, 213, 118, 0.4);
 }
 

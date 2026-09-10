@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.font-heading {
+  font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Tracking utilities */
+.tracking-tightest { letter-spacing: -0.03em; }
+.tracking-tight { letter-spacing: -0.02em; }
+.tracking-normal { letter-spacing: 0; }
+.tracking-wide { letter-spacing: 0.01em; }
+.tracking-wider { letter-spacing: 0.02em; }
+.tracking-widest { letter-spacing: 0.1em; }
+.tracking-caps { letter-spacing: 0.06em; }
+
+/* Line height utilities */
+.leading-tightest { line-height: 1.0; }
+.leading-tight { line-height: 1.1; }
+.leading-snug { line-height: 1.375; }
+.leading-normal { line-height: 1.5; }
+.leading-relaxed { line-height: 1.625; }
+
+/* Smooth scrollbar styling */
+.dpdp-page-wrapper {
+  scroll-behavior: smooth;
+}
+
+.dpdp-page-wrapper ::-webkit-scrollbar {
+  width: 10px;
+}
+.dpdp-page-wrapper ::-webkit-scrollbar-track {
+  background: #020617;
+}
+.dpdp-page-wrapper ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 2px solid #020617;
+}
+.dpdp-page-wrapper ::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
