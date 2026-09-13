@@ -229,7 +229,7 @@ export function SecureCMSMockupApp() {
 
           {/* CENTERED LIQUID GLASS COUNTDOWN TIMER */}
           <div className="w-full flex justify-center mb-3 sm:mb-4">
-            <CountdownTimer theme={theme} />
+            <CountdownTimer theme={theme} onAuditClick={() => setModalOpen(true)} />
           </div>
 
           {/* 2-COLUMN SPLIT HERO CONTENT */}
