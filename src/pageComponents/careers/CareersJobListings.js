@@ -39,18 +39,18 @@ const quickSkills = [
 
 const departmentTheme = {
   Marketing: {
-    badgeBg: "bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 border-emerald-500/30",
-    glowBorder: "group-hover:border-emerald-500/40",
+    badgeBg: "bg-[#00d2ff]/10 text-[#0088cc] dark:text-[#00d2ff] border-[#00d2ff]/30",
+    glowBorder: "group-hover:border-[#00d2ff]/40",
     accentIcon: Sparkles,
   },
   "Sales & BD": {
-    badgeBg: "bg-amber-500/10 text-amber-500 dark:text-amber-400 border-amber-500/30",
-    glowBorder: "group-hover:border-amber-500/40",
+    badgeBg: "bg-[#12D576]/10 text-[#0f9f59] dark:text-tertiary border-tertiary/30",
+    glowBorder: "group-hover:border-tertiary/40",
     accentIcon: TrendingUp,
   },
   Engineering: {
-    badgeBg: "bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 border-cyan-500/30",
-    glowBorder: "group-hover:border-cyan-500/40",
+    badgeBg: "bg-[#8B5CF6]/10 text-[#7C3AED] dark:text-[#DDD6FE] border-[#8B5CF6]/30",
+    glowBorder: "group-hover:border-[#8B5CF6]/40",
     accentIcon: Code2,
   },
 };
@@ -123,7 +123,7 @@ const CareersJobListings = () => {
     const subject = `Application for ${jobTitle} - [Your Name]`;
     const body = `Hello SecureDApp Careers Team,
 
-I am writing to apply for the position of "${jobTitle}" (100% Remote, Performance-Based Stipend) at SecureDApp.
+I am writing to apply for the position of "${jobTitle}" (Hybrid, Performance-Based Stipend) at SecureDApp.
 
 Candidate Information:
 • Full Name: 
@@ -158,18 +158,18 @@ Best regards,
   };
 
   return (
-    <section id="open-roles" className="py-20 relative border-b border-slate-200/60 dark:border-slate-800/60">
+    <section id="open-roles" className="py-20 relative border-b border-cardBorderColorLight dark:border-cardBorderColorDark">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 dark:text-emerald-400 text-xs font-semibold tracking-wide uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#12D576]/10 border border-[#12D576]/25 text-[#0f9f59] dark:text-[#00ff88] text-xs font-semibold tracking-wide uppercase mb-3 font-outfit">
             Active Openings
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold font-outfit text-slate-900 dark:text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-outfit text-secondary dark:text-primary">
             Explore Open Tracks
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 font-nunitoSans leading-relaxed">
-            Choose your track below. Each position is 100% remote with 2 available openings and a performance-based stipend.
+          <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-[#a0a5b1] font-nunitoSans leading-relaxed">
+            Choose your track below. Each position is hybrid with 2 available openings and a performance-based stipend.
           </p>
         </div>
 
@@ -177,19 +177,19 @@ Best regards,
         <div className="mb-10 p-5 sm:p-7 rounded-3xl pro-glass-card shadow-lg">
           {/* Search Input */}
           <div className="relative mb-5">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-500" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#12D576]" />
             <input
               type="text"
               placeholder="Search by role title, keyword, or skill (e.g. Next.js, Python, Canva, Cold Outreach)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-20 py-3.5 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-emerald-500/50 shadow-inner transition-all"
+              className="w-full pl-12 pr-20 py-3.5 rounded-2xl bg-white dark:bg-[#001938]/80 border border-cardBorderColorLight dark:border-cardBorderColorDark text-secondary dark:text-primary placeholder-slate-400 dark:placeholder-slate-500 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#12D576]/40 focus:border-[#12D576] shadow-inner transition-all font-nunitoSans"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs px-2.5 py-1 rounded-lg bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-semibold transition-colors"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs px-2.5 py-1 rounded-lg bg-cardBackgroundLight dark:bg-cardBackgroundDark text-secondary dark:text-primary hover:opacity-80 font-semibold transition-colors cursor-pointer font-nunitoSans"
               >
                 Clear
               </button>
@@ -197,8 +197,8 @@ Best regards,
           </div>
 
           {/* Quick Skill Tags */}
-          <div className="flex flex-wrap items-center gap-2 mb-6 pb-5 border-b border-slate-200/60 dark:border-slate-800/80">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">
+          <div className="flex flex-wrap items-center gap-2 mb-6 pb-5 border-b border-cardBorderColorLight dark:border-cardBorderColorDark">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mr-1 font-outfit">
               Popular Tags:
             </span>
             {quickSkills.map((skill) => (
@@ -206,10 +206,10 @@ Best regards,
                 key={skill}
                 type="button"
                 onClick={() => setSearchQuery(skill)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
+                className={`px-3 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer font-nunitoSans ${
                   searchQuery.toLowerCase() === skill.toLowerCase()
-                    ? "bg-emerald-500 text-slate-950 font-bold shadow-xs"
-                    : "bg-slate-100 dark:bg-slate-800/70 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
+                    ? "bg-tertiary text-secondary font-bold shadow-xs"
+                    : "bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark text-slate-600 dark:text-[#a0a5b1] hover:text-secondary dark:hover:text-primary"
                 }`}
               >
                 {skill}
@@ -221,7 +221,7 @@ Best regards,
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             {/* Department tabs */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline-block">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mr-1 hidden sm:inline-block font-outfit">
                 Department:
               </span>
               {departments.map((dept) => (
@@ -229,10 +229,10 @@ Best regards,
                   key={dept.name}
                   type="button"
                   onClick={() => setSelectedDept(dept.name)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer font-nunitoSans ${
                     selectedDept === dept.name
-                      ? "bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/20"
-                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      ? "bg-tertiary text-secondary shadow-md shadow-tertiary/20"
+                      : "bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark text-slate-600 dark:text-[#a0a5b1] hover:text-secondary dark:hover:text-primary"
                   }`}
                 >
                   {dept.name} ({dept.count})
@@ -242,18 +242,18 @@ Best regards,
 
             {/* Workplace mode buttons */}
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline-block">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mr-1 hidden sm:inline-block font-outfit">
                 Mode:
               </span>
-              {["All", "Remote"].map((loc) => (
+              {["All", "Hybrid"].map((loc) => (
                 <button
                   key={loc}
                   type="button"
                   onClick={() => setSelectedLocation(loc)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer font-nunitoSans ${
                     selectedLocation === loc
-                      ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs"
-                      : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      ? "bg-secondary dark:bg-primary text-primary dark:text-secondary shadow-xs font-bold"
+                      : "bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark text-slate-600 dark:text-[#a0a5b1] hover:text-secondary dark:hover:text-primary"
                   }`}
                 >
                   {loc}
@@ -265,16 +265,16 @@ Best regards,
 
         {/* Listings Count & Clear indicator */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 px-1">
-          <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-            Showing <span className="font-bold text-slate-900 dark:text-white">{filteredJobs.length}</span>{" "}
+          <p className="text-sm font-medium text-slate-500 dark:text-[#a0a5b1] font-nunitoSans">
+            Showing <span className="font-bold text-secondary dark:text-primary font-outfit">{filteredJobs.length}</span>{" "}
             {filteredJobs.length === 1 ? "track" : "tracks"}{" "}
-            <span className="text-emerald-500 font-semibold">• 2 Openings available per track (6 Total Positions)</span>
+            <span className="text-[#0f9f59] dark:text-[#00ff88] font-semibold">• 2 Openings available per track (6 Total Positions)</span>
           </p>
           {(selectedDept !== "All" || selectedLocation !== "All" || searchQuery) && (
             <button
               type="button"
               onClick={clearFilters}
-              className="text-xs font-bold text-emerald-500 hover:text-emerald-400 hover:underline self-start sm:self-auto"
+              className="text-xs font-bold text-[#0f9f59] dark:text-[#00ff88] hover:underline self-start sm:self-auto cursor-pointer font-nunitoSans"
             >
               Reset all filters
             </button>
@@ -285,16 +285,16 @@ Best regards,
         {filteredJobs.length === 0 ? (
           <div className="text-center py-16 px-4 rounded-3xl pro-glass-card border-dashed">
             <Briefcase className="w-12 h-12 mx-auto text-slate-400 mb-4" />
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+            <h3 className="text-lg font-bold text-secondary dark:text-primary mb-2 font-outfit">
               No matching positions found
             </h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-6">
+            <p className="text-sm text-slate-500 dark:text-[#a0a5b1] max-w-md mx-auto mb-6 font-nunitoSans">
               We couldn&apos;t find any roles matching your current search criteria. Try resetting filters or submit an open application.
             </p>
             <button
               type="button"
               onClick={clearFilters}
-              className="px-5 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-sm hover:bg-emerald-400 transition-colors shadow-md shadow-emerald-500/20"
+              className="px-5 py-2.5 rounded-xl bg-tertiary text-secondary font-bold text-sm hover:opacity-90 transition-colors shadow-md shadow-tertiary/20 cursor-pointer font-nunitoSans"
             >
               Reset Filters
             </button>
@@ -310,60 +310,60 @@ Best regards,
                 <div
                   id={job.slug}
                   key={job.id}
-                  className={`rounded-3xl border transition-all duration-300 overflow-hidden bg-white dark:bg-slate-900/90 ${
+                  className={`rounded-3xl border transition-all duration-300 overflow-hidden bg-white dark:bg-[#031B34]/90 ${
                     isExpanded
-                      ? "border-emerald-500/70 shadow-xl shadow-emerald-500/5 ring-1 ring-emerald-500/30"
-                      : "border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-sm"
+                      ? "border-tertiary/70 shadow-xl shadow-tertiary/10 ring-1 ring-tertiary/30"
+                      : "border-cardBorderColorLight dark:border-cardBorderColorDark hover:border-tertiary/40 shadow-sm"
                   }`}
                 >
                   {/* Collapsible Card Header */}
                   <div
                     onClick={() => toggleJob(job.id)}
-                    className="p-6 sm:p-8 cursor-pointer select-none flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:bg-slate-50/70 dark:hover:bg-slate-800/30 transition-colors"
+                    className="p-6 sm:p-8 cursor-pointer select-none flex flex-col sm:flex-row sm:items-center justify-between gap-5 hover:bg-[#D2E6FF1F] dark:hover:bg-[#FFFFFF0A] transition-colors"
                   >
                     <div className="flex-1">
                       {/* Meta Tags Row */}
                       <div className="flex flex-wrap items-center gap-2 mb-3">
-                        <span className="text-xs font-extrabold text-slate-400 mr-1">
+                        <span className="text-xs font-extrabold text-slate-400 dark:text-slate-500 mr-1 font-outfit">
                           #{jIdx + 1}
                         </span>
 
                         {/* Department Badge */}
-                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-bold ${theme.badgeBg}`}>
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-bold font-outfit ${theme.badgeBg}`}>
                           <DepartmentIcon className="w-3.5 h-3.5" />
                           <span>{job.department}</span>
                         </span>
 
                         {/* Openings Pill */}
                         {job.openings && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-500 dark:text-cyan-400 text-xs font-bold shadow-xs">
-                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00d2ff]/15 border border-[#00d2ff]/30 text-[#0088cc] dark:text-[#00d2ff] text-xs font-bold shadow-xs font-outfit">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#00d2ff] animate-ping" />
                             <span>{job.openings}</span>
                           </span>
                         )}
 
-                        {/* Remote badge */}
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
-                          <MapPin className="w-3.5 h-3.5 text-emerald-500" />
+                        {/* Location badge */}
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-[#a0a5b1] font-nunitoSans">
+                          <MapPin className="w-3.5 h-3.5 text-[#12D576]" />
                           <span>{job.location}</span>
                         </span>
 
                         <span className="text-slate-300 dark:text-slate-700">•</span>
 
                         {/* Type badge */}
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-[#a0a5b1] font-nunitoSans">
                           <Clock className="w-3.5 h-3.5 text-slate-400" />
                           <span>{job.type}</span>
                         </span>
                       </div>
 
                       {/* Job Title */}
-                      <h3 className="text-xl sm:text-2xl font-bold font-outfit text-slate-900 dark:text-white">
+                      <h3 className="text-xl sm:text-2xl font-bold font-outfit text-secondary dark:text-primary">
                         {job.title}
                       </h3>
 
                       {!isExpanded && (
-                        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 line-clamp-2 font-nunitoSans leading-relaxed">
+                        <p className="mt-2 text-sm text-slate-600 dark:text-[#a0a5b1] line-clamp-2 font-nunitoSans leading-relaxed">
                           {job.shortSummary}
                         </p>
                       )}
@@ -377,14 +377,14 @@ Best regards,
                           e.stopPropagation();
                           window.location.href = getMailtoUrl(job.title);
                         }}
-                        className="px-5 py-2.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-500 dark:text-emerald-400 hover:text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-xs"
+                        className="px-5 py-2.5 rounded-xl bg-tertiary/15 hover:bg-tertiary text-[#0f9f59] dark:text-tertiary hover:text-secondary font-bold text-xs sm:text-sm transition-all border border-tertiary/30 shadow-xs cursor-pointer font-nunitoSans"
                       >
                         Quick Apply
                       </button>
 
-                      <div className="w-10 h-10 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-colors">
+                      <div className="w-10 h-10 rounded-2xl bg-cardBackgroundLight dark:bg-cardBackgroundDark flex items-center justify-center text-secondary dark:text-primary transition-colors border border-cardBorderColorLight dark:border-cardBorderColorDark">
                         {isExpanded ? (
-                          <ChevronUp className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />
+                          <ChevronUp className="w-5 h-5 text-tertiary" />
                         ) : (
                           <ChevronDown className="w-5 h-5" />
                         )}
@@ -394,29 +394,29 @@ Best regards,
 
                   {/* Expanded Card Details (Single-Page Drawer) */}
                   {isExpanded && (
-                    <div className="px-6 pb-8 sm:px-8 border-t border-slate-100 dark:border-slate-800/80 pt-6 animate-drawer">
+                    <div className="px-6 pb-8 sm:px-8 border-t border-cardBorderColorLight dark:border-cardBorderColorDark pt-6 animate-drawer">
                       {/* Overview */}
                       <div className="mb-8">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 mb-2">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f9f59] dark:text-tertiary mb-2 font-outfit">
                           Role Overview
                         </h4>
-                        <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-nunitoSans">
+                        <p className="text-slate-700 dark:text-[#cbd5e1] text-sm sm:text-base leading-relaxed font-nunitoSans">
                           {job.overview}
                         </p>
                       </div>
 
                       {/* Responsibilities */}
                       <div className="mb-8">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-500 dark:text-emerald-400 mb-3">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#0f9f59] dark:text-tertiary mb-3 font-outfit">
                           Key Responsibilities
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           {job.responsibilities.map((resp, rIdx) => (
                             <li
                               key={rIdx}
-                              className="p-3.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-700/60 flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300 font-nunitoSans"
+                              className="p-3.5 rounded-xl bg-cardBackgroundLight dark:bg-[#001938]/60 border border-cardBorderColorLight dark:border-cardBorderColorDark flex items-start gap-3 text-sm text-secondary dark:text-primary font-nunitoSans"
                             >
-                              <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                              <CheckCircle2 className="w-4 h-4 text-[#12D576] shrink-0 mt-0.5" />
                               <span>{resp}</span>
                             </li>
                           ))}
@@ -425,16 +425,16 @@ Best regards,
 
                       {/* Requirements */}
                       <div className="mb-8">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-500 dark:text-cyan-400 mb-3">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#00d2ff] mb-3 font-outfit">
                           Requirements & Qualifications
                         </h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                           {job.requirements.map((req, qIdx) => (
                             <li
                               key={qIdx}
-                              className="p-3.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-700/60 flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300 font-nunitoSans"
+                              className="p-3.5 rounded-xl bg-cardBackgroundLight dark:bg-[#001938]/60 border border-cardBorderColorLight dark:border-cardBorderColorDark flex items-start gap-3 text-sm text-secondary dark:text-primary font-nunitoSans"
                             >
-                              <span className="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0" />
+                              <span className="w-2 h-2 rounded-full bg-[#00d2ff] mt-2 shrink-0" />
                               <span>{req}</span>
                             </li>
                           ))}
@@ -444,16 +444,16 @@ Best regards,
                       {/* Nice-to-haves / Preferred */}
                       {job.niceToHave && job.niceToHave.length > 0 && (
                         <div className="mb-8">
-                          <h4 className="text-xs font-bold uppercase tracking-wider text-purple-500 dark:text-purple-400 mb-3">
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-[#8B5CF6] dark:text-[#DDD6FE] mb-3 font-outfit">
                             {job.niceToHaveTitle || "Preferred"}
                           </h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                             {job.niceToHave.map((nth, nIdx) => (
                               <li
                                 key={nIdx}
-                                className="p-3.5 rounded-xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-700/60 flex items-start gap-3 text-sm text-slate-600 dark:text-slate-400 font-nunitoSans"
+                                className="p-3.5 rounded-xl bg-cardBackgroundLight dark:bg-[#001938]/60 border border-cardBorderColorLight dark:border-cardBorderColorDark flex items-start gap-3 text-sm text-slate-600 dark:text-[#a0a5b1] font-nunitoSans"
                               >
-                                <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0" />
+                                <span className="w-2 h-2 rounded-full bg-[#8B5CF6] mt-2 shrink-0" />
                                 <span>{nth}</span>
                               </li>
                             ))}
@@ -462,32 +462,32 @@ Best regards,
                       )}
 
                       {/* Compensation Highlight Card */}
-                      <div className="mb-8 p-5 rounded-2xl bg-slate-50/90 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="mb-8 p-5 rounded-2xl bg-cardBackgroundLight dark:bg-cardBackgroundDark border border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-3.5">
-                          <div className="w-10 h-10 rounded-xl bg-emerald-500/15 text-emerald-500 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-[#12D576]/15 text-[#12D576] dark:text-[#00ff88] flex items-center justify-center shrink-0">
                             <Award className="w-5 h-5" />
                           </div>
                           <div>
-                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider font-outfit">
                               Compensation Model
                             </span>
-                            <div className="text-base font-extrabold text-slate-900 dark:text-white">
+                            <div className="text-base font-extrabold text-secondary dark:text-primary font-outfit">
                               {job.salaryRange}
                             </div>
                           </div>
                         </div>
-                        <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md sm:text-right font-medium">
+                        <div className="text-xs sm:text-sm text-slate-500 dark:text-[#a0a5b1] max-w-md sm:text-right font-medium font-nunitoSans">
                           {job.compensationNote || "Performance-based monthly stipend with high growth potential"}
                         </div>
                       </div>
 
                       {/* Interactive Apply Actions Footer */}
-                      <div className="pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                      <div className="pt-6 border-t border-cardBorderColorLight dark:border-cardBorderColorDark flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                         <div className="flex flex-wrap items-center gap-3">
                           {/* Primary Apply via Email button */}
                           <a
                             href={getMailtoUrl(job.title)}
-                            className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition-all"
+                            className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#12D576] via-[#00ff88] to-[#00d2ff] hover:opacity-95 text-secondary font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-tertiary/20 transition-all font-nunitoSans cursor-pointer"
                           >
                             <Mail className="w-4 h-4" />
                             <span>Apply via Email (Pre-filled)</span>
@@ -498,9 +498,9 @@ Best regards,
                             href={getWhatsAppUrl(job.title)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-5 py-3.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm flex items-center justify-center gap-2 transition-all"
+                            className="px-5 py-3.5 rounded-xl bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:bg-[#D2E6FF4D] dark:hover:bg-[#FFFFFF26] border border-cardBorderColorLight dark:border-cardBorderColorDark text-secondary dark:text-primary font-semibold text-sm flex items-center justify-center gap-2 transition-all font-nunitoSans cursor-pointer"
                           >
-                            <MessageCircle className="w-4 h-4 text-emerald-500" />
+                            <MessageCircle className="w-4 h-4 text-[#12D576] dark:text-[#00ff88]" />
                             <span>Inquire on WhatsApp</span>
                           </a>
                         </div>
@@ -510,12 +510,12 @@ Best regards,
                           <button
                             type="button"
                             onClick={(e) => handleShareRole(e, job)}
-                            className="px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold flex items-center gap-2 transition-all"
+                            className="px-4 py-3 rounded-xl bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:bg-[#D2E6FF4D] dark:hover:bg-[#FFFFFF26] border border-cardBorderColorLight dark:border-cardBorderColorDark text-secondary dark:text-primary text-xs font-semibold flex items-center gap-2 transition-all font-nunitoSans cursor-pointer"
                             title="Share Role Link"
                           >
                             {copiedJobId === job.id ? (
                               <>
-                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <Check className="w-3.5 h-3.5 text-[#12D576] dark:text-[#00ff88]" />
                                 <span>Link Copied</span>
                               </>
                             ) : (
@@ -530,11 +530,11 @@ Best regards,
                           <button
                             type="button"
                             onClick={handleCopyEmail}
-                            className="px-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold flex items-center gap-2 transition-all"
+                            className="px-4 py-3 rounded-xl bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:bg-[#D2E6FF4D] dark:hover:bg-[#FFFFFF26] border border-cardBorderColorLight dark:border-cardBorderColorDark text-secondary dark:text-primary text-xs font-semibold flex items-center gap-2 transition-all font-nunitoSans cursor-pointer"
                           >
                             {copiedEmail ? (
                               <>
-                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <Check className="w-3.5 h-3.5 text-[#12D576] dark:text-[#00ff88]" />
                                 <span>Copied Email</span>
                               </>
                             ) : (

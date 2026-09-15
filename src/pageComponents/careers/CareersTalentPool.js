@@ -22,31 +22,31 @@ const CareersTalentPool = () => {
   )}`;
 
   return (
-    <section id="talent-pool" className="py-20 relative border-b border-slate-200/60 dark:border-slate-800/60">
+    <section id="talent-pool" className="py-20 relative border-b border-cardBorderColorLight dark:border-cardBorderColorDark">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-emerald-500/[0.08] via-white to-teal-500/[0.08] dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950 border border-emerald-500/25 dark:border-emerald-500/30 shadow-xl shadow-emerald-500/5 dark:shadow-2xl relative overflow-hidden transition-colors duration-300">
+        <div className="rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#12D576]/[0.08] via-white to-[#00d2ff]/[0.08] dark:from-[#031B34] dark:via-[#001938] dark:to-[#021327] border border-cardBorderColorLight dark:border-cardBorderColorDark shadow-xl shadow-tertiary/5 dark:shadow-2xl relative overflow-hidden transition-colors duration-300">
           {/* Background decorative cyber glows */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#12D576]/10 dark:bg-[#12D576]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00d2ff]/10 dark:bg-[#00d2ff]/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 dark:bg-emerald-400/10 border border-emerald-500/25 dark:border-emerald-400/25 text-emerald-700 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider mb-5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#12D576]/10 dark:bg-[#12D576]/15 border border-[#12D576]/25 text-[#0f9f59] dark:text-[#00ff88] text-xs font-bold uppercase tracking-wider mb-5 font-outfit">
+              <Sparkles className="w-3.5 h-3.5 text-[#12D576] dark:text-[#00ff88]" />
               <span>General Talent Pipeline</span>
             </div>
 
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit leading-tight mb-4 text-slate-900 dark:text-white">
+            <h2 className="text-2xl sm:text-4xl font-extrabold font-outfit leading-tight mb-4 text-secondary dark:text-primary">
               Don&apos;t See the Exact Match for Your Background?
             </h2>
 
-            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-8 font-nunitoSans">
+            <p className="text-slate-600 dark:text-[#a0a5b1] text-sm sm:text-base leading-relaxed mb-8 font-nunitoSans">
               We never let rigid job descriptions stand in the way of exceptional people. If you are passionate about cybersecurity, software engineering, crypto growth, or research, send us your portfolio and let us know what you want to build.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href={talentPoolMailto}
-                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-bold text-sm sm:text-base flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#12D576] via-[#00ff88] to-[#00d2ff] hover:opacity-95 text-secondary font-bold text-sm sm:text-base flex items-center gap-2 shadow-lg shadow-tertiary/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 font-nunitoSans cursor-pointer"
               >
                 <Send className="w-4 h-4" />
                 <span>Submit Spontaneous Application</span>
@@ -58,25 +58,25 @@ const CareersTalentPool = () => {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3.5 rounded-xl bg-white dark:bg-slate-800/90 hover:bg-slate-50 dark:hover:bg-slate-700/90 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm sm:text-base flex items-center gap-2 transition-all shadow-sm backdrop-blur-md"
+                className="px-5 py-3.5 rounded-xl bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:bg-[#D2E6FF4D] dark:hover:bg-[#FFFFFF26] border border-cardBorderColorLight dark:border-cardBorderColorDark text-secondary dark:text-primary font-semibold text-sm sm:text-base flex items-center gap-2 transition-all shadow-sm backdrop-blur-md font-nunitoSans cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                <MessageCircle className="w-4 h-4 text-[#12D576] dark:text-[#00ff88]" />
                 <span>Chat on WhatsApp</span>
               </a>
 
               <button
                 type="button"
                 onClick={handleCopy}
-                className="px-4 py-3.5 rounded-xl bg-white/90 dark:bg-slate-800/60 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all shadow-sm backdrop-blur-md"
+                className="px-4 py-3.5 rounded-xl bg-cardBackgroundLight dark:bg-cardBackgroundDark hover:bg-[#D2E6FF4D] dark:hover:bg-[#FFFFFF26] border border-cardBorderColorLight dark:border-cardBorderColorDark text-secondary dark:text-primary text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all shadow-sm backdrop-blur-md font-nunitoSans cursor-pointer"
               >
                 {copied ? (
                   <>
-                    <Check className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+                    <Check className="w-4 h-4 text-[#12D576] dark:text-[#00ff88]" />
                     <span>Copied!</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+                    <Copy className="w-4 h-4 text-slate-500 dark:text-[#a0a5b1]" />
                     <span>Copy {careersConfig.applicationEmail}</span>
                   </>
                 )}

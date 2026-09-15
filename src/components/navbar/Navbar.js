@@ -114,7 +114,11 @@ const Navbar = () => {
       }
     };
     handleResize();
-    AOS.init();
+    AOS.init({
+      once: true,
+      duration: 600,
+      disable: () => typeof window !== "undefined" && window.innerWidth < 768,
+    });
 
     if (typeof window !== "undefined") {
       window.addEventListener("resize", handleResize);

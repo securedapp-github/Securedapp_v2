@@ -11,15 +11,15 @@ export const careersConfig = {
   whatsappNumber: "+919606015868",
   whatsappMessage: "Hi SecureDApp Careers Team, I would like to inquire about the open internship positions.",
   companyName: "SecureDApp",
-  headquarters: "Bengaluru, India (100% Remote-First Team)",
-  heroBadge: "We're Hiring: 6 Remote Openings across Marketing, Sales & Engineering",
+  headquarters: "Bengaluru, India (Hybrid Team)",
+  heroBadge: "We're Hiring: 6 Hybrid Openings across Marketing, Sales & Engineering",
   heroTitle: "Build the Future of Web3 & Blockchain Security",
   heroSubtitle:
     "Join an elite team of smart contract auditors, post-quantum cryptographers, and blockchain engineers defending billions in digital assets across the decentralized universe.",
   stats: [
     { label: "Open Roles", value: "3 Roles" },
     { label: "Available Openings", value: "6 Positions" },
-    { label: "Workplace Policy", value: "100% Remote" },
+    { label: "Workplace Policy", value: "Hybrid" },
     { label: "Compensation", value: "Performance Stipend" },
   ],
 };
@@ -54,8 +54,8 @@ export const cultureValues = [
 export const perksAndBenefits = [
   {
     icon: "Globe",
-    title: "100% Remote Flexibility",
-    desc: "Work from anywhere. We value outcomes, speed, and impact over seat time, with async workflows that respect your schedule.",
+    title: "Hybrid Flexibility",
+    desc: "Combine flexible remote work with collaborative office syncs. We value outcomes, speed, and impact over seat time, with async workflows that respect your schedule.",
   },
   {
     icon: "Coins",
@@ -105,7 +105,7 @@ export const interviewRoadmap = [
   },
   {
     step: "04",
-    title: "Remote Day-1 Kickoff",
+    title: "Hybrid Day-1 Kickoff",
     duration: "Immediate",
     desc: "Welcome to SecureDApp! Access our tools, team communication channels, and start contributing on day one.",
   },
@@ -117,8 +117,8 @@ export const initialJobs = [
     slug: "marketing-intern",
     title: "Marketing Intern",
     department: "Marketing",
-    location: "Remote",
-    type: "Internship (Remote)",
+    location: "Hybrid",
+    type: "Internship (Hybrid)",
     openings: "2 Roles Available",
     experience: "Freshers / College Students / 0-1 Year",
     salaryRange: "Performance-Based Stipend",
@@ -158,8 +158,8 @@ export const initialJobs = [
     slug: "sales-and-business-development-intern",
     title: "Sales & Business Development Intern",
     department: "Sales & BD",
-    location: "Remote",
-    type: "Internship (Remote)",
+    location: "Hybrid",
+    type: "Internship (Hybrid)",
     openings: "2 Roles Available",
     experience: "Freshers / College Students / 0-1 Year",
     salaryRange: "Performance-Based Stipend",
@@ -200,8 +200,8 @@ export const initialJobs = [
     slug: "sde-1",
     title: "SDE-1",
     department: "Engineering",
-    location: "Remote",
-    type: "Internship (Remote)",
+    location: "Hybrid",
+    type: "Internship (Hybrid)",
     openings: "2 Roles Available",
     experience: "Freshers / College Students / 0-1 Year",
     salaryRange: "Performance-Based Stipend",
@@ -246,9 +246,9 @@ export const initialJobs = [
 
 export const careersFaqs = [
   {
-    question: "Are these internship positions 100% remote?",
+    question: "Are these internship positions hybrid?",
     answer:
-      "Yes, all 3 internship positions (Marketing Intern, Sales & BD Intern, and SDE 1 Intern) are 100% remote. You can work from anywhere with a stable internet connection and a laptop. We coordinate via async-friendly communication, Slack/Telegram, and quick video syncs.",
+      "Yes, all 3 internship positions (Marketing Intern, Sales & BD Intern, and SDE 1 Intern) are hybrid. They combine flexible remote work with collaborative in-office syncs at our Bengaluru office. We coordinate via async-friendly communication, Slack/Telegram, and regular team syncs.",
   },
   {
     question: "How does the performance-based stipend work?",

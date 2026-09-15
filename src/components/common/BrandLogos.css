@@ -1,6 +1,7 @@
 .brand-logos {
   background-color: #ffffff05;
   @apply w-full md:px-12;
+  min-height: 66px;
 }
 
 .brand-logos {

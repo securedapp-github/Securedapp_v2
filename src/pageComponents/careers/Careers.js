@@ -46,15 +46,19 @@ const Careers = () => {
       sameAs: "https://securedapp.io",
       logo: "https://securedapp.io/assets/images/securedapp-logo-dark.svg",
     },
-    jobLocationType: job.location.toLowerCase().includes("remote")
-      ? "TELECOMMUTE"
-      : undefined,
-    applicantLocationRequirements: job.location.toLowerCase().includes("remote")
-      ? {
-          "@type": "Country",
-          name: "Worldwide",
-        }
-      : undefined,
+    jobLocationType:
+      job.location.toLowerCase().includes("remote") ||
+      job.location.toLowerCase().includes("hybrid")
+        ? "TELECOMMUTE"
+        : undefined,
+    applicantLocationRequirements:
+      job.location.toLowerCase().includes("remote") ||
+      job.location.toLowerCase().includes("hybrid")
+        ? {
+            "@type": "Country",
+            name: "India",
+          }
+        : undefined,
     jobLocation: {
       "@type": "Place",
       address: {
@@ -82,15 +86,15 @@ const Careers = () => {
 
   const metaData = {
     title: "Careers & Internships at SecureDApp: Build the Future of Web3 Security",
-    desc: "Explore 100% remote internship tracks in Marketing, Sales & Business Development, and Software Engineering (SDE-1) at SecureDApp with performance-based stipends.",
+    desc: "Explore hybrid internship tracks in Marketing, Sales & Business Development, and Software Engineering (SDE-1) at SecureDApp with performance-based stipends.",
     keywords:
-      "SecureDApp careers, Web3 internships, remote marketing intern, sales BD intern, SDE-1 remote, blockchain software engineering, crypto internships",
+      "SecureDApp careers, Web3 internships, hybrid marketing intern, sales BD intern, SDE-1 hybrid, blockchain software engineering, crypto internships",
     url: "https://securedapp.io/careers",
     image: "/assets/images/ProductPages/ss/hero.webp",
   };
 
   return (
-    <div className="careers-page bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-200">
+    <div className="careers-page font-nunitoSans bg-white dark:bg-secondary text-secondary dark:text-primary transition-colors duration-200">
       <MetaTags data={metaData} />
 
       {/* Structured data injection for Google Jobs & FAQ */}

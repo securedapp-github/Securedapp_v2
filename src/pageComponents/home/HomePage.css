@@ -13,9 +13,20 @@
   @apply text-lg lg:text-xl py-8 md:py-6 lg:py-4 px-10;
 }
 
+.hero-swiper {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+}
+@media (min-width: 768px) {
+  .hero-swiper {
+    min-height: 520px;
+  }
+}
+
 .hero-image-container {
   @apply flex justify-center;
-  min-height: 250px;
+  min-height: 240px;
 }
 @media (min-width: 768px) {
   .hero-image-container {
@@ -24,6 +35,8 @@
 }
 .hero-image {
   @apply w-11/12 lg:w-3/5;
+  aspect-ratio: 3 / 2;
+  height: auto;
 }
 
 .swiper-pagination-bullet {
