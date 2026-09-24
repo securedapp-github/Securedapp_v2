@@ -11,6 +11,9 @@ import {
   Sparkles,
   Loader2,
   FileText,
+  ArrowRight,
+  Lock,
+  Scale,
 } from "lucide-react";
 
 export default function HowItWorksSimulator({ onOpenTrialModal }) {
