@@ -4,6 +4,7 @@ export const navItems = [
     items: [
       { name: "SolidityShield", to: "/blockchain-security/smart-contract-security-audit" },
       { name: "SecureCMS", to: "/dpdp-compliance-platform" },
+      { name: "Secure e-Sign", to: "/digital-signature-platform" },
       { name: "SecureTrace", to: "/ai-blockchain-investigation-platform" },
       { name: "CookieHub", to: "/cookie-hub" },
       { name: "PQCSuite", to: "/post-quantum-cryptography-platform" },
