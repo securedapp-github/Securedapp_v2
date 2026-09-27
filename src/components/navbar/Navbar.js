@@ -57,6 +57,12 @@ const Navbar = () => {
   }
 
   const handleNavigation = () => {
+    if (currentPath?.includes("/digital-signature-platform")) {
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("open-trial-modal"));
+      }
+      return;
+    }
     if (nextPath) {
       if (nextPath.startsWith("http")) {
         typeof window !== "undefined" && window.open(nextPath, "_blank");
@@ -133,6 +139,7 @@ const Navbar = () => {
 
   const buttonText = 
     currentPath?.includes("/dpdp-compliance-platform") ? "Try it now" : 
+    currentPath?.includes("/digital-signature-platform") ? "Free Trial" :
     (currentPath === "/" || currentPath?.includes("/enterprise-hsm-key-management-platform") ? "Request Quote" : "Login");
 
   return (

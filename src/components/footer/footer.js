@@ -35,6 +35,10 @@ const navigationItems = [
         to: "/dpdp-compliance-platform",
       },
       {
+        name: "Secure e-Sign",
+        to: "/digital-signature-platform",
+      },
+      {
         name: "CookieHub",
         to: "/cookie-hub",
       },
