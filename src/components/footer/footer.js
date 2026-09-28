@@ -14,7 +14,6 @@ import {
   faInstagram,
   faLinkedin,
   faTelegram,
-  faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
