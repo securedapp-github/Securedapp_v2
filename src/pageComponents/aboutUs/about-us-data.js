@@ -50,17 +50,10 @@ const teamData = [
   },
   {
     name: "Kunal Chowdhury",
-    designation: "Community & Content",
+    designation: "Assistant Manager, Marketing Associate",
     image: "/assets/images/team/kunal.png",
     twitter: "https://x.com/KunalCh38207888",
     linkedin: "https://www.linkedin.com/in/kunal-chowdhury-046149176",
-  },
-  {
-    name: "Karan Sontakke",
-    designation: "Assistant Mananger Growth",
-    image: "/assets/images/team/karan.png",
-    twitter: "https://x.com/AIA_Ken",
-    linkedin: "https://www.linkedin.com/in/karan-sontakke",
   },
   {
     name: "Agyepong frank",
@@ -70,11 +63,24 @@ const teamData = [
     linkedin: "https://www.linkedin.com/in/frank-agyepong-0b120621a",
   },
   {
-    name: "Gokul Priyan",
-    designation: "Software Developer",
-    image: "/assets/images/team/gokul-securedapp.png",
-    twitter: "https://x.com/Gokkull15",
-    linkedin: "https://www.linkedin.com/in/gokkull-s",
+    name: "Rahul Kumar",
+    designation: "Marketing Associate",
+    image: "/assets/images/team/rahul.png",
+    twitter: "https://x.com/KumarRahul24582",
+    linkedin: "https://www.linkedin.com/in/rahul-kumar-7732161ab/",
+  },
+  {
+    name: "Dhanush Kumar",
+    designation: "Marketing Associate",
+    image: "/assets/images/team/dhanush.png",
+    linkedin: "https://www.linkedin.com/in/dhanushkumar-g-b7489a249/",
+  },
+  {
+    name: "Nikil Vardhan",
+    designation: "Software Developer Intern",
+    image: "/assets/images/team/nikil.png",
+    twitter: "https://x.com/Nikilvardhzn",
+    linkedin: "https://www.linkedin.com/in/nikilvardhan/",
   },
 ];
 

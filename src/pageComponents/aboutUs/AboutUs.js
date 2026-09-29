@@ -8,7 +8,7 @@ import Navbar from "../../components/navbar/Navbar";
 import teamData, { companyCulture } from "./about-us-data";
 import CustomHr from "../../components/common/CustomHr";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import MetaTags from "../../components/common/MetaTags";
 
 const TeamCard = ({ details }) => {
@@ -37,7 +37,7 @@ const TeamCard = ({ details }) => {
             )}
             {details.twitter && (
               <Link target="_blank" rel="nofollow noopener noreferrer" href={details.twitter}>
-                <FontAwesomeIcon size="lg" icon={faTwitter} />
+                <FontAwesomeIcon size="lg" icon={faXTwitter} />
               </Link>
             )}
           </div>
@@ -152,7 +152,7 @@ const AboutUs = () => {
               <div className="about-us-company-culture-content-points">
                 {companyCulture.map((item) => {
                   return (
-                    <div className="about-us-company-culture-content-point">
+                    <div key={item} className="about-us-company-culture-content-point">
                       <div>
                         <img
                           src="/assets/images/green-tick.svg"
@@ -188,7 +188,7 @@ const AboutUs = () => {
         </div>
         <div className="about-us-team-cards">
           {teamData.map((data) => (
-            <TeamCard details={data} />
+            <TeamCard key={data.name} details={data} />
           ))}
         </div>
       </div>

@@ -6,7 +6,7 @@ import Footer from "../../components/footer/footer";
 import { useEffect, useState } from "react";
 import { authorsData } from "./authors.data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import MetaTags from "../../components/common/MetaTags";
@@ -63,7 +63,7 @@ const AuthorProfile = () => {
                   <div className="author-profile-card-social">
                     {authorDetail.twitter && (
                       <Link target="_blank" rel="nofollow noopener noreferrer" href={authorDetail.twitter}>
-                        <FontAwesomeIcon icon={faTwitter} />
+                        <FontAwesomeIcon icon={faXTwitter} />
                       </Link>
                     )}
                   </div>

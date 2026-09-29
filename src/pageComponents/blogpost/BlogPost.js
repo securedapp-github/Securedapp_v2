@@ -20,7 +20,7 @@ import {
   faInstagram,
   faLinkedin,
   faTelegram,
-  faTwitter,
+  faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -327,7 +327,7 @@ const BlogPost = () => {
                         "https://blog.securedapp.io/" + url
                       )}`}
                     >
-                      <FontAwesomeIcon size="xl" icon={faTwitter} />
+                      <FontAwesomeIcon size="xl" icon={faXTwitter} />
                     </Link>
                     <Link
                       target="_blank"
