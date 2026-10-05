@@ -5,7 +5,7 @@
 > **Canonical Satellite URL**: `https://securedapp.io/dpdp-compliance-platform/banking`  
 > **Legacy / Alias Route**: `https://securedapp.io/consent-management-platform-for-banks` (301 Permanent Redirect)  
 > **Product Name**: SecureCMS for Banks  
-> **Author & Review**: Kunal Chowdhury | Reviewed by BFSI Privacy & Legal Advisory Board  
+> **Reviewed**: SecureDApp BFSI Privacy & Compliance Team  
 > **Last Modified**: 2026-09-29  
 
 ---

@@ -190,11 +190,6 @@ export default function BankingConsentPage() {
                   </button>
                 ))}
               </div>
-
-              {/* Byline */}
-              <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans pt-1">
-                By <span className="font-semibold text-secondary dark:text-gray-200">Kunal Chowdhury</span> • Reviewed by <span className="font-semibold text-secondary dark:text-gray-200">BFSI Privacy & Legal Advisory Board</span>
-              </div>
             </motion.div>
 
             {/* Right 3D Visual Console (5 Cols) */}
