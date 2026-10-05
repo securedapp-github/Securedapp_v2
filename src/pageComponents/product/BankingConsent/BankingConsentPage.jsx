@@ -261,21 +261,29 @@ export default function BankingConsentPage() {
           </div>
 
           {/* Partner & Regulatory Ecosystem Logos */}
-          <div className="mt-14 pt-8 border-t border-gray-200 dark:border-white/10 text-center">
-            <p className="text-xs uppercase tracking-widest text-labelGray dark:text-gray-400 font-bold font-poppins mb-8">
+          <div className="mt-16 pt-10 border-t border-gray-200 dark:border-white/10 text-center">
+            <p className="text-xs sm:text-sm uppercase tracking-widest text-labelGray dark:text-gray-400 font-bold font-poppins mb-10">
               Supported, Recognized & Incubated by Leading Cybersecurity & Regulatory Ecosystems
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-14 max-w-6xl mx-auto px-4 items-center justify-items-center">
               {partnerLogos.map((p, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center p-3 rounded-xl hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition-all duration-300 group cursor-default"
+                  className="w-full flex items-center justify-center p-3 h-24 sm:h-28 md:h-32 transition-all duration-300 group cursor-default"
                   title={`${p.name} — ${p.subtitle} (${p.badge})`}
                 >
+                  {/* Light Mode Logo */}
                   <img
                     src={p.logo}
                     alt={p.name}
-                    className="h-10 sm:h-12 md:h-14 w-auto max-w-[150px] sm:max-w-[180px] object-contain opacity-85 hover:opacity-100 group-hover:scale-105 dark:brightness-110 dark:contrast-115 dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.22)] transition-all duration-300"
+                    className={`block dark:hidden ${p.sizeClass || "h-20 md:h-24"} w-auto object-contain transition-all duration-300 group-hover:scale-110 opacity-90 hover:opacity-100`}
+                    loading="lazy"
+                  />
+                  {/* Dark Mode High-Visibility Logo */}
+                  <img
+                    src={p.logoDark || p.logo}
+                    alt={p.name}
+                    className={`hidden dark:block ${p.sizeClass || "h-20 md:h-24"} w-auto object-contain transition-all duration-300 group-hover:scale-110 drop-shadow-[0_0_16px_rgba(255,255,255,0.22)] hover:drop-shadow-[0_0_24px_rgba(255,255,255,0.38)]`}
                     loading="lazy"
                   />
                 </div>

@@ -139,25 +139,33 @@ export const partnerLogos = [
     name: "DSCI",
     subtitle: "Data Security Council of India",
     badge: "Cybersecurity Partner",
-    logo: "/assets/dpdp/dsci-logo.png"
+    logo: "/assets/dpdp/dsci-logo.png",
+    logoDark: "/assets/dpdp/dsci-bright.png",
+    sizeClass: "h-16 sm:h-20 md:h-24 max-w-[260px] sm:max-w-[300px]",
   },
   {
     name: "CySecK",
     subtitle: "Govt of Karnataka CoE",
     badge: "CoE Innovation",
-    logo: "/assets/dpdp/cyseck-logo.png"
+    logo: "/assets/dpdp/cyseck-logo.png",
+    logoDark: "/assets/dpdp/cyseck-bright.png",
+    sizeClass: "h-16 sm:h-20 md:h-24 max-w-[260px] sm:max-w-[300px]",
   },
   {
     name: "IFSCA",
     subtitle: "International Financial Services",
     badge: "FinTech Regulatory",
-    logo: "/assets/dpdp/ifsca-logo.png"
+    logo: "/assets/dpdp/ifsca-logo.png",
+    logoDark: "/assets/dpdp/ifsca-bright.png",
+    sizeClass: "h-24 sm:h-28 md:h-32 max-w-[170px] sm:max-w-[200px]",
   },
   {
     name: "C3iHub",
     subtitle: "IIT Kanpur Cybersecurity Hub",
     badge: "Incubated Ecosystem",
-    logo: "/assets/dpdp/c3ihub-logo.png"
+    logo: "/assets/dpdp/c3ihub-logo.png",
+    logoDark: "/assets/dpdp/c3ihub-bright.png",
+    sizeClass: "h-22 sm:h-26 md:h-30 max-w-[180px] sm:max-w-[210px]",
   },
 ];
 
