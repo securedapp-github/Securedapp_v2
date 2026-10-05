@@ -84,6 +84,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/consent-management-platform-for-banks",
+        destination: "/dpdp-compliance-platform/banking",
+        permanent: true,
+      },
+      {
         source: "/blockchain-forensic-investigation-tool",
         destination: "/ai-blockchain-investigation-platform",
         permanent: true,
