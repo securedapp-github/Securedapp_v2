@@ -234,7 +234,7 @@ The page incorporates a complete `@graph` schema defined in `src/pageComponents/
 | [`src/components/common/MetaTags.js`](file:///c:/Users/NIKIL/Documents/securedapp/quantum%20vault/Securedapp_v/src/components/common/MetaTags.js) | Enhanced SEO head injector supporting custom JSON-LD graphs |
 | [`public/sitemap.xml`](file:///c:/Users/NIKIL/Documents/securedapp/quantum%20vault/Securedapp_v/public/sitemap.xml) | Updated XML sitemap index with `/dpdp-compliance-platform/banking` (priority 0.94) |
 | [`next.config.mjs`](file:///c:/Users/NIKIL/Documents/securedapp/quantum%20vault/Securedapp_v/next.config.mjs) | 301 Permanent Redirect mapping `/consent-management-platform-for-banks` → `/dpdp-compliance-platform/banking` |
-| `public/assets/dpdp/*` | Official partner ecosystem logo PNGs (DSCI, CySecK, IFSCA, C3iHub IIT Kanpur) |
+| `Partner Logos` | Pure inline SVG & typographic badges for DSCI, CySecK, IFSCA, C3iHub IIT Kanpur (no binary image dependencies) |
 
 ---
 

@@ -265,27 +265,47 @@ export default function BankingConsentPage() {
             <p className="text-xs sm:text-sm uppercase tracking-widest text-labelGray dark:text-gray-400 font-bold font-poppins mb-10">
               Supported, Recognized & Incubated by Leading Cybersecurity & Regulatory Ecosystems
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-14 max-w-6xl mx-auto px-4 items-center justify-items-center">
+            <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-14 md:gap-20 max-w-5xl mx-auto px-4">
               {partnerLogos.map((p, idx) => (
                 <div
                   key={idx}
-                  className="w-full flex items-center justify-center p-3 h-24 sm:h-28 md:h-32 transition-all duration-300 group cursor-default"
+                  className="flex items-center justify-center py-2 px-3 transition-all duration-300 group cursor-default hover:scale-105"
                   title={`${p.name} — ${p.subtitle} (${p.badge})`}
                 >
-                  {/* Light Mode Logo */}
-                  <img
-                    src={p.logo}
-                    alt={p.name}
-                    className={`block dark:hidden ${p.sizeClass || "h-20 md:h-24"} w-auto object-contain transition-all duration-300 group-hover:scale-110 opacity-90 hover:opacity-100`}
-                    loading="lazy"
-                  />
-                  {/* Dark Mode High-Visibility Logo */}
-                  <img
-                    src={p.logoDark || p.logo}
-                    alt={p.name}
-                    className={`hidden dark:block ${p.sizeClass || "h-20 md:h-24"} w-auto object-contain transition-all duration-300 group-hover:scale-110 drop-shadow-[0_0_16px_rgba(255,255,255,0.22)] hover:drop-shadow-[0_0_24px_rgba(255,255,255,0.38)]`}
-                    loading="lazy"
-                  />
+                  {p.name === "DSCI" && (
+                    <div className="flex items-center gap-2.5">
+                      <ShieldCheck className="w-8 h-8 sm:w-9 sm:h-9 text-blue-600 dark:text-blue-400" />
+                      <span className="text-2xl sm:text-3xl font-black tracking-wider text-blue-600 dark:text-blue-400 font-outfit">
+                        DSCI
+                      </span>
+                    </div>
+                  )}
+                  {p.name === "CySecK" && (
+                    <div className="flex items-center gap-2.5">
+                      <Lock className="w-8 h-8 sm:w-9 sm:h-9 text-amber-500" />
+                      <span className="text-2xl sm:text-3xl font-black tracking-tight font-outfit text-secondary dark:text-white">
+                        <span className="text-amber-500">Cy</span>
+                        <span className="text-red-500">SecK</span>
+                      </span>
+                    </div>
+                  )}
+                  {p.name === "IFSCA" && (
+                    <div className="flex items-center gap-2.5">
+                      <Building2 className="w-8 h-8 sm:w-9 sm:h-9 text-emerald-600 dark:text-emerald-400" />
+                      <span className="text-2xl sm:text-3xl font-black tracking-widest text-emerald-600 dark:text-emerald-400 font-outfit">
+                        IFSCA
+                      </span>
+                    </div>
+                  )}
+                  {p.name === "C3iHub" && (
+                    <div className="flex items-center gap-2.5">
+                      <Cpu className="w-8 h-8 sm:w-9 sm:h-9 text-cyan-500" />
+                      <span className="text-2xl sm:text-3xl font-black tracking-tight font-outfit text-secondary dark:text-white">
+                        <span className="text-amber-500">C3i</span>
+                        <span className="text-cyan-400">Hub</span>
+                      </span>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
