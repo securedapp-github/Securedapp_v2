@@ -1,117 +1,274 @@
+/* ============================================================
+   Solidity Shield - Industrial Brutalist UI System
+   (/industrial-brutalist-ui)
+   ============================================================ */
+
 .sss-pricing-container {
-  @apply font-poppins min-h-screen w-full pb-14 transition-colors duration-300;
+  @apply font-mono min-h-screen w-full pb-16 transition-colors duration-200;
   background-color: var(--sss-color-bg, #0A1120);
   color: var(--sss-color-primary, #FFFFFF);
 }
 
 /* ============================================================
-   Liquid Glass System for Pricing Cards (/liquid-glass)
+   Industrial Brutalist Machine Chassis & Cards
    ============================================================ */
-.liquid-glass-card {
+.industrial-card {
   position: relative;
-  border-radius: 1.25rem;
-  overflow: hidden;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 4px;
 }
 
-/* Apple-style specular top light refraction highlight */
-.liquid-glass-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.5) 25%,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(255, 255, 255, 0.5) 75%,
-    transparent 100%
-  );
-  z-index: 10;
-  pointer-events: none;
+/* Light Mode Brutalist Machine (Architectural / Blueprint) */
+.light .industrial-card,
+html:not(.dark) .industrial-card {
+  background-color: #FFFFFF;
+  border: 2.5px solid #0F172A;
+  box-shadow: 6px 6px 0px 0px #0F172A;
 }
 
-/* Light Mode Liquid Glass */
-.light .liquid-glass-card,
-html:not(.dark) .liquid-glass-card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.94) 0%,
-    rgba(248, 250, 252, 0.88) 55%,
-    rgba(241, 245, 249, 0.82) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow:
-    0 12px 32px -8px rgba(15, 23, 42, 0.08),
-    0 4px 12px -2px rgba(15, 23, 42, 0.04),
-    inset 0 1px 2px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.03);
+.light .industrial-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #0F172A;
 }
 
-/* Dark Mode Obsidian Liquid Glass */
-.dark .liquid-glass-card,
-html.dark .liquid-glass-card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(15, 23, 42, 0.82) 50%,
-    rgba(10, 17, 32, 0.92) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 22px 50px -12px rgba(0, 0, 0, 0.6),
-    0 4px 14px -2px rgba(0, 0, 0, 0.45),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.6);
+/* Dark Mode Brutalist Machine (Server Console / Workstation) */
+.dark .industrial-card,
+html.dark .industrial-card {
+  background-color: #0A0F1D;
+  border: 2.5px solid #334155;
+  box-shadow: 6px 6px 0px 0px #000000;
 }
 
-/* Hero Tier Elevation (Plus / Most Popular) */
-.light .liquid-glass-popular,
-html:not(.dark) .liquid-glass-popular {
-  border: 2px solid rgba(34, 197, 94, 0.75) !important;
-  box-shadow:
-    0 20px 45px -10px rgba(34, 197, 94, 0.22),
-    0 8px 18px -4px rgba(34, 197, 94, 0.12),
-    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+.dark .industrial-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #000000;
 }
 
-.dark .liquid-glass-popular,
-html.dark .liquid-glass-popular {
-  border: 2px solid rgba(34, 197, 94, 0.75) !important;
-  box-shadow:
-    0 26px 55px -10px rgba(34, 197, 94, 0.32),
-    0 0 35px rgba(34, 197, 94, 0.18),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+/* Hero / Plus Tier - Heavy Neon Brutalist Chassis */
+.light .industrial-card-hero,
+html:not(.dark) .industrial-card-hero {
+  border: 2.5px solid #16A34A !important;
+  box-shadow: 6px 6px 0px 0px #16A34A !important;
+  background-color: #F8FFF9;
 }
 
-.liquid-glass-card:hover {
-  transform: translateY(-6px);
+.light .industrial-card-hero:hover {
+  box-shadow: 10px 10px 0px 0px #16A34A !important;
 }
 
-.dark .liquid-glass-card:hover {
-  box-shadow:
-    0 28px 60px -12px rgba(0, 0, 0, 0.75),
-    0 0 25px rgba(34, 197, 94, 0.15),
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+.dark .industrial-card-hero,
+html.dark .industrial-card-hero {
+  border: 2.5px solid #22C55E !important;
+  box-shadow: 6px 6px 0px 0px #22C55E !important;
+  background-color: #071512;
 }
 
-.light .liquid-glass-card:hover {
-  box-shadow:
-    0 20px 42px -10px rgba(15, 23, 42, 0.12),
-    0 6px 16px -2px rgba(15, 23, 42, 0.06),
-    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+.dark .industrial-card-hero:hover {
+  box-shadow: 10px 10px 0px 0px #22C55E !important;
+}
+
+/* Premium Tier - Cyber-Cyan Industrial Chassis */
+.light .industrial-card-premium,
+html:not(.dark) .industrial-card-premium {
+  border: 2.5px solid #0891B2 !important;
+  box-shadow: 6px 6px 0px 0px #0891B2 !important;
+  background-color: #F8FDFF;
+}
+
+.light .industrial-card-premium:hover {
+  box-shadow: 10px 10px 0px 0px #0891B2 !important;
+}
+
+.dark .industrial-card-premium,
+html.dark .industrial-card-premium {
+  border: 2.5px solid #06B6D4 !important;
+  box-shadow: 6px 6px 0px 0px #06B6D4 !important;
+  background-color: #08151D;
+}
+
+.dark .industrial-card-premium:hover {
+  box-shadow: 10px 10px 0px 0px #06B6D4 !important;
 }
 
 /* ============================================================
-   Page Structure
+   Tactile Hardware Action Buttons
+   ============================================================ */
+.industrial-btn {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: all 0.12s ease-in-out;
+  border-radius: 3px;
+}
+
+.light .industrial-btn-primary {
+  background-color: #22C55E;
+  color: #021208;
+  border: 2.5px solid #0F172A;
+  box-shadow: 4px 4px 0px 0px #0F172A;
+}
+
+.light .industrial-btn-primary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #0F172A;
+  background-color: #16A34A;
+  color: #FFFFFF;
+}
+
+.light .industrial-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #0F172A;
+}
+
+.dark .industrial-btn-primary {
+  background-color: #22C55E;
+  color: #021208;
+  border: 2.5px solid #22C55E;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.dark .industrial-btn-primary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #000000;
+  background-color: #4ADE80;
+}
+
+.dark .industrial-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+.light .industrial-btn-secondary {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: 2.5px solid #0F172A;
+  box-shadow: 4px 4px 0px 0px #0891B2;
+}
+
+.light .industrial-btn-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #0891B2;
+}
+
+.light .industrial-btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #0891B2;
+}
+
+.dark .industrial-btn-secondary {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: 2.5px solid #06B6D4;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.dark .industrial-btn-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #000000;
+  background-color: #1E293B;
+}
+
+.dark .industrial-btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+.light .industrial-btn-disabled {
+  background-color: #F1F5F9;
+  color: #64748B;
+  border: 2.5px solid #CBD5E1;
+  box-shadow: 3px 3px 0px 0px #CBD5E1;
+  cursor: default;
+}
+
+.dark .industrial-btn-disabled {
+  background-color: #1E293B;
+  color: #94A3B8;
+  border: 2.5px solid #334155;
+  box-shadow: 3px 3px 0px 0px #000000;
+  cursor: default;
+}
+
+/* ============================================================
+   Hardware Rivets & Precision Crosshairs
+   ============================================================ */
+.industrial-rivet {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #94A3B8;
+  border: 1px solid #475569;
+}
+
+.dark .industrial-rivet {
+  background: #334155;
+  border: 1px solid #64748B;
+}
+
+.crosshair-tl {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.crosshair-tr {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.crosshair-bl {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.crosshair-br {
+  position: absolute;
+  bottom: 5px;
+  right: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Hazard Warning Tape
+   ============================================================ */
+.hazard-strip {
+  background: repeating-linear-gradient(
+    -45deg,
+    #22C55E,
+    #22C55E 10px,
+    #05140A 10px,
+    #05140A 20px
+  );
+  height: 6px;
+  width: 100%;
+}
+
+/* ============================================================
+   Page Structure & Matrix Grid
    ============================================================ */
 .sss-pricing-plan-card-container {
-  @apply flex flex-col justify-between w-full transition-all duration-300;
+  @apply flex flex-col justify-between w-full transition-all duration-200;
 }
 
 .sss-pricing-plans-scrollable {
@@ -135,7 +292,7 @@ html.dark .liquid-glass-popular {
 }
 
 .sss-pricing-plan-body {
-  @apply pt-12 w-full;
+  @apply pt-14 w-full;
 }
 
 .sss-pricing-plan-details-container {
@@ -143,7 +300,7 @@ html.dark .liquid-glass-popular {
 }
 
 .sss-pricing-plan-detail-row {
-  @apply flex flex-col w-full text-xs md:text-sm bg-white/70 dark:bg-[#0F1729]/50 md:bg-transparent rounded-2xl border border-slate-200/80 dark:border-[#1E293B]/70 md:border-none p-2 md:p-0 backdrop-blur-md;
+  @apply flex flex-col w-full text-xs md:text-sm bg-white dark:bg-[#0B101E] md:bg-transparent rounded-none border-2 border-slate-900 dark:border-slate-800 md:border-none p-2 md:p-0;
 }
 
 .sss-pricing-plan-detail-row-value-container {
@@ -151,11 +308,11 @@ html.dark .liquid-glass-popular {
 }
 
 .sss-pricing-plan-detail-row-value {
-  @apply h-[52px] py-3 px-2 border-b border-slate-200/80 dark:border-[#1E293B]/80 flex items-center justify-center gap-x-2 text-slate-800 dark:text-[#FFFFFF] text-center font-medium transition-colors;
+  @apply h-[52px] py-3 px-2 border-b-2 border-slate-200 dark:border-slate-800 flex items-center justify-center gap-x-2 text-slate-900 dark:text-[#FFFFFF] text-center font-bold transition-colors font-mono;
 }
 
 .sss-pricing-plan-detail-row-value-first {
-  @apply justify-start text-left font-semibold text-slate-600 dark:text-[#8B93A7] px-3;
+  @apply justify-start text-left font-black text-slate-700 dark:text-[#8B93A7] px-3 uppercase tracking-wider;
 }
 
 .sss-pricing-plan-detail-row-info-container {
@@ -163,18 +320,7 @@ html.dark .liquid-glass-popular {
 }
 
 .sss-pricing-plan-detail-row-info {
-  @apply absolute top-1/2 left-full transform translate-x-[10px] -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-white dark:bg-[#0F1729] border border-slate-200 dark:border-[#1E293B] text-slate-800 dark:text-white text-xs rounded-xl py-2.5 px-3.5 whitespace-nowrap shadow-2xl z-50 transition-opacity duration-200 flex flex-col gap-y-0.5 pointer-events-none backdrop-blur-xl;
-
-  &::before {
-    content: "";
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent var(--sss-color-card, #0F1729) transparent transparent;
-  }
+  @apply absolute top-1/2 left-full transform translate-x-[10px] -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-white dark:bg-[#0F1729] border-2 border-slate-900 dark:border-[#334155] text-slate-900 dark:text-white text-xs rounded-none py-2.5 px-3.5 whitespace-nowrap shadow-[4px_4px_0px_#000] z-50 transition-opacity duration-150 flex flex-col gap-y-0.5 pointer-events-none;
 }
 
 .sss-pricing-plan-footer {
@@ -186,7 +332,7 @@ html.dark .liquid-glass-popular {
 }
 
 .sss-pricing-card-changer-button-container {
-  @apply h-9 w-9 flex items-center justify-center border border-slate-200 dark:border-[#1E293B] bg-white dark:bg-[#0F1729] rounded-full text-center hover:border-[#22C55E] transition-colors shadow-sm;
+  @apply h-9 w-9 flex items-center justify-center border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-[#0F1729] rounded-none text-center hover:bg-[#22C55E] hover:text-black transition-colors shadow-[2px_2px_0px_#000];
 }
 
 .sss-pricing-card-changer-button {
