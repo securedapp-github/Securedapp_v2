@@ -262,28 +262,22 @@ export default function BankingConsentPage() {
 
           {/* Partner & Regulatory Ecosystem Logos */}
           <div className="mt-14 pt-8 border-t border-gray-200 dark:border-white/10 text-center">
-            <p className="text-xs uppercase tracking-widest text-labelGray dark:text-gray-400 font-bold font-poppins mb-6">
+            <p className="text-xs uppercase tracking-widest text-labelGray dark:text-gray-400 font-bold font-poppins mb-8">
               Supported, Recognized & Incubated by Leading Cybersecurity & Regulatory Ecosystems
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto px-4">
               {partnerLogos.map((p, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-2xl bg-white/80 dark:bg-white/[0.03] border border-gray-200 dark:border-white/10 flex flex-col items-center justify-between shadow-sm hover:border-tertiary/50 hover:shadow-[0_8px_30px_rgba(18,213,118,0.12)] transition-all group"
+                  className="flex items-center justify-center p-3 rounded-xl hover:bg-black/[0.02] dark:hover:bg-white/[0.04] transition-all duration-300 group cursor-default"
+                  title={`${p.name} — ${p.subtitle} (${p.badge})`}
                 >
-                  <div className="w-full h-16 flex items-center justify-center p-2 rounded-xl bg-white shadow-sm mb-3 group-hover:scale-105 transition-transform duration-300">
-                    <img
-                      src={p.logo}
-                      alt={p.name}
-                      className="max-h-full max-w-full object-contain"
-                      loading="lazy"
-                    />
-                  </div>
-                  <span className="text-base font-extrabold text-secondary dark:text-white font-outfit">{p.name}</span>
-                  <span className="text-[11px] text-labelGray dark:text-gray-400 text-center mt-0.5 font-nunitoSans line-clamp-1">{p.subtitle}</span>
-                  <span className="mt-2.5 text-[10px] px-2.5 py-0.5 rounded-full bg-tertiary/15 text-tertiary font-bold tracking-wide">
-                    {p.badge}
-                  </span>
+                  <img
+                    src={p.logo}
+                    alt={p.name}
+                    className="h-10 sm:h-12 md:h-14 w-auto max-w-[150px] sm:max-w-[180px] object-contain opacity-85 hover:opacity-100 group-hover:scale-105 dark:brightness-110 dark:contrast-115 dark:drop-shadow-[0_0_12px_rgba(255,255,255,0.22)] transition-all duration-300"
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
