@@ -14,7 +14,8 @@
 }
 
 .sss-scan-report-header {
-  @apply font-semibold text-4xl;
+  @apply font-bold text-3xl sm:text-4xl;
+  color: var(--sss-color-primary);
 }
 
 .sss-scan-report-body-container {
@@ -22,7 +23,10 @@
 }
 
 .sss-scan-report-body {
-  @apply p-4 md:p-8 border border-[#D2E6FF] rounded-xl flex flex-col gap-y-8;
+  @apply p-4 md:p-8 rounded-2xl flex flex-col gap-y-8 shadow-xl;
+  background-color: var(--sss-color-card);
+  border: 1px solid var(--sss-color-border);
+  color: var(--sss-color-primary);
 }
 
 .sss-scan-report-body-header {
@@ -30,11 +34,13 @@
 }
 
 .sss-scan-report-body-header-title {
-  @apply text-2xl;
+  @apply text-2xl font-bold;
+  color: var(--sss-color-primary);
 }
 
 .sss-scan-report-body-header-time {
-  @apply font-light;
+  @apply text-sm;
+  color: var(--sss-color-muted);
 }
 
 .sss-scan-report-body-bars {
@@ -46,21 +52,31 @@
 }
 
 .sss-scan-report-body-audit-title {
-  @apply text-2xl;
+  @apply text-2xl font-bold;
+  color: var(--sss-color-primary);
 }
 
 .sss-scan-report-body-audit-stats-table {
-  @apply px-6 py-3 border border-[#D2E6FF] rounded-xl flex flex-col;
+  @apply px-6 py-3 rounded-xl flex flex-col;
+  background-color: var(--sss-color-input-bg);
+  border: 1px solid var(--sss-color-border);
 }
 
 .sss-scan-report-body-audit-stats-table-row {
-  @apply flex font-light gap-x-3 w-full py-3 border-[#D2E6FF];
+  @apply flex font-medium gap-x-3 w-full py-3;
+  border-bottom: 1px solid var(--sss-color-border);
+}
+
+.sss-scan-report-body-audit-stats-table-row:last-child {
+  border-bottom: none;
 }
 
 .sss-scan-report-body-audit-stats-table-row-name {
-  @apply min-w-[210px] md:min-w-[350px];
+  @apply min-w-[210px] md:min-w-[350px] text-sm;
+  color: var(--sss-color-muted);
 }
 
 .sss-scan-report-body-audit-stats-table-row-value {
-  @apply break-all flex-1;
+  @apply break-all flex-1 text-sm font-semibold;
+  color: var(--sss-color-primary);
 }

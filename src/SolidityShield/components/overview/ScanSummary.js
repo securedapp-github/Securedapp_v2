@@ -26,7 +26,7 @@ import { faShieldHalved, faArrowRight } from "@fortawesome/free-solid-svg-icons"
 
 const scanSummaryTimeFilter = ["Monthly", "Weekly", "Today"];
 
-const GradientCircularProgressbar = ({ value, isNoScan }) => {
+const GradientCircularProgressbar = ({ value, isNoScan, darkMode }) => {
   let gradientTransform = `rotate(120)`;
 
   return (
@@ -51,26 +51,26 @@ const GradientCircularProgressbar = ({ value, isNoScan }) => {
             rotation: 1 / 2 + 1 / 8,
             pathTransition: "stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
             strokeLinecap: "round",
-            trailColor: "#1E293B",
+            trailColor: darkMode ? "#1E293B" : "#E2E8F0",
             pathColor: "url(#circularGradient)",
           })}
         >
-          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-[#0B132B]/90 border border-[#1E293B] shadow-inner flex flex-col items-center justify-center p-3 text-center transition-all">
+          <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-[var(--sss-color-input-bg)] border border-[var(--sss-color-border)] shadow-inner flex flex-col items-center justify-center p-3 text-center transition-all">
             {isNoScan ? (
               <div className="flex flex-col items-center justify-center gap-1">
                 <div className="w-9 h-9 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/30 flex items-center justify-center text-[#22C55E] mb-1">
                   <FontAwesomeIcon icon={faShieldHalved} className="text-base" />
                 </div>
-                <div className="text-xs font-bold text-[#FFFFFF] tracking-wide">
+                <div className="text-xs font-bold text-[var(--sss-color-primary)] tracking-wide">
                   No scans yet
                 </div>
-                <div className="text-[11px] font-medium text-[#8B93A7]">
+                <div className="text-[11px] font-medium text-[var(--sss-color-muted)]">
                   0 / 10 Score
                 </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#FFFFFF] tracking-tight">
+                <div className="text-3xl sm:text-4xl font-extrabold text-[var(--sss-color-primary)] tracking-tight">
                   {value || 0}
                 </div>
                 <div className="text-xs font-medium text-[#22C55E] mt-0.5">
@@ -81,18 +81,18 @@ const GradientCircularProgressbar = ({ value, isNoScan }) => {
           </div>
         </CircularProgressbarWithChildren>
       </div>
-      <div className="text-xs font-bold text-[#8B93A7] uppercase tracking-wider mt-1">
+      <div className="text-xs font-bold text-[var(--sss-color-muted)] uppercase tracking-wider mt-1">
         Audit Score
       </div>
     </div>
   );
 };
 
-const FigureComponent = ({ value, text, color }) => {
+const FigureComponent = ({ value, text, color, darkMode }) => {
   return (
     <div
-      style={{ borderColor: color ? `${color}40` : "#1E293B" }}
-      className="w-full sm:w-[130px] bg-[#0F1729] border rounded-xl p-3 flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-0.5"
+      style={{ borderColor: color ? `${color}40` : (darkMode ? "#1E293B" : "#CBD5E1") }}
+      className="w-full sm:w-[130px] bg-[var(--sss-color-card)] border rounded-xl p-3 flex flex-col justify-between shadow-sm transition-transform hover:-translate-y-0.5"
     >
       <div
         style={{ color: color || "#22C55E" }}
@@ -100,7 +100,7 @@ const FigureComponent = ({ value, text, color }) => {
       >
         {value}
       </div>
-      <div className="text-xs font-medium text-[#8B93A7] mt-1">{text}</div>
+      <div className="text-xs font-medium text-[var(--sss-color-muted)] mt-1">{text}</div>
     </div>
   );
 };
@@ -111,6 +111,19 @@ const ScanSummary = ({ firstTime }) => {
   const dispatch = useDispatch();
   const navigate = useRouter();
   const auth = useSelector(getUserData);
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    const handleThemeSync = () => {
+      if (typeof window !== "undefined") {
+        const savedTheme = localStorage.getItem("theme");
+        setDarkMode(savedTheme ? savedTheme === "dark" : true);
+      }
+    };
+    handleThemeSync();
+    window.addEventListener("storage", handleThemeSync);
+    return () => window.removeEventListener("storage", handleThemeSync);
+  }, []);
 
   useEffect(() => {
     const fetch = async () => {
@@ -152,11 +165,12 @@ const ScanSummary = ({ firstTime }) => {
               <GradientCircularProgressbar
                 isNoScan={hasNoScan}
                 value={scanSummary?.percentageValue || 0}
+                darkMode={darkMode}
               />
             </div>
 
             {/* Right Summary / Result Action */}
-            <div className="flex-1 w-full flex flex-col items-center md:items-start text-center md:text-left gap-4 bg-[#0B132B]/60 border border-[var(--sss-color-border)] rounded-xl p-5 sm:p-6">
+            <div className="flex-1 w-full flex flex-col items-center md:items-start text-center md:text-left gap-4 bg-[var(--sss-color-input-bg)] border border-[var(--sss-color-border)] rounded-xl p-5 sm:p-6">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse"></span>
                 <span className="text-xs font-bold uppercase tracking-wider text-[var(--sss-color-muted)]">
@@ -182,6 +196,7 @@ const ScanSummary = ({ firstTime }) => {
                       value={item.value}
                       text={item.name}
                       color={item.color}
+                      darkMode={darkMode}
                     />
                   ))}
                 </div>

@@ -1,9 +1,13 @@
 .request-quote-modal-container {
-  @apply fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50;
+  @apply fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm;
+  background-color: var(--sss-modal-backdrop, rgba(0, 0, 0, 0.75));
 }
 
 .request-quote-modal {
-  @apply p-4 lg:p-8 m-2 lg:m-0 bg-primary dark:bg-secondary rounded-lg shadow-xl w-full lg:w-5/12 flex flex-col items-center gap-y-8 border border-[#A4CDFF];
+  @apply p-6 lg:p-8 m-2 lg:m-0 rounded-2xl shadow-2xl w-full lg:w-5/12 flex flex-col items-center gap-y-6;
+  background-color: var(--sss-color-card, #0F1729);
+  color: var(--sss-color-primary, #FFFFFF);
+  border: 1px solid var(--sss-color-border, #1E293B);
 }
 
 .request-quote-modal-close-container {
@@ -11,65 +15,91 @@
 }
 
 .request-modal-close-button {
-  @apply cursor-pointer;
+  @apply cursor-pointer transition-colors;
+  color: var(--sss-color-muted, #8B93A7);
+}
+
+.request-modal-close-button:hover {
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 .requeset-quote-modal-header {
   @apply text-lg lg:text-2xl font-bold;
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 .request-quote-modal-body {
-  @apply font-light w-full grid grid-cols-2 lg:gap-y-2 gap-x-2 lg:gap-x-8 text-sm justify-center items-center;
+  @apply font-normal w-full grid grid-cols-2 lg:gap-y-3 gap-x-3 text-sm justify-center items-center;
 }
 
 .request-quote-modal-input-container {
-  @apply flex flex-col items-end justify-start gap-y-2 h-20;
+  @apply flex flex-col items-start justify-start gap-y-1.5 h-20;
 }
 
 .request-quote-modal-input-box {
-  @apply py-2 px-4 border w-full rounded-xl border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+  @apply py-2.5 px-4 w-full rounded-xl transition-all outline-none;
+  background-color: var(--sss-color-input-bg, #131B2E);
+  border: 1px solid var(--sss-color-input-border, #2A3548);
+  color: var(--sss-color-primary, #FFFFFF);
+}
+
+.request-quote-modal-input-box:focus {
+  border-color: var(--sss-color-accent, #22C55E);
 }
 
 .requeste-quote-modal-input-warning {
-  @apply text-[#FC5A5A];
+  @apply text-[#EF4444] text-xs;
 }
 
 .request-quote-modal-dropdown-container {
-  @apply relative flex flex-col gap-y-1 h-20 justify-start;
+  @apply relative flex flex-col gap-y-1.5 h-20 justify-start;
 }
 
 .request-quote-modal-dropdown {
-  @apply cursor-pointer py-2 px-4 text-secondary dark:text-primary rounded-xl border border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+  @apply cursor-pointer py-2.5 px-4 rounded-xl transition-all;
+  background-color: var(--sss-color-input-bg, #131B2E);
+  border: 1px solid var(--sss-color-input-border, #2A3548);
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 .request-quote-modal-dropdown-options {
-  @apply h-[250px] overflow-y-auto text-sm w-full absolute left-0 text-secondary dark:text-primary rounded border border-[#A4CDFF] bg-primary dark:bg-secondary;
+  @apply h-[220px] overflow-y-auto text-sm w-full absolute left-0 top-full mt-1.5 z-50 rounded-xl shadow-xl;
+  background-color: var(--sss-color-card, #0F1729);
+  border: 1px solid var(--sss-color-border, #1E293B);
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 .request-quote-modal-dropdown-option-container:hover {
-  @apply border border-[#A4CDFF];
+  background-color: var(--sss-color-input-bg, #131B2E);
 }
 
 .request-quote-modal-dropdown-option {
-  @apply py-1 lg:py-3 px-4;
+  @apply py-2 px-4;
 }
 
 .request-quote-modal-dropdown-label {
-  @apply text-[#0019385f] dark:text-[#ffffff5f];
+  color: var(--sss-color-muted, #8B93A7);
 }
 
 .request-quote-modal-textarea-container {
-  @apply w-full col-span-2;
+  @apply w-full col-span-2 pt-2;
 }
 
 .request-quote-modal-textarea {
-  @apply py-2 px-4 w-full rounded border border-[#A4CDFF] bg-cardBackgroundLight dark:bg-cardBackgroundDark;
+  @apply py-2.5 px-4 w-full rounded-xl transition-all outline-none;
+  background-color: var(--sss-color-input-bg, #131B2E);
+  border: 1px solid var(--sss-color-input-border, #2A3548);
+  color: var(--sss-color-primary, #FFFFFF);
+}
+
+.request-quote-modal-textarea:focus {
+  border-color: var(--sss-color-accent, #22C55E);
 }
 
 .request-quote-modal-checkbox-container {
-  @apply flex gap-x-2 col-span-2;
+  @apply flex items-center gap-x-2 col-span-2 pt-1;
 }
 
 .request-quote-modal-button-container {
-  @apply w-full flex justify-center items-center;
+  @apply w-full flex justify-center items-center pt-2;
 }

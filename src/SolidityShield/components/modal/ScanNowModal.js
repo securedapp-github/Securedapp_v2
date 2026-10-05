@@ -215,7 +215,7 @@ const ScanNowModal = () => {
               <button
                 onClick={!isScanning ? closeModal : undefined}
                 aria-label="Close"
-                className="flex items-center justify-center cursor-pointer"
+                className="scan-now-modal-close-button flex items-center justify-center cursor-pointer"
               >
                 <FontAwesomeIcon icon={faXmark} size="xl" />
               </button>
@@ -300,7 +300,7 @@ const ScanNowModal = () => {
                 onClick={!isScanning && closeModal}
                 text={"Cancel"}
                 className={
-                  "w-[120px] py-3 px-2 rounded-xl border border-tertiary active:bg-tertiary"
+                  "w-[120px] py-3 px-2 rounded-xl border border-[var(--sss-color-border)] text-[var(--sss-color-primary)] font-semibold hover:bg-[var(--sss-color-input-bg)] transition-colors cursor-pointer"
                 }
               />
             </div>
@@ -308,7 +308,7 @@ const ScanNowModal = () => {
               <CustomButton
                 text={isScanning ? "Scanning..." : "Scan"}
                 className={
-                  "w-[120px] border border-tertiary py-3 px-2 rounded-xl  bg-tertiary active:bg-white"
+                  "w-[120px] border border-[#22C55E] py-3 px-2 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold hover:bg-[#16A34A] transition-colors cursor-pointer"
                 }
                 onClick={!isScanning && handleSubmit}
               />

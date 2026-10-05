@@ -20,6 +20,9 @@ html.dark {
   --sss-color-input-placeholder: #5B6478;
   --sss-color-badge-alert: #EF4444;
   --sss-grid-pattern: rgba(19, 27, 46, 0.5);
+  --sss-modal-backdrop: rgba(0, 0, 0, 0.75);
+  --sss-chart-grid: #1E293B;
+  --sss-chart-trail: #1E293B;
 }
 
 /* Light Mode */
@@ -39,6 +42,9 @@ html:not(.dark) body:not(.dark) {
   --sss-color-input-placeholder: #94A3B8;
   --sss-color-badge-alert: #EF4444;
   --sss-grid-pattern: rgba(203, 213, 225, 0.4);
+  --sss-modal-backdrop: rgba(15, 23, 42, 0.45);
+  --sss-chart-grid: #E2E8F0;
+  --sss-chart-trail: #E2E8F0;
 }
 
 /* Container Scoping */
@@ -52,7 +58,8 @@ html:not(.dark) body:not(.dark) {
 .sss-billing-screen-container,
 .sss-settings-screen-container,
 .sss-settings-body-profile-container,
-.sss-pricing-container {
+.sss-pricing-container,
+.sss-scan-report-screen-container {
   background-color: var(--sss-color-bg) !important;
   background-image: 
     linear-gradient(to right, var(--sss-grid-pattern) 1px, transparent 1px),
@@ -94,11 +101,23 @@ html:not(.dark) body:not(.dark) {
 .sss-settings-screen-field-container,
 .chart-card-container,
 .sss-sidebar-lower,
-.sss-sidebar-credits-card {
+.sss-sidebar-credits-card,
+.scan-now-modal,
+.sss-payment-modal,
+.request-quote-modal,
+.sss-scan-report-body,
+.sss-scan-report-body-audit-stats-table {
   background-color: var(--sss-color-card) !important;
   border: 1px solid var(--sss-color-border) !important;
   border-radius: 12px !important;
   color: var(--sss-color-primary) !important;
+}
+
+/* Modal Containers */
+.scan-now-modal-container,
+.sss-payment-modal-container,
+.request-quote-modal-container {
+  background-color: var(--sss-modal-backdrop) !important;
 }
 
 /* Form Inputs (Profile Screen) */
@@ -198,5 +217,101 @@ html:not(.dark) .sss-sidebar-credits-card {
   border-color: #CBD5E1 !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
 }
+
+/* Modals & Dropdowns Theme Adaptation */
+body.light .scan-now-modal,
+html:not(.dark) .scan-now-modal,
+body.light .sss-payment-modal,
+html:not(.dark) .sss-payment-modal,
+body.light .request-quote-modal,
+html:not(.dark) .request-quote-modal {
+  background-color: var(--sss-color-card) !important;
+  color: var(--sss-color-primary) !important;
+  border-color: var(--sss-color-border) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light .scan-now-modal-body-dropdown,
+html:not(.dark) .scan-now-modal-body-dropdown,
+body.light .scan-now-modal-input-text-field,
+html:not(.dark) .scan-now-modal-input-text-field,
+body.light .request-quote-modal-input-box,
+html:not(.dark) .request-quote-modal-input-box,
+body.light .request-quote-modal-dropdown,
+html:not(.dark) .request-quote-modal-dropdown {
+  background-color: var(--sss-color-input-bg) !important;
+  border-color: var(--sss-color-input-border) !important;
+  color: var(--sss-color-primary) !important;
+}
+
+body.light .scan-now-modal-body-dropdown-options,
+html:not(.dark) .scan-now-modal-body-dropdown-options,
+body.light .request-quote-modal-dropdown-options,
+html:not(.dark) .request-quote-modal-dropdown-options {
+  background-color: var(--sss-color-card) !important;
+  border-color: var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.light .scan-now-modal-body-dropdown-option-container:hover,
+html:not(.dark) .scan-now-modal-body-dropdown-option-container:hover,
+body.light .request-quote-modal-dropdown-option-container:hover,
+html:not(.dark) .request-quote-modal-dropdown-option-container:hover {
+  background-color: var(--sss-color-input-bg) !important;
+}
+
+/* File Upload Dropzone in Modals */
+.sss-file-upload-dropzone {
+  background-color: var(--sss-color-input-bg) !important;
+  border-color: var(--sss-color-input-border) !important;
+  color: var(--sss-color-primary) !important;
+}
+
+/* Settings Containers */
+body.light .sss-settings-body-profile-container,
+html:not(.dark) .sss-settings-body-profile-container,
+body.light .sss-settings-connected-accounts-container,
+html:not(.dark) .sss-settings-connected-accounts-container,
+body.light .sss-settings-notifications-container,
+html:not(.dark) .sss-settings-notifications-container {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* History Table Row hover in light mode */
+body.light .sss-history-table-row:hover,
+html:not(.dark) .sss-history-table-row:hover {
+  background-color: var(--sss-color-input-bg) !important;
+}
+
+/* History table options dropdown */
+body.light .sss-history-table-options-dropdown,
+html:not(.dark) .sss-history-table-options-dropdown {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Billing adaptive text */
+body.light .sss-billing-current-header-desc,
+body.light .sss-billing-current-body-per,
+body.light .sss-billing-current-body-users,
+body.light .sss-billing-payment-method-left-details,
+html:not(.dark) .sss-billing-current-header-desc,
+html:not(.dark) .sss-billing-current-body-per,
+html:not(.dark) .sss-billing-current-body-users,
+html:not(.dark) .sss-billing-payment-method-left-details {
+  color: var(--sss-color-muted) !important;
+}
+
+/* IssuesChart dropdown adaptive */
+body.light .sss-overview-issues-header-right-dropdown,
+html:not(.dark) .sss-overview-issues-header-right-dropdown,
+body.light .sss-overview-issues-header-right-dropdown-options,
+html:not(.dark) .sss-overview-issues-header-right-dropdown-options {
+  background-color: var(--sss-color-card) !important;
+  border-color: var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
+}
+
+
 
 

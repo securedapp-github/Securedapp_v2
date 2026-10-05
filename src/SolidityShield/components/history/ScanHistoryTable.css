@@ -19,7 +19,10 @@
 }
 
 .sss-history-table-container {
-  @apply min-w-full pt-6 bg-[#0F1729] rounded-xl border border-[#1E293B] p-4 text-white;
+  @apply min-w-full pt-6 rounded-xl p-4;
+  background-color: var(--sss-color-card) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-history-table-scrollable {
@@ -31,7 +34,9 @@
 }
 
 .sss-history-table-header {
-  @apply min-w-full flex items-end text-[#8B93A7] text-center font-semibold border-b border-[#1E293B] pb-3;
+  @apply min-w-full flex items-end text-center font-semibold pb-3;
+  color: var(--sss-color-muted) !important;
+  border-bottom: 1px solid var(--sss-color-border) !important;
 }
 
 .sss-history-table-header-item {
@@ -63,23 +68,34 @@
 }
 
 .sss-history-table-options {
-  @apply cursor-pointer w-full flex justify-center text-[#8B93A7] hover:text-white;
+  @apply cursor-pointer w-full flex justify-center;
+  color: var(--sss-color-muted) !important;
+}
+
+.sss-history-table-options:hover {
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-history-table-options-dropdown {
-  @apply shadow-xl text-sm w-[120px] z-30 bg-[#0F1729] text-white absolute left-0 border border-[#1E293B] flex flex-col gap-y-1 rounded-xl p-1 overflow-hidden;
+  @apply shadow-xl text-sm w-[120px] z-30 absolute left-0 flex flex-col gap-y-1 rounded-xl p-1 overflow-hidden;
+  background-color: var(--sss-color-card) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-history-table-options-dropdown-item {
-  @apply w-full p-2 text-xs hover:bg-[#131B2E] rounded-lg transition-colors text-white text-center;
+  @apply w-full p-2 text-xs rounded-lg transition-colors text-center;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-history-table-options-dropdown-item:hover {
-  @apply cursor-pointer bg-[#131B2E];
+  @apply cursor-pointer;
+  background-color: var(--sss-color-input-bg) !important;
 }
 
 .sss-history-table-divider {
-  @apply min-w-full py-2 border-b border-[#1E293B];
+  @apply min-w-full py-2;
+  border-bottom: 1px solid var(--sss-color-border) !important;
 }
 
 .sss-history-table-body {
@@ -87,5 +103,10 @@
 }
 
 .sss-history-table-row {
-  @apply flex items-center w-full text-center font-normal py-2 border-b border-[#1E293B]/50 hover:bg-[#131B2E]/50 rounded-lg transition-colors;
+  @apply flex items-center w-full text-center font-normal py-2 rounded-lg transition-colors;
+  border-bottom: 1px solid var(--sss-color-border) !important;
+}
+
+.sss-history-table-row:hover {
+  background-color: var(--sss-color-input-bg) !important;
 }
