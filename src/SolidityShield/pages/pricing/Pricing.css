@@ -1,41 +1,117 @@
 .sss-pricing-container {
-  @apply font-poppins min-h-screen text-white w-full pb-10 bg-[#0A1120];
+  @apply font-poppins min-h-screen w-full pb-14 transition-colors duration-300;
+  background-color: var(--sss-color-bg, #0A1120);
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
+/* ============================================================
+   Liquid Glass System for Pricing Cards (/liquid-glass)
+   ============================================================ */
+.liquid-glass-card {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Apple-style specular top light refraction highlight */
+.liquid-glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 25%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.5) 75%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Light Mode Liquid Glass */
+.light .liquid-glass-card,
+html:not(.dark) .liquid-glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(248, 250, 252, 0.88) 55%,
+    rgba(241, 245, 249, 0.82) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 12px 32px -8px rgba(15, 23, 42, 0.08),
+    0 4px 12px -2px rgba(15, 23, 42, 0.04),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+/* Dark Mode Obsidian Liquid Glass */
+.dark .liquid-glass-card,
+html.dark .liquid-glass-card {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(15, 23, 42, 0.82) 50%,
+    rgba(10, 17, 32, 0.92) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 22px 50px -12px rgba(0, 0, 0, 0.6),
+    0 4px 14px -2px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Hero Tier Elevation (Plus / Most Popular) */
+.light .liquid-glass-popular,
+html:not(.dark) .liquid-glass-popular {
+  border: 2px solid rgba(34, 197, 94, 0.75) !important;
+  box-shadow:
+    0 20px 45px -10px rgba(34, 197, 94, 0.22),
+    0 8px 18px -4px rgba(34, 197, 94, 0.12),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+}
+
+.dark .liquid-glass-popular,
+html.dark .liquid-glass-popular {
+  border: 2px solid rgba(34, 197, 94, 0.75) !important;
+  box-shadow:
+    0 26px 55px -10px rgba(34, 197, 94, 0.32),
+    0 0 35px rgba(34, 197, 94, 0.18),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.liquid-glass-card:hover {
+  transform: translateY(-6px);
+}
+
+.dark .liquid-glass-card:hover {
+  box-shadow:
+    0 28px 60px -12px rgba(0, 0, 0, 0.75),
+    0 0 25px rgba(34, 197, 94, 0.15),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.light .liquid-glass-card:hover {
+  box-shadow:
+    0 20px 42px -10px rgba(15, 23, 42, 0.12),
+    0 6px 16px -2px rgba(15, 23, 42, 0.06),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+}
+
+/* ============================================================
+   Page Structure
+   ============================================================ */
 .sss-pricing-plan-card-container {
-  @apply rounded-xl border border-[#1E293B] bg-[#0F1729] flex flex-col justify-between text-white shadow-md w-full transition-all duration-200;
-}
-
-.sss-pricing-plan-card {
-  @apply w-full p-4 md:p-5 lg:p-6 flex flex-col gap-y-4 rounded-xl bg-[#0F1729];
-}
-
-.sss-pricing-card-header {
-  @apply flex gap-x-3 items-center;
-}
-
-.sss-pricing-card-header-plan-type {
-  @apply text-base md:text-lg font-bold text-white;
-}
-
-.sss-pricing-card-body {
-  @apply w-full text-sm md:text-base flex justify-between items-baseline text-[#8B93A7];
-}
-
-.sss-pricing-card-body-price {
-  @apply text-2xl lg:text-3xl font-extrabold text-[#22C55E];
-}
-
-.sss-pricing-card-description {
-  @apply font-normal text-xs md:text-sm text-[#8B93A7] min-h-[48px];
-}
-
-.sss-pricing-card-button-container {
-  @apply w-full mt-auto;
-}
-
-.sss-pricing-card-button {
-  @apply w-full py-2.5 px-4 text-xs md:text-sm font-bold rounded-xl border border-[#22C55E] bg-[#22C55E] text-[#0A1120] hover:bg-[#16a34a] transition-colors flex justify-center items-center gap-x-2 cursor-pointer;
+  @apply flex flex-col justify-between w-full transition-all duration-300;
 }
 
 .sss-pricing-plans-scrollable {
@@ -51,7 +127,7 @@
 }
 
 .sss-pricing-plan-headers-cards {
-  @apply grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6 w-full items-stretch;
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 lg:gap-7 w-full items-stretch;
 }
 
 .sss-pricing-plan-headers-card-container {
@@ -59,15 +135,15 @@
 }
 
 .sss-pricing-plan-body {
-  @apply pt-8 w-full;
+  @apply pt-12 w-full;
 }
 
 .sss-pricing-plan-details-container {
-  @apply w-full grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6;
+  @apply w-full grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 lg:gap-7;
 }
 
 .sss-pricing-plan-detail-row {
-  @apply flex flex-col w-full text-xs md:text-sm bg-[#0F1729]/40 md:bg-transparent rounded-xl border border-[#1E293B]/60 md:border-none p-2 md:p-0;
+  @apply flex flex-col w-full text-xs md:text-sm bg-white/70 dark:bg-[#0F1729]/50 md:bg-transparent rounded-2xl border border-slate-200/80 dark:border-[#1E293B]/70 md:border-none p-2 md:p-0 backdrop-blur-md;
 }
 
 .sss-pricing-plan-detail-row-value-container {
@@ -75,11 +151,11 @@
 }
 
 .sss-pricing-plan-detail-row-value {
-  @apply h-[52px] py-3 px-2 border-b border-[#1E293B] flex items-center justify-center gap-x-2 text-[#FFFFFF] text-center;
+  @apply h-[52px] py-3 px-2 border-b border-slate-200/80 dark:border-[#1E293B]/80 flex items-center justify-center gap-x-2 text-slate-800 dark:text-[#FFFFFF] text-center font-medium transition-colors;
 }
 
 .sss-pricing-plan-detail-row-value-first {
-  @apply justify-start text-left font-medium text-[#8B93A7] px-3;
+  @apply justify-start text-left font-semibold text-slate-600 dark:text-[#8B93A7] px-3;
 }
 
 .sss-pricing-plan-detail-row-info-container {
@@ -87,7 +163,7 @@
 }
 
 .sss-pricing-plan-detail-row-info {
-  @apply absolute top-1/2 left-full transform translate-x-[10px] -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-[#0F1729] border border-[#1E293B] text-white text-xs rounded-lg py-2 px-3 whitespace-nowrap shadow-xl z-50 transition-opacity duration-200 flex flex-col gap-y-0.5 pointer-events-none;
+  @apply absolute top-1/2 left-full transform translate-x-[10px] -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-white dark:bg-[#0F1729] border border-slate-200 dark:border-[#1E293B] text-slate-800 dark:text-white text-xs rounded-xl py-2.5 px-3.5 whitespace-nowrap shadow-2xl z-50 transition-opacity duration-200 flex flex-col gap-y-0.5 pointer-events-none backdrop-blur-xl;
 
   &::before {
     content: "";
@@ -97,7 +173,7 @@
     transform: translateY(-50%);
     border-width: 6px;
     border-style: solid;
-    border-color: transparent #1E293B transparent transparent;
+    border-color: transparent var(--sss-color-card, #0F1729) transparent transparent;
   }
 }
 
@@ -105,16 +181,12 @@
   @apply py-8 w-full px-4 md:px-8 lg:px-12 max-w-7xl mx-auto;
 }
 
-.sss-pricing-plan-footer-buttons {
-  @apply py-4 w-full flex flex-col md:flex-row justify-center items-center gap-y-3 md:gap-x-4 md:gap-y-0;
-}
-
 .sss-pricing-card-changer-buttons {
-  @apply pt-4 flex md:hidden gap-x-3 items-center justify-center text-[#8B93A7];
+  @apply pt-4 flex md:hidden gap-x-3 items-center justify-center text-slate-500 dark:text-[#8B93A7];
 }
 
 .sss-pricing-card-changer-button-container {
-  @apply h-9 w-9 flex items-center justify-center border border-[#1E293B] bg-[#0F1729] rounded-full text-center hover:border-[#22C55E] transition-colors;
+  @apply h-9 w-9 flex items-center justify-center border border-slate-200 dark:border-[#1E293B] bg-white dark:bg-[#0F1729] rounded-full text-center hover:border-[#22C55E] transition-colors shadow-sm;
 }
 
 .sss-pricing-card-changer-button {
