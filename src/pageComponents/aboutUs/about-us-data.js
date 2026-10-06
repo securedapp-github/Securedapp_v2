@@ -50,7 +50,7 @@ const teamData = [
   },
   {
     name: "Kunal Chowdhury",
-    designation: "Assistant Manager, Marketing Associate",
+    designation: "Assistant Manager Marketing",
     image: "/assets/images/team/kunal.png",
     twitter: "https://x.com/KunalCh38207888",
     linkedin: "https://www.linkedin.com/in/kunal-chowdhury-046149176",
@@ -71,7 +71,7 @@ const teamData = [
   },
   {
     name: "Dhanush Kumar",
-    designation: "Marketing Associate",
+    designation: "Design Associate",
     image: "/assets/images/team/dhanush.png",
     linkedin: "https://www.linkedin.com/in/dhanushkumar-g-b7489a249/",
   },

@@ -1,18 +1,24 @@
 .sss-payment-modal-container {
-  @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-50;
+  @apply fixed inset-0 flex items-center justify-center backdrop-blur-sm;
+  background-color: var(--sss-modal-backdrop, rgba(0, 0, 0, 0.75));
   z-index: 100;
 }
 
 .sss-payment-modal {
-  @apply px-4 py-6 m-2 lg:m-0 bg-primary dark:bg-secondary rounded-lg shadow-xl w-full lg:w-5/12 flex flex-col items-center gap-y-6 border border-[#A4CDFF];
+  @apply px-6 py-6 m-2 lg:m-0 rounded-2xl shadow-2xl w-full lg:w-5/12 flex flex-col items-center gap-y-6;
+  background-color: var(--sss-color-card, #0F1729);
+  color: var(--sss-color-primary, #FFFFFF);
+  border: 1px solid var(--sss-color-border, #1E293B);
 }
 
 .sss-payment-modal-header {
-  @apply w-full flex justify-between items-center;
+  @apply w-full flex justify-between items-center pb-3;
+  border-bottom: 1px solid var(--sss-color-border, #1E293B);
 }
 
 .sss-payment-modal-header-title {
   @apply w-full font-bold text-xl;
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 .sss-payment-modal-close-container {
@@ -20,11 +26,16 @@
 }
 
 .sss-payment-modal-close-button {
-  @apply cursor-pointer;
+  @apply cursor-pointer transition-colors;
+  color: var(--sss-color-muted, #8B93A7);
+}
+
+.sss-payment-modal-close-button:hover {
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
 .sss-payment-modal-body {
-  @apply px-8 w-full;
+  @apply px-4 sm:px-8 w-full;
 }
 
 .sss-payment-modal-body-methods {
@@ -32,7 +43,14 @@
 }
 
 .sss-payment-modal-body-method {
-  @apply w-full border rounded-2xl p-8 flex justify-between items-center;
+  @apply w-full rounded-2xl p-6 sm:p-8 flex justify-between items-center transition-all;
+  background-color: var(--sss-color-input-bg, #131B2E);
+  border: 1px solid var(--sss-color-input-border, #2A3548);
+  color: var(--sss-color-primary, #FFFFFF);
+}
+
+.sss-payment-modal-body-method:hover {
+  border-color: var(--sss-color-accent, #22C55E);
 }
 
 .sss-payment-modal-body-method-image {
@@ -49,6 +67,7 @@
 
 .sss-payment-modal-fotter {
   @apply pt-4 w-full flex justify-between items-center;
+  border-top: 1px solid var(--sss-color-border, #1E293B);
 }
 
 .sss-payment-modal-footer-button {

@@ -1,41 +1,274 @@
+/* ============================================================
+   Solidity Shield - Industrial Brutalist UI System
+   (/industrial-brutalist-ui)
+   ============================================================ */
+
 .sss-pricing-container {
-  @apply font-poppins min-h-screen text-white w-full pb-10 bg-[#0A1120];
+  @apply font-mono min-h-screen w-full pb-16 transition-colors duration-200;
+  background-color: var(--sss-color-bg, #0A1120);
+  color: var(--sss-color-primary, #FFFFFF);
 }
 
+/* ============================================================
+   Industrial Brutalist Machine Chassis & Cards
+   ============================================================ */
+.industrial-card {
+  position: relative;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 4px;
+}
+
+/* Light Mode Brutalist Machine (Architectural / Blueprint) */
+.light .industrial-card,
+html:not(.dark) .industrial-card {
+  background-color: #FFFFFF;
+  border: 2.5px solid #0F172A;
+  box-shadow: 6px 6px 0px 0px #0F172A;
+}
+
+.light .industrial-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #0F172A;
+}
+
+/* Dark Mode Brutalist Machine (Server Console / Workstation) */
+.dark .industrial-card,
+html.dark .industrial-card {
+  background-color: #0A0F1D;
+  border: 2.5px solid #334155;
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.dark .industrial-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px 0px #000000;
+}
+
+/* Hero / Plus Tier - Heavy Neon Brutalist Chassis */
+.light .industrial-card-hero,
+html:not(.dark) .industrial-card-hero {
+  border: 2.5px solid #16A34A !important;
+  box-shadow: 6px 6px 0px 0px #16A34A !important;
+  background-color: #F8FFF9;
+}
+
+.light .industrial-card-hero:hover {
+  box-shadow: 10px 10px 0px 0px #16A34A !important;
+}
+
+.dark .industrial-card-hero,
+html.dark .industrial-card-hero {
+  border: 2.5px solid #22C55E !important;
+  box-shadow: 6px 6px 0px 0px #22C55E !important;
+  background-color: #071512;
+}
+
+.dark .industrial-card-hero:hover {
+  box-shadow: 10px 10px 0px 0px #22C55E !important;
+}
+
+/* Premium Tier - Cyber-Cyan Industrial Chassis */
+.light .industrial-card-premium,
+html:not(.dark) .industrial-card-premium {
+  border: 2.5px solid #0891B2 !important;
+  box-shadow: 6px 6px 0px 0px #0891B2 !important;
+  background-color: #F8FDFF;
+}
+
+.light .industrial-card-premium:hover {
+  box-shadow: 10px 10px 0px 0px #0891B2 !important;
+}
+
+.dark .industrial-card-premium,
+html.dark .industrial-card-premium {
+  border: 2.5px solid #06B6D4 !important;
+  box-shadow: 6px 6px 0px 0px #06B6D4 !important;
+  background-color: #08151D;
+}
+
+.dark .industrial-card-premium:hover {
+  box-shadow: 10px 10px 0px 0px #06B6D4 !important;
+}
+
+/* ============================================================
+   Tactile Hardware Action Buttons
+   ============================================================ */
+.industrial-btn {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: all 0.12s ease-in-out;
+  border-radius: 3px;
+}
+
+.light .industrial-btn-primary {
+  background-color: #22C55E;
+  color: #021208;
+  border: 2.5px solid #0F172A;
+  box-shadow: 4px 4px 0px 0px #0F172A;
+}
+
+.light .industrial-btn-primary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #0F172A;
+  background-color: #16A34A;
+  color: #FFFFFF;
+}
+
+.light .industrial-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #0F172A;
+}
+
+.dark .industrial-btn-primary {
+  background-color: #22C55E;
+  color: #021208;
+  border: 2.5px solid #22C55E;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.dark .industrial-btn-primary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #000000;
+  background-color: #4ADE80;
+}
+
+.dark .industrial-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+.light .industrial-btn-secondary {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: 2.5px solid #0F172A;
+  box-shadow: 4px 4px 0px 0px #0891B2;
+}
+
+.light .industrial-btn-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #0891B2;
+}
+
+.light .industrial-btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #0891B2;
+}
+
+.dark .industrial-btn-secondary {
+  background-color: #0F172A;
+  color: #FFFFFF;
+  border: 2.5px solid #06B6D4;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.dark .industrial-btn-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #000000;
+  background-color: #1E293B;
+}
+
+.dark .industrial-btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+.light .industrial-btn-disabled {
+  background-color: #F1F5F9;
+  color: #64748B;
+  border: 2.5px solid #CBD5E1;
+  box-shadow: 3px 3px 0px 0px #CBD5E1;
+  cursor: default;
+}
+
+.dark .industrial-btn-disabled {
+  background-color: #1E293B;
+  color: #94A3B8;
+  border: 2.5px solid #334155;
+  box-shadow: 3px 3px 0px 0px #000000;
+  cursor: default;
+}
+
+/* ============================================================
+   Hardware Rivets & Precision Crosshairs
+   ============================================================ */
+.industrial-rivet {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #94A3B8;
+  border: 1px solid #475569;
+}
+
+.dark .industrial-rivet {
+  background: #334155;
+  border: 1px solid #64748B;
+}
+
+.crosshair-tl {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.crosshair-tr {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.crosshair-bl {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+.crosshair-br {
+  position: absolute;
+  bottom: 5px;
+  right: 7px;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Hazard Warning Tape
+   ============================================================ */
+.hazard-strip {
+  background: repeating-linear-gradient(
+    -45deg,
+    #22C55E,
+    #22C55E 10px,
+    #05140A 10px,
+    #05140A 20px
+  );
+  height: 6px;
+  width: 100%;
+}
+
+/* ============================================================
+   Page Structure & Matrix Grid
+   ============================================================ */
 .sss-pricing-plan-card-container {
-  @apply rounded-xl border border-[#1E293B] bg-[#0F1729] flex flex-col justify-between text-white shadow-md w-full transition-all duration-200;
-}
-
-.sss-pricing-plan-card {
-  @apply w-full p-4 md:p-5 lg:p-6 flex flex-col gap-y-4 rounded-xl bg-[#0F1729];
-}
-
-.sss-pricing-card-header {
-  @apply flex gap-x-3 items-center;
-}
-
-.sss-pricing-card-header-plan-type {
-  @apply text-base md:text-lg font-bold text-white;
-}
-
-.sss-pricing-card-body {
-  @apply w-full text-sm md:text-base flex justify-between items-baseline text-[#8B93A7];
-}
-
-.sss-pricing-card-body-price {
-  @apply text-2xl lg:text-3xl font-extrabold text-[#22C55E];
-}
-
-.sss-pricing-card-description {
-  @apply font-normal text-xs md:text-sm text-[#8B93A7] min-h-[48px];
-}
-
-.sss-pricing-card-button-container {
-  @apply w-full mt-auto;
-}
-
-.sss-pricing-card-button {
-  @apply w-full py-2.5 px-4 text-xs md:text-sm font-bold rounded-xl border border-[#22C55E] bg-[#22C55E] text-[#0A1120] hover:bg-[#16a34a] transition-colors flex justify-center items-center gap-x-2 cursor-pointer;
+  @apply flex flex-col justify-between w-full transition-all duration-200;
 }
 
 .sss-pricing-plans-scrollable {
@@ -51,7 +284,7 @@
 }
 
 .sss-pricing-plan-headers-cards {
-  @apply grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6 w-full items-stretch;
+  @apply grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 lg:gap-7 w-full items-stretch;
 }
 
 .sss-pricing-plan-headers-card-container {
@@ -59,15 +292,15 @@
 }
 
 .sss-pricing-plan-body {
-  @apply pt-8 w-full;
+  @apply pt-14 w-full;
 }
 
 .sss-pricing-plan-details-container {
-  @apply w-full grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6;
+  @apply w-full grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 lg:gap-7;
 }
 
 .sss-pricing-plan-detail-row {
-  @apply flex flex-col w-full text-xs md:text-sm bg-[#0F1729]/40 md:bg-transparent rounded-xl border border-[#1E293B]/60 md:border-none p-2 md:p-0;
+  @apply flex flex-col w-full text-xs md:text-sm bg-white dark:bg-[#0B101E] md:bg-transparent rounded-none border-2 border-slate-900 dark:border-slate-800 md:border-none p-2 md:p-0;
 }
 
 .sss-pricing-plan-detail-row-value-container {
@@ -75,11 +308,11 @@
 }
 
 .sss-pricing-plan-detail-row-value {
-  @apply h-[52px] py-3 px-2 border-b border-[#1E293B] flex items-center justify-center gap-x-2 text-[#FFFFFF] text-center;
+  @apply h-[52px] py-3 px-2 border-b-2 border-slate-200 dark:border-slate-800 flex items-center justify-center gap-x-2 text-slate-900 dark:text-[#FFFFFF] text-center font-bold transition-colors font-mono;
 }
 
 .sss-pricing-plan-detail-row-value-first {
-  @apply justify-start text-left font-medium text-[#8B93A7] px-3;
+  @apply justify-start text-left font-black text-slate-700 dark:text-[#8B93A7] px-3 uppercase tracking-wider;
 }
 
 .sss-pricing-plan-detail-row-info-container {
@@ -87,34 +320,19 @@
 }
 
 .sss-pricing-plan-detail-row-info {
-  @apply absolute top-1/2 left-full transform translate-x-[10px] -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-[#0F1729] border border-[#1E293B] text-white text-xs rounded-lg py-2 px-3 whitespace-nowrap shadow-xl z-50 transition-opacity duration-200 flex flex-col gap-y-0.5 pointer-events-none;
-
-  &::before {
-    content: "";
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    border-width: 6px;
-    border-style: solid;
-    border-color: transparent #1E293B transparent transparent;
-  }
+  @apply absolute top-1/2 left-full transform translate-x-[10px] -translate-y-1/2 opacity-0 group-hover:opacity-100 bg-white dark:bg-[#0F1729] border-2 border-slate-900 dark:border-[#334155] text-slate-900 dark:text-white text-xs rounded-none py-2.5 px-3.5 whitespace-nowrap shadow-[4px_4px_0px_#000] z-50 transition-opacity duration-150 flex flex-col gap-y-0.5 pointer-events-none;
 }
 
 .sss-pricing-plan-footer {
   @apply py-8 w-full px-4 md:px-8 lg:px-12 max-w-7xl mx-auto;
 }
 
-.sss-pricing-plan-footer-buttons {
-  @apply py-4 w-full flex flex-col md:flex-row justify-center items-center gap-y-3 md:gap-x-4 md:gap-y-0;
-}
-
 .sss-pricing-card-changer-buttons {
-  @apply pt-4 flex md:hidden gap-x-3 items-center justify-center text-[#8B93A7];
+  @apply pt-4 flex md:hidden gap-x-3 items-center justify-center text-slate-500 dark:text-[#8B93A7];
 }
 
 .sss-pricing-card-changer-button-container {
-  @apply h-9 w-9 flex items-center justify-center border border-[#1E293B] bg-[#0F1729] rounded-full text-center hover:border-[#22C55E] transition-colors;
+  @apply h-9 w-9 flex items-center justify-center border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-[#0F1729] rounded-none text-center hover:bg-[#22C55E] hover:text-black transition-colors shadow-[2px_2px_0px_#000];
 }
 
 .sss-pricing-card-changer-button {

@@ -29,7 +29,7 @@ const issuesChartHeaderOptions = [
   "Low level issues",
 ];
 
-const CustomAreaChart = ({ data }) => (
+const CustomAreaChart = ({ data, darkMode }) => (
   <ResponsiveContainer className="w-full text-xs" width="100%" height={300}>
     <AreaChart
       margin={{
@@ -46,11 +46,17 @@ const CustomAreaChart = ({ data }) => (
           <stop offset="100%" stopColor="#22C55E" stopOpacity={0.0} />
         </linearGradient>
       </defs>
-      <CartesianGrid stroke="#1E293B" strokeDasharray="3 3" />
-      <XAxis dataKey="name" stroke="#8B93A7" />
-      <YAxis dataKey="value" stroke="#8B93A7" />
+      <CartesianGrid stroke={darkMode ? "#1E293B" : "#E2E8F0"} strokeDasharray="3 3" />
+      <XAxis dataKey="name" stroke={darkMode ? "#8B93A7" : "#64748B"} />
+      <YAxis dataKey="value" stroke={darkMode ? "#8B93A7" : "#64748B"} />
       <Tooltip
-        contentStyle={{ backgroundColor: "#0F1729", borderColor: "#1E293B", color: "#FFFFFF" }}
+        contentStyle={{
+          backgroundColor: darkMode ? "#0F1729" : "#FFFFFF",
+          borderColor: darkMode ? "#1E293B" : "#CBD5E1",
+          color: darkMode ? "#FFFFFF" : "#0F172A",
+          borderRadius: "8px",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
+        }}
         formatter={(value) => new Intl.NumberFormat("en").format(value)}
       />
       <Area
@@ -70,6 +76,19 @@ const IssuesChart = () => {
   const navigate = useRouter();
 
   const auth = useSelector(getUserData);
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    const handleThemeSync = () => {
+      if (typeof window !== "undefined") {
+        const savedTheme = localStorage.getItem("theme");
+        setDarkMode(savedTheme ? savedTheme === "dark" : true);
+      }
+    };
+    handleThemeSync();
+    window.addEventListener("storage", handleThemeSync);
+    return () => window.removeEventListener("storage", handleThemeSync);
+  }, []);
 
   useEffect(() => {
     async function fetch() {
@@ -87,13 +106,13 @@ const IssuesChart = () => {
     <div className="flex-1 w-full">
       <ChartCard>
         <div className="sss-overview-issues-card-container">
-          <div className="sss-overview-issues-card bg-[#0F1729] border border-[#1E293B] rounded-xl p-5">
+          <div className="sss-overview-issues-card bg-[var(--sss-color-card)] border border-[var(--sss-color-border)] rounded-xl p-5">
             <div className="sss-overview-issues-card-header mb-4">
               <div className="sss-overview-issues-header-left">
-                <div className="sss-overview-issues-header-left-title text-lg font-bold text-[#FFFFFF]">
+                <div className="sss-overview-issues-header-left-title text-lg font-bold text-[var(--sss-color-primary)]">
                   Issues Trend
                 </div>
-                <div className="sss-overview-issues-header-left-desc text-xs text-[#8B93A7]">
+                <div className="sss-overview-issues-header-left-desc text-xs text-[var(--sss-color-muted)]">
                   Vulnerability trends from your security scans
                 </div>
               </div>
@@ -101,17 +120,17 @@ const IssuesChart = () => {
             <div className="sss-overview-issues-card-body">
               {hasData ? (
                 <div className="sss-overview-issues-card-chart-main">
-                  <CustomAreaChart data={issuesData} />
+                  <CustomAreaChart data={issuesData} darkMode={darkMode} />
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center py-12 text-center bg-[#0A1120] border border-[#1E293B] rounded-xl gap-3">
-                  <svg className="w-12 h-12 text-[#8B93A7]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex flex-col items-center justify-center py-12 text-center bg-[var(--sss-color-input-bg)] border border-[var(--sss-color-border)] rounded-xl gap-3">
+                  <svg className="w-12 h-12 text-[var(--sss-color-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
                   </svg>
-                  <div className="text-sm font-semibold text-[#FFFFFF]">
+                  <div className="text-sm font-semibold text-[var(--sss-color-primary)]">
                     Run your first scan to see trends
                   </div>
-                  <div className="text-xs text-[#8B93A7]">
+                  <div className="text-xs text-[var(--sss-color-muted)]">
                     Vulnerability analytics will appear here after your initial security scan.
                   </div>
                   <button

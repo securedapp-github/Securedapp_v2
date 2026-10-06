@@ -59,7 +59,7 @@ const OverviewScreen = () => {
     <div className="sss-overview-screen-container">
       <div className="sss-overview-screen">
         <div className="sss-overview-header flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-[#FFFFFF]">Dashboard</h1>
+          <h1 className="text-2xl font-bold text-[var(--sss-color-primary)]">Dashboard</h1>
         </div>
         <div className="sss-overview-body">
           {firstTime ? (

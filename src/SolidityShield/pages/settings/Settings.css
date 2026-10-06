@@ -3,7 +3,8 @@
 }
 
 .sss-settings-screen-field-label {
-  @apply text-white font-semibold text-sm;
+  @apply font-semibold text-sm;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-screen-field-children {
@@ -15,15 +16,30 @@
 }
 
 .sss-settings-screen-input-text-field {
-  @apply py-3 px-4 rounded-xl border border-[#1E293B] bg-[#131B2E] text-white placeholder-[#5B6478] w-full focus:outline-none focus:border-[#22C55E];
+  @apply py-3 px-4 rounded-xl w-full focus:outline-none;
+  background-color: var(--sss-color-input-bg) !important;
+  border: 1px solid var(--sss-color-input-border) !important;
+  color: var(--sss-color-primary) !important;
+}
+
+.sss-settings-screen-input-text-field::placeholder {
+  color: var(--sss-color-input-placeholder) !important;
+}
+
+.sss-settings-screen-input-text-field:focus {
+  border-color: var(--sss-color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15) !important;
 }
 
 .sss-settings-screen-container {
-  @apply h-full py-4 px-2 lg:px-8 font-poppins bg-[#0A1120] text-white min-h-screen;
+  @apply h-full py-4 px-2 lg:px-8 font-poppins min-h-screen;
+  background-color: var(--sss-color-bg) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-header {
-  @apply font-semibold text-3xl text-white;
+  @apply font-semibold text-3xl;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-body {
@@ -35,23 +51,31 @@
 }
 
 .sss-settings-body-header-filter-container {
-  @apply flex gap-x-5 font-light text-sm text-[#8B93A7];
+  @apply flex gap-x-5 font-light text-sm;
+  color: var(--sss-color-muted) !important;
 }
 
 .sss-settings-body-header-filter {
-  @apply cursor-pointer flex flex-col gap-y-2 hover:text-white transition-colors;
+  @apply cursor-pointer flex flex-col gap-y-2 transition-colors;
+}
+
+.sss-settings-body-header-filter:hover {
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-body-header-filter-selected {
-  @apply font-semibold text-[#22C55E];
+  @apply font-semibold;
+  color: var(--sss-color-accent) !important;
 }
 
 .sss-settings-body-header-filter-under {
-  @apply w-full h-[1px] bg-[#1E293B];
+  @apply w-full h-[1px];
+  background-color: var(--sss-color-border) !important;
 }
 
 .sss-settings-body-header-filter-under-selected {
-  @apply h-[2px] bg-[#22C55E];
+  @apply h-[2px];
+  background-color: var(--sss-color-accent) !important;
 }
 
 .sss-settings-body-main {
@@ -61,7 +85,10 @@
 /* -------------- */
 /* Profile Screen */
 .sss-settings-body-profile-container {
-  @apply flex flex-col gap-y-8 bg-[#0F1729] border border-[#1E293B] rounded-2xl p-6 md:p-8 text-white shadow-xl;
+  @apply flex flex-col gap-y-8 rounded-2xl p-6 md:p-8 shadow-xl;
+  background-color: var(--sss-color-card) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-body-profile-fields-row {
@@ -73,7 +100,8 @@
 }
 
 .sss-settings-body-profile-checkbox {
-  @apply flex gap-x-4 text-[#8B93A7] font-light;
+  @apply flex gap-x-4 font-light;
+  color: var(--sss-color-muted) !important;
 }
 
 .sss-settings-body-profile-button {
@@ -84,7 +112,7 @@
 /* -------------- */
 /* Connected Accounts */
 .sss-settings-account-card-container {
-  @apply border-b border-[#1E293B];
+  border-bottom: 1px solid var(--sss-color-border) !important;
 }
 
 .sss-settings-account-card {
@@ -100,15 +128,20 @@
 }
 
 .sss-settings-account-card-left-details-title {
-  @apply font-semibold text-white;
+  @apply font-semibold;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-account-card-left-details-desc {
-  @apply text-[#8B93A7] font-light text-sm md:text-base;
+  @apply font-light text-sm md:text-base;
+  color: var(--sss-color-muted) !important;
 }
 
 .sss-settings-connected-accounts-container {
-  @apply bg-[#0F1729] border border-[#1E293B] rounded-2xl p-6 text-white shadow-xl;
+  @apply rounded-2xl p-6 shadow-xl;
+  background-color: var(--sss-color-card) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-connected-accounts {
@@ -116,7 +149,10 @@
 }
 
 .sss-settings-connected-accounts-box {
-  @apply bg-[#131B2E] border border-[#1E293B] p-6 flex flex-col md:flex-row items-start gap-y-2 md:gap-x-3 md:gap-y-0 rounded-xl text-white;
+  @apply p-6 flex flex-col md:flex-row items-start gap-y-2 md:gap-x-3 md:gap-y-0 rounded-xl;
+  background-color: var(--sss-color-input-bg) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-connected-accounts-box-icon {
@@ -128,11 +164,13 @@
 }
 
 .sss-settings-connected-accounts-box-content-title {
-  @apply text-lg font-bold text-white;
+  @apply text-lg font-bold;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-connected-accounts-box-content-description {
-  @apply font-light text-sm text-[#8B93A7];
+  @apply font-light text-sm;
+  color: var(--sss-color-muted) !important;
 }
 
 .sss-settings-connected-accounts-socials {
@@ -140,7 +178,8 @@
 }
 
 .sss-settings-connected-accounts-footer {
-  @apply pt-4 border-t border-[#1E293B];
+  @apply pt-4;
+  border-top: 1px solid var(--sss-color-border) !important;
 }
 
 .sss-settings-connected-accounts-footer-buttons {
@@ -156,19 +195,25 @@
 }
 
 .sss-notifications-section-title {
-  @apply text-lg font-semibold text-white;
+  @apply text-lg font-semibold;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-notifications-section-description {
-  @apply w-full md:w-8/12 font-light text-sm text-[#8B93A7];
+  @apply w-full md:w-8/12 font-light text-sm;
+  color: var(--sss-color-muted) !important;
 }
 
 .sss-notifications-section-children {
-  @apply text-sm font-light text-white;
+  @apply text-sm font-light;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-notifications-container {
-  @apply bg-[#0F1729] border border-[#1E293B] rounded-2xl p-6 text-white shadow-xl;
+  @apply rounded-2xl p-6 shadow-xl;
+  background-color: var(--sss-color-card) !important;
+  border: 1px solid var(--sss-color-border) !important;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-notifications {
@@ -180,7 +225,8 @@
 }
 
 .sss-settings-notifications-email-notif-selection {
-  @apply flex gap-x-3 items-center text-white;
+  @apply flex gap-x-3 items-center;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-notifications-email-news {
@@ -188,7 +234,8 @@
 }
 
 .sss-settings-notifications-email-news-row {
-  @apply flex gap-x-3 items-center text-white;
+  @apply flex gap-x-3 items-center;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-notifications-sign-in {
@@ -200,9 +247,10 @@
 }
 
 .sss-settings-notifs-sign-in-row-detail-container-title {
-  @apply text-base font-medium text-white;
+  @apply text-base font-medium;
+  color: var(--sss-color-primary) !important;
 }
 
 .sss-settings-notifs-sign-in-row-detail-container-desc {
-  @apply text-[#8B93A7];
+  color: var(--sss-color-muted) !important;
 }

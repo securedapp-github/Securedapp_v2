@@ -15,7 +15,7 @@ const FileUpload = ({ file, handleChange }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-64 w-full border-2 border-dashed border-[#E5E7EB] rounded-lg bg-gray-50 p-4">
+    <div className="sss-file-upload-dropzone flex flex-col items-center justify-center h-64 w-full border-2 border-dashed border-[var(--sss-color-border)] rounded-xl bg-[var(--sss-color-input-bg)] p-4 transition-colors">
       <div
         className="h-full w-full flex items-center justify-center"
         onDrop={handleDrop}
@@ -25,13 +25,13 @@ const FileUpload = ({ file, handleChange }) => {
           htmlFor="file-upload"
           className="flex flex-col items-center justify-center cursor-pointer"
         >
-          <div>
-            <span className="text-lg text-gray-700">
+          <div className="text-center">
+            <span className="text-base sm:text-lg text-[var(--sss-color-primary)] font-medium">
               Drag & drop your file here, or{" "}
-              <span className="text-[#2563EB]">browse</span>
+              <span className="text-[#22C55E] font-bold hover:underline">browse</span>
             </span>
-            <div className="text-[#9CA3AF] flex flex-col items-center justify-center">
-              Maximum Size: 50 MB
+            <div className="text-[var(--sss-color-muted)] text-xs mt-1">
+              Supports .sol files • Maximum Size: 50 MB
             </div>
           </div>
           <input
@@ -46,7 +46,9 @@ const FileUpload = ({ file, handleChange }) => {
 
       {file && (
         <div className="mt-4 w-full break-normal flex items-center justify-center">
-          <div className="text-gray-700 mb-2 truncate">{file.name}</div>
+          <div className="text-[var(--sss-color-primary)] text-sm font-semibold mb-2 truncate px-3 py-1.5 bg-[var(--sss-color-card)] border border-[var(--sss-color-border)] rounded-lg shadow-sm">
+            {file.name}
+          </div>
         </div>
       )}
     </div>
