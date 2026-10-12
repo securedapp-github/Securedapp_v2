@@ -6,6 +6,7 @@ import Navbar from "../../../components/navbar/Navbar";
 import Footer from "../../../components/footer/footer";
 import MetaTags from "../../../components/common/MetaTags";
 import BookMeetCta from "../../../components/common/bookMeetCta";
+import DPDPLiveCountdownTimer from "../../../components/common/DPDPLiveCountdownTimer";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ShieldCheck,
@@ -52,7 +53,6 @@ import {
 import {
   metaData,
   partnerLogos,
-  jumpNavLinks,
   timelineData,
   dpdpPillars,
   bankingPurposesData,
@@ -136,11 +136,8 @@ export default function BankingConsentPage() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-7 flex flex-col gap-6"
             >
-              {/* Deadline Notification Pill */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 w-fit text-amber-800 dark:text-amber-300 text-xs sm:text-sm font-semibold shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
-                <span>Core DPDP obligations for banks apply from <strong>13 May 2027</strong></span>
-              </div>
+              {/* Live DPDP 13 May 2027 Countdown Timer */}
+              <DPDPLiveCountdownTimer label="Core DPDP obligations for banks apply from 13 May 2027" />
 
               {/* H1 Display Headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
@@ -173,22 +170,6 @@ export default function BankingConsentPage() {
                   <Download className="w-5 h-5 text-tertiary" />
                   <span>Download Bank DPDP Consent Checklist</span>
                 </motion.button>
-              </div>
-
-              {/* Jump to Links from User Brief */}
-              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-labelGray dark:text-gray-400">
-                <span className="font-semibold text-secondary dark:text-gray-300">Jump to:</span>
-                {jumpNavLinks.map((item, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={(e) => scrollToSection(e, item.href)}
-                    className="hover:text-tertiary underline underline-offset-4 font-medium transition-colors cursor-pointer text-left"
-                  >
-                    {item.label}
-                    {idx < jumpNavLinks.length - 1 && <span className="no-underline ml-2 text-gray-300 dark:text-white/20">|</span>}
-                  </button>
-                ))}
               </div>
             </motion.div>
 
