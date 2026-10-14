@@ -1,11 +1,10 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setPaymentModal,
   setPlan,
@@ -16,272 +15,245 @@ import Footer from "../../components/common/Footer";
 import { setLoader } from "../../redux/commonSlice";
 import { getUser } from "../../functions";
 
-// High-converting tier value framing (Claude-style / Industrial Brutalist)
-const planConfigs = {
-  0: {
+// Curated SaaS tier data (/gpt-taste: clean, modern, sweet aesthetic)
+const planConfigs = [
+  {
     id: 0,
     planType: "Free",
-    price: "₹ 0",
-    specCode: "SPEC // TIER_01",
-    badge: "STARTER",
-    status: "SYS_ACTIVE",
-    sku: "SKU-8849-01",
-    tagline: "Essential AST scanner for single contracts & hobbyists.",
-    subtext: "[ NO_CARD_REQ // FOREVER_FREE ]",
+    price: "₹0",
+    badge: "Starter",
+    tagline: "Essential security scanning for individual builders and hobbyists.",
+    subtext: "Free forever • No credit card required",
     bullets: [
-      { text: "01 Contract Scan Credit", included: true, highlight: false },
-      { text: "AST Core Super Spotters", included: true, highlight: false },
-      { text: "Instant Audit Security Score", included: true, highlight: false },
-      { text: "Basic Vulnerability Flags", included: true, highlight: false },
-      { text: "Vulnerability Severity Breakdown", included: false, highlight: false },
-      { text: "Official PDF Audit Report", included: false, highlight: false },
-      { text: "GitHub 3rd-Party Auditor Publish", included: false, highlight: false },
+      { text: "1 Contract scan credit", included: true },
+      { text: "AST Core Vulnerability spotters", included: true },
+      { text: "Instant audit security score", included: true },
+      { text: "Basic vulnerability summary", included: true },
+      { text: "Detailed fix recommendations", included: false },
+      { text: "Official PDF audit report", included: false },
+      { text: "GitHub 3rd-party auditor certification", included: false },
     ],
   },
-  1: {
+  {
     id: 1,
     planType: "Plus",
-    price: "₹ 14,999",
-    specCode: "SPEC // TIER_02",
-    badge: "MOST POPULAR",
-    recommended: "RECOMMENDED TIER // MAXIMUM VALUE",
-    status: "SYS_OPTIMAL",
-    sku: "SKU-8849-02",
-    tagline: "Continuous automated audit pipeline for dApps & builders.",
-    subtext: "[ BILLED_MONTHLY // INSTANT_DISPATCH ]",
+    price: "₹14,999",
+    badge: "Most Popular",
+    isPopular: true,
+    tagline: "Continuous automated audits for active dApps, DEXes, and teams.",
+    subtext: "Billed monthly • Instant credit allocation",
     bullets: [
-      { text: "06 Comprehensive Scans / Month", included: true, highlight: true },
-      { text: "Full Vulnerability Severity Mapping", included: true, highlight: true },
-      { text: "Detailed Fix Specifications", included: true, highlight: false },
-      { text: "Official PDF Audit Report", included: true, highlight: true },
-      { text: "Priority Cloud Scan Queue", included: true, highlight: false },
-      { text: "Email Security Support", included: true, highlight: false },
-      { text: "GitHub 3rd-Party Auditor Publish", included: false, highlight: false },
+      { text: "6 Comprehensive scans / month", included: true },
+      { text: "Full vulnerability severity breakdown", included: true },
+      { text: "Detailed fix & code specifications", included: true },
+      { text: "Official PDF audit report download", included: true },
+      { text: "Priority cloud scan queue", included: true },
+      { text: "Email security support", included: true },
+      { text: "GitHub 3rd-party auditor certification", included: false },
     ],
   },
-  2: {
+  {
     id: 2,
     planType: "Premium",
-    price: "₹ 29,999",
-    specCode: "SPEC // TIER_03",
-    badge: "MIL-SPEC",
-    status: "MAX_SECURITY",
-    sku: "SKU-8849-03",
-    tagline: "Protocol certification & external auditor publishing.",
-    subtext: "[ ENTERPRISE_SUITE // 24/7_SUPPORT ]",
+    price: "₹29,999",
+    badge: "Enterprise",
+    tagline: "Protocol certification and dedicated auditor publishing for production.",
+    subtext: "Billed monthly • Dedicated team pipeline",
     bullets: [
-      { text: "24 Enterprise Scans / Month", included: true, highlight: true },
-      { text: "Everything in Plus Tier Included", included: true, highlight: true },
-      { text: "Full Vulnerability Severity Mapping", included: true, highlight: false },
-      { text: "Official PDF Audit Report", included: true, highlight: false },
-      { text: "Public Audit Certification URL", included: true, highlight: true },
-      { text: "GitHub 3rd-Party Auditor Publish", included: true, highlight: true },
-      { text: "24/7 Dedicated Security Support", included: true, highlight: false },
+      { text: "24 Enterprise scans / month", included: true },
+      { text: "Everything included in Plus tier", included: true },
+      { text: "Detailed fix & code specifications", included: true },
+      { text: "Official PDF audit report download", included: true },
+      { text: "Public audit certification link", included: true },
+      { text: "GitHub 3rd-party auditor publishing", included: true },
+      { text: "24/7 Priority security support", included: true },
     ],
   },
-};
+];
+
+const CheckIcon = () => (
+  <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+    <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+      <path
+        fillRule="evenodd"
+        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </span>
+);
+
+const DashIcon = () => (
+  <span className="w-5 h-5 rounded-full bg-white/5 text-gray-500 flex items-center justify-center shrink-0">
+    <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+      <path
+        fillRule="evenodd"
+        d="M4 10a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </span>
+);
 
 const PricingPlanCard = ({ planConfig, userPlan, onAction, isLoggedIn }) => {
-  const { id, planType, price, specCode, badge, recommended, status, sku, tagline, subtext, bullets } = planConfig;
-  const isPopular = id === 1;
+  const { id, planType, price, badge, isPopular, tagline, subtext, bullets } = planConfig;
 
-  // Determine button label, disabled status, and action based on user current tier
+  // Determine button state and label based on user current tier
   let buttonLabel = "";
   let isButtonDisabled = false;
-  let buttonStyle = "industrial-btn-primary";
+  let buttonClass = "";
 
   if (!isLoggedIn) {
     if (id === 0) {
-      buttonLabel = "START FREE [->]";
-      buttonStyle = "industrial-btn-disabled";
+      buttonLabel = "Get started free";
+      buttonClass = "bg-white/10 hover:bg-white/15 text-white border border-white/15";
     } else if (id === 1) {
-      buttonLabel = "DEPLOY WITH PLUS [->]";
-      buttonStyle = "industrial-btn-primary";
+      buttonLabel = "Upgrade to Plus";
+      buttonClass = "bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-bold shadow-[0_0_25px_rgba(16,185,129,0.35)]";
     } else {
-      buttonLabel = "UPGRADE TO PREMIUM [->]";
-      buttonStyle = "industrial-btn-secondary";
+      buttonLabel = "Upgrade to Premium";
+      buttonClass = "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold shadow-[0_0_25px_rgba(59,130,246,0.35)]";
     }
   } else {
     if (id === 0) {
       if (userPlan === 0) {
-        buttonLabel = "CURRENT PLAN [ACTIVE]";
+        buttonLabel = "Current plan";
         isButtonDisabled = true;
-        buttonStyle = "industrial-btn-disabled";
+        buttonClass = "bg-white/5 text-gray-400 border border-white/10 cursor-not-allowed";
       } else {
-        buttonLabel = "INCLUDED IN YOUR TIER";
+        buttonLabel = "Included in your tier";
         isButtonDisabled = true;
-        buttonStyle = "industrial-btn-disabled";
+        buttonClass = "bg-white/5 text-gray-500 border border-white/5 cursor-not-allowed";
       }
     } else if (id === 1) {
       if (userPlan === 0) {
-        buttonLabel = "UPGRADE TO PLUS [->]";
-        buttonStyle = "industrial-btn-primary";
+        buttonLabel = "Upgrade to Plus";
+        buttonClass = "bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 font-bold shadow-[0_0_25px_rgba(16,185,129,0.35)]";
       } else if (userPlan === 1) {
-        buttonLabel = "ACTIVE PLAN [CURRENT]";
+        buttonLabel = "Current plan";
         isButtonDisabled = true;
-        buttonStyle = "industrial-btn-disabled";
+        buttonClass = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 cursor-not-allowed";
       } else {
-        // Premium user viewing Plus
-        buttonLabel = "INCLUDED IN YOUR TIER";
+        buttonLabel = "Included in your tier";
         isButtonDisabled = true;
-        buttonStyle = "industrial-btn-disabled";
+        buttonClass = "bg-white/5 text-gray-500 border border-white/5 cursor-not-allowed";
       }
     } else if (id === 2) {
       if (userPlan === 2) {
-        buttonLabel = "ACTIVE PLAN [MAX_SECURITY]";
+        buttonLabel = "Current plan";
         isButtonDisabled = true;
-        buttonStyle = "industrial-btn-disabled";
+        buttonClass = "bg-blue-500/10 text-blue-400 border border-blue-500/30 cursor-not-allowed";
       } else {
-        // Free or Plus user upgrading to Premium
-        buttonLabel = "UPGRADE TO PREMIUM [->]";
-        buttonStyle = "industrial-btn-secondary";
+        buttonLabel = "Upgrade to Premium";
+        buttonClass = "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold shadow-[0_0_25px_rgba(59,130,246,0.35)]";
       }
     }
   }
 
   return (
-    <div className="sss-pricing-plan-card-container h-full relative flex flex-col">
-      <div
-        className={`industrial-card h-full flex flex-col justify-between p-6 sm:p-7 relative select-none ${
-          isPopular
-            ? "industrial-card-hero"
-            : id === 2
-            ? "industrial-card-premium"
-            : ""
-        }`}
-      >
-        {/* Hardware Rivets in 4 Corners */}
-        <span className="industrial-rivet top-2 left-2" />
-        <span className="industrial-rivet top-2 right-2" />
-        <span className="industrial-rivet bottom-2 left-2" />
-        <span className="industrial-rivet bottom-2 right-2" />
-
-        {/* Industrial Corner Crosshair Accents */}
-        <span className="crosshair-tl text-slate-400 dark:text-slate-600">+</span>
-        <span className="crosshair-tr text-slate-400 dark:text-slate-600">+</span>
-        <span className="crosshair-bl text-slate-400 dark:text-slate-600">+</span>
-        <span className="crosshair-br text-slate-400 dark:text-slate-600">+</span>
-
-        <div>
-          {/* Top Chassis Technical Telemetry Header */}
-          <div className="flex items-center justify-between font-mono text-[10px] tracking-widest uppercase border-b-2 border-slate-200 dark:border-slate-800 pb-2 mb-3 text-slate-500 dark:text-slate-400">
-            <div className="flex items-center gap-1.5 font-bold">
-              <span className="w-2 h-2 bg-emerald-500 inline-block animate-pulse" />
-              <span>{specCode}</span>
-            </div>
-            <div className="font-extrabold text-[#16A34A] dark:text-[#22C55E]">
-              {userPlan === id && isLoggedIn ? "[SYS_ACTIVE]" : `[${status}]`}
-            </div>
-          </div>
-
-          {/* Recommended Banner on Plus Tier */}
-          {recommended && (
-            <div className="mb-3">
-              <div className="inline-block px-2.5 py-1 font-mono text-[10px] font-black tracking-widest uppercase bg-[#22C55E] text-slate-950 border border-slate-950 shadow-[2px_2px_0px_#000]">
-                ★ {recommended}
-              </div>
-            </div>
-          )}
-
-          {/* Plan Identifier */}
-          <div className="flex items-center justify-between gap-3 mt-1">
-            <div>
-              <div className="text-3xl font-black font-mono tracking-tight uppercase text-slate-950 dark:text-white">
-                {planType}
-              </div>
-              <div className="font-mono text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                {tagline}
-              </div>
-            </div>
-
-            {/* Hardware Status Badge */}
-            <span
-              className={`font-mono text-[10px] font-black uppercase px-2.5 py-1 border ${
-                userPlan === id && isLoggedIn
-                  ? "bg-emerald-500/20 text-[#16A34A] dark:text-[#22C55E] border-emerald-500/50"
-                  : id === 2
-                  ? "bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border-cyan-500/50"
-                  : "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-700"
-              }`}
-            >
-              {badge}
-            </span>
-          </div>
-
-          {/* Monospace Price Readout */}
-          <div className="mt-4 pb-4 border-b-2 border-slate-200 dark:border-slate-800">
-            <div className="flex items-baseline gap-1.5 font-mono">
-              <span className="text-4xl lg:text-5xl font-black text-[#16A34A] dark:text-[#22C55E] tracking-tight">
-                {price}
-              </span>
-              <span className="text-xs font-black text-slate-500 dark:text-slate-400">
-                /MONTH
-              </span>
-            </div>
-            <div className="font-mono text-[10px] font-bold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">
-              {subtext}
-            </div>
-          </div>
-
-          {/* System Capabilities / Included Features List */}
-          <div className="mt-4 space-y-2.5">
-            <div className="font-mono text-[10px] font-black uppercase tracking-widest text-[#16A34A] dark:text-[#22C55E] mb-2">
-              [ SYSTEM_CAPABILITIES ]
-            </div>
-            {bullets.map((bullet, idx) => (
-              <div key={idx} className="flex items-start gap-2.5 text-xs font-mono">
-                <span
-                  className={`font-black flex-shrink-0 text-sm leading-none mt-0.5 ${
-                    bullet.included
-                      ? "text-[#16A34A] dark:text-[#22C55E]"
-                      : "text-slate-400 dark:text-slate-600"
-                  }`}
-                >
-                  {bullet.included ? "[✓]" : "[—]"}
-                </span>
-                <span
-                  className={`leading-tight text-[11px] sm:text-xs ${
-                    bullet.included
-                      ? bullet.highlight
-                        ? "text-slate-950 dark:text-white font-extrabold"
-                        : "text-slate-700 dark:text-slate-200 font-medium"
-                      : "text-slate-400 dark:text-slate-600 line-through opacity-60"
-                  }`}
-                >
-                  {bullet.text}
-                </span>
-              </div>
-            ))}
-          </div>
+    <div
+      className={`relative h-full flex flex-col justify-between rounded-3xl p-7 sm:p-8 transition-all duration-300 ${
+        isPopular
+          ? "bg-gradient-to-b from-[#0F2922] via-[#0B1A1E] to-[#09131C] border-2 border-emerald-500/50 shadow-[0_0_40px_rgba(16,185,129,0.18)] hover:shadow-[0_0_55px_rgba(16,185,129,0.28)]"
+          : id === 2
+          ? "bg-gradient-to-b from-[#111E38] via-[#0B1528] to-[#070D18] border border-blue-500/30 hover:border-blue-500/50 shadow-xl"
+          : "bg-[#0E1726]/80 backdrop-blur-xl border border-white/10 hover:border-white/20 shadow-xl"
+      }`}
+    >
+      {/* Floating Popular Badge */}
+      {isPopular && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold text-slate-950 bg-gradient-to-r from-emerald-400 to-teal-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            Most Popular
+          </span>
         </div>
+      )}
 
-        {/* Action Button */}
-        <div className="mt-6 pt-3">
-          <button
-            onClick={() => !isButtonDisabled && onAction(id)}
-            disabled={isButtonDisabled}
-            className={`industrial-btn w-full py-3.5 px-4 text-xs font-black flex justify-center items-center gap-x-2 ${buttonStyle} ${
-              isButtonDisabled ? "cursor-not-allowed opacity-75" : "cursor-pointer"
+      <div>
+        {/* Tier Header: Name + Badge */}
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-outfit tracking-tight">
+            {planType}
+          </h3>
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              isPopular
+                ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                : id === 2
+                ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
+                : "bg-white/10 text-gray-300 border border-white/10"
             }`}
           >
-            <span>{buttonLabel}</span>
-            {!isButtonDisabled && <FontAwesomeIcon icon={faArrowRight} className="text-xs ml-1" />}
-          </button>
-
-          {/* Barcode & Telemetry SKU Footer */}
-          <div className="mt-3 pt-2 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-[9px] text-slate-400 dark:text-slate-500">
-            <span>// {sku}</span>
-            <span>CLEARANCE: LVL-0{id + 1}</span>
-          </div>
+            {badge}
+          </span>
         </div>
+
+        {/* Tagline */}
+        <p className="text-xs sm:text-sm text-gray-400 font-nunitoSans leading-relaxed mb-6">
+          {tagline}
+        </p>
+
+        {/* Price Block */}
+        <div className="pb-6 mb-6 border-b border-white/10">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-4xl sm:text-5xl font-black text-white font-outfit tracking-tight">
+              {price}
+            </span>
+            <span className="text-sm font-medium text-gray-400">/month</span>
+          </div>
+          <p className="text-xs text-gray-500 font-nunitoSans mt-1.5">
+            {subtext}
+          </p>
+        </div>
+
+        {/* Feature List */}
+        <div className="space-y-3.5 mb-8">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 font-nunitoSans">
+            What's included:
+          </div>
+          {bullets.map((b, idx) => (
+            <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm font-nunitoSans">
+              {b.included ? <CheckIcon /> : <DashIcon />}
+              <span
+                className={`leading-snug ${
+                  b.included
+                    ? "text-gray-200 font-medium"
+                    : "text-gray-500 line-through opacity-60"
+                }`}
+              >
+                {b.text}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Action Button */}
+      <div>
+        <button
+          onClick={() => !isButtonDisabled && onAction(id)}
+          disabled={isButtonDisabled}
+          className={`w-full h-12 rounded-2xl font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${buttonClass} ${
+            !isButtonDisabled ? "cursor-pointer hover:scale-[1.02] active:scale-[0.98]" : ""
+          }`}
+        >
+          <span>{buttonLabel}</span>
+          {!isButtonDisabled && (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          )}
+        </button>
       </div>
     </div>
   );
 };
 
 const Pricing = () => {
-  const [activeTab, setActiveTab] = useState(1); // Default to Plus tier (index 1) on mobile
-  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState(1); // Default to Plus tier on mobile
   const auth = useSelector(getUserData);
   const user = auth?.user;
   const userPlan = user?.plan != null ? user.plan : 0;
@@ -289,44 +261,6 @@ const Pricing = () => {
 
   const navigate = useRouter();
   const dispatch = useDispatch();
-
-  // Sync theme with localStorage and body
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      const isDark = savedTheme ? savedTheme === "dark" : true;
-      setDarkMode(isDark);
-      if (isDark) {
-        document.documentElement.classList.add("dark");
-        document.body.classList.add("dark");
-        document.documentElement.classList.remove("light");
-        document.body.classList.remove("light");
-      } else {
-        document.documentElement.classList.remove("dark");
-        document.body.classList.remove("dark");
-        document.documentElement.classList.add("light");
-        document.body.classList.add("light");
-      }
-    }
-  }, []);
-
-  const toggleTheme = (isDark) => {
-    setDarkMode(isDark);
-    const themeStr = isDark ? "dark" : "light";
-    localStorage.setItem("theme", themeStr);
-    window.dispatchEvent(new Event("storage"));
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      document.body.classList.add("dark");
-      document.documentElement.classList.remove("light");
-      document.body.classList.remove("light");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.body.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      document.body.classList.add("light");
-    }
-  };
 
   useEffect(() => {
     async function fetchUserData() {
@@ -358,10 +292,8 @@ const Pricing = () => {
     }
   };
 
-  const plans = [planConfigs[0], planConfigs[1], planConfigs[2]];
-
   return (
-    <div className={`sss-pricing-container ${darkMode ? "dark text-white" : "light text-slate-900"}`}>
+    <div className="min-h-screen w-full bg-[#070D18] text-white selection:bg-emerald-500/30 font-nunitoSans relative overflow-x-hidden">
       <MetaTags
         data={{
           title: "Solidity Shield Pricing — Smart Contract Audit Plans | SecureDApp",
@@ -371,84 +303,80 @@ const Pricing = () => {
         }}
       />
 
-      {/* Top Header Bar */}
-      <header className="w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md px-4 sm:px-8 py-3 flex items-center justify-between sticky top-0 z-50">
+      {/* Sweet Ambient Glow Orbs */}
+      <div className="absolute top-20 left-1/4 w-[480px] h-[350px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-40 right-1/4 w-[480px] h-[350px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Top Navigation Bar */}
+      <header className="w-full border-b border-white/10 bg-[#070D18]/80 backdrop-blur-md px-4 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-50">
         <button
           onClick={() => navigate.push(isLoggedIn ? "/solidity-shield-scan/overview" : "/")}
-          className="flex items-center gap-2 text-xs font-mono font-bold text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-gray-400 hover:text-white transition-colors cursor-pointer py-1 px-2.5 rounded-lg hover:bg-white/5"
         >
-          <span>&larr; {isLoggedIn ? "Back to Dashboard" : "Back to SecureDApp"}</span>
+          <span>&larr;</span>
+          <span>{isLoggedIn ? "Back to Dashboard" : "Back to Homepage"}</span>
         </button>
 
         <div className="flex items-center gap-3">
-          {/* Mechanical Mode Switcher Pill */}
-          <div className="inline-flex items-center p-0.5 border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-900">
-            <button
-              onClick={() => toggleTheme(false)}
-              className={`px-2.5 py-1 text-[10px] font-mono font-bold uppercase transition-all cursor-pointer ${
-                !darkMode ? "bg-[#22C55E] text-slate-950" : "text-slate-500 hover:text-white"
-              }`}
-            >
-              Light
-            </button>
-            <button
-              onClick={() => toggleTheme(true)}
-              className={`px-2.5 py-1 text-[10px] font-mono font-bold uppercase transition-all cursor-pointer ${
-                darkMode ? "bg-[#22C55E] text-slate-950" : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              Dark
-            </button>
-          </div>
-
+          <Link href="/" title="SecureDApp Home" className="hover:opacity-90 transition-opacity">
+            <Image
+              src="/assets/images/securedapp-logo-dark.svg"
+              alt="SecureDApp Logo"
+              width={130}
+              height={32}
+              priority
+              className="h-7 w-auto object-contain"
+            />
+          </Link>
           {!isLoggedIn && (
             <button
               onClick={() => navigate.push("/solidity-shield-scan/auth")}
-              className="px-3 py-1 font-mono text-xs font-bold bg-[#16A34A] hover:bg-[#15803d] text-white transition-all shadow-[2px_2px_0px_#000] cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-semibold rounded-xl bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-colors cursor-pointer ml-2"
             >
-              Sign In &rarr;
+              Sign In
             </button>
           )}
         </div>
       </header>
 
-      {/* Main Container Fitting Single Screen View */}
-      <main className="max-w-6xl mx-auto px-4 pt-6 pb-12 flex flex-col items-center">
-        {/* Title & Badge */}
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 font-mono text-[10px] font-black uppercase tracking-widest text-[#16A34A] dark:text-[#22C55E] border border-[#16A34A]/40 dark:border-[#22C55E]/40 mb-2 bg-emerald-500/10">
-            <span>// HARDWARE_SECURITY_TIERS</span>
+      {/* Main Container - Designed to fit seamlessly without scrolling */}
+      <main className="max-w-6xl mx-auto px-4 pt-8 pb-14 flex flex-col items-center relative z-10">
+        {/* Sweet Title & Subtitle */}
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Solidity Shield Audit Plans</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-slate-950 dark:text-white tracking-tight uppercase">
-            SOLIDITY_SHIELD // SUBSCRIPTION_PLANS
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight leading-tight">
+            Simple, transparent plans for every builder
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto mt-1.5 font-mono">
-            Full capabilities included in each tier • Instant activation • 1-click cancel anytime
+          <p className="text-sm sm:text-base text-gray-400 mt-3 font-nunitoSans leading-relaxed">
+            Instant credit activation • Automated AST & AI detection • Cancel anytime
           </p>
         </div>
 
-        {/* Mobile 3-Tab Switcher (Claude-Style for mobile) */}
-        <div className="flex md:hidden items-center justify-center p-1 rounded-xl bg-slate-200 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 mb-6 w-full max-w-sm">
-          {plans.map((p, idx) => (
+        {/* Mobile 3-Tab Switcher (Claude-style sweet segmented pill) */}
+        <div className="flex md:hidden items-center justify-center p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 mb-6 w-full max-w-xs">
+          {planConfigs.map((p, idx) => (
             <button
               key={idx}
               onClick={() => setActiveTab(idx)}
-              className={`flex-1 py-2 text-xs font-mono font-bold rounded-lg transition-all cursor-pointer ${
+              className={`flex-1 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer ${
                 activeTab === idx
-                  ? "bg-[#22C55E] text-slate-950 shadow-sm"
-                  : "text-slate-600 dark:text-slate-400 hover:text-white"
+                  ? "bg-white text-slate-950 shadow-md font-bold"
+                  : "text-gray-400 hover:text-white"
               }`}
             >
-              {p.planType} {idx === 1 && "★"}
+              {p.planType}
             </button>
           ))}
         </div>
 
-        {/* Pricing Cards Grid (All 3 side-by-side on desktop, single tab on mobile) */}
+        {/* 3 Plan Cards Container */}
         <div className="w-full">
           {/* Desktop 3-Column Grid */}
-          <div className="hidden md:grid md:grid-cols-3 gap-6 items-stretch w-full">
-            {plans.map((plan) => (
+          <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full">
+            {planConfigs.map((plan) => (
               <PricingPlanCard
                 key={plan.id}
                 planConfig={plan}
@@ -459,10 +387,10 @@ const Pricing = () => {
             ))}
           </div>
 
-          {/* Mobile Active Tab Card */}
+          {/* Mobile Single Tab Card */}
           <div className="block md:hidden w-full max-w-sm mx-auto">
             <PricingPlanCard
-              planConfig={plans[activeTab]}
+              planConfig={planConfigs[activeTab]}
               userPlan={userPlan}
               onAction={handlePlanAction}
               isLoggedIn={isLoggedIn}
@@ -470,26 +398,22 @@ const Pricing = () => {
           </div>
         </div>
 
-        {/* Enterprise Bottom Strip */}
+        {/* Sweet Custom Enterprise Banner */}
         <div className="w-full mt-10">
-          <div className="industrial-card p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative">
-            <span className="crosshair-tl text-slate-400 dark:text-slate-600">+</span>
-            <span className="crosshair-tr text-slate-400 dark:text-slate-600">+</span>
-            <span className="crosshair-bl text-slate-400 dark:text-slate-600">+</span>
-            <span className="crosshair-br text-slate-400 dark:text-slate-600">+</span>
+          <div className="rounded-3xl p-6 sm:p-7 bg-[#0E1726]/70 backdrop-blur-xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
             <div>
-              <div className="font-mono text-xs sm:text-sm font-black text-slate-950 dark:text-white uppercase tracking-tight">
-                NEED CUSTOM PROTOCOL AUDIT VOLUME?
+              <div className="text-base sm:text-lg font-bold text-white font-outfit">
+                Need custom protocol audits or dedicated retainer volume?
               </div>
-              <div className="font-mono text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                Multi-contract pools, custom CI/CD runners, and dedicated security retainers.
-              </div>
+              <p className="text-xs sm:text-sm text-gray-400 font-nunitoSans mt-1">
+                Multi-contract pools, private CI/CD runners, and 1-on-1 auditor consultations.
+              </p>
             </div>
             <button
               onClick={() => navigate.push("/solidity-shield-scan/support")}
-              className="industrial-btn industrial-btn-primary px-6 py-2.5 text-xs font-black cursor-pointer flex-shrink-0"
+              className="px-6 py-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs sm:text-sm border border-white/15 transition-all hover:scale-105 active:scale-95 cursor-pointer flex-shrink-0"
             >
-              CONTACT_SECURITY_TEAM [-&gt;]
+              Contact security team &rarr;
             </button>
           </div>
         </div>
