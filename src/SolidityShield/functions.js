@@ -814,9 +814,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
     })
     .catch((error) => {
       console.error("Error:", error);
-      toast.error("Unable to login. Please try again!");
-      typeof window !== "undefined" &&
-        window.location.replace("/solidity-shield-scan/auth");
+      toast.error("Unable to verify OTP. Please try again!");
     });
 };
 

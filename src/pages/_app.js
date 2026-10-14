@@ -33,6 +33,7 @@ const poppins = Poppins({
   preload: false, // Poppins is not the primary font, don't preload
 });
 const ToastContainer = dynamic(() => import("react-toastify").then((mod) => mod.ToastContainer), { ssr: false });
+import "react-toastify/dist/ReactToastify.css";
 
 /* ── Static stylesheets for all pages to prevent FOUC / CSS load delay ── */
 import "../components/common/ProductServiceHero.css";
@@ -140,15 +141,23 @@ import { useRouter } from "next/router";
 const MainLayout = dynamic(() => import("../SolidityShield/components/sidebar/Layout").then((mod) => mod.MainLayout), { ssr: false });
 import MetaTags from "../components/common/MetaTags";
 const Loader = dynamic(() => import("../SolidityShield/components/common/Loader"), { ssr: false });
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    setIsAuthenticated(typeof window !== "undefined" && !!localStorage.getItem("UserJwtToken"));
+  }, [router.asPath]);
+
+  const isPricingPage = router.asPath?.includes("/solidity-shield-scan/pricing");
   const isSolidityShieldScan =
     router.asPath.includes("/solidity-shield-scan") &&
     router.asPath !== "/solidity-shield-scan/auth" &&
     router.asPath !== "/solidity-shield-scan/contact" &&
-    router.asPath !== "/solidity-shield-scan/support";
+    router.asPath !== "/solidity-shield-scan/support" &&
+    (!isPricingPage || isAuthenticated);
 
   useEffect(() => {
     // Theme synchronization is now handled primarily by the Navbar component 

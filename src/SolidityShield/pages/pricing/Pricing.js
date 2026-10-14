@@ -374,6 +374,26 @@ const Pricing = () => {
         }}
       />
 
+      {/* Guest Navigation Strip when viewing publicly without dashboard login */}
+      {(!user || Object.keys(user).length === 0) && (
+        <header className="w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md px-4 sm:px-8 py-3 flex items-center justify-between sticky top-0 z-50">
+          <button
+            onClick={() => navigate.push("/")}
+            className="flex items-center gap-2 text-xs font-mono font-bold text-slate-700 dark:text-slate-300 hover:text-emerald-500 transition-colors cursor-pointer"
+          >
+            <span>&larr; Back to SecureDApp</span>
+          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate.push("/solidity-shield-scan/auth")}
+              className="px-3.5 py-1.5 rounded-none font-mono text-xs font-bold bg-[#16A34A] hover:bg-[#15803d] text-white transition-all shadow-[2px_2px_0px_#000] cursor-pointer"
+            >
+              Sign In to Dashboard &rarr;
+            </button>
+          </div>
+        </header>
+      )}
+
       {/* Industrial Brutalist Header & Terminal Controls */}
       <div className="flex flex-col items-center text-center pt-8 pb-4 px-4 max-w-5xl mx-auto font-mono">
         {/* Mechanical Mode Switcher Pill */}
