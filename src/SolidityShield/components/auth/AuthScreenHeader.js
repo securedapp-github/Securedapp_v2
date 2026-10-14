@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const AuthScrenHeader = ({ title, description, showLogo = true }) => {
+const AuthScrenHeader = ({ title, description, showLogo = false }) => {
   return (
     <div className="auth-screen-header flex flex-col items-center justify-center text-center gap-y-3 mb-2">
       {showLogo && (

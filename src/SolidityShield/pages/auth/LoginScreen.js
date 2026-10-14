@@ -23,10 +23,20 @@ const LoginScreen = () => {
           >
             <span className="text-base">&larr;</span> Back to Homepage
           </Link>
-          <div className="hidden sm:flex items-center gap-2 font-mono text-[11px] text-tertiary">
-            <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
-            <span>256-Bit Encrypted</span>
-          </div>
+          <Link
+            href="/"
+            title="SecureDApp Home"
+            className="group inline-flex items-center transition-all duration-200 hover:opacity-90"
+          >
+            <Image
+              src="/assets/images/securedapp-logo-dark.svg"
+              alt="SecureDApp"
+              width={140}
+              height={36}
+              priority
+              className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
+          </Link>
         </div>
 
         <AuthScrenHeader
@@ -37,25 +47,6 @@ const LoginScreen = () => {
 
         <div className="auth-screen-body mt-4 w-full">
           <AuthCard footer={true} isLogin={true}>
-            {/* Brand Logo inside the login menu */}
-            <div className="flex flex-col items-center justify-center pb-5 pt-1 border-b border-[#1E293B]">
-              <Link href="/" className="group inline-flex flex-col items-center transition-transform hover:scale-105 duration-200 cursor-pointer">
-                <div className="px-4 py-2.5 rounded-xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 shadow-[0_0_25px_rgba(18,213,118,0.18)] flex items-center justify-center backdrop-blur-md">
-                  <Image
-                    src="/assets/images/securedapp-logo-dark.svg"
-                    alt="SecureDApp Logo"
-                    width={150}
-                    height={38}
-                    priority
-                    className="h-7 sm:h-8 w-auto object-contain"
-                  />
-                </div>
-              </Link>
-              <div className="flex items-center gap-2 mt-3 font-mono text-[11px] text-tertiary">
-                <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse" />
-                <span className="tracking-wider uppercase font-semibold">Solidity Shield // Secure Login</span>
-              </div>
-            </div>
 
             {/* Email & Password Input Fields */}
             <div className="space-y-4 pt-1">

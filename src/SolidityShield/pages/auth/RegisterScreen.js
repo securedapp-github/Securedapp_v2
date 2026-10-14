@@ -1,4 +1,7 @@
-﻿import AuthButton from "../../components/auth/AuthButton";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import AuthButton from "../../components/auth/AuthButton";
 import AuthCard from "../../components/auth/AuthCard";
 import AuthInputField from "../../components/auth/AuthInputField";
 import AuthLogos from "../../components/auth/AuthLogos";
@@ -6,10 +9,38 @@ import AuthScrenHeader from "../../components/auth/AuthScreenHeader";
 
 const RegisterScreen = () => {
   return (
-    <div className="auth-screen-container">
-      <div className="auth-screen">
-        <AuthScrenHeader title={"Sign in to your account"} description={""} />
-        <div className="auth-screen-body">
+    <div className="auth-screen-container py-10 px-4 min-h-screen flex items-center justify-center font-outfit">
+      <div className="auth-screen w-full max-w-lg">
+        {/* Top Return Navigation Bar */}
+        <div className="w-full mb-4 flex items-center justify-between text-xs font-nunitoSans px-2">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors py-1.5 px-3 rounded-lg hover:bg-white/5"
+          >
+            <span className="text-base">&larr;</span> Back to Homepage
+          </Link>
+          <Link
+            href="/"
+            title="SecureDApp Home"
+            className="group inline-flex items-center transition-all duration-200 hover:opacity-90"
+          >
+            <Image
+              src="/assets/images/securedapp-logo-dark.svg"
+              alt="SecureDApp"
+              width={140}
+              height={36}
+              priority
+              className="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
+          </Link>
+        </div>
+
+        <AuthScrenHeader
+          title={"Create your account"}
+          description={"Get started with Solidity Shield to secure and audit your smart contracts."}
+          showLogo={false}
+        />
+        <div className="auth-screen-body mt-4 w-full">
           <AuthCard footer={true} isLogin={false}>
             <AuthInputField
               authInputType={"text"}
