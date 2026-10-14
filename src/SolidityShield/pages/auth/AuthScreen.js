@@ -16,7 +16,8 @@ const AuthScreen = () => {
   // Screen state: 1 = Email entry, 2 = OTP entry
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  // 4-digit OTP
+  const [otp, setOtp] = useState(["", "", "", ""]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [cooldown, setCooldown] = useState(0);
@@ -86,7 +87,7 @@ const AuthScreen = () => {
 
       if (success !== false) {
         setStep(2);
-        setOtp(["", "", "", "", "", ""]);
+        setOtp(["", "", "", ""]);
         setCooldown(30); // 30s countdown as specified ("Resend code in 0:28")
       }
     } catch (err) {
@@ -114,7 +115,7 @@ const AuthScreen = () => {
 
       if (success !== false) {
         setCooldown(30);
-        setOtp(["", "", "", "", "", ""]);
+        setOtp(["", "", "", ""]);
         inputRefs.current[0]?.focus();
       }
     } catch (err) {
@@ -130,9 +131,9 @@ const AuthScreen = () => {
     if (e) e.preventDefault();
 
     const fullOtp = otp.join("").trim();
-    if (fullOtp.length < 6) {
+    if (fullOtp.length < 4) {
       setIsError(true);
-      triggerShake("Please enter all 6 digits of your verification code.");
+      triggerShake("Please enter all 4 digits of your verification code.");
       return;
     }
 
@@ -177,7 +178,7 @@ const AuthScreen = () => {
     setErrorMessage("");
   };
 
-  // Handle single digit changes & auto-advance
+  // Handle single digit changes & auto-advance for 4 digits
   const handleDigitChange = (index, value) => {
     setIsError(false);
     setErrorMessage("");
@@ -194,15 +195,15 @@ const AuthScreen = () => {
     // If user pasted or typed multiple digits
     if (digitsOnly.length > 1) {
       const newOtp = [...otp];
-      for (let i = 0; i < digitsOnly.length && index + i < 6; i++) {
+      for (let i = 0; i < digitsOnly.length && index + i < 4; i++) {
         newOtp[index + i] = digitsOnly[i];
       }
       setOtp(newOtp);
-      const nextFocus = Math.min(index + digitsOnly.length, 5);
+      const nextFocus = Math.min(index + digitsOnly.length, 3);
       inputRefs.current[nextFocus]?.focus();
 
-      // Auto-submit if all 6 filled
-      if (newOtp.join("").length === 6) {
+      // Auto-submit if all 4 filled
+      if (newOtp.join("").length === 4) {
         setTimeout(() => {
           verifyOtpDirect(newOtp.join(""));
         }, 50);
@@ -216,12 +217,12 @@ const AuthScreen = () => {
     setOtp(newOtp);
 
     // Auto-focus next box
-    if (index < 5) {
+    if (index < 3) {
       inputRefs.current[index + 1]?.focus();
     }
 
-    // Auto-submit if all 6 filled
-    if (newOtp.join("").length === 6) {
+    // Auto-submit if all 4 filled
+    if (newOtp.join("").length === 4) {
       setTimeout(() => {
         verifyOtpDirect(newOtp.join(""));
       }, 50);
@@ -230,7 +231,7 @@ const AuthScreen = () => {
 
   // Helper for auto-submit
   const verifyOtpDirect = async (code) => {
-    if (code.length === 6 && !isLoading) {
+    if (code.length === 4 && !isLoading) {
       setIsLoading(true);
       setIsError(false);
       setErrorMessage("");
@@ -254,7 +255,7 @@ const AuthScreen = () => {
     }
   };
 
-  // Handle backspace navigation and arrows
+  // Handle backspace navigation and arrows for 4 digits
   const handleKeyDown = (index, e) => {
     if (e.key === "Backspace") {
       setIsError(false);
@@ -271,15 +272,15 @@ const AuthScreen = () => {
       }
     } else if (e.key === "ArrowLeft" && index > 0) {
       inputRefs.current[index - 1]?.focus();
-    } else if (e.key === "ArrowRight" && index < 5) {
+    } else if (e.key === "ArrowRight" && index < 3) {
       inputRefs.current[index + 1]?.focus();
     }
   };
 
-  // Handle paste across all 6 boxes
+  // Handle paste across all 4 boxes
   const handlePaste = (e) => {
     e.preventDefault();
-    const pasteData = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    const pasteData = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 4);
     if (!pasteData) return;
 
     const newOtp = [...otp];
@@ -290,10 +291,10 @@ const AuthScreen = () => {
     setIsError(false);
     setErrorMessage("");
 
-    const targetIdx = Math.min(pasteData.length, 5);
+    const targetIdx = Math.min(pasteData.length, 3);
     inputRefs.current[targetIdx]?.focus();
 
-    if (newOtp.join("").length === 6) {
+    if (newOtp.join("").length === 4) {
       setTimeout(() => {
         verifyOtpDirect(newOtp.join(""));
       }, 50);
@@ -301,7 +302,7 @@ const AuthScreen = () => {
   };
 
   const isEmailValid = isValidEmail(email);
-  const isOtpComplete = otp.join("").length === 6;
+  const isOtpComplete = otp.join("").length === 4;
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center py-12 px-4 bg-[#070D18] text-white selection:bg-blue-500/30 font-nunitoSans relative">
@@ -402,7 +403,7 @@ const AuthScreen = () => {
           </div>
         ) : (
           /* ======================================================= */
-          /* SCREEN 2 — OTP ENTRY                                    */
+          /* SCREEN 2 — OTP ENTRY (4 DIGITS)                         */
           /* ======================================================= */
           <div className="flex flex-col relative">
             {/* Back arrow top-left */}
@@ -460,10 +461,10 @@ const AuthScreen = () => {
               </button>
             </div>
 
-            {/* Six individual digit input boxes with auto-focus & error shake */}
+            {/* Four individual digit input boxes (square 48x48px+) with auto-focus & error shake */}
             <form onSubmit={handleVerifyOtp}>
               <div
-                className={`flex items-center justify-center gap-2 sm:gap-3 mb-2 ${
+                className={`flex items-center justify-center gap-3 sm:gap-4 mb-2 ${
                   isShaking ? "animate-auth-shake" : ""
                 }`}
                 onPaste={handlePaste}
@@ -479,7 +480,7 @@ const AuthScreen = () => {
                     value={digit}
                     onChange={(e) => handleDigitChange(idx, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(idx, e)}
-                    className={`w-12 h-12 rounded-xl text-center text-xl sm:text-2xl font-bold font-mono transition-all duration-200 ${
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl text-center text-2xl font-bold font-mono transition-all duration-200 ${
                       isError
                         ? "border-2 border-red-500 bg-red-950/20 text-red-300 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/40 shadow-[0_0_15px_rgba(239,68,68,0.35)]"
                         : "border border-white/15 bg-[#070D18]/90 text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/40 focus:shadow-[0_0_20px_rgba(59,130,246,0.35)]"
