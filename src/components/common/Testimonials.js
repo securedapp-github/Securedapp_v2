@@ -13,13 +13,15 @@ const Testimonials = ({ reviews }) => {
   let sliderRef = useRef(null);
 
   function moveLeft() {
-    if (active === 0) return;
-    setActiveSlide((prev) => prev - 1);
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
   }
 
   function moveRight() {
-    if (active === reviews.length - 1) return;
-    setActiveSlide((prev) => prev + 1);
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
   }
 
   const Testimonial = ({ id, reviewer, designation, reviewText }) => {
@@ -47,8 +49,10 @@ const Testimonials = ({ reviews }) => {
     centerMode: true,
     arrows: false,
     slidesToShow: 3,
-    infinite: false,
-    cssEase: "linear",
+    infinite: true,
+    swipeToSlide: true,
+    focusOnSelect: true,
+    cssEase: "ease-in-out",
     slidesToScroll: 1,
     speed: 500,
     beforeChange: (current, next) => setActiveSlide(next),
@@ -58,6 +62,7 @@ const Testimonials = ({ reviews }) => {
         settings: {
           centerMode: true,
           slidesToShow: 2,
+          infinite: true,
           arrows: false,
         },
       },
@@ -66,6 +71,7 @@ const Testimonials = ({ reviews }) => {
         settings: {
           centerMode: false,
           slidesToShow: 1,
+          infinite: true,
           arrows: false,
         },
       },

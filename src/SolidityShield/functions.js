@@ -699,9 +699,9 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
 
   if (email == "") {
     toast.error("Invalid Email, Try again");
-    return;
+    return false;
   }
-  fetch(apiUrl + "/sendOtp2", {
+  return fetch(apiUrl + "/sendOtp2", {
     method: "POST",
     body: JSON.stringify({
       mail: email,
@@ -712,12 +712,18 @@ export const sendOTP = async ({ email, dispatch, selector }) => {
   })
     .then((res) => {
       console.log(res);
-      res.ok === true && toast.success("OTP Send Successfully, Check Mail");
+      if (res.ok === true) {
+        toast.success("OTP Sent Successfully, Check Mail");
+        return true;
+      } else {
+        toast.error("Error in sending OTP, Try again");
+        return false;
+      }
     })
     .catch((err) => {
       console.log(err.message);
       toast("Error in sending OTP, Try again");
-      //typeof window !== 'undefined' && window.location.replace("/solidity-shield-scan/auth");
+      return false;
     });
 };
 
@@ -726,10 +732,10 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 
   if (!otp) {
     toast.error("Please enter the OTP");
-    return;
+    return false;
   }
 
-  fetch(apiUrl + "/verifyOtp2", {
+  return fetch(apiUrl + "/verifyOtp2", {
     method: "POST",
     body: JSON.stringify({
       mail: email,
@@ -746,12 +752,11 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       }
 
       toast.error("Invalid Network Response: verify otp");
-      //typeof window !== 'undefined' && window.location.replace("/solidity-shield-scan/auth");
+      return null;
     })
     .then((data) => {
       if (!data) {
-        toast.error("No response from server");
-        return;
+        return false;
       }
 
       let userdata = null;
@@ -759,15 +764,15 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 
       if (Array.isArray(data)) {
         if (!data.length) {
-          toast("Wrong OTP");
-          return;
+          toast.error("Wrong OTP");
+          return false;
         }
         userdata = data[0];
         jwtToken = userdata?.jwt ?? null;
       } else {
         if (!data.success) {
           toast.error(data.error || "Invalid or expired OTP");
-          return;
+          return false;
         }
         userdata = data.user;
         jwtToken = data.jwt;
@@ -775,7 +780,7 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 
       if (!userdata || !jwtToken) {
         toast.error("Unable to login. Please try again!");
-        return;
+        return false;
       }
 
       jwt = jwtToken;
@@ -811,12 +816,12 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       toast.success("Login Successful!");
       typeof window !== "undefined" &&
         window.location.replace("/solidity-shield-scan/overview");
+      return true;
     })
     .catch((error) => {
       console.error("Error:", error);
-      toast.error("Unable to login. Please try again!");
-      typeof window !== "undefined" &&
-        window.location.replace("/solidity-shield-scan/auth");
+      toast.error("Unable to verify OTP. Please try again!");
+      return false;
     });
 };
 

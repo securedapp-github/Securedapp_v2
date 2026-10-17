@@ -110,6 +110,7 @@ const servicesData = [
     desc: "Offering top-notch NFT development services has significantly impacted the blockchain world, with applications in digital art, gaming, and more.",
     alt: "",
     to: "/nft-marketplace-development-company",
+    image: "/assets/images/ServicePages/s11-hero.webp",
   },
   {
     id: 12,
@@ -205,6 +206,7 @@ const Services = () => {
     speed: 500,
     infinite: false,
     swipeToSlide: true,
+    focusOnSelect: true,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,
     beforeChange: (current, next) => {

@@ -202,12 +202,19 @@ export const Sidebar = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => navigate.push("/solidity-shield-scan/pricing")}
-                className="w-full mt-1 py-2 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold text-xs hover:bg-[#16a34a] active:bg-[#16a34a] transition-all cursor-pointer shadow-sm flex items-center justify-center gap-1"
-              >
-                <span>Upgrade Now</span>
-              </button>
+              {auth?.user?.plan === 2 ? (
+                <div className="w-full mt-1 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/25 text-blue-400 font-bold text-[11px] font-mono flex items-center justify-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  <span>Top Tier Active</span>
+                </div>
+              ) : (
+                <button
+                  onClick={() => navigate.push("/solidity-shield-scan/pricing")}
+                  className="w-full mt-1 py-2 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold text-xs hover:bg-[#16a34a] active:bg-[#16a34a] transition-all cursor-pointer shadow-sm flex items-center justify-center gap-1"
+                >
+                  <span>{auth?.user?.plan === 1 ? "Upgrade to Premium" : "Upgrade Plan"}</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

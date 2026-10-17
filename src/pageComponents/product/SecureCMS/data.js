@@ -19,7 +19,12 @@ import {
   LuLandmark as Landmark,
   LuShoppingCart as ShoppingCart,
   LuCloud as Cloud,
-  LuScale as Scale
+  LuScale as Scale,
+  LuBuilding2 as Building2,
+  LuWallet as Wallet,
+  LuSchool as School,
+  LuRocket as Rocket,
+  LuRadio as Radio
 } from 'react-icons/lu';
 import React from 'react';
 
@@ -163,11 +168,84 @@ export const benefits = [
 ];
 
 export const industryList = [
-  { name: "Fintech & Banking", icon: <Landmark className="w-8 h-8 text-accent" /> },
-  { name: "E-commerce", icon: <ShoppingCart className="w-8 h-8 text-orange-500" /> },
-  { name: "Healthcare", icon: <Activity className="w-8 h-8 text-red-500" /> },
-  { name: "SaaS", icon: <Cloud className="w-8 h-8 text-cyan-500" /> },
-  { name: "EdTech", icon: <BookOpen className="w-8 h-8 text-emerald-500" /> }
+  {
+    name: "Banking",
+    desc: "Core banking, CBS & account aggregators",
+    icon: <Landmark className="w-8 h-8 text-blue-500" />,
+    href: "/dpdp-compliance-platform/banking"
+  },
+  {
+    name: "Fintech",
+    desc: "UPI, wallets, payment gateways & investments",
+    icon: <Wallet className="w-8 h-8 text-cyan-500" />,
+    href: "/dpdp-compliance-platform/fintech"
+  },
+  {
+    name: "NBFC & Lending",
+    desc: "Digital lending apps, DSAs & credit underwriting",
+    icon: <Building2 className="w-8 h-8 text-amber-500" />,
+    href: "/dpdp-compliance-platform/nbfc"
+  },
+  {
+    name: "E-commerce & D2C",
+    desc: "Cart checkout, ad retargeting & WhatsApp marketing",
+    icon: <ShoppingCart className="w-8 h-8 text-orange-500" />,
+    href: "/dpdp-compliance-platform/ecommerce"
+  },
+  {
+    name: "Healthcare & Hospitals",
+    desc: "Hospitals, diagnostic labs, HIS & telemedicine",
+    icon: <Activity className="w-8 h-8 text-red-500" />,
+    href: "/dpdp-compliance-platform/healthcare"
+  },
+  {
+    name: "Insurance",
+    desc: "Life, health & general, brokers & TPAs",
+    icon: <ShieldCheck className="w-8 h-8 text-emerald-500" />,
+    href: "/dpdp-compliance-platform/insurance"
+  },
+  {
+    name: "SaaS & Cloud",
+    desc: "B2B multi-tenant, processor & fiduciary split",
+    icon: <Cloud className="w-8 h-8 text-indigo-500" />,
+    href: "/dpdp-compliance-platform/saas"
+  },
+  {
+    name: "EdTech Platforms",
+    desc: "Child data protection, LMS sync & Section 9 verifiable parental consent",
+    icon: <BookOpen className="w-8 h-8 text-teal-500" />,
+    href: "/dpdp-compliance-platform/edtech"
+  },
+  {
+    name: "Schools & K-12",
+    desc: "Parent consent for photos, WhatsApp, apps & Rule 12 school exemptions",
+    icon: <School className="w-8 h-8 text-rose-500" />,
+    href: "/dpdp-compliance-platform/schools"
+  },
+  {
+    name: "HR & Employees",
+    desc: "Employee lifecycle, candidate & monitoring consent",
+    icon: <Users className="w-8 h-8 text-purple-500" />,
+    href: "/dpdp-compliance-platform/hr"
+  },
+  {
+    name: "Startups & Scale-ups",
+    desc: "Zero-exemption compliance, multi-tool sync & diligence proof",
+    icon: <Rocket className="w-8 h-8 text-emerald-500" />,
+    href: "/dpdp-compliance-platform/startups"
+  },
+  {
+    name: "Telecom & ISPs",
+    desc: "Category A, B & C licences, IPDR legal hold & OTT bundles",
+    icon: <Radio className="w-8 h-8 text-cyan-500" />,
+    href: "/dpdp-compliance-platform/telecom"
+  },
+  {
+    name: "Stock Brokers",
+    desc: "SEBI CSCRF, trading app research nudges & AP network consent",
+    icon: <TrendingUp className="w-8 h-8 text-blue-500" />,
+    href: "/dpdp-compliance-platform/stock-brokers"
+  }
 ];
 
 export const faqsData = [
