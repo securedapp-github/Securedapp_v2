@@ -117,6 +117,20 @@
   </url>
 
   <url>
+    <loc>https://securedapp.io/dpdp-compliance-platform/telecom</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.94</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/dpdp-compliance-platform/stock-brokers</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.94</priority>
+  </url>
+
+  <url>
     <loc>https://securedapp.io/cookie-hub</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>

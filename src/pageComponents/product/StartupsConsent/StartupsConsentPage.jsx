@@ -111,7 +111,12 @@ export default function StartupsConsentPage() {
               </div>
 
               {/* Live DPDP 13 May 2027 Countdown Timer */}
-              <DPDPLiveCountdownTimer label="Core DPDP obligations apply from 13 May 2027 — no startup exemptions exist" />
+              <div className="w-full max-w-2xl text-left">
+                <DPDPLiveCountdownTimer 
+                  label="Core DPDP Enforcement: 13 May 2027" 
+                  sublabel="Zero Statutory Exemptions for Startups" 
+                />
+              </div>
 
               {/* H1 */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">

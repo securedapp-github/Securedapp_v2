@@ -361,12 +361,12 @@ export default function InteractiveEcommerceConsentSimulator({
 
             <div className="bg-gray-900 text-white rounded-2xl p-4 font-mono text-xs">
               <div className="text-gray-400 text-[11px] mb-2">// Sample Webhook Payload dispatched on Revocation:</div>
-              <pre className="text-emerald-400 text-[10px] overflow-x-auto leading-relaxed">
+              <pre suppressHydrationWarning className="text-emerald-400 text-[10px] overflow-x-auto leading-relaxed">
 {`{
   "event": "consent.revoked",
   "dataPrincipalId": "shopper_ind_98234",
   "purpose": "promotional_whatsapp",
-  "timestamp": "${new Date().toISOString()}",
+  "timestamp": "2026-10-17T06:00:00.000Z",
   "proofHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
   "action": "SUPPRESS_FROM_ALL_CAMPAIGNS"
 }`}

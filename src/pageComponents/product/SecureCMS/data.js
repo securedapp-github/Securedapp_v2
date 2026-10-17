@@ -23,7 +23,8 @@ import {
   LuBuilding2 as Building2,
   LuWallet as Wallet,
   LuSchool as School,
-  LuRocket as Rocket
+  LuRocket as Rocket,
+  LuRadio as Radio
 } from 'react-icons/lu';
 import React from 'react';
 
@@ -232,6 +233,18 @@ export const industryList = [
     desc: "Zero-exemption compliance, multi-tool sync & diligence proof",
     icon: <Rocket className="w-8 h-8 text-emerald-500" />,
     href: "/dpdp-compliance-platform/startups"
+  },
+  {
+    name: "Telecom & ISPs",
+    desc: "Category A, B & C licences, IPDR legal hold & OTT bundles",
+    icon: <Radio className="w-8 h-8 text-cyan-500" />,
+    href: "/dpdp-compliance-platform/telecom"
+  },
+  {
+    name: "Stock Brokers",
+    desc: "SEBI CSCRF, trading app research nudges & AP network consent",
+    icon: <TrendingUp className="w-8 h-8 text-blue-500" />,
+    href: "/dpdp-compliance-platform/stock-brokers"
   }
 ];
 

@@ -411,7 +411,7 @@ export default function InteractiveSchoolConsentSimulator() {
                 <span>SIMULATED API EVENT: POST /api/v1/schools/consent-events</span>
                 <span className="text-emerald-400 font-mono text-[10px]">HTTP 200 OK · mTLS 1.3</span>
               </div>
-              <pre className="text-[11px] leading-relaxed text-emerald-400">
+              <pre suppressHydrationWarning className="text-[11px] leading-relaxed text-emerald-400">
 {`{
   "institution_id": "SCH-DELHI-0042",
   "data_fiduciary": "St. Xavier's International School",
@@ -433,7 +433,7 @@ export default function InteractiveSchoolConsentSimulator() {
     "sponsor_directory": { "basis": "SECTION_6_OPTIN", "status": "${sponsorConsent ? "GRANTED" : "REVOKED"}" }
   },
   "blockchain_receipt": "0x9f88c72b14e91244a03bc219da0567f1b...",
-  "erp_sync_timestamp": "${new Date().toISOString()}"
+  "erp_sync_timestamp": "2026-10-17T06:00:00.000Z"
 }`}
               </pre>
             </div>

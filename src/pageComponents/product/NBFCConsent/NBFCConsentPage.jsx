@@ -90,7 +90,12 @@ export default function NBFCConsentPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-8 flex flex-col gap-6">
               {/* Live DPDP 13 May 2027 Countdown Timer */}
-              <DPDPLiveCountdownTimer label="Core DPDP obligations for NBFCs & digital lenders apply from 13 May 2027" />
+              <div className="w-full max-w-2xl">
+                <DPDPLiveCountdownTimer 
+                  label="Core DPDP Enforcement: 13 May 2027" 
+                  sublabel="Mandatory compliance for NBFCs & Digital Lenders" 
+                />
+              </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management Platform for <span className="text-tertiary">NBFCs in India</span>

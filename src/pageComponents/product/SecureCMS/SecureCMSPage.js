@@ -28,6 +28,7 @@ import {
   Bell
 } from "lucide-react";
 import { motion } from 'framer-motion';
+import DPDPLiveCountdownTimer from "../../../components/common/DPDPLiveCountdownTimer";
 import ComplianceRisks from "./ComplianceRisks";
 import DPDPProvisions from "./DPDPProvisions";
 import ComplianceProcess from "./ComplianceProcess";
@@ -80,8 +81,15 @@ function SecureCMSPage() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
-                className="flex flex-col gap-8"
+                className="flex flex-col gap-6"
               >
+                <div className="w-full max-w-xl">
+                  <DPDPLiveCountdownTimer 
+                    label="Core DPDP Enforcement: 13 May 2027"
+                    sublabel="Statutory compliance deadline across India"
+                  />
+                </div>
+
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary/10 border border-tertiary/20 w-fit">
                   <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
                   <span className="text-sm text-tertiary font-medium">Get compliant in less than 24 hours</span>

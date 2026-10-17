@@ -79,15 +79,22 @@ export default function FintechConsentPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           {/* Trust Badges Bar */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
-            <DPDPLiveCountdownTimer label="RBI & DPDP Compliance Deadline: 13 May 2027" />
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-tertiary/10 text-tertiary border border-tertiary/20 flex items-center gap-1.5 font-outfit">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              DPDP Act 2023 & RBI Harmonized
-            </span>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 font-outfit">
-              UPI · Lending · Cards · Wealth
-            </span>
+          <div className="flex flex-col gap-3 mb-6">
+            <div className="w-full max-w-2xl">
+              <DPDPLiveCountdownTimer 
+                label="Core DPDP Enforcement: 13 May 2027" 
+                sublabel="RBI & DPDP Compliance Deadline for Fintechs" 
+              />
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-tertiary/10 text-tertiary border border-tertiary/20 flex items-center gap-1.5 font-outfit">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                DPDP Act 2023 & RBI Harmonized
+              </span>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 font-outfit">
+                UPI · Lending · Cards · Wealth
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
