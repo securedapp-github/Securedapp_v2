@@ -814,8 +814,14 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       );
 
       toast.success("Login Successful!");
-      typeof window !== "undefined" &&
-        window.location.replace("/solidity-shield-scan/overview");
+      if (typeof window !== "undefined") {
+        const storedRedirect = localStorage.getItem("redirectAfterAuth");
+        const targetUrl = storedRedirect || "/solidity-shield-scan/overview";
+        if (storedRedirect) {
+          localStorage.removeItem("redirectAfterAuth");
+        }
+        window.location.replace(targetUrl);
+      }
       return true;
     })
     .catch((error) => {

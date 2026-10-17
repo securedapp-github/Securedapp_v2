@@ -152,12 +152,13 @@ function MyApp({ Component, pageProps }) {
   }, [router.asPath]);
 
   const isPricingPage = router.asPath?.includes("/solidity-shield-scan/pricing");
+  const isPricingFromHome = isPricingPage && (router.query?.from === "home" || router.asPath?.includes("from=home"));
   const isSolidityShieldScan =
     router.asPath.includes("/solidity-shield-scan") &&
     router.asPath !== "/solidity-shield-scan/auth" &&
     router.asPath !== "/solidity-shield-scan/contact" &&
     router.asPath !== "/solidity-shield-scan/support" &&
-    (!isPricingPage || isAuthenticated);
+    (!isPricingPage || (isAuthenticated && !isPricingFromHome));
 
   useEffect(() => {
     // Theme synchronization is now handled primarily by the Navbar component 

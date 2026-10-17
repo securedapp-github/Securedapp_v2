@@ -206,12 +206,9 @@ const Services = () => {
     speed: 500,
     infinite: false,
     swipeToSlide: true,
-    focusOnSelect: true,
+    focusOnSelect: false,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow />,
-    beforeChange: (current, next) => {
-      setService(next);
-    },
     responsive: [
       {
         breakpoint: 1100,
@@ -247,12 +244,19 @@ const Services = () => {
         <PreviousArrow />
         <Slider ref={sliderRef} className="w-full" {...slickSettings}>
           {servicesData.map((service, index) => {
+            const isSelected = service.id === selectedService;
             return (
               <div
                 key={service.id}
-                onClick={() => setService(index)}
-                className={`services-mobile-navbar-item ${service.id === selectedService && "selected-mobile-navbar"
-                  }`}
+                onClick={() => {
+                  setService(index);
+                  if (sliderRef.current) {
+                    sliderRef.current.slickGoTo(index);
+                  }
+                }}
+                className={`services-mobile-navbar-item cursor-pointer ${
+                  isSelected ? "selected-mobile-navbar" : ""
+                }`}
               >
                 {service.title}
               </div>
