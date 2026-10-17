@@ -137,7 +137,7 @@ export default function BankingConsentPage() {
               className="lg:col-span-7 flex flex-col gap-6"
             >
               {/* Live DPDP 13 May 2027 Countdown Timer */}
-              <div className="w-full max-w-2xl">
+              <div className="w-full max-w-3xl">
                 <DPDPLiveCountdownTimer 
                   label="Core DPDP Enforcement: 13 May 2027" 
                   sublabel="Mandatory compliance for all Indian Banks" 

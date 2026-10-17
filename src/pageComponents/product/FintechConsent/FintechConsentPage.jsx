@@ -80,7 +80,7 @@ export default function FintechConsentPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           {/* Trust Badges Bar */}
           <div className="flex flex-col gap-3 mb-6">
-            <div className="w-full max-w-2xl">
+            <div className="w-full max-w-3xl">
               <DPDPLiveCountdownTimer 
                 label="Core DPDP Enforcement: 13 May 2027" 
                 sublabel="RBI & DPDP Compliance Deadline for Fintechs" 

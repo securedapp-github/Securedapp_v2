@@ -150,7 +150,7 @@ export default function EcommerceConsentPage() {
               className="lg:col-span-7 flex flex-col gap-6"
             >
               {/* Live DPDP 13 May 2027 Countdown Timer */}
-              <div className="w-full max-w-2xl">
+              <div className="w-full max-w-3xl">
                 <DPDPLiveCountdownTimer 
                   label="Core DPDP Enforcement: 13 May 2027" 
                   sublabel="Mandatory for Ecommerce, D2C & Marketplaces" 
@@ -318,34 +318,29 @@ export default function EcommerceConsentPage() {
       </section>
 
       {/* Jump Navigation Bar */}
-      <div className="sticky top-20 z-20 bg-primary/95 dark:bg-secondary/95 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-2.5 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 overflow-x-auto scrollbar-none">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-labelGray dark:text-gray-400 shrink-0">
-            <span>Jump to:</span>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-            {jumpNavLinks.map((link, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={(e) => scrollToSection(e, link.href)}
-                className="px-3.5 py-1.5 rounded-full text-xs font-bold font-outfit bg-gray-100 dark:bg-white/5 hover:bg-tertiary hover:text-secondary text-secondary dark:text-gray-300 border border-gray-200 dark:border-white/10 transition-all cursor-pointer"
-              >
-                {link.label}
-              </button>
-            ))}
+      <div className="sticky top-20 z-20 bg-primary/95 dark:bg-secondary/95 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-2.5 px-4 sm:px-6 lg:px-8 shadow-xs">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
+          {jumpNavLinks.map((link, idx) => (
             <button
+              key={idx}
               type="button"
-              onClick={(e) => {
-                setSimulatorTab("inactivity");
-                scrollToSection(e, "growth");
-              }}
-              className="px-3.5 py-1.5 rounded-full text-xs font-bold font-outfit bg-amber-500/15 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white border border-amber-500/30 transition-all cursor-pointer flex items-center gap-1.5"
+              onClick={(e) => scrollToSection(e, link.href)}
+              className="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-tertiary/15 hover:border-tertiary/40 hover:text-secondary dark:bg-white/5 dark:hover:bg-tertiary/20 dark:hover:text-tertiary text-secondary dark:text-gray-200 border border-gray-200/80 dark:border-white/10 transition-all duration-150 cursor-pointer shadow-xs active:scale-95"
             >
-              <Clock className="w-3.5 h-3.5" />
-              <span>3-Yr Inactivity Rule</span>
+              {link.label}
             </button>
-          </div>
+          ))}
+          <button
+            type="button"
+            onClick={(e) => {
+              setSimulatorTab("inactivity");
+              scrollToSection(e, "growth");
+            }}
+            className="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white border border-amber-500/30 transition-all duration-150 cursor-pointer flex items-center gap-1.5 active:scale-95 shadow-xs"
+          >
+            <Clock className="w-3.5 h-3.5" />
+            <span>3-Yr Inactivity Rule</span>
+          </button>
         </div>
       </div>
 

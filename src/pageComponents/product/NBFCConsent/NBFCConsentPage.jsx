@@ -90,7 +90,7 @@ export default function NBFCConsentPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-8 flex flex-col gap-6">
               {/* Live DPDP 13 May 2027 Countdown Timer */}
-              <div className="w-full max-w-2xl">
+              <div className="w-full max-w-3xl">
                 <DPDPLiveCountdownTimer 
                   label="Core DPDP Enforcement: 13 May 2027" 
                   sublabel="Mandatory compliance for NBFCs & Digital Lenders" 

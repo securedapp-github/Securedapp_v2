@@ -159,7 +159,7 @@ export default function TelecomConsentPage() {
             {/* Hero Copy Column */}
             <div className="lg:col-span-8 space-y-6">
               {/* Live Regulatory Countdown */}
-              <div className="w-full max-w-2xl">
+              <div className="w-full max-w-3xl">
                 <DPDPLiveCountdownTimer 
                   label="Core DPDP Enforcement: 13 May 2027" 
                   sublabel="DoT Category A, B & C ISPs" 
@@ -324,17 +324,17 @@ export default function TelecomConsentPage() {
       </section>
 
       {/* Sticky Quick Nav */}
-      <div className="sticky top-16 z-30 bg-white/90 dark:bg-[#001938]/90 backdrop-blur-md border-y border-gray-200 dark:border-white/10 py-3 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none text-xs">
+      <div className="sticky top-16 z-30 bg-white/95 dark:bg-[#001938]/95 backdrop-blur-md border-y border-gray-200 dark:border-white/10 py-2.5 px-4 sm:px-6 lg:px-8 shadow-xs">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
           {jumpNavLinks.map((link) => (
-            <a
+            <button
               key={link.id}
-              href={`#${link.id}`}
+              type="button"
               onClick={(e) => scrollToSection(e, `#${link.id}`)}
-              className="px-3 py-1.5 rounded-lg whitespace-nowrap bg-gray-100 dark:bg-white/5 hover:bg-tertiary/20 hover:text-tertiary text-secondary dark:text-gray-300 font-medium transition-colors"
+              className="px-3.5 py-1.5 rounded-lg text-xs font-medium bg-gray-100 hover:bg-tertiary/15 hover:border-tertiary/40 hover:text-secondary dark:bg-white/5 dark:hover:bg-tertiary/20 dark:hover:text-tertiary text-secondary dark:text-gray-200 border border-gray-200/80 dark:border-white/10 transition-all duration-150 cursor-pointer shadow-xs active:scale-95"
             >
               {link.label}
-            </a>
+            </button>
           ))}
         </div>
       </div>
