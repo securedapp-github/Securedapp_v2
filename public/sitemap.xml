@@ -5,316 +5,443 @@
   <!-- HOMEPAGE - TIER 1 PRIORITY -->
   <url>
     <loc>https://securedapp.io/</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- PRODUCT PAGES - TIER 1 (0.95-0.92) -->
+  <!-- DPDP COMPLIANCE & CONSENT GOVERNANCE PLATFORM - TIER 1 (0.95 - 0.92) -->
   <url>
-    <loc>https://securedapp.io/blockchain-security/smart-contract-security-audit</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://securedapp.io/dpdp-compliance-platform</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
-    <loc>https://securedapp.io/dpdp-compliance-platform</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://securedapp.io/dpdp</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/banking</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.94</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/consent-management-platform-for-banks</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/ecommerce</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/edtech</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/schools</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/fintech</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/nbfc</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/hr</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/healthcare</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.94</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/dpdp-compliance-platform/hospitals</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/insurance</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/saas</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/startups</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
   </url>
 
   <url>
+    <loc>https://securedapp.io/cookie-hub</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/digital-signature-platform</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <!-- BLOCKCHAIN SECURITY & CRYPTOGRAPHY PLATFORMS (0.95 - 0.88) -->
+  <url>
+    <loc>https://securedapp.io/blockchain-security/smart-contract-security-audit</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
     <loc>https://securedapp.io/ai-blockchain-investigation-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/post-quantum-cryptography-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/self-sovereign-identity</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/real-time-blockchain-threat-monitoring</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/audit-express</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/tokenization-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/web3-identity-and-aml-compliance-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/enterprise-hsm-key-management-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
 
-  <!-- SERVICE PAGES - TIER 1 (0.92-0.88) -->
+  <!-- SOLIDITY SHIELD SCAN (0.90 - 0.85) -->
+  <url>
+    <loc>https://securedapp.io/solidity-shield-scan</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/solidity-shield-scan/pricing</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- SERVICE & AUDIT PAGES (0.95 - 0.85) -->
   <url>
     <loc>https://securedapp.io/smart-contract-audit</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/dapp-smart-contract-security-audit-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/token-smart-contract-audit</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/rwa-smart-contract-audit</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/web3-security</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/blockchain-intelligence-and-forensic-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/crypto-aml-compliance-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/web3-dapp-development-company</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/nft-marketplace-development-company</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/defi-development-company</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/sox-compliance-audit-platform</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/itgc-audit-and-compliance-services</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/blockchain-web3-training-academy</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-  </url>
-
-  <!-- PRICING PAGE -->
-  <url>
-    <loc>https://securedapp.io/solidity-shield-scan/pricing</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
   </url>
 
   <!-- BLOG & CONTENT HUB -->
   <url>
     <loc>https://securedapp.io/blog</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- CONTACT PAGE -->
+  <url>
+    <loc>https://securedapp.io/blog/category/blockchain</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/blog/category/finance</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/blog/category/legal</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/blog/category/token</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/blog/category/web3</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- COMPANY, RESOURCES & SUPPORT -->
   <url>
     <loc>https://securedapp.io/contact</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
 
-  <!-- OTHER PAGES (0.75-0.60) -->
   <url>
-    <loc>https://securedapp.io/authors</loc>
-    <lastmod>2026-04-29</lastmod>
+    <loc>https://securedapp.io/support</loc>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://securedapp.io/white-paper</loc>
-    <lastmod>2026-04-29</lastmod>
-    <changefreq>quarterly</changefreq>
+    <loc>https://securedapp.io/careers</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/about</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/media</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
 
   <url>
+    <loc>https://securedapp.io/authors</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
     <loc>https://securedapp.io/audits</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
+    <loc>https://securedapp.io/white-paper</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/white-paper-detail</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
     <loc>https://securedapp.io/solidity-smart-contract-vulnerabilities</loc>
-    <lastmod>2026-04-29</lastmod>
+    <lastmod>2026-10-14</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.80</priority>
+  </url>
+
+  <!-- LEGAL & PRIVACY POLICIES -->
+  <url>
+    <loc>https://securedapp.io/privacy-policy</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/terms-of-service</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/securecms/privacy-policy</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://securedapp.io/securecms/terms-of-service</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
   </url>
 
 </urlset>

@@ -18,8 +18,13 @@ import {
   HeartPulse
 } from "lucide-react";
 
-export default function InteractiveHRConsentSimulator() {
-  const [activeTab, setActiveTab] = useState("lawful-register"); // "lawful-register" | "talent-pool" | "employee-prefs" | "exit-clearance"
+export default function InteractiveHRConsentSimulator({
+  activeTab: externalActiveTab,
+  setActiveTab: externalSetActiveTab
+} = {}) {
+  const [internalActiveTab, setInternalActiveTab] = useState("lawful-register"); // "lawful-register" | "talent-pool" | "employee-prefs" | "exit-clearance"
+  const activeTab = externalActiveTab !== undefined ? externalActiveTab : internalActiveTab;
+  const setActiveTab = externalSetActiveTab || setInternalActiveTab;
 
   // Mode 2: Talent Pool State
   const [candidateConsented, setCandidateConsented] = useState(true);
@@ -43,62 +48,42 @@ export default function InteractiveHRConsentSimulator() {
   return (
     <div className="w-full bg-[#0a1619] border border-[#163038] rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-6 lg:p-8">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-[#163038] gap-4">
-        <div>
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between pb-6 border-b border-[#163038] gap-5">
+        <div className="max-w-2xl">
           <div className="flex items-center space-x-2 text-tertiary text-xs font-mono uppercase tracking-wider mb-1">
             <Sliders className="w-4 h-4" />
             <span>Interactive Simulator</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
-            HR Lawful-Basis Register & Employee Preference Sandbox
+          <h3 className="text-xl sm:text-2xl font-bold text-white font-outfit">
+            DPDP Employee Consent Management & HR Lawful Basis Simulator
           </h3>
-          <p className="text-sm text-gray-400 mt-1">
-            Explore Section 7(i) legitimate employment uses, candidate talent pool auto-expiry, and statutory tax holds.
+          <p className="text-xs sm:text-sm text-gray-400 mt-1 font-nunitoSans leading-relaxed">
+            Simulate Section 7(i) legitimate employment uses, candidate talent pool auto-expiry, employee privacy preferences, and statutory tax holds under the DPDP Act.
           </p>
         </div>
 
         {/* Mode Selector */}
-        <div className="flex bg-[#071012] p-1 rounded-xl border border-[#1a3842] self-start md:self-auto overflow-x-auto max-w-full">
-          <button
-            onClick={() => setActiveTab("lawful-register")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-              activeTab === "lawful-register"
-                ? "bg-tertiary text-secondary shadow-md"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Lawful Basis Register
-          </button>
-          <button
-            onClick={() => setActiveTab("talent-pool")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-              activeTab === "talent-pool"
-                ? "bg-tertiary text-secondary shadow-md"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Talent Pool Auto-Expiry
-          </button>
-          <button
-            onClick={() => setActiveTab("employee-prefs")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-              activeTab === "employee-prefs"
-                ? "bg-tertiary text-secondary shadow-md"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Employee Preferences
-          </button>
-          <button
-            onClick={() => setActiveTab("exit-clearance")}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap ${
-              activeTab === "exit-clearance"
-                ? "bg-tertiary text-secondary shadow-md"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Exit Clearance Hold
-          </button>
+        <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-[#071012] rounded-xl border border-[#1a3842] self-start xl:self-auto shrink-0 shadow-inner">
+          {[
+            { id: "lawful-register", label: "Lawful Basis Register", icon: <FileText className="w-3.5 h-3.5" /> },
+            { id: "talent-pool", label: "Talent Pool Auto-Expiry", icon: <Briefcase className="w-3.5 h-3.5" /> },
+            { id: "employee-prefs", label: "Employee Preferences", icon: <Users className="w-3.5 h-3.5" /> },
+            { id: "exit-clearance", label: "Exit Clearance Hold", icon: <Lock className="w-3.5 h-3.5" /> },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold font-outfit transition-all cursor-pointer whitespace-nowrap ${
+                activeTab === tab.id
+                  ? "bg-tertiary text-secondary shadow-md font-bold"
+                  : "text-gray-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {tab.icon}
+              <span>{tab.label}</span>
+            </button>
+          ))}
         </div>
       </div>
 

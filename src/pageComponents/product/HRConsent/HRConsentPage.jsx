@@ -34,6 +34,7 @@ import {
   hrConsentSchema, 
   metaData, 
   partnerLogos, 
+  jumpNavLinks,
   hireToExitLifecycle,
   enterpriseModules,
   implementationRoadmap,
@@ -46,9 +47,32 @@ export default function HRConsentPage() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [checklistModalOpen, setChecklistModalOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [simulatorTab, setSimulatorTab] = useState("lawful-register");
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const scrollToSection = (e, targetId) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const id = targetId.replace("#", "");
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 95;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+
+      if (typeof window !== "undefined" && window.history && window.history.pushState) {
+        window.history.pushState(null, "", `#${id}`);
+      }
+    }
   };
 
   return (
@@ -141,21 +165,56 @@ export default function HRConsentPage() {
                 <ShieldCheck className="w-4 h-4" /> Workforce Privacy Standards
               </h3>
               <div className="space-y-3">
-                <div className="p-3.5 rounded-xl bg-gray-50/80 dark:bg-white/[0.03] border border-gray-200 dark:border-white/10">
-                  <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">Section 7(i) Engine</div>
-                  <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit">Automated Basis Separation</div>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    setSimulatorTab("lawful-register");
+                    scrollToSection(e, "simulator");
+                  }}
+                  className="w-full text-left p-3.5 rounded-xl bg-gray-50/80 dark:bg-white/[0.03] hover:bg-tertiary/10 dark:hover:bg-tertiary/10 border border-gray-200 dark:border-white/10 hover:border-tertiary/60 dark:hover:border-tertiary/60 transition-all cursor-pointer group shadow-sm"
+                  title="Jump to Section 7(i) Engine in simulator"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans group-hover:text-tertiary transition-colors">Section 7(i) Engine</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-tertiary group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                  <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit group-hover:text-tertiary transition-colors">Automated Basis Separation</div>
                   <div className="text-[11px] text-tertiary mt-1 font-mono">Stops Ineffective Bundled Clauses</div>
-                </div>
-                <div className="p-3.5 rounded-xl bg-gray-50/80 dark:bg-white/[0.03] border border-gray-200 dark:border-white/10">
-                  <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">Candidate Talent Pools</div>
-                  <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit">Automated Expiry & Purge</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    setSimulatorTab("talent-pool");
+                    scrollToSection(e, "simulator");
+                  }}
+                  className="w-full text-left p-3.5 rounded-xl bg-gray-50/80 dark:bg-white/[0.03] hover:bg-tertiary/10 dark:hover:bg-tertiary/10 border border-gray-200 dark:border-white/10 hover:border-tertiary/60 dark:hover:border-tertiary/60 transition-all cursor-pointer group shadow-sm"
+                  title="Jump to Candidate Talent Pools in simulator"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans group-hover:text-tertiary transition-colors">Candidate Talent Pools</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-tertiary group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                  <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit group-hover:text-tertiary transition-colors">Automated Expiry & Purge</div>
                   <div className="text-[11px] text-tertiary mt-1 font-mono">1-Click Candidate Revocation</div>
-                </div>
-                <div className="p-3.5 rounded-xl bg-gray-50/80 dark:bg-white/[0.03] border border-gray-200 dark:border-white/10">
-                  <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">Exit Clearance Protection</div>
-                  <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit">Statutory 7-Year Holds</div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    setSimulatorTab("exit-clearance");
+                    scrollToSection(e, "simulator");
+                  }}
+                  className="w-full text-left p-3.5 rounded-xl bg-gray-50/80 dark:bg-white/[0.03] hover:bg-tertiary/10 dark:hover:bg-tertiary/10 border border-gray-200 dark:border-white/10 hover:border-tertiary/60 dark:hover:border-tertiary/60 transition-all cursor-pointer group shadow-sm"
+                  title="Jump to Exit Clearance Protection in simulator"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans group-hover:text-tertiary transition-colors">Exit Clearance Protection</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-tertiary group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                  <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit group-hover:text-tertiary transition-colors">Statutory 7-Year Holds</div>
                   <div className="text-[11px] text-tertiary mt-1 font-mono">EPF & Income Tax Compliant</div>
-                </div>
+                </button>
               </div>
 
               {/* Partner Badges */}
@@ -175,6 +234,27 @@ export default function HRConsentPage() {
           </div>
         </div>
       </section>
+
+      {/* Jump Navigation Bar */}
+      <div className="sticky top-20 z-20 bg-primary/95 dark:bg-secondary/95 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-2.5 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 overflow-x-auto scrollbar-none">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-labelGray dark:text-gray-400 shrink-0">
+            <span>Jump to:</span>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            {jumpNavLinks.map((link, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={(e) => scrollToSection(e, link.id)}
+                className="px-3.5 py-1.5 rounded-full text-xs font-bold font-outfit bg-gray-100 dark:bg-white/5 hover:bg-tertiary hover:text-secondary text-secondary dark:text-gray-300 border border-gray-200 dark:border-white/10 transition-all cursor-pointer"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Section 1: Hire to Exit Lifecycle Table */}
       <section id="lifecycle-matrix" className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80 dark:border-white/10">
@@ -232,16 +312,19 @@ export default function HRConsentPage() {
       <section id="simulator" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50/50 dark:bg-white/[0.02] border-t border-gray-200/80 dark:border-white/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-tertiary">Real-Time Sandbox</span>
+            <span className="text-xs font-mono uppercase tracking-wider text-tertiary">Interactive Simulation</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-secondary dark:text-white mt-1">
-              Simulate HR Lawful-Basis & Employee Preference Workflows
+              DPDP Employee Consent Management & HR Lawful Basis Simulator
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 font-nunitoSans">
-              Explore the two-column lawful basis register, test ATS candidate talent pool auto-expiry, and witness exit clearance statutory tax holds.
+              Simulate Section 7(i) legitimate employment uses, candidate talent pool auto-expiry, employee privacy preferences, and statutory 7-year exit holds under the DPDP Act.
             </p>
           </div>
 
-          <InteractiveHRConsentSimulator />
+          <InteractiveHRConsentSimulator
+            activeTab={simulatorTab}
+            setActiveTab={setSimulatorTab}
+          />
         </div>
       </section>
 

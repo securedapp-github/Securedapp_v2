@@ -33,6 +33,7 @@ import {
   saasConsentSchema, 
   metaData, 
   partnerLogos, 
+  jumpNavLinks,
   dualRoleMatrix,
   enterpriseModules,
   implementationRoadmap,
@@ -45,9 +46,66 @@ export default function SaaSConsentPage() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [dpaModalOpen, setDpaModalOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const [simulatorTab, setSimulatorTab] = useState("dual-role");
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const scrollToSection = (e, href) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const id = href.replace("#", "");
+    if (id === "ai-training-firewall") {
+      setSimulatorTab("ai-firewall");
+      const element = document.getElementById("simulator");
+      if (element) {
+        const offset = 95;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = element.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      }
+      return;
+    }
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 95;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+
+      if (typeof window !== "undefined" && window.history && window.history.pushState) {
+        window.history.pushState(null, "", `#${id}`);
+      }
+    }
+  };
+
+  const handleHeroMetricClick = (tabKey) => {
+    setSimulatorTab(tabKey);
+    const element = document.getElementById("simulator");
+    if (element) {
+      const offset = 95;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+
+      if (typeof window !== "undefined" && window.history && window.history.pushState) {
+        window.history.pushState(null, "", "#simulator");
+      }
+    }
   };
 
   return (
@@ -139,25 +197,60 @@ export default function SaaSConsentPage() {
 
             {/* Quick Metrics / Trust Column */}
             <div className="lg:col-span-4 bg-white/80 dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-2xl rounded-3xl p-6 sm:p-7 shadow-xl">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-labelGray dark:text-gray-400 mb-4">
-                SaaS Compliance Standards
-              </h3>
-              <div className="space-y-4">
-                <div className="p-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                  <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">Webhook Sync Latency</div>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-labelGray dark:text-gray-400">
+                  SaaS Compliance Standards
+                </h3>
+                <span className="text-[10px] font-mono text-tertiary">Click to Simulate</span>
+              </div>
+              <div className="space-y-3">
+                <button
+                  type="button"
+                  onClick={() => handleHeroMetricClick("webhook-stream")}
+                  className="w-full text-left p-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 hover:border-tertiary/40 hover:bg-tertiary/[0.04] transition-all group cursor-pointer block"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">Webhook Sync Latency</div>
+                    <ArrowRight className="w-3.5 h-3.5 text-tertiary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
                   <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit">&lt; 80ms Delivery SLA</div>
-                  <div className="text-[11px] text-tertiary mt-1 font-mono">Instant Downstream Propagation</div>
-                </div>
-                <div className="p-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                  <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">AI Model Training Firewall</div>
+                  <div className="text-[11px] text-tertiary mt-1 font-mono flex items-center justify-between">
+                    <span>Instant Downstream Propagation</span>
+                    <span className="text-[10px] underline">Test Webhook &rarr;</span>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleHeroMetricClick("ai-firewall")}
+                  className="w-full text-left p-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5 hover:border-tertiary/40 hover:bg-tertiary/[0.04] transition-all group cursor-pointer block"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">AI Model Training Firewall</div>
+                    <ArrowRight className="w-3.5 h-3.5 text-tertiary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
                   <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit">Automated Tenant PII Scrubbing</div>
-                  <div className="text-[11px] text-tertiary mt-1 font-mono">Stops Unlawful Model Training</div>
-                </div>
-                <div className="p-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
-                  <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans">Enterprise RFP Enablement</div>
+                  <div className="text-[11px] text-tertiary mt-1 font-mono flex items-center justify-between">
+                    <span>Stops Unlawful Model Training</span>
+                    <span className="text-[10px] underline">Inspect Firewall &rarr;</span>
+                  </div>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleHeroMetricClick("rfp-export")}
+                  className="w-full text-left p-3.5 rounded-xl bg-gray-50 dark:bg-white/5 border border-tertiary/20 hover:border-tertiary hover:bg-tertiary/[0.06] transition-all group cursor-pointer block shadow-sm ring-1 ring-tertiary/10"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs text-tertiary font-semibold font-nunitoSans">Enterprise RFP Enablement</div>
+                    <ArrowRight className="w-3.5 h-3.5 text-tertiary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
                   <div className="text-sm font-bold text-secondary dark:text-white mt-0.5 font-outfit">Section 8(2) DPA Schedules</div>
-                  <div className="text-[11px] text-tertiary mt-1 font-mono">Ready for Indian Enterprise Bids</div>
-                </div>
+                  <div className="text-[11px] text-tertiary mt-1 font-mono flex items-center justify-between">
+                    <span>Ready for Indian Enterprise Bids</span>
+                    <span className="text-[10px] underline font-bold">Export Pack &rarr;</span>
+                  </div>
+                </button>
               </div>
 
               {/* Partner Badges */}
@@ -178,6 +271,22 @@ export default function SaaSConsentPage() {
 
         </div>
       </section>
+
+      {/* Sticky Quick Nav */}
+      <div className="sticky top-16 z-30 bg-white/90 dark:bg-[#071317]/90 backdrop-blur-md border-y border-gray-200 dark:border-white/10 py-3 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-start sm:justify-center gap-2 overflow-x-auto scrollbar-none text-xs">
+          {jumpNavLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => scrollToSection(e, `#${link.id}`)}
+              className="px-3 py-1.5 rounded-lg whitespace-nowrap bg-gray-100 dark:bg-white/5 hover:bg-tertiary/20 hover:text-tertiary text-secondary dark:text-gray-300 font-medium transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
 
       {/* Section 1: Role Map for SaaS Table */}
       <section id="dual-roles" className="py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-200 dark:border-white/10">
@@ -303,7 +412,11 @@ if (hasConsent) {
             </p>
           </div>
 
-          <InteractiveSaaSConsentSimulator />
+          <InteractiveSaaSConsentSimulator 
+            activeTab={simulatorTab}
+            setActiveTab={setSimulatorTab}
+            onDownloadRfpPack={() => setDpaModalOpen(true)}
+          />
         </div>
       </section>
 
@@ -374,6 +487,18 @@ if (hasConsent) {
                     <strong>MeitY Data Residency Attestation:</strong> Verifiable Indian cloud deployment certificates for clients bound by RBI or IRDAI localization directives.
                   </p>
                 </div>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => handleHeroMetricClick("rfp-export")}
+                  className="px-6 py-3 bg-tertiary hover:opacity-95 text-secondary font-bold font-outfit rounded-xl shadow-[0_0_15px_rgba(18,213,118,0.3)] transition-all flex items-center gap-2 text-sm cursor-pointer"
+                >
+                  <FileText className="w-4 h-4" />
+                  <span>Generate Enterprise RFP Compliance Pack</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
 

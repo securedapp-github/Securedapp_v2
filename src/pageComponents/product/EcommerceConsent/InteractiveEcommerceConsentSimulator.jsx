@@ -24,8 +24,13 @@ import {
   Cpu
 } from "lucide-react";
 
-export default function InteractiveEcommerceConsentSimulator() {
-  const [activeTab, setActiveTab] = useState("checkout"); // "checkout", "preference", "webhooks", "inactivity"
+export default function InteractiveEcommerceConsentSimulator({
+  activeTab: externalActiveTab,
+  setActiveTab: externalSetActiveTab
+} = {}) {
+  const [internalActiveTab, setInternalActiveTab] = useState("checkout"); // "checkout", "preference", "webhooks", "inactivity"
+  const activeTab = externalActiveTab !== undefined ? externalActiveTab : internalActiveTab;
+  const setActiveTab = externalSetActiveTab || setInternalActiveTab;
   const [whatsappOptIn, setWhatsappOptIn] = useState(false);
   const [emailOptIn, setEmailOptIn] = useState(false);
   const [smsOptIn, setSmsOptIn] = useState(false);
