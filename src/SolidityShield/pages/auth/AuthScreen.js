@@ -176,7 +176,7 @@ const AuthScreen = () => {
         isVerifyingRef.current = false;
         setIsLoading(false);
         setIsError(true);
-        triggerShake("Incorrect code. Please try again or resend.");
+        triggerShake("Invalid OTP. Please check your code and try again.");
       }
       // If success is true, do NOT reset isLoading or isVerifyingRef to false!
       // This keeps the button locked and prevents any further clicks during the redirect.
@@ -287,7 +287,7 @@ const AuthScreen = () => {
           isVerifyingRef.current = false;
           setIsLoading(false);
           setIsError(true);
-          triggerShake("Incorrect code. Please try again or resend.");
+          triggerShake("Invalid OTP. Please check your code and try again.");
         }
         // If success is true, do NOT reset isLoading or isVerifyingRef to false!
       } catch (err) {

@@ -499,116 +499,124 @@ export const downloadfReportPdf = (id, user) => {
 };
 
 export const getScanSummaryData = async ({ dispatch, email }) => {
-  const history = await getScanHistoryData({
-    userEmail: email,
-    dispatch,
-  });
-  if (!Array.isArray(history) || !history.length) {
-    return;
-  }
-
-  const latestScanSummary = history.reduce((max, item) => {
-    return item.id > max.id ? item : max;
-  }, history[0]);
-
-  if (latestScanSummary) {
-    const latestScan = await getReport({ id: latestScanSummary.id, email });
-    if (!latestScan) {
+  try {
+    const history = await getScanHistoryData({
+      userEmail: email,
+      dispatch,
+    });
+    if (!Array.isArray(history) || !history.length) {
       return;
     }
 
-    const summary = `Scanned ${latestScan.contracts} contracts, ${latestScan.lines
-      } lines of code and found ${Object.values(latestScan.findings || {}).reduce(
-        (accumulator, currentValue) => {
-          return accumulator + currentValue;
-        },
-        0
-      )} vulnerabilities`;
-    const data = latestScan.findings || {};
-    const score =
-      5 -
-      ((Number(data["high_issues"]) +
-        Number(data["medium_issues"]) +
-        Number(data["low_issues"])) /
-        30) *
-      5;
+    const latestScanSummary = history.reduce((max, item) => {
+      return item.id > max.id ? item : max;
+    }, history[0]);
 
-    dispatch(
-      setScanSummary({
-        percentageValue: (score * 2).toFixed(1),
-        values: [
-          {
-            name: "Critical Issues",
-            value: data.high_issues,
-            color: "#ff6666",
+    if (latestScanSummary) {
+      const latestScan = await getReport({ id: latestScanSummary.id, email });
+      if (!latestScan) {
+        return;
+      }
+
+      const summary = `Scanned ${latestScan.contracts} contracts, ${latestScan.lines
+        } lines of code and found ${Object.values(latestScan.findings || {}).reduce(
+          (accumulator, currentValue) => {
+            return accumulator + currentValue;
           },
-          {
-            name: "Medium Issues",
-            value: data.medium_issues,
-            color: "#ffa366",
-          },
-          { name: "Low Issues", value: data.low_issues, color: "#ffff33" },
-          {
-            name: "Optimization Issues",
-            value: data.optimization_issues,
-            color: "#d98cb3",
-          },
-          {
-            name: "Informational Issues",
-            value: data.informational_issues,
-            color: "#b3b3b3",
-          },
-        ],
-        summary,
-        id: latestScanSummary.id,
-      })
-    );
+          0
+        )} vulnerabilities`;
+      const data = latestScan.findings || {};
+      const score =
+        5 -
+        ((Number(data["high_issues"]) +
+          Number(data["medium_issues"]) +
+          Number(data["low_issues"])) /
+          30) *
+        5;
+
+      dispatch(
+        setScanSummary({
+          percentageValue: (score * 2).toFixed(1),
+          values: [
+            {
+              name: "Critical Issues",
+              value: data.high_issues,
+              color: "#ff6666",
+            },
+            {
+              name: "Medium Issues",
+              value: data.medium_issues,
+              color: "#ffa366",
+            },
+            { name: "Low Issues", value: data.low_issues, color: "#ffff33" },
+            {
+              name: "Optimization Issues",
+              value: data.optimization_issues,
+              color: "#d98cb3",
+            },
+            {
+              name: "Informational Issues",
+              value: data.informational_issues,
+              color: "#b3b3b3",
+            },
+          ],
+          summary,
+          id: latestScanSummary.id,
+        })
+      );
+    }
+  } catch (error) {
+    console.warn("getScanSummaryData error:", error);
   }
-  //console.log(data);
 };
 
 export const getIssuesChartData = async ({ dispatch, email }) => {
-  const history = await getScanHistoryData({
-    userEmail: email,
-    dispatch,
-  });
-  if (!Array.isArray(history) || !history.length) {
-    return;
-  }
-
-  const aggregated = [];
-  for (let i = 0; i < history.length; i++) {
-    const scanReport = await getReport({ id: history[i].id, email });
-    if (scanReport?.findings) {
-      aggregated.push(scanReport.findings);
+  try {
+    const history = await getScanHistoryData({
+      userEmail: email,
+      dispatch,
+    });
+    if (!Array.isArray(history) || !history.length) {
+      return [];
     }
-  }
 
-  if (!aggregated.length) {
-    return;
-  }
-
-  let data = aggregated.reduce((accumulator, currentObject) => {
-    for (let key in currentObject) {
-      if (!accumulator[key]) {
-        accumulator[key] = 0;
+    const aggregated = [];
+    for (let i = 0; i < history.length; i++) {
+      const scanReport = await getReport({ id: history[i].id, email });
+      if (scanReport?.findings) {
+        aggregated.push(scanReport.findings);
       }
-      accumulator[key] += currentObject[key];
     }
-    return accumulator;
-  }, {});
-  data = [
-    { name: "", value: 0 },
-    { name: "High Issues", value: data.high_issues || 0 },
-    { name: "Medium Issues", value: data.medium_issues || 0 },
-    { name: "Low Issues", value: data.low_issues || 0 },
-    { name: "Optimization Issues", value: data.optimization_issues || 0 },
-    { name: "Informational Issues", value: data.informational_issues || 0 },
-    { name: "", value: 0 },
-  ];
 
-  dispatch(setIssuesData(data));
-  return data;
+    if (!aggregated.length) {
+      return [];
+    }
+
+    let data = aggregated.reduce((accumulator, currentObject) => {
+      for (let key in currentObject) {
+        if (!accumulator[key]) {
+          accumulator[key] = 0;
+        }
+        accumulator[key] += currentObject[key];
+      }
+      return accumulator;
+    }, {});
+    data = [
+      { name: "", value: 0 },
+      { name: "High Issues", value: data.high_issues || 0 },
+      { name: "Medium Issues", value: data.medium_issues || 0 },
+      { name: "Low Issues", value: data.low_issues || 0 },
+      { name: "Optimization Issues", value: data.optimization_issues || 0 },
+      { name: "Informational Issues", value: data.informational_issues || 0 },
+      { name: "", value: 0 },
+    ];
+
+    dispatch(setIssuesData(data));
+    return data;
+  } catch (error) {
+    console.warn("getIssuesChartData error:", error);
+    return [];
+  }
 };
 
 export const getReport = async ({ id, email }) => {
@@ -665,33 +673,39 @@ export const getScanHistoryData = async ({ userEmail, dispatch }) => {
     return [];
   }
 
-  return fetch(apiUrl + "/getHistory", {
-    method: "POST",
-    body: JSON.stringify({
-      mail: userEmail,
-    }),
-    headers: {
-      "Content-type": "application/json",
-      Authorization: jwt,
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error("Invalid Network Response");
-    })
-    .then((data) => {
-      let history = Array.isArray(data) ? [...data] : [];
-      history.sort((a, b) => Number(b.id) - Number(a.id));
-      dispatch?.(setScanHistory(history));
-      return history;
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+  try {
+    const response = await fetch(apiUrl + "/getHistory", {
+      method: "POST",
+      body: JSON.stringify({
+        mail: userEmail,
+      }),
+      headers: {
+        "Content-type": "application/json",
+        Authorization: jwt,
+      },
+    });
+
+    if (response.status === 401 || response.status === 403) {
+      localStorage.removeItem("UserJwtToken");
       dispatch?.(setScanHistory([]));
       return [];
-    });
+    }
+
+    if (!response.ok) {
+      dispatch?.(setScanHistory([]));
+      return [];
+    }
+
+    const data = await response.json();
+    let history = Array.isArray(data) ? [...data] : [];
+    history.sort((a, b) => Number(b.id) - Number(a.id));
+    dispatch?.(setScanHistory(history));
+    return history;
+  } catch (error) {
+    console.warn("getScanHistoryData error:", error);
+    dispatch?.(setScanHistory([]));
+    return [];
+  }
 };
 
 export const sendOTP = async ({ email, dispatch, selector }) => {
@@ -745,14 +759,31 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
       "Content-type": "application/json",
     },
   })
-    .then((response) => {
-      //alert(JSON.stringify(response));
-      if (response.ok) {
-        return response.json();
+    .then(async (response) => {
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (e) {
+        // Response may be HTML or text on 400 Bad Request
       }
 
-      toast.error("Invalid Network Response: verify otp");
-      return null;
+      if (!response.ok) {
+        if (
+          response.status === 400 ||
+          response.status === 401 ||
+          response.status === 403 ||
+          response.status === 422
+        ) {
+          const errMsg = data?.error || data?.message || "Invalid OTP";
+          toast.error(errMsg);
+          return null;
+        }
+
+        toast.error("Unable to verify OTP. Please try again.");
+        return null;
+      }
+
+      return data;
     })
     .then((data) => {
       if (!data) {
@@ -764,14 +795,14 @@ export const verifyOTP = async ({ email, otp, dispatch }) => {
 
       if (Array.isArray(data)) {
         if (!data.length) {
-          toast.error("Wrong OTP");
+          toast.error("Invalid OTP");
           return false;
         }
         userdata = data[0];
         jwtToken = userdata?.jwt ?? null;
       } else {
         if (!data.success) {
-          toast.error(data.error || "Invalid or expired OTP");
+          toast.error(data.error || data.message || "Invalid OTP");
           return false;
         }
         userdata = data.user;
