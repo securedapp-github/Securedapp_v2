@@ -232,7 +232,7 @@
 }
 
 .services-mobile-navbar-item {
-  @apply py-4 text-center border-b opacity-50 border-b-[#FFFFFF29] transition-all duration-300 ease-in-out whitespace-nowrap;
+  @apply py-4 text-center border-b opacity-50 border-b-[#FFFFFF29] transition-all duration-300 ease-in-out whitespace-nowrap cursor-pointer hover:opacity-80;
 }
 .selected-mobile-navbar {
   @apply border-b-2 bg-[#91F6C533] border-[#12D576] opacity-100;

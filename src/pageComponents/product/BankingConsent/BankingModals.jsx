@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { X, CheckCircle2, ShieldCheck, Download, Calendar, ArrowRight, Loader2, Lock, Building, Mail, User, Phone, Briefcase } from "lucide-react";
-import { sendTicketToCRM } from "../../../utils/crmTicketService";
+import { sendInquiryToCRM } from "../../../utils/crmInquiryService";
 import { toast } from "react-toastify";
 
 export function BankingDemoModal({ isOpen, onClose }) {
@@ -29,18 +29,17 @@ export function BankingDemoModal({ isOpen, onClose }) {
 
     setLoading(true);
     try {
-      await sendTicketToCRM({
-        title: `Banking Demo Request: ${formData.bankName} (${formData.name})`,
-        description: `Banking Demo Request from Consent Management Platform for Banks.\n\nBank / Institution: ${formData.bankName}\nRole: ${formData.role}\nCore Banking System: ${formData.cbsPlatform}\nPhone: ${formData.phone}\nNotes: ${formData.message || "N/A"}`,
-        name: formData.name,
+      await sendInquiryToCRM({
+        fullName: formData.name,
         email: formData.email,
-        phone: formData.phone,
-        projectName: formData.bankName,
-        category: "Other",
-        priority: "High",
+        mobile: formData.phone,
+        accountCompany: formData.bankName,
+        serviceOffering: "DPDP Compliance - Banking",
+        message: `Banking Demo Request from Consent Management Platform for Banks.\n\nBank / Institution: ${formData.bankName}\nRole: ${formData.role}\nCore Banking System: ${formData.cbsPlatform}\nPhone: ${formData.phone}\nNotes: ${formData.message || "N/A"}`,
+        source: "website",
+        leadSource: "website",
         metadata: {
           leadType: "Banking Demo Request",
-          sourceWebsite: "Consent Management Platform for Banks",
           role: formData.role,
           cbsPlatform: formData.cbsPlatform,
           bankName: formData.bankName,
@@ -296,18 +295,17 @@ export function LeadMagnetModal({ isOpen, onClose, assetType = "checklist" }) {
 
     setLoading(true);
     try {
-      await sendTicketToCRM({
-        title: `Resource Download: ${isChecklist ? "DPDP Consent Checklist" : "Security Note"} - ${formData.bankName}`,
-        description: `Lead downloaded: ${title}\nName: ${formData.name}\nEmail: ${formData.email}\nBank: ${formData.bankName}\nDesignation: ${formData.designation || "Not provided"}\nPhone: ${formData.phone || "Not provided"}`,
-        name: formData.name,
+      await sendInquiryToCRM({
+        fullName: formData.name,
         email: formData.email,
-        phone: formData.phone,
-        projectName: formData.bankName,
-        category: "Other",
-        priority: "Medium",
+        mobile: formData.phone,
+        accountCompany: formData.bankName,
+        serviceOffering: "DPDP Compliance - Banking",
+        message: `Resource Download: ${isChecklist ? "DPDP Consent Checklist" : "Security Note"}\nBank: ${formData.bankName}\nDesignation: ${formData.designation || "Not provided"}`,
+        source: "website",
+        leadSource: "website",
         metadata: {
           leadType: isChecklist ? "Bank DPDP Consent Checklist" : "Banking Security Note",
-          sourceWebsite: "Consent Management Platform for Banks",
           bankName: formData.bankName,
           designation: formData.designation,
         },

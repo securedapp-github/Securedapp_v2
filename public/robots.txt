@@ -361,3 +361,8 @@ Request-rate: 0.5/1s
 User-agent: AhrefsBot
 Request-rate: 1/5s
 
+# ==========================================
+# SECTION 14: SITEMAP
+# ==========================================
+Sitemap: https://securedapp.io/sitemap.xml
+

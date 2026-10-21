@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
@@ -29,7 +29,7 @@ function SecurePadPage() {
           desc: "Launch, trade, and manage tokens seamlessly with SecurePad, the zero-fee platform offering secure, no-code, cross-chain blockchain services.",
           keywords:
             "SecurePad, blockchain security, tokenization, free token creation, no-code blockchain, cross-chain functionality, decentralized exchange, token staking, token locker, Initial DEX Offering, blockchain project, SecureDApp",
-          image: "/assets/images/ProductPages/sp/sp-hero.jpg",
+          image: "/assets/images/ProductPages/sp/sp-hero.webp",
         }}
       />
       <Navbar />
@@ -37,7 +37,7 @@ function SecurePadPage() {
         <ProductServiceHero
           name="SECURE PAD"
           title="A platform for Cost-free Tokenization in Blockchain Security Space"
-          image={"/assets/images/ProductPages/sp/sp-hero.jpg"}
+          image={"/assets/images/ProductPages/sp/sp-hero.webp"}
           onClick={() =>
             typeof window !== "undefined" &&
             window.open("https://securepad.xyz/")

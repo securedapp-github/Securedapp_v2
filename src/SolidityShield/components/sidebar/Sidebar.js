@@ -15,8 +15,6 @@ import CustomButton from "../common/CustomButton.js";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { getUserData } from "../../redux/auth/authSlice.js";
 import { logout, getJwt } from "../../functions.js";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,6 +28,7 @@ export const Sidebar = () => {
   const totalCredits = 20;
 
   const [darkMode, setDarkMode] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   useEffect(() => {
     const handleThemeSync = () => {
@@ -58,26 +57,7 @@ export const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    const MySwal = withReactContent(Swal);
-    MySwal.fire({
-      //title: "Are you sure?",
-      text: "Are you sure you want to logout ?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, logout!",
-      cancelButtonText: "Cancel",
-      background: "#f4f4f4",
-      customClass: {
-        title: "text-danger",
-        popup: "custom-popup-class", // You can define your own class for further customization
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        logout();
-      }
-    });
+    setShowLogoutModal(true);
   };
 
   const handleRequest = () => {
@@ -85,8 +65,60 @@ export const Sidebar = () => {
   };
 
   return (
-    showSideBar && (
-      <div className="sss-sidebar-container">
+    <>
+      {/* Custom Sleek Dark Mode Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fadeIn"
+          onClick={() => setShowLogoutModal(false)}
+        >
+          <div
+            className="w-full max-w-sm sm:max-w-md bg-[#0F1729] border border-[#1E293B] rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.8)] relative text-center font-nunitoSans animate-scaleUp"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Warning Icon Badge */}
+            <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 shadow-[0_0_25px_rgba(245,158,11,0.2)]">
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+
+            {/* Heading */}
+            <h3 className="text-xl sm:text-2xl font-bold text-white font-outfit mb-2">
+              Are you sure you want to log out?
+            </h3>
+
+            {/* Subtext */}
+            <p className="text-xs sm:text-sm text-[#8B93A7] leading-relaxed mb-6 font-nunitoSans">
+              You will be signed out of your account. You will need to sign in again to access your dashboard and scans.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => setShowLogoutModal(false)}
+                className="flex-1 py-2.5 px-4 rounded-xl border border-[#2A3548] bg-[#131B2E] hover:bg-[#1A243B] text-[#8B93A7] hover:text-white font-semibold text-xs sm:text-sm transition-all cursor-pointer font-outfit"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowLogoutModal(false);
+                  localStorage.removeItem("UserEmail");
+                  logout();
+                }}
+                className="flex-1 py-2.5 px-4 rounded-xl bg-red-500 hover:bg-red-600 active:scale-[0.98] text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all cursor-pointer font-outfit"
+              >
+                Yes, Log Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showSideBar && (
+        <div className="sss-sidebar-container">
         <div className="sss-sidebar">
           <div className="sss-sidebar-upper">
             <div className="sss-sidebar-header flex items-center justify-between px-4">
@@ -202,16 +234,24 @@ export const Sidebar = () => {
                 </div>
               </div>
 
-              <button
-                onClick={() => navigate.push("/solidity-shield-scan/pricing")}
-                className="w-full mt-1 py-2 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold text-xs hover:bg-[#16a34a] active:bg-[#16a34a] transition-all cursor-pointer shadow-sm flex items-center justify-center gap-1"
-              >
-                <span>Upgrade Now</span>
-              </button>
+              {auth?.user?.plan === 2 ? (
+                <div className="w-full mt-1 py-1.5 rounded-xl bg-blue-500/10 border border-blue-500/25 text-blue-400 font-bold text-[11px] font-mono flex items-center justify-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  <span>Top Tier Active</span>
+                </div>
+              ) : (
+                <button
+                  onClick={() => navigate.push("/solidity-shield-scan/pricing")}
+                  className="w-full mt-1 py-2 rounded-xl bg-[#22C55E] text-[#0A1120] font-bold text-xs hover:bg-[#16a34a] active:bg-[#16a34a] transition-all cursor-pointer shadow-sm flex items-center justify-center gap-1"
+                >
+                  <span>{auth?.user?.plan === 1 ? "Upgrade to Premium" : "Upgrade Plan"}</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
       </div>
-    )
-  );
+    )}
+  </>
+);
 };

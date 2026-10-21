@@ -27,33 +27,33 @@ const Navbar = () => {
 
   const currentPath = navigate.asPath;
 
-  switch (currentPath) {
-    case "/blockchain-security/smart-contract-security-audit":
-      nextPath = "/solidity-shield-scan/auth";
-      break;
-    case "/real-time-blockchain-threat-monitoring":
-      nextPath = "https://securewatch.securedapp.io/";
-      break;
-    case "/ai-blockchain-investigation-platform":
-      nextPath = "https://securetrace.securedapp.io/";
-      break;
-    case "/tokenization-platform":
-      nextPath = "https://securepad.xyz/";
-      break;
-    case "/audit-express":
-      nextPath = "/audit-express";
-      break;
-    case "/web3-identity-and-aml-compliance-platform":
-      nextPath = "/web3-identity-and-aml-compliance-platform";
-      break;
-    case "/dpdp-compliance-platform":
-      nextPath = "https://cms-app.securedapp.io/";
-      break;
-    case "/cookie-hub":
-      nextPath = "https://cookie-app.securedapp.io/";
-      break;
-    default:
-      nextPath = null;
+  if (currentPath?.includes("/dpdp-compliance-platform")) {
+    nextPath = "https://cms-app.securedapp.io/";
+  } else if (currentPath?.includes("/cookie-hub")) {
+    nextPath = "https://cookie-app.securedapp.io/";
+  } else {
+    switch (currentPath) {
+      case "/blockchain-security/smart-contract-security-audit":
+        nextPath = "/solidity-shield-scan/auth";
+        break;
+      case "/real-time-blockchain-threat-monitoring":
+        nextPath = "https://securewatch.securedapp.io/";
+        break;
+      case "/ai-blockchain-investigation-platform":
+        nextPath = "https://securetrace.securedapp.io/";
+        break;
+      case "/tokenization-platform":
+        nextPath = "https://securepad.xyz/";
+        break;
+      case "/audit-express":
+        nextPath = "/audit-express";
+        break;
+      case "/web3-identity-and-aml-compliance-platform":
+        nextPath = "/web3-identity-and-aml-compliance-platform";
+        break;
+      default:
+        nextPath = null;
+    }
   }
 
   const handleNavigation = () => {
@@ -138,7 +138,7 @@ const Navbar = () => {
   }, [dispatch]);
 
   const buttonText = 
-    currentPath?.includes("/dpdp-compliance-platform") ? "Try it now" : 
+    currentPath?.includes("/dpdp-compliance-platform") ? "Try Now" : 
     currentPath?.includes("/digital-signature-platform") ? "Free Trial" :
     (currentPath === "/" || currentPath?.includes("/enterprise-hsm-key-management-platform") ? "Request Quote" : "Login");
 

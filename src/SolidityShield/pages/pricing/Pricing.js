@@ -1,358 +1,302 @@
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
-import { pricingDetails } from "./pricing.data";
-import CustomButton from "../../components/common/CustomButton";
-import {
-  faChevronLeft,
-  faChevronRight,
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  getPaymentSelector,
   setPaymentModal,
   setPlan,
 } from "../../redux/dashboard/paymentSlice";
 import { getUserData } from "../../redux/auth/authSlice";
-import { useRouter } from "next/router";
 import MetaTags from "../../../components/common/MetaTags";
 import Footer from "../../components/common/Footer";
 import { setLoader } from "../../redux/commonSlice";
 import { getUser } from "../../functions";
 
-// High-converting tier value framing (/industrial-brutalist-ui)
-const planConfigs = {
-  0: {
-    specCode: "SPEC // TIER_01",
-    badge: "STARTER // BASE",
-    status: "SYS_ACTIVE",
-    sku: "SKU-8849-01",
-    tagline: "Essential AST scanner for single contracts",
-    subtext: "NO_CARD_REQ // FOREVER_FREE",
+// Curated SaaS tier data (/gpt-taste: clean, modern, sweet aesthetic)
+const planConfigs = [
+  {
+    id: 0,
+    planType: "Free",
+    price: "₹0",
+    badge: "Starter",
+    tagline: "Essential security scanning for individual builders and hobbyists.",
+    subtext: "Free forever • No credit card required",
     bullets: [
-      { text: "01_CONTRACT_SCAN_CREDIT", included: true, highlight: false },
-      { text: "AST_CORE_SUPER_SPOTTERS", included: true, highlight: false },
-      { text: "INSTANT_AUDIT_SECURITY_SCORE", included: true, highlight: false },
-      { text: "VULN_SEVERITY_BREAKDOWN", included: false, highlight: false },
-      { text: "OFFICIAL_PDF_AUDIT_REPORT", included: false, highlight: false },
-      { text: "GITHUB_3RD_PARTY_AUDITOR_PUBLISH", included: false, highlight: false },
+      { text: "1 Contract scan credit", included: true },
+      { text: "AST Core Vulnerability spotters", included: true },
+      { text: "Instant audit security score", included: true },
+      { text: "Basic vulnerability summary", included: true },
+      { text: "Detailed fix recommendations", included: false },
+      { text: "Official PDF audit report", included: false },
+      { text: "GitHub 3rd-party auditor certification", included: false },
     ],
   },
-  1: {
-    specCode: "SPEC // TIER_02",
-    badge: "★ HERO_BUILD // RECOMMENDED",
-    status: "SYS_OPTIMAL",
-    sku: "SKU-8849-02",
-    tagline: "Continuous audit pipeline for dApps & builders",
-    subtext: "BILLED_MONTHLY // INSTANT_DISPATCH",
+  {
+    id: 1,
+    planType: "Plus",
+    price: "₹14,999",
+    badge: "Most Popular",
+    isPopular: true,
+    tagline: "Continuous automated audits for active dApps, DEXes, and teams.",
+    subtext: "Billed monthly • Instant credit allocation",
     bullets: [
-      { text: "06_COMPREHENSIVE_SCANS // MO", included: true, highlight: true },
-      { text: "FULL_VULN_SEVERITY_MAPPING", included: true, highlight: true },
-      { text: "DETAILED_FIX_SPECIFICATIONS", included: true, highlight: false },
-      { text: "OFFICIAL_PDF_AUDIT_REPORT", included: true, highlight: true },
-      { text: "PRIORITY_CLOUD_SCAN_QUEUE", included: true, highlight: false },
-      { text: "GITHUB_3RD_PARTY_AUDITOR_PUBLISH", included: false, highlight: false },
+      { text: "6 Comprehensive scans / month", included: true },
+      { text: "Full vulnerability severity breakdown", included: true },
+      { text: "Detailed fix & code specifications", included: true },
+      { text: "Official PDF audit report download", included: true },
+      { text: "Priority cloud scan queue", included: true },
+      { text: "Email security support", included: true },
+      { text: "GitHub 3rd-party auditor certification", included: false },
     ],
   },
-  2: {
-    specCode: "SPEC // TIER_03",
-    badge: "ENTERPRISE // MIL-SPEC",
-    status: "MAX_SECURITY",
-    sku: "SKU-8849-03",
-    tagline: "Protocol certification & external auditor publish",
-    subtext: "ENTERPRISE_SUITE // 24/7_SUPPORT",
+  {
+    id: 2,
+    planType: "Premium",
+    price: "₹29,999",
+    badge: "Enterprise",
+    tagline: "Protocol certification and dedicated auditor publishing for production.",
+    subtext: "Billed monthly • Dedicated team pipeline",
     bullets: [
-      { text: "24_ENTERPRISE_SCANS // MO", included: true, highlight: true },
-      { text: "FULL_VULN_SEVERITY_MAPPING", included: true, highlight: false },
-      { text: "OFFICIAL_PDF_AUDIT_REPORT", included: true, highlight: false },
-      { text: "PUBLIC_AUDIT_CERTIFICATION_URL", included: true, highlight: true },
-      { text: "GITHUB_3RD_PARTY_AUDITOR_PUBLISH", included: true, highlight: true },
-      { text: "24/7_DEDICATED_SECURITY_SUPPORT", included: true, highlight: false },
+      { text: "24 Enterprise scans / month", included: true },
+      { text: "Everything included in Plus tier", included: true },
+      { text: "Detailed fix & code specifications", included: true },
+      { text: "Official PDF audit report download", included: true },
+      { text: "Public audit certification link", included: true },
+      { text: "GitHub 3rd-party auditor publishing", included: true },
+      { text: "24/7 Priority security support", included: true },
     ],
   },
-};
+];
 
-const PricingPlanCard = ({
-  icon,
-  planType,
-  price,
-  description,
-  onClick,
-  id,
-}) => {
-  const auth = useSelector(getUserData);
-  const userPlan = auth?.user?.plan != null ? auth.user.plan : 0;
-  const isCurrentPlan = userPlan === id;
-  const config = planConfigs[id] || planConfigs[0];
-  const isPopular = id === 1;
+const CheckIcon = () => (
+  <span className="w-5 h-5 rounded-full bg-[#12D576]/20 text-[#12D576] flex items-center justify-center shrink-0">
+    <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+      <path
+        fillRule="evenodd"
+        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </span>
+);
 
-  // Format numbers neatly (e.g., ₹ 29999 -> ₹ 29,999)
-  const displayPrice = price ? price.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : price;
+const DashIcon = () => (
+  <span className="w-5 h-5 rounded-full bg-[#131B2E] text-[#5B6478] flex items-center justify-center shrink-0">
+    <svg className="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+      <path
+        fillRule="evenodd"
+        d="M4 10a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </span>
+);
+
+const PricingPlanCard = ({ planConfig, userPlan, onAction, isLoggedIn }) => {
+  const { id, planType, price, badge, isPopular, tagline, subtext, bullets } = planConfig;
+
+  // Determine button state and label based on user current tier
+  let buttonLabel = "";
+  let isButtonDisabled = false;
+  let buttonClass = "";
+
+  if (!isLoggedIn) {
+    if (id === 0) {
+      buttonLabel = "Get started free";
+      buttonClass = "bg-[#131B2E] hover:bg-[#1A243B] text-white border border-[#2A3548] hover:border-[#12D576]/50 shadow-sm font-semibold";
+    } else if (id === 1) {
+      buttonLabel = "Upgrade to Plus";
+      buttonClass = "bg-[#12D576] hover:brightness-110 text-[#001938] font-bold font-outfit shadow-[0_0_25px_rgba(18,213,118,0.4)]";
+    } else {
+      buttonLabel = "Upgrade to Premium";
+      buttonClass = "bg-[#131B2E] hover:bg-[#1A243B] text-white font-bold border border-[#2A3548] hover:border-[#12D576] hover:text-[#12D576] shadow-lg transition-all";
+    }
+  } else {
+    if (id === 0) {
+      if (userPlan === 0) {
+        buttonLabel = "Current plan";
+        isButtonDisabled = true;
+        buttonClass = "bg-[#131B2E] text-[#5B6478] border border-[#1E293B] cursor-not-allowed";
+      } else {
+        buttonLabel = "Included in your tier";
+        isButtonDisabled = true;
+        buttonClass = "bg-[#131B2E] text-[#5B6478] border border-[#1E293B] cursor-not-allowed";
+      }
+    } else if (id === 1) {
+      if (userPlan === 0) {
+        buttonLabel = "Upgrade to Plus";
+        buttonClass = "bg-[#12D576] hover:brightness-110 text-[#001938] font-bold font-outfit shadow-[0_0_25px_rgba(18,213,118,0.4)]";
+      } else if (userPlan === 1) {
+        buttonLabel = "Current plan";
+        isButtonDisabled = true;
+        buttonClass = "bg-[#12D576]/10 text-[#12D576] border border-[#12D576]/30 cursor-not-allowed";
+      } else {
+        buttonLabel = "Included in your tier";
+        isButtonDisabled = true;
+        buttonClass = "bg-[#131B2E] text-[#5B6478] border border-[#1E293B] cursor-not-allowed";
+      }
+    } else if (id === 2) {
+      if (userPlan === 2) {
+        buttonLabel = "Current plan";
+        isButtonDisabled = true;
+        buttonClass = "bg-[#12D576]/10 text-[#12D576] border border-[#12D576]/30 cursor-not-allowed";
+      } else {
+        buttonLabel = "Upgrade to Premium";
+        buttonClass = "bg-[#131B2E] hover:bg-[#1A243B] text-white font-bold border border-[#2A3548] hover:border-[#12D576] hover:text-[#12D576] shadow-lg transition-all";
+      }
+    }
+  }
 
   return (
-    <div className="sss-pricing-plan-card-container h-full relative">
-      {/* Industrial Brutalist Machine Chassis */}
-      <div
-        className={`industrial-card h-full flex flex-col justify-between p-6 sm:p-7 relative select-none ${
-          isPopular
-            ? "industrial-card-hero"
-            : id === 2
-            ? "industrial-card-premium"
-            : ""
-        }`}
-      >
-        {/* Hardware Rivets in 4 Corners */}
-        <span className="industrial-rivet top-2 left-2" />
-        <span className="industrial-rivet top-2 right-2" />
-        <span className="industrial-rivet bottom-2 left-2" />
-        <span className="industrial-rivet bottom-2 right-2" />
+    <div
+      className={`relative h-full flex flex-col justify-between rounded-3xl p-7 sm:p-8 transition-all duration-300 ${
+        isPopular
+          ? "bg-gradient-to-b from-[#0F2922] via-[#0F1729] to-[#0A1120] border-2 border-[#12D576]/70 shadow-[0_0_40px_rgba(18,213,118,0.2)] hover:shadow-[0_0_55px_rgba(18,213,118,0.32)]"
+          : id === 2
+          ? "bg-gradient-to-b from-[#131B2E] via-[#0F1729] to-[#0A1120] border border-[#2A3548] hover:border-[#12D576]/40 shadow-xl"
+          : "bg-[#0F1729] border border-[#1E293B] hover:border-[#2A3548] shadow-xl"
+      }`}
+    >
+      {/* Floating Popular Badge */}
+      {isPopular && (
+        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold text-[#001938] bg-[#12D576] shadow-[0_0_20px_rgba(18,213,118,0.4)] font-outfit">
+            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            Most Popular
+          </span>
+        </div>
+      )}
 
-        {/* Industrial Corner Crosshair Accents */}
-        <span className="crosshair-tl text-slate-400 dark:text-slate-600">+</span>
-        <span className="crosshair-tr text-slate-400 dark:text-slate-600">+</span>
-        <span className="crosshair-bl text-slate-400 dark:text-slate-600">+</span>
-        <span className="crosshair-br text-slate-400 dark:text-slate-600">+</span>
+      <div>
+        {/* Tier Header: Name + Badge */}
+        <div className="flex items-center justify-between gap-3 mb-3">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-outfit tracking-tight">
+            {planType}
+          </h3>
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              isPopular
+                ? "bg-[#12D576]/20 text-[#12D576] border border-[#12D576]/30 font-outfit"
+                : id === 2
+                ? "bg-[#131B2E] text-[#12D576] border border-[#12D576]/30 font-outfit"
+                : "bg-[#131B2E] text-[#8B93A7] border border-[#1E293B] font-outfit"
+            }`}
+          >
+            {badge}
+          </span>
+        </div>
 
-        <div>
-          {/* Top Chassis Technical Telemetry Header */}
-          <div className="flex items-center justify-between font-mono text-[10px] tracking-widest uppercase border-b-2 border-slate-200 dark:border-slate-800 pb-2 mb-3.5 text-slate-500 dark:text-slate-400">
-            <div className="flex items-center gap-1.5 font-bold">
-              <span className="w-2 h-2 rounded-none bg-emerald-500 inline-block animate-pulse" />
-              <span>{config.specCode}</span>
-            </div>
-            <div className="font-extrabold text-[#16A34A] dark:text-[#22C55E]">
-              {isCurrentPlan ? "[SYS_ACTIVE]" : `[${config.status}]`}
-            </div>
+        {/* Tagline */}
+        <p className="text-xs sm:text-sm text-[#8B93A7] font-nunitoSans leading-relaxed mb-6">
+          {tagline}
+        </p>
+
+        {/* Price Block */}
+        <div className="pb-6 mb-6 border-b border-[#1E293B]">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-4xl sm:text-5xl font-black text-white font-outfit tracking-tight">
+              {price}
+            </span>
+            <span className="text-sm font-medium text-[#8B93A7]">/month</span>
           </div>
+          <p className="text-xs text-[#5B6478] font-nunitoSans mt-1.5">
+            {subtext}
+          </p>
+        </div>
 
-          {/* Hazard Caution Bar on Hero / Plus Tier */}
-          {isPopular && (
-            <div className="mb-3 -mt-1">
-              <div className="hazard-strip mb-2" />
-              <div className="inline-block px-2.5 py-0.5 font-mono text-[10px] font-black tracking-widest uppercase bg-[#22C55E] text-slate-950 border border-slate-950 shadow-[2px_2px_0px_#000]">
-                ★ RECOMMENDED TIER // MAXIMUM VALUE
-              </div>
+        {/* Feature List */}
+        <div className="space-y-3.5 mb-8">
+          <div className="text-[11px] font-bold uppercase tracking-wider text-[#8B93A7] font-nunitoSans">
+            What's included:
+          </div>
+          {bullets.map((b, idx) => (
+            <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm font-nunitoSans">
+              {b.included ? <CheckIcon /> : <DashIcon />}
+              <span
+                className={`leading-snug ${
+                  b.included
+                    ? "text-gray-200 font-medium"
+                    : "text-[#5B6478] line-through opacity-60"
+                }`}
+              >
+                {b.text}
+              </span>
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Action Button */}
+      <div>
+        <button
+          onClick={() => !isButtonDisabled && onAction(id)}
+          disabled={isButtonDisabled}
+          className={`w-full h-12 rounded-2xl font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 ${buttonClass} ${
+            !isButtonDisabled ? "cursor-pointer hover:scale-[1.02] active:scale-[0.98]" : ""
+          }`}
+        >
+          <span>{buttonLabel}</span>
+          {!isButtonDisabled && (
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           )}
-
-          {/* Plan Identifier & Mechanical Icon Chassis */}
-          <div className="flex items-center justify-between gap-3 mt-1">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-none border-2 border-slate-900 dark:border-slate-700 bg-slate-100 dark:bg-slate-900 shadow-[3px_3px_0px_#0F172A] dark:shadow-[3px_3px_0px_#000000] flex items-center justify-center p-2.5 flex-shrink-0">
-                <Image src={icon} alt={planType} width={28} height={28} className="object-contain" />
-              </div>
-              <div>
-                <div className="text-2xl font-black font-mono tracking-tight uppercase text-slate-950 dark:text-white">
-                  {planType}
-                </div>
-                <div className="font-mono text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  {config.tagline}
-                </div>
-              </div>
-            </div>
-
-            {/* Industrial Hardware Status Badge */}
-            {isCurrentPlan ? (
-              <span className="font-mono text-[10px] font-black uppercase px-2 py-0.5 bg-emerald-500/20 text-[#16A34A] dark:text-[#22C55E] border border-emerald-500/50">
-                [ACTIVE]
-              </span>
-            ) : id === 2 ? (
-              <span className="font-mono text-[10px] font-black uppercase px-2 py-0.5 bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 border border-cyan-500/50">
-                [MIL_SPEC]
-              </span>
-            ) : (
-              <span className="font-mono text-[10px] font-black uppercase px-2 py-0.5 bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
-                [BASE]
-              </span>
-            )}
-          </div>
-
-          {/* Monospace Price Readout */}
-          <div className="mt-5 pb-4 border-b-2 border-slate-200 dark:border-slate-800">
-            <div className="flex items-baseline gap-1.5 font-mono">
-              <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#16A34A] dark:text-[#22C55E] tracking-tight">
-                {displayPrice}
-              </span>
-              <span className="text-xs font-black text-slate-500 dark:text-slate-400">
-                {"/MONTH"}
-              </span>
-            </div>
-            <div className="font-mono text-[10px] font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">
-              [ {config.subtext} ]
-            </div>
-          </div>
-
-          {/* Technical Specs Breakdown Checklist */}
-          <div className="mt-5 space-y-2 font-mono">
-            <div className="text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
-              [ SYSTEM_CAPABILITIES ]
-            </div>
-            {config.bullets.map((bullet, idx) => (
-              <div key={idx} className="flex items-start gap-2 text-xs leading-snug">
-                <span className={`font-mono font-black text-xs ${bullet.included ? "text-[#16A34A] dark:text-[#22C55E]" : "text-slate-400 dark:text-slate-600"}`}>
-                  {bullet.included ? "[✓]" : "[—]"}
-                </span>
-                <span
-                  className={`${
-                    bullet.included
-                      ? bullet.highlight
-                        ? "text-slate-950 dark:text-white font-extrabold"
-                        : "text-slate-800 dark:text-slate-200 font-bold"
-                      : "text-slate-400 dark:text-slate-600 line-through opacity-60"
-                  }`}
-                >
-                  {bullet.text}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Industrial Tactile Punch Button */}
-        <div>
-          <div onClick={onClick} className="mt-7 pt-2">
-            <button
-              className={`industrial-btn w-full py-3.5 px-4 text-xs sm:text-sm font-black flex justify-center items-center gap-x-2 cursor-pointer ${
-                id === 1
-                  ? "industrial-btn-primary"
-                  : id === 2
-                  ? "industrial-btn-secondary"
-                  : isCurrentPlan
-                  ? "industrial-btn-disabled"
-                  : "industrial-btn-primary"
-              }`}
-            >
-              <span>
-                {isCurrentPlan && id > 0
-                  ? "RENEW_PLAN [->]"
-                  : isCurrentPlan && id === 0
-                  ? "CURRENT_PLAN [ACTIVE]"
-                  : id === 1
-                  ? "INITIALIZE PLUS [->]"
-                  : id === 2
-                  ? "DEPLOY PREMIUM [->]"
-                  : "START_FREE [->]"}
-              </span>
-              <FontAwesomeIcon icon={faArrowRight} className="text-xs ml-1" />
-            </button>
-          </div>
-
-          {/* Barcode & Telemetry SKU Footer */}
-          <div className="mt-4 pt-2 border-t border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-between font-mono text-[9px] text-slate-400 dark:text-slate-500">
-            <span>// {config.sku}</span>
-            <span>CLEARANCE: LVL-0{id + 1}</span>
-          </div>
-        </div>
+        </button>
       </div>
     </div>
   );
 };
 
 const Pricing = () => {
-  const [currentVisible, setCurrentVisible] = useState(1);
-  const [isLargeScreen, setIsLargeScreen] = useState(true);
-  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState(1); // Default to Plus tier on mobile
   const auth = useSelector(getUserData);
+  const user = auth?.user;
+  const userPlan = user?.plan != null ? user.plan : 0;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useRouter();
   const dispatch = useDispatch();
 
-  // Sync theme with localStorage and document body
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      const isDark = savedTheme ? savedTheme === "dark" : true;
-      setDarkMode(isDark);
-      if (isDark) {
-        document.documentElement.classList.add("dark");
-        document.body.classList.add("dark");
-        document.documentElement.classList.remove("light");
-        document.body.classList.remove("light");
-      } else {
-        document.documentElement.classList.remove("dark");
-        document.body.classList.remove("dark");
-        document.documentElement.classList.add("light");
-        document.body.classList.add("light");
-      }
-    }
-
-    const handleStorage = () => {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme) {
-        setDarkMode(savedTheme === "dark");
-      }
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
-
-  const toggleTheme = (isDark) => {
-    setDarkMode(isDark);
-    const themeStr = isDark ? "dark" : "light";
-    localStorage.setItem("theme", themeStr);
-    window.dispatchEvent(new Event("storage"));
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      document.body.classList.add("dark");
-      document.documentElement.classList.remove("light");
-      document.body.classList.remove("light");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.body.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      document.body.classList.add("light");
-    }
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(
-        typeof window !== "undefined" && window.innerWidth >= 768
+      const logged = !!(
+        localStorage.getItem("UserJwtToken") ||
+        localStorage.getItem("UserEmail") ||
+        user?.email
       );
-    };
-    handleResize();
-    typeof window !== "undefined" &&
-      window.addEventListener("resize", handleResize);
-
-    return () => {
-      typeof window !== "undefined" &&
-        window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const nextPricingCard = () => {
-    if (currentVisible < 3) setCurrentVisible(currentVisible + 1);
-  };
-
-  const previousPricingCard = () => {
-    if (currentVisible > 1) setCurrentVisible(currentVisible - 1);
-  };
-
-  const openModal = (plan) => {
-    if (localStorage.getItem("UserEmail")) {
-      dispatch(setPaymentModal(true));
-      dispatch(setPlan(plan));
-    } else {
-      navigate.push("/solidity-shield-scan/auth");
+      setIsLoggedIn(logged);
     }
-  };
+  }, [user, navigate.asPath]);
 
-  const [user, setUser] = useState(auth?.user);
+  // Activate any pending plan saved prior to authentication
+  useEffect(() => {
+    if (typeof window !== "undefined" && isLoggedIn) {
+      const pendingPlan = localStorage.getItem("pendingPlan");
+      if (pendingPlan) {
+        localStorage.removeItem("pendingPlan");
+        const planNum = parseInt(pendingPlan, 10);
+        if (!isNaN(planNum) && planNum > 0) {
+          dispatch(setPlan(planNum));
+          dispatch(setPaymentModal(true));
+        }
+      }
+    }
+  }, [isLoggedIn, dispatch]);
 
   useEffect(() => {
     async function fetchUserData() {
       const jwt = typeof window !== "undefined" ? localStorage.getItem("UserJwtToken") : null;
-      if (!jwt) {
-        return; // Allow viewing pricing without login
-      }
+      if (!jwt) return;
       dispatch(setLoader(true));
       try {
-        const data = await getUser({ dispatch });
-        if (data) setUser(data);
+        await getUser({ dispatch });
       } catch (error) {
-        console.warn("Pricing: getUser network error, using cached data:", error.message);
+        console.warn("Pricing: getUser network error:", error.message);
       } finally {
         dispatch(setLoader(false));
       }
@@ -362,237 +306,199 @@ const Pricing = () => {
     }
   }, [user, dispatch]);
 
+  const [fromHome, setFromHome] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const isFromHome =
+        navigate.query?.from === "home" ||
+        searchParams.get("from") === "home" ||
+        navigate.asPath?.includes("from=home");
+      setFromHome(Boolean(isFromHome));
+    }
+  }, [navigate.query, navigate.asPath]);
+
+  const handlePlanAction = (planId) => {
+    const userJwt =
+      typeof window !== "undefined" ? localStorage.getItem("UserJwtToken") : null;
+    const userMail =
+      typeof window !== "undefined" ? localStorage.getItem("UserEmail") : null;
+    const isAuthed = !!(userJwt || userMail || user?.email || isLoggedIn);
+
+    if (!isAuthed) {
+      if (typeof window !== "undefined") {
+        localStorage.setItem("redirectAfterAuth", "/solidity-shield-scan/pricing");
+        if (planId > 0) {
+          localStorage.setItem("pendingPlan", String(planId));
+        }
+      }
+      navigate.push("/solidity-shield-scan/auth");
+      return;
+    }
+
+    // If authenticated and accessed from home page, redirect into Solidity Shield dashboard pricing tab
+    if (
+      fromHome ||
+      (typeof window !== "undefined" && window.location.search.includes("from=home"))
+    ) {
+      if (planId > 0) {
+        dispatch(setPlan(planId));
+        dispatch(setPaymentModal(true));
+      }
+      navigate.push("/solidity-shield-scan/pricing");
+      return;
+    }
+
+    // Already inside dashboard pricing tab
+    if (planId > 0) {
+      dispatch(setPaymentModal(true));
+      dispatch(setPlan(planId));
+    }
+  };
+
   return (
-    <div className={`sss-pricing-container ${darkMode ? "dark text-white" : "light text-slate-900"}`}>
+    <div className="min-h-screen w-full bg-[#0A1120] text-white selection:bg-[#12D576]/30 font-nunitoSans relative overflow-x-hidden">
       <MetaTags
         data={{
           title: "Solidity Shield Pricing — Smart Contract Audit Plans | SecureDApp",
-          desc: "Explore Solidity Shield’s pricing for blockchain security. Compare features and choose the plan that fits your needs with SecureDApp’s solutions.",
-          keywords:
-            "solidity shield pricing, smart contract audit cost, blockchain security plans, SecureDApp",
+          desc: "Compare Solidity Shield's security audit tiers. Instant activation, no hidden fees, cancel anytime.",
+          keywords: "solidity shield pricing, smart contract audit cost, blockchain security plans, SecureDApp",
           url: "https://securedapp.io/solidity-shield-scan/pricing",
         }}
       />
 
-      {/* Industrial Brutalist Header & Terminal Controls */}
-      <div className="flex flex-col items-center text-center pt-8 pb-4 px-4 max-w-5xl mx-auto font-mono">
-        {/* Mechanical Mode Switcher Pill */}
-        <div className="inline-flex items-center p-1 rounded-none border-2 border-slate-900 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-[3px_3px_0px_#0F172A] dark:shadow-[3px_3px_0px_#000000] mb-5">
-          <button
-            onClick={() => toggleTheme(false)}
-            className={`flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
-              !darkMode
-                ? "bg-[#22C55E] text-slate-950 shadow-sm"
-                : "text-slate-500 hover:text-white"
-            }`}
-          >
-            <span>[LIGHT_TERMINAL]</span>
-          </button>
-          <button
-            onClick={() => toggleTheme(true)}
-            className={`flex items-center gap-1.5 px-4 py-1.5 text-xs font-black uppercase tracking-wider transition-all cursor-pointer ${
-              darkMode
-                ? "bg-[#22C55E] text-slate-950 shadow-sm"
-                : "text-slate-600 hover:text-slate-900"
-            }`}
-          >
-            <span>[DARK_TERMINAL]</span>
-          </button>
+      {/* Cyber Ambient Glow Orbs (design.md 5.2) */}
+      <div className="absolute top-20 left-1/4 w-[480px] h-[350px] bg-[#12D576]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-40 right-1/4 w-[480px] h-[350px] bg-[#12D576]/5 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Top Navigation Bar - only show if accessed from home or if standalone */}
+      {(!isLoggedIn || fromHome) && (
+        <header className="w-full border-b border-[#1E293B] bg-[#0A1120]/80 backdrop-blur-md px-4 sm:px-8 py-3.5 flex items-center justify-between sticky top-0 z-50">
+          <div className="flex items-center min-h-[32px]">
+            {mounted && fromHome && (
+              <button
+                onClick={() => navigate.push("/")}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#8B93A7] hover:text-white transition-colors cursor-pointer py-1 px-2.5 rounded-lg hover:bg-[#131B2E]"
+                aria-label="Back to Homepage"
+              >
+                <span>&larr;</span>
+                <span>Back to Homepage</span>
+              </button>
+            )}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Link href="/" title="SecureDApp Home" className="hover:opacity-90 transition-opacity">
+              <Image
+                src="/assets/images/securedapp-logo-dark.svg"
+                alt="SecureDApp Logo"
+                width={130}
+                height={32}
+                priority
+                className="h-7 w-auto object-contain"
+              />
+            </Link>
+            {!isLoggedIn && (
+              <button
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    localStorage.setItem("redirectAfterAuth", "/solidity-shield-scan/pricing");
+                  }
+                  navigate.push("/solidity-shield-scan/auth");
+                }}
+                className="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-[#12D576] text-[#001938] hover:brightness-110 shadow-[0_0_15px_rgba(18,213,118,0.3)] transition-all cursor-pointer ml-2 font-outfit"
+              >
+                Sign In
+              </button>
+            )}
+          </div>
+        </header>
+      )}
+
+      {/* Main Container - Designed to fit seamlessly without scrolling */}
+      <main className="max-w-6xl mx-auto px-4 pt-8 pb-14 flex flex-col items-center relative z-10">
+        {/* Title & Subtitle */}
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[#12D576]/10 text-[#12D576] border border-[#12D576]/20 mb-3 shadow-sm font-outfit">
+            <span className="w-2 h-2 rounded-full bg-[#12D576] animate-pulse" />
+            <span>Solidity Shield Audit Plans</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-outfit tracking-tight leading-tight">
+            Simple, transparent plans for every builder
+          </h1>
+          <p className="text-sm sm:text-base text-[#8B93A7] mt-3 font-nunitoSans leading-relaxed">
+            Instant credit activation • Automated AST & AI detection • Cancel anytime
+          </p>
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 font-mono text-[11px] font-black uppercase tracking-widest text-[#16A34A] dark:text-[#22C55E] border border-[#16A34A]/40 dark:border-[#22C55E]/40 mb-3 bg-emerald-500/10">
-          <span>// HARDWARE_SECURITY_TIERS</span>
-        </div>
-
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-slate-950 dark:text-white tracking-tight uppercase">
-          SOLIDITY_SHIELD // PRICING_MATRIX
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-[#8B93A7] max-w-2xl mt-3 font-mono leading-relaxed uppercase tracking-wide">
-          // CONTINUOUS_EVM_SMART_CONTRACT_SECURITY // SELECT_TIER_TO_DEPLOY
-        </p>
-
-        {/* Industrial System Readouts */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-5 font-mono text-xs text-slate-600 dark:text-slate-400 font-bold uppercase">
-          <div className="flex items-center gap-1.5">
-            <span className="text-emerald-500">[✓]</span> ZERO_CODE_RETENTION
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-emerald-500">[✓]</span> AST_STATIC_ENGINE
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-emerald-500">[✓]</span> 1-CLICK_CANCEL_ANYTIME
-          </div>
-        </div>
-      </div>
-
-      <div className="sss-pricing-plans-scrollable w-full">
-        <div className="sss-pricing-plans">
-          <div className="sss-pricing-plan-headers">
-            <div className="sss-pricing-plan-headers-cards">
-              {/* Feature Briefing Card (Desktop Column 1) */}
-              <div className="sss-pricing-plan-headers-card-container hidden md:flex flex-col justify-between p-6 industrial-card">
-                <span className="crosshair-tl text-slate-400 dark:text-slate-600">+</span>
-                <span className="crosshair-tr text-slate-400 dark:text-slate-600">+</span>
-                <span className="crosshair-bl text-slate-400 dark:text-slate-600">+</span>
-                <span className="crosshair-br text-slate-400 dark:text-slate-600">+</span>
-                <div>
-                  <div className="font-mono text-[10px] font-black uppercase tracking-widest text-[#16A34A] dark:text-[#22C55E] border-b border-slate-200 dark:border-slate-800 pb-2 mb-3">
-                    [ SYS // SPECIFICATION_MATRIX ]
-                  </div>
-                  <div className="text-xl font-black font-mono text-slate-950 dark:text-white tracking-tight uppercase">
-                    FEATURE COMPARISON
-                  </div>
-                  <div className="font-mono text-xs text-slate-500 dark:text-[#8B93A7] mt-2 leading-relaxed">
-                    Audit volume, vulnerability depth, and GitHub third-party certification across tiers.
-                  </div>
-                  <div className="mt-6 p-4 border-2 border-dashed border-slate-300 dark:border-slate-700 font-mono text-xs space-y-2">
-                    <div className="font-bold text-slate-950 dark:text-white">[ AUDIT_PRECISION ]</div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">
-                      AST + Slither + AI super spotters tailored for high-stakes EVM deployment.
-                    </div>
-                  </div>
-                </div>
-                <div className="pt-6 border-t-2 border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
-                  <span>FULL_MATRIX_BELOW</span>
-                  <span className="text-emerald-500 font-bold text-sm">[v]</span>
-                </div>
-              </div>
-
-              {/* The Three Industrial Brutalist Pricing Cards */}
-              {pricingDetails.map((detail, cardIndex) => {
-                return (
-                  detail.pricingCard.planType &&
-                  (isLargeScreen || currentVisible === cardIndex) && (
-                    <div key={cardIndex} className="sss-pricing-plan-headers-card-container">
-                      <PricingPlanCard
-                        icon={detail.pricingCard.icon}
-                        planType={detail.pricingCard.planType}
-                        price={detail.pricingCard.price}
-                        description={detail.pricingCard.description}
-                        details={detail.details}
-                        onClick={() =>
-                          detail.id > 0
-                            ? openModal(detail.id)
-                            : navigate.push("/solidity-shield-scan/auth")
-                        }
-                        id={detail.id}
-                      />
-                      <div className="sss-pricing-card-changer-buttons text-slate-500 dark:text-[#8B93A7]">
-                        <div
-                          onClick={previousPricingCard}
-                          className="sss-pricing-card-changer-button-container cursor-pointer"
-                        >
-                          <FontAwesomeIcon
-                            className="sss-pricing-card-changer-button"
-                            icon={faChevronLeft}
-                          />
-                        </div>
-                        <div
-                          onClick={nextPricingCard}
-                          className="sss-pricing-card-changer-button-container cursor-pointer"
-                        >
-                          <FontAwesomeIcon
-                            className="sss-pricing-card-changer-button"
-                            icon={faChevronRight}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Feature Matrix / Comparison Table */}
-          <div className="sss-pricing-plan-body">
-            <div className="sss-pricing-plan-details-container">
-              {pricingDetails.map((detail, planIndex) => {
-                return (
-                  (isLargeScreen ||
-                    currentVisible === planIndex ||
-                    planIndex === 0) && (
-                    <div key={planIndex} className="sss-pricing-plan-detail-row">
-                      {Object.keys(detail.details).map((feature) => {
-                        return (
-                          <div key={feature} className="sss-pricing-plan-detail-row-value-container">
-                            <div
-                              className={`sss-pricing-plan-detail-row-value ${
-                                planIndex === 0 &&
-                                "sss-pricing-plan-detail-row-value-first font-mono"
-                              }`}
-                            >
-                              {detail.details[feature].value === "TICK" ? (
-                                <span className="font-mono font-black text-sm text-[#16A34A] dark:text-[#22C55E]">
-                                  [✓]
-                                </span>
-                              ) : detail.details[feature].value === "DASH" ? (
-                                <span className="font-mono text-slate-400 dark:text-slate-600 font-bold text-sm">
-                                  [—]
-                                </span>
-                              ) : (
-                                <span
-                                  className="font-mono text-xs text-slate-700 dark:text-slate-200"
-                                  dangerouslySetInnerHTML={{ __html: detail.details[feature].value }}
-                                />
-                              )}
-                              {detail.details[feature].info && (
-                                <div className="sss-pricing-plan-detail-row-info-container group">
-                                  <div className="w-4 h-4 rounded-none border border-slate-400 dark:border-slate-600 bg-slate-200/80 dark:bg-white/10 text-slate-700 dark:text-slate-300 flex items-center justify-center text-[10px] font-mono font-bold ml-1 cursor-help">
-                                    ?
-                                  </div>
-                                  <div className="sss-pricing-plan-detail-row-info font-mono">
-                                    <div className="font-bold text-slate-900 dark:text-white">
-                                      <span dangerouslySetInnerHTML={{ __html: detail.details[feature].value }} />
-                                    </div>
-                                    <div className="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">
-                                      {detail.details[feature].info}
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Enterprise Custom Solution Banner */}
-      <div className="sss-pricing-plan-footer mt-14">
-        <div className="industrial-card p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto relative">
-          <span className="crosshair-tl text-slate-400 dark:text-slate-600">+</span>
-          <span className="crosshair-tr text-slate-400 dark:text-slate-600">+</span>
-          <span className="crosshair-bl text-slate-400 dark:text-slate-600">+</span>
-          <span className="crosshair-br text-slate-400 dark:text-slate-600">+</span>
-          <div>
-            <div className="inline-block px-2 py-0.5 font-mono text-[10px] font-black uppercase tracking-widest bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border border-cyan-500/40 mb-2">
-              [ ENTERPRISE // PROTOCOL_LEVEL ]
-            </div>
-            <div className="text-xl md:text-2xl font-black font-mono text-slate-950 dark:text-white uppercase tracking-tight">
-              NEED A CUSTOM SECURITY PIPELINE?
-            </div>
-            <div className="font-mono text-xs text-slate-600 dark:text-[#8B93A7] mt-1.5 max-w-xl leading-relaxed">
-              Custom CI/CD scanning runners, dedicated audit engineer retainers, white-label PDF generation, and multi-contract team volume.
-            </div>
-          </div>
-          <div className="sas-pricing-plan-footer-button-container flex-shrink-0">
+        {/* Mobile 3-Tab Switcher */}
+        <div className="flex md:hidden items-center justify-center p-1 rounded-full bg-[#131B2E] backdrop-blur-md border border-[#1E293B] mb-6 w-full max-w-xs">
+          {planConfigs.map((p, idx) => (
             <button
-              className="industrial-btn industrial-btn-primary px-8 py-3.5 text-xs sm:text-sm font-black cursor-pointer"
-              onClick={() => navigate.push("/solidity-shield-scan/support")}
+              key={idx}
+              onClick={() => setActiveTab(idx)}
+              className={`flex-1 py-2 text-xs font-semibold rounded-full transition-all cursor-pointer font-outfit ${
+                activeTab === idx
+                  ? "bg-[#12D576] text-[#001938] shadow-md font-bold"
+                  : "text-[#8B93A7] hover:text-white"
+              }`}
             >
-              CONTACT_SECURITY_TEAM [-&gt;]
+              {p.planType}
+            </button>
+          ))}
+        </div>
+
+        {/* 3 Plan Cards Container */}
+        <div className="w-full">
+          {/* Desktop 3-Column Grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch w-full">
+            {planConfigs.map((plan) => (
+              <PricingPlanCard
+                key={plan.id}
+                planConfig={plan}
+                userPlan={userPlan}
+                onAction={handlePlanAction}
+                isLoggedIn={isLoggedIn}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Single Tab Card */}
+          <div className="block md:hidden w-full max-w-sm mx-auto">
+            <PricingPlanCard
+              planConfig={planConfigs[activeTab]}
+              userPlan={userPlan}
+              onAction={handlePlanAction}
+              isLoggedIn={isLoggedIn}
+            />
+          </div>
+        </div>
+
+        {/* Custom Enterprise Banner */}
+        <div className="w-full mt-10">
+          <div className="rounded-3xl p-6 sm:p-7 bg-[#0F1729] backdrop-blur-xl border border-[#1E293B] flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+            <div>
+              <div className="text-base sm:text-lg font-bold text-white font-outfit">
+                Need custom protocol audits or dedicated retainer volume?
+              </div>
+              <p className="text-xs sm:text-sm text-[#8B93A7] font-nunitoSans mt-1">
+                Multi-contract pools, private CI/CD runners, and 1-on-1 auditor consultations.
+              </p>
+            </div>
+            <button
+              onClick={() => navigate.push("/solidity-shield-scan/support")}
+              className="px-6 py-3 rounded-2xl bg-[#131B2E] hover:bg-[#1A243B] text-white font-semibold text-xs sm:text-sm border border-[#2A3548] hover:border-[#12D576]/50 transition-all hover:scale-105 active:scale-95 cursor-pointer flex-shrink-0"
+            >
+              Contact security team &rarr;
             </button>
           </div>
         </div>
-        <Footer />
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };

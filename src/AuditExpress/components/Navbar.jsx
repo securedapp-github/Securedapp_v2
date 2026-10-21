@@ -54,15 +54,25 @@ const Navbar = () => {
   };
 
   const setModeDark = () => {
+    document.documentElement.classList.add("dark");
     document.body.classList.add("dark");
     dispatch(setDarkMode(true));
     localStorage.theme = "dark";
+    localStorage.setItem("theme", "dark");
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("storage"));
+    }
   };
 
   const setModeLight = () => {
+    document.documentElement.classList.remove("dark");
     document.body.classList.remove("dark");
     dispatch(setDarkMode(false));
     localStorage.theme = "light";
+    localStorage.setItem("theme", "light");
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("storage"));
+    }
   };
 
   const toggleTheme = () => {

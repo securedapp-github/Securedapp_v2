@@ -92,10 +92,14 @@ const IssuesChart = () => {
 
   useEffect(() => {
     async function fetch() {
-      await getIssuesChartData({
-        dispatch,
-        email: localStorage.getItem("UserEmail"),
-      });
+      try {
+        await getIssuesChartData({
+          dispatch,
+          email: localStorage.getItem("UserEmail"),
+        });
+      } catch (err) {
+        console.warn("Failed to load issues chart data:", err);
+      }
     }
     fetch();
   }, []);

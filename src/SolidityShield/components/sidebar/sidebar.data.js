@@ -28,6 +28,11 @@ export const sidebarItems = [
   //   to: "audit-certificate",
   // },
   {
+    image: AuditCertificateLogo,
+    name: "Pricing",
+    to: "pricing",
+  },
+  {
     image: PaymentsLogo,
     name: "Billing",
     to: "billing",
