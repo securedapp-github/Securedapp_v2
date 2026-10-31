@@ -97,7 +97,7 @@ export default function NBFCConsentPage() {
                 />
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management Platform for <span className="text-tertiary">NBFCs in India</span>
               </h1>
               
@@ -192,7 +192,7 @@ export default function NBFCConsentPage() {
               Harmonizing the DPDP Act 2023 & RBI Digital Lending Directions 2025
             </h2>
             <p className="text-sm text-labelGray dark:text-gray-300 mt-2 font-nunitoSans">
-              Lenders cannot simply rely on a generic privacy policy checkbox. Both DPDP and RBI rules mandate strict operational controls.
+              Lenders cannot simply rely on a generic privacy policy checkbox. Both DPDP and RBI rules mandate strict operational controls. Borrower consent from loan apps, DSAs and branches is recorded in one ledger through SecureCMS, our <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">platform for consent management under the DPDP Act</Link>.
             </p>
           </div>
 

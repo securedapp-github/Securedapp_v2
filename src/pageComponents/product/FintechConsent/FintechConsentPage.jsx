@@ -99,7 +99,7 @@ export default function FintechConsentPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management Platform for <span className="text-tertiary">Fintech Companies</span>
               </h1>
               
@@ -196,7 +196,7 @@ export default function FintechConsentPage() {
               Section 7 Legitimate Use vs Section 6 Mandatory Consent
             </h2>
             <p className="text-base text-secondary/80 dark:text-gray-300 mt-3 font-nunitoSans leading-relaxed">
-              The DPDP Act does not force you to prompt users for basic payments. Here is how statutory processing splits across fintech touchpoints.
+              The DPDP Act does not force you to prompt users for basic payments. Here is how statutory processing splits across fintech touchpoints. Each product a user opts into is logged as a separate purpose in our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link>, so withdrawing from loan offers leaves payment processing untouched.
             </p>
           </div>
 

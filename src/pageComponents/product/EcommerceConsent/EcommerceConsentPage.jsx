@@ -158,7 +158,7 @@ export default function EcommerceConsentPage() {
               </div>
 
               {/* H1 Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management Platform for <span className="text-tertiary">Ecommerce and D2C Brands</span>
               </h1>
 
@@ -289,7 +289,7 @@ export default function EcommerceConsentPage() {
                     </span>
                     <span className="text-tertiary font-mono">100% Operational</span>
                   </div>
-                  <div className="grid grid-cols-4 gap-1.5 text-[10px] text-center font-mono">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] text-center font-mono">
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">CRM</span>
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">WhatsApp</span>
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">Meta Ads</span>
@@ -352,7 +352,7 @@ export default function EcommerceConsentPage() {
               What is a Consent Management Platform for Ecommerce?
             </h2>
             <p className="mt-4 text-base sm:text-lg text-labelGray dark:text-gray-300 font-nunitoSans leading-relaxed">
-              A consent management platform for ecommerce is software that records what each shopper has agreed to, such as marketing on WhatsApp, email, SMS or push, personalised recommendations and sharing data with partners. It shows consent screens at the right moment, sends opt-outs to every marketing tool in real time and keeps tamper-proof records for DPDP audits.
+              A consent management platform for ecommerce is software that records what each shopper has agreed to, such as marketing on WhatsApp, email, SMS or push, personalised recommendations and sharing data with partners. It shows consent screens at the right moment, sends opt-outs to every marketing tool in real time and keeps tamper-proof records for DPDP audits. Online stores run on the same DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> layer we use across industries, with checkout, cookie and WhatsApp consent kept in one record.
             </p>
             <p className="mt-3 text-base text-labelGray dark:text-gray-300 font-nunitoSans leading-relaxed">
               An online store collects personal data in far more places than a brochure website does. A mobile number arrives at sign-up, an address at checkout, a photo in a review and a chat message on WhatsApp. Each use can need its own consent. SecureCMS keeps one record per shopper and answers a single question for every tool you run: <em>is this message, or this use of data, allowed right now?</em>
@@ -365,7 +365,7 @@ export default function EcommerceConsentPage() {
               <GitBranch className="w-5 h-5 text-tertiary" />
               Shopper Consent Architecture: Store ➔ SecureCMS ➔ Tech Stack
             </h3>
-            <div className="grid md:grid-cols-5 gap-4 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 text-center">
               {[
                 { title: "1. Shopper Action", desc: "Browsing, cart checkout, sign-up, or WhatsApp click" },
                 { title: "2. Online Store / App", desc: "Shopify, custom Next.js, Android or iOS app" },

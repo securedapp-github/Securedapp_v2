@@ -153,11 +153,8 @@ const ChatWidget = ({
       // ignore localStorage errors
     }
 
-    const timer = setTimeout(() => {
-      setOpen(true);
-    }, 1200);
-
-    return () => clearTimeout(timer);
+    // Do NOT auto-pop the chat widget unprompted to avoid high Cumulative Layout Shift (CLS)
+    // The user can open it deliberately via the floating shield launcher button.
   }, []);
 
   // Validation helpers
@@ -956,7 +953,7 @@ const ChatWidget = ({
                         fontSize: 15,
                         fontFamily: "inherit",
                       }}
-                      autoFocus
+                      autoFocus={false}
                     />
                     
                     <label

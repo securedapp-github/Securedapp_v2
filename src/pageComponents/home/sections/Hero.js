@@ -35,7 +35,7 @@ const HeroSwiper = dynamic(() => import("./HeroSwiper"), {
           style={{
             borderRadius: "15px",
             maxWidth: "600px",
-            aspectRatio: "3 / 2",
+            aspectRatio: "2 / 1",
             width: "100%",
             height: "auto",
           }}
@@ -43,7 +43,7 @@ const HeroSwiper = dynamic(() => import("./HeroSwiper"), {
           src={images[0].src}
           alt={images[0].alt}
           width={600}
-          height={400}
+          height={300}
           priority={true}
           fetchPriority="high"
           loading="eager"

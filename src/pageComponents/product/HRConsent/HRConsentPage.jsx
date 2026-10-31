@@ -121,7 +121,7 @@ export default function HRConsentPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Employee Consent Management Under the <span className="text-tertiary">DPDP Act</span>
               </h1>
               
@@ -267,7 +267,7 @@ export default function HRConsentPage() {
               Hire to Exit: Legitimate Use vs Consent Across the Employee Lifecycle
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 font-nunitoSans">
-              Every stage of the employee lifecycle requires exact lawful classification to avoid regulatory scrutiny under the DPDP Act.
+              Every stage of the employee lifecycle requires exact lawful classification to avoid regulatory scrutiny under the DPDP Act. Where consent is needed, such as for dependants’ data or keeping rejected CVs, it is captured and logged with our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> tools.
             </p>
           </div>
 

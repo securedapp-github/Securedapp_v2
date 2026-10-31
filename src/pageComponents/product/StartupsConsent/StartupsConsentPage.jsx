@@ -119,7 +119,7 @@ export default function StartupsConsentPage() {
               </div>
 
               {/* H1 */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management Platform for <span className="text-tertiary">Startups</span>
               </h1>
 
@@ -224,7 +224,7 @@ export default function StartupsConsentPage() {
                   Why Startups Need a Consent Management Platform
                 </h2>
                 <p className="text-base sm:text-lg text-secondary/80 dark:text-gray-300 leading-relaxed font-nunitoSans">
-                  A consent management platform gives a startup the pieces the DPDP Act expects: a clear notice, purpose-specific consent, easy withdrawal, rights requests and records, without building each one from scratch. For a small team running on many third-party tools, it also stops analytics and marketing tools from using data that users haven&rsquo;t agreed to.
+                  A consent management platform gives a startup the pieces the DPDP Act expects: a clear notice, purpose-specific consent, easy withdrawal, rights requests and records, without building each one from scratch. For a small team running on many third-party tools, it also stops analytics and marketing tools from using data that users haven&rsquo;t agreed to. Our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> gives you notices, opt-ins, withdrawals and rights requests without hiring a privacy team.
                 </p>
                 <p className="text-sm sm:text-base text-labelGray dark:text-gray-300 leading-relaxed font-nunitoSans">
                   Think about a normal early-stage setup. One sign-up form feeds your CRM, a WhatsApp Business account, an analytics SDK, an ad pixel and a payment gateway. When a user says no to marketing, that &ldquo;no&rdquo; has to reach every one of those tools. Doing it by hand is fine at 200 users and a mess at 20,000. A platform handles it once, in one place, and keeps the proof an investor or enterprise buyer will ask for.

@@ -155,7 +155,7 @@ export default function SaaSConsentPage() {
                 />
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 DPDP Compliance for <span className="text-tertiary">SaaS Companies</span>
               </h1>
               
@@ -302,7 +302,7 @@ export default function SaaSConsentPage() {
               Data Fiduciary vs Data Processor Across SaaS Workloads
             </h2>
             <p className="text-sm text-labelGray dark:text-gray-300 mt-2 font-nunitoSans">
-              Correctly assigning legal roles is critical: fiduciaries bear direct user rights duties, while processors are bound by contract.
+              Correctly assigning legal roles is critical: fiduciaries bear direct user rights duties, while processors are bound by contract. When you act as a Data Fiduciary for your own users, our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> APIs handle notice, opt-in and withdrawal inside your product.
             </p>
           </div>
 

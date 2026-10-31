@@ -60,7 +60,7 @@ export function EcommerceDemoModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-lg bg-primary dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8 text-secondary dark:text-white font-outfit">
+      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-primary dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl p-6 sm:p-8 text-secondary dark:text-white font-outfit">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 text-labelGray hover:text-secondary dark:hover:text-white transition-colors rounded-lg"
@@ -238,7 +238,7 @@ export function EcommerceChecklistModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-md bg-primary dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl p-6 sm:p-7 text-secondary dark:text-white font-outfit">
+      <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto bg-primary dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl p-6 sm:p-7 text-secondary dark:text-white font-outfit">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 text-labelGray hover:text-secondary dark:hover:text-white transition-colors rounded-lg"

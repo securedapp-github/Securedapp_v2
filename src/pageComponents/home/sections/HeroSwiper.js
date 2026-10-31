@@ -26,7 +26,7 @@ const HeroSwiper = ({ images, onNavigate }) => {
                 style={{
                   borderRadius: "15px",
                   maxWidth: "600px",
-                  aspectRatio: "3 / 2",
+                  aspectRatio: "2 / 1",
                   width: "100%",
                   height: "auto",
                 }}
@@ -34,7 +34,7 @@ const HeroSwiper = ({ images, onNavigate }) => {
                 src={image.src}
                 alt={image.alt}
                 width={600}
-                height={400}
+                height={300}
                 priority={index === 0}
                 fetchPriority={index === 0 ? "high" : "low"}
                 loading={index === 0 ? "eager" : "lazy"}

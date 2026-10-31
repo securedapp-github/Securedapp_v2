@@ -97,7 +97,7 @@ export default function HealthcareConsentPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Patient Consent Management System for <span className="text-tertiary">Hospitals in India</span>
               </h1>
               
@@ -225,6 +225,9 @@ export default function HealthcareConsentPage() {
                   Digital Data Governance
                 </span>
               </div>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-4 font-nunitoSans leading-relaxed">
+                Patient data consent under the DPDP Act is handled by our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link>, separate from the clinical consent forms your doctors already use.
+              </p>
               <ul className="space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-nunitoSans">
                 <li>• <strong>Governing Authority:</strong> Digital Personal Data Protection Act 2023 & DPDP Rules 2025.</li>
                 <li>• <strong>Scope:</strong> Sharing records with insurance TPAs, research studies, external labs, and WhatsApp reminders.</li>

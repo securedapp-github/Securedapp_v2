@@ -173,7 +173,7 @@ export default function TelecomConsentPage() {
               </div>
 
               {/* Main Display Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-outfit tracking-tight text-secondary dark:text-white leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-outfit tracking-tight text-secondary dark:text-white leading-[1.1]">
                 Consent Management for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-tertiary via-emerald-400 to-teal-400">
                   Telecom &amp; ISPs
@@ -350,7 +350,7 @@ export default function TelecomConsentPage() {
               What is consent management for telecom and ISPs?
             </h2>
             <p className="mt-4 text-base font-nunitoSans text-labelGray dark:text-gray-300 leading-relaxed">
-              Consent management for telecom and ISPs is how an internet service provider records what each subscriber has agreed to beyond running their connection, such as marketing offers, OTT bundle sharing and usage analytics. SecureCMS, the consent management platform by SecureDApp, keeps these purposes separate from the KYC, log retention and interception duties your licence already requires, checks consent before data is used, and keeps tamper-proof records for DPDP audits.
+              Consent management for telecom and ISPs is how an internet service provider records what each subscriber has agreed to beyond running their connection, such as marketing offers, OTT bundle sharing and usage analytics. SecureCMS, the consent management platform by SecureDApp, keeps these purposes separate from the KYC, log retention and interception duties your licence already requires, checks consent before data is used, and keeps tamper-proof records for DPDP audits. SecureCMS brings our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> engine to subscriber journeys across retail stores, franchisees, apps and customer care.
             </p>
           </div>
 

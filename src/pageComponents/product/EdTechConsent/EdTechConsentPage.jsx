@@ -115,7 +115,7 @@ export default function EdTechConsentPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left Content (7 Cols) */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -125,14 +125,14 @@ export default function EdTechConsentPage() {
             >
               {/* Live DPDP 13 May 2027 Countdown Timer */}
               <div className="w-full max-w-2xl">
-                <DPDPLiveCountdownTimer 
-                  label="Core DPDP Enforcement: 13 May 2027" 
-                  sublabel="Verifiable Parental Consent & Child Protection" 
+                <DPDPLiveCountdownTimer
+                  label="Core DPDP Enforcement: 13 May 2027"
+                  sublabel="Verifiable Parental Consent & Child Protection"
                 />
               </div>
 
               {/* H1 Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management for <span className="text-tertiary">EdTech Platforms and Schools</span>
               </h1>
 
@@ -223,7 +223,7 @@ export default function EdTechConsentPage() {
                     </span>
                     <span className="text-tertiary font-mono">100% Protected</span>
                   </div>
-                  <div className="grid grid-cols-4 gap-1.5 text-[10px] text-center font-mono">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] text-center font-mono">
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">LMS Core</span>
                     <span className="p-1 rounded bg-red-500/15 text-red-400 font-bold">No Ads</span>
                     <span className="p-1 rounded bg-red-500/15 text-red-400 font-bold">No Pixels</span>
@@ -259,7 +259,7 @@ export default function EdTechConsentPage() {
               What is Consent Management for EdTech?
             </h2>
             <p className="mt-4 text-base sm:text-lg text-labelGray dark:text-gray-300 font-nunitoSans leading-relaxed">
-              Consent management for edtech is how a learning platform or school records permission to use a learner's personal data. For learners under 18, that permission comes from a parent or lawful guardian. Once the learner turns 18, it comes from the learner. A consent management platform keeps each purpose separate, checks consent before data is used and lets parents change their choices at any time.
+              Consent management for edtech is how a learning platform or school records permission to use a learner's personal data. For learners under 18, that permission comes from a parent or lawful guardian. Once the learner turns 18, it comes from the learner. A consent management platform keeps each purpose separate, checks consent before data is used and lets parents change their choices at any time. Parental verification, child accounts and the move to adult consent at 18 all run on our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> software.
             </p>
             <p className="mt-3 text-base text-labelGray dark:text-gray-300 font-nunitoSans leading-relaxed">
               Picture a Class 10 student signing up for a maths app. One tap should not quietly feed an analytics SDK, a marketing list and a counsellor's calling sheet. Those are three purposes, and each one needs its own yes from the parent.
@@ -271,7 +271,7 @@ export default function EdTechConsentPage() {
               <School className="w-5 h-5 text-tertiary" />
               EdTech Consent Architecture: Parent / Learner ➔ App ➔ SecureCMS ➔ Tech Stack
             </h3>
-            <div className="grid md:grid-cols-5 gap-4 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 text-center">
               {[
                 { title: "1. Parent or Learner", desc: "Age-verified sign-up & purposeful authorization" },
                 { title: "2. App / School Portal", desc: "Native iOS/Android SDK, web app or school ERP" },
@@ -535,9 +535,8 @@ export default function EdTechConsentPage() {
                     {faq.name}
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-tertiary shrink-0 transition-transform duration-200 ${
-                      openFaq === idx ? "rotate-180" : ""
-                    }`}
+                    className={`w-5 h-5 text-tertiary shrink-0 transition-transform duration-200 ${openFaq === idx ? "rotate-180" : ""
+                      }`}
                   />
                 </button>
                 <AnimatePresence>
