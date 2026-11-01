@@ -97,7 +97,7 @@ export default function InsuranceConsentPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management for <span className="text-tertiary">Insurance Companies</span>
               </h1>
               
@@ -192,7 +192,7 @@ export default function InsuranceConsentPage() {
               Consent Mapping Across the Insurance Lifecycle
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 font-nunitoSans">
-              From proposal submission to claim settlement and policy lapse, here is how statutory data rights are enforced.
+              From proposal submission to claim settlement and policy lapse, here is how statutory data rights are enforced. Consent captured by agents, bancassurance partners and digital journeys feeds one record in our <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform for DPDP compliance</Link>.
             </p>
           </div>
 

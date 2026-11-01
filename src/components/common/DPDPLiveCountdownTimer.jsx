@@ -36,7 +36,7 @@ export default function DPDPLiveCountdownTimer({
   return (
     <div
       suppressHydrationWarning
-      className={`inline-flex items-center justify-between gap-3 sm:gap-4 relative overflow-hidden rounded-full bg-[#030d18]/90 border border-emerald-500/25 px-3.5 sm:px-4 py-1.5 sm:py-2 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.6),0_0_20px_-4px_rgba(18,213,118,0.18)] backdrop-blur-xl transition-all hover:border-emerald-400/40 font-outfit text-white max-w-full whitespace-nowrap select-none ${className}`}
+      className={`inline-flex items-center justify-between gap-2 sm:gap-4 relative overflow-hidden rounded-full bg-[#030d18]/90 border border-emerald-500/25 px-2.5 sm:px-4 py-1.5 sm:py-2 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.6),0_0_20px_-4px_rgba(18,213,118,0.18)] backdrop-blur-xl transition-all hover:border-emerald-400/40 font-outfit text-white max-w-full whitespace-nowrap select-none ${className}`}
     >
       {/* Top Subtle Curved Sheen */}
       <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent pointer-events-none" />
@@ -45,7 +45,7 @@ export default function DPDPLiveCountdownTimer({
       <div className="absolute -top-6 left-1/4 w-32 h-12 bg-emerald-500/15 rounded-full blur-xl pointer-events-none" />
 
       {/* Left: Radar Live Dot + Title */}
-      <div className="relative z-10 flex items-center space-x-2 sm:space-x-2.5 flex-shrink-0">
+      <div className="relative z-10 flex items-center space-x-1.5 sm:space-x-2.5 flex-shrink-0">
         {/* Radar Beacon */}
         <div className="relative flex h-2 w-2 items-center justify-center flex-shrink-0">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -53,13 +53,15 @@ export default function DPDPLiveCountdownTimer({
         </div>
 
         {/* LIVE Badge */}
-        <span className="text-[9px] font-mono font-extrabold tracking-wider uppercase text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 shadow-[0_0_8px_rgba(18,213,118,0.2)]">
+        <span className="hidden sm:inline-block text-[9px] font-mono font-extrabold tracking-wider uppercase text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 shadow-[0_0_8px_rgba(18,213,118,0.2)]">
           LIVE
         </span>
 
         {/* Headline */}
-        <div className="flex items-center space-x-1.5 text-xs sm:text-[13px] font-medium text-gray-200">
-          <span className="text-gray-300">Core DPDP Enforcement:</span>
+        <div className="flex items-center space-x-1 text-[11px] sm:text-[13px] font-medium text-gray-200">
+          <span className="text-gray-300">
+            <span className="hidden sm:inline">Core </span>DPDP<span className="hidden md:inline"> Enforcement</span>:
+          </span>
           <span className="font-extrabold text-white tracking-tight bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
             13 May 2027
           </span>
@@ -67,61 +69,61 @@ export default function DPDPLiveCountdownTimer({
       </div>
 
       {/* Hairline Vertical Divider */}
-      <div className="h-4 w-[1px] bg-white/15 flex-shrink-0 relative z-10 mx-0.5 sm:mx-1" />
+      <div className="h-3.5 sm:h-4 w-[1px] bg-white/15 flex-shrink-0 relative z-10 mx-0.5 sm:mx-1" />
 
       {/* Right: Precision Chrono Pods */}
       <div
         suppressHydrationWarning
-        className="relative z-10 flex items-center space-x-1 sm:space-x-1.5 font-mono text-xs flex-shrink-0"
+        className="relative z-10 flex items-center space-x-0.5 sm:space-x-1.5 font-mono text-[11px] sm:text-xs flex-shrink-0"
       >
         {/* Days */}
-        <div className="flex items-baseline space-x-1 px-2 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+        <div className="flex items-baseline space-x-0.5 sm:space-x-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
           <span
             suppressHydrationWarning
-            className="font-bold text-xs sm:text-[13px] text-white tabular-nums tracking-tight"
+            className="font-bold text-[11px] sm:text-[13px] text-white tabular-nums tracking-tight"
           >
             {timeLeft.days}
           </span>
-          <span className="text-[8px] font-bold text-gray-400 uppercase">D</span>
+          <span className="text-[7px] sm:text-[8px] font-bold text-gray-400 uppercase">D</span>
         </div>
 
-        <span className="text-gray-500 font-bold select-none text-[10px]">:</span>
+        <span className="text-gray-500 font-bold select-none text-[8px] sm:text-[10px]">:</span>
 
         {/* Hours */}
-        <div className="flex items-baseline space-x-1 px-2 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+        <div className="flex items-baseline space-x-0.5 sm:space-x-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
           <span
             suppressHydrationWarning
-            className="font-bold text-xs sm:text-[13px] text-white tabular-nums tracking-tight"
+            className="font-bold text-[11px] sm:text-[13px] text-white tabular-nums tracking-tight"
           >
             {timeLeft.hours}
           </span>
-          <span className="text-[8px] font-bold text-gray-400 uppercase">H</span>
+          <span className="text-[7px] sm:text-[8px] font-bold text-gray-400 uppercase">H</span>
         </div>
 
-        <span className="text-gray-500 font-bold select-none text-[10px]">:</span>
+        <span className="text-gray-500 font-bold select-none text-[8px] sm:text-[10px]">:</span>
 
         {/* Mins */}
-        <div className="flex items-baseline space-x-1 px-2 py-1 rounded-lg bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+        <div className="flex items-baseline space-x-0.5 sm:space-x-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
           <span
             suppressHydrationWarning
-            className="font-bold text-xs sm:text-[13px] text-white tabular-nums tracking-tight"
+            className="font-bold text-[11px] sm:text-[13px] text-white tabular-nums tracking-tight"
           >
             {timeLeft.minutes}
           </span>
-          <span className="text-[8px] font-bold text-gray-400 uppercase">M</span>
+          <span className="text-[7px] sm:text-[8px] font-bold text-gray-400 uppercase">M</span>
         </div>
 
-        <span className="text-gray-500 font-bold select-none text-[10px]">:</span>
+        <span className="text-gray-500 font-bold select-none text-[8px] sm:text-[10px]">:</span>
 
         {/* Secs (Active Emerald Glow) */}
-        <div className="flex items-baseline space-x-1 px-2 py-1 rounded-lg bg-emerald-500/15 border border-emerald-400/50 shadow-[0_0_12px_rgba(18,213,118,0.3)]">
+        <div className="flex items-baseline space-x-0.5 sm:space-x-1 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md sm:rounded-lg bg-emerald-500/15 border border-emerald-400/50 shadow-[0_0_12px_rgba(18,213,118,0.3)]">
           <span
             suppressHydrationWarning
-            className="font-extrabold text-xs sm:text-[13px] text-emerald-300 tabular-nums tracking-tight animate-pulse"
+            className="font-extrabold text-[11px] sm:text-[13px] text-emerald-300 tabular-nums tracking-tight animate-pulse"
           >
             {timeLeft.seconds}
           </span>
-          <span className="text-[8px] font-extrabold text-emerald-400 uppercase">S</span>
+          <span className="text-[7px] sm:text-[8px] font-extrabold text-emerald-400 uppercase">S</span>
         </div>
       </div>
     </div>

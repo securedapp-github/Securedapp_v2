@@ -26,7 +26,14 @@ const Testimonials = ({ reviews }) => {
 
   const Testimonial = ({ id, reviewer, designation, reviewText }) => {
     return (
-      <div className={`testimonial-card ${active === id && "selected-card"}`}>
+      <div
+        onClick={() => {
+          setActiveSlide(id);
+          if (sliderRef.current) {
+            sliderRef.current.slickGoTo(id);
+          }
+        }}
+        className={`testimonial-card ${active === id && "selected-card"}`}>
         <div className="testimonial-card-text">{reviewText}</div>
         <div
           className={`testimonial-card-content ${
@@ -51,7 +58,9 @@ const Testimonials = ({ reviews }) => {
     slidesToShow: 3,
     infinite: true,
     swipeToSlide: true,
-    focusOnSelect: true,
+    focusOnSelect: false,
+    accessibility: false,
+    initialSlide: 2,
     cssEase: "ease-in-out",
     slidesToScroll: 1,
     speed: 500,
@@ -64,6 +73,8 @@ const Testimonials = ({ reviews }) => {
           slidesToShow: 2,
           infinite: true,
           arrows: false,
+          accessibility: false,
+          focusOnSelect: false,
         },
       },
       {
@@ -73,16 +84,12 @@ const Testimonials = ({ reviews }) => {
           slidesToShow: 1,
           infinite: true,
           arrows: false,
+          accessibility: false,
+          focusOnSelect: false,
         },
       },
     ],
   };
-
-  useEffect(() => {
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(active);
-    }
-  }, [active]);
 
   return (
     <div className="testimonials">

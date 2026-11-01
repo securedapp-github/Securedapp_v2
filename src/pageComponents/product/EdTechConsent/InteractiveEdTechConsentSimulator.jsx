@@ -59,7 +59,7 @@ export default function InteractiveEdTechConsentSimulator() {
         </div>
 
         {/* Tab Controls */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 overflow-x-auto no-scrollbar pb-1">
           {[
             { id: "ageGate", label: "Age Gate & VPC", icon: <UserCheck className="w-4 h-4" /> },
             { id: "trackingBan", label: "Sec 9(3) Tracking Ban", icon: <ShieldAlert className="w-4 h-4" /> },
@@ -350,7 +350,7 @@ export default function InteractiveEdTechConsentSimulator() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-2">
               <div className="p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl">
                 <div className="text-xs font-bold text-secondary dark:text-white">1. Birthday Detection</div>
                 <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans mt-1">

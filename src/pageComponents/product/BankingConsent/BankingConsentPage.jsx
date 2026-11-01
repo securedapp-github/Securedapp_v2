@@ -145,7 +145,7 @@ export default function BankingConsentPage() {
               </div>
 
               {/* H1 Display Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 Consent Management Platform for <span className="text-tertiary">Banks</span>
               </h1>
 
@@ -228,7 +228,7 @@ export default function BankingConsentPage() {
                     </span>
                     <span className="text-tertiary font-mono">100% Operational</span>
                   </div>
-                  <div className="grid grid-cols-4 gap-1.5 text-[10px] text-center font-mono">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[10px] text-center font-mono">
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">Branch</span>
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">App</span>
                     <span className="p-1 rounded bg-tertiary/15 text-tertiary font-bold">NetBank</span>
@@ -315,7 +315,7 @@ export default function BankingConsentPage() {
               </h2>
 
               <p className="text-secondary/80 dark:text-gray-300 text-base lg:text-lg leading-relaxed font-nunitoSans">
-                A consent management platform for banks is software that records each customer's consent for every purpose the bank uses their data for, such as account servicing, cross-selling, marketing, and partner products. It verifies the consent, stores tamper-proof proof of it, updates every connected system when the customer changes or withdraws it, and produces evidence for DPDP audits.
+                A consent management platform for banks is software that records each customer's consent for every purpose the bank uses their data for, such as account servicing, cross-selling, marketing, and partner products. It verifies the consent, stores tamper-proof proof of it, updates every connected system when the customer changes or withdraws it, and produces evidence for DPDP audits. SecureCMS applies our core DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> engine to every bank channel: branch forms, mobile app, net banking and call centre.
               </p>
 
               {/* Callout: Section 6(10) Burden of Proof */}

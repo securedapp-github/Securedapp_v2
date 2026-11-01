@@ -114,7 +114,7 @@ export default function SchoolsConsentPage() {
               </div>
 
               {/* H1 */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight text-secondary dark:text-white font-outfit">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight text-secondary dark:text-white font-outfit">
                 DPDP Compliance for <span className="text-tertiary">Schools</span>
               </h1>
 
@@ -196,7 +196,7 @@ export default function SchoolsConsentPage() {
                   What Does DPDP Compliance Mean for Schools?
                 </h2>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  DPDP compliance for schools means handling the personal data of students, parents and staff the way the DPDP Act 2023 expects. In practice, that comes down to five things: telling parents what data you collect and why, getting verifiable parent consent for uses that need it, keeping each purpose separate, letting parents change their mind easily, and answering data requests and reporting a data breach when one happens.
+                  DPDP compliance for schools means handling the personal data of students, parents and staff the way the DPDP Act 2023 expects. In practice, that comes down to five things: telling parents what data you collect and why, getting verifiable parent consent for uses that need it, keeping each purpose separate, letting parents change their mind easily, and answering data requests and reporting a data breach when one happens. Schools use the same <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform for DPDP</Link> as larger enterprises, set up for parent consent on photos, apps, transport and WhatsApp groups.
                 </p>
                 <div className="p-4 rounded-xl bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/10 space-y-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                   <div className="flex items-start gap-2.5">

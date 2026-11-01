@@ -161,7 +161,7 @@ export default function StockBrokersConsentPage() {
               </div>
 
               {/* Main Display Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-outfit tracking-tight text-secondary dark:text-white leading-[1.1]">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold font-outfit tracking-tight text-secondary dark:text-white leading-[1.1]">
                 DPDP Compliance for{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-tertiary via-emerald-400 to-teal-400">
                   Stock Brokers
@@ -322,7 +322,7 @@ export default function StockBrokersConsentPage() {
               What does DPDP compliance mean for stock brokers?
             </h2>
             <p className="mt-4 text-base font-nunitoSans text-labelGray dark:text-gray-300 leading-relaxed">
-              DPDP compliance for stock brokers means running your client data practices under the Digital Personal Data Protection Act, 2023 alongside the SEBI rules you already follow. You give clear notices, take purpose-specific consent for anything beyond what the law and the trading service need, honour withdrawal and rights requests, control what Authorised Persons and vendors do with client data, and report breaches. Processing that SEBI or PMLA mandates carries on without consent.
+              DPDP compliance for stock brokers means running your client data practices under the Digital Personal Data Protection Act, 2023 alongside the SEBI rules you already follow. You give clear notices, take purpose-specific consent for anything beyond what the law and the trading service need, honour withdrawal and rights requests, control what Authorised Persons and vendors do with client data, and report breaches. Processing that SEBI or PMLA mandates carries on without consent. Client consent from trading apps, Authorised Persons and onboarding flows is held in one record by our DPDP <Link href="/dpdp-compliance-platform" className="font-semibold text-tertiary hover:underline">consent management platform</Link> solution.
             </p>
           </div>
 

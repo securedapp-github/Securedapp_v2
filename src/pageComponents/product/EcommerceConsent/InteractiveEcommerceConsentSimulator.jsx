@@ -94,7 +94,7 @@ export default function InteractiveEcommerceConsentSimulator({
         </div>
 
         {/* Tab Controls */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 overflow-x-auto no-scrollbar pb-1">
           {[
             { id: "checkout", label: "Checkout Unbundling", icon: <ShoppingCart className="w-4 h-4" /> },
             { id: "preference", label: "Shopper Preference Hub", icon: <Sliders className="w-4 h-4" /> },
@@ -344,7 +344,7 @@ export default function InteractiveEcommerceConsentSimulator({
             exit={{ opacity: 0, y: -10 }}
             className="space-y-4"
           >
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { title: "WhatsApp BSP", latency: "48ms", status: "Suppressed in Broadcast List" },
                 { title: "Klaviyo / Email CRM", latency: "62ms", status: "Unsubscribed Automatically" },
@@ -398,7 +398,7 @@ export default function InteractiveEcommerceConsentSimulator({
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-2">
               <div className="p-4 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl">
                 <div className="text-xs font-bold text-secondary dark:text-white">Step 1: Inactivity Threshold</div>
                 <div className="text-xs text-labelGray dark:text-gray-400 font-nunitoSans mt-1">
