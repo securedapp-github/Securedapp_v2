@@ -35,6 +35,9 @@ export default function Document() {
           fetchPriority="high"
         />
 
+        {/* ── Agentic Resource Discovery (ARD) ─────────────────── */}
+        <link rel="ard" type="application/json" href="/.well-known/ard.json" />
+
         {/* ── Dark mode flicker prevention ────────────────────── */}
         <script
           dangerouslySetInnerHTML={{

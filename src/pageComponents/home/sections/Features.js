@@ -28,6 +28,8 @@ const Features = () => {
       title: "Vulnerability Detection",
       desc: "Scans for over 150+ vulnerability types across smart contracts to ensure robust security.",
       image: "/assets/images/home/1.webp",
+      width: 433,
+      height: 465,
       icon: "shield-bright",
     },
     {
@@ -35,6 +37,8 @@ const Features = () => {
       title: "Detects Unusual Deviations",
       desc: "Tracks your smart contract's activities to spot any unusual behavior or deviations that might signal potential threats.",
       image: "/assets/images/home/2.webp",
+      width: 410,
+      height: 350,
       icon: "reload",
     },
     {
@@ -42,6 +46,8 @@ const Features = () => {
       title: "Oversight of Transactions",
       desc: "Keeps a close watch on blockchain transactions to quickly flag suspicious or unauthorized actions.",
       image: "/assets/images/home/3.webp",
+      width: 289,
+      height: 353,
       icon: "4x3-lines",
     },
     {
@@ -49,6 +55,8 @@ const Features = () => {
       title: "Forensic Techniques",
       desc: "Employs specialized blockchain forensic techniques to delve deeply into transaction histories and uncover hidden connections related to fraudulent schemes.",
       image: "/assets/images/home/4.webp",
+      width: 703,
+      height: 601,
       icon: "checklist-shield",
     },
     {
@@ -56,6 +64,8 @@ const Features = () => {
       title: "Regulatory Compliance",
       desc: "Supports regulatory compliance by providing tools that streamline investigative workflows.",
       image: "/assets/images/home/5.webp",
+      width: 419,
+      height: 414,
       icon: "atom",
     },
   ];
@@ -131,17 +141,18 @@ const Features = () => {
             </div>
           </div> */}
           <Image
-            style={{
-              maxHeight: "80%",
-              width: "100%",
-              height: "auto",
-            }}
             src={`/assets/images/home/${detail + 1}.webp`}
             alt={featureData[detail]?.title || "Security feature illustration"}
-            width={550}
-            height={400}
+            width={featureData[detail]?.width || 433}
+            height={featureData[detail]?.height || 465}
             loading="lazy"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            style={{
+              maxHeight: "80%",
+              width: "auto",
+              maxWidth: "100%",
+              height: "auto",
+              objectFit: "contain",
+            }}
           />
         </div>
       </div>

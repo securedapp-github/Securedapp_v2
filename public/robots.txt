@@ -61,6 +61,7 @@ Allow: /*.ico$
 Allow: /manifest.json
 Allow: /sitemap.xml
 Allow: /robots.txt
+Allow: /.well-known/
 Allow: /rss.xml
 Allow: /feed.xml
 
