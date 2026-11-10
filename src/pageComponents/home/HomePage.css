@@ -268,7 +268,7 @@
   @apply px-32 w-full flex justify-center items-center text-center;
 }
 .faq-navbar-item {
-  @apply py-4 cursor-pointer flex-1 text-[#6D6D6D] font-light;
+  @apply py-4 cursor-pointer flex-1 text-gray-500 dark:text-gray-300 font-light;
 }
 .faq-navbar-item-selected {
   @apply text-secondary dark:text-primary font-normal;

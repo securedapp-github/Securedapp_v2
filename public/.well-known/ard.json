@@ -1,0 +1,57 @@
+{
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:securedapp.io:agent:solidity-shield",
+      "displayName": "SolidityShield Smart Contract Security Scanner",
+      "type": "application/mcp-server-card+json",
+      "description": "AI-powered blockchain smart contract vulnerability scanner, audit automation, and real-time threat detection platform.",
+      "tags": [
+        "blockchain",
+        "security",
+        "smart-contract-audit",
+        "vulnerability-scanner",
+        "web3"
+      ],
+      "capabilities": [
+        "vulnerability-scan",
+        "threat-detection",
+        "smart-contract-audit",
+        "reentrancy-detection"
+      ],
+      "representativeQueries": [
+        "Scan Solidity smart contract for vulnerabilities",
+        "Audit Ethereum smart contract for reentrancy bugs",
+        "Real-time blockchain threat monitoring"
+      ],
+      "url": "https://securedapp.io/blockchain-security/smart-contract-security-audit"
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:securedapp.io:agent:securecms-dpdp",
+      "displayName": "SecureCMS DPDP Consent Management Platform",
+      "type": "application/mcp-server-card+json",
+      "description": "Enterprise DPDP Act 2023 compliance engine and multilingual consent management platform across digital, banking, and enterprise channels.",
+      "tags": [
+        "dpdp",
+        "compliance",
+        "consent-management",
+        "privacy",
+        "india"
+      ],
+      "capabilities": [
+        "consent-recording",
+        "consent-revocation",
+        "dpdp-audit-evidence",
+        "grievance-redressal"
+      ],
+      "representativeQueries": [
+        "DPDP Act consent management platform for enterprise",
+        "RBI digital lending and DPDP Act compliance",
+        "Manage user data consent and withdrawal"
+      ],
+      "url": "https://securedapp.io/dpdp-compliance-platform"
+    }
+  ]
+}
+
