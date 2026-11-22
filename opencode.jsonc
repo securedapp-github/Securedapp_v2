@@ -1,0 +1,217 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "skills": ["./.agents/skills"],
+  "default_agent": "orchestrator",
+  "permissions": [
+    { "action": "external_directory", "resource": "*", "effect": "ask" },
+    { "action": "*", "resource": "*", "effect": "ask" },
+    { "action": "skill", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*.env", "effect": "ask" },
+    { "action": "read", "resource": "*.env.*", "effect": "ask" },
+    { "action": "edit", "resource": "*.env", "effect": "deny" },
+    { "action": "edit", "resource": "*.env.*", "effect": "deny" },
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
+    { "action": "shell", "resource": "git reset *", "effect": "deny" },
+    { "action": "shell", "resource": "git clean *", "effect": "deny" },
+    { "action": "shell", "resource": "git restore *", "effect": "ask" },
+    { "action": "shell", "resource": "git checkout *", "effect": "ask" },
+    { "action": "shell", "resource": "rm *", "effect": "ask" },
+    { "action": "shell", "resource": "Remove-Item *", "effect": "ask" },
+    { "action": "shell", "resource": "rmdir *", "effect": "ask" },
+    { "action": "shell", "resource": "del *", "effect": "ask" }
+  ],
+  "agents": {
+    "reviewer": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "code-review", "effect": "allow" },
+        { "action": "skill", "resource": "git-review", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "explorer": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "repo-orientation", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "tester": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "testing", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:agents", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:seo", "effect": "allow" },
+        { "action": "shell", "resource": "npm run build", "effect": "allow" },
+        { "action": "shell", "resource": "npx tsc --noEmit", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "orchestrator": {
+      "permissions": [
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "edit", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "shell", "resource": "git log *", "effect": "allow" },
+        { "action": "shell", "resource": "git show *", "effect": "allow" },
+        { "action": "shell", "resource": "git ls-files *", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:agents", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:seo", "effect": "allow" },
+        { "action": "shell", "resource": "npm run build", "effect": "allow" },
+        { "action": "shell", "resource": "npx tsc --noEmit", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "explorer", "effect": "allow" },
+        { "action": "subagent", "resource": "architect", "effect": "allow" },
+        { "action": "subagent", "resource": "builder", "effect": "allow" },
+        { "action": "subagent", "resource": "tester", "effect": "allow" },
+        { "action": "subagent", "resource": "reviewer", "effect": "allow" },
+        { "action": "subagent", "resource": "security-reviewer", "effect": "allow" },
+        { "action": "subagent", "resource": "browser-qa", "effect": "allow" },
+        { "action": "subagent", "resource": "release-gate", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "edit", "resource": "*.env", "effect": "deny" },
+        { "action": "edit", "resource": "*.env.*", "effect": "deny" },
+        { "action": "edit", "resource": "package.json", "effect": "ask" },
+        { "action": "edit", "resource": "scripts/*", "effect": "ask" },
+        { "action": "skill", "resource": "*", "effect": "allow" }
+      ]
+    },
+    "architect": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "repo-orientation", "effect": "allow" },
+        { "action": "skill", "resource": "feature-implementation", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "builder": {
+      "permissions": [
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "edit", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "feature-implementation", "effect": "allow" },
+        { "action": "skill", "resource": "security", "effect": "allow" },
+        { "action": "skill", "resource": "testing", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:agents", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:seo", "effect": "allow" },
+        { "action": "shell", "resource": "npm run build", "effect": "allow" },
+        { "action": "shell", "resource": "npx tsc --noEmit", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "edit", "resource": "*.env", "effect": "deny" },
+        { "action": "edit", "resource": "*.env.*", "effect": "deny" },
+        { "action": "edit", "resource": "package.json", "effect": "ask" },
+        { "action": "edit", "resource": "scripts/*", "effect": "ask" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "security-reviewer": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "security", "effect": "allow" },
+        { "action": "skill", "resource": "code-review", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "browser-qa": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "browser-qa", "effect": "allow" },
+        { "action": "shell", "resource": "npm run dev", "effect": "allow" },
+        { "action": "shell", "resource": "npm run build", "effect": "allow" },
+        { "action": "shell", "resource": "npm run start", "effect": "allow" },
+        { "action": "shell", "resource": "npx playwright *", "effect": "ask" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "release-gate": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "testing", "effect": "allow" },
+        { "action": "skill", "resource": "git-review", "effect": "allow" },
+        { "action": "shell", "resource": "git status *", "effect": "allow" },
+        { "action": "shell", "resource": "git diff *", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:agents", "effect": "allow" },
+        { "action": "shell", "resource": "npm run check:seo", "effect": "allow" },
+        { "action": "shell", "resource": "npm run build", "effect": "allow" },
+        { "action": "shell", "resource": "npx tsc --noEmit", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    },
+    "frontend-designer": {
+      "permissions": [
+        { "action": "*", "resource": "*", "effect": "deny" },
+        { "action": "read", "resource": "*", "effect": "allow" },
+        { "action": "glob", "resource": "*", "effect": "allow" },
+        { "action": "grep", "resource": "*", "effect": "allow" },
+        { "action": "skill", "resource": "design-system", "effect": "allow" },
+        { "action": "skill", "resource": "ui-implementation", "effect": "allow" },
+        { "action": "skill", "resource": "browser-qa", "effect": "allow" },
+        { "action": "read", "resource": "*.env", "effect": "deny" },
+        { "action": "read", "resource": "*.env.*", "effect": "deny" },
+        { "action": "skill", "resource": "*", "effect": "allow" },
+        { "action": "subagent", "resource": "*", "effect": "deny" }
+      ]
+    }
+  }
+}

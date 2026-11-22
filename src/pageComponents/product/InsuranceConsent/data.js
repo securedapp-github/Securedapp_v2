@@ -307,7 +307,7 @@ export const dpdpResources = [
   },
   {
     title: "DPDP Readiness Assessment",
-    href: "/compliance/dpdp",
+    href: "/dpdp-compliance-platform",
     desc: "Diagnostic toolkit and gap analysis for Indian insurers and TPAs.",
   },
 ];

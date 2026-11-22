@@ -99,8 +99,10 @@ export default function SecureCMSPrivacyPolicy() {
           
           {/* Breadcrumb & Switcher */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <nav className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
               <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              <Link href="/about" className="hover:text-slate-900 dark:hover:text-white transition-colors">About</Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
               <Link href="/dpdp-compliance-platform" className="hover:text-slate-900 dark:hover:text-white transition-colors">SecureCMS</Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
@@ -127,10 +129,10 @@ export default function SecureCMSPrivacyPolicy() {
               Legal & Data Protection Notice
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-              SecureCMS Privacy Policy
+              SecureDApp &amp; SecureCMS Privacy Policy
             </h1>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-              A privacy and data protection notice for the SecureCMS consent management platform, designed with reference to India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act) and the DPDP Rules, 2025.
+              Official privacy, data protection, and governance notice for the SecureDApp ecosystem and SecureCMS consent management platform, designed with reference to India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act) and the DPDP Rules, 2025.
             </p>
           </div>
 
@@ -211,17 +213,20 @@ export default function SecureCMSPrivacyPolicy() {
             {/* Section 1 */}
             <section id="sec-1" className="space-y-4 pt-4">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">
-                1. About SecureCMS
+                1. About SecureDApp &amp; SecureCMS
               </h2>
               <p>
-                SecureCMS is a consent management and data governance platform provided by SecuredApp. It enables organizations (each a &quot;Customer&quot; or &quot;Data Fiduciary&quot;, as applicable) to configure purposes of processing, collect and manage consent, maintain consent records, support withdrawal of consent, manage data subject requests, maintain policy versions, provide audit trails, and integrate consent enforcement with customer applications and systems.
+                SecureCMS is an enterprise consent management, cookie governance, and privacy compliance platform provided by <Link href="/about" className="text-tertiary underline font-semibold">SecureDApp</Link> (Vettedcode Technologies India Pvt. Ltd). SecureDApp is a global Web3 security and enterprise compliance firm offering <Link href="/smart-contract-audit" className="text-tertiary underline font-semibold">smart contract security audits</Link>, blockchain runtime threat monitoring, and automated data governance through our <Link href="/dpdp-compliance-platform" className="text-tertiary underline font-semibold">DPDP compliance platform</Link>.
+              </p>
+              <p>
+                SecureCMS enables organizations (each a &quot;Customer&quot; or &quot;Data Fiduciary&quot;, as applicable) to configure purposes of processing, collect and manage consent, maintain consent records, support withdrawal of consent, manage data subject requests, maintain policy versions, provide audit trails, and integrate consent enforcement with customer applications and systems.
               </p>
               <p>
                 SecureCMS may process personal data in two principal contexts:
               </p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>
-                  <strong>First, Direct Service Operations (as Data Fiduciary):</strong> SecuredApp may process information relating to its own customers, administrators, website visitors, users, and business contacts for operating and securing its own services.
+                  <strong>First, Direct Service Operations (as Data Fiduciary):</strong> SecuredApp may process information relating to its own customers, administrators, website visitors, users, and business contacts for operating and securing its own services, accessible via <Link href="/" className="text-tertiary underline">securedapp.io</Link>.
                 </li>
                 <li>
                   <strong>Second, Customer Processing (as Data Processor):</strong> SecureCMS may process personal data submitted by a Customer on the Customer&apos;s behalf. In the second context, the Customer generally determines the purposes and means of processing and SecureCMS acts as a Data Processor or service provider to the Customer, subject to the applicable agreement and law.
@@ -524,12 +529,18 @@ export default function SecureCMSPrivacyPolicy() {
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white border-b border-slate-200 dark:border-slate-800 pb-2">
                 21. Contact and Privacy Information
               </h2>
-              <p>For privacy questions, requests, or grievances relating to SecuredApp&apos;s own processing, contact:</p>
-              <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 space-y-1.5 text-sm">
-                <div><strong>Brand:</strong> SecureCMS by SecuredApp</div>
+              <p>For privacy questions, data principal requests, or grievances relating to SecuredApp&apos;s own processing, contact:</p>
+              <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 space-y-2 text-sm">
+                <div><strong>Brand:</strong> SecureCMS by SecuredApp (Vettedcode Technologies India Pvt. Ltd)</div>
                 <div><strong>Privacy / Grievance Email:</strong> <a href="mailto:himanshu@securedapp.io" className="text-tertiary underline">himanshu@securedapp.io</a></div>
-                <div><strong>Registered Office:</strong> Bangalore, India</div>
-                <div><strong>Website:</strong> <a href="https://securedapp.io" target="_blank" rel="noreferrer" className="text-tertiary underline">securedapp.io</a></div>
+                <div><strong>Registered Office:</strong> 235, 2nd and 3rd Floor, 13th Cross Road, Indira Nagar 2nd Stage, Hoysala Nagar, Bengaluru, Karnataka 560038, India</div>
+                <div><strong>Corporate Website:</strong> <Link href="/" className="text-tertiary underline">securedapp.io</Link></div>
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-4 text-xs font-medium">
+                  <Link href="/about" className="text-tertiary hover:underline">About Us</Link>
+                  <Link href="/smart-contract-audit" className="text-tertiary hover:underline">Services</Link>
+                  <Link href="/blog" className="text-tertiary hover:underline">Security Blog</Link>
+                  <Link href="/?contact=true" className="text-tertiary hover:underline">Contact Support</Link>
+                </div>
               </div>
             </section>
 

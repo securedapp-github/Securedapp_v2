@@ -33,21 +33,12 @@ Disallow: /.git/
 Disallow: /.env
 Disallow: /.htaccess
 Disallow: /node_modules/
-Disallow: /*?fbclid=
-Disallow: /*?gclid=
-Disallow: /*?msclkid=
-Disallow: /*?utm_source=
-Disallow: /*?utm_medium=
-Disallow: /*?utm_campaign=
-Disallow: /*?utm_content=
-Disallow: /*?utm_term=
-Disallow: /*?ref=
-Disallow: /*?affiliate=
 Disallow: /*?contact=
 Disallow: /api/
 Disallow: /wp-admin/
 Disallow: /wp-login.php
 Disallow: /wp-content/uploads/
+Disallow: /*ekit-blog-posts-paged=
 
 # Allow important resource files
 Allow: /*.css$
@@ -366,4 +357,3 @@ Request-rate: 1/5s
 # SECTION 14: SITEMAP
 # ==========================================
 Sitemap: https://securedapp.io/sitemap.xml
-

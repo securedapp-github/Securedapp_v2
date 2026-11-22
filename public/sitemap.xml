@@ -33,13 +33,6 @@
   </url>
 
   <url>
-    <loc>https://securedapp.io/consent-management-platform-for-banks</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.94</priority>
-  </url>
-
-  <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/ecommerce</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -83,13 +76,6 @@
 
   <url>
     <loc>https://securedapp.io/dpdp-compliance-platform/healthcare</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.94</priority>
-  </url>
-
-  <url>
-    <loc>https://securedapp.io/dpdp-compliance-platform/hospitals</loc>
     <lastmod>2026-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.94</priority>
@@ -323,40 +309,7 @@
     <priority>0.85</priority>
   </url>
 
-  <url>
-    <loc>https://securedapp.io/blog/category/blockchain</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://securedapp.io/blog/category/finance</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://securedapp.io/blog/category/legal</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://securedapp.io/blog/category/token</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://securedapp.io/blog/category/web3</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
+  <!-- Blog category archives live on blog.securedapp.io and are excluded from this host's sitemap. -->
 
   <!-- COMPANY, RESOURCES & SUPPORT -->
   <url>
@@ -371,13 +324,6 @@
     <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
-  </url>
-
-  <url>
-    <loc>https://securedapp.io/careers</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
   </url>
 
   <url>
@@ -432,14 +378,14 @@
   <!-- LEGAL & PRIVACY POLICIES -->
   <url>
     <loc>https://securedapp.io/privacy-policy</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
     <loc>https://securedapp.io/terms-of-service</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>

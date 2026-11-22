@@ -108,8 +108,10 @@ export default function SecureCMSTermsOfService() {
           
           {/* Breadcrumb & Switcher */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <nav className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
               <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+              <Link href="/about" className="hover:text-slate-900 dark:hover:text-white transition-colors">About</Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
               <Link href="/dpdp-compliance-platform" className="hover:text-slate-900 dark:hover:text-white transition-colors">SecureCMS</Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
@@ -136,10 +138,10 @@ export default function SecureCMSTermsOfService() {
               Commercial & Platform Agreement
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
-              SecureCMS Terms of Service
+              SecureDApp &amp; SecureCMS Terms of Service
             </h1>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-              Terms governing access to and use of the SecureCMS consent management, cookie categorization, dynamic script blocking, and data governance platform provided by SecuredApp.
+              Official commercial terms governing access to and use of SecureDApp products and the SecureCMS enterprise consent management, cookie governance, dynamic script blocking, and data compliance platform.
             </p>
           </div>
 
@@ -281,10 +283,10 @@ export default function SecureCMSTermsOfService() {
                 3. Description of Services
               </h2>
               <p>
-                SecureCMS provides configurable technology for consent and privacy operations. Depending on the subscription and configuration, the Services may include:
+                SecureCMS and SecureDApp provide configurable technology for enterprise consent management, privacy governance, and blockchain application security. In addition to SecureCMS consent management, <Link href="/about" className="text-tertiary underline font-semibold">SecureDApp</Link> provides comprehensive <Link href="/smart-contract-audit" className="text-tertiary underline font-semibold">smart contract security audit services</Link>, vulnerability testing, and runtime monitoring. Depending on the subscription and configuration, the Services may include:
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Consent collection, recording, review, management, and withdrawal workflows.</li>
+                <li>Consent collection, recording, review, management, and withdrawal workflows under India&apos;s <Link href="/dpdp-compliance-platform" className="text-tertiary underline">DPDP compliance framework</Link>.</li>
                 <li>Consent receipts, consent records, purpose and policy version management.</li>
                 <li>Cookie management, cookie categorization, vendor mapping, and consent enforcement functionality.</li>
                 <li>Data catalogue and data governance capabilities.</li>
@@ -614,10 +616,17 @@ export default function SecureCMSTermsOfService() {
                 31. Contact Information
               </h2>
               <p>For questions regarding these Terms, SecureCMS, or contractual matters:</p>
-              <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 space-y-1.5 text-sm">
-                <div><strong>Product:</strong> SecureCMS by SecuredApp</div>
+              <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 space-y-2 text-sm">
+                <div><strong>Product:</strong> SecureCMS by SecuredApp (Vettedcode Technologies India Pvt. Ltd)</div>
                 <div><strong>Email:</strong> <a href="mailto:himanshu@securedapp.in" className="text-tertiary underline">himanshu@securedapp.in</a></div>
-                <div><strong>Website:</strong> <a href="https://securedapp.io" target="_blank" rel="noreferrer" className="text-tertiary underline">securedapp.io</a></div>
+                <div><strong>Registered Office:</strong> 235, 2nd and 3rd Floor, 13th Cross Road, Indira Nagar 2nd Stage, Hoysala Nagar, Bengaluru, Karnataka 560038, India</div>
+                <div><strong>Corporate Website:</strong> <Link href="/" className="text-tertiary underline">securedapp.io</Link></div>
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-4 text-xs font-medium">
+                  <Link href="/about" className="text-tertiary hover:underline">About Us</Link>
+                  <Link href="/smart-contract-audit" className="text-tertiary hover:underline">Services</Link>
+                  <Link href="/blog" className="text-tertiary hover:underline">Security Blog</Link>
+                  <Link href="/?contact=true" className="text-tertiary hover:underline">Contact Sales</Link>
+                </div>
               </div>
             </section>
 

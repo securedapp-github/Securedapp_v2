@@ -128,7 +128,7 @@ function App() {
         <Route path="authors/:url" element={<AuthorProfile />} />
         <Route path="about" element={<AboutUs />} />
         <Route
-          path="solidity-shield-vulnerabilities"
+          path="solidity-smart-contract-vulnerabilities"
           element={<VulnerabilityInfo />}
         />
         <Route path="white-paper" element={<WhitePaper />} />
