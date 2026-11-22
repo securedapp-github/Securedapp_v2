@@ -1,6 +1,6 @@
 # SecureDApp agent workspace
 
-Use the project skills in `.agents/skills/` as the canonical, tool-neutral playbooks. OpenCode and Antigravity discover the same files. Load only the skill relevant to the current task; combine skills when needed.
+Use the project skills in `.opencode/skills/` as the canonical, tool-neutral playbooks. OpenCode and Antigravity discover the same files. Load only the skill relevant to the current task; combine skills when needed.
 
 All repository skills are available to every configured agent on demand. Do not preload unrelated skills: it wastes context and can create conflicting instructions. Configured project/global plugins are available to agents through their permitted tools; no project plugin is currently configured.
 

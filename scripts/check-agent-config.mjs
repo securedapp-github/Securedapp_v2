@@ -94,7 +94,7 @@ function effectiveRule(agent, action, resource) {
 assert(config.$schema === 'https://opencode.ai/config.json', 'missing OpenCode schema');
 assert(config.default_agent === 'orchestrator', 'default agent must be orchestrator');
 assert(config.instructions?.includes('AGENTS.md'), 'AGENTS.md must be loaded');
-assert(config.skills?.includes('./.agents/skills'), 'repository skills must be loaded');
+assert(config.skills?.includes('./.opencode/skills'), 'repository skills must be loaded');
 assert(config.permissions?.some(({ action, resource, effect }) => action === 'skill' && resource === '*' && effect === 'allow'), 'global skill permission missing');
 
 for (const agent of requiredAgents) {
