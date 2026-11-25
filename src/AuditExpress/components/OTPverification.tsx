@@ -29,10 +29,20 @@ const sendOTP = async ({ email }) => {
   }
 };
 
-const OTPVerification = ({ onSuccess, OTPemail, onClose }) => {
+const OTPVerification = ({
+  onSuccess,
+  OTPemail,
+  onClose,
+  theme: propTheme,
+}: {
+  onSuccess?: any;
+  OTPemail?: any;
+  onClose?: any;
+  theme?: string;
+}) => {
   const [otp, setOtp] = useState("");
   const otpSentRef = useRef(false);
-  const theme = localStorage.getItem("theme");
+  const theme = propTheme || (typeof window !== "undefined" ? localStorage.getItem("theme") : "dark");
 
   useEffect(() => {
     const handleSendOTPOnce = async () => {

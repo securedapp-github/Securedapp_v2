@@ -91,7 +91,7 @@ const SolidityShieldOverview = () => {
             <p className="text-secondary/80 dark:text-[#a0a5b1] text-lg mb-8">
                 A significant portion of DeFi exploits originate from vulnerabilities that could have been identified before deployment. Without proper auditing, these risks remain hidden until exploited, often within minutes of going live.
             </p>
-            <Link href="/solidity-shield-vulnerabilities" className="inline-block text-[#00ff88] hover:text-[#00d2ff] font-semibold transition-colors duration-300">
+            <Link href="/solidity-smart-contract-vulnerabilities" className="inline-block text-[#00ff88] hover:text-[#00d2ff] font-semibold transition-colors duration-300">
                 See How We Secure Smart Contracts →
             </Link>
             

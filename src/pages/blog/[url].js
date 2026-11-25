@@ -614,52 +614,22 @@ export default function BlogPost({ blog }) {
   );
 }
 
-// 1. Define `getStaticPaths` to pre-render dynamic blog URLs
-export async function getStaticPaths() {
-  try {
-    var data = await fetchBlogs();
-    // Only include published blogs (status === 1)
-    const published = data.filter((blog) => blog.status === 1);
-    const paths = published.map((blog) => ({
-      params: { url: blog.url.trim().replace(":", "") },
-    }));
+// Blog posts are consolidated on blog.securedapp.io. Redirect every main-site
+// /blog/<slug> request at the server so the main domain never serves a
+// duplicate copy. Unknown slugs land on the blog host's 404 instead of a
+// main-site soft 404. `permanent: true` emits a 308 permanent redirect.
+export async function getServerSideProps({ params, query }) {
+  const slug = (params?.url || "").replaceAll(":", "");
+  const searchParams = new URLSearchParams(query);
+  searchParams.delete("url");
+  const search = searchParams.toString();
 
-    return {
-      paths, // Pre-rendered blog URLs
-      // fallback: false → any slug NOT in `paths` gets a real HTTP 404,
-      // not a 200 soft-404. This is the primary fix for the SEO bug.
-      fallback: false,
-    };
-  } catch (err) {
-    console.error("Error fetching blog list:", err);
-    // On build-time fetch failure, return empty paths + false so unknown
-    // slugs still 404 rather than silently render blog homepage.
-    return { paths: [], fallback: false };
-  }
-}
-
-// 2. Define `getStaticProps` to fetch blog data for each page
-export async function getStaticProps({ params }) {
-  try {
-    var data = await fetchBlogs();
-    const blog = data.find(
-      (blog) => blog.url.trim().replace(":", "").toLowerCase() === params.url.replace(":", "").toLowerCase()
-    );
-
-    if (!blog) {
-      return {
-        notFound: true, // Return 404 if blog not found
-      };
-    }
-
-    return {
-      props: {
-        blog,
-      },
-    };
-
-  } catch (err) {
-    console.error("Error fetching blog data:", err);
-    return { notFound: true };
-  }
+  return {
+    redirect: {
+      destination: `https://blog.securedapp.io/${encodeURIComponent(slug)}/${
+        search ? `?${search}` : ""
+      }`,
+      permanent: true,
+    },
+  };
 }

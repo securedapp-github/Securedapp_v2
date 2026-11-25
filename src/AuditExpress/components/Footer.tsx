@@ -258,7 +258,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <Link
-                    href="https://securedapp.io/solidity-shield-vulnerabilities"
+                    href="https://securedapp.io/solidity-smart-contract-vulnerabilities"
                     className="text-xs text-gray-300 dark:text-black hover:dark:text-green-500 hover:text-green-500"
                   >
                     Vulnerabilities

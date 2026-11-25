@@ -1,11 +1,12 @@
 "use client";
 
+import React from "react";
+import Link from "next/link";
 import Footer from "../../../components/footer/footer";
 import Navbar from "../../../components/navbar/Navbar";
 import ProductServiceHero from "../../../components/common/ProductServiceHero";
 import Testimonials from "../../../components/common/Testimonials";
 import SectionTitle from "../../../components/common/SectionTitle";
-import Button from "../../../components/common/Button";
 import ProductCard from "../../../components/productService/ProductCard";
 import ProductWhyCard from "../../../components/productService/ProductWhyCard";
 import FAQs from "../../../components/common/FAQs";
@@ -18,26 +19,51 @@ import { platforms, facts, projectIndustries, faqsData } from "./data";
 import BookMeetCta from "../../../components/common/bookMeetCta";
 
 function SmartContractAudit() {
-  if (typeof window !== "undefined") {
-    typeof window !== "undefined" && window.scrollTo(0, 0);
-  }
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="service-container">
-      {" "}
       <MetaTags
         data={{
-          title: "Smart Contract Audits: Expert Security for Blockchain DApps",
-          desc: "Get thorough smart contract audits to eliminate security flaws in your blockchain DApps. Ensure reliability and compliance with our expert services.",
+          title: "Smart Contract Audit Services: Expert Security for Blockchain DApps | SecureDApp",
+          desc: "Get thorough smart contract audits to eliminate security flaws in your blockchain DApps. Ensure reliability, formal verification, and compliance with our expert services.",
           keywords:
             "smart contract audit, blockchain security, secure DApps, blockchain audit services, smart contract security, decentralized apps",
           image: "/assets/images/ServicePages/s2-hero.webp",
+          url: "https://securedapp.io/smart-contract-audit",
         }}
       />
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-2">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-400"
+        >
+          <Link href="/" className="hover:text-tertiary transition-colors">
+            Home
+          </Link>
+          <span className="text-slate-600">/</span>
+          <Link
+            href="/smart-contract-audit"
+            className="hover:text-tertiary transition-colors"
+          >
+            Services
+          </Link>
+          <span className="text-slate-600">/</span>
+          <span className="text-white font-semibold">
+            Smart Contract Audit
+          </span>
+        </nav>
+      </div>
+
       <div className="service">
         <ProductServiceHero
           name="SMART CONTRACT AUDIT"
-          title="Helping Your Business to Launch Error-free Blockchain Applications"
+          title="Smart Contract Audit Services: Comprehensive Security Analysis for Blockchain DApps"
           image={"/assets/images/ServicePages/s2-hero.webp"}
           service={true}
         />
@@ -75,9 +101,6 @@ function SmartContractAudit() {
             }
           />
           <FeatureCards featureData={facts} />
-          {/* <div className="features-section-button">
-            <Button text={"Learn more"} filled={true} />
-          </div> */}
         </div>
         <Benefits
           benefitsData={platforms}
@@ -97,18 +120,22 @@ function SmartContractAudit() {
             }
           />
           <div className="how-it-works-section">
-            {projectIndustries.map((data) => {
-              return (
-                <HowItWorksCard
-                  image={data.image}
-                  imageAlt={data.imageAlt}
-                  title={data.header}
-                  description={data.description}
-                />
-              );
-            })}
+              {
+                projectIndustries.map((data, index) => {
+                  return (
+                    <HowItWorksCard
+                      key={data.header || index}
+                      image={data.image}
+                      imageAlt={data.imageAlt}
+                      title={data.header}
+                      description={data.description}
+                    />
+                  );
+                })
+              }
           </div>
         </div>
+
         <Testimonials reviews={reviews} />
         <div>
           <FAQs faqsData={faqsData} />

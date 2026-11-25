@@ -84,7 +84,22 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/compliance/dpdp",
+        destination: "/dpdp-compliance-platform",
+        permanent: true,
+      },
+      {
+        source: "/compliance/dpdp/",
+        destination: "/dpdp-compliance-platform",
+        permanent: true,
+      },
+      {
         source: "/consent-management-platform-for-banks",
+        destination: "/dpdp-compliance-platform/banking",
+        permanent: true,
+      },
+      {
+        source: "/consent-management-platform-for-banks/",
         destination: "/dpdp-compliance-platform/banking",
         permanent: true,
       },
@@ -183,6 +198,31 @@ const nextConfig = {
         destination: "/solidity-smart-contract-vulnerabilities",
         permanent: true,
       },
+      {
+        source: "/dpdp-compliance-platform/hospitals",
+        destination: "/dpdp-compliance-platform/healthcare",
+        permanent: true,
+      },
+      {
+        source: "/dpdp-compliance-platform/hospitals/",
+        destination: "/dpdp-compliance-platform/healthcare",
+        permanent: true,
+      },
+      {
+        source: "/careers",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/careers/",
+        destination: "/about",
+        permanent: true,
+      },
+      {
+        source: "/blog/category/:path*",
+        destination: "https://blog.securedapp.io/category/:path*",
+        permanent: true,
+      },
       // 301 Redirects for GSC URL Issues
       {
         source: "/blog/%20ai-smart-contract-audits-defi-security",
@@ -227,12 +267,12 @@ const nextConfig = {
       },
       {
         source: "/career",
-        destination: "/careers",
+        destination: "/about",
         permanent: true,
       },
       {
         source: "/career/",
-        destination: "/careers",
+        destination: "/about",
         permanent: true,
       },
 
@@ -376,6 +416,26 @@ const nextConfig = {
       {
         source: "/blog/security-concerns-in-web3-and-securedapp",
         destination: "/blog/security-concerns-in-web3-and-securedapp's-solution",
+        permanent: true,
+      },
+      {
+        source: "/blog/smartcontracts-in-the-music-industry",
+        destination: "https://blog.securedapp.io/smart-contracts-in-the-music-industry-revolutionizing-royalties-and-rights-management/",
+        permanent: true,
+      },
+      {
+        source: "/blog/smartcontracts-in-the-music-industry/",
+        destination: "https://blog.securedapp.io/smart-contracts-in-the-music-industry-revolutionizing-royalties-and-rights-management/",
+        permanent: true,
+      },
+      {
+        source: "/blog/smart-",
+        destination: "https://blog.securedapp.io/",
+        permanent: true,
+      },
+      {
+        source: "/blog/smart-/",
+        destination: "https://blog.securedapp.io/",
         permanent: true,
       },
       {

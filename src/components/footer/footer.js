@@ -109,7 +109,7 @@ const navigationItems = [
       },
       {
         name: "Career",
-        to: "/careers",
+        to: "/about",
       },
       {
         name: "Contact Us",

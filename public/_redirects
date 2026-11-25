@@ -1,20 +1,26 @@
 # Specific Subdomain Blog Redirects
-https://blog.securedapp.io/how-tokenization-can-make-rwa           https://securedapp.io/tokenization-platform 301!
-https://blog.securedapp.io/how-much-does-smart-contract-audit-cost https://securedapp.io/blockchain-security/smart-contract-security-audit 301!
+https://blog.securedapp.io/how-tokenization-can-make-rwa           https://blog.securedapp.io/how-tokenization-can-make-real-world-assets-more-sustainable/ 301!
+https://blog.securedapp.io/how-much-does-smart-contract-audit-cost https://blog.securedapp.io/how-much-does-a-smart-contract-audit-cost-factors-that-affect-pricing-2/ 301!
+https://blog.securedapp.io/blockchain_technology_v1                https://blog.securedapp.io/blockchain-technology-has-reached-a-pivotal-moment-in-finance-and-security/ 301!
+https://blog.securedapp.io/post-quantum-cryptography-regulated-enterprises https://blog.securedapp.io/what-is-post-quantum-cryptography-and-why-indian-enterprises-must-prepare-now/ 301!
+https://blog.securedapp.io/pqc-governance-platform                 https://securedapp.io/post-quantum-cryptography-platform 301!
+https://blog.securedapp.io/solutions/code-signing-hsm              https://securedapp.io/enterprise-hsm-key-management-platform 301!
+https://blog.securedapp.io/cryptographic-agility-platform          https://securedapp.io/post-quantum-cryptography-platform 301!
+https://blog.securedapp.io/quantumvault/certificate-automation     https://securedapp.io/enterprise-hsm-key-management-platform 301!
+https://blog.securedapp.io/quantumvault/integration-guide          https://securedapp.io/enterprise-hsm-key-management-platform 301!
+https://blog.securedapp.io/blog/dpdp-compliance-for-mobile-apps    https://blog.securedapp.io/how-securecms-reduces-dpdp-compliance-risk-for-content-heavy-and-data-driven-web-platforms/ 301!
+https://blog.securedapp.io/token-movement-tracking-*               https://blog.securedapp.io/real-time-blockchain-threat-monitoring-complete-guide-for-2026/ 301!
 https://blog.securedapp.io/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid/* https://securedapp.io/nft-marketplace-development-company 301!
 https://blog.securedapp.io/how-to-secure-your-nft-marketplace-common-vulnerabilities-to-avoid https://securedapp.io/nft-marketplace-development-company 301!
 https://blog.securedapp.io/blockchain-security                     https://securedapp.io/web3-security 301!
 https://blog.securedapp.io/how-to-choose-right-smart-contract-auditor https://securedapp.io/blockchain-security/smart-contract-security-audit 301!
 https://blog.securedapp.io/what-is-smart-contract-audit            https://securedapp.io/blockchain-security/smart-contract-security-audit 301!
 https://blog.securedapp.io/markets-in-crypto-assets-regulations-affect-blockchain-security https://securedapp.io/crypto-aml-compliance-platform 301!
-https://blog.securedapp.io/blockchain_technology_v1                https://securedapp.io/blog/blockchain_technology_v1 301!
 
 # Subdomain WordPress Directory Redirects
 https://blog.securedapp.io/wp-admin/*                              https://securedapp.io/blog 301!
 https://blog.securedapp.io/wp-content/*                            https://securedapp.io/blog 301!
 https://blog.securedapp.io/wp-json/*                               https://securedapp.io/blog 301!
-https://blog.securedapp.io/*                                       https://securedapp.io/blog/:splat 301!
-http://blog.securedapp.io/*                                        https://securedapp.io/blog/:splat 301!
 
 # GSC URL Encoding & Whitespace Issues
 /blog/%20ai-smart-contract-audits-defi-security                    /blog/ai-smart-contract-audits-defi-security 301!
@@ -25,12 +31,21 @@ http://blog.securedapp.io/*                                        https://secur
 /our-services/                                                     / 301!
 
 # Contact & Careers
+/compliance/dpdp                                                       /dpdp-compliance-platform 301!
+/compliance/dpdp/                                                      /dpdp-compliance-platform 301!
 /contact-us                                                        /contact 301!
 /contact-us/                                                       /contact 301!
 /career                                                            /about 301!
 /career/                                                           /about 301!
 /careers                                                           /about 301!
 /careers/                                                          /about 301!
+/dpdp-compliance-platform/hospitals                                /dpdp-compliance-platform/healthcare 301!
+/dpdp-compliance-platform/hospitals/                               /dpdp-compliance-platform/healthcare 301!
+/privacy-policy/                                                   /privacy-policy 301!
+/terms-of-service/                                                 /terms-of-service 301!
+/blog/category/*                                                  https://blog.securedapp.io/category/:splat 301!
+/blog/smartcontracts-in-the-music-industry                             https://blog.securedapp.io/smart-contracts-in-the-music-industry-revolutionizing-royalties-and-rights-management/ 301!
+/blog/smart-                                                           https://blog.securedapp.io/ 301!
 
 # Solidity Shield & Renamed Products
 /smart-contract-scanner-solidity-shield                            /blockchain-security/smart-contract-security-audit 301!

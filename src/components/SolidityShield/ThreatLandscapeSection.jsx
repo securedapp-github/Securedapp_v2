@@ -31,7 +31,7 @@ const ThreatLandscapeSection = () => {
         </div>
 
         <div className="mt-16 text-center">
-            <Link href="/solidity-shield-vulnerabilities" className="text-[#00ff88] hover:underline flex items-center justify-center gap-2 text-lg font-medium">
+            <Link href="/solidity-smart-contract-vulnerabilities" className="text-[#00ff88] hover:underline flex items-center justify-center gap-2 text-lg font-medium">
                 {threatsData.footerLink} <span>&rarr;</span>
             </Link>
         </div>

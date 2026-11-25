@@ -66,7 +66,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "node --max-old-space-size=8192 ./node_modules/next/dist/bin/next build",
-    "start": "next start"
+    "start": "next start",
+    "check:seo": "node scripts/check-seo-config.mjs"
   },
   "eslintConfig": {
     "extends": [
